@@ -64,7 +64,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: min(100% - 48px, 920px);
+        width: min(100% - 48px, 1060px);
         margin: 0 auto;
         padding: 28px 0;
       }
@@ -99,20 +99,24 @@
         z-index: 2;
         display: flex;
         align-items: center;
-        width: min(100% - 48px, 920px);
+        width: min(100% - 48px, 1060px);
         min-height: calc(100vh - 92px);
         margin: 0 auto;
         padding: 120px 0 140px;
       }
 
       h1 {
-        max-width: 860px;
+        max-width: 1040px;
         margin: 0;
         font-family: Manrope, Inter, system-ui, sans-serif;
-        font-size: clamp(3.9rem, 5.5vw, 5.85rem);
+        font-size: clamp(3.35rem, 4.85vw, 5.2rem);
         font-weight: 800;
         line-height: 1;
         letter-spacing: 0;
+      }
+
+      .headline-line {
+        display: block;
       }
 
       .contact {
@@ -187,7 +191,7 @@
       @media (max-width: 640px) {
         header,
         main {
-          width: min(100% - 32px, 920px);
+          width: min(100% - 32px, 1060px);
         }
 
         header {
@@ -196,6 +200,10 @@
 
         h1 {
           font-size: clamp(3.3rem, 16vw, 5.2rem);
+        }
+
+        .headline-line {
+          display: inline;
         }
 
         .contact-row {
@@ -232,7 +240,7 @@
 
       <main>
         <section>
-          <h1>From conversation to coordination.</h1>
+          <h1><span class="headline-line">AI for the conversations</span> <span class="headline-line">that build community.</span></h1>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <label for="email">Want in</label>
             <input type="hidden" name="_subject" value="New Human Conversation signup" />

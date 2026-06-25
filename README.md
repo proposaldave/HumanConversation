@@ -19,14 +19,14 @@ Open the local URL Vite prints. The main gallery is `/`.
 npm run build:pages
 ```
 
-The app is configured to work on both the temporary GitHub Pages URL and the future custom domain:
+The app is configured to work on both the custom domain and the fallback GitHub Pages URL:
 
 ```text
-https://proposaldave.github.io/HumanConversation/
 https://humanconversation.com/
+https://proposaldave.github.io/HumanConversation/
 ```
 
-The public root URL opens Variant 3 directly for clean sharing while the domain transfer is pending.
+The public root URL opens Variant 3 directly for clean sharing. Keep `public/CNAME` set to `humanconversation.com` so GitHub Pages stays attached to the custom domain.
 
 ## Routes
 

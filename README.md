@@ -25,11 +25,12 @@ The app is configured for the temporary GitHub Pages URL:
 https://proposaldave.github.io/HumanConversation/
 ```
 
-Use hash routes for public sharing because GitHub Pages returns `200` for the root document before the app opens the selected variant.
+The public root URL opens Variant 3 directly for clean sharing while the domain transfer is pending.
 
 ## Routes
 
-- `/HumanConversation/` - gallery and comparison home on GitHub Pages
+- `/HumanConversation/` - recommended public landing page, Variant 3 Investor
+- `/HumanConversation/#/gallery` - gallery and comparison home on GitHub Pages
 - `/HumanConversation/#/v1-manifesto` - worldview / category emotion
 - `/HumanConversation/#/v2-operator` - club operator painkiller
 - `/HumanConversation/#/v3-investor` - category creation / data moat

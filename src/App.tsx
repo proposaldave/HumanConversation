@@ -17,6 +17,7 @@ import { type Variant, type VariantSlug, variantBySlug, variants } from './data/
 
 const placeholderEmail = 'dave@humanconversation.com' // Placeholder until HumanConversation.com email is configured.
 const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
+const defaultPublicVariant: VariantSlug = 'v3-investor'
 
 function hexToRgba(hex: string, alpha: number) {
   const clean = hex.replace('#', '')
@@ -37,12 +38,13 @@ function heroOverlay(variant: Variant) {
 
 function getRouteSlug(): VariantSlug | null {
   const hashSlug = window.location.hash.replace(/^#\/?/, '').replace(/\/$/, '')
+  if (hashSlug === 'gallery') return null
   if (variantBySlug.has(hashSlug as VariantSlug)) return hashSlug as VariantSlug
 
   const pathname = window.location.pathname
   const localPath = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || '/' : pathname
   const slug = localPath.replace(/^\/+/, '').replace(/\/$/, '')
-  if (!slug) return null
+  if (!slug) return defaultPublicVariant
   return variantBySlug.has(slug as VariantSlug) ? (slug as VariantSlug) : null
 }
 
@@ -52,6 +54,7 @@ function toAppPath(route: string) {
 
 function toHashPath(route: string) {
   if (route === '/') return toAppPath('/')
+  if (route === '/gallery') return `${toAppPath('/')}#/gallery`
   return `${toAppPath('/')}#${route}`
 }
 
@@ -113,7 +116,7 @@ function VariantSwitcher({
         <button
           type="button"
           onClick={() => {
-            onNavigate('/')
+            onNavigate('/gallery')
             setOpen(false)
           }}
           className="group flex items-center gap-3 rounded-md px-2 py-2 text-left transition hover:bg-black/5"

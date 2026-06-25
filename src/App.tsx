@@ -3,9 +3,6 @@ import {
   Check,
   Layers3,
   MessageCircle,
-  Send,
-  ShieldCheck,
-  Sparkles,
 } from 'lucide-react'
 import { type CSSProperties, type FormEvent, useEffect, useState } from 'react'
 import { type Variant, type VariantSlug, variantBySlug, variants } from './data/variants'
@@ -245,11 +242,11 @@ function VariantPage({ variant }: { variant: Variant }) {
       </section>
 
       <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="animate-fade-up">
             <SectionKicker variant={variant}>{variant.problemTitle}</SectionKicker>
             <h2 className="mt-5 max-w-xl font-serif text-4xl font-semibold leading-tight md:text-6xl">
-              Human Conversation works alongside the tools your community already uses.
+              A lighter way to remember what matters between people.
             </h2>
           </div>
           <div className="grid gap-3">
@@ -268,72 +265,15 @@ function VariantPage({ variant }: { variant: Variant }) {
 
       <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
-            <div>
-              <SectionKicker variant={variant}>{variant.truthTitle}</SectionKicker>
-              <p className="mt-5 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">{variant.truth}</p>
-            </div>
-            <div className="relative min-h-[340px] overflow-hidden rounded-lg border" style={{ borderColor: variant.theme.line }}>
-              <img src={assetPath(variant.image)} alt="" className="absolute inset-0 h-full w-full object-cover opacity-65" />
-              <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${variant.theme.page} 0%, transparent 62%)` }} />
-              <SignalSketch className="absolute inset-0 h-full w-full opacity-70" accent={variant.theme.accent} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionKicker variant={variant}>{variant.flowTitle}</SectionKicker>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {variant.flow.map((step, index) => (
-              <article
-                key={step.title}
-                className="min-h-[270px] rounded-lg border p-6 transition hover:-translate-y-1"
-                style={{ borderColor: variant.theme.line, background: variant.theme.surface }}
-              >
-                <div
-                  className="mb-8 flex h-11 w-11 items-center justify-center rounded-md text-sm font-extrabold"
-                  style={{ background: variant.theme.accentSoft, color: variant.theme.accent }}
-                >
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-                <h3 className="text-2xl font-extrabold">{step.title}</h3>
-                <p className="muted-text mt-5 text-base font-semibold leading-7">{step.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-          <div>
-            <SectionKicker variant={variant}>Product</SectionKicker>
-            <h2 className="mt-5 font-serif text-4xl font-semibold leading-tight md:text-6xl">{variant.productTitle}</h2>
-            <p className="muted-text mt-6 max-w-2xl text-xl font-semibold leading-8">{variant.productBody}</p>
-          </div>
-          <ProductMockup variant={variant} />
-        </div>
-      </section>
-
-      <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div
-            className="rounded-lg border p-8 md:p-10"
-            style={{ borderColor: variant.theme.line, background: variant.theme.accentSoft }}
-          >
-            <SectionKicker variant={variant}>{variant.proofTitle}</SectionKicker>
-            <p className="mt-6 max-w-4xl font-serif text-4xl font-semibold leading-tight md:text-6xl">{variant.proofBody}</p>
-          </div>
-          <div className="grid gap-3">
+          <SectionKicker variant={variant}>Simple by design</SectionKicker>
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
             {variant.outcomes.map((outcome) => (
               <div
                 key={outcome}
-                className="flex items-center gap-3 rounded-lg border p-5 text-lg font-extrabold"
+                className="flex items-start gap-3 rounded-lg border p-5 text-lg font-extrabold leading-7"
                 style={{ borderColor: variant.theme.line, background: variant.theme.surface }}
               >
-                <Check size={20} style={{ color: variant.theme.accent }} />
+                <Check className="mt-1 shrink-0" size={20} style={{ color: variant.theme.accent }} />
                 {outcome}
               </div>
             ))}
@@ -344,22 +284,6 @@ function VariantPage({ variant }: { variant: Variant }) {
       <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <EarlyAccessForm variant={variant} />
-        </div>
-      </section>
-
-      <section className="variant-shell px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl rounded-lg border p-8 md:p-12" style={{ borderColor: variant.theme.line }}>
-          <p className="max-w-4xl font-serif text-4xl font-semibold leading-tight md:text-6xl">{variant.finalLine}</p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#early-access"
-              className="inline-flex items-center justify-center gap-2 rounded-md px-5 py-4 text-base font-extrabold transition hover:-translate-y-0.5"
-              style={{ background: variant.theme.button, color: variant.theme.buttonText }}
-            >
-              {variant.cta}
-              <Send size={18} />
-            </a>
-          </div>
         </div>
       </section>
 
@@ -376,68 +300,6 @@ function SectionKicker({ children, variant }: { children: string; variant: Varia
     >
       {children}
     </p>
-  )
-}
-
-function ProductMockup({ variant }: { variant: Variant }) {
-  return (
-    <div
-      className="relative overflow-hidden rounded-lg border p-4 shadow-2xl"
-      style={{ borderColor: variant.theme.line, background: variant.theme.surface }}
-    >
-      <div className="absolute right-6 top-6 h-24 w-24 rounded-md opacity-35 blur-2xl" style={{ background: variant.theme.accent }} />
-      <div className="relative rounded-lg border p-4" style={{ borderColor: variant.theme.line, background: 'rgba(255,255,255,0.08)' }}>
-        <div className="mb-4 flex items-center justify-between gap-3 border-b pb-4" style={{ borderColor: variant.theme.line }}>
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-md" style={{ background: variant.theme.accentSoft }}>
-              <MessageCircle size={19} style={{ color: variant.theme.accent }} />
-            </span>
-            <div>
-              <p className="text-sm font-extrabold">Conversation capture</p>
-              <p className="muted-text text-xs font-bold">Human confirmation required</p>
-            </div>
-          </div>
-          <ShieldCheck size={21} style={{ color: variant.theme.accent }} />
-        </div>
-
-        <div className="grid gap-3">
-          {variant.mockMessages.map((message, index) => (
-            <div
-              key={`${message.speaker}-${message.text}`}
-              className={`rounded-lg border p-4 ${index === 1 ? 'ml-7' : ''} ${index === 2 ? 'ml-14' : ''}`}
-              style={{ borderColor: variant.theme.line, background: index === 2 ? variant.theme.accentSoft : 'rgba(255,255,255,0.08)' }}
-            >
-              <p className="text-xs font-extrabold uppercase" style={{ color: variant.theme.accent }}>{message.speaker}</p>
-              <p className="mt-2 text-base font-bold leading-6">{message.text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-4 rounded-lg border p-4" style={{ borderColor: variant.theme.line, background: variant.theme.page }}>
-          <div className="mb-3 flex items-center gap-2 text-sm font-extrabold" style={{ color: variant.theme.accent }}>
-            <Sparkles size={17} />
-            Suggested next action
-          </div>
-          <p className="text-lg font-extrabold leading-7">{variant.suggestedAction}</p>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            <button
-              type="button"
-              className="rounded-md px-4 py-3 text-sm font-extrabold"
-              style={{ background: variant.theme.button, color: variant.theme.buttonText }}
-            >
-              Confirm
-            </button>
-            <button
-              type="button"
-              className="rounded-md border px-4 py-3 text-sm font-extrabold"
-              style={{ borderColor: variant.theme.line, color: variant.theme.ink }}
-            >
-              Edit first
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
   )
 }
 

@@ -211,16 +211,16 @@ export const variants: Variant[] = [
       serif: true,
     },
     cta: 'Start with one conversation',
-    problemTitle: 'Complementary by design',
+    problemTitle: 'Built to fit in',
     problemLines: [
-      'Keep the systems that already run scheduling, membership, and operations.',
-      'Add lightweight memory for the human context that appears around them.',
-      'Let staff approve every recommendation before anything reaches a member.',
+      'Works beside the systems your community already uses.',
+      'Helps staff remember the context people share in real conversations.',
+      'Keeps every suggested follow-up staff-reviewed.',
     ],
-    truthTitle: 'Human context',
+    truthTitle: 'Human memory',
     truth:
-      'Fit, trust, preference, energy, reliability, and staff judgment are human context. Human Conversation turns that context into useful memory and better follow-through.',
-    flowTitle: 'The support loop',
+      'Human Conversation helps teams remember the useful details people share, then use that memory with care.',
+    flowTitle: 'Simple staff support',
     flow: [
       {
         title: 'Conversation',
@@ -239,22 +239,22 @@ export const variants: Variant[] = [
         body: 'Staff approve, edit, or ignore. Their judgment stays central.',
       },
     ],
-    productTitle: 'A relationship layer for community teams.',
+    productTitle: 'A simple helper for community teams.',
     productBody:
-      'Built for communities where staff judgment, member preference, and timely follow-up matter.',
+      'Built for communities where trust, timing, and thoughtful follow-up matter.',
     mockMessages: [
       { speaker: 'Member context', text: 'Wants a more comfortable way to join the right group.' },
       { speaker: 'Staff insight', text: 'Prefers reliable, welcoming people and a clear next step.' },
       { speaker: 'Follow-up', text: 'Suggest a small invite for staff to approve.' },
     ],
-    suggestedAction: 'Draft a staff-reviewed invite based on the last real conversation.',
-    proofTitle: 'Early relationship signal',
+    suggestedAction: 'Draft a staff-reviewed note based on the last real conversation.',
+    proofTitle: 'Why it matters',
     proofBody:
-      'Early club data suggests that human context can make invitations feel more personal, timely, and useful.',
-    outcomes: ['Works with existing systems', 'Keeps staff in control', 'Turns conversations into follow-up'],
+      'The right follow-up can make a community feel more personal, timely, and welcoming.',
+    outcomes: ['Works beside existing tools', 'Keeps staff in control', 'Makes follow-up easier'],
     testing: 'Tests category clarity, venture scale, and data-moat legibility.',
     bestFor: 'Investor landing page, seed deck companion, founder-forward fundraising.',
-    finalLine: 'The best community systems help humans remember what matters.',
+    finalLine: 'The best community systems help people feel remembered.',
   },
   {
     slug: 'v4-product',

@@ -5,12 +5,11 @@ import {
   MessageCircle,
 } from 'lucide-react'
 import { type CSSProperties, type FormEvent, useEffect, useState } from 'react'
-import { type Variant, type VariantSlug, variantBySlug, variants } from './data/variants'
+import { type Variant, publicVariant } from './data/variants'
 
 const contactEmail = 'hello@humanconversation.com'
 const githubPagesBasePath = '/HumanConversation'
 const basePath = window.location.hostname === 'proposaldave.github.io' ? githubPagesBasePath : ''
-const defaultPublicVariant: VariantSlug = 'v3-investor'
 
 function hexToRgba(hex: string, alpha: number) {
   const clean = hex.replace('#', '')
@@ -29,26 +28,8 @@ function heroOverlay(variant: Variant) {
   )} 72%, transparent 100%)`
 }
 
-function getRouteSlug(): VariantSlug | null {
-  const hashSlug = window.location.hash.replace(/^#\/?/, '').replace(/\/$/, '')
-  if (hashSlug === 'gallery') return null
-  if (variantBySlug.has(hashSlug as VariantSlug)) return hashSlug as VariantSlug
-
-  const pathname = window.location.pathname
-  const localPath = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || '/' : pathname
-  const slug = localPath.replace(/^\/+/, '').replace(/\/$/, '')
-  if (!slug) return defaultPublicVariant
-  return variantBySlug.has(slug as VariantSlug) ? (slug as VariantSlug) : null
-}
-
 function toAppPath(route: string) {
   return `${basePath}${route}` || '/'
-}
-
-function toHashPath(route: string) {
-  if (route === '/') return toAppPath('/')
-  if (route === '/gallery') return `${toAppPath('/')}#/gallery`
-  return `${toAppPath('/')}#${route}`
 }
 
 function assetPath(path: string) {
@@ -57,51 +38,25 @@ function assetPath(path: string) {
 }
 
 function App() {
-  const [activeSlug, setActiveSlug] = useState<VariantSlug | null>(() => getRouteSlug())
-  const activeVariant = activeSlug ? variantBySlug.get(activeSlug) ?? null : null
-
   useEffect(() => {
-    const onPopState = () => setActiveSlug(getRouteSlug())
-    const onHashChange = () => setActiveSlug(getRouteSlug())
-    window.addEventListener('popstate', onPopState)
-    window.addEventListener('hashchange', onHashChange)
-    return () => {
-      window.removeEventListener('popstate', onPopState)
-      window.removeEventListener('hashchange', onHashChange)
-    }
-  }, [])
-
-  useEffect(() => {
-    document.title = activeVariant
-      ? `${activeVariant.nav} - Human Conversation`
-      : 'Human Conversation - AI for the conversations that build community'
+    document.title = 'Human Conversation - AI for the conversations that build community'
     window.scrollTo({ top: 0, behavior: 'auto' })
-  }, [activeVariant])
-
-  const navigate = (route: string) => {
-    window.history.pushState({}, '', toHashPath(route))
-    setActiveSlug(getRouteSlug())
-  }
+  }, [])
 
   return (
     <div className="min-h-screen bg-[#fbf7ef] text-[#1a1612]">
-      <SiteHeader onNavigate={navigate} />
-      {activeVariant ? (
-        <VariantPage key={activeVariant.slug} variant={activeVariant} />
-      ) : (
-        <Gallery onNavigate={navigate} />
-      )}
+      <SiteHeader />
+      <VariantPage variant={publicVariant} />
     </div>
   )
 }
 
-function SiteHeader({ onNavigate }: { onNavigate: (route: string) => void }) {
+function SiteHeader() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-black/10 bg-[#fbf7ef]/88 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <button
-          type="button"
-          onClick={() => onNavigate('/')}
+        <a
+          href={toAppPath('/')}
           className="group flex items-center gap-3 rounded-md px-2 py-2 text-left transition hover:bg-black/5"
           aria-label="Human Conversation home"
         >
@@ -112,7 +67,7 @@ function SiteHeader({ onNavigate }: { onNavigate: (route: string) => void }) {
             <span className="block text-sm font-extrabold">Human Conversation</span>
             <span className="block pt-1 text-xs font-semibold text-black/50">AI for community</span>
           </span>
-        </button>
+        </a>
 
         <a
           href="#early-access"
@@ -123,66 +78,6 @@ function SiteHeader({ onNavigate }: { onNavigate: (route: string) => void }) {
         </a>
       </div>
     </header>
-  )
-}
-
-function Gallery({ onNavigate }: { onNavigate: (route: string) => void }) {
-  return (
-    <main className="route-fade pt-20">
-      <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(91,143,212,0.22),transparent_28%),radial-gradient(circle_at_80%_0%,rgba(200,70,44,0.16),transparent_26%),linear-gradient(180deg,#fbf7ef_0%,#f4ecdd_100%)]" />
-        <SignalSketch className="absolute right-0 top-20 hidden h-[520px] w-[620px] opacity-40 lg:block" accent="#5B8FD4" />
-        <div className="relative mx-auto max-w-7xl">
-          <div className="max-w-4xl">
-              <p className="mb-5 inline-flex rounded-md border border-[#c8462c]/30 bg-[#c8462c]/10 px-3 py-2 text-xs font-extrabold uppercase text-[#c8462c]">
-              First exploration
-            </p>
-            <h1 className="font-serif text-6xl font-semibold leading-[0.98] text-[#1a1612] md:text-7xl lg:text-8xl">
-              Six directions for the conversation layer.
-            </h1>
-            <p className="mt-8 max-w-3xl text-xl font-medium leading-8 text-[#4b433b] md:text-2xl">
-              Human Conversation is AI for the conversations that build community. These are six fully designed ways to
-              make that idea land.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {variants.map((variant) => (
-              <button
-                key={variant.slug}
-                type="button"
-                onClick={() => onNavigate(variant.route)}
-                className="group overflow-hidden rounded-lg border border-black/10 bg-white text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              >
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={assetPath(variant.image)}
-                    alt={`${variant.nav} visual direction`}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/62 via-black/12 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase text-white/70">{variant.number}</p>
-                      <h2 className="mt-1 text-2xl font-extrabold text-white">{variant.nav}</h2>
-                    </div>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white text-black transition group-hover:bg-[#c8462c] group-hover:text-white">
-                      <ArrowRight size={18} />
-                    </span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <p className="text-sm font-bold text-[#c8462c]">{variant.eyebrow}</p>
-                  <p className="mt-3 line-clamp-3 text-lg font-bold leading-6 text-[#1a1612]">{variant.headline}</p>
-                  <p className="mt-4 text-sm font-medium leading-6 text-black/58">{variant.testing}</p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-      <Footer />
-    </main>
   )
 }
 

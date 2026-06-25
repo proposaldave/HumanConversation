@@ -58,10 +58,27 @@
         position: relative;
         min-height: 100vh;
         overflow: hidden;
+        isolation: isolate;
         background:
           linear-gradient(90deg, rgba(255, 255, 255, 0.38), transparent 42%),
           radial-gradient(circle at 92% 92%, rgba(200, 70, 44, 0.11), transparent 26%),
           #f3ead8;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+          radial-gradient(circle, rgba(184, 149, 74, 0.16) 0.65px, transparent 0.8px),
+          radial-gradient(circle, rgba(255, 255, 255, 0.48) 0.65px, transparent 0.8px);
+        background-position:
+          0 0,
+          3px 3px;
+        background-size: 6px 6px;
+        opacity: 0.52;
       }
 
       header {

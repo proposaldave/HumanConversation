@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/png" href="./assets/human-conversation-favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="pragma" content="no-cache" />
@@ -85,19 +85,18 @@
       }
 
       .mark {
-        display: grid;
-        place-items: center;
-        width: 36px;
-        height: 36px;
-        border: 1px solid rgba(26, 22, 18, 0.16);
-        border-radius: 7px;
-        background: #1a1612;
-        color: #fbf7ef;
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
       }
 
-      .mark svg {
-        width: 18px;
-        height: 18px;
+      .mark img {
+        display: block;
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
       }
 
       main {
@@ -240,14 +239,7 @@
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <span class="mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M4 11.7C4 7.5 7.6 4 12.6 4s8.4 3.5 8.4 7.7-3.5 7.7-8.4 7.7c-1.3 0-2.5-.2-3.6-.7L4.7 21l1.3-4.5A7 7 0 0 1 4 11.7Z"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <img src="./assets/human-conversation-mark.png" alt="" width="42" height="42" />
           </span>
           <span>Human Conversation</span>
         </a>

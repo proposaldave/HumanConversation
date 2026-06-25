@@ -11,7 +11,7 @@
 
 ## Strongest Hero
 
-Variant 3: "The conversation layer for autonomous social coordination."
+Variant 3: "The conversation layer for real-world community building."
 
 Reason: it names the category, implies scale, and does not collapse the company into pickleball or a staff tool.
 

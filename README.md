@@ -53,7 +53,7 @@ Tests whether the buyer immediately feels the pain: staff hear everything, but t
 
 ### 3. Investor
 
-Tests whether the venture-scale category is clear: conversation signal becomes the missing layer for autonomous social coordination. Best for investors.
+Tests whether the venture-scale category is clear: conversation signal becomes the missing layer for real-world community building. Best for investors.
 
 ### 4. Product
 
@@ -71,7 +71,7 @@ Tests whether the simplest statement is the most premium: Human Conversation, AI
 
 Use Variant 3 as the investor-facing winner and Variant 2 as the operator-facing sales page.
 
-Variant 3 makes the biggest idea legible: the conversation layer for autonomous social coordination. Variant 2 makes the buyer pain concrete enough to sell.
+Variant 3 makes the biggest idea legible: the conversation layer for real-world community building. Variant 2 makes the buyer pain concrete enough to sell.
 
 ## Assets
 

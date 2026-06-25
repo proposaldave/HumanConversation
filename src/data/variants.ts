@@ -201,7 +201,7 @@ export const variants: Variant[] = [
     number: '03',
     nav: 'Investor',
     eyebrow: 'Category creation',
-    headline: 'The conversation layer for autonomous social coordination.',
+    headline: 'The conversation layer for real-world community building.',
     subhead:
       'Human Conversation captures hidden social signal from everyday community conversations, then turns it into better groups, invitations, and real-world experiences.',
     image: 'generated/v3-investor.png',

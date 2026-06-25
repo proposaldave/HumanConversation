@@ -209,6 +209,19 @@
         opacity: 0.72;
       }
 
+      .direct-email {
+        margin: 14px 0 0;
+        color: rgba(26, 22, 18, 0.58);
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+
+      .direct-email a {
+        color: #4f7fbf;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+      }
+
       .status {
         min-height: 1.5rem;
         margin: 12px 0 0;
@@ -276,6 +289,7 @@
               <input id="email" name="email" type="email" autocomplete="email" placeholder="Email address" required />
               <button type="submit">Join the Conversation</button>
             </div>
+            <p class="direct-email">Prefer email? <a href="mailto:hello@humanconversation.com">hello@humanconversation.com</a></p>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
         </section>

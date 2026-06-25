@@ -16,6 +16,7 @@ import { type CSSProperties, type FormEvent, type ReactNode, useEffect, useMemo,
 import { type Variant, type VariantSlug, variantBySlug, variants } from './data/variants'
 
 const placeholderEmail = 'dave@humanconversation.com' // Placeholder until HumanConversation.com email is configured.
+const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
 
 function hexToRgba(hex: string, alpha: number) {
   const clean = hex.replace('#', '')
@@ -35,9 +36,19 @@ function heroOverlay(variant: Variant) {
 }
 
 function getRouteSlug(): VariantSlug | null {
-  const slug = window.location.pathname.replace(/^\/+/, '').replace(/\/$/, '')
+  const pathname = window.location.pathname
+  const localPath = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || '/' : pathname
+  const slug = localPath.replace(/^\/+/, '').replace(/\/$/, '')
   if (!slug) return null
   return variantBySlug.has(slug as VariantSlug) ? (slug as VariantSlug) : null
+}
+
+function toAppPath(route: string) {
+  return `${basePath}${route}` || '/'
+}
+
+function assetPath(path: string) {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 }
 
 function App() {
@@ -58,7 +69,7 @@ function App() {
   }, [activeVariant])
 
   const navigate = (route: string) => {
-    window.history.pushState({}, '', route)
+    window.history.pushState({}, '', toAppPath(route))
     setActiveSlug(getRouteSlug())
   }
 
@@ -187,7 +198,7 @@ function Gallery({ onNavigate }: { onNavigate: (route: string) => void }) {
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
-                    src={variant.image}
+                    src={assetPath(variant.image)}
                     alt={`${variant.nav} visual direction`}
                     className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                   />
@@ -234,7 +245,7 @@ function VariantPage({ variant }: { variant: Variant }) {
     <main className="route-fade pt-16" style={style}>
       <section className="variant-shell relative min-h-screen overflow-hidden">
         <img
-          src={variant.image}
+          src={assetPath(variant.image)}
           alt={`${variant.nav} generated hero visual`}
           className="hero-image absolute bottom-0 right-0 top-0 h-full w-full object-cover opacity-[0.82] md:w-[68%]"
         />
@@ -303,7 +314,7 @@ function VariantPage({ variant }: { variant: Variant }) {
               <p className="mt-5 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">{variant.truth}</p>
             </div>
             <div className="relative min-h-[340px] overflow-hidden rounded-lg border" style={{ borderColor: variant.theme.line }}>
-              <img src={variant.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-65" />
+              <img src={assetPath(variant.image)} alt="" className="absolute inset-0 h-full w-full object-cover opacity-65" />
               <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${variant.theme.page} 0%, transparent 62%)` }} />
               <SignalSketch className="absolute inset-0 h-full w-full opacity-70" accent={variant.theme.accent} />
             </div>

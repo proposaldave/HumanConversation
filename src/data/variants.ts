@@ -61,7 +61,7 @@ export const variants: Variant[] = [
     headline: 'Human Conversation',
     subhead:
       'AI for the conversations that build community. The future of community software is not another dashboard. It is a better human conversation.',
-    image: '/generated/v1-manifesto.png',
+    image: 'generated/v1-manifesto.png',
     theme: {
       name: 'Deep navy / warm cream / signal coral',
       page: '#07131f',
@@ -132,7 +132,7 @@ export const variants: Variant[] = [
     headline: 'Your best staff already know what matters.',
     subhead:
       'Now your club can learn from every conversation. Human Conversation captures member needs, hidden social signal, and next-best coordination actions without forcing players into another app.',
-    image: '/generated/v2-operator.png',
+    image: 'generated/v2-operator.png',
     theme: {
       name: 'Charcoal / soft white / human red',
       page: '#201d1a',
@@ -204,7 +204,7 @@ export const variants: Variant[] = [
     headline: 'The conversation layer for autonomous social coordination.',
     subhead:
       'Human Conversation captures hidden social signal from everyday community conversations, then turns it into better groups, invitations, and real-world experiences.',
-    image: '/generated/v3-investor.png',
+    image: 'generated/v3-investor.png',
     theme: {
       name: 'Black / bone / electric blue',
       page: '#050608',
@@ -276,7 +276,7 @@ export const variants: Variant[] = [
     headline: 'From conversation to coordination.',
     subhead:
       'Human Conversation helps community staff ask the right questions, remember what matters, and coordinate the next best experience.',
-    image: '/generated/v4-product.png',
+    image: 'generated/v4-product.png',
     theme: {
       name: 'Soft white / ink / human red',
       page: '#f6f4ee',
@@ -349,7 +349,7 @@ export const variants: Variant[] = [
     headline: "Ratings don't tell you who belongs together.",
     subhead:
       'Human Conversation helps pickleball clubs learn what players actually need and coordinate games people want to come back for.',
-    image: '/generated/v5-club.png',
+    image: 'generated/v5-club.png',
     theme: {
       name: 'Forest / parchment / warm amber',
       page: '#17231f',
@@ -419,7 +419,7 @@ export const variants: Variant[] = [
     eyebrow: 'Inevitable',
     headline: 'Human Conversation',
     subhead: 'AI for the conversations that build community.',
-    image: '/generated/v6-minimal.png',
+    image: 'generated/v6-minimal.png',
     theme: {
       name: 'Minimal white / ink / tiny neon accent',
       page: '#fbfaf6',

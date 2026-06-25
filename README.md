@@ -13,15 +13,29 @@ npm run dev
 
 Open the local URL Vite prints. The main gallery is `/`.
 
+## Public GitHub Pages Build
+
+```bash
+npm run build:pages
+```
+
+The app is configured for the temporary GitHub Pages URL:
+
+```text
+https://proposaldave.github.io/HumanConversation/
+```
+
+Direct variant links work because the Pages build copies `dist/index.html` to `dist/404.html` for SPA fallback.
+
 ## Routes
 
-- `/` - gallery and comparison home
-- `/v1-manifesto` - worldview / category emotion
-- `/v2-operator` - club operator painkiller
-- `/v3-investor` - category creation / data moat
-- `/v4-product` - product workflow
-- `/v5-club` - pickleball wedge
-- `/v6-minimal` - ultra-minimal brand direction
+- `/HumanConversation/` - gallery and comparison home on GitHub Pages
+- `/HumanConversation/v1-manifesto` - worldview / category emotion
+- `/HumanConversation/v2-operator` - club operator painkiller
+- `/HumanConversation/v3-investor` - category creation / data moat
+- `/HumanConversation/v4-product` - product workflow
+- `/HumanConversation/v5-club` - pickleball wedge
+- `/HumanConversation/v6-minimal` - ultra-minimal brand direction
 
 ## What Each Variant Tests
 

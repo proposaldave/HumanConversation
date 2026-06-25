@@ -31,7 +31,6 @@ export type Variant = {
   image: string
   theme: Theme
   cta: string
-  secondaryCta: string
   problemTitle: string
   problemLines: string[]
   truthTitle: string
@@ -45,7 +44,6 @@ export type Variant = {
   proofTitle: string
   proofBody: string
   outcomes: string[]
-  copyDirection: string
   testing: string
   bestFor: string
   finalLine: string
@@ -76,7 +74,6 @@ export const variants: Variant[] = [
       serif: true,
     },
     cta: 'Build a community that remembers',
-    secondaryCta: 'Copy this direction',
     problemTitle: 'The imbalance',
     problemLines: [
       'Technology was supposed to connect us.',
@@ -117,8 +114,6 @@ export const variants: Variant[] = [
     proofBody:
       'NEPC data shows players rarely state social preference directly, but group composition can create a 37-point acceptance swing.',
     outcomes: ['Better invitations', 'More remembered members', 'Less invisible staff judgment'],
-    copyDirection:
-      'Manifesto direction: lead with the human worldview, make AI feel like memory and follow-through, then land the social sports wedge.',
     testing: 'Tests emotional pull with investors, operators, and anyone tired of app-first community software.',
     bestFor: 'Company launch, investor first impression, category narrative.',
     finalLine: 'Community intelligence starts with a human conversation.',
@@ -147,7 +142,6 @@ export const variants: Variant[] = [
       serif: false,
     },
     cta: 'Start with one staff conversation',
-    secondaryCta: 'Copy this direction',
     problemTitle: 'What staff hear every day',
     problemLines: [
       'I want better games.',
@@ -189,8 +183,6 @@ export const variants: Variant[] = [
     proofBody:
       'Social sports clubs coordinate players every day, but rating-first tools miss fit, trust, chemistry, reliability, and energy.',
     outcomes: ['Better groups', 'Faster fills', 'Fewer awkward mismatches', 'More members who come back'],
-    copyDirection:
-      'Operator direction: make the buyer feel the daily pain, show staff heroics becoming system memory, keep the product practical.',
     testing: 'Tests whether a club owner immediately says: I need this.',
     bestFor: 'Sales page, pilot outreach, club-owner demos.',
     finalLine: 'A smarter club starts with one better conversation.',
@@ -219,7 +211,6 @@ export const variants: Variant[] = [
       serif: true,
     },
     cta: 'See the coordination layer',
-    secondaryCta: 'Copy this direction',
     problemTitle: 'The old stack',
     problemLines: [
       'Booking software knows what is open.',
@@ -261,8 +252,6 @@ export const variants: Variant[] = [
     proofBody:
       'Small curated groups reached 86.7% acceptance vs. 49.9% for large open groups in early NEPC data.',
     outcomes: ['Hidden social signal', 'Human-confirmed recommendations', 'A graph that compounds'],
-    copyDirection:
-      'Investor direction: define the missing layer, show the loop, and make social sports feel like the obvious wedge into real-world communities.',
     testing: 'Tests category clarity, venture scale, and data-moat legibility.',
     bestFor: 'Investor landing page, seed deck companion, founder-forward fundraising.',
     finalLine: 'The graph compounds every time a community builder coordinates a real moment.',
@@ -291,7 +280,6 @@ export const variants: Variant[] = [
       serif: false,
     },
     cta: 'Turn one conversation into the next best invite',
-    secondaryCta: 'Copy this direction',
     problemTitle: 'The product job',
     problemLines: [
       'Ask the right question.',
@@ -334,8 +322,6 @@ export const variants: Variant[] = [
     proofBody:
       'Behavioral signals reveal social preference better than surveys because the signal appears in real choices, corrections, and outcomes.',
     outcomes: ['Guided prompts', 'Structured memory', 'Suggested next actions', 'Human confirmation'],
-    copyDirection:
-      'Product direction: make the workflow instantly legible and show exactly where AI helps without claiming full autonomy.',
     testing: 'Tests whether the product is understandable in under 10 seconds.',
     bestFor: 'Product demo page, Steve spec alignment, pilot onboarding.',
     finalLine: 'One conversation becomes the next best real-world invite.',
@@ -364,7 +350,6 @@ export const variants: Variant[] = [
       serif: true,
     },
     cta: 'Build a human-first club',
-    secondaryCta: 'Copy this direction',
     problemTitle: 'The broken default',
     problemLines: [
       'Every club uses skill ratings because nobody has a better signal.',
@@ -405,8 +390,6 @@ export const variants: Variant[] = [
     proofBody:
       'In early NEPC data, small curated groups reached 86.7% acceptance vs. 49.9% for large open groups.',
     outcomes: ['Better groups', 'Better games', 'Higher retention', 'Less rating-only matching'],
-    copyDirection:
-      'Pickleball direction: own the category fight. Human-first clubs understand more than ratings and win on experience.',
     testing: 'Tests whether the wedge feels sharp enough for club buyers.',
     bestFor: 'Pickleball/padel landing page, club pitch, vertical wedge story.',
     finalLine: 'Better matching starts with what staff already know.',
@@ -434,7 +417,6 @@ export const variants: Variant[] = [
       serif: true,
     },
     cta: 'Start the conversation',
-    secondaryCta: 'Copy this direction',
     problemTitle: 'The sequence',
     problemLines: [
       'Communities run on conversations.',
@@ -476,8 +458,6 @@ export const variants: Variant[] = [
     proofBody:
       'Ratings tell you who is good. Behavioral and conversational signal tells you who belongs together.',
     outcomes: ['Less interface', 'More memory', 'Better coordination', 'A clearer category'],
-    copyDirection:
-      'Minimal direction: strip the story to its inevitability. Big type, short sequence, one signal visual.',
     testing: 'Tests whether the simplest articulation is the strongest.',
     bestFor: 'Premium home page, teaser, investor pre-read, brand lockup.',
     finalLine: 'Not another dashboard. A better human conversation.',

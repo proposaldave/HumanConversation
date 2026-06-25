@@ -1,18 +1,13 @@
 import {
   ArrowRight,
   Check,
-  Clipboard,
-  Copy,
   Layers3,
-  Menu,
   MessageCircle,
-  Network,
   Send,
   ShieldCheck,
   Sparkles,
-  X,
 } from 'lucide-react'
-import { type CSSProperties, type FormEvent, type ReactNode, useEffect, useMemo, useState } from 'react'
+import { type CSSProperties, type FormEvent, useEffect, useState } from 'react'
 import { type Variant, type VariantSlug, variantBySlug, variants } from './data/variants'
 
 const contactEmail = 'hello@humanconversation.com'
@@ -93,7 +88,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#fbf7ef] text-[#1a1612]">
-      <VariantSwitcher activeSlug={activeSlug} onNavigate={navigate} />
+      <SiteHeader onNavigate={navigate} />
       {activeVariant ? (
         <VariantPage key={activeVariant.slug} variant={activeVariant} />
       ) : (
@@ -103,85 +98,33 @@ function App() {
   )
 }
 
-function VariantSwitcher({
-  activeSlug,
-  onNavigate,
-}: {
-  activeSlug: VariantSlug | null
-  onNavigate: (route: string) => void
-}) {
-  const [open, setOpen] = useState(false)
-
+function SiteHeader({ onNavigate }: { onNavigate: (route: string) => void }) {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-black/10 bg-[#fbf7ef]/88 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <button
           type="button"
-          onClick={() => {
-            onNavigate('/gallery')
-            setOpen(false)
-          }}
+          onClick={() => onNavigate('/')}
           className="group flex items-center gap-3 rounded-md px-2 py-2 text-left transition hover:bg-black/5"
-          aria-label="Open gallery"
+          aria-label="Human Conversation home"
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[#1a1612] text-[#fbf7ef]">
             <MessageCircle size={18} />
           </span>
           <span className="hidden leading-none sm:block">
             <span className="block text-sm font-extrabold">Human Conversation</span>
-            <span className="block pt-1 text-xs font-semibold text-black/50">Landing directions</span>
+            <span className="block pt-1 text-xs font-semibold text-black/50">AI for community</span>
           </span>
         </button>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Variant switcher">
-          {variants.map((variant) => (
-            <button
-              key={variant.slug}
-              type="button"
-              onClick={() => onNavigate(variant.route)}
-              className={`rounded-md px-3 py-2 text-sm font-bold transition ${
-                activeSlug === variant.slug
-                  ? 'bg-[#1a1612] text-[#fbf7ef]'
-                  : 'text-black/60 hover:bg-black/[0.06] hover:text-black'
-              }`}
-            >
-              {variant.number} {variant.nav}
-            </button>
-          ))}
-        </nav>
-
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          className="flex h-10 w-10 items-center justify-center rounded-md border border-black/12 bg-white/60 text-[#1a1612] lg:hidden"
-          aria-label="Toggle variant menu"
+        <a
+          href="#early-access"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1a1612] px-4 py-3 text-sm font-extrabold text-[#fbf7ef] transition hover:-translate-y-0.5"
         >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+          Contact
+          <ArrowRight size={16} />
+        </a>
       </div>
-
-      {open ? (
-        <div className="border-t border-black/10 bg-[#fbf7ef] px-4 py-3 lg:hidden">
-          <div className="grid gap-2">
-            {variants.map((variant) => (
-              <button
-                key={variant.slug}
-                type="button"
-                onClick={() => {
-                  onNavigate(variant.route)
-                  setOpen(false)
-                }}
-                className={`flex items-center justify-between rounded-md px-3 py-3 text-left text-sm font-bold ${
-                  activeSlug === variant.slug ? 'bg-[#1a1612] text-[#fbf7ef]' : 'bg-white/70 text-[#1a1612]'
-                }`}
-              >
-                <span>{variant.number} {variant.nav}</span>
-                <ArrowRight size={16} />
-              </button>
-            ))}
-          </div>
-        </div>
-      ) : null}
     </header>
   )
 }
@@ -296,7 +239,6 @@ function VariantPage({ variant }: { variant: Variant }) {
                 {variant.cta}
                 <ArrowRight size={18} />
               </a>
-              <CopyDirectionButton variant={variant} mode="hero" />
             </div>
           </div>
         </div>
@@ -400,8 +342,7 @@ function VariantPage({ variant }: { variant: Variant }) {
       </section>
 
       <section className="variant-shell px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <DirectionPanel variant={variant} />
+        <div className="mx-auto max-w-4xl">
           <EarlyAccessForm variant={variant} />
         </div>
       </section>
@@ -418,7 +359,6 @@ function VariantPage({ variant }: { variant: Variant }) {
               {variant.cta}
               <Send size={18} />
             </a>
-            <CopyDirectionButton variant={variant} mode="footer" />
           </div>
         </div>
       </section>
@@ -498,81 +438,6 @@ function ProductMockup({ variant }: { variant: Variant }) {
         </div>
       </div>
     </div>
-  )
-}
-
-function DirectionPanel({ variant }: { variant: Variant }) {
-  return (
-    <div
-      className="rounded-lg border p-6 md:p-8"
-      style={{ borderColor: variant.theme.line, background: variant.theme.surface }}
-    >
-      <SectionKicker variant={variant}>Copy this direction</SectionKicker>
-      <h2 className="mt-5 text-3xl font-extrabold leading-tight">{variant.theme.name}</h2>
-      <p className="muted-text mt-5 text-lg font-semibold leading-8">{variant.copyDirection}</p>
-      <div className="mt-6 grid gap-3">
-        <CopyLine icon={<Clipboard size={18} />} label="Best use" value={variant.bestFor} variant={variant} />
-        <CopyLine icon={<Network size={18} />} label="Tests" value={variant.testing} variant={variant} />
-      </div>
-      <CopyDirectionButton variant={variant} mode="panel" />
-    </div>
-  )
-}
-
-function CopyLine({
-  icon,
-  label,
-  value,
-  variant,
-}: {
-  icon: ReactNode
-  label: string
-  value: string
-  variant: Variant
-}) {
-  return (
-    <div className="flex gap-3 rounded-lg border p-4" style={{ borderColor: variant.theme.line }}>
-      <span className="mt-1" style={{ color: variant.theme.accent }}>{icon}</span>
-      <div>
-        <p className="muted-text text-xs font-extrabold uppercase">{label}</p>
-        <p className="mt-1 text-sm font-bold leading-6">{value}</p>
-      </div>
-    </div>
-  )
-}
-
-function CopyDirectionButton({ variant, mode }: { variant: Variant; mode: 'hero' | 'panel' | 'footer' }) {
-  const [copied, setCopied] = useState(false)
-  const summary = useMemo(
-    () =>
-      [
-        `Human Conversation - ${variant.number} ${variant.nav}`,
-        variant.copyDirection,
-        `Best for: ${variant.bestFor}`,
-        `Hero: ${variant.headline}`,
-        `CTA: ${variant.cta}`,
-      ].join('\n'),
-    [variant],
-  )
-
-  const copy = async () => {
-    await navigator.clipboard.writeText(summary)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1600)
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={copy}
-      className={`inline-flex items-center justify-center gap-2 rounded-md border px-5 py-4 text-base font-extrabold transition hover:-translate-y-0.5 ${
-        mode === 'panel' ? 'mt-6 w-full' : ''
-      }`}
-      style={{ borderColor: variant.theme.line, color: variant.theme.ink, background: variant.theme.surface }}
-    >
-      {copied ? <Check size={18} /> : <Copy size={18} />}
-      {copied ? 'Copied' : variant.secondaryCta}
-    </button>
   )
 }
 

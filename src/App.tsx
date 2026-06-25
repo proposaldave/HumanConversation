@@ -36,6 +36,9 @@ function heroOverlay(variant: Variant) {
 }
 
 function getRouteSlug(): VariantSlug | null {
+  const hashSlug = window.location.hash.replace(/^#\/?/, '').replace(/\/$/, '')
+  if (variantBySlug.has(hashSlug as VariantSlug)) return hashSlug as VariantSlug
+
   const pathname = window.location.pathname
   const localPath = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) || '/' : pathname
   const slug = localPath.replace(/^\/+/, '').replace(/\/$/, '')
@@ -45,6 +48,11 @@ function getRouteSlug(): VariantSlug | null {
 
 function toAppPath(route: string) {
   return `${basePath}${route}` || '/'
+}
+
+function toHashPath(route: string) {
+  if (route === '/') return toAppPath('/')
+  return `${toAppPath('/')}#${route}`
 }
 
 function assetPath(path: string) {
@@ -57,8 +65,13 @@ function App() {
 
   useEffect(() => {
     const onPopState = () => setActiveSlug(getRouteSlug())
+    const onHashChange = () => setActiveSlug(getRouteSlug())
     window.addEventListener('popstate', onPopState)
-    return () => window.removeEventListener('popstate', onPopState)
+    window.addEventListener('hashchange', onHashChange)
+    return () => {
+      window.removeEventListener('popstate', onPopState)
+      window.removeEventListener('hashchange', onHashChange)
+    }
   }, [])
 
   useEffect(() => {
@@ -69,7 +82,7 @@ function App() {
   }, [activeVariant])
 
   const navigate = (route: string) => {
-    window.history.pushState({}, '', toAppPath(route))
+    window.history.pushState({}, '', toHashPath(route))
     setActiveSlug(getRouteSlug())
   }
 

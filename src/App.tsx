@@ -16,7 +16,8 @@ import { type CSSProperties, type FormEvent, type ReactNode, useEffect, useMemo,
 import { type Variant, type VariantSlug, variantBySlug, variants } from './data/variants'
 
 const contactEmail = 'hello@humanconversation.com'
-const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
+const githubPagesBasePath = '/HumanConversation'
+const basePath = window.location.hostname === 'proposaldave.github.io' ? githubPagesBasePath : ''
 const defaultPublicVariant: VariantSlug = 'v3-investor'
 
 function hexToRgba(hex: string, alpha: number) {
@@ -59,7 +60,8 @@ function toHashPath(route: string) {
 }
 
 function assetPath(path: string) {
-  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+  const normalizedPath = path.replace(/^\/+/, '')
+  return basePath ? `${basePath}/${normalizedPath}` : `/${normalizedPath}`
 }
 
 function App() {

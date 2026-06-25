@@ -19,10 +19,11 @@ Open the local URL Vite prints. The main gallery is `/`.
 npm run build:pages
 ```
 
-The app is configured for the temporary GitHub Pages URL:
+The app is configured to work on both the temporary GitHub Pages URL and the future custom domain:
 
 ```text
 https://proposaldave.github.io/HumanConversation/
+https://humanconversation.com/
 ```
 
 The public root URL opens Variant 3 directly for clean sharing while the domain transfer is pending.
@@ -31,6 +32,8 @@ The public root URL opens Variant 3 directly for clean sharing while the domain 
 
 - `/HumanConversation/` - recommended public landing page, Variant 3 Investor
 - `/HumanConversation/#/gallery` - gallery and comparison home on GitHub Pages
+- `/` - recommended public landing page after HumanConversation.com is connected
+- `/#/gallery` - gallery and comparison home after HumanConversation.com is connected
 - `/HumanConversation/#/v1-manifesto` - worldview / category emotion
 - `/HumanConversation/#/v2-operator` - club operator painkiller
 - `/HumanConversation/#/v3-investor` - category creation / data moat

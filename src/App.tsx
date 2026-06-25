@@ -249,7 +249,7 @@ function VariantPage({ variant }: { variant: Variant }) {
           <div className="animate-fade-up">
             <SectionKicker variant={variant}>{variant.problemTitle}</SectionKicker>
             <h2 className="mt-5 max-w-xl font-serif text-4xl font-semibold leading-tight md:text-6xl">
-              Conversation is the missing data layer.
+              Human Conversation works alongside the tools your community already uses.
             </h2>
           </div>
           <div className="grid gap-3">

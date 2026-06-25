@@ -53,7 +53,7 @@ Tests whether the buyer immediately feels the pain: staff hear everything, but t
 
 ### 3. Investor
 
-Tests whether the venture-scale category is clear: conversation signal becomes the missing layer for real-world community building. Best for investors.
+Tests whether the venture-scale category is clear: conversation signal becomes a relationship layer for real-world community building. Best for investors.
 
 ### 4. Product
 
@@ -61,7 +61,7 @@ Tests whether the product is understandable quickly: guided conversation, struct
 
 ### 5. Club
 
-Tests whether the pickleball wedge is sharp: ratings do not tell you who belongs together. Best for pickleball and padel buyers.
+Tests whether the pickleball wedge is sharp while staying partner-friendly with the tools clubs already use. Best for pickleball and padel buyers.
 
 ### 6. Minimal
 

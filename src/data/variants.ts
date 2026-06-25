@@ -58,7 +58,7 @@ export const variants: Variant[] = [
     eyebrow: 'Worldview',
     headline: 'Human Conversation',
     subhead:
-      'AI for the conversations that build community. The future of community software is not another dashboard. It is a better human conversation.',
+      'AI for the conversations that build community. The future of community software starts with better memory for real human moments.',
     image: 'generated/v1-manifesto.png',
     theme: {
       name: 'Deep navy / warm cream / signal coral',
@@ -175,13 +175,13 @@ export const variants: Variant[] = [
     productBody: 'The interface is conversation-first. Staff use the flow. Members just get better experiences.',
     mockMessages: [
       { speaker: 'Front desk', text: 'Jordan wants stronger games but gets nervous joining open play.' },
-      { speaker: 'AI note', text: 'Signal: competitive preference, social hesitation, weekday evenings.' },
+      { speaker: 'AI note', text: 'Signal: play preference, social hesitation, weekday evenings.' },
       { speaker: 'Next action', text: 'Offer a curated group before open play.' },
     ],
     suggestedAction: 'Ask Krista to confirm Jordan for Thursday 7:00 with three known-good returners.',
     proofTitle: 'The operator pain is constant',
     proofBody:
-      'Social sports clubs coordinate players every day, but rating-first tools miss fit, trust, chemistry, reliability, and energy.',
+      'Social sports clubs coordinate players every day, and staff judgment about fit, trust, chemistry, reliability, and energy matters.',
     outcomes: ['Better groups', 'Faster fills', 'Fewer awkward mismatches', 'More members who come back'],
     testing: 'Tests whether a club owner immediately says: I need this.',
     bestFor: 'Sales page, pilot outreach, club-owner demos.',
@@ -193,9 +193,9 @@ export const variants: Variant[] = [
     number: '03',
     nav: 'Investor',
     eyebrow: 'Category creation',
-    headline: 'The conversation layer for real-world community building.',
+    headline: 'AI for the conversations that build community.',
     subhead:
-      'Human Conversation captures hidden social signal from everyday community conversations, then turns it into better groups, invitations, and real-world experiences.',
+      'Human Conversation helps community teams remember what people share, understand who fits together, and follow up with care.',
     image: 'generated/v3-investor.png',
     theme: {
       name: 'Black / bone / electric blue',
@@ -210,51 +210,51 @@ export const variants: Variant[] = [
       buttonText: '#050608',
       serif: true,
     },
-    cta: 'See the coordination layer',
-    problemTitle: 'The old stack',
+    cta: 'Start with one conversation',
+    problemTitle: 'Complementary by design',
     problemLines: [
-      'Booking software knows what is open.',
-      'Rating software knows who is competitive.',
-      'Nobody knows who should be together.',
+      'Keep the systems that already run scheduling, membership, and operations.',
+      'Add lightweight memory for the human context that appears around them.',
+      'Let staff approve every recommendation before anything reaches a member.',
     ],
-    truthTitle: 'The missing data',
+    truthTitle: 'Human context',
     truth:
-      'Human fit, trust, chemistry, reliability, energy, preference, and staff judgment are the real coordination layer. Today, that layer is mostly invisible.',
-    flowTitle: 'The compounding loop',
+      'Fit, trust, preference, energy, reliability, and staff judgment are human context. Human Conversation turns that context into useful memory and better follow-through.',
+    flowTitle: 'The support loop',
     flow: [
       {
         title: 'Conversation',
-        body: 'A staffer learns something useful in the normal course of building community.',
+        body: 'A staffer learns useful human context during normal community work.',
       },
       {
-        title: 'Structured signal',
-        body: 'The system maps preference, constraint, fit, and staff judgment into a usable graph.',
+        title: 'Memory',
+        body: 'Human Conversation keeps the signal organized without changing core operations.',
       },
       {
-        title: 'Recommendation',
-        body: 'The graph proposes a group, invitation, follow-up, or real-world next moment.',
+        title: 'Suggested follow-up',
+        body: 'The system proposes an invite, group, introduction, or note for a human to review.',
       },
       {
-        title: 'Human confirmation',
-        body: 'A great community builder approves, edits, or rejects. That correction becomes proprietary training data.',
+        title: 'Human approval',
+        body: 'Staff approve, edit, or ignore. Their judgment stays central.',
       },
     ],
-    productTitle: 'The wedge has dense signal.',
+    productTitle: 'A relationship layer for community teams.',
     productBody:
-      'Social sports clubs have constant coordination pain, high-frequency outcomes, and broken rating-first matching.',
+      'Built for communities where staff judgment, member preference, and timely follow-up matter.',
     mockMessages: [
-      { speaker: 'Signal', text: 'Reliability high. Wants stronger games. Avoids large open groups.' },
-      { speaker: 'Graph', text: 'Fit improves with competitive regulars and one known friend.' },
-      { speaker: 'Model', text: 'Recommend smaller curated invite, staff confirmation required.' },
+      { speaker: 'Member context', text: 'Wants a more comfortable way to join the right group.' },
+      { speaker: 'Staff insight', text: 'Prefers reliable, welcoming people and a clear next step.' },
+      { speaker: 'Follow-up', text: 'Suggest a small invite for staff to approve.' },
     ],
-    suggestedAction: 'Build a four-player group. Wait for operator approval. Measure acceptance and return behavior.',
-    proofTitle: 'Early NEPC signal',
+    suggestedAction: 'Draft a staff-reviewed invite based on the last real conversation.',
+    proofTitle: 'Early relationship signal',
     proofBody:
-      'Small curated groups reached 86.7% acceptance vs. 49.9% for large open groups in early NEPC data.',
-    outcomes: ['Hidden social signal', 'Human-confirmed recommendations', 'A graph that compounds'],
+      'Early club data suggests that human context can make invitations feel more personal, timely, and useful.',
+    outcomes: ['Works with existing systems', 'Keeps staff in control', 'Turns conversations into follow-up'],
     testing: 'Tests category clarity, venture scale, and data-moat legibility.',
     bestFor: 'Investor landing page, seed deck companion, founder-forward fundraising.',
-    finalLine: 'The graph compounds every time a community builder coordinates a real moment.',
+    finalLine: 'The best community systems help humans remember what matters.',
   },
   {
     slug: 'v4-product',
@@ -289,7 +289,7 @@ export const variants: Variant[] = [
     ],
     truthTitle: 'Built for the staff flow',
     truth:
-      'This is not an analytics dashboard. It is a conversation-first copilot that turns staff judgment into useful coordination memory.',
+      'A conversation-first copilot turns staff judgment into useful coordination memory.',
     flowTitle: 'The four-step flow',
     flow: [
       {
@@ -332,7 +332,7 @@ export const variants: Variant[] = [
     number: '05',
     nav: 'Club',
     eyebrow: 'Pickleball wedge',
-    headline: "Ratings don't tell you who belongs together.",
+    headline: 'The best groups start with human context.',
     subhead:
       'Human Conversation helps pickleball clubs learn what players actually need and coordinate games people want to come back for.',
     image: 'generated/v5-club.png',
@@ -350,24 +350,24 @@ export const variants: Variant[] = [
       serif: true,
     },
     cta: 'Build a human-first club',
-    problemTitle: 'The broken default',
+    problemTitle: 'The human layer',
     problemLines: [
-      'Every club uses skill ratings because nobody has a better signal.',
-      'Players do not actually want a 3.5 match.',
-      'They want to play with people they enjoy.',
+      'Skill level matters.',
+      'So do trust, tone, schedule, energy, and comfort.',
+      'The best club teams already notice those details.',
     ],
     truthTitle: 'The real question',
     truth:
-      'Not: are these four people the same rating? The better question is: will these four people want to play again?',
+      'The better question is simple: will these people want to play again?',
     flowTitle: 'What staff already know',
     flow: [
       {
         title: 'Who needs encouragement',
-        body: 'Some players need the right first group more than they need another rating label.',
+        body: 'Some players need the right first group before they feel ready to come back.',
       },
       {
         title: 'Who wants stronger games',
-        body: 'Competitive intent is more specific than a rating bracket.',
+        body: 'Some players care about pace, intensity, and how a group feels.',
       },
       {
         title: 'Who brings good energy',
@@ -378,18 +378,18 @@ export const variants: Variant[] = [
         body: 'Good coordination includes avoiding the wrong invite at the wrong time.',
       },
     ],
-    productTitle: 'Not rating-first. Human-first.',
+    productTitle: 'Human-first club support.',
     productBody: 'Capture staff knowledge and turn it into better groups, better games, and higher retention.',
     mockMessages: [
       { speaker: 'Player', text: 'I want better games, but not the intense group yet.' },
       { speaker: 'Staff signal', text: 'Competitive growth, confidence sensitive, prefers familiar partner.' },
-      { speaker: 'Invite', text: 'Build a small bridge group before open competitive play.' },
+      { speaker: 'Invite', text: 'Build a small bridge group before advanced play.' },
     ],
     suggestedAction: 'Offer a curated bridge game, then ask after play whether the pace felt right.',
     proofTitle: 'Early NEPC proof',
     proofBody:
-      'In early NEPC data, small curated groups reached 86.7% acceptance vs. 49.9% for large open groups.',
-    outcomes: ['Better groups', 'Better games', 'Higher retention', 'Less rating-only matching'],
+      'Early club data suggests small curated groups can make the next invite feel more personal and useful.',
+    outcomes: ['Better groups', 'Better games', 'Higher retention', 'More human context'],
     testing: 'Tests whether the wedge feels sharp enough for club buyers.',
     bestFor: 'Pickleball/padel landing page, club pitch, vertical wedge story.',
     finalLine: 'Better matching starts with what staff already know.',
@@ -456,11 +456,11 @@ export const variants: Variant[] = [
     suggestedAction: 'Create the next invite from the last real conversation. Confirm with staff.',
     proofTitle: 'The insight',
     proofBody:
-      'Ratings tell you who is good. Behavioral and conversational signal tells you who belongs together.',
+      'Behavioral and conversational context helps staff understand what makes people want to come back.',
     outcomes: ['Less interface', 'More memory', 'Better coordination', 'A clearer category'],
     testing: 'Tests whether the simplest articulation is the strongest.',
     bestFor: 'Premium home page, teaser, investor pre-read, brand lockup.',
-    finalLine: 'Not another dashboard. A better human conversation.',
+    finalLine: 'A better human conversation.',
   },
 ]
 

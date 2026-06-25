@@ -25,7 +25,7 @@ Reason: it is short, human, and specific enough to separate Human Conversation f
 
 Variant 3.
 
-The abstract relationship graph feels like proprietary signal without becoming a generic dashboard. It is the most investor-ready visual system.
+The abstract relationship graph feels like useful relationship memory without overexplaining the system. It is the most investor-ready visual system.
 
 ## Top Risks
 

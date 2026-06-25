@@ -15,7 +15,7 @@ import {
 import { type CSSProperties, type FormEvent, type ReactNode, useEffect, useMemo, useState } from 'react'
 import { type Variant, type VariantSlug, variantBySlug, variants } from './data/variants'
 
-const placeholderEmail = 'dave@humanconversation.com' // Placeholder until HumanConversation.com email is configured.
+const contactEmail = 'hello@humanconversation.com'
 const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
 const defaultPublicVariant: VariantSlug = 'v3-investor'
 
@@ -580,7 +580,16 @@ function EarlyAccessForm({ variant }: { variant: Variant }) {
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = new FormData(event.currentTarget)
-    console.info('Human Conversation early access placeholder submit', Object.fromEntries(form.entries()))
+    const fields = Object.fromEntries(form.entries())
+    const body = [
+      `Name: ${fields.name ?? ''}`,
+      `Email: ${fields.email ?? ''}`,
+      `Organization: ${fields.organization ?? ''}`,
+      `Role: ${fields.role ?? ''}`,
+      '',
+      `Community: ${fields.community ?? ''}`,
+    ].join('\n')
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent('Human Conversation early access')}&body=${encodeURIComponent(body)}`
     setSubmitted(true)
   }
 
@@ -591,20 +600,24 @@ function EarlyAccessForm({ variant }: { variant: Variant }) {
       className="rounded-lg border p-6 md:p-8"
       style={{ borderColor: variant.theme.line, background: variant.theme.surface }}
     >
-      <SectionKicker variant={variant}>Early access</SectionKicker>
+      <SectionKicker variant={variant}>Contact</SectionKicker>
       <h2 className="mt-5 text-3xl font-extrabold leading-tight">Start with one community conversation.</h2>
       <p className="muted-text mt-4 text-base font-semibold leading-7">
-        Placeholder intake only. No backend is connected yet.
+        Use the form below or email{' '}
+        <a href={`mailto:${contactEmail}`} className="font-extrabold underline underline-offset-4">
+          {contactEmail}
+        </a>
+        .
       </p>
 
       {submitted ? (
         <div className="mt-8 rounded-lg border p-6" style={{ borderColor: variant.theme.line, background: variant.theme.accentSoft }}>
           <div className="flex items-center gap-3 text-xl font-extrabold">
             <Check size={22} style={{ color: variant.theme.accent }} />
-            Captured for the demo.
+            Opening your email app.
           </div>
           <p className="muted-text mt-3 text-base font-semibold leading-7">
-            The form logged locally in the browser console. Wire it to the real intake path after the direction is chosen.
+            If it did not open, email {contactEmail} directly.
           </p>
         </div>
       ) : (
@@ -627,7 +640,7 @@ function EarlyAccessForm({ variant }: { variant: Variant }) {
             className="mt-2 inline-flex items-center justify-center gap-2 rounded-md px-5 py-4 text-base font-extrabold transition hover:-translate-y-0.5"
             style={{ background: variant.theme.button, color: variant.theme.buttonText }}
           >
-            Request early access
+            Email early access request
             <ArrowRight size={18} />
           </button>
         </div>
@@ -720,8 +733,8 @@ function Footer({ variant }: { variant?: Variant }) {
         </div>
         <div className="flex flex-col gap-2 text-[13px] md:flex-row md:items-center md:gap-5">
           <span>AI for the conversations that build community.</span>
-          <a href={`mailto:${placeholderEmail}`} className="font-extrabold underline underline-offset-4">
-            {placeholderEmail}
+          <a href={`mailto:${contactEmail}`} className="font-extrabold underline underline-offset-4">
+            {contactEmail}
           </a>
         </div>
       </div>

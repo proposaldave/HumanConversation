@@ -82,4 +82,4 @@ The original tool outputs remain in the Codex generated image folder. The app re
 
 ## Form Behavior
 
-The early-access form is intentionally fake. It collects name, email, organization, role, and community intent, then logs the payload to the browser console and shows a success state. No backend is connected.
+The early-access form opens a prefilled email to `hello@humanconversation.com` with name, email, organization, role, and community intent. The footer uses the same public contact address.

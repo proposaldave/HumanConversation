@@ -29,9 +29,9 @@
     <title>Human Conversation</title>
     <style>
       :root {
-        --hc-blue: #4f7fbf;
-        --hc-gold: #9a742d;
-        --hc-gold-button: #d8b25c;
+        --hc-blue: #365f99;
+        --hc-accent: #9a742d;
+        --hc-accent-button: #d8b25c;
         color: #1a1612;
         background: #f3ead8;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -68,6 +68,31 @@
           #f3ead8;
       }
 
+      .page[data-palette="gold"] {
+        --hc-accent: #9a742d;
+        --hc-accent-button: #d8b25c;
+      }
+
+      .page[data-palette="sage"] {
+        --hc-accent: #58785c;
+        --hc-accent-button: #a9c68f;
+      }
+
+      .page[data-palette="rose"] {
+        --hc-accent: #974f63;
+        --hc-accent-button: #d68a9a;
+      }
+
+      .page[data-palette="plum"] {
+        --hc-accent: #74527f;
+        --hc-accent-button: #bd94c8;
+      }
+
+      .page[data-palette="umber"] {
+        --hc-accent: #6d6047;
+        --hc-accent-button: #c8ad7a;
+      }
+
       .page::before {
         content: "";
         position: absolute;
@@ -90,6 +115,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 16px;
         width: min(100% - 48px, 1060px);
         margin: 0 auto;
         padding: 28px 0;
@@ -102,6 +128,43 @@
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 800;
+      }
+
+      .palette-switcher {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .palette-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid rgba(26, 22, 18, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.42);
+        color: rgba(26, 22, 18, 0.72);
+        padding: 7px 10px 7px 8px;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .palette-button[aria-pressed="true"] {
+        border-color: var(--swatch);
+        color: #1a1612;
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--swatch) 20%, transparent);
+      }
+
+      .palette-swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: var(--swatch);
+        box-shadow: inset 0 0 0 1px rgba(26, 22, 18, 0.12);
       }
 
       .mark {
@@ -138,7 +201,7 @@
         width: 8px;
         height: 23px;
         border-radius: 999px;
-        background: var(--hc-gold);
+        background: var(--hc-accent);
       }
 
       main {
@@ -185,7 +248,7 @@
         gap: 0.16em;
         width: max-content;
         max-width: 100%;
-        color: var(--hc-gold);
+        color: var(--hc-accent);
       }
 
       .transformation-coordination {
@@ -214,7 +277,7 @@
       }
 
       .product-name {
-        color: var(--hc-gold);
+        color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
         white-space: nowrap;
@@ -256,13 +319,13 @@
       }
 
       .contact input[type="email"]:focus {
-        border-color: var(--hc-gold-button);
+        border-color: var(--hc-accent-button);
       }
 
       .contact button {
         border: 0;
         border-radius: 7px;
-        background: var(--hc-gold-button);
+        background: var(--hc-accent-button);
         color: #1a1612;
         padding: 15px 18px;
         cursor: pointer;
@@ -284,7 +347,7 @@
       }
 
       .direct-email a {
-        color: var(--hc-gold);
+        color: var(--hc-accent);
         text-decoration-thickness: 2px;
         text-underline-offset: 3px;
       }
@@ -363,6 +426,22 @@
         .brand span:last-child {
           display: none;
         }
+
+        .palette-switcher {
+          max-width: 218px;
+          gap: 6px;
+        }
+
+        .palette-button {
+          width: 34px;
+          height: 34px;
+          justify-content: center;
+          padding: 0;
+        }
+
+        .palette-button span:last-child {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -375,6 +454,28 @@
           </span>
           <span>Human Conversation</span>
         </a>
+        <div class="palette-switcher" aria-label="Color options">
+          <button class="palette-button" type="button" data-palette-option="gold" aria-pressed="true" style="--swatch: #9a742d">
+            <span class="palette-swatch" aria-hidden="true"></span>
+            <span>Gold</span>
+          </button>
+          <button class="palette-button" type="button" data-palette-option="sage" aria-pressed="false" style="--swatch: #58785c">
+            <span class="palette-swatch" aria-hidden="true"></span>
+            <span>Sage</span>
+          </button>
+          <button class="palette-button" type="button" data-palette-option="rose" aria-pressed="false" style="--swatch: #974f63">
+            <span class="palette-swatch" aria-hidden="true"></span>
+            <span>Rose</span>
+          </button>
+          <button class="palette-button" type="button" data-palette-option="plum" aria-pressed="false" style="--swatch: #74527f">
+            <span class="palette-swatch" aria-hidden="true"></span>
+            <span>Plum</span>
+          </button>
+          <button class="palette-button" type="button" data-palette-option="umber" aria-pressed="false" style="--swatch: #6d6047">
+            <span class="palette-swatch" aria-hidden="true"></span>
+            <span>Umber</span>
+          </button>
+        </div>
       </header>
 
       <main>
@@ -398,6 +499,39 @@
       </main>
     </div>
     <script>
+      const page = document.querySelector(".page");
+      const paletteButtons = Array.from(document.querySelectorAll("[data-palette-option]"));
+      const paletteNames = new Set(paletteButtons.map((button) => button.dataset.paletteOption));
+      const paletteFromUrl = new URLSearchParams(window.location.search).get("palette");
+      let savedPalette = "";
+
+      try {
+        savedPalette = window.localStorage.getItem("humanConversationPalette") || "";
+      } catch {
+        savedPalette = "";
+      }
+
+      function setPalette(nextPalette) {
+        const palette = paletteNames.has(nextPalette) ? nextPalette : "gold";
+        page.dataset.palette = palette;
+        paletteButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.paletteOption === palette));
+        });
+        try {
+          window.localStorage.setItem("humanConversationPalette", palette);
+        } catch {
+          // Palette selection still works for the current page view.
+        }
+      }
+
+      paletteButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          setPalette(button.dataset.paletteOption);
+        });
+      });
+
+      setPalette(paletteFromUrl || savedPalette || "gold");
+
       const form = document.querySelector("#email-capture");
       const emailInput = document.querySelector("#email");
       const status = document.querySelector("#form-status");

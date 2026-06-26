@@ -29,6 +29,9 @@
     <title>Human Conversation</title>
     <style>
       :root {
+        --hc-blue: #4f7fbf;
+        --hc-copper: #b85f33;
+        --hc-copper-button: #d98a4f;
         color: #1a1612;
         background: #f3ead8;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -102,18 +105,40 @@
       }
 
       .mark {
-        display: inline-flex;
+        position: relative;
+        display: inline-block;
         width: 42px;
         height: 42px;
-        align-items: center;
-        justify-content: center;
       }
 
-      .mark img {
-        display: block;
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
+      .mark::before,
+      .mark::after {
+        content: "";
+        position: absolute;
+        top: 11px;
+        width: 21px;
+        height: 18px;
+        border-radius: 50% 50% 45% 45%;
+        background: #1a1612;
+      }
+
+      .mark::before {
+        left: 4px;
+      }
+
+      .mark::after {
+        right: 4px;
+      }
+
+      .mark-accent {
+        position: absolute;
+        z-index: 1;
+        top: 9px;
+        left: 17px;
+        width: 8px;
+        height: 23px;
+        border-radius: 999px;
+        background: var(--hc-copper);
       }
 
       main {
@@ -145,6 +170,10 @@
         max-width: 14em;
       }
 
+      .disconnection-word {
+        color: var(--hc-blue);
+      }
+
       .statement-step {
         width: max-content;
         max-width: 100%;
@@ -156,6 +185,7 @@
         gap: 0.16em;
         width: max-content;
         max-width: 100%;
+        color: var(--hc-copper);
       }
 
       .transformation-coordination {
@@ -168,7 +198,7 @@
 
       .headline-arrow {
         flex: 0 0 auto;
-        color: #4f8fe8;
+        color: currentColor;
         font-size: 0.95em;
         font-weight: 900;
         line-height: 1;
@@ -184,7 +214,7 @@
       }
 
       .product-name {
-        color: #4f7fbf;
+        color: var(--hc-copper);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
         white-space: nowrap;
@@ -226,13 +256,13 @@
       }
 
       .contact input[type="email"]:focus {
-        border-color: #74a7e8;
+        border-color: var(--hc-copper-button);
       }
 
       .contact button {
         border: 0;
         border-radius: 7px;
-        background: #74a7e8;
+        background: var(--hc-copper-button);
         color: #1a1612;
         padding: 15px 18px;
         cursor: pointer;
@@ -254,7 +284,7 @@
       }
 
       .direct-email a {
-        color: #4f7fbf;
+        color: var(--hc-copper);
         text-decoration-thickness: 2px;
         text-underline-offset: 3px;
       }
@@ -341,7 +371,7 @@
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <span class="mark" aria-hidden="true">
-            <img src="./assets/human-conversation-mark.png" alt="" width="42" height="42" />
+            <span class="mark-accent"></span>
           </span>
           <span>Human Conversation</span>
         </a>
@@ -349,7 +379,7 @@
 
       <main>
         <section>
-          <h1 aria-label="Human conversation turns disconnection into connection, coordination, and community"><span class="statement-lead" aria-hidden="true">Human conversation turns disconnection</span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span></h1>
+          <h1 aria-label="Human conversation turns disconnection into connection, coordination, and community"><span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span></span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span></h1>
           <p class="lede"><span class="product-name">Human Conversation</span> tells community builders who to talk to next and how to make the conversation count.</p>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <input type="hidden" name="_subject" value="New Human Conversation signup" />

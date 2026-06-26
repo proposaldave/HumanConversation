@@ -30,8 +30,8 @@
     <style>
       :root {
         --hc-blue: #365f99;
-        --hc-accent: #9a742d;
-        --hc-accent-button: #d8b25c;
+        --hc-accent: #58785c;
+        --hc-accent-button: #a9c68f;
         color: #1a1612;
         background: #f3ead8;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -68,11 +68,6 @@
           #f3ead8;
       }
 
-      .page[data-palette="gold"] {
-        --hc-accent: #9a742d;
-        --hc-accent-button: #d8b25c;
-      }
-
       .page[data-palette="sage"] {
         --hc-accent: #58785c;
         --hc-accent-button: #a9c68f;
@@ -86,11 +81,6 @@
       .page[data-palette="plum"] {
         --hc-accent: #74527f;
         --hc-accent-button: #bd94c8;
-      }
-
-      .page[data-palette="umber"] {
-        --hc-accent: #6d6047;
-        --hc-accent-button: #c8ad7a;
       }
 
       .page::before {
@@ -455,11 +445,7 @@
           <span>Human Conversation</span>
         </a>
         <div class="palette-switcher" aria-label="Color options">
-          <button class="palette-button" type="button" data-palette-option="gold" aria-pressed="true" style="--swatch: #9a742d">
-            <span class="palette-swatch" aria-hidden="true"></span>
-            <span>Gold</span>
-          </button>
-          <button class="palette-button" type="button" data-palette-option="sage" aria-pressed="false" style="--swatch: #58785c">
+          <button class="palette-button" type="button" data-palette-option="sage" aria-pressed="true" style="--swatch: #58785c">
             <span class="palette-swatch" aria-hidden="true"></span>
             <span>Sage</span>
           </button>
@@ -470,10 +456,6 @@
           <button class="palette-button" type="button" data-palette-option="plum" aria-pressed="false" style="--swatch: #74527f">
             <span class="palette-swatch" aria-hidden="true"></span>
             <span>Plum</span>
-          </button>
-          <button class="palette-button" type="button" data-palette-option="umber" aria-pressed="false" style="--swatch: #6d6047">
-            <span class="palette-swatch" aria-hidden="true"></span>
-            <span>Umber</span>
           </button>
         </div>
       </header>
@@ -512,7 +494,7 @@
       }
 
       function setPalette(nextPalette) {
-        const palette = paletteNames.has(nextPalette) ? nextPalette : "gold";
+        const palette = paletteNames.has(nextPalette) ? nextPalette : "sage";
         page.dataset.palette = palette;
         paletteButtons.forEach((button) => {
           button.setAttribute("aria-pressed", String(button.dataset.paletteOption === palette));
@@ -530,7 +512,7 @@
         });
       });
 
-      setPalette(paletteFromUrl || savedPalette || "gold");
+      setPalette(paletteFromUrl || savedPalette || "sage");
 
       const form = document.querySelector("#email-capture");
       const emailInput = document.querySelector("#email");

@@ -8,6 +8,8 @@
     "build": "vite build",
     "build:pages": "vite build && node scripts/copy-404.mjs",
     "lint": "oxlint",
+    "publish:pages": "node scripts/publish-pages.mjs",
+    "backup:landing": "node scripts/publish-pages.mjs --backup-only",
     "preview": "vite preview"
   },
   "dependencies": {

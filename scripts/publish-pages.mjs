@@ -23,22 +23,30 @@ const backupRepo = process.env.BACKUP_REPO || 'proposaldave/HumanConversation-pr
 const cname = process.env.PAGES_CNAME || 'humanconversation.com'
 const backupOnly = process.argv.includes('--backup-only')
 
-const shellCommand = (command) => (process.platform === 'win32' && command === 'npm' ? 'npm.cmd' : command)
-const needsShell = (command) => process.platform === 'win32' && command === 'npm'
+function commandParts(command, args) {
+  if (process.platform === 'win32' && command === 'npm') {
+    return {
+      command: process.env.ComSpec || 'cmd.exe',
+      args: ['/d', '/s', '/c', 'npm', ...args],
+    }
+  }
+
+  return { command, args }
+}
 
 function run(command, args, options = {}) {
-  execFileSync(shellCommand(command), args, {
+  const parts = commandParts(command, args)
+  execFileSync(parts.command, parts.args, {
     cwd: options.cwd || root,
-    shell: needsShell(command),
     stdio: options.stdio || 'inherit',
   })
 }
 
 function capture(command, args, options = {}) {
-  return execFileSync(shellCommand(command), args, {
+  const parts = commandParts(command, args)
+  return execFileSync(parts.command, parts.args, {
     cwd: options.cwd || root,
     encoding: 'utf8',
-    shell: needsShell(command),
     stdio: ['ignore', 'pipe', 'pipe'],
   }).trim()
 }

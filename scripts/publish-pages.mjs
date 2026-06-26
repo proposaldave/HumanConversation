@@ -24,10 +24,12 @@ const cname = process.env.PAGES_CNAME || 'humanconversation.com'
 const backupOnly = process.argv.includes('--backup-only')
 
 const shellCommand = (command) => (process.platform === 'win32' && command === 'npm' ? 'npm.cmd' : command)
+const needsShell = (command) => process.platform === 'win32' && command === 'npm'
 
 function run(command, args, options = {}) {
   execFileSync(shellCommand(command), args, {
     cwd: options.cwd || root,
+    shell: needsShell(command),
     stdio: options.stdio || 'inherit',
   })
 }
@@ -36,6 +38,7 @@ function capture(command, args, options = {}) {
   return execFileSync(shellCommand(command), args, {
     cwd: options.cwd || root,
     encoding: 'utf8',
+    shell: needsShell(command),
     stdio: ['ignore', 'pipe', 'pipe'],
   }).trim()
 }

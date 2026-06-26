@@ -32,8 +32,10 @@
         --hc-blue: #365f99;
         --hc-accent: #974f63;
         --hc-accent-button: #d68a9a;
-        color: #1a1612;
-        background: #f3ead8;
+        --hc-cream: #f3ead8;
+        --hc-ink: #1a1612;
+        color: var(--hc-ink);
+        background: var(--hc-cream);
         font-family: Manrope, Inter, system-ui, sans-serif;
         font-synthesis: none;
         text-rendering: optimizeLegibility;
@@ -49,7 +51,7 @@
         min-width: 320px;
         min-height: 100vh;
         margin: 0;
-        background: #f3ead8;
+        background: var(--hc-cream);
       }
 
       a {
@@ -64,8 +66,8 @@
         isolation: isolate;
         background:
           linear-gradient(90deg, rgba(255, 255, 255, 0.38), transparent 42%),
-          radial-gradient(circle at 92% 92%, rgba(200, 70, 44, 0.11), transparent 26%),
-          #f3ead8;
+          radial-gradient(circle at 92% 92%, rgba(151, 79, 99, 0.13), transparent 26%),
+          var(--hc-cream);
       }
 
       .page::before {
@@ -75,13 +77,44 @@
         z-index: 0;
         pointer-events: none;
         background-image:
-          radial-gradient(circle, rgba(184, 149, 74, 0.16) 0.65px, transparent 0.8px),
-          radial-gradient(circle, rgba(255, 255, 255, 0.48) 0.65px, transparent 0.8px);
+          radial-gradient(circle, rgba(151, 79, 99, 0.13) 0.65px, transparent 0.8px),
+          radial-gradient(circle, rgba(255, 255, 255, 0.5) 0.65px, transparent 0.8px);
         background-position:
           0 0,
           3px 3px;
         background-size: 6px 6px;
-        opacity: 0.52;
+        opacity: 0.5;
+      }
+
+      .page::after {
+        content: "";
+        position: absolute;
+        right: max(-10vw, -120px);
+        bottom: max(-11vw, -130px);
+        z-index: 0;
+        width: clamp(260px, 26vw, 440px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(151, 79, 99, 0.2);
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.8);
+        transition:
+          opacity 260ms ease,
+          transform 260ms ease;
+      }
+
+      .page[data-variant="known"]::after,
+      .page[data-variant="hidden"]::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .page[data-variant="bridge"]::after {
+        width: clamp(320px, 36vw, 560px);
+        border-radius: 42% 58% 49% 51%;
+        opacity: 0.75;
+        transform: rotate(-11deg);
       }
 
       header {
@@ -112,7 +145,7 @@
       }
 
       .mark-bubble {
-        fill: #1a1612;
+        fill: var(--hc-ink);
       }
 
       .mark-heart {
@@ -127,7 +160,32 @@
         width: min(100% - 48px, 1060px);
         min-height: calc(100vh - 92px);
         margin: 0 auto;
-        padding: 120px 0 140px;
+        padding: 104px 0 150px;
+      }
+
+      .hero {
+        width: 100%;
+        transition:
+          opacity 160ms ease,
+          transform 160ms ease;
+      }
+
+      .hero.is-switching {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      .hero-inner {
+        width: 100%;
+      }
+
+      .hero-journey .hero-inner,
+      .hero-intelligence .hero-inner,
+      .hero-known .hero-inner,
+      .hero-two .hero-inner,
+      .hero-bridge .hero-inner,
+      .hero-hidden .hero-inner {
+        display: block;
       }
 
       h1 {
@@ -144,17 +202,47 @@
         display: block;
       }
 
+      .hero-intelligence h1,
+      .hero-known h1,
+      .hero-hidden h1 {
+        max-width: 960px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4rem, 7.6vw, 8.2rem);
+        font-weight: 650;
+        line-height: 0.9;
+      }
+
+      .hero-known h1 {
+        max-width: 1010px;
+      }
+
+      .hero-two h1 {
+        max-width: 930px;
+        font-size: clamp(3.2rem, 5.8vw, 6.4rem);
+        line-height: 0.95;
+      }
+
+      .hero-bridge h1 {
+        max-width: 1030px;
+        font-size: clamp(3.4rem, 6.5vw, 7.2rem);
+        line-height: 0.92;
+      }
+
+      .hero-bridge .bridge-word {
+        display: inline-block;
+        color: var(--hc-accent);
+      }
+
+      .hero-hidden h1 {
+        max-width: 850px;
+      }
+
       .statement-lead {
         max-width: 14em;
       }
 
       .disconnection-word {
         color: var(--hc-blue);
-      }
-
-      .statement-step {
-        width: max-content;
-        max-width: 100%;
       }
 
       .transformation-line {
@@ -186,29 +274,48 @@
         max-width: 800px;
         margin: 24px 0 0;
         color: rgba(26, 22, 18, 0.64);
-        font-size: clamp(1.2rem, 1.65vw, 1.4rem);
+        font-size: clamp(1.18rem, 1.65vw, 1.4rem);
         font-weight: 800;
         line-height: 1.38;
       }
 
-      .product-name {
+      .hero-intelligence .lede,
+      .hero-known .lede,
+      .hero-hidden .lede {
+        max-width: 820px;
+        font-size: clamp(1.22rem, 1.8vw, 1.55rem);
+      }
+
+      .hero-two .lede {
+        display: grid;
+        max-width: 860px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .hero-two .lede span {
+        border-left: 5px solid var(--hc-accent);
+        padding-left: 18px;
+      }
+
+      .hero-bridge .lede {
+        max-width: 760px;
+      }
+
+      .product-name,
+      .emphasis {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
+      }
+
+      .product-name {
         white-space: nowrap;
       }
 
       .contact {
         width: min(100%, 520px);
         margin-top: 34px;
-      }
-
-      .contact label {
-        display: block;
-        margin-bottom: 12px;
-        color: rgba(26, 22, 18, 0.72);
-        font-size: 0.95rem;
-        font-weight: 800;
       }
 
       .contact-row {
@@ -222,7 +329,7 @@
         border: 1px solid rgba(26, 22, 18, 0.2);
         border-radius: 7px;
         background: rgba(255, 255, 255, 0.54);
-        color: #1a1612;
+        color: var(--hc-ink);
         padding: 15px 16px;
         font: inherit;
         font-weight: 700;
@@ -241,7 +348,7 @@
         border: 0;
         border-radius: 7px;
         background: var(--hc-accent-button);
-        color: #1a1612;
+        color: var(--hc-ink);
         padding: 15px 18px;
         cursor: pointer;
         font: inherit;
@@ -280,7 +387,36 @@
         left: -9999px;
       }
 
-      @media (max-width: 640px) {
+      .variant-dots {
+        position: fixed;
+        right: max(18px, calc(env(safe-area-inset-right) + 18px));
+        bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
+        z-index: 5;
+        display: flex;
+        gap: 9px;
+        padding: 9px;
+        border: 1px solid rgba(26, 22, 18, 0.12);
+        border-radius: 999px;
+        background: rgba(243, 234, 216, 0.72);
+        backdrop-filter: blur(12px);
+      }
+
+      .variant-dot {
+        width: 10px;
+        height: 10px;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(26, 22, 18, 0.26);
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .variant-dot[aria-current="true"] {
+        background: var(--hc-accent);
+        box-shadow: 0 0 0 5px rgba(151, 79, 99, 0.16);
+      }
+
+      @media (max-width: 760px) {
         header,
         main {
           width: min(100% - 32px, 1060px);
@@ -292,17 +428,21 @@
 
         main {
           min-height: auto;
-          padding: 72px 0 64px;
+          padding: 66px 0 88px;
           align-items: flex-start;
         }
 
-        h1 {
+        h1,
+        .hero-two h1,
+        .hero-bridge h1,
+        .hero-intelligence h1,
+        .hero-known h1,
+        .hero-hidden h1 {
           max-width: 100%;
-          font-size: clamp(2.55rem, 10.6vw, 3.1rem);
-          line-height: 1.03;
+          font-size: clamp(2.55rem, 11vw, 3.35rem);
+          line-height: 1.02;
         }
 
-        .statement-step,
         .transformation-line {
           width: 100%;
         }
@@ -315,11 +455,19 @@
           margin-left: 0.36em;
         }
 
-        .lede {
+        .lede,
+        .hero-intelligence .lede,
+        .hero-known .lede,
+        .hero-hidden .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
           line-height: 1.42;
+        }
+
+        .hero-two .lede {
+          grid-template-columns: 1fr;
+          gap: 10px;
         }
 
         .product-name {
@@ -341,12 +489,11 @@
         .brand span:last-child {
           display: none;
         }
-
       }
     </style>
   </head>
   <body>
-    <div class="page">
+    <div class="page" data-variant="journey">
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <svg class="mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false">
@@ -359,9 +506,16 @@
       </header>
 
       <main>
-        <section>
-          <h1 aria-label="Human conversation turns disconnection into connection, coordination, and community"><span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span></span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span></h1>
-          <p class="lede"><span class="product-name">Human Conversation</span> tells community builders who to talk to next and how to make the conversation count.</p>
+        <section class="hero hero-journey" id="landing-hero" aria-live="polite">
+          <div class="hero-inner">
+            <h1 aria-label="Human conversation turns disconnection into connection, coordination, and community">
+              <span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span> into</span>
+              <span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span>
+              <span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span>
+              <span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span>
+            </h1>
+            <p class="lede"><span class="product-name">Human Conversation</span> tells community builders who to talk to next and how to make the conversation count.</p>
+          </div>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <input type="hidden" name="_subject" value="New Human Conversation signup" />
             <input type="hidden" name="_template" value="table" />
@@ -377,13 +531,105 @@
           </form>
         </section>
       </main>
+
+      <nav class="variant-dots" aria-label="Landing page options">
+        <button class="variant-dot" type="button" data-option="0" aria-label="Option 1" aria-current="true"></button>
+        <button class="variant-dot" type="button" data-option="1" aria-label="Option 2"></button>
+        <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
+        <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
+        <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
+        <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
+      </nav>
     </div>
+
     <script>
+      const variants = [
+        {
+          id: "journey",
+          headlineLabel: "Human conversation turns disconnection into connection, coordination, and community",
+          headline: `<span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span> into</span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span>`,
+          lede: `<span class="product-name">Human Conversation</span> tells community builders who to talk to next and how to make the conversation count.`,
+        },
+        {
+          id: "intelligence",
+          headlineLabel: "Where connection becomes intelligence",
+          headline: `Where connection becomes <span class="emphasis">intelligence.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> helps people feel known and helps communities learn what to do next.`,
+        },
+        {
+          id: "known",
+          headlineLabel: "Human conversation is where people feel known",
+          headline: `Human conversation is where people feel <span class="emphasis">known.</span>`,
+          lede: `And where communities learn what to do next.`,
+        },
+        {
+          id: "two",
+          headlineLabel: "Every real conversation creates two things",
+          headline: `Every real conversation creates two things.`,
+          lede: `<span>Connection for the person.</span><span>Intelligence for the community.</span>`,
+        },
+        {
+          id: "bridge",
+          headlineLabel: "Human conversation is the bridge between connection and what comes next",
+          headline: `The <span class="bridge-word">bridge</span> between connection and what comes next.`,
+          lede: `<span class="product-name">Human Conversation</span> helps community builders ask what matters, capture what they learn, and coordinate better real-world experiences.`,
+        },
+        {
+          id: "hidden",
+          headlineLabel: "Hidden needs become shared understanding",
+          headline: `Hidden needs become shared <span class="emphasis">understanding.</span>`,
+          lede: `A community understands itself through conversation, one human moment at a time.`,
+        },
+      ];
+
+      const page = document.querySelector(".page");
+      const hero = document.querySelector("#landing-hero");
+      const headline = hero.querySelector("h1");
+      const lede = hero.querySelector(".lede");
+      const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const form = document.querySelector("#email-capture");
       const emailInput = document.querySelector("#email");
       const status = document.querySelector("#form-status");
       const button = form.querySelector("button");
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
+
+      function setVariant(index) {
+        const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
+        const variant = variants[safeIndex];
+
+        hero.classList.add("is-switching");
+        window.setTimeout(() => {
+          page.dataset.variant = variant.id;
+          hero.className = `hero hero-${variant.id}`;
+          headline.innerHTML = variant.headline;
+          headline.setAttribute("aria-label", variant.headlineLabel);
+          lede.innerHTML = variant.lede;
+          dots.forEach((dot, dotIndex) => {
+            dot.setAttribute("aria-current", String(dotIndex === safeIndex));
+          });
+          try {
+            window.localStorage.setItem("humanConversationLandingOption", String(safeIndex));
+          } catch {
+            // The option still changes for this page view.
+          }
+        }, 90);
+      }
+
+      const requestedOption = Number.parseInt(new URLSearchParams(window.location.search).get("option") || "", 10);
+      let savedOption = 0;
+      try {
+        savedOption = Number.parseInt(window.localStorage.getItem("humanConversationLandingOption") || "0", 10);
+      } catch {
+        savedOption = 0;
+      }
+
+      setVariant(Number.isInteger(requestedOption) ? requestedOption - 1 : savedOption);
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          setVariant(Number.parseInt(dot.dataset.option, 10));
+        });
+      });
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();

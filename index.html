@@ -97,7 +97,7 @@
 
       .brand {
         display: inline-flex;
-        gap: 12px;
+        gap: 11px;
         align-items: center;
         text-decoration: none;
         font-size: 0.95rem;
@@ -105,40 +105,18 @@
       }
 
       .mark {
-        position: relative;
-        display: inline-block;
-        width: 42px;
-        height: 42px;
+        display: block;
+        width: 46px;
+        height: 35px;
+        overflow: visible;
       }
 
-      .mark::before,
-      .mark::after {
-        content: "";
-        position: absolute;
-        top: 11px;
-        width: 21px;
-        height: 18px;
-        border-radius: 50% 50% 45% 45%;
-        background: #1a1612;
+      .mark-bubble {
+        fill: #1a1612;
       }
 
-      .mark::before {
-        left: 4px;
-      }
-
-      .mark::after {
-        right: 4px;
-      }
-
-      .mark-accent {
-        position: absolute;
-        z-index: 1;
-        top: 9px;
-        left: 17px;
-        width: 8px;
-        height: 23px;
-        border-radius: 999px;
-        background: var(--hc-accent);
+      .mark-heart {
+        fill: var(--hc-accent);
       }
 
       main {
@@ -371,9 +349,11 @@
     <div class="page">
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
-          <span class="mark" aria-hidden="true">
-            <span class="mark-accent"></span>
-          </span>
+          <svg class="mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false">
+            <path class="mark-bubble" d="M23.5 8C12.7 8 4 14.6 4 22.8c0 4.7 2.9 9 7.4 11.7L9.7 42l8.3-4.2c1.8.4 3.7.6 5.5.6 10.8 0 19.5-6.6 19.5-14.8S34.3 8 23.5 8Z" />
+            <path class="mark-bubble" d="M40.5 8C51.3 8 60 14.6 60 22.8c0 4.7-2.9 9-7.4 11.7l1.7 7.5-8.3-4.2c-1.8.4-3.7.6-5.5.6-10.8 0-19.5-6.6-19.5-14.8S29.7 8 40.5 8Z" />
+            <path class="mark-heart" d="M32 34.2s-10.9-6.3-10.9-13.5c0-4 2.9-6.9 6.5-6.9 2.2 0 3.8 1.1 4.4 2.7.6-1.6 2.2-2.7 4.4-2.7 3.6 0 6.5 2.9 6.5 6.9C42.9 27.9 32 34.2 32 34.2Z" />
+          </svg>
           <span>Human Conversation</span>
         </a>
       </header>

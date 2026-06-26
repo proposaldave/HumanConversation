@@ -141,15 +141,35 @@
         display: block;
       }
 
-      .flow-line {
+      .statement-lead {
+        max-width: 14em;
+      }
+
+      .statement-step {
+        width: max-content;
+        max-width: 100%;
+      }
+
+      .transformation-line {
         display: flex;
         align-items: baseline;
-        gap: 0.18em;
+        gap: 0.16em;
+        width: max-content;
+        max-width: 100%;
+      }
+
+      .transformation-coordination {
+        margin-left: 0.58em;
+      }
+
+      .transformation-community {
+        margin-left: 1.16em;
       }
 
       .headline-arrow {
         flex: 0 0 auto;
         color: #4f8fe8;
+        font-size: 0.95em;
         font-weight: 900;
         line-height: 1;
       }
@@ -274,6 +294,19 @@
           line-height: 1.03;
         }
 
+        .statement-step,
+        .transformation-line {
+          width: 100%;
+        }
+
+        .transformation-coordination {
+          margin-left: 0.18em;
+        }
+
+        .transformation-community {
+          margin-left: 0.36em;
+        }
+
         .lede {
           max-width: 100%;
           margin-top: 22px;
@@ -316,7 +349,7 @@
 
       <main>
         <section>
-          <h1 aria-label="Human conversation turns connection into coordination into community."><span aria-hidden="true">Human conversation</span><span aria-hidden="true">turns connection</span><span class="flow-line" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="flow-line" aria-hidden="true"><span class="headline-arrow">→</span><span>community.</span></span></h1>
+          <h1 aria-label="Human conversation turns connection into coordination into community."><span class="statement-lead" aria-hidden="true">Human conversation turns</span><span class="statement-step" aria-hidden="true">connection</span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community.</span></span></h1>
           <p class="lede"><span class="product-name">Human Conversation</span> helps community builders know who to talk with, what to ask, and how to make the next conversation count.</p>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <label for="email">Want in</label>

@@ -137,6 +137,18 @@
         font-weight: 800;
       }
 
+      .header-email {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        color: var(--hc-accent);
+        font-size: 0.9rem;
+        font-weight: 800;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        transform: translateY(-50%);
+      }
+
       .mark {
         display: block;
         width: 46px;
@@ -361,19 +373,6 @@
         opacity: 0.72;
       }
 
-      .direct-email {
-        margin: 14px 0 0;
-        color: rgba(26, 22, 18, 0.58);
-        font-size: 0.94rem;
-        font-weight: 700;
-      }
-
-      .direct-email a {
-        color: var(--hc-accent);
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
-      }
-
       .status {
         min-height: 1.5rem;
         margin: 12px 0 0;
@@ -424,6 +423,21 @@
 
         header {
           padding-top: 20px;
+        }
+
+        .header-email {
+          position: fixed;
+          top: auto;
+          right: auto;
+          bottom: calc(18px + env(safe-area-inset-bottom));
+          left: 18px;
+          z-index: 4;
+          max-width: calc(100vw - 136px);
+          overflow: hidden;
+          font-size: 0.86rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          transform: none;
         }
 
         main {
@@ -501,6 +515,7 @@
           </svg>
           <span>Human Conversation</span>
         </a>
+        <a class="header-email" href="mailto:hello@humanconversation.com">hello@humanconversation.com</a>
       </header>
 
       <main>
@@ -524,7 +539,6 @@
               <input id="email" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
               <button type="submit">Join the Conversation</button>
             </div>
-            <p class="direct-email"><a href="mailto:hello@humanconversation.com">hello@humanconversation.com</a></p>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
         </section>

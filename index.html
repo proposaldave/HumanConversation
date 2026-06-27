@@ -280,12 +280,16 @@
         color: var(--hc-accent);
       }
 
+      .transformation-trust {
+        margin-left: 0.36em;
+      }
+
       .transformation-coordination {
-        margin-left: 0.58em;
+        margin-left: 0.72em;
       }
 
       .transformation-community {
-        margin-left: 1.16em;
+        margin-left: 1.08em;
       }
 
       .headline-arrow {
@@ -478,12 +482,16 @@
           width: 100%;
         }
 
+        .transformation-trust {
+          margin-left: 0.1em;
+        }
+
         .transformation-coordination {
-          margin-left: 0.18em;
+          margin-left: 0.2em;
         }
 
         .transformation-community {
-          margin-left: 0.36em;
+          margin-left: 0.3em;
         }
 
         .lede,
@@ -540,9 +548,10 @@
       <main>
         <section class="hero hero-journey" id="landing-hero" aria-live="polite">
           <div class="hero-inner">
-            <h1 aria-label="Human conversation turns disconnection into connection, coordination, and community">
+            <h1 aria-label="Human conversation turns disconnection into connection, trust, coordination, and community">
               <span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span> into</span>
               <span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span>
+              <span class="transformation-line transformation-trust" aria-hidden="true"><span class="headline-arrow">→</span><span>trust</span></span>
               <span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span>
               <span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span>
             </h1>
@@ -576,8 +585,8 @@
       const variants = [
         {
           id: "journey",
-          headlineLabel: "Human conversation turns disconnection into connection, coordination, and community",
-          headline: `<span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span> into</span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span>`,
+          headlineLabel: "Human conversation turns disconnection into connection, trust, coordination, and community",
+          headline: `<span class="statement-lead" aria-hidden="true">Human conversation turns <span class="disconnection-word">disconnection</span> into</span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">→</span><span>connection</span></span><span class="transformation-line transformation-trust" aria-hidden="true"><span class="headline-arrow">→</span><span>trust</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">→</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">→</span><span>community</span></span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders know who to talk to next, ask what matters, and learn what to do next.`,
         },
         {
@@ -602,7 +611,7 @@
           id: "moves",
           headlineLabel: "Conversation is how a community feels, learns, and moves",
           headline: `<span>Conversation is how a community</span><span class="moves-line">feels, learns, and moves.</span>`,
-          lede: `<span class="product-name">Human Conversation</span> turns those conversations into connection, coordination, and community.`,
+          lede: `<span class="product-name">Human Conversation</span> turns those conversations into connection, trust, coordination, and community.`,
         },
       ];
 

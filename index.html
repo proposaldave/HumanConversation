@@ -199,7 +199,8 @@
       .hero-moves .hero-inner,
       .hero-offcourt .hero-inner,
       .hero-phone .hero-inner,
-      .hero-breathes .hero-inner {
+      .hero-breathes .hero-inner,
+      .hero-around .hero-inner {
         display: block;
       }
 
@@ -287,6 +288,22 @@
       }
 
       .breathes-line {
+        color: var(--hc-accent);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .hero-around h1 {
+        max-width: 1120px;
+        font-size: clamp(3.25rem, 5.75vw, 6.45rem);
+        line-height: 0.96;
+      }
+
+      .around-negative {
+        color: rgba(26, 22, 18, 0.62);
+      }
+
+      .around-built {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
@@ -400,6 +417,12 @@
         max-width: 830px;
         margin-top: 30px;
         font-size: clamp(1.14rem, 1.55vw, 1.34rem);
+      }
+
+      .hero-around .lede {
+        max-width: 780px;
+        margin-top: 30px;
+        font-size: clamp(1.14rem, 1.5vw, 1.32rem);
       }
 
       .product-name,
@@ -553,7 +576,8 @@
         .hero-moves h1,
         .hero-offcourt h1,
         .hero-phone h1,
-        .hero-breathes h1 {
+        .hero-breathes h1,
+        .hero-around h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -581,7 +605,8 @@
         .hero-moves .lede,
         .hero-offcourt .lede,
         .hero-phone .lede,
-        .hero-breathes .lede {
+        .hero-breathes .lede,
+        .hero-around .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -692,6 +717,7 @@
         <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
         <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
+        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8"></button>
       </nav>
     </div>
 
@@ -738,6 +764,12 @@
           headlineLabel: "Human conversation is how a community breathes",
           headline: `<span>Human conversation is how</span><span class="breathes-line">a community breathes.</span>`,
           lede: `Technology should not replace it, forget it, or bypass it. <span class="product-name">Human Conversation</span> helps community builders know who needs a conversation, what to talk about, and what should happen next.`,
+        },
+        {
+          id: "around",
+          headlineLabel: "We are not building technology to replace the human conversation. We are building a technology company around the human conversation.",
+          headline: `<span class="around-negative">Not technology to replace</span><span>the human conversation.</span><span class="around-built">A technology company built around it.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> gives community-builders the next person to talk to, the context, then advises the next action.`,
         },
       ];
 

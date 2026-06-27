@@ -197,7 +197,8 @@
       .hero-two .hero-inner,
       .hero-hidden .hero-inner,
       .hero-moves .hero-inner,
-      .hero-offcourt .hero-inner {
+      .hero-offcourt .hero-inner,
+      .hero-phone .hero-inner {
         display: block;
       }
 
@@ -257,6 +258,22 @@
       }
 
       .offcourt-line {
+        color: var(--hc-accent);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .hero-phone h1 {
+        max-width: 1040px;
+        font-size: clamp(3.45rem, 6.4vw, 7.1rem);
+        line-height: 0.94;
+      }
+
+      .phone-word {
+        color: var(--hc-blue);
+      }
+
+      .phone-human {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
@@ -358,6 +375,12 @@
       .offcourt-beat span {
         display: block;
         margin-top: 8px;
+      }
+
+      .hero-phone .lede {
+        max-width: 760px;
+        margin-top: 30px;
+        font-size: clamp(1.22rem, 1.72vw, 1.46rem);
       }
 
       .product-name,
@@ -509,7 +532,8 @@
         .hero-known h1,
         .hero-hidden h1,
         .hero-moves h1,
-        .hero-offcourt h1 {
+        .hero-offcourt h1,
+        .hero-phone h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -535,7 +559,8 @@
         .hero-known .lede,
         .hero-hidden .lede,
         .hero-moves .lede,
-        .hero-offcourt .lede {
+        .hero-offcourt .lede,
+        .hero-phone .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -569,6 +594,10 @@
 
         .offcourt-beat span {
           margin-top: 5px;
+        }
+
+        .hero-phone h1 {
+          font-size: clamp(2.65rem, 11.4vw, 3.6rem);
         }
 
         .product-name {
@@ -640,6 +669,7 @@
         <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
         <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
         <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
+        <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
       </nav>
     </div>
 
@@ -674,6 +704,12 @@
           headlineLabel: "Human conversation creates connection off the court",
           headline: `<span>Human conversation creates connection</span><span class="offcourt-line">off the court.</span>`,
           lede: `<span class="offcourt-beat"><strong>Connection</strong><span>People feel seen, welcomed, supported, celebrated, remembered.</span></span><span class="offcourt-beat"><strong>Intelligence</strong><span>The club learns who is excited, who is drifting, who needs a softer landing, and who should meet whom.</span></span><span class="offcourt-beat"><strong>Action</strong><span>The club knows what to schedule, who to invite, what to fill, and what should happen next.</span></span>`,
+        },
+        {
+          id: "phone",
+          headlineLabel: "Put down your phone. Have a human conversation.",
+          headline: `<span>Put down your <span class="phone-word">phone.</span></span><span class="phone-human">Have a human conversation.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> helps community builders turn real conversations into connection, trust, and the next right action.`,
         },
       ];
 

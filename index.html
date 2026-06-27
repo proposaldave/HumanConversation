@@ -115,13 +115,6 @@
         transform: scale(1);
       }
 
-      .page[data-variant="bridge"]::after {
-        width: clamp(320px, 36vw, 560px);
-        border-radius: 42% 58% 49% 51%;
-        opacity: 0.75;
-        transform: rotate(-11deg);
-      }
-
       header {
         position: relative;
         z-index: 2;
@@ -202,7 +195,6 @@
       .hero-journey .hero-inner,
       .hero-known .hero-inner,
       .hero-two .hero-inner,
-      .hero-bridge .hero-inner,
       .hero-hidden .hero-inner,
       .hero-moves .hero-inner {
         display: block;
@@ -239,17 +231,6 @@
         max-width: 930px;
         font-size: clamp(3.2rem, 5.8vw, 6.4rem);
         line-height: 0.95;
-      }
-
-      .hero-bridge h1 {
-        max-width: 1030px;
-        font-size: clamp(3.4rem, 6.5vw, 7.2rem);
-        line-height: 0.92;
-      }
-
-      .hero-bridge .bridge-word {
-        display: inline-block;
-        color: var(--hc-accent);
       }
 
       .hero-hidden h1 {
@@ -330,10 +311,6 @@
       .hero-two .lede span {
         border-left: 5px solid var(--hc-accent);
         padding-left: 18px;
-      }
-
-      .hero-bridge .lede {
-        max-width: 760px;
       }
 
       .hero-moves .lede {
@@ -474,7 +451,6 @@
 
         h1,
         .hero-two h1,
-        .hero-bridge h1,
         .hero-known h1,
         .hero-hidden h1,
         .hero-moves h1 {
@@ -582,7 +558,6 @@
         <button class="variant-dot" type="button" data-option="1" aria-label="Option 2"></button>
         <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
         <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
-        <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
       </nav>
     </div>
 
@@ -599,12 +574,6 @@
           headlineLabel: "Human conversation is where people feel known",
           headline: `Human conversation is where people feel <span class="emphasis">known.</span>`,
           lede: `And where communities learn what to do next.`,
-        },
-        {
-          id: "bridge",
-          headlineLabel: "Human conversation is the bridge between connection and what comes next",
-          headline: `The <span class="bridge-word">bridge</span> between connection and what comes next.`,
-          lede: `<span class="product-name">Human Conversation</span> helps community builders ask what matters, capture what they learn, and coordinate better real-world experiences.`,
         },
         {
           id: "hidden",

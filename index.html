@@ -396,11 +396,23 @@
         z-index: 5;
         display: flex;
         gap: 9px;
+        opacity: 0;
+        pointer-events: none;
         padding: 9px;
         border: 1px solid rgba(26, 22, 18, 0.12);
         border-radius: 999px;
         background: rgba(243, 234, 216, 0.72);
         backdrop-filter: blur(12px);
+        transform: translateY(8px);
+        transition:
+          opacity 160ms ease,
+          transform 160ms ease;
+      }
+
+      .variant-dots.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
       }
 
       .variant-dot {
@@ -553,7 +565,7 @@
         </section>
       </main>
 
-      <nav class="variant-dots" aria-label="Landing page options">
+      <nav class="variant-dots" aria-label="Landing page options" aria-hidden="true" hidden>
         <button class="variant-dot" type="button" data-option="0" aria-label="Option 1" aria-current="true"></button>
         <button class="variant-dot" type="button" data-option="1" aria-label="Option 2"></button>
         <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
@@ -593,6 +605,7 @@
       const hero = document.querySelector("#landing-hero");
       const headline = hero.querySelector("h1");
       const lede = hero.querySelector(".lede");
+      const variantNav = document.querySelector(".variant-dots");
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const form = document.querySelector("#email-capture");
       const emailInput = document.querySelector("#email");
@@ -622,6 +635,15 @@
         }, 90);
       }
 
+      function revealVariantDots() {
+        if (!variantNav || variantNav.classList.contains("is-visible")) return;
+        variantNav.hidden = false;
+        variantNav.setAttribute("aria-hidden", "false");
+        window.requestAnimationFrame(() => {
+          variantNav.classList.add("is-visible");
+        });
+      }
+
       const requestedOption = Number.parseInt(new URLSearchParams(window.location.search).get("option") || "", 10);
       let savedOption = 0;
       try {
@@ -637,6 +659,33 @@
           setVariant(Number.parseInt(dot.dataset.option, 10));
         });
       });
+
+      window.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const isTyping =
+          target instanceof HTMLElement &&
+          (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+
+        if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key.toLowerCase() === "z") revealVariantDots();
+      });
+
+      let lastTouchTap = 0;
+      window.addEventListener(
+        "pointerup",
+        (event) => {
+          if (event.pointerType !== "touch") return;
+          if (event.target instanceof Element && event.target.closest("a, button, input, textarea, select, form")) return;
+
+          const now = Date.now();
+          if (now - lastTouchTap > 0 && now - lastTouchTap < 420) {
+            event.preventDefault();
+            revealVariantDots();
+          }
+          lastTouchTap = now;
+        },
+        { passive: false },
+      );
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();

@@ -198,7 +198,8 @@
       .hero-hidden .hero-inner,
       .hero-moves .hero-inner,
       .hero-offcourt .hero-inner,
-      .hero-phone .hero-inner {
+      .hero-phone .hero-inner,
+      .hero-breathes .hero-inner {
         display: block;
       }
 
@@ -274,6 +275,18 @@
       }
 
       .phone-human {
+        color: var(--hc-accent);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .hero-breathes h1 {
+        max-width: 1080px;
+        font-size: clamp(3.35rem, 6.1vw, 6.8rem);
+        line-height: 0.94;
+      }
+
+      .breathes-line {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
@@ -381,6 +394,12 @@
         max-width: 760px;
         margin-top: 30px;
         font-size: clamp(1.22rem, 1.72vw, 1.46rem);
+      }
+
+      .hero-breathes .lede {
+        max-width: 830px;
+        margin-top: 30px;
+        font-size: clamp(1.14rem, 1.55vw, 1.34rem);
       }
 
       .product-name,
@@ -533,7 +552,8 @@
         .hero-hidden h1,
         .hero-moves h1,
         .hero-offcourt h1,
-        .hero-phone h1 {
+        .hero-phone h1,
+        .hero-breathes h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -560,7 +580,8 @@
         .hero-hidden .lede,
         .hero-moves .lede,
         .hero-offcourt .lede,
-        .hero-phone .lede {
+        .hero-phone .lede,
+        .hero-breathes .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -670,6 +691,7 @@
         <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
         <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
+        <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
       </nav>
     </div>
 
@@ -710,6 +732,12 @@
           headlineLabel: "Put down your phone. Have a human conversation.",
           headline: `<span>Put down your <span class="phone-word">phone.</span></span><span class="phone-human">Have a human conversation.</span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders turn real conversations into connection, trust, and the next right action.`,
+        },
+        {
+          id: "breathes",
+          headlineLabel: "Human conversation is how a community breathes",
+          headline: `<span>Human conversation is how</span><span class="breathes-line">a community breathes.</span>`,
+          lede: `Technology should not replace it, forget it, or bypass it. <span class="product-name">Human Conversation</span> helps community builders know who needs a conversation, what to talk about, and what should happen next.`,
         },
       ];
 

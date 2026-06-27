@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 qa
+.publish-tmp
 desktop.ini
 
 # Editor directories and files

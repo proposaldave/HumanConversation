@@ -196,7 +196,8 @@
       .hero-known .hero-inner,
       .hero-two .hero-inner,
       .hero-hidden .hero-inner,
-      .hero-moves .hero-inner {
+      .hero-moves .hero-inner,
+      .hero-offcourt .hero-inner {
         display: block;
       }
 
@@ -244,6 +245,18 @@
       }
 
       .moves-line {
+        color: var(--hc-accent);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .hero-offcourt h1 {
+        max-width: 1040px;
+        font-size: clamp(3.2rem, 5.7vw, 6.15rem);
+        line-height: 0.96;
+      }
+
+      .offcourt-line {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
@@ -315,6 +328,36 @@
 
       .hero-moves .lede {
         max-width: 780px;
+      }
+
+      .hero-offcourt .lede {
+        display: grid;
+        max-width: 1040px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 32px;
+        color: rgba(26, 22, 18, 0.68);
+        font-size: 1.03rem;
+        line-height: 1.38;
+      }
+
+      .offcourt-beat {
+        display: block;
+        min-height: 100%;
+        border-left: 5px solid var(--hc-accent);
+        padding: 2px 0 2px 16px;
+      }
+
+      .offcourt-beat strong {
+        display: block;
+        color: var(--hc-ink);
+        font-size: 1.02rem;
+        line-height: 1.1;
+      }
+
+      .offcourt-beat span {
+        display: block;
+        margin-top: 8px;
       }
 
       .product-name,
@@ -465,7 +508,8 @@
         .hero-two h1,
         .hero-known h1,
         .hero-hidden h1,
-        .hero-moves h1 {
+        .hero-moves h1,
+        .hero-offcourt h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -490,7 +534,8 @@
         .lede,
         .hero-known .lede,
         .hero-hidden .lede,
-        .hero-moves .lede {
+        .hero-moves .lede,
+        .hero-offcourt .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -500,6 +545,30 @@
         .hero-two .lede {
           grid-template-columns: 1fr;
           gap: 10px;
+        }
+
+        .hero-offcourt .lede {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          font-size: 0.98rem;
+          line-height: 1.32;
+        }
+
+        .hero-offcourt h1 {
+          font-size: clamp(2.35rem, 9.6vw, 3rem);
+        }
+
+        .hero-offcourt .contact {
+          margin-top: 24px;
+        }
+
+        .offcourt-beat {
+          border-left-width: 4px;
+          padding-left: 12px;
+        }
+
+        .offcourt-beat span {
+          margin-top: 5px;
         }
 
         .product-name {
@@ -570,6 +639,7 @@
         <button class="variant-dot" type="button" data-option="1" aria-label="Option 2"></button>
         <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
         <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
+        <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
       </nav>
     </div>
 
@@ -599,6 +669,12 @@
           headline: `<span>Conversation is how a community</span><span class="moves-line">feels, learns, and moves.</span>`,
           lede: `<span class="product-name">Human Conversation</span> turns those conversations into connection, trust, coordination, and community.`,
         },
+        {
+          id: "offcourt",
+          headlineLabel: "Human conversation creates connection off the court",
+          headline: `<span>Human conversation creates connection</span><span class="offcourt-line">off the court.</span>`,
+          lede: `<span class="offcourt-beat"><strong>Connection</strong><span>People feel seen, welcomed, supported, celebrated, remembered.</span></span><span class="offcourt-beat"><strong>Intelligence</strong><span>The club learns who is excited, who is drifting, who needs a softer landing, and who should meet whom.</span></span><span class="offcourt-beat"><strong>Action</strong><span>The club knows what to schedule, who to invite, what to fill, and what should happen next.</span></span>`,
+        },
       ];
 
       const page = document.querySelector(".page");
@@ -627,11 +703,6 @@
           dots.forEach((dot, dotIndex) => {
             dot.setAttribute("aria-current", String(dotIndex === safeIndex));
           });
-          try {
-            window.localStorage.setItem("humanConversationLandingOption", String(safeIndex));
-          } catch {
-            // The option still changes for this page view.
-          }
         }, 90);
       }
 
@@ -645,14 +716,7 @@
       }
 
       const requestedOption = Number.parseInt(new URLSearchParams(window.location.search).get("option") || "", 10);
-      let savedOption = 0;
-      try {
-        savedOption = Number.parseInt(window.localStorage.getItem("humanConversationLandingOption") || "0", 10);
-      } catch {
-        savedOption = 0;
-      }
-
-      setVariant(Number.isInteger(requestedOption) ? requestedOption - 1 : savedOption);
+      setVariant(Number.isInteger(requestedOption) ? requestedOption - 1 : 0);
 
       dots.forEach((dot) => {
         dot.addEventListener("click", () => {

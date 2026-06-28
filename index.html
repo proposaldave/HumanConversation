@@ -115,6 +115,48 @@
         transform: scale(1);
       }
 
+      .page[data-variant="breathfield"],
+      .page[data-variant="peoplepanel"],
+      .page[data-variant="protect"] {
+        background: #090806;
+      }
+
+      .page[data-variant="breathfield"]::before,
+      .page[data-variant="peoplepanel"]::before,
+      .page[data-variant="protect"]::before {
+        background-image:
+          radial-gradient(circle at 24% 34%, rgba(184, 149, 74, 0.16), transparent 28%),
+          linear-gradient(90deg, rgba(9, 8, 6, 0.94) 0%, rgba(9, 8, 6, 0.78) 42%, rgba(9, 8, 6, 0.35) 100%);
+        background-size: cover;
+        opacity: 1;
+      }
+
+      .page[data-variant="breathfield"]::after,
+      .page[data-variant="peoplepanel"]::after,
+      .page[data-variant="moment"]::after,
+      .page[data-variant="protect"]::after,
+      .page[data-variant="paper"]::after {
+        display: none;
+      }
+
+      .page[data-variant="breathfield"] .brand,
+      .page[data-variant="peoplepanel"] .brand,
+      .page[data-variant="protect"] .brand {
+        color: #f7f0e4;
+      }
+
+      .page[data-variant="breathfield"] .header-email,
+      .page[data-variant="peoplepanel"] .header-email,
+      .page[data-variant="protect"] .header-email {
+        color: #d8a84b;
+      }
+
+      .page[data-variant="breathfield"] .mark-bubble,
+      .page[data-variant="peoplepanel"] .mark-bubble,
+      .page[data-variant="protect"] .mark-bubble {
+        fill: #f7f0e4;
+      }
+
       header {
         position: relative;
         z-index: 2;
@@ -200,8 +242,49 @@
       .hero-offcourt .hero-inner,
       .hero-phone .hero-inner,
       .hero-breathes .hero-inner,
-      .hero-around .hero-inner {
+      .hero-around .hero-inner,
+      .hero-breathfield .hero-inner,
+      .hero-peoplepanel .hero-inner,
+      .hero-moment .hero-inner,
+      .hero-protect .hero-inner,
+      .hero-paper .hero-inner {
         display: block;
+      }
+
+      .hero-breathfield,
+      .hero-peoplepanel,
+      .hero-moment,
+      .hero-protect,
+      .hero-paper {
+        position: relative;
+        min-height: clamp(620px, 68vh, 760px);
+      }
+
+      .hero-breathfield::before,
+      .hero-peoplepanel::before,
+      .hero-moment::before,
+      .hero-protect::before,
+      .hero-paper::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .hero-breathfield .hero-inner,
+      .hero-peoplepanel .hero-inner,
+      .hero-moment .hero-inner,
+      .hero-protect .hero-inner,
+      .hero-paper .hero-inner,
+      .hero-breathfield .contact,
+      .hero-peoplepanel .contact,
+      .hero-moment .contact,
+      .hero-protect .contact,
+      .hero-paper .contact {
+        position: relative;
+        z-index: 1;
       }
 
       h1 {
@@ -297,6 +380,103 @@
         max-width: 1120px;
         font-size: clamp(3.25rem, 5.75vw, 6.45rem);
         line-height: 0.96;
+      }
+
+      .hero-breathfield h1,
+      .hero-peoplepanel h1,
+      .hero-protect h1 {
+        max-width: 760px;
+        color: #f7f0e4;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.65rem, 6.4vw, 7rem);
+        font-weight: 650;
+        line-height: 0.9;
+      }
+
+      .hero-breathfield h1 .gold-line,
+      .hero-peoplepanel h1 .gold-line,
+      .hero-protect h1 .gold-line {
+        color: #d8a84b;
+      }
+
+      .hero-breathfield::before {
+        inset: 2% -8% 0 auto;
+        width: min(62vw, 900px);
+        border-radius: 28px 0 0 28px;
+        background-image:
+          linear-gradient(90deg, rgba(9, 8, 6, 0.38), rgba(9, 8, 6, 0.08)),
+          url("./assets/hc-art-breathfield.png");
+        background-position: 70% center;
+        box-shadow: -36px 0 80px rgba(9, 8, 6, 0.74);
+        opacity: 0.78;
+      }
+
+      .hero-peoplepanel::before {
+        inset: -2% -10% 0 auto;
+        width: min(64vw, 940px);
+        border-radius: 28px 0 0 28px;
+        background-image:
+          linear-gradient(90deg, rgba(9, 8, 6, 0.55), rgba(9, 8, 6, 0.1)),
+          url("./assets/hc-art-peoplepanel.png");
+        background-position: center;
+        box-shadow: -42px 0 86px rgba(9, 8, 6, 0.78);
+        opacity: 0.58;
+      }
+
+      .hero-moment::before {
+        inset: -2% -12% 0 auto;
+        width: min(58vw, 840px);
+        border-radius: 30px 0 0 30px;
+        background-image:
+          linear-gradient(90deg, rgba(243, 234, 216, 0.74), rgba(243, 234, 216, 0.08)),
+          url("./assets/hc-art-moment.png");
+        background-position: center;
+        box-shadow: -28px 0 70px rgba(243, 234, 216, 0.84);
+        opacity: 0.72;
+      }
+
+      .hero-moment h1 {
+        max-width: 850px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4.15rem, 6.8vw, 7.45rem);
+        font-weight: 650;
+        line-height: 0.88;
+      }
+
+      .hero-moment h1 .rose-line {
+        color: var(--hc-accent);
+      }
+
+      .hero-protect::before {
+        inset: 0 -12% -2% auto;
+        width: min(58vw, 860px);
+        background-image:
+          linear-gradient(90deg, rgba(9, 8, 6, 0.65), rgba(9, 8, 6, 0.08)),
+          url("./assets/hc-art-protect.png");
+        background-position: center;
+        opacity: 0.52;
+      }
+
+      .hero-paper::before {
+        inset: -4% -18% -4% auto;
+        width: min(60vw, 900px);
+        background-image:
+          linear-gradient(90deg, rgba(243, 234, 216, 0.88), rgba(243, 234, 216, 0.24)),
+          url("./assets/hc-art-paper.png");
+        background-position: center;
+        opacity: 0.62;
+      }
+
+      .hero-paper h1 {
+        max-width: 900px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4.2rem, 7vw, 7.6rem);
+        font-weight: 650;
+        line-height: 0.88;
+      }
+
+      .hero-paper h1 .rose-line {
+        color: var(--hc-accent);
       }
 
       .around-negative {
@@ -423,6 +603,19 @@
         max-width: 780px;
         margin-top: 30px;
         font-size: clamp(1.14rem, 1.5vw, 1.32rem);
+      }
+
+      .hero-breathfield .lede,
+      .hero-peoplepanel .lede,
+      .hero-protect .lede {
+        max-width: 700px;
+        color: rgba(247, 240, 228, 0.82);
+        font-size: clamp(1.1rem, 1.45vw, 1.28rem);
+      }
+
+      .hero-moment .lede,
+      .hero-paper .lede {
+        max-width: 720px;
       }
 
       .product-name,
@@ -577,10 +770,48 @@
         .hero-offcourt h1,
         .hero-phone h1,
         .hero-breathes h1,
-        .hero-around h1 {
+        .hero-around h1,
+        .hero-breathfield h1,
+        .hero-peoplepanel h1,
+        .hero-moment h1,
+        .hero-protect h1,
+        .hero-paper h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
+        }
+
+        .hero-breathfield,
+        .hero-peoplepanel,
+        .hero-moment,
+        .hero-protect,
+        .hero-paper {
+          min-height: auto;
+        }
+
+        .hero-breathfield::before,
+        .hero-peoplepanel::before,
+        .hero-moment::before,
+        .hero-protect::before,
+        .hero-paper::before {
+          inset: -30px -48px auto -48px;
+          width: auto;
+          height: 270px;
+          border-radius: 0;
+          box-shadow: none;
+          opacity: 0.18;
+        }
+
+        .hero-breathfield::before,
+        .hero-peoplepanel::before,
+        .hero-protect::before {
+          opacity: 0.28;
+        }
+
+        .page[data-variant="breathfield"] main,
+        .page[data-variant="peoplepanel"] main,
+        .page[data-variant="protect"] main {
+          padding-top: 92px;
         }
 
         .transformation-line {
@@ -606,7 +837,12 @@
         .hero-offcourt .lede,
         .hero-phone .lede,
         .hero-breathes .lede,
-        .hero-around .lede {
+        .hero-around .lede,
+        .hero-breathfield .lede,
+        .hero-peoplepanel .lede,
+        .hero-moment .lede,
+        .hero-protect .lede,
+        .hero-paper .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -627,6 +863,19 @@
 
         .hero-offcourt h1 {
           font-size: clamp(2.35rem, 9.6vw, 3rem);
+        }
+
+        .hero-breathfield h1,
+        .hero-peoplepanel h1,
+        .hero-protect h1,
+        .hero-paper h1 {
+          font-size: clamp(2.7rem, 12.6vw, 4rem);
+          line-height: 0.96;
+        }
+
+        .hero-moment h1 {
+          font-size: clamp(2.85rem, 12.8vw, 4.2rem);
+          line-height: 0.94;
         }
 
         .hero-offcourt .contact {
@@ -718,6 +967,11 @@
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
         <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
         <button class="variant-dot" type="button" data-option="7" aria-label="Option 8"></button>
+        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9"></button>
+        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10"></button>
+        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11"></button>
+        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12"></button>
+        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13"></button>
       </nav>
     </div>
 
@@ -770,6 +1024,36 @@
           headlineLabel: "We are not building technology to replace the human conversation. We are building a technology company around the human conversation.",
           headline: `<span class="around-negative">Not technology to replace</span><span>the human conversation.</span><span class="around-built">A technology company built around it.</span>`,
           lede: `<span class="product-name">Human Conversation</span> gives community-builders the next person to talk to, the context, then takes action.`,
+        },
+        {
+          id: "breathfield",
+          headlineLabel: "Human conversation is how a community breathes.",
+          headline: `<span class="gold-line">Human conversation</span><span>is how a community breathes.</span>`,
+          lede: `Technology should be built around that breath: who needs a conversation, what to ask, and what happens next.`,
+        },
+        {
+          id: "peoplepanel",
+          headlineLabel: "Built around people.",
+          headline: `<span>Built around</span><span class="gold-line">people.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> gives community-builders the next person to talk to, the context, then takes action.`,
+        },
+        {
+          id: "moment",
+          headlineLabel: "Know the person. Coordinate the moment.",
+          headline: `<span>Know the person.</span><span class="rose-line">Coordinate the moment.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> gives community-builders the next person to talk to, the context, then takes action.`,
+        },
+        {
+          id: "protect",
+          headlineLabel: "Protect it. Amplify it. Remember it. Build around it.",
+          headline: `<span>Protect it.</span><span class="gold-line">Amplify it.</span><span>Remember it.</span><span class="gold-line">Build around it.</span>`,
+          lede: `Technology should not replace the human conversation, forget it, or bypass it.`,
+        },
+        {
+          id: "paper",
+          headlineLabel: "Human conversation lets your community breathe.",
+          headline: `<span>Human conversation lets</span><span class="rose-line">your community breathe.</span>`,
+          lede: `Real communities run on people talking, noticing, remembering, inviting, and following up.`,
         },
       ];
 

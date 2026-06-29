@@ -247,7 +247,8 @@
       .hero-peoplepanel .hero-inner,
       .hero-moment .hero-inner,
       .hero-protect .hero-inner,
-      .hero-paper .hero-inner {
+      .hero-paper .hero-inner,
+      .hero-humanfirst .hero-inner {
         display: block;
       }
 
@@ -282,7 +283,8 @@
       .hero-peoplepanel .contact,
       .hero-moment .contact,
       .hero-protect .contact,
-      .hero-paper .contact {
+      .hero-paper .contact,
+      .hero-humanfirst .contact {
         position: relative;
         z-index: 1;
       }
@@ -479,6 +481,29 @@
         color: var(--hc-accent);
       }
 
+      .page[data-variant="humanfirst"] {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.54), transparent 48%),
+          linear-gradient(135deg, rgba(216, 138, 154, 0.18), transparent 38%),
+          var(--hc-cream);
+      }
+
+      .hero-humanfirst .hero-inner {
+        max-width: 980px;
+      }
+
+      .hero-humanfirst h1 {
+        max-width: 940px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(5.1rem, 8.8vw, 9.6rem);
+        font-weight: 650;
+        line-height: 0.86;
+      }
+
+      .humanfirst-word {
+        color: var(--hc-accent);
+      }
+
       .around-negative {
         color: rgba(26, 22, 18, 0.62);
       }
@@ -614,8 +639,31 @@
       }
 
       .hero-moment .lede,
-      .hero-paper .lede {
+      .hero-paper .lede,
+      .hero-humanfirst .lede {
         max-width: 720px;
+      }
+
+      .hero-humanfirst .lede {
+        max-width: 820px;
+        margin-top: 30px;
+      }
+
+      .humanfirst-mantra,
+      .humanfirst-product {
+        display: block;
+      }
+
+      .humanfirst-mantra {
+        color: var(--hc-ink);
+        font-size: clamp(1.34rem, 1.9vw, 1.75rem);
+        line-height: 1.22;
+      }
+
+      .humanfirst-product {
+        margin-top: 16px;
+        color: rgba(26, 22, 18, 0.64);
+        font-size: clamp(1.06rem, 1.45vw, 1.24rem);
       }
 
       .product-name,
@@ -717,18 +765,79 @@
       }
 
       .variant-dot {
+        --dot-age: 0.28;
         width: 10px;
         height: 10px;
         border: 0;
         border-radius: 999px;
-        background: rgba(26, 22, 18, 0.26);
+        background: rgba(232, 178, 44, var(--dot-age));
+        box-shadow: inset 0 0 0 1px rgba(91, 62, 0, 0.14);
         padding: 0;
         cursor: pointer;
       }
 
+      .variant-dot:nth-child(1) {
+        --dot-age: 0.18;
+      }
+
+      .variant-dot:nth-child(2) {
+        --dot-age: 0.22;
+      }
+
+      .variant-dot:nth-child(3) {
+        --dot-age: 0.26;
+      }
+
+      .variant-dot:nth-child(4) {
+        --dot-age: 0.3;
+      }
+
+      .variant-dot:nth-child(5) {
+        --dot-age: 0.34;
+      }
+
+      .variant-dot:nth-child(6) {
+        --dot-age: 0.38;
+      }
+
+      .variant-dot:nth-child(7) {
+        --dot-age: 0.42;
+      }
+
+      .variant-dot:nth-child(8) {
+        --dot-age: 0.48;
+      }
+
+      .variant-dot:nth-child(9) {
+        --dot-age: 0.56;
+      }
+
+      .variant-dot:nth-child(10) {
+        --dot-age: 0.64;
+      }
+
+      .variant-dot:nth-child(11) {
+        --dot-age: 0.72;
+      }
+
+      .variant-dot:nth-child(12) {
+        --dot-age: 0.82;
+      }
+
+      .variant-dot:nth-child(13) {
+        --dot-age: 0.9;
+      }
+
+      .variant-dot:nth-child(14) {
+        --dot-age: 1;
+        background: #ffd447;
+      }
+
       .variant-dot[aria-current="true"] {
-        background: var(--hc-accent);
-        box-shadow: 0 0 0 5px rgba(151, 79, 99, 0.16);
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.18),
+          0 0 0 4px rgba(26, 22, 18, 0.14),
+          0 0 0 7px rgba(255, 212, 71, 0.18);
       }
 
       @media (max-width: 760px) {
@@ -775,7 +884,8 @@
         .hero-peoplepanel h1,
         .hero-moment h1,
         .hero-protect h1,
-        .hero-paper h1 {
+        .hero-paper h1,
+        .hero-humanfirst h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -842,7 +952,8 @@
         .hero-peoplepanel .lede,
         .hero-moment .lede,
         .hero-protect .lede,
-        .hero-paper .lede {
+        .hero-paper .lede,
+        .hero-humanfirst .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -868,7 +979,8 @@
         .hero-breathfield h1,
         .hero-peoplepanel h1,
         .hero-protect h1,
-        .hero-paper h1 {
+        .hero-paper h1,
+        .hero-humanfirst h1 {
           font-size: clamp(2.7rem, 12.6vw, 4rem);
           line-height: 0.96;
         }
@@ -972,6 +1084,7 @@
         <button class="variant-dot" type="button" data-option="10" aria-label="Option 11"></button>
         <button class="variant-dot" type="button" data-option="11" aria-label="Option 12"></button>
         <button class="variant-dot" type="button" data-option="12" aria-label="Option 13"></button>
+        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14"></button>
       </nav>
     </div>
 
@@ -1054,6 +1167,12 @@
           headlineLabel: "Human conversation lets your community breathe.",
           headline: `<span>Human conversation lets</span><span class="rose-line">your community breathe.</span>`,
           lede: `Real communities run on people talking, noticing, remembering, inviting, and following up.`,
+        },
+        {
+          id: "humanfirst",
+          headlineLabel: "Have a human conversation.",
+          headline: `<span>Have a</span><span class="humanfirst-word">human conversation.</span>`,
+          lede: `<span class="humanfirst-mantra">Not the app first. Not the screen first. The person first. Connection starts there.</span><span class="humanfirst-product"><span class="product-name">Human Conversation</span> helps community-builders know who needs that conversation, what context matters, and what action should follow.</span>`,
         },
       ];
 

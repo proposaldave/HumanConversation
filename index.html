@@ -661,7 +661,7 @@
       }
 
       .contact {
-        width: min(100%, 720px);
+        width: min(100%, 520px);
         margin-top: 34px;
       }
 
@@ -701,8 +701,6 @@
         font: inherit;
         font-size: 0.98rem;
         font-weight: 800;
-        line-height: 1.15;
-        white-space: nowrap;
       }
 
       .contact button:disabled {
@@ -1026,7 +1024,6 @@
 
         .contact button {
           width: 100%;
-          white-space: normal;
         }
 
         .brand span:last-child {
@@ -1070,7 +1067,7 @@
             <input class="hp-field" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="contact-row">
               <input id="email" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
-              <button type="submit">Solve disconnection with Human Conversation</button>
+              <button type="submit">Join the Conversation</button>
             </div>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
@@ -1274,11 +1271,11 @@
 
           window.setTimeout(() => {
             button.disabled = false;
-            button.textContent = "Solve disconnection with Human Conversation";
+            button.textContent = "Join the Conversation";
           }, 2800);
         } catch (error) {
           button.disabled = false;
-          button.textContent = "Solve disconnection with Human Conversation";
+          button.textContent = "Join the Conversation";
           status.textContent = "Could not submit. Email hello@humanconversation.com and we will add you.";
         }
       });

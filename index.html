@@ -360,6 +360,7 @@
       }
 
       .hero-solves h1,
+      .hero-solves-revert-20260701 h1,
       .hero-pathback h1 {
         max-width: 1100px;
         font-size: clamp(3.35rem, 6.15vw, 7rem);
@@ -553,7 +554,8 @@
         line-height: 1.25;
       }
 
-      .page[data-variant="solves"] .homepage-chain {
+      .page[data-variant="solves"] .homepage-chain,
+      .page[data-variant="solves-revert-20260701"] .homepage-chain {
         display: flex;
         flex-wrap: wrap;
         gap: 7px 10px;
@@ -826,6 +828,10 @@
       }
 
       .variant-dot:nth-child(10) {
+        --dot-age: 0.72;
+      }
+
+      .variant-dot:nth-child(11) {
         --dot-age: 1;
         background: #ffd447;
       }
@@ -1024,16 +1030,19 @@
         }
 
         .hero-solves h1,
+        .hero-solves-revert-20260701 h1,
         .hero-pathback h1 {
           font-size: clamp(2.6rem, 10.8vw, 3.65rem);
         }
 
-        .hero-solves h1 {
+        .hero-solves h1,
+        .hero-solves-revert-20260701 h1 {
           font-size: clamp(2.16rem, 9.2vw, 3rem);
           line-height: 0.98;
         }
 
-        .hero-solves .lede {
+        .hero-solves .lede,
+        .hero-solves-revert-20260701 .lede {
           width: calc(100vw - 32px);
           max-width: calc(100vw - 32px);
           font-size: 1rem;
@@ -1042,7 +1051,9 @@
         }
 
         .hero-solves .contact,
-        .hero-solves .homepage-chain {
+        .hero-solves .homepage-chain,
+        .hero-solves-revert-20260701 .contact,
+        .hero-solves-revert-20260701 .homepage-chain {
           width: calc(100vw - 32px);
           max-width: calc(100vw - 32px);
         }
@@ -1053,7 +1064,8 @@
           line-height: 1.35;
         }
 
-        .page[data-variant="solves"] .homepage-chain {
+        .page[data-variant="solves"] .homepage-chain,
+        .page[data-variant="solves-revert-20260701"] .homepage-chain {
           display: grid;
           grid-template-columns: max-content minmax(0, 1fr);
           gap: 4px 8px;
@@ -1151,6 +1163,7 @@
         <button class="variant-dot" type="button" data-option="7" aria-label="Option 8"></button>
         <button class="variant-dot" type="button" data-option="8" aria-label="Option 9"></button>
         <button class="variant-dot" type="button" data-option="9" aria-label="Option 10"></button>
+        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
       </nav>
     </div>
 
@@ -1215,6 +1228,12 @@
           headlineLabel: "Disconnection has a path back: conversation, trust, data, coordination, community.",
           headline: `<span class="solve-blue">Disconnection</span><span>has a path back.</span><span class="solve-path">conversation → trust → data → coordination → community</span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders start the right conversation, keep the context, and turn what they learn into action.`,
+        },
+        {
+          id: "solves-revert-20260701",
+          headlineLabel: "Human Conversation solves disconnection.",
+          headline: `<span>Human Conversation</span><span class="solve-word solve-serif">solves</span><span class="solve-blue">disconnection.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes the next action.`,
         },
       ];
 

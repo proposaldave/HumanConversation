@@ -545,37 +545,29 @@
 
       .homepage-chain {
         display: none;
-        max-width: 760px;
-        margin-top: 18px;
-        color: rgba(26, 22, 18, 0.58);
-        font-size: clamp(0.94rem, 1.18vw, 1.04rem);
-        font-weight: 850;
-        line-height: 1.35;
+        max-width: 840px;
+        margin-top: 22px;
+        color: var(--hc-accent);
+        font-size: clamp(1.02rem, 1.32vw, 1.2rem);
+        font-weight: 900;
+        line-height: 1.25;
       }
 
       .page[data-variant="solves"] .homepage-chain {
-        display: block;
-      }
-
-      .homepage-chain-intro {
-        display: block;
-      }
-
-      .homepage-chain-intro span {
-        display: inline;
-      }
-
-      .homepage-chain-steps {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px 10px;
-        margin-top: 6px;
-        color: var(--hc-accent);
+        gap: 7px 10px;
+        align-items: baseline;
       }
 
+      .homepage-chain-start,
       .homepage-chain-step,
       .homepage-chain-arrow {
         display: inline-block;
+      }
+
+      .homepage-chain-start {
+        color: var(--hc-blue);
       }
 
       .homepage-chain-arrow {
@@ -1061,14 +1053,14 @@
           line-height: 1.35;
         }
 
-        .homepage-chain-intro span {
-          display: block;
-        }
-
-        .homepage-chain-steps {
+        .page[data-variant="solves"] .homepage-chain {
           display: grid;
           grid-template-columns: max-content minmax(0, 1fr);
           gap: 4px 8px;
+        }
+
+        .homepage-chain-start {
+          grid-column: 1 / -1;
         }
 
         .solve-path {
@@ -1137,15 +1129,13 @@
             </div>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
-          <p class="homepage-chain" aria-label="Human conversation is the sales engine for communities to turn disconnection into connection, trust, data, coordination, and community.">
-            <span class="homepage-chain-intro"><span>Human conversation is</span> <span>the sales engine for communities</span> <span>to turn disconnection into</span></span>
-            <span class="homepage-chain-steps" aria-hidden="true">
-              <span class="homepage-chain-arrow">→</span><span class="homepage-chain-step">connection</span>
-              <span class="homepage-chain-arrow">→</span><span class="homepage-chain-step">trust</span>
-              <span class="homepage-chain-arrow">→</span><span class="homepage-chain-step">data</span>
-              <span class="homepage-chain-arrow">→</span><span class="homepage-chain-step">coordination</span>
-              <span class="homepage-chain-arrow">→</span><span class="homepage-chain-step">community</span>
-            </span>
+          <p class="homepage-chain" aria-label="disconnection to connection to trust to data to coordination to community">
+            <span class="homepage-chain-start">disconnection</span>
+            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">connection</span>
+            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">trust</span>
+            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">data</span>
+            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">coordination</span>
+            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">community</span>
           </p>
         </section>
       </main>

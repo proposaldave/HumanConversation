@@ -117,7 +117,8 @@
 
       .page[data-variant="breathfield"],
       .page[data-variant="peoplepanel"],
-      .page[data-variant="protect"] {
+      .page[data-variant="protect"],
+      .page[data-variant="timeless-interface"] {
         background: #090806;
       }
 
@@ -131,27 +132,41 @@
         opacity: 1;
       }
 
+      .page[data-variant="timeless-interface"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(9, 8, 6, 0.92) 0%, rgba(9, 8, 6, 0.74) 38%, rgba(9, 8, 6, 0.32) 70%, rgba(9, 8, 6, 0.1) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.6), rgba(9, 8, 6, 0.02) 58%),
+          url("./assets/hc-art-timeless-interface-20260701.png");
+        background-position: center;
+        background-size: cover;
+        opacity: 1;
+      }
+
       .page[data-variant="breathfield"]::after,
       .page[data-variant="peoplepanel"]::after,
-      .page[data-variant="protect"]::after {
+      .page[data-variant="protect"]::after,
+      .page[data-variant="timeless-interface"]::after {
         display: none;
       }
 
       .page[data-variant="breathfield"] .brand,
       .page[data-variant="peoplepanel"] .brand,
-      .page[data-variant="protect"] .brand {
+      .page[data-variant="protect"] .brand,
+      .page[data-variant="timeless-interface"] .brand {
         color: #f7f0e4;
       }
 
       .page[data-variant="breathfield"] .header-email,
       .page[data-variant="peoplepanel"] .header-email,
-      .page[data-variant="protect"] .header-email {
+      .page[data-variant="protect"] .header-email,
+      .page[data-variant="timeless-interface"] .header-email {
         color: #d8a84b;
       }
 
       .page[data-variant="breathfield"] .mark-bubble,
       .page[data-variant="peoplepanel"] .mark-bubble,
-      .page[data-variant="protect"] .mark-bubble {
+      .page[data-variant="protect"] .mark-bubble,
+      .page[data-variant="timeless-interface"] .mark-bubble {
         fill: #f7f0e4;
       }
 
@@ -244,7 +259,8 @@
       .hero-breathfield .hero-inner,
       .hero-peoplepanel .hero-inner,
       .hero-protect .hero-inner,
-      .hero-humanfirst .hero-inner {
+      .hero-humanfirst .hero-inner,
+      .hero-timeless-interface .hero-inner {
         display: block;
       }
 
@@ -459,6 +475,31 @@
           url("./assets/hc-art-protect.png");
         background-position: center;
         opacity: 0.52;
+      }
+
+      .hero-timeless-interface .hero-inner {
+        max-width: 980px;
+      }
+
+      .hero-timeless-interface h1 {
+        max-width: 980px;
+        color: #f7f0e4;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.75rem, 6.75vw, 7.45rem);
+        font-weight: 650;
+        line-height: 0.9;
+        text-shadow: 0 4px 26px rgba(0, 0, 0, 0.42);
+      }
+
+      .timeless-interface-word {
+        color: #d8a84b;
+      }
+
+      .hero-timeless-interface .lede {
+        max-width: 720px;
+        color: rgba(247, 240, 228, 0.84);
+        font-size: clamp(1.12rem, 1.48vw, 1.3rem);
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.34);
       }
 
       .page[data-variant="humanfirst"] {
@@ -836,6 +877,11 @@
         background: #ffd447;
       }
 
+      .variant-dot:nth-child(12) {
+        --dot-age: 1;
+        background: #d68a9a;
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -888,10 +934,18 @@
         .hero-breathfield h1,
         .hero-peoplepanel h1,
         .hero-protect h1,
-        .hero-humanfirst h1 {
+        .hero-humanfirst h1,
+        .hero-timeless-interface h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
+        }
+
+        .page[data-variant="timeless-interface"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(9, 8, 6, 0.86) 0%, rgba(9, 8, 6, 0.7) 48%, rgba(9, 8, 6, 0.5) 100%),
+            url("./assets/hc-art-timeless-interface-20260701.png");
+          background-position: 62% center;
         }
 
         .hero-breathfield,
@@ -981,7 +1035,8 @@
         .hero-breathfield .lede,
         .hero-peoplepanel .lede,
         .hero-protect .lede,
-        .hero-humanfirst .lede {
+        .hero-humanfirst .lede,
+        .hero-timeless-interface .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -1164,6 +1219,7 @@
         <button class="variant-dot" type="button" data-option="8" aria-label="Option 9"></button>
         <button class="variant-dot" type="button" data-option="9" aria-label="Option 10"></button>
         <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
+        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: timeless interface image background"></button>
       </nav>
     </div>
 
@@ -1234,6 +1290,12 @@
           headlineLabel: "Human Conversation solves disconnection.",
           headline: `<span>Human Conversation</span><span class="solve-word solve-serif">solves</span><span class="solve-blue">disconnection.</span>`,
           lede: `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes the next action.`,
+        },
+        {
+          id: "timeless-interface",
+          headlineLabel: "Human conversation is the timeless interface of community.",
+          headline: `<span>Human conversation is the</span><span class="timeless-interface-word">timeless interface</span><span>of community.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> helps community builders know who needs a conversation, what context matters, and what action should happen next.`,
         },
       ];
 

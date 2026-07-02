@@ -255,24 +255,11 @@ function createPrivateBackup() {
 }
 
 function deployPages() {
-  const deployDir = makeTempDir('humanconversation-gh-pages-')
-
-  cpSync(dist, deployDir, { recursive: true })
-  removeDesktopIni(deployDir)
-
-  if (!existsSync(join(deployDir, 'CNAME'))) {
-    throw new Error('Deploy bundle is missing CNAME.')
+  const localHead = capture('git', ['rev-parse', 'HEAD'])
+  const remoteMain = capture('git', ['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0]
+  if (localHead !== remoteMain) {
+    throw new Error('Refusing to deploy: push the current main commit before running publish:pages.')
   }
-
-  run('git', ['init', '--initial-branch=gh-pages'], { cwd: deployDir })
-  run('git', ['config', 'user.name', 'Codex'], { cwd: deployDir })
-  run('git', ['config', 'user.email', 'codex@openai.com'], { cwd: deployDir })
-  run('git', ['add', '.'], { cwd: deployDir })
-  run('git', ['commit', '-m', 'Deploy landing page'], { cwd: deployDir })
-  run('git', ['remote', 'add', 'origin', `https://github.com/${publicRepo}.git`], { cwd: deployDir })
-  run('git', ['push', '--force', 'origin', 'gh-pages'], { cwd: deployDir })
-
-  const deployCommit = capture('git', ['rev-parse', '--short', 'HEAD'], { cwd: deployDir })
 
   const pagesSettingsUpdated = tryRun('gh', [
     'api',
@@ -280,19 +267,15 @@ function deployPages() {
     'PUT',
     `repos/${publicRepo}/pages`,
     '-f',
-    'build_type=legacy',
+    'build_type=workflow',
     '-f',
     `cname=${cname}`,
-    '-f',
-    'source[branch]=gh-pages',
-    '-f',
-    'source[path]=/',
   ])
 
   console.log(`pages_settings_update=${pagesSettingsUpdated ? 'updated' : 'skipped'}`)
 
-  removeTree(deployDir)
-  return deployCommit
+  run('gh', ['workflow', 'run', 'deploy-pages.yml', '--repo', publicRepo, '--ref', 'main'])
+  return capture('git', ['rev-parse', '--short', 'HEAD'])
 }
 
 run('npm', ['run', 'lint'])

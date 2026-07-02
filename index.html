@@ -568,6 +568,10 @@
         color: #d8a84b;
       }
 
+      .mobile-break {
+        display: none;
+      }
+
       .hero-timeless-interface .lede {
         max-width: 960px;
         color: rgba(247, 240, 228, 0.84);
@@ -880,26 +884,44 @@
 
       .homepage-chain {
         display: none;
-        max-width: 840px;
-        margin-top: 22px;
+        max-width: 980px;
+        margin-top: 18px;
         color: var(--hc-accent);
-        font-size: clamp(1.02rem, 1.32vw, 1.2rem);
+        font-size: clamp(0.98rem, 1.14vw, 1.08rem);
         font-weight: 900;
         line-height: 1.25;
       }
 
+      .page[data-variant="timeless-interface"] .homepage-chain,
       .page[data-variant="solves"] .homepage-chain,
       .page[data-variant="solves-revert-20260701"] .homepage-chain {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px 10px;
-        align-items: baseline;
+        display: block;
       }
 
+      .homepage-chain-copy,
+      .homepage-chain-path,
       .homepage-chain-start,
       .homepage-chain-step,
       .homepage-chain-arrow {
         display: inline-block;
+      }
+
+      .homepage-chain-copy {
+        color: rgba(26, 22, 18, 0.7);
+        margin-bottom: 7px;
+      }
+
+      .page[data-variant="timeless-interface"] .homepage-chain-copy {
+        color: rgba(247, 240, 228, 0.84);
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+      }
+
+      .homepage-chain-path {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 7px;
+        align-items: baseline;
+        white-space: nowrap;
       }
 
       .homepage-chain-start {
@@ -1272,6 +1294,42 @@
           background-position: 62% center;
         }
 
+        .hero-timeless-interface .timeless-interface-word {
+          max-width: min-content;
+        }
+
+        .hero-timeless-interface .mobile-break {
+          display: block;
+        }
+
+        .hero-timeless-interface .hero-inner,
+        .hero-timeless-interface h1,
+        .hero-timeless-interface .lede,
+        .hero-timeless-interface .homepage-chain {
+          width: min(310px, calc(100vw - 56px));
+          max-width: min(310px, calc(100vw - 56px));
+        }
+
+        .hero-timeless-interface h1 {
+          font-size: 2rem;
+          line-height: 1.02;
+        }
+
+        .hero-timeless-interface .lede {
+          font-size: 0.88rem;
+          line-height: 1.36;
+          overflow-wrap: break-word;
+        }
+
+        .hero-timeless-interface .lede .product-name,
+        .homepage-chain-copy-tail {
+          display: block;
+        }
+
+        .hero-timeless-interface .homepage-chain {
+          font-size: 0.84rem;
+        }
+
         .page[data-variant="thousand-taps"]::before {
           background-image:
             linear-gradient(180deg, rgba(9, 8, 6, 0.9) 0%, rgba(9, 8, 6, 0.74) 50%, rgba(9, 8, 6, 0.52) 100%),
@@ -1536,15 +1594,20 @@
           line-height: 1.35;
         }
 
+        .page[data-variant="timeless-interface"] .homepage-chain,
         .page[data-variant="solves"] .homepage-chain,
         .page[data-variant="solves-revert-20260701"] .homepage-chain {
-          display: grid;
-          grid-template-columns: max-content minmax(0, 1fr);
-          gap: 4px 8px;
+          display: block;
         }
 
-        .homepage-chain-start {
-          grid-column: 1 / -1;
+        .homepage-chain-copy {
+          display: block;
+        }
+
+        .homepage-chain-path {
+          flex-wrap: wrap;
+          gap: 4px 7px;
+          white-space: normal;
         }
 
         .solve-path {
@@ -1594,7 +1657,7 @@
         <section class="hero hero-timeless-interface" id="landing-hero" aria-live="polite">
           <div class="hero-inner">
             <h1 aria-label="Human conversation is the timeless interface of community.">
-              <span>Human conversation is the</span>
+              <span>Human conversation<span class="mobile-break"></span> is the</span>
               <span class="timeless-interface-word">timeless interface</span>
               <span>of community.</span>
             </h1>
@@ -1612,13 +1675,15 @@
             </div>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
-          <p class="homepage-chain" aria-label="disconnection to connection to trust to data to coordination to community">
-            <span class="homepage-chain-start">disconnection</span>
-            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">connection</span>
-            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">trust</span>
-            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">data</span>
-            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">coordination</span>
-            <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">community</span>
+          <p class="homepage-chain" aria-label="Human conversation solves disconnection, turning it into connection, trust, data, coordination, and community">
+            <span class="homepage-chain-copy">Human conversation solves <span class="homepage-chain-start">disconnection</span>, <span class="homepage-chain-copy-tail">turning it into</span></span>
+            <span class="homepage-chain-path">
+              <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">connection</span>
+              <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">trust</span>
+              <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">data</span>
+              <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">coordination</span>
+              <span class="homepage-chain-arrow" aria-hidden="true">→</span><span class="homepage-chain-step">community</span>
+            </span>
           </p>
         </section>
       </main>
@@ -1647,7 +1712,7 @@
         {
           id: "timeless-interface",
           headlineLabel: "Human conversation is the timeless interface of community.",
-          headline: `<span>Human conversation is the</span><span class="timeless-interface-word">timeless interface</span><span>of community.</span>`,
+          headline: `<span>Human conversation<span class="mobile-break"></span> is the</span><span class="timeless-interface-word">timeless interface</span><span>of community.</span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders know who needs a conversation,<span class="lede-break"></span> what context matters, and what action should happen next.`,
         },
         {

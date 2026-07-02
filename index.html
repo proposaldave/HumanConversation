@@ -276,7 +276,8 @@
       .hero-protect .hero-inner,
       .hero-humanfirst .hero-inner,
       .hero-timeless-interface .hero-inner,
-      .hero-thousand-taps .hero-inner {
+      .hero-thousand-taps .hero-inner,
+      .hero-missing-interface .hero-inner {
         display: block;
       }
 
@@ -545,6 +546,32 @@
 
       .hero-thousand-taps .product-name {
         color: #d8a84b;
+      }
+
+      .hero-missing-interface .hero-inner {
+        max-width: 1080px;
+      }
+
+      .hero-missing-interface h1 {
+        max-width: 1120px;
+        font-size: clamp(3.15rem, 5.7vw, 6.35rem);
+        line-height: 0.94;
+      }
+
+      .missing-interface-line {
+        color: var(--hc-accent);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .missing-interface-ai {
+        color: var(--hc-blue);
+      }
+
+      .hero-missing-interface .lede {
+        max-width: 800px;
+        margin-top: 30px;
+        font-size: clamp(1.16rem, 1.55vw, 1.34rem);
       }
 
       .page[data-variant="humanfirst"] {
@@ -932,6 +959,11 @@
         background: #6ca7f2;
       }
 
+      .variant-dot:nth-child(14) {
+        --dot-age: 1;
+        background: #974f63;
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -986,7 +1018,8 @@
         .hero-protect h1,
         .hero-humanfirst h1,
         .hero-timeless-interface h1,
-        .hero-thousand-taps h1 {
+        .hero-thousand-taps h1,
+        .hero-missing-interface h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -1095,7 +1128,8 @@
         .hero-protect .lede,
         .hero-humanfirst .lede,
         .hero-timeless-interface .lede,
-        .hero-thousand-taps .lede {
+        .hero-thousand-taps .lede,
+        .hero-missing-interface .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -1280,6 +1314,7 @@
         <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
         <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: timeless interface image background"></button>
         <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: thousand taps image background"></button>
+        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: missing interface between AI and real-world communication"></button>
       </nav>
     </div>
 
@@ -1362,6 +1397,12 @@
           headlineLabel: "A human conversation is worth a thousand taps",
           headline: `<span>A human conversation</span><span>is worth</span><span class="thousand-taps-word">a thousand taps</span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders know when to stop nudging and start the conversation that actually moves someone.`,
+        },
+        {
+          id: "missing-interface",
+          headlineLabel: "The missing interface between AI and real-world communication and connection",
+          headline: `<span>The missing interface</span><span>between <span class="missing-interface-ai">AI</span> and</span><span class="missing-interface-line">real-world communication</span><span>and connection</span>`,
+          lede: `<span class="product-name">Human Conversation</span> turns what people say, feel, want, avoid, and remember into the signal AI needs to coordinate the next right connection.`,
         },
       ];
 

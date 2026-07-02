@@ -468,7 +468,6 @@
       .hero-hidden .hero-inner,
       .hero-moves .hero-inner,
       .hero-offcourt .hero-inner,
-      .hero-phone .hero-inner,
       .hero-breathes .hero-inner,
       .hero-around .hero-inner,
       .hero-breathfield .hero-inner,
@@ -568,27 +567,6 @@
       }
 
       .offcourt-line {
-        color: var(--hc-accent);
-        font-family: Fraunces, Georgia, serif;
-        font-weight: 650;
-      }
-
-      .hero-phone h1 {
-        max-width: 1040px;
-        font-size: clamp(3.45rem, 6.4vw, 7.1rem);
-        line-height: 0.94;
-      }
-
-      .phone-word {
-        color: var(--hc-blue);
-      }
-
-      .phone-arrow {
-        color: var(--hc-accent);
-        margin-left: 0.16em;
-      }
-
-      .phone-human {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
@@ -1521,12 +1499,6 @@
         margin-top: 8px;
       }
 
-      .hero-phone .lede {
-        max-width: 760px;
-        margin-top: 30px;
-        font-size: clamp(1.22rem, 1.72vw, 1.46rem);
-      }
-
       .hero-breathes .lede {
         max-width: 830px;
         margin-top: 30px;
@@ -1998,7 +1970,6 @@
         .hero-hidden h1,
         .hero-moves h1,
         .hero-offcourt h1,
-        .hero-phone h1,
         .hero-breathes h1,
         .hero-around h1,
         .hero-breathfield h1,
@@ -2272,7 +2243,6 @@
         .hero-hidden .lede,
         .hero-moves .lede,
         .hero-offcourt .lede,
-        .hero-phone .lede,
         .hero-breathes .lede,
         .hero-around .lede,
         .hero-breathfield .lede,
@@ -2336,10 +2306,6 @@
 
         .offcourt-beat span {
           margin-top: 5px;
-        }
-
-        .hero-phone h1 {
-          font-size: clamp(2.65rem, 11.4vw, 3.6rem);
         }
 
         .hero-solves h1,
@@ -2488,21 +2454,20 @@
         <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
         <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
-        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8"></button>
-        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: protect amplify remember build around it"></button>
-        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: have a human conversation"></button>
-        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: disconnection path back"></button>
-        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: current main landing page revert copy"></button>
-        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: thousand taps image background"></button>
-        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: missing interface between AI and real-world communication"></button>
-        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: less time communicating through computers"></button>
-        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: a human conversation is worth a thousand taps"></button>
-        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: communication interface shift"></button>
-        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: interface becomes human"></button>
-        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: AI moves computer work into background"></button>
-        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: connection happens and data flows"></button>
-        <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: not one app to another"></button>
-        <button class="variant-dot" type="button" data-option="21" aria-label="Option 22: technology should create the conditions"></button>
+        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8: protect amplify remember build around it"></button>
+        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: have a human conversation"></button>
+        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: disconnection path back"></button>
+        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
+        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: thousand taps image background"></button>
+        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: missing interface between AI and real-world communication"></button>
+        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: less time communicating through computers"></button>
+        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: a human conversation is worth a thousand taps"></button>
+        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: communication interface shift"></button>
+        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: interface becomes human"></button>
+        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: AI moves computer work into background"></button>
+        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: connection happens and data flows"></button>
+        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: not one app to another"></button>
+        <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: technology should create the conditions"></button>
       </nav>
     </div>
 
@@ -2543,12 +2508,6 @@
           headlineLabel: "Human conversation is how connection is created off the court.",
           headline: `<span>Human conversation is how connection is created</span><span class="offcourt-line">off the court.</span>`,
           lede: `<span class="offcourt-beat"><strong>Connection</strong><span>People feel seen, welcomed, supported, celebrated, remembered.</span></span><span class="offcourt-beat"><strong>Intelligence</strong><span>The club learns who is excited, who is drifting, who needs a softer landing, and who should meet whom.</span></span><span class="offcourt-beat"><strong>Action</strong><span>The club knows what to schedule, who to invite, what to fill, and what should happen next.</span></span>`,
-        },
-        {
-          id: "phone",
-          headlineLabel: "Put down your phone, then have a human conversation.",
-          headline: `<span>Put down your <span class="phone-word">phone</span><span class="phone-arrow">→</span></span><span class="phone-human">Have a human conversation.</span>`,
-          lede: `<span class="product-name">Human Conversation</span> helps community builders turn real conversations into connection, trust, and the next right action.`,
         },
         {
           id: "breathes",

@@ -717,6 +717,18 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
+      .page[data-variant="thousand-taps-premium"] .header-email {
+        position: fixed;
+        top: auto;
+        right: max(24px, calc(env(safe-area-inset-right) + 24px));
+        bottom: max(24px, calc(env(safe-area-inset-bottom) + 24px));
+        left: auto;
+        z-index: 4;
+        max-width: calc(100vw - 48px);
+        text-align: right;
+        transform: none;
+      }
+
       .hero-missing-interface .hero-inner {
         max-width: 1080px;
       }
@@ -1308,6 +1320,13 @@
         .page[data-variant="thousand-taps-premium"] .contact {
           width: 100%;
           max-width: min(100%, 340px);
+        }
+
+        .page[data-variant="thousand-taps-premium"] .header-email {
+          right: 18px;
+          bottom: calc(18px + env(safe-area-inset-bottom));
+          left: auto;
+          max-width: calc(100vw - 36px);
         }
 
         .taps-premium-grid {

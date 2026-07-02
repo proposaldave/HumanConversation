@@ -2654,13 +2654,17 @@
       const status = document.querySelector("#form-status");
       const button = form.querySelector("button");
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
+      let currentVariantIndex = 0;
+      let variantSwitchTimer;
 
-      function setVariant(index) {
+      function setVariant(index, options = {}) {
         const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
         const variant = variants[safeIndex];
 
+        currentVariantIndex = safeIndex;
         hero.classList.add("is-switching");
-        window.setTimeout(() => {
+        window.clearTimeout(variantSwitchTimer);
+        variantSwitchTimer = window.setTimeout(() => {
           page.dataset.variant = variant.id;
           hero.className = `hero hero-${variant.id}`;
           headline.innerHTML = variant.headline;
@@ -2669,7 +2673,13 @@
           dots.forEach((dot, dotIndex) => {
             dot.setAttribute("aria-current", String(dotIndex === safeIndex));
           });
+          if (options.focusDot) dots[safeIndex]?.focus({ preventScroll: true });
         }, 90);
+      }
+
+      function stepVariant(direction) {
+        const nextIndex = (currentVariantIndex + direction + variants.length) % variants.length;
+        setVariant(nextIndex, { focusDot: true });
       }
 
       function revealVariantDots() {
@@ -2701,6 +2711,17 @@
 
         if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
         if (event.key.toLowerCase() === "z") revealVariantDots();
+        if (!variantNav?.classList.contains("is-visible")) return;
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          stepVariant(-1);
+        }
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          stepVariant(1);
+        }
       });
 
       let lastTouchTap = 0;

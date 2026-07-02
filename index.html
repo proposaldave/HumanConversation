@@ -569,10 +569,14 @@
       }
 
       .hero-timeless-interface .lede {
-        max-width: 720px;
+        max-width: 960px;
         color: rgba(247, 240, 228, 0.84);
         font-size: clamp(1.12rem, 1.48vw, 1.3rem);
         text-shadow: 0 2px 16px rgba(0, 0, 0, 0.34);
+      }
+
+      .hero-timeless-interface .lede-break {
+        display: block;
       }
 
       .hero-thousand-taps .hero-inner {
@@ -1227,6 +1231,10 @@
           transform: none;
         }
 
+        .hero-timeless-interface .lede-break {
+          display: inline;
+        }
+
         main {
           min-height: auto;
           width: 100%;
@@ -1591,7 +1599,7 @@
               <span class="timeless-interface-word">timeless interface</span>
               <span>of community.</span>
             </h1>
-            <p class="lede"><span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.</p>
+            <p class="lede"><span class="product-name">Human Conversation</span> helps community builders know who needs a conversation,<span class="lede-break"></span> what context matters, and what action should happen next.</p>
           </div>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <input type="hidden" name="_subject" value="New Human Conversation signup" />
@@ -1641,7 +1649,7 @@
           id: "timeless-interface",
           headlineLabel: "Human conversation is the timeless interface of community.",
           headline: `<span>Human conversation is the</span><span class="timeless-interface-word">timeless interface</span><span>of community.</span>`,
-          lede: `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
+          lede: `<span class="product-name">Human Conversation</span> helps community builders know who needs a conversation,<span class="lede-break"></span> what context matters, and what action should happen next.`,
         },
         {
           id: "solves",

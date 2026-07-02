@@ -118,7 +118,8 @@
       .page[data-variant="breathfield"],
       .page[data-variant="peoplepanel"],
       .page[data-variant="protect"],
-      .page[data-variant="timeless-interface"] {
+      .page[data-variant="timeless-interface"],
+      .page[data-variant="thousand-taps"] {
         background: #090806;
       }
 
@@ -142,31 +143,45 @@
         opacity: 1;
       }
 
+      .page[data-variant="thousand-taps"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(9, 8, 6, 0.92) 0%, rgba(9, 8, 6, 0.74) 34%, rgba(9, 8, 6, 0.26) 70%, rgba(9, 8, 6, 0.08) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.58), rgba(9, 8, 6, 0.02) 58%),
+          url("./assets/hc-art-thousand-taps-20260701.png");
+        background-position: center;
+        background-size: cover;
+        opacity: 1;
+      }
+
       .page[data-variant="breathfield"]::after,
       .page[data-variant="peoplepanel"]::after,
       .page[data-variant="protect"]::after,
-      .page[data-variant="timeless-interface"]::after {
+      .page[data-variant="timeless-interface"]::after,
+      .page[data-variant="thousand-taps"]::after {
         display: none;
       }
 
       .page[data-variant="breathfield"] .brand,
       .page[data-variant="peoplepanel"] .brand,
       .page[data-variant="protect"] .brand,
-      .page[data-variant="timeless-interface"] .brand {
+      .page[data-variant="timeless-interface"] .brand,
+      .page[data-variant="thousand-taps"] .brand {
         color: #f7f0e4;
       }
 
       .page[data-variant="breathfield"] .header-email,
       .page[data-variant="peoplepanel"] .header-email,
       .page[data-variant="protect"] .header-email,
-      .page[data-variant="timeless-interface"] .header-email {
+      .page[data-variant="timeless-interface"] .header-email,
+      .page[data-variant="thousand-taps"] .header-email {
         color: #d8a84b;
       }
 
       .page[data-variant="breathfield"] .mark-bubble,
       .page[data-variant="peoplepanel"] .mark-bubble,
       .page[data-variant="protect"] .mark-bubble,
-      .page[data-variant="timeless-interface"] .mark-bubble {
+      .page[data-variant="timeless-interface"] .mark-bubble,
+      .page[data-variant="thousand-taps"] .mark-bubble {
         fill: #f7f0e4;
       }
 
@@ -260,7 +275,8 @@
       .hero-peoplepanel .hero-inner,
       .hero-protect .hero-inner,
       .hero-humanfirst .hero-inner,
-      .hero-timeless-interface .hero-inner {
+      .hero-timeless-interface .hero-inner,
+      .hero-thousand-taps .hero-inner {
         display: block;
       }
 
@@ -500,6 +516,35 @@
         color: rgba(247, 240, 228, 0.84);
         font-size: clamp(1.12rem, 1.48vw, 1.3rem);
         text-shadow: 0 2px 16px rgba(0, 0, 0, 0.34);
+      }
+
+      .hero-thousand-taps .hero-inner {
+        max-width: 900px;
+      }
+
+      .hero-thousand-taps h1 {
+        max-width: 920px;
+        color: #f7f0e4;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4rem, 7vw, 7.7rem);
+        font-weight: 650;
+        line-height: 0.88;
+        text-shadow: 0 4px 28px rgba(0, 0, 0, 0.48);
+      }
+
+      .thousand-taps-word {
+        color: #d8a84b;
+      }
+
+      .hero-thousand-taps .lede {
+        max-width: 690px;
+        color: rgba(247, 240, 228, 0.84);
+        font-size: clamp(1.12rem, 1.5vw, 1.32rem);
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.34);
+      }
+
+      .hero-thousand-taps .product-name {
+        color: #d8a84b;
       }
 
       .page[data-variant="humanfirst"] {
@@ -882,6 +927,11 @@
         background: #d68a9a;
       }
 
+      .variant-dot:nth-child(13) {
+        --dot-age: 1;
+        background: #6ca7f2;
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -935,7 +985,8 @@
         .hero-peoplepanel h1,
         .hero-protect h1,
         .hero-humanfirst h1,
-        .hero-timeless-interface h1 {
+        .hero-timeless-interface h1,
+        .hero-thousand-taps h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -946,6 +997,13 @@
             linear-gradient(180deg, rgba(9, 8, 6, 0.86) 0%, rgba(9, 8, 6, 0.7) 48%, rgba(9, 8, 6, 0.5) 100%),
             url("./assets/hc-art-timeless-interface-20260701.png");
           background-position: 62% center;
+        }
+
+        .page[data-variant="thousand-taps"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(9, 8, 6, 0.9) 0%, rgba(9, 8, 6, 0.74) 50%, rgba(9, 8, 6, 0.52) 100%),
+            url("./assets/hc-art-thousand-taps-20260701.png");
+          background-position: 52% center;
         }
 
         .hero-breathfield,
@@ -1036,7 +1094,8 @@
         .hero-peoplepanel .lede,
         .hero-protect .lede,
         .hero-humanfirst .lede,
-        .hero-timeless-interface .lede {
+        .hero-timeless-interface .lede,
+        .hero-thousand-taps .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -1220,6 +1279,7 @@
         <button class="variant-dot" type="button" data-option="9" aria-label="Option 10"></button>
         <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
         <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: timeless interface image background"></button>
+        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: thousand taps image background"></button>
       </nav>
     </div>
 
@@ -1296,6 +1356,12 @@
           headlineLabel: "Human conversation is the timeless interface of community.",
           headline: `<span>Human conversation is the</span><span class="timeless-interface-word">timeless interface</span><span>of community.</span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders know who needs a conversation, what context matters, and what action should happen next.`,
+        },
+        {
+          id: "thousand-taps",
+          headlineLabel: "A human conversation is worth a thousand taps",
+          headline: `<span>A human conversation</span><span>is worth</span><span class="thousand-taps-word">a thousand taps</span>`,
+          lede: `<span class="product-name">Human Conversation</span> helps community builders know when to stop nudging and start the conversation that actually moves someone.`,
         },
       ];
 

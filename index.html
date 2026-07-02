@@ -149,6 +149,52 @@
         transform: scale(1);
       }
 
+      .page[data-variant="interface-shift"],
+      .page[data-variant="human-interface"],
+      .page[data-variant="screen-release"] {
+        background:
+          radial-gradient(circle at 72% 20%, rgba(216, 168, 75, 0.18), transparent 24%),
+          linear-gradient(135deg, #120d09 0%, #1b130e 48%, #070605 100%);
+        color: #fff8ec;
+      }
+
+      .page[data-variant="interface-shift"]::before,
+      .page[data-variant="human-interface"]::before,
+      .page[data-variant="screen-release"]::before {
+        opacity: 1;
+        background-image:
+          linear-gradient(90deg, rgba(247, 240, 228, 0.045) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(247, 240, 228, 0.035) 1px, transparent 1px),
+          radial-gradient(circle at 72% 48%, rgba(216, 168, 75, 0.18), transparent 28%),
+          linear-gradient(90deg, rgba(18, 13, 9, 0.96), rgba(18, 13, 9, 0.68) 54%, rgba(18, 13, 9, 0.28));
+        background-size:
+          48px 48px,
+          48px 48px,
+          cover,
+          cover;
+      }
+
+      .page[data-variant="interface-shift"]::after,
+      .page[data-variant="human-interface"]::after,
+      .page[data-variant="screen-release"]::after {
+        right: -13vw;
+        bottom: auto;
+        top: 9vh;
+        width: min(52vw, 760px);
+        border-color: rgba(216, 168, 75, 0.18);
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .page[data-variant="connection-data"],
+      .page[data-variant="one-app-shift"],
+      .page[data-variant="conditions"] {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent 44%),
+          radial-gradient(circle at 85% 80%, rgba(151, 79, 99, 0.12), transparent 27%),
+          var(--hc-cream);
+      }
+
       .page[data-variant="known"]::after,
       .page[data-variant="hidden"]::after {
         opacity: 1;
@@ -680,6 +726,175 @@
       .hero-interface-thesis .lede strong,
       .interface-punchline {
         color: #f7f0e4;
+      }
+
+      .hero-interface-shift,
+      .hero-human-interface,
+      .hero-screen-release,
+      .hero-connection-data,
+      .hero-one-app-shift,
+      .hero-conditions {
+        position: relative;
+        display: grid;
+        min-height: calc(100vh - 196px);
+        align-content: center;
+        padding: clamp(24px, 5vh, 58px) 0 clamp(60px, 9vh, 96px);
+      }
+
+      .hero-interface-shift .hero-inner,
+      .hero-human-interface .hero-inner,
+      .hero-screen-release .hero-inner,
+      .hero-connection-data .hero-inner,
+      .hero-one-app-shift .hero-inner,
+      .hero-conditions .hero-inner {
+        max-width: 1120px;
+      }
+
+      .hero-interface-shift h1,
+      .hero-human-interface h1,
+      .hero-screen-release h1 {
+        max-width: 1060px;
+        color: #fff8ec;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(4rem, 7.1vw, 8rem);
+        font-weight: 900;
+        line-height: 0.88;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+        text-shadow: 0 10px 42px rgba(0, 0, 0, 0.42);
+      }
+
+      .hero-interface-shift .lede,
+      .hero-human-interface .lede,
+      .hero-screen-release .lede {
+        max-width: 880px;
+        color: rgba(247, 240, 228, 0.78);
+        font-size: clamp(1.12rem, 1.5vw, 1.32rem);
+        line-height: 1.48;
+        text-shadow: 0 5px 26px rgba(0, 0, 0, 0.28);
+      }
+
+      .shift-kicker,
+      .shift-punch,
+      .screen-release-line,
+      .bridge-label,
+      .conditions-label {
+        display: block;
+      }
+
+      .shift-kicker {
+        margin-bottom: 18px;
+        color: #d8a84b;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .shift-punch {
+        margin-top: 18px;
+        color: #d8a84b;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.05rem, 3.1vw, 3.35rem);
+        font-weight: 650;
+        line-height: 1;
+      }
+
+      .human-interface-word,
+      .screen-release-human {
+        color: #d8a84b;
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .screen-release-muted {
+        color: rgba(247, 240, 228, 0.5);
+      }
+
+      .screen-release-line {
+        margin-top: 16px;
+        color: rgba(247, 240, 228, 0.76);
+      }
+
+      .screen-release-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .screen-release-list span {
+        border: 1px solid rgba(216, 168, 75, 0.24);
+        border-radius: 999px;
+        background: rgba(247, 240, 228, 0.06);
+        color: rgba(247, 240, 228, 0.72);
+        padding: 7px 10px;
+        font-size: 0.82rem;
+        font-weight: 900;
+      }
+
+      .hero-connection-data h1,
+      .hero-one-app-shift h1,
+      .hero-conditions h1 {
+        max-width: 1100px;
+        color: var(--hc-ink);
+        font-size: clamp(4rem, 7.4vw, 8.2rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+
+      .hero-connection-data h1,
+      .hero-one-app-shift h1 {
+        font-family: Manrope, Inter, system-ui, sans-serif;
+      }
+
+      .hero-conditions h1 {
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .hero-connection-data .lede,
+      .hero-one-app-shift .lede,
+      .hero-conditions .lede {
+        max-width: 850px;
+        color: rgba(26, 22, 18, 0.66);
+        font-size: clamp(1.14rem, 1.55vw, 1.34rem);
+        line-height: 1.46;
+      }
+
+      .bridge-label,
+      .conditions-label {
+        margin-bottom: 14px;
+        color: var(--hc-accent);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .bridge-word {
+        color: var(--hc-accent);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .data-flow {
+        color: var(--hc-blue);
+      }
+
+      .one-app-small,
+      .conditions-small {
+        display: block;
+        margin-bottom: 12px;
+        color: rgba(26, 22, 18, 0.48);
+      }
+
+      .one-app-emphasis,
+      .conditions-emphasis {
+        color: var(--hc-accent);
       }
 
       .page[data-variant="interface-thesis"] .interface-punchline {
@@ -1552,6 +1767,42 @@
         background: #d8a84b;
       }
 
+      .variant-dot:nth-child(17) {
+        --dot-age: 1;
+        background: #ffe36b;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.14),
+          0 0 16px rgba(255, 211, 62, 0.5);
+      }
+
+      .variant-dot:nth-child(18) {
+        --dot-age: 1;
+        background: #f5cc58;
+      }
+
+      .variant-dot:nth-child(19) {
+        --dot-age: 1;
+        background: #d68a9a;
+      }
+
+      .variant-dot:nth-child(20) {
+        --dot-age: 1;
+        background: #974f63;
+      }
+
+      .variant-dot:nth-child(21) {
+        --dot-age: 1;
+        background: #365f99;
+      }
+
+      .variant-dot:nth-child(22) {
+        --dot-age: 1;
+        background: #fff2a6;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(255, 226, 104, 0.58);
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -1739,10 +1990,59 @@
         .hero-thousand-taps h1,
         .hero-thousand-taps-premium h1,
         .hero-missing-interface h1,
-        .hero-less-computers h1 {
+        .hero-less-computers h1,
+        .hero-interface-shift h1,
+        .hero-human-interface h1,
+        .hero-screen-release h1,
+        .hero-connection-data h1,
+        .hero-one-app-shift h1,
+        .hero-conditions h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
+        }
+
+        .hero-interface-shift,
+        .hero-human-interface,
+        .hero-screen-release,
+        .hero-connection-data,
+        .hero-one-app-shift,
+        .hero-conditions {
+          min-height: auto;
+          padding: 16px 0 70px;
+        }
+
+        .hero-interface-shift h1,
+        .hero-human-interface h1,
+        .hero-screen-release h1,
+        .hero-connection-data h1,
+        .hero-one-app-shift h1,
+        .hero-conditions h1 {
+          font-size: clamp(2.28rem, 10.1vw, 3.05rem);
+          line-height: 0.98;
+          letter-spacing: 0;
+          overflow-wrap: normal;
+          text-wrap: balance;
+        }
+
+        .shift-kicker,
+        .bridge-label,
+        .conditions-label {
+          font-size: 0.62rem;
+          letter-spacing: 0.13em;
+        }
+
+        .shift-punch {
+          font-size: clamp(1.84rem, 8.4vw, 2.55rem);
+        }
+
+        .screen-release-list {
+          gap: 6px;
+        }
+
+        .screen-release-list span {
+          padding: 6px 8px;
+          font-size: 0.72rem;
         }
 
         .page[data-variant="timeless-interface"]::before {
@@ -1963,7 +2263,13 @@
         .hero-timeless-interface .lede,
         .hero-thousand-taps .lede,
         .hero-missing-interface .lede,
-        .hero-less-computers .lede {
+        .hero-less-computers .lede,
+        .hero-interface-shift .lede,
+        .hero-human-interface .lede,
+        .hero-screen-release .lede,
+        .hero-connection-data .lede,
+        .hero-one-app-shift .lede,
+        .hero-conditions .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
@@ -2196,6 +2502,12 @@
         <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: missing interface between AI and real-world communication"></button>
         <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: less time communicating through computers"></button>
         <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: a human conversation is worth a thousand taps"></button>
+        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: communication interface shift"></button>
+        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: interface becomes human"></button>
+        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: AI moves computer work into background"></button>
+        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: connection happens and data flows"></button>
+        <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: not one app to another"></button>
+        <button class="variant-dot" type="button" data-option="21" aria-label="Option 22: technology should create the conditions"></button>
       </nav>
     </div>
 
@@ -2296,6 +2608,42 @@
           headlineLabel: "A human conversation is worth a thousand taps.",
           headline: `<span>A human conversation</span><span class="taps-premium-worth">is worth</span><span class="taps-premium-phrase">a thousand <span class="taps-cold">taps.</span></span>`,
           lede: `<span class="taps-premium-copy">A community can run on phone taps — or on real human conversation. <span class="product-name">Human Conversation</span> helps community builders know who to talk to, what to ask, and what should happen next.</span><span class="taps-premium-grid"><span><strong>Who</strong><small>The next person who needs a real conversation.</small></span><span><strong>Why now</strong><small>The signal before someone drifts.</small></span><span><strong>What to ask</strong><small>Guided questions that make people feel known.</small></span><span><strong>Next</strong><small>The follow-up that turns care into action.</small></span></span>`,
+        },
+        {
+          id: "interface-shift",
+          headlineLabel: "The communication interface shift. Technology became the intermediary. Human Conversation removes it.",
+          headline: `<span class="shift-kicker">The communication interface shift</span><span>Technology became</span><span>the intermediary.</span><span>Human Conversation removes it.</span>`,
+          lede: `The next great communication interface is not another app, feed, or screen. It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, with AI moving the computer work into the background.<span class="shift-punch">The interface becomes human.</span>`,
+        },
+        {
+          id: "human-interface",
+          headlineLabel: "The interface becomes human.",
+          headline: `<span>The interface</span><span>becomes</span><span class="human-interface-word">human.</span>`,
+          lede: `Software became the intermediary between people. <span class="product-name">Human Conversation</span> moves the computer work into the background so real connection can happen face to face.`,
+        },
+        {
+          id: "screen-release",
+          headlineLabel: "Less computer work. More human conversation.",
+          headline: `<span class="screen-release-muted">Less</span><span>computer work.</span><span class="screen-release-human">More human conversation.</span>`,
+          lede: `<span>AI is moving the busywork into the background.</span><span class="screen-release-line">Less clicking. Less searching. Less sorting. Less scheduling. More live conversation with the right people.</span><span class="screen-release-list"><span>clicking</span><span>searching</span><span>sorting</span><span>scheduling</span><span>screen-managing</span></span>`,
+        },
+        {
+          id: "connection-data",
+          headlineLabel: "Human conversation is where connection happens and data flows.",
+          headline: `<span class="bridge-label">The bridge line</span><span>Human conversation is where</span><span><span class="bridge-word">connection happens</span></span><span>and <span class="data-flow">data flows.</span></span>`,
+          lede: `A real conversation makes someone feel known and gives the community the signal it needs to know what should happen next.`,
+        },
+        {
+          id: "one-app-shift",
+          headlineLabel: "The shift is not from one app to another.",
+          headline: `<span class="one-app-small">The shift is not</span><span>from one app</span><span>to another.</span><span class="one-app-emphasis">It is from software as intermediary to human conversation as interface.</span>`,
+          lede: `Less interfacing through screens. More interfacing through each other. That is the communication interface shift.`,
+        },
+        {
+          id: "conditions",
+          headlineLabel: "Technology should not be the relationship. It should create the conditions for the relationship.",
+          headline: `<span class="conditions-label">The principle</span><span>Technology should not be</span><span>the relationship.</span><span class="conditions-emphasis">It should create the conditions for it.</span>`,
+          lede: `Most communication technology scales messages. <span class="product-name">Human Conversation</span> scales the live moments that create real connection.`,
         },
       ];
 

@@ -14,12 +14,12 @@
     <meta http-equiv="expires" content="0" />
     <meta
       name="description"
-      content="Human conversation is the timeless interface of community."
+      content="Technology became the intermediary between humans. Human Conversation removes it. The interface becomes human."
     />
-    <meta property="og:title" content="Human Conversation" />
+    <meta property="og:title" content="Human Conversation - The Next Great Communication Interface" />
     <meta
       property="og:description"
-      content="Human conversation is the timeless interface of community."
+      content="Technology became the intermediary between humans. Human Conversation removes it. The interface becomes human."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://humanconversation.com/" />
@@ -31,7 +31,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Manrope:wght@500;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>Human Conversation</title>
+    <title>Human Conversation - The Next Great Communication Interface</title>
     <style>
       :root {
         --hc-blue: #365f99;
@@ -52,11 +52,16 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         min-width: 320px;
         min-height: 100vh;
         margin: 0;
         background: var(--hc-cream);
+        overflow-x: hidden;
       }
 
       a {
@@ -106,7 +111,42 @@
         transform: scale(0.8);
         transition:
           opacity 260ms ease,
-          transform 260ms ease;
+        transform 260ms ease;
+      }
+
+      .page[data-variant="interface-thesis"] {
+        overflow-x: hidden;
+        overflow-y: visible;
+        background:
+          radial-gradient(circle at 68% 18%, rgba(216, 168, 75, 0.18), transparent 24%),
+          radial-gradient(circle at 12% 74%, rgba(151, 79, 99, 0.16), transparent 32%),
+          linear-gradient(135deg, #120d09 0%, #1b120d 42%, #080706 100%);
+        color: #f7f0e4;
+      }
+
+      .page[data-variant="interface-thesis"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(247, 240, 228, 0.04) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(247, 240, 228, 0.035) 1px, transparent 1px),
+          radial-gradient(circle at 72% 34%, rgba(216, 168, 75, 0.16), transparent 24%),
+          linear-gradient(90deg, rgba(18, 13, 9, 0.92), rgba(18, 13, 9, 0.54) 58%, rgba(18, 13, 9, 0.18));
+        background-size:
+          44px 44px,
+          44px 44px,
+          cover,
+          cover;
+        opacity: 1;
+      }
+
+      .page[data-variant="interface-thesis"]::after {
+        display: block;
+        right: -18vw;
+        bottom: auto;
+        top: 11vh;
+        width: min(48vw, 720px);
+        border-color: rgba(216, 168, 75, 0.16);
+        opacity: 1;
+        transform: scale(1);
       }
 
       .page[data-variant="known"]::after,
@@ -244,6 +284,11 @@
         padding: 28px 0;
       }
 
+      .page[data-variant="interface-thesis"] header {
+        justify-content: space-between;
+        color: #f7f0e4;
+      }
+
       .brand {
         display: inline-flex;
         gap: 11px;
@@ -251,6 +296,23 @@
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 800;
+      }
+
+      .header-cta {
+        display: none;
+        border: 1px solid rgba(247, 240, 228, 0.24);
+        border-radius: 999px;
+        background: rgba(247, 240, 228, 0.08);
+        color: #f7f0e4;
+        padding: 10px 16px;
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 900;
+        backdrop-filter: blur(12px);
+      }
+
+      .page[data-variant="interface-thesis"] .header-cta {
+        display: inline-flex;
       }
 
       .header-email {
@@ -283,6 +345,15 @@
         stroke-width: 1.8px;
       }
 
+      .page[data-variant="interface-thesis"] .mark-bubble {
+        fill: #f7f0e4;
+      }
+
+      .page[data-variant="interface-thesis"] .mark-heart {
+        fill: #d68a9a;
+        stroke: #120d09;
+      }
+
       main {
         position: relative;
         z-index: 2;
@@ -292,6 +363,13 @@
         min-height: calc(100vh - 92px);
         margin: 0 auto;
         padding: 104px 0 150px;
+      }
+
+      .page[data-variant="interface-thesis"] main {
+        display: block;
+        width: min(100% - 56px, 1180px);
+        min-height: auto;
+        padding: clamp(72px, 10vh, 126px) 0 120px;
       }
 
       .page[data-variant="less-computers"] main {
@@ -316,6 +394,7 @@
         width: 100%;
       }
 
+      .hero-interface-thesis .hero-inner,
       .hero-journey .hero-inner,
       .hero-known .hero-inner,
       .hero-two .hero-inner,
@@ -525,6 +604,229 @@
         background-position: 70% center;
         box-shadow: -36px 0 80px rgba(9, 8, 6, 0.74);
         opacity: 0.78;
+      }
+
+      .hero-interface-thesis {
+        position: relative;
+        display: grid;
+        min-height: calc(100vh - 196px);
+        align-content: center;
+        padding: clamp(22px, 4vh, 46px) 0 clamp(64px, 9vh, 96px);
+      }
+
+      .hero-interface-thesis .hero-inner {
+        max-width: 1080px;
+      }
+
+      .interface-eyebrow,
+      .interface-detail,
+      .interface-punchline,
+      .interface-actions,
+      .interface-support,
+      .shift-section,
+      .site-footer {
+        display: none;
+      }
+
+      .page[data-variant="interface-thesis"] .interface-eyebrow {
+        display: block;
+        width: max-content;
+        max-width: 100%;
+        margin: 0 0 26px;
+        border: 1px solid rgba(216, 168, 75, 0.28);
+        border-radius: 999px;
+        background: rgba(247, 240, 228, 0.07);
+        color: #d8a84b;
+        padding: 9px 13px;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .hero-interface-thesis h1 {
+        max-width: 1040px;
+        color: #fff8ec;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(3.45rem, 6.25vw, 6.9rem);
+        font-weight: 900;
+        line-height: 0.95;
+        text-wrap: balance;
+        text-shadow: 0 10px 40px rgba(0, 0, 0, 0.34);
+      }
+
+      .hero-interface-thesis .lede {
+        max-width: 920px;
+        margin-top: 34px;
+        color: rgba(247, 240, 228, 0.78);
+        font-size: clamp(1.18rem, 1.55vw, 1.36rem);
+        font-weight: 750;
+        line-height: 1.5;
+        text-wrap: pretty;
+      }
+
+      .page[data-variant="interface-thesis"] .interface-detail {
+        display: block;
+        max-width: 920px;
+        margin: 18px 0 0;
+        color: rgba(247, 240, 228, 0.78);
+        font-size: clamp(1.18rem, 1.55vw, 1.36rem);
+        font-weight: 750;
+        line-height: 1.5;
+        text-wrap: pretty;
+      }
+
+      .hero-interface-thesis .lede strong,
+      .interface-punchline {
+        color: #f7f0e4;
+      }
+
+      .page[data-variant="interface-thesis"] .interface-punchline {
+        display: block;
+        margin: 30px 0 0;
+        color: #d8a84b;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.05rem, 3.2vw, 3.55rem);
+        font-weight: 650;
+        line-height: 1.02;
+      }
+
+      .page[data-variant="interface-thesis"] .interface-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        margin-top: 36px;
+      }
+
+      .interface-scroll {
+        border: 1px solid rgba(247, 240, 228, 0.2);
+        border-radius: 7px;
+        background: rgba(247, 240, 228, 0.07);
+        color: rgba(247, 240, 228, 0.88);
+        padding: 15px 18px;
+        text-decoration: none;
+        font-size: 0.98rem;
+        font-weight: 900;
+      }
+
+      .page[data-variant="interface-thesis"] .interface-support {
+        display: block;
+        max-width: 760px;
+        margin: 28px 0 0;
+        color: rgba(247, 240, 228, 0.58);
+        font-size: 0.98rem;
+        font-weight: 850;
+        line-height: 1.45;
+      }
+
+      .page[data-variant="interface-thesis"] .contact {
+        width: min(100%, 600px);
+        margin-top: 36px;
+      }
+
+      .page[data-variant="interface-thesis"] .contact input[type="email"] {
+        border-color: rgba(247, 240, 228, 0.22);
+        background: rgba(247, 240, 228, 0.92);
+      }
+
+      .page[data-variant="interface-thesis"] .contact button,
+      .page[data-variant="interface-thesis"] .section-cta {
+        background: #d8a84b;
+        color: #120d09;
+      }
+
+      .page[data-variant="interface-thesis"] .status {
+        color: rgba(247, 240, 228, 0.62);
+      }
+
+      .page[data-variant="interface-thesis"] .shift-section {
+        position: relative;
+        display: grid;
+        gap: 34px;
+        max-width: 1040px;
+        margin: 0 auto;
+        border-top: 1px solid rgba(216, 168, 75, 0.2);
+        padding: clamp(78px, 10vw, 128px) 0 0;
+        scroll-margin-top: 28px;
+      }
+
+      .shift-section h2 {
+        max-width: 980px;
+        margin: 0;
+        color: #fff8ec;
+        font-size: clamp(2.45rem, 4.9vw, 5.7rem);
+        font-weight: 900;
+        line-height: 0.98;
+        text-wrap: balance;
+      }
+
+      .shift-lead,
+      .shift-more,
+      .shift-closing {
+        max-width: 760px;
+        margin: 0;
+        color: rgba(247, 240, 228, 0.76);
+        font-size: clamp(1.1rem, 1.46vw, 1.28rem);
+        font-weight: 760;
+        line-height: 1.5;
+      }
+
+      .shift-less {
+        display: grid;
+        gap: 8px;
+        max-width: 520px;
+        margin: 0;
+        color: rgba(247, 240, 228, 0.64);
+        font-size: clamp(1.18rem, 1.65vw, 1.42rem);
+        font-weight: 900;
+        line-height: 1.22;
+      }
+
+      .shift-less span {
+        display: block;
+      }
+
+      .principle-block {
+        display: grid;
+        gap: 8px;
+        max-width: 780px;
+        border-left: 4px solid #d8a84b;
+        padding-left: 22px;
+      }
+
+      .principle-block p {
+        margin: 0;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.8rem, 3vw, 3.1rem);
+        font-weight: 650;
+        line-height: 1.04;
+      }
+
+      .section-cta {
+        width: max-content;
+        max-width: 100%;
+        border-radius: 7px;
+        padding: 15px 18px;
+        text-decoration: none;
+        font-size: 0.98rem;
+        font-weight: 900;
+      }
+
+      .page[data-variant="interface-thesis"] .site-footer {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        width: min(100% - 56px, 1180px);
+        margin: 0 auto;
+        padding: 44px 0 32px;
+        color: rgba(247, 240, 228, 0.54);
+        font-size: 0.84rem;
+        font-weight: 850;
       }
 
       .hero-peoplepanel::before {
@@ -1109,6 +1411,32 @@
         left: -9999px;
       }
 
+      .variant-trigger {
+        position: fixed;
+        right: max(18px, calc(env(safe-area-inset-right) + 18px));
+        bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
+        z-index: 4;
+        width: 11px;
+        height: 11px;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(232, 178, 44, 0.22);
+        box-shadow: 0 0 0 6px rgba(232, 178, 44, 0.04);
+        padding: 0;
+        cursor: pointer;
+        opacity: 0.45;
+      }
+
+      .variant-trigger:hover,
+      .variant-trigger:focus-visible {
+        opacity: 0.86;
+        outline: none;
+      }
+
+      .variant-trigger.is-hidden {
+        display: none;
+      }
+
       .variant-dots {
         position: fixed;
         right: max(18px, calc(env(safe-area-inset-right) + 18px));
@@ -1148,7 +1476,11 @@
       }
 
       .variant-dot:nth-child(1) {
-        --dot-age: 0.18;
+        --dot-age: 1;
+        background: #ffe36b;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.14),
+          0 0 14px rgba(255, 211, 62, 0.45);
       }
 
       .variant-dot:nth-child(2) {
@@ -1215,6 +1547,11 @@
           0 0 14px rgba(255, 211, 62, 0.45);
       }
 
+      .variant-dot:nth-child(16) {
+        --dot-age: 1;
+        background: #d8a84b;
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -1227,6 +1564,27 @@
         main {
           width: calc(100% - 32px);
           max-width: 1060px;
+        }
+
+        .page[data-variant="interface-thesis"] header {
+          width: calc(100% - 32px);
+          justify-content: space-between;
+        }
+
+        .page[data-variant="interface-thesis"] main {
+          width: calc(100% - 32px);
+          padding: 44px 0 72px;
+        }
+
+        .header-cta {
+          padding: 8px 10px;
+          font-size: 0;
+          white-space: nowrap;
+        }
+
+        .header-cta::after {
+          content: "Join";
+          font-size: 0.72rem;
         }
 
         .page[data-variant="less-computers"] main {
@@ -1251,6 +1609,106 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           transform: none;
+        }
+
+        .hero-interface-thesis {
+          min-height: auto;
+          padding: 26px 0 66px;
+        }
+
+        .page[data-variant="interface-thesis"] .interface-eyebrow {
+          margin-bottom: 20px;
+          font-size: 0.62rem;
+          letter-spacing: 0.14em;
+          white-space: normal;
+        }
+
+        .hero-interface-thesis h1 {
+          max-width: 100%;
+          font-size: clamp(1.96rem, 8.45vw, 2.42rem);
+          line-height: 1;
+          overflow-wrap: normal;
+          text-wrap: balance;
+        }
+
+        .hero-interface-thesis .lede,
+        .page[data-variant="interface-thesis"] .interface-detail {
+          max-width: 100%;
+          font-size: 1rem;
+          line-height: 1.43;
+        }
+
+        .hero-interface-thesis .lede {
+          margin-top: 26px;
+        }
+
+        .page[data-variant="interface-thesis"] .interface-detail {
+          margin-top: 14px;
+        }
+
+        .page[data-variant="interface-thesis"] .interface-punchline {
+          margin-top: 24px;
+          font-size: clamp(1.9rem, 9vw, 2.72rem);
+        }
+
+        .page[data-variant="interface-thesis"] .contact,
+        .page[data-variant="interface-thesis"] .interface-scroll {
+          width: 100%;
+        }
+
+        .page[data-variant="interface-thesis"] .contact {
+          margin-top: 28px;
+        }
+
+        .page[data-variant="interface-thesis"] .interface-actions {
+          margin-top: 12px;
+        }
+
+        .interface-scroll,
+        .section-cta {
+          text-align: center;
+        }
+
+        .page[data-variant="interface-thesis"] .interface-support {
+          margin-top: 22px;
+          font-size: 0.92rem;
+        }
+
+        .page[data-variant="interface-thesis"] .shift-section {
+          gap: 28px;
+          padding-top: 68px;
+        }
+
+        .shift-section h2 {
+          font-size: clamp(2.12rem, 10.4vw, 3.35rem);
+          line-height: 1;
+        }
+
+        .shift-lead,
+        .shift-more,
+        .shift-closing {
+          font-size: 1rem;
+          line-height: 1.43;
+        }
+
+        .shift-less {
+          gap: 6px;
+          font-size: 1.08rem;
+        }
+
+        .principle-block {
+          padding-left: 16px;
+        }
+
+        .principle-block p {
+          font-size: clamp(1.55rem, 7vw, 2.25rem);
+        }
+
+        .page[data-variant="interface-thesis"] .site-footer {
+          width: calc(100% - 32px);
+          flex-direction: column;
+          gap: 8px;
+          padding-bottom: 28px;
         }
 
         .hero-timeless-interface .lede-break {
@@ -1641,7 +2099,7 @@
     </style>
   </head>
   <body>
-    <div class="page" data-variant="timeless-interface">
+    <div class="page" data-variant="interface-thesis">
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <svg class="mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false">
@@ -1651,17 +2109,22 @@
           </svg>
           <span>Human Conversation</span>
         </a>
+        <a class="header-cta" href="#email-capture">Join the Conversation</a>
       </header>
 
       <main>
-        <section class="hero hero-timeless-interface" id="landing-hero" aria-live="polite">
+        <section class="hero hero-interface-thesis" id="landing-hero" aria-live="polite">
           <div class="hero-inner">
-            <h1 aria-label="Human conversation is the timeless interface of community.">
-              <span>Human conversation<span class="mobile-break"></span> is the</span>
-              <span class="timeless-interface-word">timeless interface</span>
-              <span>of community.</span>
+            <p class="interface-eyebrow">The next great communication interface</p>
+            <h1 aria-label="Technology became the intermediary. Human Conversation removes it.">
+              <span>Technology became</span>
+              <span>the intermediary.</span>
+              <span>Human Conversation</span>
+              <span>removes it.</span>
             </h1>
-            <p class="lede"><span class="product-name">Human Conversation</span> helps community builders know who needs a conversation,<span class="lede-break"></span> what context matters, and what action should happen next.</p>
+            <p class="lede">The next great communication interface is not another app, feed, or screen.</p>
+            <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, with AI moving the computer work into the background.</p>
+            <p class="interface-punchline">The interface becomes human.</p>
           </div>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <input type="hidden" name="_subject" value="New Human Conversation signup" />
@@ -1675,6 +2138,10 @@
             </div>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
+          <div class="interface-actions">
+            <a class="interface-scroll" href="#shift-section">See the shift</a>
+          </div>
+          <p class="interface-support">Less interfacing through screens. More interfacing through each other.</p>
           <p class="homepage-chain" aria-label="Human conversation solves disconnection, turning it into connection, trust, data, coordination, and community">
             <span class="homepage-chain-copy">Human conversation solves <span class="homepage-chain-start">disconnection</span>, <span class="homepage-chain-copy-tail">turning it into</span></span>
             <span class="homepage-chain-path">
@@ -1686,29 +2153,61 @@
             </span>
           </p>
         </section>
+
+        <section class="shift-section" id="shift-section" aria-label="The future of community">
+          <h2>The future of community is less interfacing through screens and more interfacing through each other.</h2>
+          <p class="shift-lead">AI is moving the computer work into the background.</p>
+          <p class="shift-less">
+            <span>Less clicking.</span>
+            <span>Less searching.</span>
+            <span>Less sorting.</span>
+            <span>Less scheduling.</span>
+            <span>Less managing connection through screens.</span>
+          </p>
+          <p class="shift-more">More live conversation with the right people, in the right real-world communities.</p>
+          <div class="principle-block">
+            <p>Technology should not be the relationship.</p>
+            <p>It should create the conditions for the relationship.</p>
+          </div>
+          <p class="shift-closing">Most communication technology scales messages. Human Conversation scales the live moments that create real connection.</p>
+          <a class="section-cta" href="#email-capture">Join the Conversation</a>
+        </section>
       </main>
 
+      <footer class="site-footer">
+        <span>Human Conversation</span>
+        <span>hello@humanconversation.com</span>
+      </footer>
+
+      <button class="variant-trigger" type="button" aria-label="Show landing page options"></button>
       <nav class="variant-dots" aria-label="Landing page options" aria-hidden="true" hidden>
-        <button class="variant-dot" type="button" data-option="0" aria-label="Option 1" aria-current="true"></button>
-        <button class="variant-dot" type="button" data-option="1" aria-label="Option 2"></button>
+        <button class="variant-dot" type="button" data-option="0" aria-label="Option 1: interface thesis" aria-current="true"></button>
+        <button class="variant-dot" type="button" data-option="1" aria-label="Option 2: previous timeless interface homepage"></button>
         <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
         <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
         <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
         <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
-        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8: protect amplify remember build around it"></button>
-        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: have a human conversation"></button>
-        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: disconnection path back"></button>
-        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
-        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: thousand taps image background"></button>
-        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: missing interface between AI and real-world communication"></button>
-        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: less time communicating through computers"></button>
-        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: a human conversation is worth a thousand taps"></button>
+        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8"></button>
+        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: protect amplify remember build around it"></button>
+        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: have a human conversation"></button>
+        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: disconnection path back"></button>
+        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: current main landing page revert copy"></button>
+        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: thousand taps image background"></button>
+        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: missing interface between AI and real-world communication"></button>
+        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: less time communicating through computers"></button>
+        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: a human conversation is worth a thousand taps"></button>
       </nav>
     </div>
 
       <script>
         const variants = [
+        {
+          id: "interface-thesis",
+          headlineLabel: "Technology became the intermediary. Human Conversation removes it.",
+          headline: `<span>Technology became</span><span>the intermediary.</span><span>Human Conversation</span><span>removes it.</span>`,
+          lede: `The next great communication interface is not another app, feed, or screen.`,
+        },
         {
           id: "timeless-interface",
           headlineLabel: "Human conversation is the timeless interface of community.",
@@ -1806,6 +2305,7 @@
       const headline = hero.querySelector("h1");
       const lede = hero.querySelector(".lede");
       const variantNav = document.querySelector(".variant-dots");
+      const variantTrigger = document.querySelector(".variant-trigger");
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const form = document.querySelector("#email-capture");
       const emailInput = document.querySelector("#email");
@@ -1836,6 +2336,7 @@
         variantNav.setAttribute("aria-hidden", "false");
         window.requestAnimationFrame(() => {
           variantNav.classList.add("is-visible");
+          variantTrigger?.classList.add("is-hidden");
         });
       }
 
@@ -1847,6 +2348,8 @@
           setVariant(Number.parseInt(dot.dataset.option, 10));
         });
       });
+
+      variantTrigger?.addEventListener("click", revealVariantDots);
 
       window.addEventListener("keydown", (event) => {
         const target = event.target;

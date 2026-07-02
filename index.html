@@ -367,15 +367,31 @@
       }
 
       .header-email {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        color: var(--hc-accent);
+        position: fixed;
+        top: max(22px, calc(env(safe-area-inset-top) + 22px));
+        right: auto;
+        bottom: auto;
+        left: max(22px, calc(env(safe-area-inset-left) + 22px));
+        z-index: 5;
+        display: inline-flex;
+        align-items: center;
+        max-width: calc(100vw - 44px);
+        overflow: hidden;
+        border: 1px solid rgba(247, 240, 228, 0.28);
+        border-radius: 999px;
+        background: rgba(12, 8, 5, 0.58);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+        color: #f7f0e4;
+        padding: 8px 12px 9px;
         font-size: 0.9rem;
         font-weight: 800;
+        line-height: 1;
+        text-overflow: ellipsis;
         text-decoration-thickness: 2px;
         text-underline-offset: 3px;
-        transform: translateY(-50%);
+        white-space: nowrap;
+        backdrop-filter: blur(14px) saturate(1.12);
+        transform: none;
       }
 
       .mark {
@@ -1250,12 +1266,12 @@
       .page[data-variant="thousand-taps-premium"] .header-email {
         position: fixed;
         top: max(24px, calc(env(safe-area-inset-top) + 24px));
-        right: max(24px, calc(env(safe-area-inset-right) + 24px));
+        right: auto;
         bottom: auto;
-        left: auto;
+        left: max(24px, calc(env(safe-area-inset-left) + 24px));
         z-index: 4;
         max-width: calc(100vw - 48px);
-        text-align: right;
+        text-align: left;
         transform: none;
       }
 
@@ -1855,9 +1871,9 @@
         .header-email {
           position: fixed;
           top: calc(18px + env(safe-area-inset-top));
-          right: 18px;
+          right: auto;
           bottom: auto;
-          left: auto;
+          left: 18px;
           z-index: 4;
           max-width: calc(100vw - 120px);
           overflow: hidden;
@@ -2153,9 +2169,9 @@
 
         .page[data-variant="thousand-taps-premium"] .header-email {
           top: calc(18px + env(safe-area-inset-top));
-          right: 18px;
+          right: auto;
           bottom: auto;
-          left: auto;
+          left: 18px;
           max-width: calc(100vw - 36px);
         }
 

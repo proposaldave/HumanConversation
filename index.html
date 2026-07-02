@@ -1249,9 +1249,9 @@
 
       .page[data-variant="thousand-taps-premium"] .header-email {
         position: fixed;
-        top: auto;
+        top: max(24px, calc(env(safe-area-inset-top) + 24px));
         right: max(24px, calc(env(safe-area-inset-right) + 24px));
-        bottom: max(24px, calc(env(safe-area-inset-bottom) + 24px));
+        bottom: auto;
         left: auto;
         z-index: 4;
         max-width: calc(100vw - 48px);
@@ -1854,12 +1854,12 @@
 
         .header-email {
           position: fixed;
-          top: auto;
-          right: auto;
-          bottom: calc(18px + env(safe-area-inset-bottom));
-          left: 18px;
+          top: calc(18px + env(safe-area-inset-top));
+          right: 18px;
+          bottom: auto;
+          left: auto;
           z-index: 4;
-          max-width: calc(100vw - 136px);
+          max-width: calc(100vw - 120px);
           overflow: hidden;
           font-size: 0.86rem;
           text-overflow: ellipsis;
@@ -2152,8 +2152,9 @@
         }
 
         .page[data-variant="thousand-taps-premium"] .header-email {
+          top: calc(18px + env(safe-area-inset-top));
           right: 18px;
-          bottom: calc(18px + env(safe-area-inset-bottom));
+          bottom: auto;
           left: auto;
           max-width: calc(100vw - 36px);
         }
@@ -2464,7 +2465,6 @@
 
       <footer class="site-footer">
         <span>Human Conversation</span>
-        <a href="mailto:hello@humanconversation.com">hello@humanconversation.com</a>
       </footer>
 
       <button class="variant-trigger" type="button" aria-label="Show landing page options"></button>

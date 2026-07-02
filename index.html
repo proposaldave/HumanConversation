@@ -115,6 +115,38 @@
         transform: scale(1);
       }
 
+      .page[data-variant="less-computers"] {
+        background:
+          radial-gradient(circle at 78% 22%, rgba(216, 168, 75, 0.12), transparent 28%),
+          radial-gradient(circle at 16% 78%, rgba(54, 95, 153, 0.12), transparent 32%),
+          #050505;
+      }
+
+      .page[data-variant="less-computers"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.98) 0%, rgba(5, 5, 5, 0.88) 58%, rgba(5, 5, 5, 0.72) 100%),
+          radial-gradient(circle at 86% 44%, rgba(247, 240, 228, 0.08), transparent 26%);
+        opacity: 1;
+      }
+
+      .page[data-variant="less-computers"]::after {
+        display: none;
+      }
+
+      .page[data-variant="less-computers"] .brand,
+      .page[data-variant="less-computers"] .header-email {
+        color: #f7f0e4;
+      }
+
+      .page[data-variant="less-computers"] .mark-bubble {
+        fill: #f7f0e4;
+      }
+
+      .page[data-variant="less-computers"] .mark-heart {
+        fill: #ffd66e;
+        stroke: #050505;
+      }
+
       .page[data-variant="breathfield"],
       .page[data-variant="peoplepanel"],
       .page[data-variant="protect"],
@@ -246,6 +278,12 @@
         padding: 104px 0 150px;
       }
 
+      .page[data-variant="less-computers"] main {
+        align-items: flex-start;
+        width: min(100% - 56px, 1180px);
+        padding-top: clamp(48px, 7vh, 92px);
+      }
+
       .hero {
         width: 100%;
         transition:
@@ -277,7 +315,8 @@
       .hero-humanfirst .hero-inner,
       .hero-timeless-interface .hero-inner,
       .hero-thousand-taps .hero-inner,
-      .hero-missing-interface .hero-inner {
+      .hero-missing-interface .hero-inner,
+      .hero-less-computers .hero-inner {
         display: block;
       }
 
@@ -572,6 +611,52 @@
         max-width: 800px;
         margin-top: 30px;
         font-size: clamp(1.16rem, 1.55vw, 1.34rem);
+      }
+
+      .hero-less-computers .hero-inner {
+        max-width: 1180px;
+      }
+
+      .hero-less-computers h1 {
+        max-width: 1180px;
+        color: #f7f0e4;
+        font-size: clamp(4.9rem, 8.5vw, 9rem);
+        font-weight: 800;
+        line-height: 0.98;
+        text-shadow: 0 4px 28px rgba(0, 0, 0, 0.56);
+      }
+
+      .hero-less-computers .lede {
+        max-width: 1140px;
+        margin-top: clamp(58px, 8vh, 96px);
+        color: #ffd66e;
+        font-size: clamp(2.05rem, 3.75vw, 3.35rem);
+        font-weight: 800;
+        line-height: 1.08;
+        text-shadow: 0 3px 22px rgba(0, 0, 0, 0.48);
+      }
+
+      .page[data-variant="less-computers"] .contact {
+        margin-top: 46px;
+      }
+
+      .page[data-variant="less-computers"] .contact input[type="email"] {
+        border-color: rgba(247, 240, 228, 0.28);
+        background: rgba(247, 240, 228, 0.08);
+        color: #f7f0e4;
+      }
+
+      .page[data-variant="less-computers"] .contact input[type="email"]::placeholder {
+        color: rgba(247, 240, 228, 0.58);
+      }
+
+      .page[data-variant="less-computers"] .contact button {
+        background: #ffd66e;
+        color: #050505;
+      }
+
+      .page[data-variant="less-computers"] .status {
+        color: rgba(247, 240, 228, 0.7);
       }
 
       .page[data-variant="humanfirst"] {
@@ -964,6 +1049,11 @@
         background: #974f63;
       }
 
+      .variant-dot:nth-child(15) {
+        --dot-age: 1;
+        background: #f7f0e4;
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -976,6 +1066,11 @@
         main {
           width: calc(100% - 32px);
           max-width: 1060px;
+        }
+
+        .page[data-variant="less-computers"] main {
+          width: calc(100% - 32px);
+          padding-top: 52px;
         }
 
         header {
@@ -1019,7 +1114,8 @@
         .hero-humanfirst h1,
         .hero-timeless-interface h1,
         .hero-thousand-taps h1,
-        .hero-missing-interface h1 {
+        .hero-missing-interface h1,
+        .hero-less-computers h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -1129,11 +1225,18 @@
         .hero-humanfirst .lede,
         .hero-timeless-interface .lede,
         .hero-thousand-taps .lede,
-        .hero-missing-interface .lede {
+        .hero-missing-interface .lede,
+        .hero-less-computers .lede {
           max-width: 100%;
           margin-top: 22px;
           font-size: 1.08rem;
           line-height: 1.42;
+        }
+
+        .hero-less-computers .lede {
+          margin-top: 58px;
+          font-size: clamp(1.55rem, 7vw, 2.35rem);
+          line-height: 1.12;
         }
 
         .hero-two .lede {
@@ -1315,6 +1418,7 @@
         <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: timeless interface image background"></button>
         <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: thousand taps image background"></button>
         <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: missing interface between AI and real-world communication"></button>
+        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: less time communicating through computers"></button>
       </nav>
     </div>
 
@@ -1403,6 +1507,12 @@
           headlineLabel: "The missing interface between AI and real-world communication and connection",
           headline: `<span>The missing interface</span><span>between <span class="missing-interface-ai">AI</span> and</span><span class="missing-interface-line">real-world communication</span><span>and connection</span>`,
           lede: `<span class="product-name">Human Conversation</span> turns what people say, feel, want, avoid, and remember into the signal AI needs to coordinate the next right connection.`,
+        },
+        {
+          id: "less-computers",
+          headlineLabel: "Less time communicating through computers. More time communicating live with the people we should be with.",
+          headline: `<span>Less time</span><span>communicating</span><span>through computers.</span>`,
+          lede: `More time communicating live with the people we should be with.`,
         },
       ];
 

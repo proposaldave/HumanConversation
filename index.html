@@ -248,7 +248,9 @@
       .page[data-variant="more-face-time"],
       .page[data-variant="community-os"],
       .page[data-variant="communication-technology"],
-      .page[data-variant="human-time-data"] {
+      .page[data-variant="human-time-data"],
+      .page[data-variant="loneliness-interface"],
+      .page[data-variant="loneliness-conversation"] {
         background: #090806;
       }
 
@@ -303,6 +305,22 @@
         background-size: cover;
         filter: saturate(1.06) contrast(1.02) brightness(0.98);
         opacity: 1;
+      }
+
+      .page[data-variant="loneliness-interface"]::before,
+      .page[data-variant="loneliness-conversation"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(7, 6, 5, 0.94) 0%, rgba(8, 7, 6, 0.78) 37%, rgba(9, 8, 6, 0.36) 70%, rgba(9, 8, 6, 0.1) 100%),
+          linear-gradient(0deg, rgba(7, 6, 5, 0.58), rgba(7, 6, 5, 0.04) 58%),
+          url("./assets/hc-art-protect-community-20260703.png");
+        background-position: 62% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.02) brightness(1.02);
+        opacity: 1;
+      }
+
+      .page[data-variant="loneliness-conversation"]::before {
+        background-position: 68% center;
       }
 
       .page[data-variant="new-interface"]::before,
@@ -369,7 +387,9 @@
       .page[data-variant="more-face-time"]::after,
       .page[data-variant="community-os"]::after,
       .page[data-variant="communication-technology"]::after,
-      .page[data-variant="human-time-data"]::after {
+      .page[data-variant="human-time-data"]::after,
+      .page[data-variant="loneliness-interface"]::after,
+      .page[data-variant="loneliness-conversation"]::after {
         display: none;
       }
 
@@ -383,7 +403,9 @@
       .page[data-variant="through-each-other"] .brand,
       .page[data-variant="more-face-time"] .brand,
       .page[data-variant="community-os"] .brand,
-      .page[data-variant="communication-technology"] .brand {
+      .page[data-variant="communication-technology"] .brand,
+      .page[data-variant="loneliness-interface"] .brand,
+      .page[data-variant="loneliness-conversation"] .brand {
         color: #f7f0e4;
       }
 
@@ -397,7 +419,9 @@
       .page[data-variant="through-each-other"] .header-email,
       .page[data-variant="more-face-time"] .header-email,
       .page[data-variant="community-os"] .header-email,
-      .page[data-variant="communication-technology"] .header-email {
+      .page[data-variant="communication-technology"] .header-email,
+      .page[data-variant="loneliness-interface"] .header-email,
+      .page[data-variant="loneliness-conversation"] .header-email {
         color: #d8a84b;
       }
 
@@ -411,7 +435,9 @@
       .page[data-variant="through-each-other"] .mark-bubble,
       .page[data-variant="more-face-time"] .mark-bubble,
       .page[data-variant="community-os"] .mark-bubble,
-      .page[data-variant="communication-technology"] .mark-bubble {
+      .page[data-variant="communication-technology"] .mark-bubble,
+      .page[data-variant="loneliness-interface"] .mark-bubble,
+      .page[data-variant="loneliness-conversation"] .mark-bubble {
         fill: #f7f0e4;
       }
 
@@ -1370,7 +1396,9 @@
       .hero-more-face-time .hero-inner,
       .hero-community-os .hero-inner,
       .hero-communication-technology .hero-inner,
-      .hero-human-time-data .hero-inner {
+      .hero-human-time-data .hero-inner,
+      .hero-loneliness-interface .hero-inner,
+      .hero-loneliness-conversation .hero-inner {
         max-width: 960px;
       }
 
@@ -1379,7 +1407,9 @@
       .hero-more-face-time h1,
       .hero-community-os h1,
       .hero-communication-technology h1,
-      .hero-human-time-data h1 {
+      .hero-human-time-data h1,
+      .hero-loneliness-interface h1,
+      .hero-loneliness-conversation h1 {
         max-width: 960px;
         color: #fff8ec;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -1423,6 +1453,22 @@
         text-shadow: 0 8px 34px rgba(0, 0, 0, 0.62);
       }
 
+      .hero-loneliness-interface h1,
+      .hero-loneliness-conversation h1 {
+        max-width: 1080px;
+        font-size: clamp(3.05rem, 5.55vw, 6.35rem);
+        line-height: 0.96;
+        text-shadow: 0 8px 38px rgba(0, 0, 0, 0.62);
+      }
+
+      .lonely-soft {
+        color: rgba(255, 248, 236, 0.78);
+      }
+
+      .lonely-gold {
+        color: #ffd66e;
+      }
+
       .interface-kicker {
         margin-bottom: 16px;
         color: #d8a84b;
@@ -1450,7 +1496,9 @@
       .hero-more-face-time .lede,
       .hero-community-os .lede,
       .hero-communication-technology .lede,
-      .hero-human-time-data .lede {
+      .hero-human-time-data .lede,
+      .hero-loneliness-interface .lede,
+      .hero-loneliness-conversation .lede {
         max-width: 760px;
         color: rgba(255, 248, 236, 0.9);
         font-size: clamp(1.22rem, 1.7vw, 1.48rem);
@@ -1463,7 +1511,9 @@
       .hero-through-each-other .contact,
       .hero-more-face-time .contact,
       .hero-community-os .contact,
-      .hero-communication-technology .contact {
+      .hero-communication-technology .contact,
+      .hero-loneliness-interface .contact,
+      .hero-loneliness-conversation .contact {
         max-width: 640px;
       }
 
@@ -1471,7 +1521,9 @@
       .hero-through-each-other .contact input[type="email"],
       .hero-more-face-time .contact input[type="email"],
       .hero-community-os .contact input[type="email"],
-      .hero-communication-technology .contact input[type="email"] {
+      .hero-communication-technology .contact input[type="email"],
+      .hero-loneliness-interface .contact input[type="email"],
+      .hero-loneliness-conversation .contact input[type="email"] {
         background: rgba(255, 248, 236, 0.95);
       }
 
@@ -1479,7 +1531,9 @@
       .hero-through-each-other .contact button,
       .hero-more-face-time .contact button,
       .hero-community-os .contact button,
-      .hero-communication-technology .contact button {
+      .hero-communication-technology .contact button,
+      .hero-loneliness-interface .contact button,
+      .hero-loneliness-conversation .contact button {
         background: #fff8ec;
         color: #090806;
       }
@@ -1488,7 +1542,9 @@
       .hero-through-each-other .status,
       .hero-more-face-time .status,
       .hero-community-os .status,
-      .hero-communication-technology .status {
+      .hero-communication-technology .status,
+      .hero-loneliness-interface .status,
+      .hero-loneliness-conversation .status {
         color: rgba(255, 248, 236, 0.72);
       }
 
@@ -1496,6 +1552,13 @@
         max-width: 720px;
         color: #ffd66e;
         font-size: clamp(1.32rem, 2vw, 1.78rem);
+      }
+
+      .hero-loneliness-interface .lede,
+      .hero-loneliness-conversation .lede {
+        max-width: 760px;
+        color: rgba(255, 248, 236, 0.86);
+        font-size: clamp(1.1rem, 1.42vw, 1.28rem);
       }
 
       .hero-community-os .lede {
@@ -2077,6 +2140,22 @@
           0 0 18px rgba(216, 168, 75, 0.56);
       }
 
+      .variant-dot:nth-child(27) {
+        --dot-age: 1;
+        background: #974f63;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(151, 79, 99, 0.54);
+      }
+
+      .variant-dot:nth-child(28) {
+        --dot-age: 1;
+        background: #ffd66e;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(255, 214, 110, 0.58);
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -2267,6 +2346,8 @@
         .hero-community-os h1,
         .hero-communication-technology h1,
         .hero-human-time-data h1,
+        .hero-loneliness-interface h1,
+        .hero-loneliness-conversation h1,
         .hero-missing-interface h1,
         .hero-less-computers h1,
         .hero-interface-shift h1,
@@ -2383,11 +2464,26 @@
         .page[data-variant="more-face-time"]::before,
         .page[data-variant="community-os"]::before,
         .page[data-variant="communication-technology"]::before,
-        .page[data-variant="human-time-data"]::before {
+        .page[data-variant="human-time-data"]::before,
+        .page[data-variant="loneliness-interface"]::before,
+        .page[data-variant="loneliness-conversation"]::before {
           background-image:
             linear-gradient(180deg, rgba(6, 5, 4, 0.74) 0%, rgba(6, 5, 4, 0.64) 48%, rgba(6, 5, 4, 0.58) 100%),
             var(--mobile-bg-image, url("./assets/hc-art-protect-community-20260703.png"));
           background-position: 63% center;
+        }
+
+        .page[data-variant="loneliness-interface"],
+        .page[data-variant="loneliness-conversation"] {
+          --mobile-bg-image: url("./assets/hc-art-protect-community-20260703.png");
+        }
+
+        .page[data-variant="loneliness-interface"]::before,
+        .page[data-variant="loneliness-conversation"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(7, 6, 5, 0.84) 0%, rgba(7, 6, 5, 0.72) 48%, rgba(7, 6, 5, 0.62) 100%),
+            var(--mobile-bg-image);
+          background-position: 64% center;
         }
 
         .page[data-variant="communication-technology"] {
@@ -2439,7 +2535,9 @@
         .page[data-variant="more-face-time"] main,
         .page[data-variant="community-os"] main,
         .page[data-variant="communication-technology"] main,
-        .page[data-variant="human-time-data"] main {
+        .page[data-variant="human-time-data"] main,
+        .page[data-variant="loneliness-interface"] main,
+        .page[data-variant="loneliness-conversation"] main {
           padding: 88px 16px 96px;
         }
 
@@ -2476,7 +2574,9 @@
         .hero-more-face-time h1,
         .hero-community-os h1,
         .hero-communication-technology h1,
-        .hero-human-time-data h1 {
+        .hero-human-time-data h1,
+        .hero-loneliness-interface h1,
+        .hero-loneliness-conversation h1 {
           max-width: min(100%, 350px);
           font-size: clamp(2.5rem, 10.6vw, 3.28rem);
           line-height: 0.98;
@@ -2498,7 +2598,9 @@
         .hero-more-face-time .lede,
         .hero-community-os .lede,
         .hero-communication-technology .lede,
-        .hero-human-time-data .lede {
+        .hero-human-time-data .lede,
+        .hero-loneliness-interface .lede,
+        .hero-loneliness-conversation .lede {
           width: 100%;
           max-width: min(100%, 350px);
           font-size: 1rem;
@@ -2510,7 +2612,9 @@
         .hero-more-face-time .contact,
         .hero-community-os .contact,
         .hero-communication-technology .contact,
-        .hero-human-time-data .contact {
+        .hero-human-time-data .contact,
+        .hero-loneliness-interface .contact,
+        .hero-loneliness-conversation .contact {
           max-width: min(100%, 350px);
         }
 
@@ -2650,6 +2754,8 @@
         .hero-more-face-time .lede,
         .hero-communication-technology .lede,
         .hero-human-time-data .lede,
+        .hero-loneliness-interface .lede,
+        .hero-loneliness-conversation .lede,
         .hero-interface-shift .lede,
         .hero-human-interface .lede,
         .hero-screen-release .lede,
@@ -2869,6 +2975,8 @@
         <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: operating system for real-world social communities"></button>
         <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: 99 percent of communication technology"></button>
         <button class="variant-dot" type="button" data-option="25" aria-label="Option 26: maximize human time and community data"></button>
+        <button class="variant-dot" type="button" data-option="26" aria-label="Option 27: loneliness technology got between us"></button>
+        <button class="variant-dot" type="button" data-option="27" aria-label="Option 28: loneliness human conversation disappeared"></button>
       </nav>
     </div>
 
@@ -3029,6 +3137,18 @@
           headlineLabel: "Maximize human time. That is where the community data lives.",
           headline: `<span>Maximize human time.</span><span>That is where the <span class="human-time-data-word">community data lives.</span></span>`,
           lede: `Every real conversation carries the signal: who feels connected, who is drifting, what matters, and what should happen next.`,
+        },
+        {
+          id: "loneliness-interface",
+          headlineLabel: "We are not lonely because we stopped communicating. We are lonely because technology got between us. The snapback is human conversation.",
+          headline: `<span class="lonely-soft">We are not lonely because we stopped communicating.</span><span>We are lonely because technology got between us.</span><span class="lonely-gold">The snapback is human conversation.</span>`,
+          lede: `Human conversation is where connection happens and data flows.`,
+        },
+        {
+          id: "loneliness-conversation",
+          headlineLabel: "We are not lonely because communication disappeared. We are lonely because human conversation disappeared. The snapback is human conversation.",
+          headline: `<span class="lonely-soft">We are not lonely because communication disappeared.</span><span>We are lonely because human conversation disappeared.</span><span class="lonely-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation helps real-world communities bring people back to each other.`,
         },
       ];
 

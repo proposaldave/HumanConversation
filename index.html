@@ -2382,6 +2382,23 @@
           0 0 0 7px rgba(255, 212, 71, 0.18);
       }
 
+      .variant-dot.variant-dot-green {
+        --dot-age: 1;
+        background: #48c774;
+        box-shadow:
+          inset 0 0 0 1px rgba(13, 84, 42, 0.2),
+          0 0 18px rgba(72, 199, 116, 0.58);
+      }
+
+      .variant-dot.variant-dot-green[aria-current="true"] {
+        background: #48c774;
+        box-shadow:
+          inset 0 0 0 1px rgba(13, 84, 42, 0.28),
+          0 0 0 4px rgba(22, 126, 62, 0.2),
+          0 0 0 7px rgba(72, 199, 116, 0.26),
+          0 0 22px rgba(72, 199, 116, 0.66);
+      }
+
       .variant-dot.variant-dot-black {
         background: #050505;
         box-shadow:
@@ -3231,7 +3248,7 @@
         <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: operating system for real-world social communities"></button>
         <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: 99 percent of communication technology"></button>
         <button class="variant-dot" type="button" data-option="25" aria-label="Option 26: maximize human time and community data"></button>
-        <button class="variant-dot" type="button" data-option="26" aria-label="Option 27: loneliness technology got between us"></button>
+        <button class="variant-dot variant-dot-green" type="button" data-option="26" aria-label="Option 27: loneliness technology got between us"></button>
         <button class="variant-dot" type="button" data-option="27" aria-label="Option 28: loneliness human conversation disappeared"></button>
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: what if technology got between us"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: interface got between us"></button>

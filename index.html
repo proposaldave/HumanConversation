@@ -246,7 +246,8 @@
       .page[data-variant="new-interface"],
       .page[data-variant="through-each-other"],
       .page[data-variant="more-face-time"],
-      .page[data-variant="community-os"] {
+      .page[data-variant="community-os"],
+      .page[data-variant="communication-technology"] {
         background: #090806;
       }
 
@@ -289,6 +290,17 @@
           url("./assets/hc-art-thousand-taps-20260701.png");
         background-position: center;
         background-size: cover;
+        opacity: 1;
+      }
+
+      .page[data-variant="communication-technology"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 7, 9, 0.96) 0%, rgba(7, 7, 7, 0.82) 34%, rgba(9, 8, 6, 0.38) 70%, rgba(9, 8, 6, 0.12) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.64), rgba(9, 8, 6, 0.04) 58%),
+          url("./assets/hc-art-thousand-taps-20260701.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.06) contrast(1.02) brightness(0.98);
         opacity: 1;
       }
 
@@ -338,7 +350,8 @@
       .page[data-variant="new-interface"]::after,
       .page[data-variant="through-each-other"]::after,
       .page[data-variant="more-face-time"]::after,
-      .page[data-variant="community-os"]::after {
+      .page[data-variant="community-os"]::after,
+      .page[data-variant="communication-technology"]::after {
         display: none;
       }
 
@@ -351,7 +364,8 @@
       .page[data-variant="new-interface"] .brand,
       .page[data-variant="through-each-other"] .brand,
       .page[data-variant="more-face-time"] .brand,
-      .page[data-variant="community-os"] .brand {
+      .page[data-variant="community-os"] .brand,
+      .page[data-variant="communication-technology"] .brand {
         color: #f7f0e4;
       }
 
@@ -364,7 +378,8 @@
       .page[data-variant="new-interface"] .header-email,
       .page[data-variant="through-each-other"] .header-email,
       .page[data-variant="more-face-time"] .header-email,
-      .page[data-variant="community-os"] .header-email {
+      .page[data-variant="community-os"] .header-email,
+      .page[data-variant="communication-technology"] .header-email {
         color: #d8a84b;
       }
 
@@ -377,7 +392,8 @@
       .page[data-variant="new-interface"] .mark-bubble,
       .page[data-variant="through-each-other"] .mark-bubble,
       .page[data-variant="more-face-time"] .mark-bubble,
-      .page[data-variant="community-os"] .mark-bubble {
+      .page[data-variant="community-os"] .mark-bubble,
+      .page[data-variant="communication-technology"] .mark-bubble {
         fill: #f7f0e4;
       }
 
@@ -1315,14 +1331,16 @@
       .hero-new-interface .hero-inner,
       .hero-through-each-other .hero-inner,
       .hero-more-face-time .hero-inner,
-      .hero-community-os .hero-inner {
+      .hero-community-os .hero-inner,
+      .hero-communication-technology .hero-inner {
         max-width: 960px;
       }
 
       .hero-new-interface h1,
       .hero-through-each-other h1,
       .hero-more-face-time h1,
-      .hero-community-os h1 {
+      .hero-community-os h1,
+      .hero-communication-technology h1 {
         max-width: 960px;
         color: #fff8ec;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -1351,6 +1369,13 @@
         text-shadow: 0 2px 0 rgba(255, 255, 255, 0.46);
       }
 
+      .hero-communication-technology h1 {
+        max-width: 840px;
+        font-size: clamp(3.15rem, 5.45vw, 6.15rem);
+        line-height: 0.98;
+        text-shadow: 0 8px 34px rgba(0, 0, 0, 0.62);
+      }
+
       .interface-kicker {
         margin-bottom: 16px;
         color: #d8a84b;
@@ -1372,7 +1397,8 @@
       .hero-new-interface .lede,
       .hero-through-each-other .lede,
       .hero-more-face-time .lede,
-      .hero-community-os .lede {
+      .hero-community-os .lede,
+      .hero-communication-technology .lede {
         max-width: 760px;
         color: rgba(255, 248, 236, 0.9);
         font-size: clamp(1.22rem, 1.7vw, 1.48rem);
@@ -1384,21 +1410,24 @@
       .hero-new-interface .contact,
       .hero-through-each-other .contact,
       .hero-more-face-time .contact,
-      .hero-community-os .contact {
+      .hero-community-os .contact,
+      .hero-communication-technology .contact {
         max-width: 640px;
       }
 
       .hero-new-interface .contact input[type="email"],
       .hero-through-each-other .contact input[type="email"],
       .hero-more-face-time .contact input[type="email"],
-      .hero-community-os .contact input[type="email"] {
+      .hero-community-os .contact input[type="email"],
+      .hero-communication-technology .contact input[type="email"] {
         background: rgba(255, 248, 236, 0.95);
       }
 
       .hero-new-interface .contact button,
       .hero-through-each-other .contact button,
       .hero-more-face-time .contact button,
-      .hero-community-os .contact button {
+      .hero-community-os .contact button,
+      .hero-communication-technology .contact button {
         background: #fff8ec;
         color: #090806;
       }
@@ -1406,8 +1435,15 @@
       .hero-new-interface .status,
       .hero-through-each-other .status,
       .hero-more-face-time .status,
-      .hero-community-os .status {
+      .hero-community-os .status,
+      .hero-communication-technology .status {
         color: rgba(255, 248, 236, 0.72);
+      }
+
+      .hero-communication-technology .lede {
+        max-width: 720px;
+        color: #ffd66e;
+        font-size: clamp(1.32rem, 2vw, 1.78rem);
       }
 
       .hero-community-os .lede {
@@ -1952,6 +1988,14 @@
           0 0 18px rgba(255, 214, 110, 0.58);
       }
 
+      .variant-dot:nth-child(25) {
+        --dot-age: 1;
+        background: #8eb8f4;
+        box-shadow:
+          inset 0 0 0 1px rgba(12, 42, 91, 0.18),
+          0 0 18px rgba(142, 184, 244, 0.56);
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -2140,6 +2184,7 @@
         .hero-through-each-other h1,
         .hero-more-face-time h1,
         .hero-community-os h1,
+        .hero-communication-technology h1,
         .hero-missing-interface h1,
         .hero-less-computers h1,
         .hero-interface-shift h1,
@@ -2254,11 +2299,23 @@
         .page[data-variant="new-interface"]::before,
         .page[data-variant="through-each-other"]::before,
         .page[data-variant="more-face-time"]::before,
-        .page[data-variant="community-os"]::before {
+        .page[data-variant="community-os"]::before,
+        .page[data-variant="communication-technology"]::before {
           background-image:
             linear-gradient(180deg, rgba(6, 5, 4, 0.74) 0%, rgba(6, 5, 4, 0.64) 48%, rgba(6, 5, 4, 0.58) 100%),
             var(--mobile-bg-image, url("./assets/hc-art-protect-community-20260703.png"));
           background-position: 63% center;
+        }
+
+        .page[data-variant="communication-technology"] {
+          --mobile-bg-image: url("./assets/hc-art-thousand-taps-20260701.png");
+        }
+
+        .page[data-variant="communication-technology"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(5, 7, 9, 0.86) 0%, rgba(7, 7, 7, 0.76) 46%, rgba(9, 8, 6, 0.62) 100%),
+            var(--mobile-bg-image);
+          background-position: 54% center;
         }
 
         .page[data-variant="community-os"] {
@@ -2285,7 +2342,8 @@
         .page[data-variant="new-interface"] main,
         .page[data-variant="through-each-other"] main,
         .page[data-variant="more-face-time"] main,
-        .page[data-variant="community-os"] main {
+        .page[data-variant="community-os"] main,
+        .page[data-variant="communication-technology"] main {
           padding: 88px 16px 96px;
         }
 
@@ -2320,7 +2378,8 @@
         .hero-new-interface h1,
         .hero-through-each-other h1,
         .hero-more-face-time h1,
-        .hero-community-os h1 {
+        .hero-community-os h1,
+        .hero-communication-technology h1 {
           max-width: min(100%, 350px);
           font-size: clamp(2.5rem, 10.6vw, 3.28rem);
           line-height: 0.98;
@@ -2340,7 +2399,8 @@
         .hero-new-interface .lede,
         .hero-through-each-other .lede,
         .hero-more-face-time .lede,
-        .hero-community-os .lede {
+        .hero-community-os .lede,
+        .hero-communication-technology .lede {
           width: 100%;
           max-width: min(100%, 350px);
           font-size: 1rem;
@@ -2350,7 +2410,8 @@
         .hero-new-interface .contact,
         .hero-through-each-other .contact,
         .hero-more-face-time .contact,
-        .hero-community-os .contact {
+        .hero-community-os .contact,
+        .hero-communication-technology .contact {
           max-width: min(100%, 350px);
         }
 
@@ -2488,6 +2549,7 @@
         .hero-new-interface .lede,
         .hero-through-each-other .lede,
         .hero-more-face-time .lede,
+        .hero-communication-technology .lede,
         .hero-interface-shift .lede,
         .hero-human-interface .lede,
         .hero-screen-release .lede,
@@ -2705,6 +2767,7 @@
         <button class="variant-dot" type="button" data-option="21" aria-label="Option 22: interface through each other"></button>
         <button class="variant-dot" type="button" data-option="22" aria-label="Option 23: more face time less screen time"></button>
         <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: operating system for real-world social communities"></button>
+        <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: 99 percent of communication technology"></button>
       </nav>
     </div>
 
@@ -2853,6 +2916,12 @@
           headlineLabel: "Human conversation is the operating system for real-world social communities.",
           headline: `<span>Human conversation is</span><span>the <span class="community-os-word">operating system</span></span><span>for real-world social communities.</span>`,
           lede: `Software can support it. The community runs on people talking, remembering, inviting, and coming back.`,
+        },
+        {
+          id: "communication-technology",
+          headlineLabel: "99% of communication technology takes us away from each other. Human conversation brings us back.",
+          headline: `<span>99% of communication technology</span><span>takes us away from each other.</span>`,
+          lede: `Human conversation brings us back.`,
         },
       ];
 

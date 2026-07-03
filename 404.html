@@ -248,7 +248,6 @@
       .page[data-variant="more-face-time"],
       .page[data-variant="community-os"],
       .page[data-variant="communication-technology"],
-      .page[data-variant="human-time-data"],
       .page[data-variant="loneliness-interface"],
       .page[data-variant="loneliness-conversation"],
       .page[data-variant^="next-interface-"],
@@ -389,22 +388,6 @@
         color: var(--hc-ink);
       }
 
-      .page[data-variant="human-time-data"] {
-        background: #f7efe0;
-        color: var(--hc-ink);
-      }
-
-      .page[data-variant="human-time-data"]::before {
-        background-image:
-          linear-gradient(90deg, rgba(247, 239, 224, 0.98) 0%, rgba(247, 239, 224, 0.94) 34%, rgba(247, 239, 224, 0.48) 63%, rgba(247, 239, 224, 0.1) 100%),
-          linear-gradient(0deg, rgba(247, 239, 224, 0.18), rgba(247, 239, 224, 0.02) 58%),
-          url("./assets/hc-art-protect-community-20260703.png");
-        background-position: 62% center;
-        background-size: cover;
-        filter: saturate(1.08) contrast(1.01) brightness(1.08);
-        opacity: 1;
-      }
-
       .page[data-variant^="next-interface-"]::before {
         background-position: center;
         background-size: cover;
@@ -446,7 +429,6 @@
       .page[data-variant="more-face-time"]::after,
       .page[data-variant="community-os"]::after,
       .page[data-variant="communication-technology"]::after,
-      .page[data-variant="human-time-data"]::after,
       .page[data-variant="loneliness-interface"]::after,
       .page[data-variant="loneliness-conversation"]::after,
       .page[data-variant^="next-interface-"]::after,
@@ -526,25 +508,6 @@
       }
 
       .page[data-variant="community-os"] .mark-heart {
-        fill: var(--hc-accent);
-        stroke: #f7efe0;
-      }
-
-      .page[data-variant="human-time-data"] .brand {
-        color: var(--hc-ink);
-      }
-
-      .page[data-variant="human-time-data"] .header-email {
-        border-color: rgba(151, 79, 99, 0.2);
-        background: rgba(247, 239, 224, 0.82);
-        color: #7a5630;
-      }
-
-      .page[data-variant="human-time-data"] .mark-bubble {
-        fill: var(--hc-ink);
-      }
-
-      .page[data-variant="human-time-data"] .mark-heart {
         fill: var(--hc-accent);
         stroke: #f7efe0;
       }
@@ -1468,7 +1431,6 @@
       .hero-more-face-time .hero-inner,
       .hero-community-os .hero-inner,
       .hero-communication-technology .hero-inner,
-      .hero-human-time-data .hero-inner,
       .hero-loneliness-interface .hero-inner,
       .hero-loneliness-conversation .hero-inner,
       .hero[class*="hero-next-interface-"] .hero-inner {
@@ -1480,7 +1442,6 @@
       .hero-more-face-time h1,
       .hero-community-os h1,
       .hero-communication-technology h1,
-      .hero-human-time-data h1,
       .hero-loneliness-interface h1,
       .hero-loneliness-conversation h1,
       .hero[class*="hero-next-interface-"] h1 {
@@ -1510,14 +1471,6 @@
         font-size: clamp(3.25rem, 5.85vw, 6.65rem);
         line-height: 0.95;
         text-shadow: 0 2px 0 rgba(255, 255, 255, 0.46);
-      }
-
-      .hero-human-time-data h1 {
-        max-width: 1040px;
-        color: var(--hc-ink);
-        font-size: clamp(3.25rem, 5.9vw, 6.7rem);
-        line-height: 0.95;
-        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.48);
       }
 
       .hero-communication-technology h1 {
@@ -1594,16 +1547,11 @@
         color: #a66a22;
       }
 
-      .human-time-data-word {
-        color: #a66a22;
-      }
-
       .hero-new-interface .lede,
       .hero-through-each-other .lede,
       .hero-more-face-time .lede,
       .hero-community-os .lede,
       .hero-communication-technology .lede,
-      .hero-human-time-data .lede,
       .hero-loneliness-interface .lede,
       .hero-loneliness-conversation .lede,
       .hero[class*="hero-next-interface-"] .lede {
@@ -1762,12 +1710,6 @@
         text-shadow: none;
       }
 
-      .hero-human-time-data .lede {
-        max-width: 780px;
-        color: rgba(26, 22, 18, 0.82);
-        text-shadow: none;
-      }
-
       .hero-community-os .contact input[type="email"] {
         border-color: rgba(151, 79, 99, 0.22);
         background: rgba(255, 252, 246, 0.94);
@@ -1780,21 +1722,6 @@
       }
 
       .hero-community-os .status {
-        color: rgba(26, 22, 18, 0.62);
-      }
-
-      .hero-human-time-data .contact input[type="email"] {
-        border-color: rgba(151, 79, 99, 0.22);
-        background: rgba(255, 252, 246, 0.94);
-        color: var(--hc-ink);
-      }
-
-      .hero-human-time-data .contact button {
-        background: #974f63;
-        color: #fff8ec;
-      }
-
-      .hero-human-time-data .status {
         color: rgba(26, 22, 18, 0.62);
       }
 
@@ -2608,7 +2535,6 @@
         .hero-more-face-time h1,
         .hero-community-os h1,
         .hero-communication-technology h1,
-        .hero-human-time-data h1,
         .hero-loneliness-interface h1,
         .hero-loneliness-conversation h1,
         .hero-missing-interface h1,
@@ -2749,7 +2675,6 @@
         .page[data-variant="more-face-time"]::before,
         .page[data-variant="community-os"]::before,
         .page[data-variant="communication-technology"]::before,
-        .page[data-variant="human-time-data"]::before,
         .page[data-variant="loneliness-interface"]::before,
         .page[data-variant="loneliness-conversation"]::before {
           background-image:
@@ -2794,18 +2719,6 @@
           filter: saturate(1.06) contrast(1.01) brightness(1.08);
         }
 
-        .page[data-variant="human-time-data"] {
-          --mobile-bg-image: url("./assets/hc-art-protect-community-20260703.png");
-        }
-
-        .page[data-variant="human-time-data"]::before {
-          background-image:
-            linear-gradient(180deg, rgba(247, 239, 224, 0.96) 0%, rgba(247, 239, 224, 0.9) 46%, rgba(247, 239, 224, 0.76) 100%),
-            var(--mobile-bg-image);
-          background-position: 65% center;
-          filter: saturate(1.06) contrast(1.01) brightness(1.08);
-        }
-
         .page[data-variant="thousand-taps-premium"] main {
           width: calc(100% - 32px);
           padding: 76px 0 88px;
@@ -2820,7 +2733,6 @@
         .page[data-variant="more-face-time"] main,
         .page[data-variant="community-os"] main,
         .page[data-variant="communication-technology"] main,
-        .page[data-variant="human-time-data"] main,
         .page[data-variant="loneliness-interface"] main,
         .page[data-variant="loneliness-conversation"] main {
           padding: 88px 16px 96px;
@@ -2859,7 +2771,6 @@
         .hero-more-face-time h1,
         .hero-community-os h1,
         .hero-communication-technology h1,
-        .hero-human-time-data h1,
         .hero-loneliness-interface h1,
         .hero-loneliness-conversation h1 {
           max-width: min(100%, 350px);
@@ -2883,7 +2794,6 @@
         .hero-more-face-time .lede,
         .hero-community-os .lede,
         .hero-communication-technology .lede,
-        .hero-human-time-data .lede,
         .hero-loneliness-interface .lede,
         .hero-loneliness-conversation .lede {
           width: 100%;
@@ -2897,7 +2807,6 @@
         .hero-more-face-time .contact,
         .hero-community-os .contact,
         .hero-communication-technology .contact,
-        .hero-human-time-data .contact,
         .hero-loneliness-interface .contact,
         .hero-loneliness-conversation .contact {
           max-width: min(100%, 350px);
@@ -3032,7 +2941,6 @@
         .hero-through-each-other .lede,
         .hero-more-face-time .lede,
         .hero-communication-technology .lede,
-        .hero-human-time-data .lede,
         .hero-loneliness-interface .lede,
         .hero-loneliness-conversation .lede,
         .hero-interface-shift .lede,
@@ -3253,19 +3161,18 @@
         <button class="variant-dot" type="button" data-option="22" aria-label="Option 23: more face time less screen time"></button>
         <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: operating system for real-world social communities"></button>
         <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: 99 percent of communication technology"></button>
-        <button class="variant-dot" type="button" data-option="25" aria-label="Option 26: maximize human time and community data"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="26" aria-label="Option 27: loneliness technology got between us"></button>
-        <button class="variant-dot" type="button" data-option="27" aria-label="Option 28: loneliness human conversation disappeared"></button>
-        <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: what if technology got between us"></button>
-        <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: interface got between us"></button>
-        <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: screens replaced rooms"></button>
-        <button class="variant-dot" type="button" data-option="31" aria-label="Option 32: not another feed"></button>
-        <button class="variant-dot" type="button" data-option="32" aria-label="Option 33: machine middle"></button>
-        <button class="variant-dot" type="button" data-option="33" aria-label="Option 34: product clarity"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="34" aria-label="Option 35: minimal snapback"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="35" aria-label="Option 36: next interface threshold"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="36" aria-label="Option 37: next interface atrium"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="37" aria-label="Option 38: next interface club"></button>
+        <button class="variant-dot variant-dot-green" type="button" data-option="25" aria-label="Option 26: loneliness technology got between us"></button>
+        <button class="variant-dot" type="button" data-option="26" aria-label="Option 27: loneliness human conversation disappeared"></button>
+        <button class="variant-dot" type="button" data-option="27" aria-label="Option 28: what if technology got between us"></button>
+        <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: interface got between us"></button>
+        <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: screens replaced rooms"></button>
+        <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: not another feed"></button>
+        <button class="variant-dot" type="button" data-option="31" aria-label="Option 32: machine middle"></button>
+        <button class="variant-dot" type="button" data-option="32" aria-label="Option 33: product clarity"></button>
+        <button class="variant-dot variant-dot-green" type="button" data-option="33" aria-label="Option 34: minimal snapback"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="34" aria-label="Option 35: next interface threshold"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="35" aria-label="Option 36: next interface atrium"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="36" aria-label="Option 37: next interface club"></button>
       </nav>
     </div>
 
@@ -3420,12 +3327,6 @@
           headlineLabel: "99% of communication technology takes us away from each other. Human conversation brings us back.",
           headline: `<span>99% of communication technology</span><span>takes us away from each other.</span>`,
           lede: `Human conversation brings us back.`,
-        },
-        {
-          id: "human-time-data",
-          headlineLabel: "Maximize human time. That is where the community data lives.",
-          headline: `<span>Maximize human time.</span><span>That is where the <span class="human-time-data-word">community data lives.</span></span>`,
-          lede: `Every real conversation carries the signal: who feels connected, who is drifting, what matters, and what should happen next.`,
         },
         {
           id: "loneliness-interface",

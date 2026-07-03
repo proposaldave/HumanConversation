@@ -250,7 +250,8 @@
       .page[data-variant="communication-technology"],
       .page[data-variant="human-time-data"],
       .page[data-variant="loneliness-interface"],
-      .page[data-variant="loneliness-conversation"] {
+      .page[data-variant="loneliness-conversation"],
+      .page[data-variant^="snapback-"] {
         background: #090806;
       }
 
@@ -323,6 +324,37 @@
         background-position: 68% center;
       }
 
+      .page[data-variant^="snapback-"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(7, 6, 5, 0.94) 0%, rgba(8, 7, 6, 0.76) 38%, rgba(9, 8, 6, 0.32) 70%, rgba(9, 8, 6, 0.08) 100%),
+          linear-gradient(0deg, rgba(7, 6, 5, 0.58), rgba(7, 6, 5, 0.04) 58%),
+          url("./assets/hc-art-protect-community-20260703.png");
+        background-position: 64% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.02) brightness(1.04);
+        opacity: 1;
+      }
+
+      .page[data-variant="snapback-screen-room"]::before,
+      .page[data-variant="snapback-feed-room"]::before,
+      .page[data-variant="snapback-not-feed"]::before,
+      .page[data-variant="snapback-ai-routes-back"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 7, 9, 0.96) 0%, rgba(7, 7, 7, 0.82) 34%, rgba(9, 8, 6, 0.38) 70%, rgba(9, 8, 6, 0.12) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.64), rgba(9, 8, 6, 0.04) 58%),
+          url("./assets/hc-art-thousand-taps-20260701.png");
+      }
+
+      .page[data-variant="snapback-pro-computer"]::before,
+      .page[data-variant="snapback-product-clarity"]::before,
+      .page[data-variant="snapback-real-world-community"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(247, 239, 224, 0.98) 0%, rgba(247, 239, 224, 0.92) 38%, rgba(247, 239, 224, 0.48) 68%, rgba(247, 239, 224, 0.1) 100%),
+          linear-gradient(0deg, rgba(247, 239, 224, 0.18), rgba(247, 239, 224, 0.02) 58%),
+          url("./assets/hc-art-operating-system-community-20260703.png");
+        filter: saturate(1.08) contrast(1.01) brightness(1.1);
+      }
+
       .page[data-variant="new-interface"]::before,
       .page[data-variant="through-each-other"]::before,
       .page[data-variant="more-face-time"]::before {
@@ -389,7 +421,8 @@
       .page[data-variant="communication-technology"]::after,
       .page[data-variant="human-time-data"]::after,
       .page[data-variant="loneliness-interface"]::after,
-      .page[data-variant="loneliness-conversation"]::after {
+      .page[data-variant="loneliness-conversation"]::after,
+      .page[data-variant^="snapback-"]::after {
         display: none;
       }
 
@@ -405,7 +438,8 @@
       .page[data-variant="community-os"] .brand,
       .page[data-variant="communication-technology"] .brand,
       .page[data-variant="loneliness-interface"] .brand,
-      .page[data-variant="loneliness-conversation"] .brand {
+      .page[data-variant="loneliness-conversation"] .brand,
+      .page[data-variant^="snapback-"] .brand {
         color: #f7f0e4;
       }
 
@@ -421,7 +455,8 @@
       .page[data-variant="community-os"] .header-email,
       .page[data-variant="communication-technology"] .header-email,
       .page[data-variant="loneliness-interface"] .header-email,
-      .page[data-variant="loneliness-conversation"] .header-email {
+      .page[data-variant="loneliness-conversation"] .header-email,
+      .page[data-variant^="snapback-"] .header-email {
         color: #d8a84b;
       }
 
@@ -437,21 +472,31 @@
       .page[data-variant="community-os"] .mark-bubble,
       .page[data-variant="communication-technology"] .mark-bubble,
       .page[data-variant="loneliness-interface"] .mark-bubble,
-      .page[data-variant="loneliness-conversation"] .mark-bubble {
+      .page[data-variant="loneliness-conversation"] .mark-bubble,
+      .page[data-variant^="snapback-"] .mark-bubble {
         fill: #f7f0e4;
       }
 
-      .page[data-variant="community-os"] .brand {
+      .page[data-variant="community-os"] .brand,
+      .page[data-variant="snapback-pro-computer"] .brand,
+      .page[data-variant="snapback-product-clarity"] .brand,
+      .page[data-variant="snapback-real-world-community"] .brand {
         color: var(--hc-ink);
       }
 
-      .page[data-variant="community-os"] .header-email {
+      .page[data-variant="community-os"] .header-email,
+      .page[data-variant="snapback-pro-computer"] .header-email,
+      .page[data-variant="snapback-product-clarity"] .header-email,
+      .page[data-variant="snapback-real-world-community"] .header-email {
         border-color: rgba(151, 79, 99, 0.2);
         background: rgba(247, 239, 224, 0.82);
         color: #7a5630;
       }
 
-      .page[data-variant="community-os"] .mark-bubble {
+      .page[data-variant="community-os"] .mark-bubble,
+      .page[data-variant="snapback-pro-computer"] .mark-bubble,
+      .page[data-variant="snapback-product-clarity"] .mark-bubble,
+      .page[data-variant="snapback-real-world-community"] .mark-bubble {
         fill: var(--hc-ink);
       }
 
@@ -1561,6 +1606,103 @@
         font-size: clamp(1.1rem, 1.42vw, 1.28rem);
       }
 
+      .hero[class*="hero-snapback-"] .hero-inner {
+        max-width: 1010px;
+      }
+
+      .hero[class*="hero-snapback-"] h1 {
+        max-width: 1030px;
+        color: #fff8ec;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 5.65rem;
+        font-weight: 900;
+        line-height: 0.94;
+        text-wrap: balance;
+        text-shadow: 0 8px 38px rgba(0, 0, 0, 0.62);
+      }
+
+      .hero-snapback-not-feed h1,
+      .hero-snapback-two-step h1 {
+        max-width: 920px;
+        font-size: 5.1rem;
+        line-height: 0.98;
+      }
+
+      .hero-snapback-human-interface h1 {
+        max-width: 1040px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 6.4rem;
+        font-weight: 650;
+        line-height: 0.9;
+      }
+
+      .hero-snapback-pro-computer h1,
+      .hero-snapback-product-clarity h1,
+      .hero-snapback-real-world-community h1 {
+        color: var(--hc-ink);
+        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.44);
+      }
+
+      .snapback-soft {
+        color: rgba(255, 248, 236, 0.76);
+      }
+
+      .snapback-gold {
+        color: #ffd66e;
+      }
+
+      .snapback-serif {
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .snapback-kicker {
+        margin-bottom: 18px;
+        color: #d8a84b;
+        font-size: 0.18em;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .hero[class*="hero-snapback-"] .lede {
+        max-width: 760px;
+        color: rgba(255, 248, 236, 0.88);
+        font-size: 1.28rem;
+        font-weight: 850;
+        line-height: 1.38;
+        text-shadow: 0 4px 22px rgba(0, 0, 0, 0.56);
+      }
+
+      .hero-snapback-pro-computer .lede,
+      .hero-snapback-product-clarity .lede,
+      .hero-snapback-real-world-community .lede {
+        color: rgba(26, 22, 18, 0.8);
+        text-shadow: none;
+      }
+
+      .hero-snapback-pro-computer .contact input[type="email"],
+      .hero-snapback-product-clarity .contact input[type="email"],
+      .hero-snapback-real-world-community .contact input[type="email"] {
+        border-color: rgba(151, 79, 99, 0.22);
+        background: rgba(255, 252, 246, 0.94);
+        color: var(--hc-ink);
+      }
+
+      .hero-snapback-pro-computer .contact button,
+      .hero-snapback-product-clarity .contact button,
+      .hero-snapback-real-world-community .contact button {
+        background: #974f63;
+        color: #fff8ec;
+      }
+
+      .hero-snapback-pro-computer .status,
+      .hero-snapback-product-clarity .status,
+      .hero-snapback-real-world-community .status {
+        color: rgba(26, 22, 18, 0.62);
+      }
+
       .hero-community-os .lede {
         color: rgba(26, 22, 18, 0.8);
         text-shadow: none;
@@ -1963,7 +2105,10 @@
         bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
         z-index: 5;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         gap: 9px;
+        max-width: min(88vw, 620px);
         opacity: 0;
         pointer-events: none;
         padding: 9px;
@@ -2154,6 +2299,28 @@
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.16),
           0 0 18px rgba(255, 214, 110, 0.58);
+      }
+
+      .variant-dot:nth-child(n + 29) {
+        --dot-age: 1;
+        background: #d8a84b;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(216, 168, 75, 0.44);
+      }
+
+      .variant-dot:nth-child(3n + 29) {
+        background: #974f63;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(151, 79, 99, 0.44);
+      }
+
+      .variant-dot:nth-child(4n + 29) {
+        background: #fff2a6;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(255, 226, 104, 0.48);
       }
 
       .variant-dot[aria-current="true"] {
@@ -2355,7 +2522,8 @@
         .hero-screen-release h1,
         .hero-connection-data h1,
         .hero-one-app-shift h1,
-        .hero-conditions h1 {
+        .hero-conditions h1,
+        .hero[class*="hero-snapback-"] h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
           line-height: 1.02;
@@ -2366,7 +2534,8 @@
         .hero-screen-release,
         .hero-connection-data,
         .hero-one-app-shift,
-        .hero-conditions {
+        .hero-conditions,
+        .hero[class*="hero-snapback-"] {
           min-height: auto;
           padding: 16px 0 70px;
         }
@@ -2376,12 +2545,20 @@
         .hero-screen-release h1,
         .hero-connection-data h1,
         .hero-one-app-shift h1,
-        .hero-conditions h1 {
+        .hero-conditions h1,
+        .hero[class*="hero-snapback-"] h1 {
           font-size: clamp(2.28rem, 10.1vw, 3.05rem);
           line-height: 0.98;
           letter-spacing: 0;
           overflow-wrap: normal;
           text-wrap: balance;
+        }
+
+        .hero-snapback-not-feed h1,
+        .hero-snapback-two-step h1,
+        .hero-snapback-real-world-community h1 {
+          font-size: clamp(2.05rem, 9.4vw, 2.75rem);
+          line-height: 1.02;
         }
 
         .conditions-label {
@@ -2977,6 +3154,26 @@
         <button class="variant-dot" type="button" data-option="25" aria-label="Option 26: maximize human time and community data"></button>
         <button class="variant-dot" type="button" data-option="26" aria-label="Option 27: loneliness technology got between us"></button>
         <button class="variant-dot" type="button" data-option="27" aria-label="Option 28: loneliness human conversation disappeared"></button>
+        <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: what if technology got between us"></button>
+        <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: what if interface between us"></button>
+        <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: communication did not disappear"></button>
+        <button class="variant-dot" type="button" data-option="31" aria-label="Option 32: interface got between us"></button>
+        <button class="variant-dot" type="button" data-option="32" aria-label="Option 33: technology stood in"></button>
+        <button class="variant-dot" type="button" data-option="33" aria-label="Option 34: screens replaced rooms"></button>
+        <button class="variant-dot" type="button" data-option="34" aria-label="Option 35: next interface person"></button>
+        <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: pro computer room"></button>
+        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: screen became room"></button>
+        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: constant communication rare together"></button>
+        <button class="variant-dot" type="button" data-option="38" aria-label="Option 39: not another feed"></button>
+        <button class="variant-dot" type="button" data-option="39" aria-label="Option 40: AI routes back"></button>
+        <button class="variant-dot" type="button" data-option="40" aria-label="Option 41: real-world community snapback"></button>
+        <button class="variant-dot" type="button" data-option="41" aria-label="Option 42: human interface"></button>
+        <button class="variant-dot" type="button" data-option="42" aria-label="Option 43: two-step snapback"></button>
+        <button class="variant-dot" type="button" data-option="43" aria-label="Option 44: machine middle"></button>
+        <button class="variant-dot" type="button" data-option="44" aria-label="Option 45: available everywhere present nowhere"></button>
+        <button class="variant-dot" type="button" data-option="45" aria-label="Option 46: feed to room"></button>
+        <button class="variant-dot" type="button" data-option="46" aria-label="Option 47: product clarity"></button>
+        <button class="variant-dot" type="button" data-option="47" aria-label="Option 48: minimal snapback"></button>
       </nav>
     </div>
 
@@ -3150,6 +3347,126 @@
           headline: `<span class="lonely-soft">We are not lonely because communication disappeared.</span><span>We are lonely because human conversation disappeared.</span><span class="lonely-gold">The snapback is human conversation.</span>`,
           lede: `Human Conversation helps real-world communities bring people back to each other.`,
         },
+        {
+          id: "snapback-what-if-tech-between-us",
+          headlineLabel: "What if this is true? We are not lonely because we stopped communicating. We are lonely because technology got between us. The snapback is human conversation.",
+          headline: `<span class="snapback-kicker">What if this is true?</span><span class="snapback-soft">We are not lonely because we stopped communicating.</span><span>We are lonely because technology got between us.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Technology should route people back into the right room, with the right people, for the right conversation.`,
+        },
+        {
+          id: "snapback-interface-between-us",
+          headlineLabel: "What if this is true? We did not stop communicating. We put an interface between us. The snapback is human conversation.",
+          headline: `<span class="snapback-kicker">What if this is true?</span><span class="snapback-soft">We did not stop communicating.</span><span>We put an interface between us.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation helps real-world communities know when the next move should be a real conversation.`,
+        },
+        {
+          id: "snapback-communication-didnt-disappear",
+          headlineLabel: "Communication did not disappear. Human conversation did. The snapback is human conversation.",
+          headline: `<span>Communication did not disappear.</span><span class="snapback-soft">Human conversation did.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `The interface got louder. The room got quieter. Human Conversation helps bring the room back.`,
+        },
+        {
+          id: "snapback-interface-got-between-us",
+          headlineLabel: "We are not lonely because we stopped communicating. We are lonely because the interface got between us. The snapback is human conversation.",
+          headline: `<span class="snapback-soft">We are not lonely because we stopped communicating.</span><span>We are lonely because the interface got between us.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Computers are powerful. They should not be the default path for feeling known.`,
+        },
+        {
+          id: "snapback-technology-stood-in",
+          headlineLabel: "We did not stop needing each other. Technology stood in for being together. The snapback is human conversation.",
+          headline: `<span class="snapback-soft">We did not stop needing each other.</span><span>Technology stood in for being together.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Less screen-managing. More real moments with the people who should be in the room.`,
+        },
+        {
+          id: "snapback-screen-room",
+          headlineLabel: "Screens replaced rooms. Messages replaced moments. The snapback is human conversation.",
+          headline: `<span>Screens replaced rooms.</span><span class="snapback-soft">Messages replaced moments.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation helps communities turn signals into invitations, follow-ups, and the next real-world connection.`,
+        },
+        {
+          id: "snapback-next-interface-person",
+          headlineLabel: "The last interface was the screen. The next interface is the person in front of you.",
+          headline: `<span class="snapback-soft">The last interface was the screen.</span><span>The next interface is the person in front of you.</span>`,
+          lede: `AI should do the computer work in the background so people can meet, talk, remember, and come back.`,
+        },
+        {
+          id: "snapback-pro-computer",
+          headlineLabel: "Computers are incredible. But they were never meant to be the room. The snapback is human conversation.",
+          headline: `<span>Computers are incredible.</span><span class="snapback-serif">But they were never meant to be the room.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation uses technology to support the room, not replace it.`,
+        },
+        {
+          id: "snapback-screen-became-room",
+          headlineLabel: "The screen became the room. Now the room comes back. Human conversation is the interface.",
+          headline: `<span class="snapback-soft">The screen became the room.</span><span>Now the room comes back.</span><span class="snapback-gold">Human conversation is the interface.</span>`,
+          lede: `The best technology knows when to step back and help the right people talk in real life.`,
+        },
+        {
+          id: "snapback-constant-communication",
+          headlineLabel: "Technology made communication constant. It made being together rare. The snapback is human conversation.",
+          headline: `<span>Technology made communication constant.</span><span class="snapback-soft">It made being together rare.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation helps communities turn constant contact into the next real moment that matters.`,
+        },
+        {
+          id: "snapback-not-feed",
+          headlineLabel: "The world does not need another feed. It needs the right people in the right room having the right conversation.",
+          headline: `<span>The world does not need another feed.</span><span class="snapback-soft">It needs the right people</span><span>in the right room</span><span>having the right conversation.</span>`,
+          lede: `The next social layer is not more scrolling. It is better real-world conversation.`,
+        },
+        {
+          id: "snapback-ai-routes-back",
+          headlineLabel: "AI should not trap people in chat. It should route people back into human conversation.",
+          headline: `<span>AI should not trap people in chat.</span><span class="snapback-gold">It should route people back into human conversation.</span>`,
+          lede: `Less clicking. Less sorting. Less scheduling. More live conversation with the right people.`,
+        },
+        {
+          id: "snapback-real-world-community",
+          headlineLabel: "Loneliness becomes solvable in the real world. Someone is invited, welcomed, remembered, followed up with, or they disappear.",
+          headline: `<span>Loneliness becomes solvable in the real world.</span><span class="snapback-serif">Someone is invited, welcomed, remembered, followed up with - or they disappear.</span>`,
+          lede: `When technology stands in for being together, communities need a way back to the room. Human Conversation helps make the next right connection.`,
+        },
+        {
+          id: "snapback-human-interface",
+          headlineLabel: "The timeless interface for human connection is not a screen. It is human conversation.",
+          headline: `<span>The timeless interface for human connection</span><span class="snapback-soft">is not a screen.</span><span class="snapback-gold">It is human conversation.</span>`,
+          lede: `Technology can support the signal. The relationship still happens person to person.`,
+        },
+        {
+          id: "snapback-two-step",
+          headlineLabel: "We did not stop communicating. The interface got between us. We did not stop needing each other. Technology stood in for being together. The snapback is human conversation.",
+          headline: `<span class="snapback-soft">We did not stop communicating.</span><span>The interface got between us.</span><span class="snapback-soft">We did not stop needing each other.</span><span>Technology stood in for being together.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation helps real-world communities bring people back to each other.`,
+        },
+        {
+          id: "snapback-machine-middle",
+          headlineLabel: "We built machines to connect us. Then the machines got between us. The snapback is human conversation.",
+          headline: `<span class="snapback-soft">We built machines to connect us.</span><span>Then the machines got between us.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `The point is not less technology. The point is technology that knows when the next interface should be human.`,
+        },
+        {
+          id: "snapback-presence",
+          headlineLabel: "We became available everywhere. And present almost nowhere. The snapback is human conversation.",
+          headline: `<span>We became available everywhere.</span><span class="snapback-soft">And present almost nowhere.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `Human Conversation helps communities notice who needs attention before they drift.`,
+        },
+        {
+          id: "snapback-feed-room",
+          headlineLabel: "The last era pulled us into feeds. The next one routes us back into rooms. The snapback is human conversation.",
+          headline: `<span class="snapback-soft">The last era pulled us into feeds.</span><span>The next one routes us back into rooms.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
+          lede: `AI should help people leave the screen at the right moment and come back to each other.`,
+        },
+        {
+          id: "snapback-product-clarity",
+          headlineLabel: "Know who needs attention. Know what to ask. Know what should happen next.",
+          headline: `<span>Know who needs attention.</span><span>Know what to ask.</span><span>Know what should happen next.</span>`,
+          lede: `When the next interface should be human, Human Conversation turns real conversations into the next right connection.`,
+        },
+        {
+          id: "snapback-minimal",
+          headlineLabel: "Technology got between us. Human conversation brings us back.",
+          headline: `<span>Technology got between us.</span><span class="snapback-gold">Human conversation brings us back.</span>`,
+          lede: `The snapback is human conversation.`,
+        },
       ];
 
       const page = document.querySelector(".page");
@@ -3223,8 +3540,11 @@
         }
       }
 
-      const requestedOption = Number.parseInt(new URLSearchParams(window.location.search).get("option") || "", 10);
-      setVariant(Number.isInteger(requestedOption) ? requestedOption - 1 : 0);
+      const params = new URLSearchParams(window.location.search);
+      const requestedVariant = params.get("variant") || "";
+      const requestedVariantIndex = variants.findIndex((variant) => variant.id === requestedVariant);
+      const requestedOption = Number.parseInt(params.get("option") || "", 10);
+      setVariant(requestedVariantIndex >= 0 ? requestedVariantIndex : Number.isInteger(requestedOption) ? requestedOption - 1 : 0);
 
       dots.forEach((dot) => {
         dot.addEventListener("click", () => {

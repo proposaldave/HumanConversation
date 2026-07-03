@@ -242,7 +242,12 @@
       .page[data-variant="protect"],
       .page[data-variant="timeless-interface"],
       .page[data-variant="thousand-taps"],
-      .page[data-variant="thousand-taps-premium"] {
+      .page[data-variant="thousand-taps-premium"],
+      .page[data-variant="new-interface"],
+      .page[data-variant="through-each-other"],
+      .page[data-variant="more-face-time"],
+      .page[data-variant="community-os"],
+      .page[data-variant="communication-technology"] {
         background: #090806;
       }
 
@@ -288,12 +293,65 @@
         opacity: 1;
       }
 
+      .page[data-variant="communication-technology"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 7, 9, 0.96) 0%, rgba(7, 7, 7, 0.82) 34%, rgba(9, 8, 6, 0.38) 70%, rgba(9, 8, 6, 0.12) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.64), rgba(9, 8, 6, 0.04) 58%),
+          url("./assets/hc-art-thousand-taps-20260701.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.06) contrast(1.02) brightness(0.98);
+        opacity: 1;
+      }
+
+      .page[data-variant="new-interface"]::before,
+      .page[data-variant="through-each-other"]::before,
+      .page[data-variant="more-face-time"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(6, 5, 4, 0.93) 0%, rgba(7, 6, 5, 0.74) 36%, rgba(8, 7, 5, 0.34) 70%, rgba(8, 7, 5, 0.08) 100%),
+          linear-gradient(0deg, rgba(6, 5, 4, 0.6), rgba(6, 5, 4, 0.06) 58%),
+          url("./assets/hc-art-protect-community-20260703.png");
+        background-position: 58% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.02) brightness(1.02);
+        opacity: 1;
+      }
+
+      .page[data-variant="through-each-other"]::before {
+        background-position: 62% center;
+      }
+
+      .page[data-variant="more-face-time"]::before {
+        background-position: 68% center;
+      }
+
+      .page[data-variant="community-os"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(247, 239, 224, 0.98) 0%, rgba(247, 239, 224, 0.94) 34%, rgba(247, 239, 224, 0.44) 62%, rgba(247, 239, 224, 0.08) 100%),
+          linear-gradient(0deg, rgba(247, 239, 224, 0.16), rgba(247, 239, 224, 0.02) 58%),
+          url("./assets/hc-art-operating-system-community-20260703.png");
+        background-position: 60% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.01) brightness(1.1);
+        opacity: 1;
+      }
+
+      .page[data-variant="community-os"] {
+        background: #f7efe0;
+        color: var(--hc-ink);
+      }
+
       .page[data-variant="breathfield"]::after,
       .page[data-variant="peoplepanel"]::after,
       .page[data-variant="protect"]::after,
       .page[data-variant="timeless-interface"]::after,
       .page[data-variant="thousand-taps"]::after,
-      .page[data-variant="thousand-taps-premium"]::after {
+      .page[data-variant="thousand-taps-premium"]::after,
+      .page[data-variant="new-interface"]::after,
+      .page[data-variant="through-each-other"]::after,
+      .page[data-variant="more-face-time"]::after,
+      .page[data-variant="community-os"]::after,
+      .page[data-variant="communication-technology"]::after {
         display: none;
       }
 
@@ -302,7 +360,12 @@
       .page[data-variant="protect"] .brand,
       .page[data-variant="timeless-interface"] .brand,
       .page[data-variant="thousand-taps"] .brand,
-      .page[data-variant="thousand-taps-premium"] .brand {
+      .page[data-variant="thousand-taps-premium"] .brand,
+      .page[data-variant="new-interface"] .brand,
+      .page[data-variant="through-each-other"] .brand,
+      .page[data-variant="more-face-time"] .brand,
+      .page[data-variant="community-os"] .brand,
+      .page[data-variant="communication-technology"] .brand {
         color: #f7f0e4;
       }
 
@@ -311,7 +374,12 @@
       .page[data-variant="protect"] .header-email,
       .page[data-variant="timeless-interface"] .header-email,
       .page[data-variant="thousand-taps"] .header-email,
-      .page[data-variant="thousand-taps-premium"] .header-email {
+      .page[data-variant="thousand-taps-premium"] .header-email,
+      .page[data-variant="new-interface"] .header-email,
+      .page[data-variant="through-each-other"] .header-email,
+      .page[data-variant="more-face-time"] .header-email,
+      .page[data-variant="community-os"] .header-email,
+      .page[data-variant="communication-technology"] .header-email {
         color: #d8a84b;
       }
 
@@ -320,8 +388,32 @@
       .page[data-variant="protect"] .mark-bubble,
       .page[data-variant="timeless-interface"] .mark-bubble,
       .page[data-variant="thousand-taps"] .mark-bubble,
-      .page[data-variant="thousand-taps-premium"] .mark-bubble {
+      .page[data-variant="thousand-taps-premium"] .mark-bubble,
+      .page[data-variant="new-interface"] .mark-bubble,
+      .page[data-variant="through-each-other"] .mark-bubble,
+      .page[data-variant="more-face-time"] .mark-bubble,
+      .page[data-variant="community-os"] .mark-bubble,
+      .page[data-variant="communication-technology"] .mark-bubble {
         fill: #f7f0e4;
+      }
+
+      .page[data-variant="community-os"] .brand {
+        color: var(--hc-ink);
+      }
+
+      .page[data-variant="community-os"] .header-email {
+        border-color: rgba(151, 79, 99, 0.2);
+        background: rgba(247, 239, 224, 0.82);
+        color: #7a5630;
+      }
+
+      .page[data-variant="community-os"] .mark-bubble {
+        fill: var(--hc-ink);
+      }
+
+      .page[data-variant="community-os"] .mark-heart {
+        fill: var(--hc-accent);
+        stroke: #f7efe0;
       }
 
       header {
@@ -468,16 +560,17 @@
       .hero-hidden .hero-inner,
       .hero-moves .hero-inner,
       .hero-offcourt .hero-inner,
-      .hero-phone .hero-inner,
       .hero-breathes .hero-inner,
       .hero-around .hero-inner,
       .hero-breathfield .hero-inner,
       .hero-peoplepanel .hero-inner,
       .hero-protect .hero-inner,
-      .hero-humanfirst .hero-inner,
       .hero-timeless-interface .hero-inner,
       .hero-thousand-taps .hero-inner,
       .hero-thousand-taps-premium .hero-inner,
+      .hero-new-interface .hero-inner,
+      .hero-through-each-other .hero-inner,
+      .hero-more-face-time .hero-inner,
       .hero-missing-interface .hero-inner,
       .hero-less-computers .hero-inner {
         display: block;
@@ -506,8 +599,7 @@
       .hero-protect .hero-inner,
       .hero-breathfield .contact,
       .hero-peoplepanel .contact,
-      .hero-protect .contact,
-      .hero-humanfirst .contact {
+      .hero-protect .contact {
         position: relative;
         z-index: 1;
       }
@@ -568,27 +660,6 @@
       }
 
       .offcourt-line {
-        color: var(--hc-accent);
-        font-family: Fraunces, Georgia, serif;
-        font-weight: 650;
-      }
-
-      .hero-phone h1 {
-        max-width: 1040px;
-        font-size: clamp(3.45rem, 6.4vw, 7.1rem);
-        line-height: 0.94;
-      }
-
-      .phone-word {
-        color: var(--hc-blue);
-      }
-
-      .phone-arrow {
-        color: var(--hc-accent);
-        margin-left: 0.16em;
-      }
-
-      .phone-human {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
         font-weight: 650;
@@ -796,21 +867,10 @@
         text-shadow: 0 5px 26px rgba(0, 0, 0, 0.28);
       }
 
-      .shift-kicker,
       .shift-punch,
       .screen-release-line,
       .conditions-label {
         display: block;
-      }
-
-      .shift-kicker {
-        margin-bottom: 18px;
-        color: #d8a84b;
-        font-size: 0.72rem;
-        font-weight: 900;
-        letter-spacing: 0.18em;
-        line-height: 1;
-        text-transform: uppercase;
       }
 
       .shift-punch {
@@ -873,8 +933,12 @@
       }
 
       .hero-conditions h1 {
+        max-width: 1040px;
         font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.35rem, 5.8vw, 6.3rem);
         font-weight: 650;
+        line-height: 0.92;
+        letter-spacing: 0;
       }
 
       .hero-connection-data .lede,
@@ -1079,13 +1143,16 @@
       }
 
       .hero-protect::before {
-        inset: 0 -12% -2% auto;
-        width: min(58vw, 860px);
+        inset: -16vh calc((100vw - 100%) / -2) -18vh calc((100vw - 100%) / -2);
+        width: auto;
+        border-radius: 0;
         background-image:
-          linear-gradient(90deg, rgba(9, 8, 6, 0.65), rgba(9, 8, 6, 0.08)),
-          url("./assets/hc-art-protect.png");
+          linear-gradient(90deg, rgba(9, 8, 6, 0.88) 0%, rgba(9, 8, 6, 0.7) 34%, rgba(9, 8, 6, 0.24) 72%, rgba(9, 8, 6, 0.12) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.58), rgba(9, 8, 6, 0.08) 56%),
+          url("./assets/hc-art-protect-community-20260703.png");
         background-position: center;
-        opacity: 0.52;
+        box-shadow: none;
+        opacity: 1;
       }
 
       .hero-timeless-interface .hero-inner {
@@ -1263,6 +1330,144 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
+      .hero-new-interface .hero-inner,
+      .hero-through-each-other .hero-inner,
+      .hero-more-face-time .hero-inner,
+      .hero-community-os .hero-inner,
+      .hero-communication-technology .hero-inner {
+        max-width: 960px;
+      }
+
+      .hero-new-interface h1,
+      .hero-through-each-other h1,
+      .hero-more-face-time h1,
+      .hero-community-os h1,
+      .hero-communication-technology h1 {
+        max-width: 960px;
+        color: #fff8ec;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(3.8rem, 6.65vw, 7.5rem);
+        font-weight: 900;
+        line-height: 0.92;
+        text-wrap: balance;
+        text-shadow: 0 10px 42px rgba(0, 0, 0, 0.54);
+      }
+
+      .hero-through-each-other h1 {
+        max-width: 1040px;
+        font-size: clamp(3.55rem, 6.3vw, 7.1rem);
+      }
+
+      .hero-more-face-time h1 {
+        max-width: 850px;
+        font-size: clamp(3.55rem, 6.2vw, 6.85rem);
+      }
+
+      .hero-community-os h1 {
+        max-width: 1040px;
+        color: var(--hc-ink);
+        font-size: clamp(3.25rem, 5.85vw, 6.65rem);
+        line-height: 0.95;
+        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.46);
+      }
+
+      .hero-communication-technology h1 {
+        max-width: 840px;
+        font-size: clamp(3.15rem, 5.45vw, 6.15rem);
+        line-height: 0.98;
+        text-shadow: 0 8px 34px rgba(0, 0, 0, 0.62);
+      }
+
+      .interface-kicker {
+        margin-bottom: 16px;
+        color: #d8a84b;
+        font-size: 0.18em;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .interface-gold {
+        color: #d8a84b;
+      }
+
+      .community-os-word {
+        color: #a66a22;
+      }
+
+      .hero-new-interface .lede,
+      .hero-through-each-other .lede,
+      .hero-more-face-time .lede,
+      .hero-community-os .lede,
+      .hero-communication-technology .lede {
+        max-width: 760px;
+        color: rgba(255, 248, 236, 0.9);
+        font-size: clamp(1.22rem, 1.7vw, 1.48rem);
+        font-weight: 850;
+        line-height: 1.38;
+        text-shadow: 0 4px 22px rgba(0, 0, 0, 0.56);
+      }
+
+      .hero-new-interface .contact,
+      .hero-through-each-other .contact,
+      .hero-more-face-time .contact,
+      .hero-community-os .contact,
+      .hero-communication-technology .contact {
+        max-width: 640px;
+      }
+
+      .hero-new-interface .contact input[type="email"],
+      .hero-through-each-other .contact input[type="email"],
+      .hero-more-face-time .contact input[type="email"],
+      .hero-community-os .contact input[type="email"],
+      .hero-communication-technology .contact input[type="email"] {
+        background: rgba(255, 248, 236, 0.95);
+      }
+
+      .hero-new-interface .contact button,
+      .hero-through-each-other .contact button,
+      .hero-more-face-time .contact button,
+      .hero-community-os .contact button,
+      .hero-communication-technology .contact button {
+        background: #fff8ec;
+        color: #090806;
+      }
+
+      .hero-new-interface .status,
+      .hero-through-each-other .status,
+      .hero-more-face-time .status,
+      .hero-community-os .status,
+      .hero-communication-technology .status {
+        color: rgba(255, 248, 236, 0.72);
+      }
+
+      .hero-communication-technology .lede {
+        max-width: 720px;
+        color: #ffd66e;
+        font-size: clamp(1.32rem, 2vw, 1.78rem);
+      }
+
+      .hero-community-os .lede {
+        color: rgba(26, 22, 18, 0.8);
+        text-shadow: none;
+      }
+
+      .hero-community-os .contact input[type="email"] {
+        border-color: rgba(151, 79, 99, 0.22);
+        background: rgba(255, 252, 246, 0.94);
+        color: var(--hc-ink);
+      }
+
+      .hero-community-os .contact button {
+        background: #974f63;
+        color: #fff8ec;
+      }
+
+      .hero-community-os .status {
+        color: rgba(26, 22, 18, 0.62);
+      }
+
       .page[data-variant="thousand-taps-premium"] .header-email {
         position: fixed;
         top: max(24px, calc(env(safe-area-inset-top) + 24px));
@@ -1349,29 +1554,6 @@
 
       .page[data-variant="less-computers"] .status {
         color: rgba(247, 240, 228, 0.7);
-      }
-
-      .page[data-variant="humanfirst"] {
-        background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.54), transparent 48%),
-          linear-gradient(135deg, rgba(216, 138, 154, 0.18), transparent 38%),
-          var(--hc-cream);
-      }
-
-      .hero-humanfirst .hero-inner {
-        max-width: 980px;
-      }
-
-      .hero-humanfirst h1 {
-        max-width: 940px;
-        font-family: Fraunces, Georgia, serif;
-        font-size: clamp(5.1rem, 8.8vw, 9.6rem);
-        font-weight: 650;
-        line-height: 0.86;
-      }
-
-      .humanfirst-word {
-        color: var(--hc-accent);
       }
 
       .statement-lead {
@@ -1528,12 +1710,6 @@
         margin-top: 8px;
       }
 
-      .hero-phone .lede {
-        max-width: 760px;
-        margin-top: 30px;
-        font-size: clamp(1.22rem, 1.72vw, 1.46rem);
-      }
-
       .hero-breathes .lede {
         max-width: 830px;
         margin-top: 30px;
@@ -1552,28 +1728,6 @@
         max-width: 700px;
         color: rgba(247, 240, 228, 0.82);
         font-size: clamp(1.1rem, 1.45vw, 1.28rem);
-      }
-
-      .hero-humanfirst .lede {
-        max-width: 820px;
-        margin-top: 30px;
-      }
-
-      .humanfirst-mantra,
-      .humanfirst-product {
-        display: block;
-      }
-
-      .humanfirst-mantra {
-        color: var(--hc-ink);
-        font-size: clamp(1.34rem, 1.9vw, 1.75rem);
-        line-height: 1.22;
-      }
-
-      .humanfirst-product {
-        margin-top: 16px;
-        color: rgba(26, 22, 18, 0.64);
-        font-size: clamp(1.06rem, 1.45vw, 1.24rem);
       }
 
       .product-name,
@@ -1829,6 +1983,30 @@
           0 0 18px rgba(255, 226, 104, 0.58);
       }
 
+      .variant-dot:nth-child(23) {
+        --dot-age: 1;
+        background: #d8a84b;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(216, 168, 75, 0.56);
+      }
+
+      .variant-dot:nth-child(24) {
+        --dot-age: 1;
+        background: #ffd66e;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(255, 214, 110, 0.58);
+      }
+
+      .variant-dot:nth-child(25) {
+        --dot-age: 1;
+        background: #8eb8f4;
+        box-shadow:
+          inset 0 0 0 1px rgba(12, 42, 91, 0.18),
+          0 0 18px rgba(142, 184, 244, 0.56);
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -2005,16 +2183,19 @@
         .hero-hidden h1,
         .hero-moves h1,
         .hero-offcourt h1,
-        .hero-phone h1,
         .hero-breathes h1,
         .hero-around h1,
         .hero-breathfield h1,
         .hero-peoplepanel h1,
         .hero-protect h1,
-        .hero-humanfirst h1,
         .hero-timeless-interface h1,
         .hero-thousand-taps h1,
         .hero-thousand-taps-premium h1,
+        .hero-new-interface h1,
+        .hero-through-each-other h1,
+        .hero-more-face-time h1,
+        .hero-community-os h1,
+        .hero-communication-technology h1,
         .hero-missing-interface h1,
         .hero-less-computers h1,
         .hero-interface-shift h1,
@@ -2051,7 +2232,6 @@
           text-wrap: balance;
         }
 
-        .shift-kicker,
         .conditions-label {
           font-size: 0.62rem;
           letter-spacing: 0.13em;
@@ -2128,6 +2308,40 @@
           background-position: 62% center;
         }
 
+        .page[data-variant="new-interface"]::before,
+        .page[data-variant="through-each-other"]::before,
+        .page[data-variant="more-face-time"]::before,
+        .page[data-variant="community-os"]::before,
+        .page[data-variant="communication-technology"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(6, 5, 4, 0.74) 0%, rgba(6, 5, 4, 0.64) 48%, rgba(6, 5, 4, 0.58) 100%),
+            var(--mobile-bg-image, url("./assets/hc-art-protect-community-20260703.png"));
+          background-position: 63% center;
+        }
+
+        .page[data-variant="communication-technology"] {
+          --mobile-bg-image: url("./assets/hc-art-thousand-taps-20260701.png");
+        }
+
+        .page[data-variant="communication-technology"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(5, 7, 9, 0.86) 0%, rgba(7, 7, 7, 0.76) 46%, rgba(9, 8, 6, 0.62) 100%),
+            var(--mobile-bg-image);
+          background-position: 54% center;
+        }
+
+        .page[data-variant="community-os"] {
+          --mobile-bg-image: url("./assets/hc-art-operating-system-community-20260703.png");
+        }
+
+        .page[data-variant="community-os"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(247, 239, 224, 0.96) 0%, rgba(247, 239, 224, 0.9) 45%, rgba(247, 239, 224, 0.74) 100%),
+            var(--mobile-bg-image);
+          background-position: 68% center;
+          filter: saturate(1.06) contrast(1.01) brightness(1.08);
+        }
+
         .page[data-variant="thousand-taps-premium"] main {
           width: calc(100% - 32px);
           padding: 76px 0 88px;
@@ -2135,6 +2349,14 @@
 
         .hero-thousand-taps-premium {
           min-height: auto;
+        }
+
+        .page[data-variant="new-interface"] main,
+        .page[data-variant="through-each-other"] main,
+        .page[data-variant="more-face-time"] main,
+        .page[data-variant="community-os"] main,
+        .page[data-variant="communication-technology"] main {
+          padding: 88px 16px 96px;
         }
 
         .hero-thousand-taps-premium h1 {
@@ -2163,6 +2385,46 @@
           line-height: 1.4;
           overflow-wrap: anywhere;
           text-shadow: 0 3px 18px rgba(0, 0, 0, 0.68);
+        }
+
+        .hero-new-interface h1,
+        .hero-through-each-other h1,
+        .hero-more-face-time h1,
+        .hero-community-os h1,
+        .hero-communication-technology h1 {
+          max-width: min(100%, 350px);
+          font-size: clamp(2.5rem, 10.6vw, 3.28rem);
+          line-height: 0.98;
+          letter-spacing: 0;
+        }
+
+        .hero-through-each-other h1 {
+          font-size: clamp(2.32rem, 9.8vw, 3.05rem);
+        }
+
+        .interface-kicker {
+          margin-bottom: 12px;
+          font-size: 0.24em;
+          letter-spacing: 0.14em;
+        }
+
+        .hero-new-interface .lede,
+        .hero-through-each-other .lede,
+        .hero-more-face-time .lede,
+        .hero-community-os .lede,
+        .hero-communication-technology .lede {
+          width: 100%;
+          max-width: min(100%, 350px);
+          font-size: 1rem;
+          line-height: 1.38;
+        }
+
+        .hero-new-interface .contact,
+        .hero-through-each-other .contact,
+        .hero-more-face-time .contact,
+        .hero-community-os .contact,
+        .hero-communication-technology .contact {
+          max-width: min(100%, 350px);
         }
 
         .taps-premium-copy,
@@ -2223,6 +2485,13 @@
           opacity: 0.46;
         }
 
+        .hero-protect::before {
+          inset: -34px -64px auto -64px;
+          height: 360px;
+          background-position: 62% top;
+          opacity: 0.5;
+        }
+
         .page[data-variant="breathfield"] main,
         .page[data-variant="peoplepanel"] main,
         .page[data-variant="protect"] main {
@@ -2274,17 +2543,19 @@
         .hero-hidden .lede,
         .hero-moves .lede,
         .hero-offcourt .lede,
-        .hero-phone .lede,
         .hero-breathes .lede,
         .hero-around .lede,
         .hero-breathfield .lede,
         .hero-peoplepanel .lede,
         .hero-protect .lede,
-        .hero-humanfirst .lede,
         .hero-timeless-interface .lede,
         .hero-thousand-taps .lede,
         .hero-missing-interface .lede,
         .hero-less-computers .lede,
+        .hero-new-interface .lede,
+        .hero-through-each-other .lede,
+        .hero-more-face-time .lede,
+        .hero-communication-technology .lede,
         .hero-interface-shift .lede,
         .hero-human-interface .lede,
         .hero-screen-release .lede,
@@ -2321,8 +2592,7 @@
 
         .hero-breathfield h1,
         .hero-peoplepanel h1,
-        .hero-protect h1,
-        .hero-humanfirst h1 {
+        .hero-protect h1 {
           font-size: clamp(2.7rem, 12.6vw, 4rem);
           line-height: 0.96;
         }
@@ -2338,10 +2608,6 @@
 
         .offcourt-beat span {
           margin-top: 5px;
-        }
-
-        .hero-phone h1 {
-          font-size: clamp(2.65rem, 11.4vw, 3.6rem);
         }
 
         .hero-solves h1,
@@ -2449,7 +2715,7 @@
               <span>of community.</span>
             </h1>
             <p class="lede"><span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to,<span class="lede-break"></span> the context, and the next action.</p>
-            <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, with AI moving the computer work into the background.</p>
+            <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, while AI quietly handles the computer work in the background.</p>
             <p class="interface-punchline">The interface becomes human.</p>
           </div>
           <form class="contact" id="email-capture" action="https://formsubmit.co/hello@humanconversation.com" method="post">
@@ -2490,21 +2756,24 @@
         <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
         <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
-        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8"></button>
-        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: protect amplify remember build around it"></button>
-        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: have a human conversation"></button>
-        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: disconnection path back"></button>
-        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: current main landing page revert copy"></button>
-        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: thousand taps image background"></button>
-        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: missing interface between AI and real-world communication"></button>
-        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: less time communicating through computers"></button>
-        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: a human conversation is worth a thousand taps"></button>
-        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: communication interface shift"></button>
-        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: interface becomes human"></button>
-        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: AI moves computer work into background"></button>
-        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: connection happens and data flows"></button>
-        <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: not one app to another"></button>
-        <button class="variant-dot" type="button" data-option="21" aria-label="Option 22: technology should create the conditions"></button>
+        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8: protect amplify remember build around it"></button>
+        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: disconnection path back"></button>
+        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: current main landing page revert copy"></button>
+        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: thousand taps image background"></button>
+        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: missing interface between AI and real-world communication"></button>
+        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: less time communicating through computers"></button>
+        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: a human conversation is worth a thousand taps"></button>
+        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: Technology became the intermediary"></button>
+        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: interface becomes human"></button>
+        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: AI moves computer work into background"></button>
+        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: connection happens and data flows"></button>
+        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: not one app to another"></button>
+        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: technology should clear the way for human conversation"></button>
+        <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: the new interface is human conversation"></button>
+        <button class="variant-dot" type="button" data-option="21" aria-label="Option 22: interface through each other"></button>
+        <button class="variant-dot" type="button" data-option="22" aria-label="Option 23: more face time less screen time"></button>
+        <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: operating system for real-world social communities"></button>
+        <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: 99 percent of communication technology"></button>
       </nav>
     </div>
 
@@ -2547,12 +2816,6 @@
           lede: `<span class="offcourt-beat"><strong>Connection</strong><span>People feel seen, welcomed, supported, celebrated, remembered.</span></span><span class="offcourt-beat"><strong>Intelligence</strong><span>The club learns who is excited, who is drifting, who needs a softer landing, and who should meet whom.</span></span><span class="offcourt-beat"><strong>Action</strong><span>The club knows what to schedule, who to invite, what to fill, and what should happen next.</span></span>`,
         },
         {
-          id: "phone",
-          headlineLabel: "Put down your phone, then have a human conversation.",
-          headline: `<span>Put down your <span class="phone-word">phone</span><span class="phone-arrow">→</span></span><span class="phone-human">Have a human conversation.</span>`,
-          lede: `<span class="product-name">Human Conversation</span> helps community builders turn real conversations into connection, trust, and the next right action.`,
-        },
-        {
           id: "breathes",
           headlineLabel: "Human conversation is how a community breathes",
           headline: `<span>Human conversation is how</span><span class="breathes-line">a community breathes.</span>`,
@@ -2563,12 +2826,6 @@
           headlineLabel: "Protect it. Amplify it. Remember it. Build around it.",
           headline: `<span>Protect it.</span><span class="gold-line">Amplify it.</span><span>Remember it.</span><span class="gold-line">Build around it.</span>`,
           lede: `Technology should not replace the human conversation, forget it, or bypass it.`,
-        },
-        {
-          id: "humanfirst",
-          headlineLabel: "Have a human conversation.",
-          headline: `<span>Have a</span><span class="humanfirst-word">human conversation.</span>`,
-          lede: `<span class="humanfirst-mantra">Not the app first. Not the screen first. The person first. Connection starts there.</span><span class="humanfirst-product"><span class="product-name">Human Conversation</span> helps community-builders know who needs that conversation, what context matters, and what action should follow.</span>`,
         },
         {
           id: "pathback",
@@ -2608,8 +2865,8 @@
         },
         {
           id: "interface-shift",
-          headlineLabel: "The communication interface shift. Technology became the intermediary. Human Conversation removes it.",
-          headline: `<span class="shift-kicker">The communication interface shift</span><span>Technology became</span><span>the intermediary.</span><span>Human Conversation removes it.</span>`,
+          headlineLabel: "Technology became the intermediary. Human Conversation removes it.",
+          headline: `<span>Technology became</span><span>the intermediary.</span><span>Human Conversation removes it.</span>`,
           lede: `Technology should not become the relationship. It should move the computer work into the background so real connection can happen face to face.<span class="shift-punch">The interface becomes human.</span>`,
         },
         {
@@ -2634,13 +2891,43 @@
           id: "one-app-shift",
           headlineLabel: "The shift is not from one app to another.",
           headline: `<span class="one-app-small">The shift is not</span><span>from one app</span><span>to another.</span><span class="one-app-emphasis">It is from software as intermediary to human conversation as interface.</span>`,
-          lede: `Less interfacing through screens. More interfacing through each other. That is the communication interface shift.`,
+          lede: `Less interfacing through screens. More interfacing through each other.`,
         },
         {
           id: "conditions",
-          headlineLabel: "Technology should not be the relationship. It should create the conditions for the relationship.",
-          headline: `<span class="conditions-label">The principle</span><span>Technology should not be</span><span>the relationship.</span><span class="conditions-emphasis">It should create the conditions for it.</span>`,
-          lede: `Most communication technology scales messages. <span class="product-name">Human Conversation</span> scales the live moments that create real connection.`,
+          headlineLabel: "Technology should not become the relationship. It should clear the way for human conversation.",
+          headline: `<span class="conditions-label">The principle</span><span>Technology should not become</span><span>the relationship.</span><span class="conditions-emphasis">It should clear the way for human conversation.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> moves the computer work into the background so the right people can talk in real life.`,
+        },
+        {
+          id: "new-interface",
+          headlineLabel: "The new interface is human conversation.",
+          headline: `<span>The new interface</span><span>is <span class="interface-gold">human conversation.</span></span>`,
+          lede: `Real connection. Real time. Real world. The timeless interface of community.`,
+        },
+        {
+          id: "through-each-other",
+          headlineLabel: "It is time to interface through each other.",
+          headline: `<span class="interface-kicker">The shift</span><span>It is time to interface</span><span class="interface-gold">through each other.</span>`,
+          lede: `Technology should move the computer work into the background so the right human conversation can happen in real life.`,
+        },
+        {
+          id: "more-face-time",
+          headlineLabel: "More face time. Less screen time. More life.",
+          headline: `<span>More face time.</span><span>Less screen time.</span><span class="interface-gold">More life.</span>`,
+          lede: `<span class="product-name">Human Conversation</span> helps community builders know who to talk to, what to ask, and what should happen next.`,
+        },
+        {
+          id: "community-os",
+          headlineLabel: "Human conversation is the operating system for real-world social communities.",
+          headline: `<span>Human conversation is</span><span>the <span class="community-os-word">operating system</span></span><span>for real-world social communities.</span>`,
+          lede: `Software can support it. The community runs on people talking, remembering, inviting, and coming back.`,
+        },
+        {
+          id: "communication-technology",
+          headlineLabel: "99% of communication technology takes us away from each other. Human conversation brings us back.",
+          headline: `<span>99% of communication technology</span><span>takes us away from each other.</span>`,
+          lede: `Human conversation brings us back.`,
         },
       ];
 
@@ -2658,6 +2945,7 @@
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       let currentVariantIndex = 0;
       let variantSwitchTimer;
+      let variantNavHideTimer;
 
       function setVariant(index, options = {}) {
         const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
@@ -2686,12 +2974,32 @@
 
       function revealVariantDots() {
         if (!variantNav || variantNav.classList.contains("is-visible")) return;
+        window.clearTimeout(variantNavHideTimer);
         variantNav.hidden = false;
         variantNav.setAttribute("aria-hidden", "false");
         window.requestAnimationFrame(() => {
           variantNav.classList.add("is-visible");
           variantTrigger?.classList.add("is-hidden");
         });
+      }
+
+      function hideVariantDots() {
+        if (!variantNav || !variantNav.classList.contains("is-visible")) return;
+        variantNav.classList.remove("is-visible");
+        variantNav.setAttribute("aria-hidden", "true");
+        variantTrigger?.classList.remove("is-hidden");
+        window.clearTimeout(variantNavHideTimer);
+        variantNavHideTimer = window.setTimeout(() => {
+          if (!variantNav.classList.contains("is-visible")) variantNav.hidden = true;
+        }, 180);
+      }
+
+      function toggleVariantDots() {
+        if (variantNav?.classList.contains("is-visible")) {
+          hideVariantDots();
+        } else {
+          revealVariantDots();
+        }
       }
 
       const requestedOption = Number.parseInt(new URLSearchParams(window.location.search).get("option") || "", 10);
@@ -2712,7 +3020,10 @@
           (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
 
         if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
-        if (event.key.toLowerCase() === "z") revealVariantDots();
+        if (event.key.toLowerCase() === "z") {
+          event.preventDefault();
+          toggleVariantDots();
+        }
         if (!variantNav?.classList.contains("is-visible")) return;
 
         if (event.key === "ArrowLeft") {

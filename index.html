@@ -315,13 +315,18 @@
 
       .page[data-variant="community-os"]::before {
         background-image:
-          linear-gradient(90deg, rgba(6, 5, 4, 0.94) 0%, rgba(7, 6, 5, 0.74) 36%, rgba(8, 7, 5, 0.26) 72%, rgba(8, 7, 5, 0.06) 100%),
-          linear-gradient(0deg, rgba(6, 5, 4, 0.58), rgba(6, 5, 4, 0.04) 58%),
+          linear-gradient(90deg, rgba(247, 239, 224, 0.98) 0%, rgba(247, 239, 224, 0.94) 34%, rgba(247, 239, 224, 0.44) 62%, rgba(247, 239, 224, 0.08) 100%),
+          linear-gradient(0deg, rgba(247, 239, 224, 0.16), rgba(247, 239, 224, 0.02) 58%),
           url("./assets/hc-art-operating-system-community-20260703.png");
-        background-position: center;
+        background-position: 60% center;
         background-size: cover;
-        filter: saturate(1.08) contrast(1.02) brightness(1.03);
+        filter: saturate(1.08) contrast(1.01) brightness(1.1);
         opacity: 1;
+      }
+
+      .page[data-variant="community-os"] {
+        background: #f7efe0;
+        color: var(--hc-ink);
       }
 
       .page[data-variant="breathfield"]::after,
@@ -374,6 +379,25 @@
       .page[data-variant="more-face-time"] .mark-bubble,
       .page[data-variant="community-os"] .mark-bubble {
         fill: #f7f0e4;
+      }
+
+      .page[data-variant="community-os"] .brand {
+        color: var(--hc-ink);
+      }
+
+      .page[data-variant="community-os"] .header-email {
+        border-color: rgba(151, 79, 99, 0.2);
+        background: rgba(247, 239, 224, 0.82);
+        color: #7a5630;
+      }
+
+      .page[data-variant="community-os"] .mark-bubble {
+        fill: var(--hc-ink);
+      }
+
+      .page[data-variant="community-os"] .mark-heart {
+        fill: var(--hc-accent);
+        stroke: #f7efe0;
       }
 
       header {
@@ -1321,8 +1345,10 @@
 
       .hero-community-os h1 {
         max-width: 1040px;
+        color: var(--hc-ink);
         font-size: clamp(3.25rem, 5.85vw, 6.65rem);
         line-height: 0.95;
+        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.46);
       }
 
       .interface-kicker {
@@ -1340,7 +1366,7 @@
       }
 
       .community-os-word {
-        color: #d8a84b;
+        color: #a66a22;
       }
 
       .hero-new-interface .lede,
@@ -1382,6 +1408,26 @@
       .hero-more-face-time .status,
       .hero-community-os .status {
         color: rgba(255, 248, 236, 0.72);
+      }
+
+      .hero-community-os .lede {
+        color: rgba(26, 22, 18, 0.8);
+        text-shadow: none;
+      }
+
+      .hero-community-os .contact input[type="email"] {
+        border-color: rgba(151, 79, 99, 0.22);
+        background: rgba(255, 252, 246, 0.94);
+        color: var(--hc-ink);
+      }
+
+      .hero-community-os .contact button {
+        background: #974f63;
+        color: #fff8ec;
+      }
+
+      .hero-community-os .status {
+        color: rgba(26, 22, 18, 0.62);
       }
 
       .page[data-variant="thousand-taps-premium"] .header-email {
@@ -2217,6 +2263,14 @@
 
         .page[data-variant="community-os"] {
           --mobile-bg-image: url("./assets/hc-art-operating-system-community-20260703.png");
+        }
+
+        .page[data-variant="community-os"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(247, 239, 224, 0.96) 0%, rgba(247, 239, 224, 0.9) 45%, rgba(247, 239, 224, 0.74) 100%),
+            var(--mobile-bg-image);
+          background-position: 68% center;
+          filter: saturate(1.06) contrast(1.01) brightness(1.08);
         }
 
         .page[data-variant="thousand-taps-premium"] main {

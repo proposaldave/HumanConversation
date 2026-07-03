@@ -251,6 +251,7 @@
       .page[data-variant="human-time-data"],
       .page[data-variant="loneliness-interface"],
       .page[data-variant="loneliness-conversation"],
+      .page[data-variant^="next-interface-"],
       .page[data-variant^="snapback-"] {
         background: #090806;
       }
@@ -406,6 +407,36 @@
         opacity: 1;
       }
 
+      .page[data-variant^="next-interface-"]::before {
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.05) contrast(1.03) brightness(0.98);
+        opacity: 1;
+      }
+
+      .page[data-variant="next-interface-threshold"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.86) 0%, rgba(5, 6, 7, 0.62) 36%, rgba(7, 6, 5, 0.18) 66%, rgba(8, 6, 4, 0.08) 100%),
+          linear-gradient(0deg, rgba(4, 5, 6, 0.64), rgba(4, 5, 6, 0.02) 58%),
+          url("./assets/hc-art-next-interface-threshold-20260703.png");
+      }
+
+      .page[data-variant="next-interface-atrium"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.9) 0%, rgba(4, 5, 6, 0.64) 35%, rgba(8, 7, 5, 0.24) 68%, rgba(8, 6, 4, 0.08) 100%),
+          linear-gradient(0deg, rgba(4, 5, 6, 0.58), rgba(4, 5, 6, 0.02) 58%),
+          url("./assets/hc-art-next-interface-atrium-20260703.png");
+        background-position: 58% center;
+      }
+
+      .page[data-variant="next-interface-club"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(3, 4, 5, 0.88) 0%, rgba(4, 5, 6, 0.6) 34%, rgba(8, 7, 5, 0.26) 68%, rgba(8, 6, 4, 0.12) 100%),
+          linear-gradient(0deg, rgba(4, 5, 6, 0.6), rgba(4, 5, 6, 0.02) 58%),
+          url("./assets/hc-art-next-interface-club-20260703.png");
+        background-position: 56% center;
+      }
+
       .page[data-variant="breathfield"]::after,
       .page[data-variant="peoplepanel"]::after,
       .page[data-variant="protect"]::after,
@@ -420,6 +451,7 @@
       .page[data-variant="human-time-data"]::after,
       .page[data-variant="loneliness-interface"]::after,
       .page[data-variant="loneliness-conversation"]::after,
+      .page[data-variant^="next-interface-"]::after,
       .page[data-variant^="snapback-"]::after {
         display: none;
       }
@@ -437,6 +469,7 @@
       .page[data-variant="communication-technology"] .brand,
       .page[data-variant="loneliness-interface"] .brand,
       .page[data-variant="loneliness-conversation"] .brand,
+      .page[data-variant^="next-interface-"] .brand,
       .page[data-variant^="snapback-"] .brand {
         color: #f7f0e4;
       }
@@ -454,6 +487,7 @@
       .page[data-variant="communication-technology"] .header-email,
       .page[data-variant="loneliness-interface"] .header-email,
       .page[data-variant="loneliness-conversation"] .header-email,
+      .page[data-variant^="next-interface-"] .header-email,
       .page[data-variant^="snapback-"] .header-email {
         color: #d8a84b;
       }
@@ -471,6 +505,7 @@
       .page[data-variant="communication-technology"] .mark-bubble,
       .page[data-variant="loneliness-interface"] .mark-bubble,
       .page[data-variant="loneliness-conversation"] .mark-bubble,
+      .page[data-variant^="next-interface-"] .mark-bubble,
       .page[data-variant^="snapback-"] .mark-bubble {
         fill: #f7f0e4;
       }
@@ -1438,7 +1473,8 @@
       .hero-communication-technology .hero-inner,
       .hero-human-time-data .hero-inner,
       .hero-loneliness-interface .hero-inner,
-      .hero-loneliness-conversation .hero-inner {
+      .hero-loneliness-conversation .hero-inner,
+      .hero[class*="hero-next-interface-"] .hero-inner {
         max-width: 960px;
       }
 
@@ -1449,7 +1485,8 @@
       .hero-communication-technology h1,
       .hero-human-time-data h1,
       .hero-loneliness-interface h1,
-      .hero-loneliness-conversation h1 {
+      .hero-loneliness-conversation h1,
+      .hero[class*="hero-next-interface-"] h1 {
         max-width: 960px;
         color: #fff8ec;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -1501,6 +1538,39 @@
         text-shadow: 0 8px 38px rgba(0, 0, 0, 0.62);
       }
 
+      .hero-next-interface-threshold h1,
+      .hero-next-interface-atrium h1,
+      .hero-next-interface-club h1 {
+        max-width: 1030px;
+        font-size: clamp(3.65rem, 6.25vw, 7.2rem);
+        line-height: 0.92;
+      }
+
+      .hero-next-interface-atrium h1 {
+        max-width: 1080px;
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+        line-height: 0.9;
+      }
+
+      .next-interface-kicker {
+        margin-bottom: 18px;
+        color: #70b8ff;
+        font-size: 0.18em;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .next-interface-soft {
+        color: rgba(255, 248, 236, 0.78);
+      }
+
+      .next-interface-gold {
+        color: #ffd66e;
+      }
+
       .lonely-soft {
         color: rgba(255, 248, 236, 0.78);
       }
@@ -1538,7 +1608,8 @@
       .hero-communication-technology .lede,
       .hero-human-time-data .lede,
       .hero-loneliness-interface .lede,
-      .hero-loneliness-conversation .lede {
+      .hero-loneliness-conversation .lede,
+      .hero[class*="hero-next-interface-"] .lede {
         max-width: 760px;
         color: rgba(255, 248, 236, 0.9);
         font-size: clamp(1.22rem, 1.7vw, 1.48rem);
@@ -1553,7 +1624,8 @@
       .hero-community-os .contact,
       .hero-communication-technology .contact,
       .hero-loneliness-interface .contact,
-      .hero-loneliness-conversation .contact {
+      .hero-loneliness-conversation .contact,
+      .hero[class*="hero-next-interface-"] .contact {
         max-width: 640px;
       }
 
@@ -1563,7 +1635,8 @@
       .hero-community-os .contact input[type="email"],
       .hero-communication-technology .contact input[type="email"],
       .hero-loneliness-interface .contact input[type="email"],
-      .hero-loneliness-conversation .contact input[type="email"] {
+      .hero-loneliness-conversation .contact input[type="email"],
+      .hero[class*="hero-next-interface-"] .contact input[type="email"] {
         background: rgba(255, 248, 236, 0.95);
       }
 
@@ -1573,7 +1646,8 @@
       .hero-community-os .contact button,
       .hero-communication-technology .contact button,
       .hero-loneliness-interface .contact button,
-      .hero-loneliness-conversation .contact button {
+      .hero-loneliness-conversation .contact button,
+      .hero[class*="hero-next-interface-"] .contact button {
         background: #fff8ec;
         color: #090806;
       }
@@ -1584,7 +1658,8 @@
       .hero-community-os .status,
       .hero-communication-technology .status,
       .hero-loneliness-interface .status,
-      .hero-loneliness-conversation .status {
+      .hero-loneliness-conversation .status,
+      .hero[class*="hero-next-interface-"] .status {
         color: rgba(255, 248, 236, 0.72);
       }
 
@@ -1599,6 +1674,12 @@
         max-width: 760px;
         color: rgba(255, 248, 236, 0.86);
         font-size: clamp(1.1rem, 1.42vw, 1.28rem);
+      }
+
+      .hero[class*="hero-next-interface-"] .lede {
+        max-width: 800px;
+        color: rgba(255, 248, 236, 0.9);
+        font-size: clamp(1.18rem, 1.6vw, 1.42rem);
       }
 
       .hero[class*="hero-snapback-"] .hero-inner {
@@ -2311,6 +2392,22 @@
           0 0 0 7px rgba(255, 212, 71, 0.18);
       }
 
+      .variant-dot.variant-dot-black {
+        background: #050505;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 248, 236, 0.24),
+          0 0 18px rgba(5, 5, 5, 0.62);
+      }
+
+      .variant-dot.variant-dot-black[aria-current="true"] {
+        background: #050505;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 248, 236, 0.4),
+          0 0 0 4px rgba(5, 5, 5, 0.22),
+          0 0 0 7px rgba(255, 214, 110, 0.28),
+          0 0 22px rgba(5, 5, 5, 0.7);
+      }
+
       @media (max-width: 760px) {
         header,
         main {
@@ -2504,6 +2601,7 @@
         .hero-connection-data h1,
         .hero-one-app-shift h1,
         .hero-conditions h1,
+        .hero[class*="hero-next-interface-"] h1,
         .hero[class*="hero-snapback-"] h1 {
           max-width: 100%;
           font-size: clamp(2.55rem, 11vw, 3.35rem);
@@ -2516,6 +2614,7 @@
         .hero-connection-data,
         .hero-one-app-shift,
         .hero-conditions,
+        .hero[class*="hero-next-interface-"],
         .hero[class*="hero-snapback-"] {
           min-height: auto;
           padding: 16px 0 70px;
@@ -2527,6 +2626,7 @@
         .hero-connection-data h1,
         .hero-one-app-shift h1,
         .hero-conditions h1,
+        .hero[class*="hero-next-interface-"] h1,
         .hero[class*="hero-snapback-"] h1 {
           font-size: clamp(2.28rem, 10.1vw, 3.05rem);
           line-height: 0.98;
@@ -2563,6 +2663,16 @@
             linear-gradient(180deg, rgba(12, 8, 5, 0.72) 0%, rgba(12, 8, 5, 0.62) 48%, rgba(12, 8, 5, 0.48) 100%),
             url("./assets/hc-art-timeless-interface-20260701.png");
           background-position: 62% center;
+        }
+
+        .page[data-variant^="next-interface-"]::before {
+          background-position: 60% center;
+        }
+
+        .page[data-variant^="next-interface-"] main {
+          justify-content: flex-end;
+          min-height: 100svh;
+          padding-bottom: clamp(52px, 12vh, 96px);
         }
 
         .hero-timeless-interface .timeless-interface-word {
@@ -3148,6 +3258,9 @@
         <button class="variant-dot" type="button" data-option="40" aria-label="Option 41: machine middle"></button>
         <button class="variant-dot" type="button" data-option="41" aria-label="Option 42: product clarity"></button>
         <button class="variant-dot" type="button" data-option="42" aria-label="Option 43: minimal snapback"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="43" aria-label="Option 44: next interface threshold"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="44" aria-label="Option 45: next interface atrium"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="45" aria-label="Option 46: next interface club"></button>
       </nav>
     </div>
 
@@ -3410,6 +3523,24 @@
           headlineLabel: "Technology got between us. Human conversation brings us back together.",
           headline: `<span>Technology got between us.</span><span class="snapback-gold">Human conversation brings us back together.</span>`,
           lede: `The snapback is human conversation.`,
+        },
+        {
+          id: "next-interface-threshold",
+          headlineLabel: "The next interface is human conversation. Less interfacing through screens. More interfacing through each other.",
+          headline: `<span class="next-interface-kicker">Step out of the feed.</span><span>The next interface</span><span class="next-interface-gold">is human conversation.</span>`,
+          lede: `Less interfacing through screens. More interfacing through each other.`,
+        },
+        {
+          id: "next-interface-atrium",
+          headlineLabel: "Human Conversation is the next interface. Technology behind the scenes. Human conversation in front.",
+          headline: `<span>Human Conversation</span><span class="next-interface-soft">is the</span><span class="next-interface-gold">next interface.</span>`,
+          lede: `Technology behind the scenes. Human conversation in front.`,
+        },
+        {
+          id: "next-interface-club",
+          headlineLabel: "Step out of the feed. Step into the future. Human Conversation brings communities back into the room.",
+          headline: `<span class="next-interface-soft">Step out of the feed.</span><span>Step into</span><span class="next-interface-gold">the future.</span>`,
+          lede: `Human Conversation brings communities back into the room.`,
         },
       ];
 

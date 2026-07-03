@@ -2770,6 +2770,7 @@
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       let currentVariantIndex = 0;
       let variantSwitchTimer;
+      let variantNavHideTimer;
 
       function setVariant(index, options = {}) {
         const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
@@ -2798,12 +2799,32 @@
 
       function revealVariantDots() {
         if (!variantNav || variantNav.classList.contains("is-visible")) return;
+        window.clearTimeout(variantNavHideTimer);
         variantNav.hidden = false;
         variantNav.setAttribute("aria-hidden", "false");
         window.requestAnimationFrame(() => {
           variantNav.classList.add("is-visible");
           variantTrigger?.classList.add("is-hidden");
         });
+      }
+
+      function hideVariantDots() {
+        if (!variantNav || !variantNav.classList.contains("is-visible")) return;
+        variantNav.classList.remove("is-visible");
+        variantNav.setAttribute("aria-hidden", "true");
+        variantTrigger?.classList.remove("is-hidden");
+        window.clearTimeout(variantNavHideTimer);
+        variantNavHideTimer = window.setTimeout(() => {
+          if (!variantNav.classList.contains("is-visible")) variantNav.hidden = true;
+        }, 180);
+      }
+
+      function toggleVariantDots() {
+        if (variantNav?.classList.contains("is-visible")) {
+          hideVariantDots();
+        } else {
+          revealVariantDots();
+        }
       }
 
       const requestedOption = Number.parseInt(new URLSearchParams(window.location.search).get("option") || "", 10);
@@ -2824,7 +2845,10 @@
           (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
 
         if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
-        if (event.key.toLowerCase() === "z") revealVariantDots();
+        if (event.key.toLowerCase() === "z") {
+          event.preventDefault();
+          toggleVariantDots();
+        }
         if (!variantNav?.classList.contains("is-visible")) return;
 
         if (event.key === "ArrowLeft") {

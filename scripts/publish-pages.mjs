@@ -255,6 +255,12 @@ function createPrivateBackup() {
   return versionId
 }
 
+function copyDirectoryContents(from, to) {
+  for (const entry of readdirSync(from)) {
+    cpSync(join(from, entry), join(to, entry), { recursive: true })
+  }
+}
+
 function deployPages() {
   const localHead = capture('git', ['rev-parse', 'HEAD'])
   const remoteMain = capture('git', ['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0]
@@ -268,15 +274,57 @@ function deployPages() {
     'PUT',
     `repos/${publicRepo}/pages`,
     '-f',
-    'build_type=workflow',
+    'build_type=legacy',
     '-f',
     `cname=${cname}`,
+    '-f',
+    'source[branch]=gh-pages',
+    '-f',
+    'source[path]=/',
   ])
 
-  console.log(`pages_settings_update=${pagesSettingsUpdated ? 'updated' : 'skipped'}`)
+  console.log(`pages_settings_update=${pagesSettingsUpdated ? 'legacy-branch' : 'skipped'}`)
 
-  run('gh', ['workflow', 'run', 'deploy-pages.yml', '--repo', publicRepo, '--ref', 'main'])
-  return capture('git', ['rev-parse', '--short', 'HEAD'])
+  const deployClone = makeTempDir('humanconversation-gh-pages-')
+  const publicUrl = `https://github.com/${publicRepo}.git`
+  const hasGhPages = tryCapture('git', ['ls-remote', '--heads', publicUrl, 'gh-pages'])
+
+  if (hasGhPages) {
+    run('git', ['clone', '--branch', 'gh-pages', '--single-branch', publicUrl, deployClone])
+  } else {
+    run('git', ['clone', publicUrl, deployClone])
+    run('git', ['checkout', '--orphan', 'gh-pages'], { cwd: deployClone })
+  }
+
+  run('git', ['config', 'user.name', 'Codex'], { cwd: deployClone })
+  run('git', ['config', 'user.email', 'codex@openai.com'], { cwd: deployClone })
+
+  tryRun('git', ['rm', '-r', '-q', '.'], { cwd: deployClone })
+  copyDirectoryContents(dist, deployClone)
+  removeDesktopIni(deployClone)
+
+  const deployedCname = readFileSync(join(deployClone, 'CNAME'), 'utf8').trim()
+  if (deployedCname !== cname) {
+    throw new Error(`Deploy CNAME is ${deployedCname}, expected ${cname}`)
+  }
+
+  run('git', ['add', '.'], { cwd: deployClone })
+
+  const deployStatus = capture('git', ['status', '--short'], { cwd: deployClone })
+  if (!deployStatus) {
+    const deployedHead = capture('git', ['rev-parse', '--short', 'HEAD'], { cwd: deployClone })
+    console.log('gh_pages_status=unchanged')
+    removeTree(deployClone)
+    return deployedHead
+  }
+
+  run('git', ['commit', '-m', 'Deploy landing page'], { cwd: deployClone })
+  run('git', ['push', 'origin', 'gh-pages'], { cwd: deployClone })
+
+  const deployedHead = capture('git', ['rev-parse', '--short', 'HEAD'], { cwd: deployClone })
+  console.log('gh_pages_status=pushed')
+  removeTree(deployClone)
+  return deployedHead
 }
 
 run('npm', ['run', 'lint'])

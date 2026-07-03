@@ -121,6 +121,11 @@
         color: #f7f0e4;
       }
 
+      .page[data-variant^="conversation-intelligence-"] {
+        background: #140d08;
+        color: #fff8ec;
+      }
+
       .page[data-variant="interface-thesis"]::before {
         background-image:
           linear-gradient(90deg, rgba(10, 7, 4, 0.9) 0%, rgba(10, 7, 4, 0.74) 36%, rgba(10, 7, 4, 0.3) 70%, rgba(10, 7, 4, 0.08) 100%),
@@ -129,6 +134,17 @@
         background-position: 61% center;
         background-size: cover;
         filter: saturate(1.08) contrast(1.03) brightness(1.04);
+        opacity: 1;
+      }
+
+      .page[data-variant^="conversation-intelligence-"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(10, 7, 4, 0.9) 0%, rgba(10, 7, 4, 0.72) 37%, rgba(10, 7, 4, 0.28) 70%, rgba(10, 7, 4, 0.08) 100%),
+          linear-gradient(0deg, rgba(10, 7, 4, 0.56), rgba(10, 7, 4, 0.04) 58%),
+          url("./assets/hc-art-interface-removes-intermediary-20260703.png");
+        background-position: 61% center;
+        background-size: cover;
+        filter: saturate(1.1) contrast(1.03) brightness(1.05);
         opacity: 1;
       }
 
@@ -1425,6 +1441,7 @@
       .hero-communication-technology .hero-inner,
       .hero-loneliness-interface .hero-inner,
       .hero-loneliness-conversation .hero-inner,
+      .hero[class*="hero-conversation-intelligence-"] .hero-inner,
       .hero[class*="hero-next-interface-"] .hero-inner {
         max-width: 960px;
       }
@@ -1436,6 +1453,7 @@
       .hero-communication-technology h1,
       .hero-loneliness-interface h1,
       .hero-loneliness-conversation h1,
+      .hero[class*="hero-conversation-intelligence-"] h1,
       .hero[class*="hero-next-interface-"] h1 {
         max-width: 960px;
         color: #fff8ec;
@@ -1445,6 +1463,18 @@
         line-height: 0.92;
         text-wrap: balance;
         text-shadow: 0 10px 42px rgba(0, 0, 0, 0.54);
+      }
+
+      .hero[class*="hero-conversation-intelligence-"] h1 {
+        max-width: 1060px;
+        font-size: clamp(3.15rem, 5.7vw, 6.45rem);
+        line-height: 0.96;
+      }
+
+      .hero-conversation-intelligence-purpose h1,
+      .hero-conversation-intelligence-room h1 {
+        max-width: 1120px;
+        font-size: clamp(2.95rem, 5.1vw, 5.85rem);
       }
 
       .hero-through-each-other h1 {
@@ -1513,6 +1543,14 @@
         color: #ffd66e;
       }
 
+      .conversation-intelligence-soft {
+        color: rgba(255, 248, 236, 0.78);
+      }
+
+      .conversation-intelligence-gold {
+        color: #ffd66e;
+      }
+
       .lonely-soft {
         color: rgba(255, 248, 236, 0.78);
       }
@@ -1546,6 +1584,7 @@
       .hero-communication-technology .lede,
       .hero-loneliness-interface .lede,
       .hero-loneliness-conversation .lede,
+      .hero[class*="hero-conversation-intelligence-"] .lede,
       .hero[class*="hero-next-interface-"] .lede {
         max-width: 760px;
         color: rgba(255, 248, 236, 0.9);
@@ -1555,6 +1594,10 @@
         text-shadow: 0 4px 22px rgba(0, 0, 0, 0.56);
       }
 
+      .hero[class*="hero-conversation-intelligence-"] .lede {
+        max-width: 820px;
+      }
+
       .hero-new-interface .contact,
       .hero-through-each-other .contact,
       .hero-more-face-time .contact,
@@ -1562,6 +1605,7 @@
       .hero-communication-technology .contact,
       .hero-loneliness-interface .contact,
       .hero-loneliness-conversation .contact,
+      .hero[class*="hero-conversation-intelligence-"] .contact,
       .hero[class*="hero-next-interface-"] .contact {
         max-width: 640px;
       }
@@ -1573,6 +1617,7 @@
       .hero-communication-technology .contact input[type="email"],
       .hero-loneliness-interface .contact input[type="email"],
       .hero-loneliness-conversation .contact input[type="email"],
+      .hero[class*="hero-conversation-intelligence-"] .contact input[type="email"],
       .hero[class*="hero-next-interface-"] .contact input[type="email"] {
         background: rgba(255, 248, 236, 0.95);
       }
@@ -1584,6 +1629,7 @@
       .hero-communication-technology .contact button,
       .hero-loneliness-interface .contact button,
       .hero-loneliness-conversation .contact button,
+      .hero[class*="hero-conversation-intelligence-"] .contact button,
       .hero[class*="hero-next-interface-"] .contact button {
         background: #fff8ec;
         color: #090806;
@@ -1596,6 +1642,7 @@
       .hero-communication-technology .status,
       .hero-loneliness-interface .status,
       .hero-loneliness-conversation .status,
+      .hero[class*="hero-conversation-intelligence-"] .status,
       .hero[class*="hero-next-interface-"] .status {
         color: rgba(255, 248, 236, 0.72);
       }
@@ -2701,6 +2748,13 @@
           filter: saturate(1.06) contrast(1.01) brightness(1.08);
         }
 
+        .page[data-variant^="conversation-intelligence-"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(10, 7, 4, 0.86) 0%, rgba(10, 7, 4, 0.76) 48%, rgba(10, 7, 4, 0.62) 100%),
+            url("./assets/hc-art-interface-removes-intermediary-20260703.png");
+          background-position: 62% center;
+        }
+
         .page[data-variant="thousand-taps-premium"] main {
           width: calc(100% - 32px);
           padding: 76px 0 88px;
@@ -2754,11 +2808,18 @@
         .hero-community-os h1,
         .hero-communication-technology h1,
         .hero-loneliness-interface h1,
-        .hero-loneliness-conversation h1 {
+        .hero-loneliness-conversation h1,
+        .hero[class*="hero-conversation-intelligence-"] h1 {
           max-width: min(100%, 350px);
           font-size: clamp(2.5rem, 10.6vw, 3.28rem);
           line-height: 0.98;
           letter-spacing: 0;
+        }
+
+        .hero-conversation-intelligence-purpose h1,
+        .hero-conversation-intelligence-room h1 {
+          font-size: clamp(2.12rem, 8.9vw, 2.82rem);
+          line-height: 1;
         }
 
         .hero-through-each-other h1 {
@@ -2777,7 +2838,8 @@
         .hero-community-os .lede,
         .hero-communication-technology .lede,
         .hero-loneliness-interface .lede,
-        .hero-loneliness-conversation .lede {
+        .hero-loneliness-conversation .lede,
+        .hero[class*="hero-conversation-intelligence-"] .lede {
           width: 100%;
           max-width: min(100%, 350px);
           font-size: 1rem;
@@ -2790,7 +2852,8 @@
         .hero-community-os .contact,
         .hero-communication-technology .contact,
         .hero-loneliness-interface .contact,
-        .hero-loneliness-conversation .contact {
+        .hero-loneliness-conversation .contact,
+        .hero[class*="hero-conversation-intelligence-"] .contact {
           max-width: min(100%, 350px);
         }
 
@@ -3161,6 +3224,10 @@
         <button class="variant-dot variant-dot-black" type="button" data-option="34" aria-label="Option 35: next interface threshold"></button>
         <button class="variant-dot variant-dot-black" type="button" data-option="35" aria-label="Option 36: next interface atrium"></button>
         <button class="variant-dot variant-dot-black" type="button" data-option="36" aria-label="Option 37: next interface club"></button>
+        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: technology pulled conversation onto screens"></button>
+        <button class="variant-dot" type="button" data-option="38" aria-label="Option 39: build intelligence around human conversation"></button>
+        <button class="variant-dot" type="button" data-option="39" aria-label="Option 40: our purpose is human conversation intelligence"></button>
+        <button class="variant-dot" type="button" data-option="40" aria-label="Option 41: conversation back in the room"></button>
       </nav>
     </div>
 
@@ -3387,6 +3454,30 @@
           headlineLabel: "Step out of the feed. Step into the future. Human Conversation brings communities back into the room.",
           headline: `<span class="next-interface-soft">Step out of the feed.</span><span>Step into</span><span class="next-interface-gold">the future.</span>`,
           lede: `Human Conversation brings communities back into the room.`,
+        },
+        {
+          id: "conversation-intelligence-opposite",
+          headlineLabel: "Technology has spent decades pulling conversation onto screens. We're doing the opposite.",
+          headline: `<span>Technology has spent decades</span><span>pulling conversation onto screens.</span><span class="conversation-intelligence-gold">We're doing the opposite.</span>`,
+          lede: `Our purpose is to build the intelligence around human conversation.`,
+        },
+        {
+          id: "conversation-intelligence-around",
+          headlineLabel: "Build the intelligence around human conversation.",
+          headline: `<span>Build the intelligence</span><span class="conversation-intelligence-gold">around human conversation.</span>`,
+          lede: `Not another screen between people. The computer work moves into the background so the right real conversation happens next.`,
+        },
+        {
+          id: "conversation-intelligence-purpose",
+          headlineLabel: "Our purpose is to build the intelligence around human conversation.",
+          headline: `<span class="conversation-intelligence-soft">Our purpose is simple.</span><span>Build the intelligence</span><span class="conversation-intelligence-gold">around human conversation.</span>`,
+          lede: `Technology pulled conversation onto screens. Human Conversation does the opposite.`,
+        },
+        {
+          id: "conversation-intelligence-room",
+          headlineLabel: "The screen pulled conversation out of the room. Human Conversation brings intelligence back to the room.",
+          headline: `<span>The screen pulled conversation out of the room.</span><span class="conversation-intelligence-gold">Human Conversation brings intelligence back to the room.</span>`,
+          lede: `Who should talk, what context matters, and what should happen next.`,
         },
       ];
 

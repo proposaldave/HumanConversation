@@ -13,12 +13,13 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { basename, dirname, join, relative, resolve } from 'node:path'
+import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
 const root = resolve(scriptDir, '..')
 const dist = join(root, 'dist')
-const tempBase = join(root, '.publish-tmp')
+const tempBase = resolve(process.env.PUBLISH_TMP_DIR || join(tmpdir(), 'humanconversation-publish'))
 const publicRepo = process.env.PUBLIC_REPO || 'proposaldave/HumanConversation'
 const backupRepo = process.env.BACKUP_REPO || 'proposaldave/HumanConversation-private-backups'
 const cname = process.env.PAGES_CNAME || 'humanconversation.com'

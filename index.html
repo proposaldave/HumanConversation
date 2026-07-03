@@ -473,7 +473,6 @@
       .hero-breathfield .hero-inner,
       .hero-peoplepanel .hero-inner,
       .hero-protect .hero-inner,
-      .hero-humanfirst .hero-inner,
       .hero-timeless-interface .hero-inner,
       .hero-thousand-taps .hero-inner,
       .hero-thousand-taps-premium .hero-inner,
@@ -505,8 +504,7 @@
       .hero-protect .hero-inner,
       .hero-breathfield .contact,
       .hero-peoplepanel .contact,
-      .hero-protect .contact,
-      .hero-humanfirst .contact {
+      .hero-protect .contact {
         position: relative;
         z-index: 1;
       }
@@ -1055,13 +1053,16 @@
       }
 
       .hero-protect::before {
-        inset: 0 -12% -2% auto;
-        width: min(58vw, 860px);
+        inset: -16vh calc((100vw - 100%) / -2) -18vh calc((100vw - 100%) / -2);
+        width: auto;
+        border-radius: 0;
         background-image:
-          linear-gradient(90deg, rgba(9, 8, 6, 0.65), rgba(9, 8, 6, 0.08)),
-          url("./assets/hc-art-protect.png");
+          linear-gradient(90deg, rgba(9, 8, 6, 0.88) 0%, rgba(9, 8, 6, 0.7) 34%, rgba(9, 8, 6, 0.24) 72%, rgba(9, 8, 6, 0.12) 100%),
+          linear-gradient(0deg, rgba(9, 8, 6, 0.58), rgba(9, 8, 6, 0.08) 56%),
+          url("./assets/hc-art-protect-community-20260703.png");
         background-position: center;
-        opacity: 0.52;
+        box-shadow: none;
+        opacity: 1;
       }
 
       .hero-timeless-interface .hero-inner {
@@ -1323,29 +1324,6 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
-      .page[data-variant="humanfirst"] {
-        background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.54), transparent 48%),
-          linear-gradient(135deg, rgba(216, 138, 154, 0.18), transparent 38%),
-          var(--hc-cream);
-      }
-
-      .hero-humanfirst .hero-inner {
-        max-width: 980px;
-      }
-
-      .hero-humanfirst h1 {
-        max-width: 940px;
-        font-family: Fraunces, Georgia, serif;
-        font-size: clamp(5.1rem, 8.8vw, 9.6rem);
-        font-weight: 650;
-        line-height: 0.86;
-      }
-
-      .humanfirst-word {
-        color: var(--hc-accent);
-      }
-
       .statement-lead {
         max-width: 14em;
       }
@@ -1517,32 +1495,6 @@
         max-width: 700px;
         color: rgba(247, 240, 228, 0.82);
         font-size: clamp(1.1rem, 1.45vw, 1.28rem);
-      }
-
-      .hero-humanfirst .lede {
-        max-width: 720px;
-      }
-
-      .hero-humanfirst .lede {
-        max-width: 820px;
-        margin-top: 30px;
-      }
-
-      .humanfirst-mantra,
-      .humanfirst-product {
-        display: block;
-      }
-
-      .humanfirst-mantra {
-        color: var(--hc-ink);
-        font-size: clamp(1.34rem, 1.9vw, 1.75rem);
-        line-height: 1.22;
-      }
-
-      .humanfirst-product {
-        margin-top: 16px;
-        color: rgba(26, 22, 18, 0.64);
-        font-size: clamp(1.06rem, 1.45vw, 1.24rem);
       }
 
       .product-name,
@@ -1975,7 +1927,6 @@
         .hero-breathfield h1,
         .hero-peoplepanel h1,
         .hero-protect h1,
-        .hero-humanfirst h1,
         .hero-timeless-interface h1,
         .hero-thousand-taps h1,
         .hero-thousand-taps-premium h1,
@@ -2192,6 +2143,13 @@
           opacity: 0.46;
         }
 
+        .hero-protect::before {
+          inset: -34px -64px auto -64px;
+          height: 360px;
+          background-position: 62% top;
+          opacity: 0.5;
+        }
+
         .page[data-variant="breathfield"] main,
         .page[data-variant="peoplepanel"] main,
         .page[data-variant="protect"] main {
@@ -2248,7 +2206,6 @@
         .hero-breathfield .lede,
         .hero-peoplepanel .lede,
         .hero-protect .lede,
-        .hero-humanfirst .lede,
         .hero-timeless-interface .lede,
         .hero-thousand-taps .lede,
         .hero-missing-interface .lede,
@@ -2289,8 +2246,7 @@
 
         .hero-breathfield h1,
         .hero-peoplepanel h1,
-        .hero-protect h1,
-        .hero-humanfirst h1 {
+        .hero-protect h1 {
           font-size: clamp(2.7rem, 12.6vw, 4rem);
           line-height: 0.96;
         }
@@ -2455,19 +2411,18 @@
         <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
         <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
         <button class="variant-dot" type="button" data-option="7" aria-label="Option 8: protect amplify remember build around it"></button>
-        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: have a human conversation"></button>
-        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: disconnection path back"></button>
-        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: current main landing page revert copy"></button>
-        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: thousand taps image background"></button>
-        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: missing interface between AI and real-world communication"></button>
-        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: less time communicating through computers"></button>
-        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: a human conversation is worth a thousand taps"></button>
-        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: communication interface shift"></button>
-        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: interface becomes human"></button>
-        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: AI moves computer work into background"></button>
-        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: connection happens and data flows"></button>
-        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: not one app to another"></button>
-        <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: technology should create the conditions"></button>
+        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: disconnection path back"></button>
+        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: current main landing page revert copy"></button>
+        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: thousand taps image background"></button>
+        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: missing interface between AI and real-world communication"></button>
+        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: less time communicating through computers"></button>
+        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: a human conversation is worth a thousand taps"></button>
+        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: communication interface shift"></button>
+        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: interface becomes human"></button>
+        <button class="variant-dot" type="button" data-option="16" aria-label="Option 17: AI moves computer work into background"></button>
+        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: connection happens and data flows"></button>
+        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: not one app to another"></button>
+        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: technology should create the conditions"></button>
       </nav>
     </div>
 
@@ -2520,12 +2475,6 @@
           headlineLabel: "Protect it. Amplify it. Remember it. Build around it.",
           headline: `<span>Protect it.</span><span class="gold-line">Amplify it.</span><span>Remember it.</span><span class="gold-line">Build around it.</span>`,
           lede: `Technology should not replace the human conversation, forget it, or bypass it.`,
-        },
-        {
-          id: "humanfirst",
-          headlineLabel: "Have a human conversation.",
-          headline: `<span>Have a</span><span class="humanfirst-word">human conversation.</span>`,
-          lede: `<span class="humanfirst-mantra">Not the app first. Not the screen first. The person first. Connection starts there.</span><span class="humanfirst-product"><span class="product-name">Human Conversation</span> helps community-builders know who needs that conversation, what context matters, and what action should follow.</span>`,
         },
         {
           id: "pathback",

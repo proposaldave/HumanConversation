@@ -245,7 +245,8 @@
       .page[data-variant="thousand-taps-premium"],
       .page[data-variant="new-interface"],
       .page[data-variant="through-each-other"],
-      .page[data-variant="more-face-time"] {
+      .page[data-variant="more-face-time"],
+      .page[data-variant="community-os"] {
         background: #090806;
       }
 
@@ -312,6 +313,17 @@
         background-position: 68% center;
       }
 
+      .page[data-variant="community-os"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(6, 5, 4, 0.94) 0%, rgba(7, 6, 5, 0.74) 36%, rgba(8, 7, 5, 0.26) 72%, rgba(8, 7, 5, 0.06) 100%),
+          linear-gradient(0deg, rgba(6, 5, 4, 0.58), rgba(6, 5, 4, 0.04) 58%),
+          url("./assets/hc-art-operating-system-community-20260703.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.02) brightness(1.03);
+        opacity: 1;
+      }
+
       .page[data-variant="breathfield"]::after,
       .page[data-variant="peoplepanel"]::after,
       .page[data-variant="protect"]::after,
@@ -320,7 +332,8 @@
       .page[data-variant="thousand-taps-premium"]::after,
       .page[data-variant="new-interface"]::after,
       .page[data-variant="through-each-other"]::after,
-      .page[data-variant="more-face-time"]::after {
+      .page[data-variant="more-face-time"]::after,
+      .page[data-variant="community-os"]::after {
         display: none;
       }
 
@@ -332,7 +345,8 @@
       .page[data-variant="thousand-taps-premium"] .brand,
       .page[data-variant="new-interface"] .brand,
       .page[data-variant="through-each-other"] .brand,
-      .page[data-variant="more-face-time"] .brand {
+      .page[data-variant="more-face-time"] .brand,
+      .page[data-variant="community-os"] .brand {
         color: #f7f0e4;
       }
 
@@ -344,7 +358,8 @@
       .page[data-variant="thousand-taps-premium"] .header-email,
       .page[data-variant="new-interface"] .header-email,
       .page[data-variant="through-each-other"] .header-email,
-      .page[data-variant="more-face-time"] .header-email {
+      .page[data-variant="more-face-time"] .header-email,
+      .page[data-variant="community-os"] .header-email {
         color: #d8a84b;
       }
 
@@ -356,7 +371,8 @@
       .page[data-variant="thousand-taps-premium"] .mark-bubble,
       .page[data-variant="new-interface"] .mark-bubble,
       .page[data-variant="through-each-other"] .mark-bubble,
-      .page[data-variant="more-face-time"] .mark-bubble {
+      .page[data-variant="more-face-time"] .mark-bubble,
+      .page[data-variant="community-os"] .mark-bubble {
         fill: #f7f0e4;
       }
 
@@ -1274,13 +1290,15 @@
 
       .hero-new-interface .hero-inner,
       .hero-through-each-other .hero-inner,
-      .hero-more-face-time .hero-inner {
+      .hero-more-face-time .hero-inner,
+      .hero-community-os .hero-inner {
         max-width: 960px;
       }
 
       .hero-new-interface h1,
       .hero-through-each-other h1,
-      .hero-more-face-time h1 {
+      .hero-more-face-time h1,
+      .hero-community-os h1 {
         max-width: 960px;
         color: #fff8ec;
         font-family: Manrope, Inter, system-ui, sans-serif;
@@ -1301,6 +1319,12 @@
         font-size: clamp(3.55rem, 6.2vw, 6.85rem);
       }
 
+      .hero-community-os h1 {
+        max-width: 1040px;
+        font-size: clamp(3.25rem, 5.85vw, 6.65rem);
+        line-height: 0.95;
+      }
+
       .interface-kicker {
         margin-bottom: 16px;
         color: #d8a84b;
@@ -1315,9 +1339,14 @@
         color: #d8a84b;
       }
 
+      .community-os-word {
+        color: #d8a84b;
+      }
+
       .hero-new-interface .lede,
       .hero-through-each-other .lede,
-      .hero-more-face-time .lede {
+      .hero-more-face-time .lede,
+      .hero-community-os .lede {
         max-width: 760px;
         color: rgba(255, 248, 236, 0.9);
         font-size: clamp(1.22rem, 1.7vw, 1.48rem);
@@ -1328,26 +1357,30 @@
 
       .hero-new-interface .contact,
       .hero-through-each-other .contact,
-      .hero-more-face-time .contact {
+      .hero-more-face-time .contact,
+      .hero-community-os .contact {
         max-width: 640px;
       }
 
       .hero-new-interface .contact input[type="email"],
       .hero-through-each-other .contact input[type="email"],
-      .hero-more-face-time .contact input[type="email"] {
+      .hero-more-face-time .contact input[type="email"],
+      .hero-community-os .contact input[type="email"] {
         background: rgba(255, 248, 236, 0.95);
       }
 
       .hero-new-interface .contact button,
       .hero-through-each-other .contact button,
-      .hero-more-face-time .contact button {
+      .hero-more-face-time .contact button,
+      .hero-community-os .contact button {
         background: #fff8ec;
         color: #090806;
       }
 
       .hero-new-interface .status,
       .hero-through-each-other .status,
-      .hero-more-face-time .status {
+      .hero-more-face-time .status,
+      .hero-community-os .status {
         color: rgba(255, 248, 236, 0.72);
       }
 
@@ -1865,6 +1898,14 @@
           0 0 18px rgba(216, 168, 75, 0.56);
       }
 
+      .variant-dot:nth-child(24) {
+        --dot-age: 1;
+        background: #ffd66e;
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(255, 214, 110, 0.58);
+      }
+
       .variant-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.18),
@@ -2052,6 +2093,7 @@
         .hero-new-interface h1,
         .hero-through-each-other h1,
         .hero-more-face-time h1,
+        .hero-community-os h1,
         .hero-missing-interface h1,
         .hero-less-computers h1,
         .hero-interface-shift h1,
@@ -2165,11 +2207,16 @@
 
         .page[data-variant="new-interface"]::before,
         .page[data-variant="through-each-other"]::before,
-        .page[data-variant="more-face-time"]::before {
+        .page[data-variant="more-face-time"]::before,
+        .page[data-variant="community-os"]::before {
           background-image:
             linear-gradient(180deg, rgba(6, 5, 4, 0.74) 0%, rgba(6, 5, 4, 0.64) 48%, rgba(6, 5, 4, 0.58) 100%),
-            url("./assets/hc-art-protect-community-20260703.png");
+            var(--mobile-bg-image, url("./assets/hc-art-protect-community-20260703.png"));
           background-position: 63% center;
+        }
+
+        .page[data-variant="community-os"] {
+          --mobile-bg-image: url("./assets/hc-art-operating-system-community-20260703.png");
         }
 
         .page[data-variant="thousand-taps-premium"] main {
@@ -2183,7 +2230,8 @@
 
         .page[data-variant="new-interface"] main,
         .page[data-variant="through-each-other"] main,
-        .page[data-variant="more-face-time"] main {
+        .page[data-variant="more-face-time"] main,
+        .page[data-variant="community-os"] main {
           padding: 88px 16px 96px;
         }
 
@@ -2217,7 +2265,8 @@
 
         .hero-new-interface h1,
         .hero-through-each-other h1,
-        .hero-more-face-time h1 {
+        .hero-more-face-time h1,
+        .hero-community-os h1 {
           max-width: min(100%, 350px);
           font-size: clamp(2.5rem, 10.6vw, 3.28rem);
           line-height: 0.98;
@@ -2236,7 +2285,8 @@
 
         .hero-new-interface .lede,
         .hero-through-each-other .lede,
-        .hero-more-face-time .lede {
+        .hero-more-face-time .lede,
+        .hero-community-os .lede {
           width: 100%;
           max-width: min(100%, 350px);
           font-size: 1rem;
@@ -2245,7 +2295,8 @@
 
         .hero-new-interface .contact,
         .hero-through-each-other .contact,
-        .hero-more-face-time .contact {
+        .hero-more-face-time .contact,
+        .hero-community-os .contact {
           max-width: min(100%, 350px);
         }
 
@@ -2599,6 +2650,7 @@
         <button class="variant-dot" type="button" data-option="20" aria-label="Option 21: the new interface is human conversation"></button>
         <button class="variant-dot" type="button" data-option="21" aria-label="Option 22: interface through each other"></button>
         <button class="variant-dot" type="button" data-option="22" aria-label="Option 23: more face time less screen time"></button>
+        <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: operating system for real-world social communities"></button>
       </nav>
     </div>
 
@@ -2741,6 +2793,12 @@
           headlineLabel: "More face time. Less screen time. More life.",
           headline: `<span>More face time.</span><span>Less screen time.</span><span class="interface-gold">More life.</span>`,
           lede: `<span class="product-name">Human Conversation</span> helps community builders know who to talk to, what to ask, and what should happen next.`,
+        },
+        {
+          id: "community-os",
+          headlineLabel: "Human conversation is the operating system for real-world social communities.",
+          headline: `<span>Human conversation is</span><span>the <span class="community-os-word">operating system</span></span><span>for real-world social communities.</span>`,
+          lede: `Software can support it. The community runs on people talking, remembering, inviting, and coming back.`,
         },
       ];
 

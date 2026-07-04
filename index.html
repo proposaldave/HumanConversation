@@ -359,8 +359,7 @@
         opacity: 1;
       }
 
-      .page[data-variant="snapback-screen-room"]::before,
-      .page[data-variant="snapback-not-feed"]::before {
+      .page[data-variant="snapback-screen-room"]::before {
         background-image:
           linear-gradient(90deg, rgba(5, 7, 9, 0.96) 0%, rgba(7, 7, 7, 0.82) 34%, rgba(9, 8, 6, 0.38) 70%, rgba(9, 8, 6, 0.12) 100%),
           linear-gradient(0deg, rgba(9, 8, 6, 0.64), rgba(9, 8, 6, 0.04) 58%),
@@ -1714,12 +1713,6 @@
         text-shadow: 0 8px 38px rgba(0, 0, 0, 0.62);
       }
 
-      .hero-snapback-not-feed h1 {
-        max-width: 920px;
-        font-size: 5.1rem;
-        line-height: 0.98;
-      }
-
       .snapback-soft {
         color: rgba(255, 248, 236, 0.76);
       }
@@ -2634,11 +2627,6 @@
           text-wrap: balance;
         }
 
-        .hero-snapback-not-feed h1 {
-          font-size: clamp(2.05rem, 9.4vw, 2.75rem);
-          line-height: 1.02;
-        }
-
         .conditions-label {
           font-size: 0.62rem;
           letter-spacing: 0.13em;
@@ -3251,14 +3239,13 @@
         <button class="variant-dot" type="button" data-option="27" aria-label="Option 28: what if technology got between us"></button>
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: interface got between us"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: screens replaced rooms"></button>
-        <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: not another feed"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="31" aria-label="Option 32: minimal snapback"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="32" aria-label="Option 33: next interface threshold"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="33" aria-label="Option 34: next interface atrium"></button>
-        <button class="variant-dot" type="button" data-option="34" aria-label="Option 35: previous timeless interface homepage"></button>
-        <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: build intelligence around human conversation"></button>
-        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: our purpose is human conversation intelligence"></button>
-        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: conversation back in the room"></button>
+        <button class="variant-dot variant-dot-green" type="button" data-option="30" aria-label="Option 31: minimal snapback"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="31" aria-label="Option 32: next interface threshold"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="32" aria-label="Option 33: next interface atrium"></button>
+        <button class="variant-dot" type="button" data-option="33" aria-label="Option 34: previous timeless interface homepage"></button>
+        <button class="variant-dot" type="button" data-option="34" aria-label="Option 35: build intelligence around human conversation"></button>
+        <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: our purpose is human conversation intelligence"></button>
+        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: conversation back in the room"></button>
       </nav>
     </div>
 
@@ -3443,12 +3430,6 @@
           headlineLabel: "Screens replaced rooms. Messages replaced moments. The snapback is human conversation.",
           headline: `<span>Screens replaced rooms.</span><span class="snapback-soft">Messages replaced moments.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
           lede: `Human Conversation helps communities turn signals into invitations, follow-ups, and the next real-world connection.`,
-        },
-        {
-          id: "snapback-not-feed",
-          headlineLabel: "The world does not need another feed. It needs the right people in the right room having the right conversation.",
-          headline: `<span>The world does not need another feed.</span><span class="snapback-soft">It needs the right people</span><span>in the right room</span><span>having the right conversation.</span>`,
-          lede: `The next social layer is not more scrolling. It is better real-world conversation.`,
         },
         {
           id: "snapback-minimal",

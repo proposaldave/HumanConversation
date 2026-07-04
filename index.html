@@ -3586,6 +3586,387 @@
         --story-position: 58% center;
       }
 
+      .story-section.is-paper {
+        background: #fbf7ef;
+        color: #1a1612;
+      }
+
+      .story-section.is-paper::before {
+        background: linear-gradient(90deg, #fbf7ef 0%, #f7efe3 100%);
+        filter: none;
+        transform: none;
+      }
+
+      .story-section.is-paper::after {
+        display: none;
+      }
+
+      .story-section.is-paper .story-title,
+      .story-section.is-paper .story-body {
+        color: #1a1612;
+        text-shadow: none;
+      }
+
+      .story-section.is-paper .story-body {
+        color: rgba(26, 22, 18, 0.76);
+      }
+
+      .story-kicker {
+        margin: 0 0 24px;
+        color: #d68a9a;
+        font-size: 0.78rem;
+        font-weight: 950;
+        letter-spacing: 0.22em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .known-story-inner {
+        grid-template-columns: minmax(0, 0.82fr) minmax(440px, 0.9fr);
+        gap: clamp(34px, 5vw, 72px);
+      }
+
+      .known-story-copy .story-title {
+        max-width: 660px;
+        font-size: clamp(4.2rem, 8.4vw, 9.25rem);
+        font-weight: 650;
+        line-height: 0.88;
+      }
+
+      .known-story-copy .story-body {
+        max-width: 720px;
+        font-size: clamp(1.1rem, 1.45vw, 1.34rem);
+        line-height: 1.52;
+      }
+
+      .graph-story-inner {
+        display: block;
+      }
+
+      .graph-story-header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.52fr);
+        gap: clamp(34px, 7vw, 92px);
+        align-items: end;
+        margin-bottom: clamp(32px, 5vh, 58px);
+      }
+
+      .graph-story-header .story-title {
+        max-width: 720px;
+        font-size: clamp(3.2rem, 5.6vw, 6.2rem);
+        line-height: 0.9;
+      }
+
+      .graph-story-header .story-title > span {
+        display: inline;
+        overflow-wrap: normal;
+      }
+
+      .graph-story-header .story-title > span + span::before {
+        content: " ";
+      }
+
+      .graph-story-header .story-body {
+        align-self: end;
+        max-width: 470px;
+        margin-top: 0;
+        font-size: clamp(1.04rem, 1.4vw, 1.22rem);
+      }
+
+      .future-story-inner {
+        grid-template-columns: minmax(0, 0.9fr) minmax(340px, 0.58fr);
+        gap: clamp(36px, 7vw, 96px);
+        align-items: start;
+      }
+
+      .future-story-copy .story-title {
+        max-width: 720px;
+        font-size: clamp(4.2rem, 8.6vw, 9.4rem);
+        line-height: 0.88;
+      }
+
+      .future-story-side .story-body {
+        max-width: 620px;
+        margin-top: 0;
+        font-size: clamp(1.08rem, 1.5vw, 1.32rem);
+        line-height: 1.48;
+      }
+
+      .future-story-side .story-contact.contact {
+        max-width: 620px;
+      }
+
+      .future-story-side .story-email {
+        color: #1a1612;
+        text-shadow: none;
+      }
+
+      .community-graph {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 248, 236, 0.2);
+        border-radius: 8px;
+        background:
+          linear-gradient(rgba(255, 248, 236, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 248, 236, 0.05) 1px, transparent 1px),
+          linear-gradient(135deg, #102b25 0%, #17372f 45%, #081915 100%);
+        background-size: 82px 82px, 82px 82px, auto;
+        box-shadow: 0 28px 70px rgba(26, 22, 18, 0.22);
+      }
+
+      .community-graph::before {
+        content: "";
+        position: absolute;
+        inset: 28px;
+        border: 1px solid rgba(255, 248, 236, 0.18);
+        border-radius: 7px;
+        pointer-events: none;
+      }
+
+      .community-graph::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255, 248, 236, 0.07), transparent 44%, rgba(184, 149, 74, 0.1));
+        pointer-events: none;
+      }
+
+      .community-graph-mini {
+        min-height: clamp(440px, 43vw, 640px);
+      }
+
+      .community-graph-wide {
+        min-height: clamp(340px, 34vw, 460px);
+      }
+
+      .graph-label {
+        position: absolute;
+        top: 32px;
+        left: 34px;
+        z-index: 2;
+        margin: 0;
+        color: #f1d68c;
+        font-size: 0.82rem;
+        font-weight: 950;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .graph-lines {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .graph-lines path {
+        fill: none;
+        stroke-linecap: round;
+      }
+
+      .graph-lines .graph-line-soft {
+        stroke: rgba(255, 248, 236, 0.23);
+        stroke-width: 1.4;
+      }
+
+      .graph-lines .graph-line-gold {
+        stroke: rgba(241, 199, 96, 0.82);
+        stroke-dasharray: 9 16;
+        stroke-width: 2.2;
+      }
+
+      .graph-lines .graph-line-rose {
+        stroke: rgba(214, 138, 154, 0.64);
+        stroke-dasharray: 8 16;
+        stroke-width: 2;
+      }
+
+      .graph-lines .graph-line-green {
+        stroke: rgba(120, 190, 153, 0.58);
+        stroke-dasharray: 8 14;
+        stroke-width: 2;
+      }
+
+      .graph-core {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 4;
+        display: grid;
+        place-items: center;
+        width: clamp(124px, 14vw, 180px);
+        aspect-ratio: 1;
+        border-radius: 999px;
+        background: #fff8ec;
+        color: #1a1612;
+        box-shadow:
+          0 0 0 18px rgba(130, 198, 170, 0.14),
+          0 0 0 44px rgba(73, 180, 160, 0.09),
+          0 24px 58px rgba(0, 0, 0, 0.26);
+        font-size: clamp(1rem, 1.6vw, 1.42rem);
+        font-weight: 950;
+        line-height: 1.08;
+        text-align: center;
+        transform: translate(-50%, -50%);
+      }
+
+      .graph-card {
+        position: absolute;
+        z-index: 4;
+        width: min(24vw, 250px);
+        min-width: 170px;
+        border: 1px solid rgba(255, 248, 236, 0.18);
+        border-radius: 8px;
+        background: rgba(255, 248, 236, 0.13);
+        color: #fff8ec;
+        padding: 18px 20px;
+        box-shadow: 0 16px 46px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(12px);
+      }
+
+      .graph-card small {
+        display: block;
+        margin-bottom: 10px;
+        color: #8ee8dc;
+        font-size: 0.78rem;
+        font-weight: 950;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .graph-card small::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-right: 8px;
+        border-radius: 999px;
+        background: #f1d68c;
+        vertical-align: 2px;
+      }
+
+      .graph-card strong {
+        display: block;
+        font-size: clamp(1rem, 1.5vw, 1.22rem);
+        font-weight: 950;
+        line-height: 1.12;
+      }
+
+      .community-graph-mini .graph-card-person {
+        top: 18%;
+        left: 9%;
+      }
+
+      .community-graph-mini .graph-card-context {
+        top: 21%;
+        right: 8%;
+      }
+
+      .community-graph-mini .graph-card-room {
+        bottom: 21%;
+        left: 13%;
+      }
+
+      .community-graph-mini .graph-card-next {
+        right: 12%;
+        bottom: 15%;
+      }
+
+      .community-graph-wide .graph-card-person {
+        top: 14%;
+        left: 8%;
+      }
+
+      .community-graph-wide .graph-card-with {
+        top: 14%;
+        right: 9%;
+      }
+
+      .community-graph-wide .graph-card-where {
+        left: 11%;
+        bottom: 12%;
+      }
+
+      .community-graph-wide .graph-card-next {
+        right: 11%;
+        bottom: 11%;
+      }
+
+      .graph-node {
+        position: absolute;
+        z-index: 3;
+        width: 13px;
+        height: 13px;
+        border: 2px solid #fff8ec;
+        border-radius: 999px;
+        background: #5ce4d4;
+        box-shadow: 0 0 18px rgba(92, 228, 212, 0.86);
+      }
+
+      .graph-node-a {
+        top: 43%;
+        left: 22%;
+      }
+
+      .graph-node-b {
+        top: 40%;
+        right: 21%;
+      }
+
+      .graph-node-c {
+        left: 34%;
+        bottom: 22%;
+      }
+
+      .graph-node-d {
+        right: 31%;
+        bottom: 20%;
+      }
+
+      .graph-badge {
+        position: absolute;
+        bottom: 36px;
+        left: 36px;
+        z-index: 4;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(255, 248, 236, 0.14);
+        border-radius: 8px;
+        background: rgba(8, 20, 18, 0.72);
+        color: #fff8ec;
+        padding: 14px 16px;
+        font-size: 0.86rem;
+        font-weight: 950;
+      }
+
+      .graph-badge-mark {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .graph-badge-mark::before,
+      .graph-badge-mark::after {
+        content: "";
+        width: 22px;
+        height: 22px;
+        border: 4px solid #fff8ec;
+        border-radius: 999px;
+        background: #0c1714;
+        box-shadow: 0 0 0 2px rgba(216, 138, 154, 0.84);
+      }
+
+      .graph-badge-heart {
+        width: 15px;
+        height: 15px;
+        border-radius: 5px;
+        background: #d68a9a;
+        transform: rotate(45deg);
+      }
+
       @media (max-width: 760px) {
         .page.has-expanded-story .hero {
           min-height: 100svh;
@@ -3649,6 +4030,137 @@
 
         .story-chain span {
           font-size: 0.86rem;
+        }
+
+        .known-story-inner,
+        .future-story-inner,
+        .graph-story-header {
+          display: block;
+        }
+
+        .known-story-copy .story-title {
+          font-size: clamp(2.95rem, 15vw, 4rem);
+          line-height: 0.92;
+        }
+
+        .future-story-copy .story-title {
+          font-size: clamp(3.24rem, 16.8vw, 4.4rem);
+          line-height: 0.9;
+        }
+
+        .known-story-copy .story-body,
+        .future-story-side .story-body,
+        .graph-story-header .story-body {
+          max-width: 34ch;
+          margin-top: 20px;
+          font-size: 1rem;
+          line-height: 1.42;
+        }
+
+        .graph-story-header {
+          margin-bottom: 24px;
+        }
+
+        .graph-story-header .story-title {
+          font-size: clamp(2.38rem, 10.8vw, 3.12rem);
+          line-height: 0.94;
+        }
+
+        .story-kicker {
+          margin-bottom: 16px;
+          font-size: 0.68rem;
+        }
+
+        .community-graph {
+          width: 100%;
+          margin-top: 26px;
+          background-size: 56px 56px, 56px 56px, auto;
+        }
+
+        .community-graph::before {
+          inset: 14px;
+        }
+
+        .community-graph-mini {
+          min-height: 450px;
+        }
+
+        .community-graph-wide {
+          min-height: 470px;
+        }
+
+        .graph-label {
+          top: 22px;
+          left: 22px;
+          font-size: 0.68rem;
+        }
+
+        .graph-core {
+          width: 112px;
+          font-size: 0.92rem;
+          box-shadow:
+            0 0 0 13px rgba(130, 198, 170, 0.14),
+            0 0 0 30px rgba(73, 180, 160, 0.09),
+            0 18px 42px rgba(0, 0, 0, 0.24);
+        }
+
+        .graph-card {
+          width: 150px;
+          min-width: 0;
+          padding: 12px 13px;
+        }
+
+        .graph-card small {
+          margin-bottom: 8px;
+          font-size: 0.62rem;
+        }
+
+        .graph-card strong {
+          font-size: 0.9rem;
+          line-height: 1.12;
+        }
+
+        .community-graph-mini .graph-card-person,
+        .community-graph-wide .graph-card-person {
+          top: 14%;
+          left: 7%;
+        }
+
+        .community-graph-mini .graph-card-context,
+        .community-graph-wide .graph-card-with {
+          top: 18%;
+          right: 6%;
+        }
+
+        .community-graph-mini .graph-card-room,
+        .community-graph-wide .graph-card-where {
+          bottom: 18%;
+          left: 7%;
+        }
+
+        .community-graph-mini .graph-card-next,
+        .community-graph-wide .graph-card-next {
+          right: 6%;
+          bottom: 12%;
+        }
+
+        .graph-badge {
+          bottom: 22px;
+          left: 22px;
+          padding: 10px 11px;
+          font-size: 0.72rem;
+        }
+
+        .graph-badge-mark::before,
+        .graph-badge-mark::after {
+          width: 18px;
+          height: 18px;
+          border-width: 3px;
+        }
+
+        .graph-badge-heart {
+          width: 12px;
+          height: 12px;
         }
 
         .story-scene-next-interface {
@@ -3830,8 +4342,31 @@
                 className: "is-long",
               },
               {
-                title: `<span>Join the</span><span class="story-gold">Conversation.</span>`,
-                scene: "join",
+                kind: "known",
+                title: `<span>Where</span><span>people feel</span><span>known.</span>`,
+                copy: [
+                  `Human conversation is where communities learn who to talk to, what matters, and what should happen next.`,
+                ],
+                scene: "known",
+                className: "is-paper is-known-section",
+              },
+              {
+                kind: "graph",
+                title: `Real conversations create the community graph.`,
+                copy: [
+                  `The community learns when connection happens, where it happens, who helps create it, and what should happen next.`,
+                ],
+                scene: "community-graph",
+                className: "is-paper is-graph-section",
+              },
+              {
+                kind: "future",
+                title: `<span>Building a</span><span>more</span><span>human</span><span>future.</span>`,
+                copy: [
+                  `A world where every person has a community to return to, and can feel connection-high every time.`,
+                ],
+                scene: "human-future",
+                className: "is-paper is-future-section",
                 form: true,
               },
             ],
@@ -4106,6 +4641,46 @@
         `;
       }
 
+      function renderCommunityGraph(mode = "mini") {
+        const cards = mode === "wide"
+          ? [
+              ["person", "Person", "Who to talk to"],
+              ["with", "With whom", "Host, peer, group"],
+              ["where", "Where", "Room, moment, energy"],
+              ["next", "Next", "Invitation or follow-up"],
+            ]
+          : [
+              ["person", "Person", "Who to talk to"],
+              ["context", "Context", "What matters"],
+              ["room", "Room", "Where connection happens"],
+              ["next", "Next", "What should happen"],
+            ];
+
+        const badge = mode === "mini"
+          ? `<div class="graph-badge"><span class="graph-badge-mark"><span class="graph-badge-heart" aria-hidden="true"></span></span><span>Real conversation</span></div>`
+          : "";
+
+        return `
+          <div class="community-graph community-graph-${mode}" aria-label="Community graph centered on felt connection">
+            <p class="graph-label">Community Graph</p>
+            <svg class="graph-lines" aria-hidden="true" viewBox="0 0 1000 620" preserveAspectRatio="none" focusable="false">
+              <path class="graph-line-soft" d="M90 395 C250 220, 395 205, 500 310 S750 415, 910 250" />
+              <path class="graph-line-soft" d="M135 180 C315 385, 470 420, 585 315 S790 190, 900 375" />
+              <path class="graph-line-gold" d="M100 365 C255 282, 388 315, 500 315 S746 285, 900 155" />
+              <path class="graph-line-rose" d="M110 235 C260 315, 380 350, 500 330" />
+              <path class="graph-line-green" d="M505 300 C655 328, 760 392, 900 470" />
+            </svg>
+            <div class="graph-core">Felt<br />connection</div>
+            ${cards.map(([slot, label, text]) => `<div class="graph-card graph-card-${slot}"><small>${label}</small><strong>${text}</strong></div>`).join("")}
+            <span class="graph-node graph-node-a" aria-hidden="true"></span>
+            <span class="graph-node graph-node-b" aria-hidden="true"></span>
+            <span class="graph-node graph-node-c" aria-hidden="true"></span>
+            <span class="graph-node graph-node-d" aria-hidden="true"></span>
+            ${badge}
+          </div>
+        `;
+      }
+
       function renderStoryPage(storyPage, variantId) {
         if (!landingStory) return;
 
@@ -4133,6 +4708,54 @@
             ]
               .filter(Boolean)
               .join(" ");
+
+            if (section.kind === "known") {
+              return `
+                <section class="${sectionClasses}">
+                  <div class="story-section-inner known-story-inner">
+                    <div class="story-copy-block known-story-copy">
+                      <h2 class="story-title">${section.title}</h2>
+                      ${body ? `<div class="story-body">${body}</div>` : ""}
+                    </div>
+                    ${renderCommunityGraph("mini")}
+                  </div>
+                </section>
+              `;
+            }
+
+            if (section.kind === "graph") {
+              return `
+                <section class="${sectionClasses}">
+                  <div class="story-section-inner graph-story-inner">
+                    <div class="graph-story-header">
+                      <div>
+                        <p class="story-kicker">Community Graph</p>
+                        <h2 class="story-title">${section.title}</h2>
+                      </div>
+                      ${body ? `<div class="story-body">${body}</div>` : ""}
+                    </div>
+                    ${renderCommunityGraph("wide")}
+                  </div>
+                </section>
+              `;
+            }
+
+            if (section.kind === "future") {
+              return `
+                <section class="${sectionClasses}">
+                  <div class="story-section-inner future-story-inner">
+                    <div class="story-copy-block future-story-copy">
+                      <p class="story-kicker">Human Conversation</p>
+                      <h2 class="story-title">${section.title}</h2>
+                    </div>
+                    <div class="future-story-side">
+                      ${body ? `<div class="story-body">${body}</div>` : ""}
+                      ${form}
+                    </div>
+                  </div>
+                </section>
+              `;
+            }
 
             return `
               <section class="${sectionClasses}">

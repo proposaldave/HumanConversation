@@ -3036,10 +3036,340 @@
           display: none;
         }
       }
+
+      .page.has-expanded-story {
+        overflow-x: hidden;
+        overflow-y: visible;
+      }
+
+      .page.has-expanded-story main {
+        display: block;
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page.has-expanded-story .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: min(100% - 56px, 1240px);
+        min-height: min(850px, calc(92svh - 92px));
+        margin: 0 auto;
+        padding: clamp(84px, 10vh, 124px) 0 clamp(86px, 12vh, 138px);
+      }
+
+      .landing-story[hidden] {
+        display: none;
+      }
+
+      .landing-story {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        background: #fbf7ef;
+        color: var(--hc-ink);
+        box-shadow: 0 -32px 84px rgba(5, 5, 5, 0.22);
+        padding: clamp(70px, 7.8vw, 122px) 0 0;
+      }
+
+      .story-shell,
+      .story-final {
+        width: min(100% - 56px, 1180px);
+        margin: 0 auto;
+      }
+
+      .story-section {
+        border-top: 1px solid rgba(26, 22, 18, 0.11);
+        padding: clamp(62px, 8vw, 112px) 0;
+      }
+
+      .story-section:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .story-section-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(280px, 0.86fr);
+        gap: clamp(32px, 6.4vw, 82px);
+        align-items: center;
+        min-width: 0;
+      }
+
+      .story-copy-block {
+        min-width: 0;
+      }
+
+      .story-section.is-reverse .story-copy-block {
+        order: 2;
+      }
+
+      .story-section.is-reverse .story-visual {
+        order: 1;
+      }
+
+      .story-eyebrow {
+        margin: 0 0 18px;
+        color: #c8462c;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .story-title {
+        max-width: 870px;
+        margin: 0;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.7rem, 5.05vw, 5.7rem);
+        font-weight: 650;
+        letter-spacing: 0;
+        line-height: 0.94;
+        text-wrap: balance;
+      }
+
+      .story-title .story-gold {
+        color: #b8954a;
+      }
+
+      .story-title .story-blue {
+        color: #5b8fd4;
+      }
+
+      .story-title > span {
+        display: block;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .story-body {
+        max-width: 660px;
+        margin: 24px 0 0;
+        color: rgba(26, 22, 18, 0.78);
+        font-size: clamp(1.03rem, 1.38vw, 1.24rem);
+        font-weight: 760;
+        line-height: 1.55;
+        text-wrap: pretty;
+      }
+
+      .story-body p {
+        margin: 0;
+      }
+
+      .story-body p + p {
+        margin-top: 14px;
+      }
+
+      .story-chain {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .story-chain span {
+        border: 1px solid rgba(184, 149, 74, 0.3);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+        color: rgba(26, 22, 18, 0.78);
+        padding: 9px 12px;
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+
+      .story-visual {
+        position: relative;
+        min-height: clamp(330px, 42vw, 560px);
+        overflow: hidden;
+        border-radius: 8px;
+        background: #1a1612;
+        box-shadow: 0 28px 70px rgba(26, 22, 18, 0.18);
+      }
+
+      .story-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(180deg, rgba(9, 8, 6, 0.1), rgba(9, 8, 6, 0.42)),
+          var(--story-image);
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.06) contrast(1.02) brightness(1.05);
+      }
+
+      .story-visual::after {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(255, 248, 236, 0.22);
+        border-radius: 7px;
+        pointer-events: none;
+      }
+
+      .story-visual-interface {
+        --story-image: url("./assets/hc-art-next-interface-atrium-20260703.png");
+      }
+
+      .story-visual-together {
+        --story-image: url("./assets/hc-art-protect-community-20260703.png");
+      }
+
+      .story-visual-timeless {
+        --story-image: url("./assets/hc-art-timeless-interface-20260701.png");
+      }
+
+      .story-visual-operating {
+        --story-image: url("./assets/hc-art-operating-system-community-20260703.png");
+      }
+
+      .story-visual-taps {
+        --story-image: url("./assets/hc-art-thousand-taps-20260701.png");
+      }
+
+      .story-visual-threshold {
+        --story-image: url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
+      }
+
+      .story-final {
+        border-top: 1px solid rgba(26, 22, 18, 0.11);
+        padding: clamp(70px, 8vw, 118px) 0 clamp(76px, 9vw, 126px);
+        text-align: center;
+      }
+
+      .story-final .story-title,
+      .story-final .story-body {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .story-contact.contact {
+        max-width: 680px;
+        margin: 32px auto 0;
+      }
+
+      .story-contact .contact-row {
+        justify-content: center;
+      }
+
+      .story-contact input[type="email"] {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .story-contact button {
+        background: var(--hc-ink);
+        color: #fff8ec;
+      }
+
+      .story-email {
+        display: inline-flex;
+        margin-top: 22px;
+        color: rgba(26, 22, 18, 0.66);
+        font-size: 0.95rem;
+        font-weight: 900;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+      }
+
+      .variant-dot.variant-dot-white {
+        --dot-age: 1;
+        background: #fff8ec;
+        box-shadow:
+          inset 0 0 0 1px rgba(26, 22, 18, 0.2),
+          0 0 18px rgba(255, 248, 236, 0.66);
+      }
+
+      .variant-dot.variant-dot-white[aria-current="true"] {
+        background: #fff8ec;
+        box-shadow:
+          inset 0 0 0 1px rgba(26, 22, 18, 0.24),
+          0 0 0 4px rgba(255, 248, 236, 0.28),
+          0 0 0 7px rgba(255, 214, 110, 0.24),
+          0 0 24px rgba(255, 248, 236, 0.72);
+      }
+
+      @media (max-width: 760px) {
+        .page.has-expanded-story .hero {
+          width: calc(100% - 32px);
+          min-height: auto;
+          padding: 76px 0 84px;
+        }
+
+        .landing-story {
+          padding-top: 56px;
+        }
+
+        .story-shell,
+        .story-final {
+          width: calc(100% - 32px);
+        }
+
+        .story-section {
+          padding: 58px 0;
+        }
+
+        .story-section-inner {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .story-section.is-reverse .story-copy-block,
+        .story-section.is-reverse .story-visual {
+          order: initial;
+        }
+
+        .story-title {
+          width: 100%;
+          max-width: 100%;
+          font-size: clamp(1.95rem, 9.2vw, 2.86rem);
+          line-height: 0.98;
+          text-wrap: wrap;
+          overflow-wrap: anywhere;
+        }
+
+        .story-body {
+          width: 100%;
+          max-width: 34ch;
+          margin-top: 18px;
+          font-size: 1rem;
+          line-height: 1.48;
+          overflow-wrap: anywhere;
+        }
+
+        .story-visual {
+          min-height: 255px;
+        }
+
+        .story-visual::after {
+          inset: 10px;
+        }
+
+        .story-chain {
+          gap: 8px;
+        }
+
+        .story-chain span {
+          padding: 8px 10px;
+          font-size: 0.72rem;
+        }
+
+        .story-final {
+          padding: 58px 0 74px;
+        }
+
+        .story-contact.contact {
+          max-width: none;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="page" data-variant="conversation-intelligence-home">
+    <div class="page has-expanded-story" data-variant="conversation-intelligence-home">
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <svg class="mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false">
@@ -3089,6 +3419,7 @@
             </span>
           </p>
         </section>
+        <section class="landing-story" id="landing-story" aria-live="polite" hidden></section>
       </main>
 
       <footer class="site-footer">
@@ -3117,14 +3448,14 @@
         <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: technology should clear the way for human conversation"></button>
         <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: the new interface is human conversation"></button>
         <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: more face time less screen time"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="20" aria-label="Option 21: operating system for real-world social communities"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="20" aria-label="Option 21: expanded operating system for real-world social communities"></button>
         <button class="variant-dot variant-dot-green" type="button" data-option="21" aria-label="Option 22: 99 percent of communication technology"></button>
         <button class="variant-dot variant-dot-green" type="button" data-option="22" aria-label="Option 23: loneliness technology got between us"></button>
         <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: loneliness human conversation disappeared"></button>
         <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: interface got between us"></button>
         <button class="variant-dot variant-dot-green" type="button" data-option="25" aria-label="Option 26: minimal snapback"></button>
         <button class="variant-dot variant-dot-black" type="button" data-option="26" aria-label="Option 27: next interface threshold"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="27" aria-label="Option 28: next interface atrium"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="27" aria-label="Option 28: expanded next interface atrium"></button>
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: previous timeless interface homepage"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: build intelligence around human conversation"></button>
         <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: our purpose is human conversation intelligence"></button>
@@ -3133,12 +3464,148 @@
     </div>
 
       <script>
+        const storyPages = {
+          main: {
+            sections: [
+              {
+                eyebrow: "The posture",
+                title: `<span>Technology</span><span>behind</span><span>the scenes.</span><span class="story-gold">Human conversation</span><span class="story-gold">in front.</span>`,
+                copy: [
+                  `Human Conversation helps community builders know who to talk to, what matters, and what should happen next.`,
+                  `The computer work moves quietly into the background so people can be fully present with each other.`,
+                ],
+                visual: "threshold",
+              },
+              {
+                eyebrow: "The problem",
+                title: `<span>Technology got</span><span>between us.</span><span class="story-gold">Human conversation</span><span class="story-gold">brings us back together.</span>`,
+                copy: [
+                  `The best communities are not built by more messages. They are built by the right conversations at the right moments.`,
+                ],
+                visual: "together",
+                reverse: true,
+              },
+              {
+                eyebrow: "The human truth",
+                title: `<span>We are not lonely because</span><span>communication disappeared.</span><span class="story-gold">We are lonely because</span><span class="story-gold">human conversation disappeared.</span>`,
+                copy: [
+                  `The answer is not more noise. It is more real moments where people feel seen, remembered, invited, and wanted back.`,
+                ],
+                visual: "timeless",
+              },
+              {
+                eyebrow: "The product",
+                title: `<span>Human conversation is the</span><span class="story-gold">timeless interface</span><span>of community.</span>`,
+                copy: [
+                  `Human Conversation is the sales engine that gives community builders the next person to talk to, the context, and the next action.`,
+                ],
+                visual: "interface",
+                reverse: true,
+                chain: ["disconnection", "connection", "trust", "coordination", "community"],
+              },
+              {
+                eyebrow: "The system",
+                title: `<span>Human conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
+                copy: [
+                  `People talking. Remembering. Inviting. Returning. That is how community actually works.`,
+                ],
+                visual: "operating",
+              },
+              {
+                eyebrow: "The reminder",
+                title: `<span>A human conversation is worth</span><span class="story-blue">a thousand taps.</span>`,
+                copy: [
+                  `Less clicking around. More of the one thing that makes people come back: a real conversation with the right person.`,
+                ],
+                visual: "taps",
+                reverse: true,
+              },
+            ],
+            closing: {
+              eyebrow: "Join",
+              title: `<span>Technology</span><span>behind</span><span>the scenes.</span><span class="story-gold">Human conversation</span><span class="story-gold">in front.</span>`,
+              copy: `Human Conversation gives community builders the next person to talk to, the context, and the next action.`,
+            },
+          },
+          nextInterface: {
+            sections: [
+              {
+                eyebrow: "The shift",
+                title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next interface.</span>`,
+                copy: [
+                  `Technology behind the scenes. Human conversation in front.`,
+                  `The screen stops being the place where community happens. It becomes the quiet system that helps the next real conversation happen.`,
+                ],
+                visual: "interface",
+              },
+              {
+                eyebrow: "The reversal",
+                title: `<span>Technology got</span><span>between us.</span><span class="story-gold">Human conversation</span><span class="story-gold">brings us back together.</span>`,
+                copy: [
+                  `Human Conversation moves the sorting, remembering, scheduling, and follow-through out of the way so the right people can talk in real life.`,
+                ],
+                visual: "together",
+                reverse: true,
+              },
+              {
+                eyebrow: "The signal",
+                title: `<span>A human conversation is worth</span><span class="story-blue">a thousand taps.</span>`,
+                copy: [
+                  `A tap can nudge. A conversation can make someone feel known, create trust, and reveal what should happen next.`,
+                ],
+                visual: "taps",
+              },
+            ],
+            closing: {
+              eyebrow: "Join",
+              title: `<span>Less interface.</span><span class="story-gold">More human conversation.</span>`,
+              copy: `Join the early list for Human Conversation.`,
+            },
+          },
+          operatingSystem: {
+            sections: [
+              {
+                eyebrow: "The operating system",
+                title: `<span>Human conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
+                copy: [
+                  `The community runs on who feels welcomed, who is drifting, who should meet whom, and what conversation should happen next.`,
+                ],
+                visual: "operating",
+              },
+              {
+                eyebrow: "The workflow",
+                title: `<span>Who to talk to.</span><span>What context matters.</span><span class="story-gold">What should happen next.</span>`,
+                copy: [
+                  `Human Conversation gives community builders the next person to talk to, the context, and the next action.`,
+                ],
+                visual: "threshold",
+                reverse: true,
+                chain: ["who", "context", "conversation", "memory", "next action"],
+              },
+              {
+                eyebrow: "The outcome",
+                title: `<span>Human conversation turns</span><span class="story-blue">disconnection</span><span>into community.</span>`,
+                copy: [
+                  `Connection, trust, coordination, and community all start with people talking in the right moment.`,
+                ],
+                visual: "timeless",
+              },
+            ],
+            closing: {
+              eyebrow: "Join",
+              title: `Build around the conversation.`,
+              copy: `Early access for people building real-world communities.`,
+            },
+          },
+        };
+
         const variants = [
         {
           id: "conversation-intelligence-home",
           headlineLabel: "Technology has spent decades pulling conversation onto screens. We're doing the opposite. We're building the intelligence around human conversation.",
           headline: `<span>Technology has spent decades</span><span>pulling conversation onto screens.</span><span class="conversation-intelligence-gold">We're doing the opposite.</span>`,
           lede: `<span class="lede-gold">We're building the intelligence around human conversation.</span>`,
+          story: storyPages.main,
         },
         {
           id: "interface-thesis",
@@ -3259,6 +3726,7 @@
           headlineLabel: "Human conversation is the operating system for real-world social communities.",
           headline: `<span>Human conversation is</span><span>the <span class="community-os-word">operating system</span></span><span>for real-world social communities.</span>`,
           lede: `Software can support it. The community runs on people talking, remembering, inviting, and coming back.`,
+          story: storyPages.operatingSystem,
         },
         {
           id: "communication-technology",
@@ -3301,6 +3769,7 @@
           headlineLabel: "Human Conversation is the next interface. Technology behind the scenes. Human conversation in front.",
           headline: `<span>Human Conversation</span><span class="next-interface-soft">is the</span><span class="next-interface-gold">next interface.</span>`,
           lede: `Technology behind the scenes. Human conversation in front.`,
+          story: storyPages.nextInterface,
         },
         {
           id: "timeless-interface",
@@ -3332,35 +3801,108 @@
       const hero = document.querySelector("#landing-hero");
       const headline = hero.querySelector("h1");
       const lede = hero.querySelector(".lede");
+      const landingStory = document.querySelector("#landing-story");
       const variantNav = document.querySelector(".variant-dots");
       const variantTrigger = document.querySelector(".variant-trigger");
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
-      const form = document.querySelector("#email-capture");
-      const emailInput = document.querySelector("#email");
-      const status = document.querySelector("#form-status");
-      const button = form.querySelector("button");
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       let currentVariantIndex = 0;
       let variantSwitchTimer;
       let variantNavHideTimer;
+
+      function renderStorySignup(idSuffix) {
+        return `
+          <form class="contact story-contact" id="email-capture-${idSuffix}" action="https://formsubmit.co/hello@humanconversation.com" method="post">
+            <input type="hidden" name="_subject" value="New Human Conversation signup" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_url" value="https://humanconversation.com/" />
+            <input class="hp-field" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="contact-row">
+              <input id="email-${idSuffix}" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required />
+              <button type="submit">Join the Conversation</button>
+            </div>
+            <p class="form-note">Early access. No spam.</p>
+            <p class="status" id="form-status-${idSuffix}" role="status" aria-live="polite"></p>
+          </form>
+          <a class="story-email" href="mailto:hello@humanconversation.com">hello@humanconversation.com</a>
+        `;
+      }
+
+      function renderStoryPage(storyPage, variantId) {
+        if (!landingStory) return;
+
+        if (!storyPage) {
+          page.classList.remove("has-expanded-story");
+          landingStory.hidden = true;
+          landingStory.innerHTML = "";
+          return;
+        }
+
+        const sections = storyPage.sections
+          .map((section) => {
+            const body = section.copy.map((paragraph) => `<p>${paragraph}</p>`).join("");
+            const chain = section.chain
+              ? `<div class="story-chain" aria-label="${section.chain.join(" to ")}">${section.chain.map((item) => `<span>${item}</span>`).join("")}</div>`
+              : "";
+
+            return `
+              <section class="story-section${section.reverse ? " is-reverse" : ""}">
+                <div class="story-section-inner">
+                  <div class="story-copy-block">
+                    <p class="story-eyebrow">${section.eyebrow}</p>
+                    <h2 class="story-title">${section.title}</h2>
+                    <div class="story-body">${body}</div>
+                    ${chain}
+                  </div>
+                  <div class="story-visual story-visual-${section.visual}" aria-hidden="true"></div>
+                </div>
+              </section>
+            `;
+          })
+          .join("");
+
+        landingStory.innerHTML = `
+          <div class="story-shell">${sections}</div>
+          <section class="story-final">
+            <p class="story-eyebrow">${storyPage.closing.eyebrow}</p>
+            <h2 class="story-title">${storyPage.closing.title}</h2>
+            <div class="story-body"><p>${storyPage.closing.copy}</p></div>
+            ${renderStorySignup(variantId)}
+          </section>
+        `;
+        landingStory.hidden = false;
+        page.classList.add("has-expanded-story");
+      }
 
       function setVariant(index, options = {}) {
         const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
         const variant = variants[safeIndex];
 
         currentVariantIndex = safeIndex;
-        hero.classList.add("is-switching");
-        window.clearTimeout(variantSwitchTimer);
-        variantSwitchTimer = window.setTimeout(() => {
+        const applyVariant = () => {
           page.dataset.variant = variant.id;
           hero.className = `hero hero-${variant.id}`;
           headline.innerHTML = variant.headline;
           headline.setAttribute("aria-label", variant.headlineLabel);
           lede.innerHTML = variant.lede;
+          renderStoryPage(variant.story, variant.id);
           dots.forEach((dot, dotIndex) => {
             dot.setAttribute("aria-current", String(dotIndex === safeIndex));
           });
           if (options.focusDot) dots[safeIndex]?.focus({ preventScroll: true });
+        };
+
+        if (options.immediate) {
+          window.clearTimeout(variantSwitchTimer);
+          applyVariant();
+          return;
+        }
+
+        hero.classList.add("is-switching");
+        window.clearTimeout(variantSwitchTimer);
+        variantSwitchTimer = window.setTimeout(() => {
+          applyVariant();
         }, 90);
       }
 
@@ -3403,7 +3945,7 @@
       const requestedVariant = params.get("variant") || "";
       const requestedVariantIndex = variants.findIndex((variant) => variant.id === requestedVariant);
       const requestedOption = Number.parseInt(params.get("option") || "", 10);
-      setVariant(requestedVariantIndex >= 0 ? requestedVariantIndex : Number.isInteger(requestedOption) ? requestedOption - 1 : 0);
+      setVariant(requestedVariantIndex >= 0 ? requestedVariantIndex : Number.isInteger(requestedOption) ? requestedOption - 1 : 0, { immediate: true });
 
       dots.forEach((dot) => {
         dot.addEventListener("click", () => {
@@ -3454,8 +3996,16 @@
         { passive: false },
       );
 
-      form.addEventListener("submit", async (event) => {
+      document.addEventListener("submit", async (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement) || !form.classList.contains("contact")) return;
+
         event.preventDefault();
+        const emailInput = form.querySelector('input[type="email"]');
+        const status = form.querySelector(".status");
+        const button = form.querySelector('button[type="submit"]');
+
+        if (!emailInput || !button || !status) return;
 
         if (!emailInput.validity.valid) {
           form.reportValidity();

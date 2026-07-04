@@ -14,12 +14,12 @@
     <meta http-equiv="expires" content="0" />
     <meta
       name="description"
-      content="Technology has spent decades pulling conversation onto screens. We're building the opposite: the intelligence around human conversation."
+      content="Technology has spent decades pulling conversation onto screens. We're doing the opposite. Our purpose is building the intelligence around human conversation."
     />
     <meta property="og:title" content="Human Conversation - Intelligence Around Human Conversation" />
     <meta
       property="og:description"
-      content="Technology has spent decades pulling conversation onto screens. We're building the opposite: the intelligence around human conversation."
+      content="Technology has spent decades pulling conversation onto screens. We're doing the opposite. Our purpose is building the intelligence around human conversation."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://humanconversation.com/" />
@@ -154,12 +154,12 @@
 
       .page[data-variant="conversation-intelligence-home"]::before {
         background-image:
-          linear-gradient(90deg, rgba(8, 6, 4, 0.82) 0%, rgba(8, 6, 4, 0.62) 34%, rgba(8, 6, 4, 0.24) 68%, rgba(8, 6, 4, 0.07) 100%),
-          linear-gradient(180deg, rgba(8, 6, 4, 0.18) 0%, rgba(8, 6, 4, 0.04) 42%, rgba(8, 6, 4, 0.42) 100%),
-          url("./assets/hc-art-interface-removes-intermediary-20260703.png");
-        background-position: 61% center;
+          linear-gradient(90deg, rgba(3, 5, 8, 0.72) 0%, rgba(3, 5, 8, 0.54) 35%, rgba(3, 5, 8, 0.2) 68%, rgba(3, 5, 8, 0.05) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.12) 0%, rgba(3, 5, 8, 0.03) 44%, rgba(3, 5, 8, 0.34) 100%),
+          url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
+        background-position: center center;
         background-size: cover;
-        filter: saturate(1.12) contrast(1.05) brightness(1.08);
+        filter: saturate(1.08) contrast(1.04) brightness(1.04);
       }
 
       .page[data-variant="interface-thesis"]::after {
@@ -2668,6 +2668,13 @@
           background-position: 62% center;
         }
 
+        .page[data-variant="conversation-intelligence-home"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(3, 5, 8, 0.82) 0%, rgba(3, 5, 8, 0.72) 48%, rgba(3, 5, 8, 0.58) 100%),
+            url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
+          background-position: 56% center;
+        }
+
         .page[data-variant="thousand-taps-premium"] main {
           width: calc(100% - 32px);
           padding: 76px 0 88px;
@@ -3049,13 +3056,12 @@
       <main>
         <section class="hero hero-conversation-intelligence-home" id="landing-hero" aria-live="polite">
           <div class="hero-inner">
-            <h1 aria-label="Technology has spent decades pulling conversation onto screens. We're building the opposite: the intelligence around human conversation.">
+            <h1 aria-label="Technology has spent decades pulling conversation onto screens. We're doing the opposite. Our purpose is building the intelligence around human conversation.">
               <span>Technology has spent decades</span>
               <span>pulling conversation onto screens.</span>
-              <span class="conversation-intelligence-gold">We're building the opposite:</span>
-              <span class="conversation-intelligence-home-line">the intelligence around human conversation.</span>
+              <span class="conversation-intelligence-gold">We're doing the opposite.</span>
             </h1>
-            <p class="lede"><span class="lede-gold">The new interface is human conversation.</span> It is where connection happens, relationships become real, and the community learns what should happen next.</p>
+            <p class="lede"><span class="lede-gold">Our purpose is building the intelligence around human conversation.</span></p>
             <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, while AI quietly handles the computer work in the background.</p>
             <p class="interface-punchline">The interface becomes human.</p>
           </div>
@@ -3130,9 +3136,9 @@
         const variants = [
         {
           id: "conversation-intelligence-home",
-          headlineLabel: "Technology has spent decades pulling conversation onto screens. We're building the opposite: the intelligence around human conversation.",
-          headline: `<span>Technology has spent decades</span><span>pulling conversation onto screens.</span><span class="conversation-intelligence-gold">We're building the opposite:</span><span class="conversation-intelligence-home-line">the intelligence around human conversation.</span>`,
-          lede: `<span class="lede-gold">The new interface is human conversation.</span> It is where connection happens, relationships become real, and the community learns what should happen next.`,
+          headlineLabel: "Technology has spent decades pulling conversation onto screens. We're doing the opposite. Our purpose is building the intelligence around human conversation.",
+          headline: `<span>Technology has spent decades</span><span>pulling conversation onto screens.</span><span class="conversation-intelligence-gold">We're doing the opposite.</span>`,
+          lede: `<span class="lede-gold">Our purpose is building the intelligence around human conversation.</span>`,
         },
         {
           id: "interface-thesis",

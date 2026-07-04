@@ -56,6 +56,21 @@
         scroll-behavior: smooth;
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+
       body {
         min-width: 320px;
         min-height: 100vh;
@@ -4197,6 +4212,439 @@
           --story-position: 62% center;
         }
       }
+
+      .story-cue {
+        position: absolute;
+        bottom: clamp(58px, 7vh, 82px);
+        left: 50%;
+        z-index: 3;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        margin: 0;
+        border: 1px solid rgba(255, 248, 236, 0.24);
+        border-radius: 999px;
+        background: rgba(12, 9, 6, 0.5);
+        color: rgba(255, 248, 236, 0.92);
+        padding: 0;
+        text-decoration: none;
+        box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+        transform: translateX(-50%);
+        backdrop-filter: blur(14px) saturate(1.12);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-cue {
+        display: inline-flex;
+      }
+
+      .story-cue-icon {
+        position: relative;
+        display: inline-grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        background: #fff8ec;
+        color: #1a1612;
+        box-shadow: 0 0 0 1px rgba(255, 248, 236, 0.2);
+      }
+
+      .story-cue-icon::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        animation: story-cue-drop 1.7s ease-in-out infinite;
+      }
+
+      .story-cue.is-dismissed {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes story-cue-drop {
+        0%,
+        100% {
+          transform: translateY(-3px) rotate(45deg);
+        }
+        50% {
+          transform: translateY(3px) rotate(45deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .story-cue-icon::before {
+          animation: none;
+        }
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story {
+        background: #fbf7ef;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .hero {
+        position: relative;
+        min-height: min(820px, calc(100svh - 96px));
+        padding-bottom: clamp(108px, 14vh, 164px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .landing-story {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        margin-top: clamp(-110px, -10svh, -72px);
+        background:
+          linear-gradient(180deg, rgba(251, 247, 239, 0.9) 0, rgba(251, 247, 239, 0.98) 118px),
+          radial-gradient(circle at 88% 9%, rgba(214, 138, 154, 0.13), transparent 26vw),
+          radial-gradient(circle at 10% 38%, rgba(91, 143, 212, 0.1), transparent 24vw),
+          linear-gradient(180deg, #fbf7ef 0%, #f6ecdd 48%, #fff8ec 100%);
+        color: #1a1612;
+        box-shadow: none;
+        padding: clamp(56px, 7vw, 96px) 0 0;
+        scroll-margin-top: 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-shell {
+        position: relative;
+        width: 100%;
+        max-width: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-shell::before {
+        content: "";
+        position: absolute;
+        top: clamp(78px, 9vw, 132px);
+        bottom: clamp(90px, 10vw, 140px);
+        left: max(28px, calc((100vw - 1320px) / 2));
+        z-index: 0;
+        width: 1px;
+        background: linear-gradient(180deg, rgba(184, 149, 74, 0), rgba(184, 149, 74, 0.42), rgba(214, 138, 154, 0.28), rgba(184, 149, 74, 0));
+        pointer-events: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final {
+        position: relative;
+        display: block;
+        min-height: auto;
+        overflow: hidden;
+        border-top: 1px solid rgba(26, 22, 18, 0.09);
+        background: transparent;
+        color: #1a1612;
+        padding: clamp(94px, 11vw, 154px) 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section:first-child {
+        border-top: 0;
+        padding-top: clamp(44px, 6vw, 82px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::before {
+        display: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(circle at 82% 48%, rgba(184, 149, 74, 0.08), transparent 27vw),
+          linear-gradient(180deg, rgba(255, 248, 236, 0.58), rgba(251, 247, 239, 0.9));
+        pointer-events: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right::after {
+        background:
+          radial-gradient(circle at 20% 48%, rgba(184, 149, 74, 0.08), transparent 27vw),
+          linear-gradient(180deg, rgba(255, 248, 236, 0.58), rgba(251, 247, 239, 0.9));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 0.98fr) minmax(320px, 0.86fr);
+        align-items: center;
+        gap: clamp(34px, 6vw, 82px);
+        width: min(100% - 64px, 1320px);
+        margin: 0 auto;
+        min-width: 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner {
+        grid-template-columns: minmax(320px, 0.86fr) minmax(0, 0.98fr);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-copy-block {
+        grid-column: 2;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-copy-block {
+        max-width: 790px;
+        min-width: 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-image {
+        display: block;
+        min-height: clamp(360px, 40vw, 560px);
+        border: 1px solid rgba(255, 248, 236, 0.72);
+        border-radius: 8px;
+        background-image:
+          linear-gradient(180deg, rgba(8, 6, 4, 0.02), rgba(8, 6, 4, 0.22)),
+          var(--story-image);
+        background-position: var(--story-position, center);
+        background-size: cover;
+        box-shadow:
+          0 30px 86px rgba(26, 22, 18, 0.17),
+          0 0 0 12px rgba(255, 248, 236, 0.4);
+        filter: saturate(var(--story-saturation, 1.02)) contrast(1.02) brightness(var(--story-brightness, 1.01));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-panel-image {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-title {
+        max-width: 840px;
+        color: #1a1612;
+        font-size: clamp(3.1rem, 6vw, 6.85rem);
+        font-weight: 710;
+        line-height: 0.92;
+        text-shadow: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-long .story-title,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-product .story-title {
+        font-size: clamp(2.85rem, 5.45vw, 6.15rem);
+        line-height: 0.94;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-body,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain-intro {
+        max-width: 660px;
+        color: rgba(26, 22, 18, 0.76);
+        font-size: clamp(1.06rem, 1.36vw, 1.22rem);
+        font-weight: 780;
+        line-height: 1.52;
+        text-shadow: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px 10px;
+        margin-top: 14px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain span {
+        border: 1px solid rgba(184, 149, 74, 0.24);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+        color: rgba(26, 22, 18, 0.72);
+        padding: 8px 11px;
+        font-size: 0.78rem;
+        font-weight: 950;
+        text-shadow: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain .story-chain-first {
+        color: #365f99;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain .story-chain-arrow {
+        border-color: transparent;
+        background: transparent;
+        color: #b8954a;
+        padding-right: 0;
+        padding-left: 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact.contact {
+        max-width: 620px;
+        margin-top: clamp(24px, 3vw, 36px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact .contact-row {
+        justify-content: flex-start;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact button {
+        background: #1a1612;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-email,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-side .story-email {
+        color: #1a1612;
+        text-shadow: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-paper {
+        background: linear-gradient(180deg, rgba(255, 248, 236, 0.68), rgba(251, 247, 239, 0.92));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-paper::before,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-paper::after {
+        display: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-inner {
+        grid-template-columns: minmax(0, 0.78fr) minmax(420px, 0.9fr);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-title {
+        max-width: 650px;
+        font-size: clamp(3.6rem, 7.6vw, 8.2rem);
+        font-weight: 650;
+        line-height: 0.9;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .graph-story-inner {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .graph-story-header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.55fr);
+        align-items: end;
+        gap: clamp(34px, 7vw, 90px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-inner {
+        grid-template-columns: minmax(0, 0.86fr) minmax(340px, 0.62fr);
+        align-items: start;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-copy .story-title {
+        max-width: 700px;
+        font-size: clamp(3.6rem, 7.9vw, 8.5rem);
+        line-height: 0.9;
+      }
+
+      @media (max-width: 760px) {
+        .page[data-variant="conversation-intelligence-home"] .header-email {
+          display: inline-flex;
+          top: max(18px, calc(env(safe-area-inset-top) + 18px));
+          right: max(16px, calc(env(safe-area-inset-right) + 16px));
+          left: auto;
+          max-width: calc(100vw - 88px);
+          overflow: hidden;
+          padding: 7px 9px;
+          font-size: 0.66rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .story-cue {
+          position: relative;
+          bottom: auto;
+          left: 50%;
+          width: 48px;
+          height: 48px;
+          margin-top: 18px;
+          border-radius: 14px;
+          transform: translateX(-50%);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .hero {
+          min-height: 100svh;
+          padding-bottom: 42px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .landing-story {
+          margin-top: -72px;
+          padding-top: 40px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-shell::before {
+          left: 16px;
+          opacity: 0.45;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final {
+          min-height: auto;
+          padding: 64px 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section:first-child {
+          padding-top: 32px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::before {
+          display: none;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-image {
+          min-height: 230px;
+          margin-top: 28px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::after {
+          background: linear-gradient(180deg, rgba(251, 247, 239, 0.96), rgba(251, 247, 239, 0.78));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-inner,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-inner,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .graph-story-header {
+          display: block;
+          width: calc(100% - 32px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-copy-block {
+          grid-column: auto;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-title,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-long .story-title,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-product .story-title {
+          max-width: 100%;
+          font-size: clamp(2.3rem, 11.1vw, 3.5rem);
+          line-height: 0.96;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-title,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-copy .story-title {
+          font-size: clamp(2.72rem, 14vw, 4rem);
+          line-height: 0.92;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-body,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain-intro,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-body,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-side .story-body,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .graph-story-header .story-body {
+          max-width: 35ch;
+          margin-top: 18px;
+          font-size: 1rem;
+          line-height: 1.46;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact .contact-row {
+          flex-direction: column;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact input[type="email"],
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact button {
+          width: 100%;
+          min-height: 52px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .community-graph {
+          margin-top: 28px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -4249,6 +4697,7 @@
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">community</span>
             </span>
           </p>
+          <a class="story-cue" href="#landing-story" aria-label="Continue to the Human Conversation story"><span class="story-cue-icon" aria-hidden="true"></span></a>
         </section>
         <section class="landing-story" id="landing-story" hidden></section>
       </main>
@@ -4616,10 +5065,12 @@
       const headline = hero.querySelector("h1");
       const lede = hero.querySelector(".lede");
       const landingStory = document.querySelector("#landing-story");
+      const storyCue = document.querySelector(".story-cue");
       const variantNav = document.querySelector(".variant-dots");
       const variantTrigger = document.querySelector(".variant-trigger");
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       let currentVariantIndex = 0;
       let variantSwitchTimer;
       let variantNavHideTimer;
@@ -4768,6 +5219,7 @@
                     ${chain}
                     ${form}
                   </div>
+                  <div class="story-visual story-panel-image" aria-hidden="true"></div>
                 </div>
               </section>
             `;
@@ -4797,7 +5249,7 @@
           if (options.focusDot) dots[safeIndex]?.focus({ preventScroll: true });
         };
 
-        if (options.immediate) {
+        if (options.immediate || prefersReducedMotion.matches) {
           window.clearTimeout(variantSwitchTimer);
           applyVariant();
           return;
@@ -4849,11 +5301,23 @@
         }
       }
 
+      function updateStoryCueVisibility() {
+        storyCue?.classList.toggle("is-dismissed", window.scrollY > 72);
+      }
+
       const params = new URLSearchParams(window.location.search);
+      const reviewMode = params.get("review") === "1";
       const requestedVariant = params.get("variant") || "";
       const requestedVariantIndex = variants.findIndex((variant) => variant.id === requestedVariant);
       const requestedOption = Number.parseInt(params.get("option") || "", 10);
-      setVariant(requestedVariantIndex >= 0 ? requestedVariantIndex : Number.isInteger(requestedOption) ? requestedOption - 1 : 0, { immediate: true });
+      const requestedIndex = reviewMode
+        ? requestedVariantIndex >= 0
+          ? requestedVariantIndex
+          : Number.isInteger(requestedOption)
+            ? requestedOption - 1
+            : 0
+        : 0;
+      setVariant(requestedIndex, { immediate: true });
 
       dots.forEach((dot) => {
         dot.addEventListener("click", () => {
@@ -4862,6 +5326,8 @@
       });
 
       variantTrigger?.addEventListener("click", revealVariantDots);
+      updateStoryCueVisibility();
+      window.addEventListener("scroll", updateStoryCueVisibility, { passive: true });
 
       window.addEventListener("keydown", (event) => {
         const target = event.target;

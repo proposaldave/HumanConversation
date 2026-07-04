@@ -207,6 +207,21 @@
         transform: scale(1);
       }
 
+      .page[data-variant="interface-shift"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(8, 5, 3, 0.8) 0%, rgba(8, 5, 3, 0.64) 34%, rgba(8, 5, 3, 0.24) 66%, rgba(8, 5, 3, 0.08) 100%),
+          linear-gradient(180deg, rgba(8, 5, 3, 0.18) 0%, rgba(8, 5, 3, 0.03) 44%, rgba(8, 5, 3, 0.44) 100%),
+          url("./assets/hc-art-interface-shift-human-conversation-20260704.png");
+        background-position: 55% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.04) brightness(1.02);
+        opacity: 1;
+      }
+
+      .page[data-variant="interface-shift"]::after {
+        opacity: 0;
+      }
+
       .page[data-variant="connection-data"],
       .page[data-variant="conditions"] {
         background:

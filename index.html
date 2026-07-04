@@ -353,14 +353,6 @@
           url("./assets/hc-art-thousand-taps-20260701.png");
       }
 
-      .page[data-variant="snapback-product-clarity"]::before {
-        background-image:
-          linear-gradient(90deg, rgba(247, 239, 224, 0.98) 0%, rgba(247, 239, 224, 0.92) 38%, rgba(247, 239, 224, 0.48) 68%, rgba(247, 239, 224, 0.1) 100%),
-          linear-gradient(0deg, rgba(247, 239, 224, 0.18), rgba(247, 239, 224, 0.02) 58%),
-          url("./assets/hc-art-operating-system-community-20260703.png");
-        filter: saturate(1.08) contrast(1.01) brightness(1.1);
-      }
-
       .page[data-variant="new-interface"]::before,
       .page[data-variant="through-each-other"]::before,
       .page[data-variant="more-face-time"]::before {
@@ -492,20 +484,17 @@
         fill: #f7f0e4;
       }
 
-      .page[data-variant="community-os"] .brand,
-      .page[data-variant="snapback-product-clarity"] .brand {
+      .page[data-variant="community-os"] .brand {
         color: var(--hc-ink);
       }
 
-      .page[data-variant="community-os"] .header-email,
-      .page[data-variant="snapback-product-clarity"] .header-email {
+      .page[data-variant="community-os"] .header-email {
         border-color: rgba(151, 79, 99, 0.2);
         background: rgba(247, 239, 224, 0.82);
         color: #7a5630;
       }
 
-      .page[data-variant="community-os"] .mark-bubble,
-      .page[data-variant="snapback-product-clarity"] .mark-bubble {
+      .page[data-variant="community-os"] .mark-bubble {
         fill: var(--hc-ink);
       }
 
@@ -1678,11 +1667,6 @@
         line-height: 0.98;
       }
 
-      .hero-snapback-product-clarity h1 {
-        color: var(--hc-ink);
-        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.44);
-      }
-
       .snapback-soft {
         color: rgba(255, 248, 236, 0.76);
       }
@@ -1713,26 +1697,6 @@
         font-weight: 850;
         line-height: 1.38;
         text-shadow: 0 4px 22px rgba(0, 0, 0, 0.56);
-      }
-
-      .hero-snapback-product-clarity .lede {
-        color: rgba(26, 22, 18, 0.8);
-        text-shadow: none;
-      }
-
-      .hero-snapback-product-clarity .contact input[type="email"] {
-        border-color: rgba(151, 79, 99, 0.22);
-        background: rgba(255, 252, 246, 0.94);
-        color: var(--hc-ink);
-      }
-
-      .hero-snapback-product-clarity .contact button {
-        background: #974f63;
-        color: #fff8ec;
-      }
-
-      .hero-snapback-product-clarity .status {
-        color: rgba(26, 22, 18, 0.62);
       }
 
       .hero-community-os .lede {
@@ -3210,14 +3174,13 @@
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: screens replaced rooms"></button>
         <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: not another feed"></button>
         <button class="variant-dot" type="button" data-option="31" aria-label="Option 32: machine middle"></button>
-        <button class="variant-dot" type="button" data-option="32" aria-label="Option 33: product clarity"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="33" aria-label="Option 34: minimal snapback"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="34" aria-label="Option 35: next interface threshold"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="35" aria-label="Option 36: next interface atrium"></button>
-        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: technology pulled conversation onto screens"></button>
-        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: build intelligence around human conversation"></button>
-        <button class="variant-dot" type="button" data-option="38" aria-label="Option 39: our purpose is human conversation intelligence"></button>
-        <button class="variant-dot" type="button" data-option="39" aria-label="Option 40: conversation back in the room"></button>
+        <button class="variant-dot variant-dot-green" type="button" data-option="32" aria-label="Option 33: minimal snapback"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="33" aria-label="Option 34: next interface threshold"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="34" aria-label="Option 35: next interface atrium"></button>
+        <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: technology pulled conversation onto screens"></button>
+        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: build intelligence around human conversation"></button>
+        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: our purpose is human conversation intelligence"></button>
+        <button class="variant-dot" type="button" data-option="38" aria-label="Option 39: conversation back in the room"></button>
       </nav>
     </div>
 
@@ -3414,12 +3377,6 @@
           headlineLabel: "We built machines to connect us. Then the machines got between us. The snapback is human conversation.",
           headline: `<span class="snapback-soft">We built machines to connect us.</span><span>Then the machines got between us.</span><span class="snapback-gold">The snapback is human conversation.</span>`,
           lede: `The point is not less technology. The point is technology that knows when the next interface should be human.`,
-        },
-        {
-          id: "snapback-product-clarity",
-          headlineLabel: "Know who needs attention. Know what to ask. Know what should happen next.",
-          headline: `<span>Know who needs attention.</span><span>Know what to ask.</span><span>Know what should happen next.</span>`,
-          lede: `When the next interface should be human, Human Conversation turns real conversations into the next right connection.`,
         },
         {
           id: "snapback-minimal",

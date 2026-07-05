@@ -3638,9 +3638,9 @@
       }
 
       .story-scene-human-future {
-        --story-image: url("./assets/hc-art-human-future-threshold-20260705.png");
+        --story-image: url("./assets/hc-art-human-future-threshold-fullscreen-20260705.png");
         --story-position: 50% center;
-        --story-brightness: 1.04;
+        --story-brightness: 0.98;
       }
 
       .story-section.is-paper {
@@ -5103,8 +5103,12 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
-        min-height: clamp(680px, 74vw, 940px);
-        background: #fbf7ef;
+        display: flex;
+        align-items: center;
+        min-height: 100svh;
+        padding: clamp(92px, 8vw, 136px) 0;
+        background: #05070a;
+        color: #fff8ec;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::before {
@@ -5112,15 +5116,15 @@
         background-image: var(--story-image);
         background-position: var(--story-position, center);
         background-size: cover;
-        filter: saturate(1.02) contrast(1.02) brightness(var(--story-brightness, 1.02));
+        filter: saturate(1.05) contrast(1.04) brightness(var(--story-brightness, 1));
         transform: none;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::after {
         display: block;
         background:
-          linear-gradient(90deg, rgba(251, 247, 239, 0.94) 0%, rgba(251, 247, 239, 0.8) 42%, rgba(251, 247, 239, 0.35) 68%, rgba(251, 247, 239, 0.1) 100%),
-          linear-gradient(180deg, rgba(251, 247, 239, 0.26) 0%, rgba(251, 247, 239, 0.58) 100%);
+          linear-gradient(90deg, rgba(3, 5, 8, 0.9) 0%, rgba(3, 5, 8, 0.7) 34%, rgba(3, 5, 8, 0.24) 64%, rgba(3, 5, 8, 0.38) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.2) 0%, rgba(3, 5, 8, 0.1) 46%, rgba(3, 5, 8, 0.72) 100%);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-inner {
@@ -5146,14 +5150,44 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-inner {
-        grid-template-columns: minmax(0, 0.86fr) minmax(340px, 0.62fr);
-        align-items: start;
+        grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.56fr);
+        align-items: center;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-copy .story-title {
         max-width: 700px;
+        color: #fff8ec;
         font-size: clamp(3.6rem, 7.9vw, 8.5rem);
         line-height: 0.9;
+        text-shadow: 0 4px 34px rgba(0, 0, 0, 0.58);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-scene-human-future .story-kicker {
+        color: #e7a0ad;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.46);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-side .story-body {
+        max-width: 560px;
+        color: rgba(255, 248, 236, 0.92);
+        font-weight: 850;
+        text-shadow: 0 3px 22px rgba(0, 0, 0, 0.5);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-side .story-contact.contact {
+        max-width: 620px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-side .story-contact input[type="email"] {
+        border-color: rgba(255, 248, 236, 0.24);
+        background: rgba(255, 248, 236, 0.94);
+        color: #1a1612;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-side .story-contact button {
+        background: #f1c760;
+        color: #1a1612;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26);
       }
 
       @media (max-width: 760px) {
@@ -5220,19 +5254,30 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
-          padding-bottom: 310px;
+          min-height: 100svh;
+          padding: 96px 0 72px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::before {
           display: block;
-          background-position: 58% bottom;
+          background-position: 56% center;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::after {
           display: block;
           background:
-            linear-gradient(180deg, rgba(251, 247, 239, 0.98) 0%, rgba(251, 247, 239, 0.93) 48%, rgba(251, 247, 239, 0.38) 76%, rgba(251, 247, 239, 0.12) 100%),
-            linear-gradient(90deg, rgba(251, 247, 239, 0.9), rgba(251, 247, 239, 0.18));
+            linear-gradient(180deg, rgba(3, 5, 8, 0.9) 0%, rgba(3, 5, 8, 0.68) 44%, rgba(3, 5, 8, 0.46) 70%, rgba(3, 5, 8, 0.84) 100%),
+            linear-gradient(90deg, rgba(3, 5, 8, 0.82), rgba(3, 5, 8, 0.22));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future .story-title {
+          color: #fff8ec;
+          text-shadow: 0 4px 28px rgba(0, 0, 0, 0.62);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future .story-body {
+          color: rgba(255, 248, 236, 0.92);
+          text-shadow: 0 3px 22px rgba(0, 0, 0, 0.56);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
@@ -5713,7 +5758,7 @@
                   `A future where every person has a real community to return to, and leaves more connected than when they arrived.`,
                 ],
                 scene: "human-future",
-                className: "is-paper is-future-section",
+                className: "is-future-section",
                 form: true,
               },
             ],

@@ -4705,6 +4705,81 @@
         align-items: center;
       }
 
+      .page[data-variant="live-moment"].has-expanded-story {
+        background: #050b0e;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .hero {
+        display: none;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .landing-story {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        margin-top: 0;
+        padding: 0;
+        background: #050b0e;
+        color: #fff8ec;
+        box-shadow: none;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .story-shell {
+        width: 100%;
+        max-width: none;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .story-section.is-live-moment-section {
+        position: relative;
+        display: block;
+        min-height: 100svh;
+        overflow: hidden;
+        border-top: 0;
+        padding: clamp(94px, 11vw, 154px) 0;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        background:
+          linear-gradient(90deg, rgba(5, 11, 14, 0.92) 0%, rgba(5, 11, 14, 0.76) 42%, rgba(5, 11, 14, 0.34) 100%),
+          url("./assets/hc-art-community-graph-night-aerial-20260705.png") center / cover;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .story-section.is-live-moment-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: block;
+        background:
+          radial-gradient(circle at 24% 50%, rgba(216, 168, 75, 0.18), transparent 28vw),
+          linear-gradient(120deg, rgba(91, 143, 212, 0.16), transparent 52%);
+        pointer-events: none;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .story-section.is-live-moment-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: block;
+        background:
+          linear-gradient(180deg, rgba(5, 11, 14, 0.12), rgba(5, 11, 14, 0.34)),
+          radial-gradient(circle at 72% 48%, rgba(255, 248, 236, 0.08), transparent 28vw);
+        pointer-events: none;
+      }
+
+      .page[data-variant="live-moment"].has-expanded-story .live-moment-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(360px, 460px);
+        gap: clamp(42px, 7vw, 100px);
+        align-items: center;
+        width: min(100% - 64px, 1320px);
+        min-width: 0;
+        margin: 0 auto;
+      }
+
       .live-moment-copy {
         max-width: 720px;
       }
@@ -5465,6 +5540,17 @@
           background-position: 68% center;
         }
 
+        .page[data-variant="live-moment"].has-expanded-story .story-section.is-live-moment-section {
+          min-height: 100svh;
+          padding: 86px 0;
+          background-position: 68% center;
+        }
+
+        .page[data-variant="live-moment"].has-expanded-story .live-moment-inner {
+          display: block;
+          width: calc(100% - 32px);
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner,
@@ -5530,13 +5616,27 @@
           max-width: 380px;
         }
 
+        .page[data-variant="live-moment"].has-expanded-story .live-moment-copy {
+          max-width: 380px;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-title {
           font-size: clamp(2.65rem, 12vw, 3.82rem);
           line-height: 0.96;
           text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
         }
 
+        .page[data-variant="live-moment"].has-expanded-story .live-moment-title {
+          font-size: clamp(2.65rem, 12vw, 3.82rem);
+          line-height: 0.96;
+          text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-card {
+          margin-top: 34px;
+        }
+
+        .page[data-variant="live-moment"].has-expanded-story .live-moment-card {
           margin-top: 34px;
         }
 
@@ -5794,6 +5894,7 @@
         <button class="variant-dot variant-dot-white" type="button" data-option="27" aria-label="Option 28: expanded next interface atrium"></button>
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: previous timeless interface homepage"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: build intelligence around Human Conversation"></button>
+        <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: know the person coordinate the moment"></button>
       </nav>
     </div>
 
@@ -5834,11 +5935,6 @@
                 ],
                 scene: "attention",
                 className: "is-attention-section",
-              },
-              {
-                kind: "liveMoment",
-                scene: "live-moment",
-                className: "is-live-moment-section",
               },
               {
                 title: `<span>Human Conversation tells you</span><span class="feeling-title-gold">how someone feels.</span>`,
@@ -5965,6 +6061,15 @@
                 title: `<span>A Human Conversation is worth</span><span class="story-blue">a thousand taps.</span>`,
                 scene: "thousand-taps",
                 className: "is-long",
+              },
+            ],
+          },
+          liveMoment: {
+            sections: [
+              {
+                kind: "liveMoment",
+                scene: "live-moment",
+                className: "is-live-moment-section",
               },
             ],
           },
@@ -6153,6 +6258,13 @@
           headlineLabel: "Build the intelligence around Human Conversation.",
           headline: `<span>Build the intelligence</span><span class="conversation-intelligence-gold">around Human Conversation.</span>`,
           lede: `Not another screen between people. The computer work moves into the background so the right real conversation happens next.`,
+        },
+        {
+          id: "live-moment",
+          headlineLabel: "Know the person. Coordinate the moment.",
+          headline: `<span>Know the person.</span><span class="conversation-intelligence-gold">Coordinate the moment.</span>`,
+          lede: `Three conversations can change the room.`,
+          story: storyPages.liveMoment,
         },
       ];
 

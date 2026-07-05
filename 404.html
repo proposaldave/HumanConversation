@@ -3614,6 +3614,11 @@
         --story-position: 58% center;
       }
 
+      .story-scene-brings-together {
+        --story-image: url("./assets/hc-art-intelligence-brings-together-20260705.png");
+        --story-position: 58% center;
+      }
+
       .story-scene-thousand-taps {
         --story-image: url("./assets/hc-art-thousand-taps-20260701.png");
         --story-position: 54% center;
@@ -4998,6 +5003,55 @@
         color: #d8a84b;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section {
+        min-height: clamp(700px, 78vw, 980px);
+        background: #070b0f;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section::before {
+        display: block;
+        background-image:
+          linear-gradient(90deg, rgba(4, 8, 12, 0.92) 0%, rgba(4, 8, 12, 0.78) 34%, rgba(4, 8, 12, 0.34) 63%, rgba(4, 8, 12, 0.16) 100%),
+          var(--story-image);
+        background-position: var(--story-position, 58% center);
+        background-size: cover;
+        filter: saturate(1.04) contrast(1.04) brightness(0.96);
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section::after {
+        display: block;
+        background:
+          radial-gradient(circle at 22% 72%, rgba(216, 168, 75, 0.2), transparent 28vw),
+          linear-gradient(180deg, rgba(4, 8, 12, 0.02) 0%, rgba(4, 8, 12, 0.42) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section .story-section-inner {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section .story-copy-block {
+        max-width: 1020px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section .story-title {
+        max-width: 980px;
+        color: #fff8ec;
+        font-size: clamp(3rem, 6.4vw, 7.1rem);
+        font-weight: 740;
+        line-height: 0.93;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.72);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section .brings-together-gold {
+        color: #e8bd5e;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section .story-visual {
+        display: none;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
         min-height: clamp(680px, 74vw, 940px);
         background: #fbf7ef;
@@ -5170,6 +5224,26 @@
             linear-gradient(180deg, rgba(6, 7, 6, 0.14) 0%, rgba(6, 7, 6, 0.54) 100%);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section {
+          min-height: 100svh;
+          padding: clamp(100px, 18vw, 132px) 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section::before {
+          display: block;
+          background-image:
+            linear-gradient(180deg, rgba(4, 8, 12, 0.86) 0%, rgba(4, 8, 12, 0.74) 42%, rgba(4, 8, 12, 0.42) 100%),
+            var(--story-image);
+          background-position: 62% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section::after {
+          display: block;
+          background:
+            radial-gradient(circle at 26% 76%, rgba(216, 168, 75, 0.2), transparent 54vw),
+            linear-gradient(180deg, rgba(4, 8, 12, 0.08) 0%, rgba(4, 8, 12, 0.56) 100%);
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner,
@@ -5221,6 +5295,14 @@
           font-size: clamp(2.45rem, 10.4vw, 3.28rem);
           line-height: 0.98;
           text-shadow: 0 4px 22px rgba(0, 0, 0, 0.74);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section .story-title {
+          max-width: min(100%, 380px);
+          color: #fff6e8;
+          font-size: clamp(2.5rem, 10.6vw, 3.38rem);
+          line-height: 0.98;
+          text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
@@ -5482,6 +5564,11 @@
                 title: `<span>Human Conversation is where</span><span class="connection-flow-highlight">connection happens</span><span>and human, social, and community</span><span class="connection-flow-data">data flows.</span>`,
                 scene: "connection-flow",
                 className: "is-long is-connection-flow-section",
+              },
+              {
+                title: `<span>We&rsquo;re not building another interface between us.</span><span class="brings-together-gold">We&rsquo;re building the intelligence that brings us together.</span>`,
+                scene: "brings-together",
+                className: "is-long is-brings-together-section",
               },
               {
                 title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next interface.</span>`,

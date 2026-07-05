@@ -3649,6 +3649,11 @@
         --story-position: 50% center;
       }
 
+      .story-scene-human-data {
+        --story-image: url("./assets/hc-art-human-social-community-data-v2-20260705.png");
+        --story-position: 50% center;
+      }
+
       .story-scene-feeling-signals {
         --story-image: url("./assets/hc-art-emotional-signal-conversation-20260705.png");
         --story-position: 58% center;
@@ -5372,6 +5377,70 @@
         display: none;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section {
+        min-height: max(100svh, clamp(680px, 74vw, 920px));
+        background: #070806;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section::before {
+        display: block;
+        background-image:
+          linear-gradient(90deg, rgba(5, 6, 5, 0.9) 0%, rgba(6, 7, 6, 0.76) 36%, rgba(6, 7, 6, 0.3) 72%, rgba(6, 7, 6, 0.2) 100%),
+          var(--story-image);
+        background-position: var(--story-position, 58% center);
+        background-size: cover;
+        filter: saturate(1.06) contrast(1.04) brightness(0.98);
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section::after {
+        display: block;
+        background:
+          radial-gradient(circle at 18% 68%, rgba(91, 143, 212, 0.18), transparent 32vw),
+          radial-gradient(circle at 36% 78%, rgba(232, 189, 94, 0.2), transparent 34vw),
+          linear-gradient(180deg, rgba(5, 6, 5, 0.04) 0%, rgba(5, 6, 5, 0.48) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-section-inner {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-copy-block {
+        max-width: 920px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-title {
+        max-width: 880px;
+        color: #fff8ec;
+        font-size: clamp(3rem, 6.05vw, 7.2rem);
+        font-weight: 730;
+        line-height: 0.95;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.68);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-body {
+        max-width: 760px;
+        margin-top: clamp(20px, 3vh, 30px);
+        color: rgba(255, 248, 236, 0.9);
+        font-size: clamp(1.08rem, 1.45vw, 1.28rem);
+        font-weight: 820;
+        line-height: 1.42;
+        text-shadow: 0 3px 20px rgba(0, 0, 0, 0.68);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .human-data-gold {
+        color: #e8bd5e;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .human-data-blue {
+        color: #f0c863;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-visual {
+        display: none;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
         display: flex;
         align-items: center;
@@ -5610,6 +5679,26 @@
             linear-gradient(180deg, rgba(4, 8, 12, 0.08) 0%, rgba(4, 8, 12, 0.56) 100%);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section {
+          min-height: max(100svh, 680px);
+          padding: 96px 0 72px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section::before {
+          display: block;
+          background-image:
+            linear-gradient(180deg, rgba(4, 5, 4, 0.9) 0%, rgba(4, 5, 4, 0.7) 48%, rgba(4, 5, 4, 0.78) 100%),
+            var(--story-image);
+          background-position: 40% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section::after {
+          display: block;
+          background:
+            radial-gradient(circle at 24% 74%, rgba(91, 143, 212, 0.2), transparent 58vw),
+            linear-gradient(180deg, rgba(5, 6, 5, 0.08) 0%, rgba(5, 6, 5, 0.58) 100%);
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section {
           min-height: 100svh;
           padding: 86px 0;
@@ -5686,6 +5775,22 @@
           font-size: clamp(2.5rem, 10.6vw, 3.38rem);
           line-height: 0.98;
           text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-title {
+          max-width: min(100%, 390px);
+          color: #fff6e8;
+          font-size: clamp(2.5rem, 10.8vw, 3.44rem);
+          line-height: 1;
+          text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-body {
+          max-width: min(100%, 390px);
+          margin-top: 18px;
+          color: rgba(255, 246, 232, 0.9);
+          font-size: 1rem;
+          line-height: 1.42;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-copy {
@@ -6080,6 +6185,14 @@
                 ],
                 scene: "feeling-signals",
                 className: "is-long is-feeling-section",
+              },
+              {
+                title: `<span>Every real conversation carries</span><span class="human-data-gold">what screens miss.</span>`,
+                copy: [
+                  `<span class="product-name">Human Conversation</span> is where the most valuable untapped data on the planet flows: our human, social, and community data.`,
+                ],
+                scene: "human-data",
+                className: "is-long is-human-data-section",
               },
               {
                 kind: "future",

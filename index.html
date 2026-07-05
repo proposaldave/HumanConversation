@@ -4615,6 +4615,330 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
+        min-height: clamp(720px, 78vw, 960px);
+        background:
+          radial-gradient(circle at 73% 32%, rgba(214, 138, 154, 0.18), transparent 24vw),
+          radial-gradient(circle at 30% 72%, rgba(91, 143, 212, 0.14), transparent 28vw),
+          linear-gradient(180deg, #fff8ec 0%, #fbf7ef 100%);
+        color: #1a1612;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section::after {
+        display: block;
+        background:
+          radial-gradient(circle at 72% 48%, rgba(255, 255, 255, 0.78), transparent 24vw),
+          linear-gradient(180deg, rgba(255, 248, 236, 0.18), rgba(251, 247, 239, 0.46));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-inner {
+        grid-template-columns: minmax(0, 0.72fr) minmax(620px, 1fr);
+        gap: clamp(42px, 6.8vw, 96px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-copy {
+        max-width: 560px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-title.story-title {
+        color: #111827;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(3rem, 5.8vw, 6.35rem);
+        font-weight: 950;
+        letter-spacing: 0;
+        line-height: 0.98;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-title .attention-title-rose {
+        color: #d95d64;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-body.story-body {
+        max-width: 520px;
+        color: rgba(17, 24, 39, 0.72);
+        font-size: clamp(1.12rem, 1.46vw, 1.34rem);
+        font-weight: 760;
+        line-height: 1.46;
+      }
+
+      .attention-graphic {
+        position: relative;
+        min-height: clamp(430px, 43vw, 610px);
+        overflow: hidden;
+        border: 1px solid rgba(26, 22, 18, 0.08);
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at 34% 52%, rgba(217, 93, 100, 0.18), transparent 18vw),
+          radial-gradient(circle at 60% 48%, rgba(91, 143, 212, 0.11), transparent 22vw),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(247, 240, 228, 0.84));
+        box-shadow:
+          0 42px 110px rgba(26, 22, 18, 0.14),
+          inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      }
+
+      .attention-graphic::before {
+        content: "";
+        position: absolute;
+        inset: 24px;
+        border: 1px solid rgba(184, 149, 74, 0.14);
+        border-radius: 16px;
+        pointer-events: none;
+      }
+
+      .attention-graphic::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(26, 22, 18, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26, 22, 18, 0.035) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: radial-gradient(circle at 36% 54%, #000 0%, transparent 62%);
+        pointer-events: none;
+      }
+
+      .attention-map {
+        position: absolute;
+        top: 50%;
+        left: 7%;
+        z-index: 2;
+        width: min(50%, 440px);
+        aspect-ratio: 1;
+        transform: translateY(-50%);
+      }
+
+      .attention-orbit {
+        position: absolute;
+        inset: 13%;
+        border: 1px solid rgba(91, 143, 212, 0.2);
+        border-radius: 999px;
+        background:
+          radial-gradient(circle, rgba(217, 93, 100, 0.13) 0 34%, rgba(217, 93, 100, 0.08) 34% 50%, rgba(184, 149, 74, 0.08) 50% 68%, transparent 68%),
+          conic-gradient(from 18deg, rgba(91, 143, 212, 0.18), rgba(217, 93, 100, 0.16), rgba(184, 149, 74, 0.18), rgba(91, 143, 212, 0.18));
+      }
+
+      .attention-lines {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .attention-lines line,
+      .attention-lines path {
+        fill: none;
+        stroke-linecap: round;
+      }
+
+      .attention-lines line {
+        stroke: rgba(91, 143, 212, 0.24);
+        stroke-width: 1.5;
+      }
+
+      .attention-lines .attention-pulse-line {
+        stroke: rgba(217, 93, 100, 0.72);
+        stroke-dasharray: 8 12;
+        stroke-width: 3;
+      }
+
+      .attention-node,
+      .attention-core {
+        position: absolute;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+      }
+
+      .attention-node {
+        width: clamp(48px, 6.4vw, 72px);
+        aspect-ratio: 1;
+        border: 3px solid rgba(91, 143, 212, 0.72);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: 0 18px 34px rgba(17, 24, 39, 0.12);
+      }
+
+      .attention-node::before {
+        content: "";
+        width: 42%;
+        height: 42%;
+        border-radius: 999px 999px 46% 46%;
+        background:
+          radial-gradient(circle at 50% 34%, #5b8fd4 0 21%, transparent 22%),
+          radial-gradient(ellipse at 50% 82%, #5b8fd4 0 45%, transparent 46%);
+      }
+
+      .attention-node-muted {
+        border-color: rgba(148, 163, 184, 0.72);
+      }
+
+      .attention-node-muted::before {
+        background:
+          radial-gradient(circle at 50% 34%, #9aa4b2 0 21%, transparent 22%),
+          radial-gradient(ellipse at 50% 82%, #9aa4b2 0 45%, transparent 46%);
+      }
+
+      .attention-node-focus {
+        border-color: rgba(217, 93, 100, 0.98);
+        background: #fff8ec;
+        box-shadow:
+          0 0 0 10px rgba(217, 93, 100, 0.16),
+          0 0 0 24px rgba(217, 93, 100, 0.08),
+          0 22px 54px rgba(217, 93, 100, 0.25);
+      }
+
+      .attention-node-focus::before {
+        background:
+          radial-gradient(circle at 50% 34%, #d95d64 0 21%, transparent 22%),
+          radial-gradient(ellipse at 50% 82%, #d95d64 0 45%, transparent 46%);
+      }
+
+      .attention-node-1 {
+        top: 6%;
+        left: 43%;
+      }
+
+      .attention-node-2 {
+        top: 20%;
+        right: 12%;
+      }
+
+      .attention-node-3 {
+        top: 50%;
+        right: 3%;
+        transform: translateY(-50%);
+      }
+
+      .attention-node-4 {
+        right: 13%;
+        bottom: 16%;
+      }
+
+      .attention-node-5 {
+        bottom: 6%;
+        left: 43%;
+      }
+
+      .attention-node-6 {
+        bottom: 16%;
+        left: 12%;
+      }
+
+      .attention-node-7 {
+        top: 50%;
+        left: 3%;
+        transform: translateY(-50%);
+      }
+
+      .attention-node-8 {
+        top: 20%;
+        left: 12%;
+      }
+
+      .attention-core {
+        top: 50%;
+        left: 50%;
+        width: clamp(118px, 15vw, 170px);
+        aspect-ratio: 1;
+        background: #fff8ec;
+        box-shadow:
+          0 0 0 16px rgba(217, 93, 100, 0.14),
+          0 0 0 40px rgba(217, 93, 100, 0.08),
+          0 28px 64px rgba(17, 24, 39, 0.18);
+        transform: translate(-50%, -50%);
+      }
+
+      .attention-core::before {
+        content: "";
+        width: 56%;
+        height: 56%;
+        border-radius: 999px 999px 44% 44%;
+        background:
+          radial-gradient(circle at 50% 30%, #d95d64 0 20%, transparent 21%),
+          radial-gradient(ellipse at 50% 86%, #d95d64 0 48%, transparent 49%);
+      }
+
+      .attention-arrow {
+        position: absolute;
+        top: 50%;
+        left: 49%;
+        z-index: 2;
+        width: 18%;
+        height: 4px;
+        border-radius: 999px;
+        background: #111827;
+        transform: translateY(-50%);
+      }
+
+      .attention-arrow::after {
+        content: "";
+        position: absolute;
+        right: -2px;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        border-top: 4px solid #111827;
+        border-right: 4px solid #111827;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .attention-card {
+        position: absolute;
+        top: 50%;
+        right: 6%;
+        z-index: 4;
+        width: min(38%, 420px);
+        border: 1px solid rgba(91, 143, 212, 0.2);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: clamp(24px, 3vw, 38px);
+        box-shadow:
+          0 28px 80px rgba(17, 24, 39, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.96);
+        transform: translateY(-50%);
+      }
+
+      .attention-card-kicker {
+        margin: 0 0 18px;
+        color: #d95d64;
+        font-size: clamp(0.86rem, 1.1vw, 1rem);
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .attention-card-title {
+        margin: 0 0 22px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.14);
+        color: #111827;
+        padding-bottom: 18px;
+        font-size: clamp(1.8rem, 2.8vw, 2.85rem);
+        font-weight: 950;
+        line-height: 1.02;
+      }
+
+      .attention-card-row {
+        margin-top: 17px;
+      }
+
+      .attention-card-row small {
+        display: block;
+        margin-bottom: 6px;
+        color: #4f9ac4;
+        font-size: 0.86rem;
+        font-weight: 950;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .attention-card-row strong {
+        display: block;
+        color: #111827;
+        font-size: clamp(1.02rem, 1.42vw, 1.28rem);
+        font-weight: 860;
+        line-height: 1.22;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
         min-height: clamp(650px, 72vw, 860px);
         background: #080806;
@@ -4890,6 +5214,16 @@
           text-shadow: 0 4px 22px rgba(0, 0, 0, 0.74);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
+          padding: 76px 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-title.story-title {
+          max-width: min(100%, 360px);
+          font-size: clamp(2.65rem, 12.2vw, 3.75rem);
+          line-height: 0.98;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-body,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain-intro,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-body,
@@ -4899,6 +5233,75 @@
           margin-top: 18px;
           font-size: 1rem;
           line-height: 1.46;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .attention-story-body.story-body {
+          max-width: min(100%, 340px);
+          color: rgba(17, 24, 39, 0.72);
+          font-size: 1rem;
+          font-weight: 760;
+        }
+
+        .attention-graphic {
+          min-height: 650px;
+          margin-top: 30px;
+          border-radius: 18px;
+        }
+
+        .attention-graphic::before {
+          inset: 14px;
+        }
+
+        .attention-map {
+          top: 32px;
+          left: 50%;
+          width: min(82vw, 310px);
+          transform: translateX(-50%);
+        }
+
+        .attention-node {
+          width: 50px;
+        }
+
+        .attention-core {
+          width: 112px;
+        }
+
+        .attention-arrow {
+          top: 47%;
+          left: 50%;
+          width: 4px;
+          height: 74px;
+          transform: translateX(-50%);
+        }
+
+        .attention-arrow::after {
+          right: auto;
+          top: auto;
+          bottom: 0;
+          left: 50%;
+          border-top: 0;
+          border-right: 4px solid #111827;
+          border-bottom: 4px solid #111827;
+          transform: translateX(-50%) rotate(45deg);
+        }
+
+        .attention-card {
+          top: auto;
+          right: auto;
+          bottom: 24px;
+          left: 24px;
+          width: calc(100% - 48px);
+          padding: 24px;
+          transform: none;
+        }
+
+        .attention-card-title {
+          font-size: 1.78rem;
+        }
+
+        .attention-card-row strong {
+          font-size: 1rem;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-body.story-body,
@@ -5056,6 +5459,15 @@
                 className: "is-taps-premium-section",
                 form: true,
                 formClass: "taps-premium-story-contact",
+              },
+              {
+                kind: "attention",
+                title: `<span>Who needs</span><span class="attention-title-rose">attention now?</span>`,
+                copy: [
+                  `Human Conversation turns community signals into the next human move: who to reach, what context matters, and what should happen next.`,
+                ],
+                scene: "attention",
+                className: "is-attention-section",
               },
               {
                 title: `<span>Human Conversation is where</span><span class="connection-flow-highlight">connection happens</span><span>and human, social, and community</span><span class="connection-flow-data">data flows.</span>`,
@@ -5430,6 +5842,42 @@
         `;
       }
 
+      function renderAttentionGraphic() {
+        const nodes = Array.from({ length: 8 }, (_, index) => {
+          const nodeClass = index === 2 ? "attention-node-focus" : index % 3 === 0 ? "attention-node-muted" : "";
+          return `<span class="attention-node attention-node-${index + 1} ${nodeClass}" aria-hidden="true"></span>`;
+        }).join("");
+
+        return `
+          <div class="attention-graphic" aria-label="Human Conversation highlights the next person to talk to with context, ask, and action">
+            <div class="attention-map" aria-hidden="true">
+              <span class="attention-orbit"></span>
+              <svg class="attention-lines" viewBox="0 0 500 500" preserveAspectRatio="none" focusable="false">
+                <line x1="250" y1="250" x2="250" y2="48" />
+                <line x1="250" y1="250" x2="398" y2="102" />
+                <line x1="250" y1="250" x2="468" y2="250" />
+                <line x1="250" y1="250" x2="398" y2="398" />
+                <line x1="250" y1="250" x2="250" y2="452" />
+                <line x1="250" y1="250" x2="102" y2="398" />
+                <line x1="250" y1="250" x2="32" y2="250" />
+                <line x1="250" y1="250" x2="102" y2="102" />
+                <path class="attention-pulse-line" d="M250 250 C330 236, 396 244, 468 250" />
+              </svg>
+              <span class="attention-core" aria-hidden="true"></span>
+              ${nodes}
+            </div>
+            <span class="attention-arrow" aria-hidden="true"></span>
+            <div class="attention-card">
+              <p class="attention-card-kicker">Next conversation</p>
+              <h3 class="attention-card-title">Reach this person</h3>
+              <div class="attention-card-row"><small>Context</small><strong>New member, came alone</strong></div>
+              <div class="attention-card-row"><small>Ask</small><strong>&ldquo;What would make this feel easy?&rdquo;</strong></div>
+              <div class="attention-card-row"><small>Action</small><strong>Invite to a soft landing</strong></div>
+            </div>
+          </div>
+        `;
+      }
+
       function renderStoryPage(storyPage, variantId) {
         if (!landingStory) return;
 
@@ -5503,6 +5951,20 @@
                       ${cards ? `<div class="taps-premium-grid taps-premium-story-grid">${cards}</div>` : ""}
                       ${form}
                     </div>
+                  </div>
+                </section>
+              `;
+            }
+
+            if (section.kind === "attention") {
+              return `
+                <section class="${sectionClasses}">
+                  <div class="story-section-inner attention-story-inner">
+                    <div class="story-copy-block attention-story-copy">
+                      <h2 class="story-title attention-story-title">${section.title}</h2>
+                      ${body ? `<div class="story-body attention-story-body">${body}</div>` : ""}
+                    </div>
+                    ${renderAttentionGraphic()}
                   </div>
                 </section>
               `;

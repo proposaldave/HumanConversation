@@ -3592,6 +3592,11 @@
         --story-overlay: linear-gradient(90deg, rgba(251, 247, 239, 0.94) 0%, rgba(251, 247, 239, 0.82) 40%, rgba(251, 247, 239, 0.3) 72%, rgba(251, 247, 239, 0.1) 100%);
       }
 
+      .story-scene-connection-flow {
+        --story-image: url("./assets/hc-art-real-world-social-system-20260704.png");
+        --story-position: 58% center;
+      }
+
       .story-scene-thousand-taps {
         --story-image: url("./assets/hc-art-thousand-taps-20260701.png");
         --story-position: 54% center;
@@ -4210,6 +4215,10 @@
           --story-position: 68% center;
         }
 
+        .story-scene-connection-flow {
+          --story-position: 63% center;
+        }
+
         .story-scene-thousand-taps {
           --story-position: 58% center;
         }
@@ -4595,6 +4604,56 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
+        min-height: clamp(650px, 72vw, 860px);
+        background: #080806;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section::before {
+        display: block;
+        background-image:
+          linear-gradient(90deg, rgba(6, 7, 6, 0.9) 0%, rgba(7, 7, 5, 0.74) 42%, rgba(7, 7, 5, 0.28) 72%, rgba(7, 7, 5, 0.18) 100%),
+          var(--story-image);
+        background-position: var(--story-position, 58% center);
+        background-size: cover;
+        filter: saturate(1.04) contrast(1.04) brightness(0.94);
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section::after {
+        display: block;
+        background:
+          radial-gradient(circle at 24% 68%, rgba(184, 149, 74, 0.18), transparent 28vw),
+          linear-gradient(180deg, rgba(6, 7, 6, 0.08) 0%, rgba(6, 7, 6, 0.44) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section .story-section-inner {
+        grid-template-columns: minmax(0, 930px) minmax(0, 1fr);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section .story-visual {
+        display: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section .story-title {
+        max-width: 980px;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.65rem, 6.4vw, 7.25rem);
+        font-weight: 650;
+        line-height: 0.9;
+        text-shadow: 0 5px 34px rgba(0, 0, 0, 0.58);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section .connection-flow-highlight {
+        color: #f1c96c;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section .connection-flow-data {
+        color: #d8a84b;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
         min-height: clamp(680px, 74vw, 940px);
         background: #fbf7ef;
@@ -4747,6 +4806,26 @@
             linear-gradient(180deg, rgba(4, 5, 7, 0.12) 0%, rgba(3, 4, 6, 0.48) 100%);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
+          min-height: auto;
+          padding: clamp(92px, 18vw, 132px) 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section::before {
+          display: block;
+          background-image:
+            linear-gradient(90deg, rgba(6, 7, 6, 0.9) 0%, rgba(7, 7, 5, 0.78) 56%, rgba(7, 7, 5, 0.34) 100%),
+            var(--story-image);
+          background-position: 64% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section::after {
+          display: block;
+          background:
+            radial-gradient(circle at 28% 74%, rgba(184, 149, 74, 0.18), transparent 48vw),
+            linear-gradient(180deg, rgba(6, 7, 6, 0.14) 0%, rgba(6, 7, 6, 0.54) 100%);
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner,
@@ -4790,6 +4869,14 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title .taps-cold {
           display: block;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section .story-title {
+          max-width: min(100%, 390px);
+          color: #fff6e8;
+          font-size: clamp(2.45rem, 10.4vw, 3.28rem);
+          line-height: 0.98;
+          text-shadow: 0 4px 22px rgba(0, 0, 0, 0.74);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-body,
@@ -4959,6 +5046,11 @@
                 className: "is-taps-premium-section",
                 form: true,
                 formClass: "taps-premium-story-contact",
+              },
+              {
+                title: `<span>Human Conversation is where</span><span class="connection-flow-highlight">connection happens</span><span>and human, social, and community</span><span class="connection-flow-data">data flows.</span>`,
+                scene: "connection-flow",
+                className: "is-long is-connection-flow-section",
               },
               {
                 title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next interface.</span>`,

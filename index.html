@@ -3603,6 +3603,12 @@
         --story-position: 58% center;
       }
 
+      .story-scene-human-future {
+        --story-image: url("./assets/hc-art-human-future-return-20260705.png");
+        --story-position: 62% center;
+        --story-brightness: 1.04;
+      }
+
       .story-section.is-paper {
         background: #fbf7ef;
         color: #1a1612;
@@ -4504,6 +4510,27 @@
         display: none;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
+        min-height: clamp(680px, 74vw, 940px);
+        background: #fbf7ef;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::before {
+        display: block;
+        background-image: var(--story-image);
+        background-position: var(--story-position, center);
+        background-size: cover;
+        filter: saturate(1.02) contrast(1.02) brightness(var(--story-brightness, 1.02));
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::after {
+        display: block;
+        background:
+          linear-gradient(90deg, rgba(251, 247, 239, 0.94) 0%, rgba(251, 247, 239, 0.8) 42%, rgba(251, 247, 239, 0.35) 68%, rgba(251, 247, 239, 0.1) 100%),
+          linear-gradient(180deg, rgba(251, 247, 239, 0.26) 0%, rgba(251, 247, 239, 0.58) 100%);
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-inner {
         grid-template-columns: minmax(0, 0.78fr) minmax(420px, 0.9fr);
       }
@@ -4598,6 +4625,22 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::after {
           background: linear-gradient(180deg, rgba(251, 247, 239, 0.96), rgba(251, 247, 239, 0.78));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
+          padding-bottom: 310px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::before {
+          display: block;
+          background-position: 58% bottom;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::after {
+          display: block;
+          background:
+            linear-gradient(180deg, rgba(251, 247, 239, 0.98) 0%, rgba(251, 247, 239, 0.93) 48%, rgba(251, 247, 239, 0.38) 76%, rgba(251, 247, 239, 0.12) 100%),
+            linear-gradient(90deg, rgba(251, 247, 239, 0.9), rgba(251, 247, 239, 0.18));
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,

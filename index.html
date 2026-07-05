@@ -619,6 +619,10 @@
 
       .mark-bubble {
         fill: var(--hc-ink);
+        stroke: transparent;
+        stroke-linejoin: round;
+        stroke-width: 0;
+        vector-effect: non-scaling-stroke;
       }
 
       .mark-heart {
@@ -635,6 +639,17 @@
       .page[data-variant="interface-thesis"] .mark-heart {
         fill: #d68a9a;
         stroke: #120d09;
+      }
+
+      .page[data-variant="conversation-intelligence-home"] .mark-bubble {
+        fill: rgba(8, 7, 5, 0.76);
+        stroke: rgba(247, 240, 228, 0.84);
+        stroke-width: 2.4px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"] .mark-heart {
+        fill: #d68a9a;
+        stroke: #fff8ec;
       }
 
       main {

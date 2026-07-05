@@ -4510,6 +4510,91 @@
         display: none;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
+        min-height: clamp(720px, 82vw, 960px);
+        background: #07090d;
+        color: #f7f0e4;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section::before {
+        display: block;
+        background-image:
+          linear-gradient(90deg, rgba(4, 7, 12, 0.94) 0%, rgba(6, 7, 10, 0.74) 39%, rgba(8, 7, 5, 0.34) 72%, rgba(8, 7, 5, 0.52) 100%),
+          var(--story-image);
+        background-position: var(--story-position, 54% center);
+        background-size: cover;
+        filter: saturate(1.03) contrast(1.03) brightness(0.92);
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section::after {
+        display: block;
+        background:
+          radial-gradient(circle at 22% 74%, rgba(91, 143, 212, 0.18), transparent 26vw),
+          linear-gradient(180deg, rgba(4, 5, 7, 0.18) 0%, rgba(3, 4, 6, 0.44) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-inner {
+        grid-template-columns: minmax(0, 760px) minmax(0, 1fr);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-copy {
+        max-width: 760px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title.story-title {
+        max-width: 800px;
+        color: #f7f0e4;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.85rem, 6.15vw, 7rem);
+        font-weight: 650;
+        line-height: 0.9;
+        text-shadow: 0 5px 34px rgba(0, 0, 0, 0.58);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title .taps-premium-worth {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-body.story-body {
+        display: grid;
+        max-width: 720px;
+        gap: 22px;
+        margin-top: 20px;
+        color: rgba(247, 240, 228, 0.86);
+        font-size: clamp(1.04rem, 1.32vw, 1.2rem);
+        font-weight: 850;
+        line-height: 1.46;
+        text-shadow: 0 3px 18px rgba(0, 0, 0, 0.44);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-body .product-name {
+        color: #d8a84b;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-grid {
+        margin-top: 22px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-contact.story-contact.contact {
+        max-width: 620px;
+        margin-top: 30px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-contact input[type="email"] {
+        border-color: rgba(247, 240, 228, 0.24);
+        background: rgba(247, 240, 228, 0.9);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-contact button {
+        background: #d8a84b;
+        color: #11100e;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-contact .status {
+        color: rgba(247, 240, 228, 0.7);
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
         min-height: clamp(680px, 74vw, 940px);
         background: #fbf7ef;
@@ -4643,6 +4728,25 @@
             linear-gradient(90deg, rgba(251, 247, 239, 0.9), rgba(251, 247, 239, 0.18));
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
+          min-height: 100svh;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section::before {
+          display: block;
+          background-image:
+            linear-gradient(180deg, rgba(5, 6, 8, 0.86) 0%, rgba(7, 7, 7, 0.76) 45%, rgba(9, 8, 6, 0.62) 100%),
+            var(--story-image);
+          background-position: 62% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section::after {
+          display: block;
+          background:
+            radial-gradient(circle at 20% 76%, rgba(91, 143, 212, 0.2), transparent 62vw),
+            linear-gradient(180deg, rgba(4, 5, 7, 0.12) 0%, rgba(3, 4, 6, 0.48) 100%);
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner,
@@ -4671,6 +4775,23 @@
           line-height: 0.92;
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title.story-title {
+          max-width: min(100%, 350px);
+          color: #fff6e8;
+          font-size: clamp(2.58rem, 10.7vw, 3.34rem);
+          line-height: 0.98;
+          text-shadow: 0 4px 22px rgba(0, 0, 0, 0.74);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title .taps-premium-worth {
+          font-size: 0.48em;
+          line-height: 1.18;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title .taps-cold {
+          display: block;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-body,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain-intro,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-body,
@@ -4680,6 +4801,22 @@
           margin-top: 18px;
           font-size: 1rem;
           line-height: 1.46;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-body.story-body,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-grid,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-contact.story-contact.contact {
+          width: 100%;
+          max-width: min(100%, 340px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-body.story-body {
+          gap: 18px;
+          color: rgba(255, 246, 232, 0.9);
+          font-size: 0.92rem;
+          line-height: 1.4;
+          overflow-wrap: anywhere;
+          text-shadow: 0 3px 18px rgba(0, 0, 0, 0.68);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact .contact-row {
@@ -4807,9 +4944,21 @@
                 className: "is-product",
               },
               {
-                title: `<span>A human conversation is worth</span><span class="story-blue">a thousand taps.</span>`,
+                kind: "tapsPremium",
+                title: `<span>A human conversation</span><span class="taps-premium-worth">is worth</span><span class="taps-premium-phrase">a thousand <span class="taps-cold">taps.</span></span>`,
+                copy: [
+                  `A community can run on phone taps &mdash; or on real human conversation. <span class="product-name">Human Conversation</span> helps community builders know who to talk to, what to ask, and what should happen next.`,
+                ],
+                cards: [
+                  ["Who", "The next person who needs a real conversation."],
+                  ["Why now", "The signal before someone drifts."],
+                  ["What to ask", "Guided questions that make people feel known."],
+                  ["Next", "The follow-up that turns care into action."],
+                ],
                 scene: "thousand-taps",
-                className: "is-long",
+                className: "is-taps-premium-section",
+                form: true,
+                formClass: "taps-premium-story-contact",
               },
               {
                 title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next interface.</span>`,
@@ -5125,9 +5274,11 @@
       let variantSwitchTimer;
       let variantNavHideTimer;
 
-      function renderStorySignup(idSuffix) {
+      function renderStorySignup(idSuffix, extraClass = "") {
+        const formClass = ["contact", "story-contact", extraClass].filter(Boolean).join(" ");
+
         return `
-          <form class="contact story-contact" id="email-capture-${idSuffix}" action="https://formsubmit.co/hello@humanconversation.com" method="post">
+          <form class="${formClass}" id="email-capture-${idSuffix}" action="https://formsubmit.co/hello@humanconversation.com" method="post">
             <input type="hidden" name="_subject" value="New Human Conversation signup" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
@@ -5201,7 +5352,7 @@
                   .map((item, itemIndex) => `<span class="${itemIndex === 0 ? "story-chain-first" : ""}">${item}</span>${itemIndex < section.chain.length - 1 ? `<span class="story-chain-arrow" aria-hidden="true">&rarr;</span>` : ""}`)
                   .join("")}</div>`
               : "";
-            const form = section.form ? renderStorySignup(`${variantId}-${sectionIndex}`) : "";
+            const form = section.form ? renderStorySignup(`${variantId}-${sectionIndex}`, section.formClass || "") : "";
             const sectionClasses = [
               "story-section",
               `story-scene-${section.scene}`,
@@ -5237,6 +5388,25 @@
                       ${body ? `<div class="story-body">${body}</div>` : ""}
                     </div>
                     ${renderCommunityGraph("wide")}
+                  </div>
+                </section>
+              `;
+            }
+
+            if (section.kind === "tapsPremium") {
+              const cards = section.cards
+                ?.map(([label, text]) => `<span><strong>${label}</strong><small>${text}</small></span>`)
+                .join("") || "";
+
+              return `
+                <section class="${sectionClasses}">
+                  <div class="story-section-inner taps-premium-story-inner">
+                    <div class="story-copy-block taps-premium-story-copy">
+                      <h2 class="story-title taps-premium-story-title">${section.title}</h2>
+                      ${body ? `<div class="story-body taps-premium-story-body">${body}</div>` : ""}
+                      ${cards ? `<div class="taps-premium-grid taps-premium-story-grid">${cards}</div>` : ""}
+                      ${form}
+                    </div>
                   </div>
                 </section>
               `;

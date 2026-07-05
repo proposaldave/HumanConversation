@@ -6301,6 +6301,109 @@
         font-weight: 950;
       }
 
+      .human-ai-system-map {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .system-card {
+        position: relative;
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        min-height: 230px;
+        border: 1px solid rgba(184, 149, 74, 0.24);
+        border-radius: 18px;
+        background: rgba(255, 252, 246, 0.86);
+        box-shadow:
+          0 24px 64px rgba(69, 46, 18, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        padding: 22px;
+      }
+
+      .system-card + .system-card::before {
+        content: "\2192";
+        position: absolute;
+        top: 50%;
+        left: -20px;
+        color: var(--human-ai-gold);
+        font-size: 1.75rem;
+        font-weight: 950;
+        line-height: 1;
+        transform: translate(-50%, -50%);
+      }
+
+      .system-card strong {
+        color: var(--hc-ink);
+        font-size: 1.08rem;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .system-card small,
+      .system-card em {
+        color: rgba(26, 22, 18, 0.68);
+        font-size: 0.9rem;
+        font-style: normal;
+        line-height: 1.32;
+      }
+
+      .system-members {
+        border-color: rgba(47, 139, 91, 0.24);
+        background: rgba(242, 250, 236, 0.88);
+      }
+
+      .system-members strong {
+        color: #257346;
+      }
+
+      .system-builders {
+        border-color: rgba(91, 143, 212, 0.26);
+        background: rgba(244, 249, 253, 0.9);
+      }
+
+      .system-builders strong {
+        color: #275f9d;
+      }
+
+      .system-ai {
+        border-color: rgba(139, 99, 181, 0.28);
+        background: rgba(250, 246, 255, 0.88);
+      }
+
+      .system-ai strong {
+        color: #6c3ca0;
+      }
+
+      .system-flywheel,
+      .system-payoff {
+        grid-column: 1 / -1;
+        justify-self: center;
+        text-align: center;
+      }
+
+      .system-flywheel {
+        width: min(100%, 620px);
+        border: 1px solid rgba(26, 22, 18, 0.12);
+        border-radius: 999px;
+        background: rgba(26, 22, 18, 0.86);
+        color: #fff8ec;
+        padding: 12px 18px;
+        font-size: 0.86rem;
+        font-weight: 950;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .system-payoff {
+        color: #6f5023;
+        font-size: 1.08rem;
+        font-weight: 950;
+      }
+
       .human-ai-flywheel-visual {
         position: relative;
         display: block;
@@ -6570,6 +6673,32 @@
           text-align: center;
         }
 
+        .human-ai-system-map {
+          grid-template-columns: 1fr;
+          max-width: 390px;
+        }
+
+        .system-card {
+          min-height: auto;
+          padding: 18px;
+        }
+
+        .system-card + .system-card::before {
+          top: -17px;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .system-flywheel {
+          border-radius: 18px;
+          font-size: 0.76rem;
+          line-height: 1.28;
+        }
+
+        .system-payoff {
+          font-size: 0.96rem;
+        }
+
         .human-ai-flywheel-visual {
           min-height: 430px;
         }
@@ -6731,10 +6860,10 @@
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: previous timeless interface homepage"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: build intelligence around Human Conversation"></button>
         <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: know the person coordinate the moment"></button>
-        <button class="variant-dot" type="button" data-option="31" aria-label="Option 32: human AI loop"></button>
-        <button class="variant-dot" type="button" data-option="32" aria-label="Option 33: flywheel of connection"></button>
-        <button class="variant-dot" type="button" data-option="33" aria-label="Option 34: humans above the surface"></button>
-        <button class="variant-dot" type="button" data-option="34" aria-label="Option 35: less screen time more connection time"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="31" aria-label="Option 32: operating system flow"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="32" aria-label="Option 33: flywheel of connection"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="33" aria-label="Option 34: humans above the surface"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="34" aria-label="Option 35: less screen time more connection time"></button>
       </nav>
     </div>
 
@@ -7115,10 +7244,10 @@
           story: storyPages.liveMoment,
         },
         {
-          id: "human-ai-loop",
-          headlineLabel: "People talk. AI handles the complexity.",
-          headline: `<span>People talk.</span><span class="human-ai-gold">AI handles the complexity.</span>`,
-          lede: `<span class="human-ai-copy">Human Conversation tells community builders who to talk to and why. They have the real conversation. Then AI remembers what happened and quietly handles the next move.</span><span class="human-ai-loop human-ai-three-step" aria-label="AI prepares, people talk, AI learns and acts"><span><b>1</b><strong>AI prepares</strong><small>Who to talk to. What context matters.</small></span><i aria-hidden="true">&rarr;</i><span class="is-human"><b>2</b><strong>People talk</strong><small>Real conversation. Trust. Community.</small></span><i aria-hidden="true">&rarr;</i><span><b>3</b><strong>AI follows through</strong><small>Remember, coordinate, act.</small></span></span><span class="human-ai-outcome">Less screen time. More connection time.</span>`,
+          id: "human-ai-system-map",
+          headlineLabel: "The operating system for real-world social communities. More human connection. Less screen time. AI handles the complexity.",
+          headline: `<span>The operating system</span><span>for real-world</span><span class="human-ai-gold">social communities.</span>`,
+          lede: `<span class="human-ai-copy">Staff and community builders stay with people. Human Conversation tells them who needs attention, what context matters, and what to do next. AI handles the complexity in the background.</span><span class="human-ai-system-map" aria-label="Members, community builders, and AI operating system flow"><span class="system-card system-members"><strong>Members</strong><small>People, not profiles.</small><em>Play. Connect. Come back.</em></span><span class="system-card system-builders"><strong>Staff / Community Builders</strong><small>Briefed before the conversation.</small><em>Human with the member.</em></span><span class="system-card system-ai"><strong>AI Operating System</strong><small>Captures what mattered.</small><em>Coordinates the next action.</em></span><span class="system-flywheel">Every conversation makes the community smarter.</span><span class="system-payoff">Minimize screen time. Maximize Human Conversation time.</span></span>`,
         },
         {
           id: "human-ai-flywheel",

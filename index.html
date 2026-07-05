@@ -14,12 +14,12 @@
     <meta http-equiv="expires" content="0" />
     <meta
       name="description"
-      content="Technology spent decades pulling conversation onto screens. We're doing the opposite. We're building the intelligence around Human Conversation."
+      content="For decades, interfaces pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation."
     />
     <meta property="og:title" content="Human Conversation - Intelligence Around Human Conversation" />
     <meta
       property="og:description"
-      content="Technology spent decades pulling conversation onto screens. We're doing the opposite. We're building the intelligence around Human Conversation."
+      content="For decades, interfaces pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://humanconversation.com/" />
@@ -1586,6 +1586,17 @@
 
       .hero.hero-conversation-intelligence-home .lede .lede-gold {
         color: #ffd66e;
+      }
+
+      .hero.hero-conversation-intelligence-home .lede-connector {
+        display: inline-block;
+        width: clamp(42px, 5vw, 76px);
+        height: 0.08em;
+        margin: 0 0.78rem 0.2em 0;
+        vertical-align: middle;
+        background: linear-gradient(90deg, rgba(255, 214, 110, 0.18), rgba(255, 214, 110, 0.92));
+        border-radius: 999px;
+        box-shadow: 0 0 18px rgba(255, 214, 110, 0.32);
       }
 
       .hero-new-interface .contact,
@@ -5532,12 +5543,12 @@
       <main>
         <section class="hero hero-conversation-intelligence-home" id="landing-hero">
           <div class="hero-inner">
-            <h1 aria-label="Technology spent decades pulling conversation onto screens. We're doing the opposite. We're building the intelligence around Human Conversation.">
-              <span>Technology spent decades</span>
-              <span>pulling conversation onto screens.</span>
-              <span class="conversation-intelligence-gold">We're doing the opposite.</span>
+            <h1 aria-label="For decades, interfaces pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation.">
+              <span>For decades, interfaces pulled</span>
+              <span>conversation onto screens.</span>
+              <span class="conversation-intelligence-gold">We’re doing the opposite.</span>
             </h1>
-            <p class="lede"><span class="lede-gold">We're building the intelligence <em>around</em> Human Conversation.</span></p>
+            <p class="lede"><span class="lede-connector" aria-hidden="true"></span><span class="lede-gold">Building the intelligence <em>around</em> human conversation.</span></p>
             <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, while AI quietly handles the computer work in the background.</p>
             <p class="interface-punchline">The interface becomes human.</p>
           </div>
@@ -5776,9 +5787,9 @@
         const variants = [
         {
           id: "conversation-intelligence-home",
-          headlineLabel: "Technology spent decades pulling conversation onto screens. We're doing the opposite. We're building the intelligence around Human Conversation.",
-          headline: `<span>Technology spent decades</span><span>pulling conversation onto screens.</span><span class="conversation-intelligence-gold">We're doing the opposite.</span>`,
-          lede: `<span class="lede-gold">We're building the intelligence <em>around</em> Human Conversation.</span>`,
+          headlineLabel: "For decades, interfaces pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation.",
+          headline: `<span>For decades, interfaces pulled</span><span>conversation onto screens.</span><span class="conversation-intelligence-gold">We’re doing the opposite.</span>`,
+          lede: `<span class="lede-connector" aria-hidden="true"></span><span class="lede-gold">Building the intelligence <em>around</em> human conversation.</span>`,
           story: storyPages.main,
         },
         {

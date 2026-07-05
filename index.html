@@ -57,6 +57,11 @@
         scrollbar-width: none;
       }
 
+      html.snap-expanded-story {
+        scroll-snap-type: y mandatory;
+        scroll-padding-top: 0;
+      }
+
       html::-webkit-scrollbar,
       body::-webkit-scrollbar {
         width: 0;
@@ -4336,8 +4341,10 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .hero {
         position: relative;
-        min-height: calc(100svh - 96px);
+        min-height: 100svh;
         padding-bottom: clamp(84px, 11vh, 124px);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .landing-story {
@@ -4378,12 +4385,14 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final {
         position: relative;
         display: block;
-        min-height: auto;
+        min-height: 100svh;
         overflow: hidden;
         border-top: 1px solid rgba(26, 22, 18, 0.09);
         background: transparent;
         color: #1a1612;
         padding: clamp(94px, 11vw, 154px) 0;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section:first-child {
@@ -4538,7 +4547,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
-        min-height: clamp(720px, 82vw, 960px);
+        min-height: max(100svh, clamp(720px, 82vw, 960px));
         background: #07090d;
         color: #f7f0e4;
       }
@@ -4623,7 +4632,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
-        min-height: clamp(720px, 78vw, 960px);
+        min-height: max(100svh, clamp(720px, 78vw, 960px));
         background:
           radial-gradient(circle at 73% 32%, rgba(214, 138, 154, 0.18), transparent 24vw),
           radial-gradient(circle at 30% 72%, rgba(91, 143, 212, 0.14), transparent 28vw),
@@ -4669,7 +4678,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section {
-        min-height: clamp(720px, 76vw, 940px);
+        min-height: max(100svh, clamp(720px, 76vw, 940px));
         overflow: hidden;
         background:
           linear-gradient(90deg, rgba(5, 11, 14, 0.92) 0%, rgba(5, 11, 14, 0.76) 42%, rgba(5, 11, 14, 0.34) 100%),
@@ -5058,7 +5067,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section {
-        min-height: clamp(690px, 76vw, 940px);
+        min-height: max(100svh, clamp(690px, 76vw, 940px));
         background: #080604;
         color: #fff8ec;
       }
@@ -5115,7 +5124,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
-        min-height: clamp(650px, 72vw, 860px);
+        min-height: max(100svh, clamp(650px, 72vw, 860px));
         background: #080806;
         color: #fff8ec;
       }
@@ -5165,7 +5174,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-brings-together-section {
-        min-height: clamp(700px, 78vw, 980px);
+        min-height: max(100svh, clamp(700px, 78vw, 980px));
         background: #070b0f;
         color: #fff8ec;
       }
@@ -5343,7 +5352,7 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final {
-          min-height: auto;
+          min-height: 100svh;
           padding: 64px 0;
         }
 
@@ -5411,7 +5420,7 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
-          min-height: auto;
+          min-height: 100svh;
           padding: clamp(92px, 18vw, 132px) 0;
         }
 
@@ -5451,7 +5460,7 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section {
-          min-height: auto;
+          min-height: 100svh;
           padding: 86px 0;
           background-position: 68% center;
         }
@@ -6153,6 +6162,8 @@
       let currentVariantIndex = 0;
       let variantSwitchTimer;
       let variantNavHideTimer;
+      let panelSnapTimer;
+      let panelSnapInFlight = false;
 
       function renderStorySignup(idSuffix, extraClass = "") {
         const formClass = ["contact", "story-contact", extraClass].filter(Boolean).join(" ");
@@ -6278,6 +6289,7 @@
 
         if (!storyPage) {
           page.classList.remove("has-expanded-story");
+          document.documentElement.classList.remove("snap-expanded-story");
           landingStory.hidden = true;
           landingStory.innerHTML = "";
           return;
@@ -6415,6 +6427,7 @@
         landingStory.innerHTML = `<div class="story-shell">${sections}</div>`;
         landingStory.hidden = false;
         page.classList.add("has-expanded-story");
+        document.documentElement.classList.toggle("snap-expanded-story", variantId === "conversation-intelligence-home");
       }
 
       function setVariant(index, options = {}) {
@@ -6491,6 +6504,49 @@
         storyCue?.classList.toggle("is-dismissed", window.scrollY > 72);
       }
 
+      function getPanelSnapTargets() {
+        if (!document.documentElement.classList.contains("snap-expanded-story")) return [];
+        return Array.from(
+          document.querySelectorAll(
+            '.page[data-variant="conversation-intelligence-home"].has-expanded-story .hero, .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section, .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final',
+          ),
+        );
+      }
+
+      function snapToNearestPanel() {
+        const targets = getPanelSnapTargets();
+        if (!targets.length || panelSnapInFlight) return;
+
+        const currentTop = window.scrollY;
+        const nearest = targets.reduce((closest, target) => {
+          const targetTop = target.getBoundingClientRect().top + currentTop;
+          const distance = Math.abs(targetTop - currentTop);
+          return distance < closest.distance ? { distance, target, targetTop } : closest;
+        }, { distance: Number.POSITIVE_INFINITY, target: null, targetTop: 0 });
+
+        if (!nearest.target || nearest.distance < 6) return;
+
+        panelSnapInFlight = true;
+        window.scrollTo({
+          top: Math.max(0, Math.round(nearest.targetTop)),
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+        });
+        window.setTimeout(() => {
+          panelSnapInFlight = false;
+        }, prefersReducedMotion.matches ? 0 : 460);
+      }
+
+      function schedulePanelSnap() {
+        if (!document.documentElement.classList.contains("snap-expanded-story") || panelSnapInFlight) return;
+        window.clearTimeout(panelSnapTimer);
+        panelSnapTimer = window.setTimeout(snapToNearestPanel, 140);
+      }
+
+      function handlePageScroll() {
+        updateStoryCueVisibility();
+        schedulePanelSnap();
+      }
+
       const params = new URLSearchParams(window.location.search);
       const reviewMode = params.get("review") === "1";
       const requestedVariant = params.get("variant") || "";
@@ -6527,7 +6583,7 @@
 
       variantTrigger?.addEventListener("click", revealVariantDots);
       updateStoryCueVisibility();
-      window.addEventListener("scroll", updateStoryCueVisibility, { passive: true });
+      window.addEventListener("scroll", handlePageScroll, { passive: true });
 
       window.addEventListener("keydown", (event) => {
         const target = event.target;

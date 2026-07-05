@@ -3618,8 +3618,8 @@
       }
 
       .story-scene-lonely-return {
-        --story-image: url("./assets/hc-art-human-conversation-garden-return-20260704.png");
-        --story-position: 58% center;
+        --story-image: url("./assets/hc-art-loneliness-deck-style-20260705.png");
+        --story-position: 50% center;
       }
 
       .story-scene-timeless-interface {
@@ -4531,6 +4531,46 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-panel-image {
         grid-column: 1;
         grid-row: 1;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section {
+        background: #fbf7ef;
+        color: #1a1612;
+        overflow: hidden;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section::before {
+        display: block;
+        background-image: var(--story-image);
+        background-position: var(--story-position, center);
+        background-size: cover;
+        filter: saturate(1.02) contrast(1.01) brightness(1.02);
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section::after {
+        display: block;
+        background:
+          linear-gradient(90deg, rgba(251, 247, 239, 0.98) 0%, rgba(251, 247, 239, 0.9) 42%, rgba(251, 247, 239, 0.48) 70%, rgba(251, 247, 239, 0.22) 100%),
+          linear-gradient(180deg, rgba(251, 247, 239, 0.62) 0%, rgba(251, 247, 239, 0.22) 48%, rgba(251, 247, 239, 0.7) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-section-inner {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-copy-block {
+        max-width: 780px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-title {
+        max-width: 780px;
+        color: #1a1612;
+        font-size: clamp(3.05rem, 5.55vw, 6.25rem);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-visual {
+        display: none;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-title {
@@ -5777,6 +5817,29 @@
           text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section {
+          min-height: 100svh;
+          padding: 96px 0 72px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section::before {
+          display: block;
+          background-position: 52% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section::after {
+          display: block;
+          background:
+            linear-gradient(180deg, rgba(251, 247, 239, 0.96) 0%, rgba(251, 247, 239, 0.82) 42%, rgba(251, 247, 239, 0.58) 70%, rgba(251, 247, 239, 0.9) 100%),
+            linear-gradient(90deg, rgba(251, 247, 239, 0.9), rgba(251, 247, 239, 0.36));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-title {
+          max-width: min(100%, 390px);
+          font-size: clamp(2.38rem, 10.4vw, 3.28rem);
+          line-height: 0.98;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-title {
           max-width: min(100%, 390px);
           color: #fff6e8;
@@ -6135,7 +6198,7 @@
               {
                 title: `<span>We're not lonely because</span><span>communication disappeared.</span><span class="story-gold">We're lonely because</span><span class="story-gold">Human Conversation disappeared.</span>`,
                 scene: "lonely-return",
-                className: "is-long",
+                className: "is-long is-lonely-return-section",
               },
               {
                 title: `<span>Human Conversation is the</span><span class="story-gold">timeless interface</span><span>of community.</span>`,

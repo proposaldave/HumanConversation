@@ -4676,6 +4676,117 @@
         line-height: 1.46;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section {
+        min-height: clamp(720px, 76vw, 940px);
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(5, 11, 14, 0.92) 0%, rgba(5, 11, 14, 0.76) 42%, rgba(5, 11, 14, 0.34) 100%),
+          url("./assets/hc-art-community-graph-night-aerial-20260705.png") center / cover;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section::before {
+        background:
+          radial-gradient(circle at 24% 50%, rgba(216, 168, 75, 0.18), transparent 28vw),
+          linear-gradient(120deg, rgba(91, 143, 212, 0.16), transparent 52%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section::after {
+        display: block;
+        background:
+          linear-gradient(180deg, rgba(5, 11, 14, 0.12), rgba(5, 11, 14, 0.34)),
+          radial-gradient(circle at 72% 48%, rgba(255, 248, 236, 0.08), transparent 28vw);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-inner {
+        grid-template-columns: minmax(0, 0.85fr) minmax(360px, 460px);
+        gap: clamp(42px, 7vw, 100px);
+        align-items: center;
+      }
+
+      .live-moment-copy {
+        max-width: 720px;
+      }
+
+      .live-moment-eyebrow,
+      .live-moment-card small {
+        display: block;
+        color: #f4d8a3;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.76rem;
+        font-weight: 950;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .live-moment-title {
+        margin: 0;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4.2rem, 7vw, 8.6rem);
+        font-weight: 780;
+        letter-spacing: 0;
+        line-height: 0.9;
+        text-wrap: balance;
+      }
+
+      .live-moment-title span {
+        display: block;
+      }
+
+      .live-moment-title span:first-child {
+        color: rgba(255, 248, 236, 0.78);
+      }
+
+      .live-moment-card {
+        position: relative;
+        z-index: 2;
+        margin-top: clamp(44px, 4.4vw, 70px);
+        overflow: hidden;
+        border: 1px solid rgba(255, 248, 236, 0.22);
+        border-radius: 8px;
+        background:
+          linear-gradient(145deg, rgba(255, 248, 236, 0.18), rgba(255, 248, 236, 0.06));
+        box-shadow: 0 34px 92px rgba(0, 0, 0, 0.32);
+        backdrop-filter: blur(20px);
+      }
+
+      .live-moment-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 76% 22%, rgba(216, 168, 75, 0.16), transparent 34%),
+          linear-gradient(180deg, rgba(255, 248, 236, 0.08), transparent);
+        pointer-events: none;
+      }
+
+      .live-moment-top,
+      .live-moment-row {
+        position: relative;
+        z-index: 1;
+        padding: clamp(20px, 2.5vw, 28px);
+        border-bottom: 1px solid rgba(255, 248, 236, 0.14);
+      }
+
+      .live-moment-row:last-child {
+        border-bottom: 0;
+      }
+
+      .live-moment-top b,
+      .live-moment-row strong {
+        display: block;
+        margin-top: 10px;
+        color: #fff8ec;
+        font-size: clamp(1.16rem, 1.58vw, 1.42rem);
+        font-weight: 900;
+        line-height: 1.08;
+      }
+
+      .live-moment-row.action {
+        background: rgba(255, 248, 236, 0.08);
+      }
+
       .attention-graphic {
         position: relative;
         min-height: clamp(430px, 43vw, 610px);
@@ -5348,6 +5459,12 @@
             linear-gradient(180deg, rgba(4, 8, 12, 0.08) 0%, rgba(4, 8, 12, 0.56) 100%);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-live-moment-section {
+          min-height: auto;
+          padding: 86px 0;
+          background-position: 68% center;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-section-inner,
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final-inner,
@@ -5407,6 +5524,25 @@
           font-size: clamp(2.5rem, 10.6vw, 3.38rem);
           line-height: 0.98;
           text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-copy {
+          max-width: 380px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-title {
+          font-size: clamp(2.65rem, 12vw, 3.82rem);
+          line-height: 0.96;
+          text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .live-moment-card {
+          margin-top: 34px;
+        }
+
+        .live-moment-top,
+        .live-moment-row {
+          padding: 20px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section {
@@ -5690,6 +5826,11 @@
                 ],
                 scene: "attention",
                 className: "is-attention-section",
+              },
+              {
+                kind: "liveMoment",
+                scene: "live-moment",
+                className: "is-live-moment-section",
               },
               {
                 title: `<span>Human Conversation tells you</span><span class="feeling-title-gold">how someone feels.</span>`,
@@ -6118,6 +6259,29 @@
         `;
       }
 
+      function renderLiveMomentCard() {
+        return `
+          <div class="live-moment-card" aria-label="Human Conversation product surface">
+            <div class="live-moment-top">
+              <small>Tonight</small>
+              <b>3 conversations can change the room.</b>
+            </div>
+            <div class="live-moment-row">
+              <small>Person</small>
+              <strong>Who should I talk to?</strong>
+            </div>
+            <div class="live-moment-row">
+              <small>Context</small>
+              <strong>What would make them feel known?</strong>
+            </div>
+            <div class="live-moment-row action">
+              <small>Next</small>
+              <strong>Invite with a trusted peer.</strong>
+            </div>
+          </div>
+        `;
+      }
+
       function renderStoryPage(storyPage, variantId) {
         if (!landingStory) return;
 
@@ -6205,6 +6369,20 @@
                       ${body ? `<div class="story-body attention-story-body">${body}</div>` : ""}
                     </div>
                     ${renderAttentionGraphic()}
+                  </div>
+                </section>
+              `;
+            }
+
+            if (section.kind === "liveMoment") {
+              return `
+                <section class="${sectionClasses}">
+                  <div class="story-section-inner live-moment-inner">
+                    <div class="story-copy-block live-moment-copy">
+                      <p class="live-moment-eyebrow">Human Conversation</p>
+                      <h2 class="live-moment-title"><span>Know the person.</span><span>Coordinate the moment.</span></h2>
+                    </div>
+                    ${renderLiveMomentCard()}
                   </div>
                 </section>
               `;

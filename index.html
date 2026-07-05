@@ -54,6 +54,13 @@
 
       html {
         scroll-behavior: smooth;
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -76,6 +83,7 @@
         min-height: 100vh;
         margin: 0;
         background: var(--hc-cream);
+        -ms-overflow-style: none;
         overflow-x: hidden;
       }
 

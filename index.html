@@ -4234,11 +4234,21 @@
         border-radius: 999px;
         background: rgba(12, 9, 6, 0.5);
         color: rgba(255, 248, 236, 0.92);
+        cursor: pointer;
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+        font: inherit;
         padding: 0;
         text-decoration: none;
         box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
         transform: translateX(-50%);
         backdrop-filter: blur(14px) saturate(1.12);
+      }
+
+      .story-cue:focus-visible {
+        outline: 2px solid rgba(255, 248, 236, 0.88);
+        outline-offset: 4px;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-cue {
@@ -4295,15 +4305,15 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .hero {
         position: relative;
-        min-height: min(820px, calc(100svh - 96px));
-        padding-bottom: clamp(108px, 14vh, 164px);
+        min-height: calc(100svh - 96px);
+        padding-bottom: clamp(84px, 11vh, 124px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .landing-story {
         position: relative;
         isolation: isolate;
         overflow: hidden;
-        margin-top: clamp(-110px, -10svh, -72px);
+        margin-top: 0;
         background:
           linear-gradient(180deg, rgba(251, 247, 239, 0.9) 0, rgba(251, 247, 239, 0.98) 118px),
           radial-gradient(circle at 88% 9%, rgba(214, 138, 154, 0.13), transparent 26vw),
@@ -4311,7 +4321,7 @@
           linear-gradient(180deg, #fbf7ef 0%, #f6ecdd 48%, #fff8ec 100%);
         color: #1a1612;
         box-shadow: none;
-        padding: clamp(56px, 7vw, 96px) 0 0;
+        padding: clamp(42px, 6vw, 78px) 0 0;
         scroll-margin-top: 0;
       }
 
@@ -4561,13 +4571,13 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .hero {
-          min-height: 100svh;
+          min-height: calc(100svh - 83px);
           padding-bottom: 42px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .landing-story {
-          margin-top: -72px;
-          padding-top: 40px;
+          margin-top: 0;
+          padding-top: 32px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-shell::before {
@@ -4703,7 +4713,7 @@
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">autonomous community</span>
             </span>
           </p>
-          <a class="story-cue" href="#landing-story" aria-label="Continue to the Human Conversation story"><span class="story-cue-icon" aria-hidden="true"></span></a>
+          <button class="story-cue" type="button" aria-label="Continue to the Human Conversation story"><span class="story-cue-icon" aria-hidden="true"></span></button>
         </section>
         <section class="landing-story" id="landing-story" hidden></section>
       </main>
@@ -5323,9 +5333,23 @@
         : 0;
       setVariant(requestedIndex, { immediate: true });
 
+      if (window.location.hash === "#landing-story") {
+        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+        window.requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        });
+      }
+
       dots.forEach((dot) => {
         dot.addEventListener("click", () => {
           setVariant(Number.parseInt(dot.dataset.option, 10));
+        });
+      });
+
+      storyCue?.addEventListener("click", () => {
+        landingStory?.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          block: "start",
         });
       });
 

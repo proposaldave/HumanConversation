@@ -4442,6 +4442,71 @@
         grid-column: 2;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-section-inner {
+        grid-template-columns: minmax(0, 0.9fr) minmax(380px, 0.98fr);
+        gap: clamp(42px, 5.4vw, 74px);
+        width: min(100% - 72px, 1380px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel.is-copy-right .story-section-inner {
+        grid-template-columns: minmax(380px, 0.98fr) minmax(0, 0.9fr);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-copy-block {
+        position: relative;
+        max-width: 720px;
+        padding: clamp(10px, 2vw, 26px) 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-copy-block::before {
+        content: "";
+        display: block;
+        width: clamp(54px, 6vw, 88px);
+        height: 1px;
+        margin-bottom: clamp(16px, 2.2vw, 28px);
+        background: linear-gradient(90deg, rgba(184, 149, 74, 0.86), rgba(216, 138, 154, 0.34), rgba(184, 149, 74, 0));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-art-block {
+        position: relative;
+        z-index: 1;
+        align-self: center;
+        isolation: isolate;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-art-block::before {
+        content: "";
+        position: absolute;
+        inset: -18px -18px 42px;
+        z-index: -1;
+        border: 1px solid rgba(184, 149, 74, 0.22);
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(255, 252, 246, 0.7), rgba(255, 248, 236, 0.22));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-art-block::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: clamp(-74px, -5vw, -42px);
+        width: clamp(42px, 5vw, 74px);
+        height: 1px;
+        background: linear-gradient(90deg, rgba(184, 149, 74, 0), rgba(184, 149, 74, 0.72));
+        pointer-events: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-art-block {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-art-block::after {
+        right: clamp(-74px, -5vw, -42px);
+        left: auto;
+        background: linear-gradient(90deg, rgba(184, 149, 74, 0.72), rgba(184, 149, 74, 0));
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-copy-block {
         max-width: 790px;
         min-width: 0;
@@ -4449,8 +4514,8 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-image {
         display: block;
-        min-height: clamp(360px, 40vw, 560px);
-        border: 1px solid rgba(255, 248, 236, 0.72);
+        min-height: clamp(410px, 42vw, 610px);
+        border: 1px solid rgba(184, 149, 74, 0.34);
         border-radius: 8px;
         background-image:
           linear-gradient(180deg, rgba(8, 6, 4, 0.02), rgba(8, 6, 4, 0.22)),
@@ -4458,14 +4523,39 @@
         background-position: var(--story-position, center);
         background-size: cover;
         box-shadow:
-          0 30px 86px rgba(26, 22, 18, 0.17),
-          0 0 0 12px rgba(255, 248, 236, 0.4);
+          0 34px 92px rgba(26, 22, 18, 0.18),
+          0 0 0 10px rgba(255, 248, 236, 0.38);
         filter: saturate(var(--story-saturation, 1.02)) contrast(1.02) brightness(var(--story-brightness, 1.01));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-panel-image::after {
+        inset: 12px;
+        border-color: rgba(255, 248, 236, 0.44);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-panel-image {
         grid-column: 1;
         grid-row: 1;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-caption {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 12px;
+        align-items: baseline;
+        margin: 16px 0 0;
+        color: rgba(26, 22, 18, 0.58);
+        font-family: Manrope, Arial, sans-serif;
+        font-size: clamp(0.72rem, 0.8vw, 0.82rem);
+        font-weight: 850;
+        letter-spacing: 0.07em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-caption span {
+        color: #b8954a;
+        font-variant-numeric: tabular-nums;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-title {
@@ -4481,6 +4571,14 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-product .story-title {
         font-size: clamp(2.85rem, 5.45vw, 6.15rem);
         line-height: 0.94;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-title,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel.is-long .story-title,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel.is-product .story-title {
+        max-width: 720px;
+        font-size: clamp(3rem, 5.65vw, 6.35rem);
+        line-height: 0.93;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-body,
@@ -5364,9 +5462,44 @@
           display: none;
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-section-inner,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel.is-copy-right .story-section-inner {
+          display: block;
+          width: calc(100% - 32px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-copy-block {
+          max-width: 100%;
+          padding: 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-copy-block::before {
+          width: 58px;
+          margin-bottom: 18px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-art-block {
+          margin-top: 30px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-art-block::before {
+          inset: -10px -10px 34px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-art-block::after {
+          display: none;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-image {
           min-height: 230px;
-          margin-top: 28px;
+          margin-top: 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-panel-caption {
+          gap: 10px;
+          margin-top: 13px;
+          font-size: 0.66rem;
+          letter-spacing: 0.05em;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::after {
@@ -5485,6 +5618,18 @@
           max-width: 100%;
           font-size: clamp(2.3rem, 11.1vw, 3.5rem);
           line-height: 0.96;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-title,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel.is-long .story-title,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel.is-product .story-title {
+          font-size: clamp(2.12rem, 10.25vw, 3.16rem);
+          line-height: 0.98;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-editorial-panel .story-title > span {
+          overflow-wrap: normal;
+          word-break: normal;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-title,
@@ -5800,6 +5945,7 @@
                 chainIntro: `Human Conversation turns disconnection into`,
                 chain: ["disconnection", "connection", "trust", "data", "coordination", "autonomous community"],
                 className: "is-product",
+                caption: "Care becomes action when the right conversation happens.",
               },
               {
                 kind: "tapsPremium",
@@ -5854,16 +6000,19 @@
                 title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next interface.</span>`,
                 scene: "next-interface",
                 className: "is-long",
+                caption: "The best interface is still the person in front of you.",
               },
               {
                 title: `<span>We're not lonely because</span><span>communication disappeared.</span><span class="story-gold">We're lonely because</span><span class="story-gold">Human Conversation disappeared.</span>`,
                 scene: "lonely-return",
                 className: "is-long",
+                caption: "The path back is a real person who remembers.",
               },
               {
                 title: `<span>Human Conversation is the</span><span class="story-gold">timeless interface</span><span>of community.</span>`,
                 scene: "timeless-interface",
                 copyRight: true,
+                caption: "Real rooms. Real introductions. Real community.",
               },
               {
                 title: `<span>Who needs</span><span class="story-blue">a conversation?</span>`,
@@ -5872,11 +6021,13 @@
                 ],
                 scene: "solves-disconnection",
                 className: "is-product",
+                caption: "The next person to talk to is the work.",
               },
               {
                 title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
                 className: "is-long is-light",
+                caption: "People talking, remembering, inviting, and coming back.",
               },
               {
                 kind: "known",
@@ -5900,6 +6051,7 @@
                 title: `<span>Technology got</span><span>between us.</span><span class="story-gold">Human</span><span class="story-gold">Conversation</span><span class="story-gold">brings us back together.</span>`,
                 scene: "between-us",
                 className: "is-long",
+                caption: "Technology should clear the way for the moment.",
               },
               {
                 kind: "future",
@@ -6304,11 +6456,15 @@
                   .join("")}</div>`
               : "";
             const form = section.form ? renderStorySignup(`${variantId}-${sectionIndex}`, section.formClass || "") : "";
+            const className = section.className || "";
+            const fullBleedScene = ["is-feeling-section", "is-connection-flow-section", "is-brings-together-section"].some((name) => className.includes(name));
+            const editorialPanel = !section.kind && !fullBleedScene;
             const sectionClasses = [
               "story-section",
               `story-scene-${section.scene}`,
+              editorialPanel ? "is-editorial-panel" : "",
               section.copyRight ? "is-copy-right" : "",
-              section.className || "",
+              className,
             ]
               .filter(Boolean)
               .join(" ");
@@ -6408,6 +6564,15 @@
               `;
             }
 
+            const visual = editorialPanel
+              ? `
+                  <div class="story-art-block">
+                    <div class="story-visual story-panel-image" aria-hidden="true"></div>
+                    <p class="story-panel-caption"><span aria-hidden="true">${String(sectionIndex + 1).padStart(2, "0")}</span>${section.caption || "Human Conversation"}</p>
+                  </div>
+                `
+              : `<div class="story-visual story-panel-image" aria-hidden="true"></div>`;
+
             return `
               <section class="${sectionClasses}">
                 <div class="story-section-inner">
@@ -6417,7 +6582,7 @@
                     ${chain}
                     ${form}
                   </div>
-                  <div class="story-visual story-panel-image" aria-hidden="true"></div>
+                  ${visual}
                 </div>
               </section>
             `;

@@ -3619,6 +3619,11 @@
         --story-position: 58% center;
       }
 
+      .story-scene-feeling-signals {
+        --story-image: url("./assets/hc-art-emotional-signal-conversation-20260705.png");
+        --story-position: 58% center;
+      }
+
       .story-scene-thousand-taps {
         --story-image: url("./assets/hc-art-thousand-taps-20260701.png");
         --story-position: 54% center;
@@ -4953,6 +4958,63 @@
         line-height: 1.22;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section {
+        min-height: clamp(690px, 76vw, 940px);
+        background: #080604;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section::before {
+        display: block;
+        background-image:
+          linear-gradient(90deg, rgba(5, 4, 3, 0.92) 0%, rgba(5, 4, 3, 0.75) 34%, rgba(5, 4, 3, 0.28) 64%, rgba(5, 4, 3, 0.14) 100%),
+          var(--story-image);
+        background-position: var(--story-position, 58% center);
+        background-size: cover;
+        filter: saturate(1.05) contrast(1.04) brightness(0.94);
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section::after {
+        display: block;
+        background:
+          radial-gradient(circle at 22% 68%, rgba(216, 168, 75, 0.19), transparent 28vw),
+          linear-gradient(180deg, rgba(5, 4, 3, 0.02) 0%, rgba(5, 4, 3, 0.42) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-section-inner {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-copy-block {
+        max-width: 940px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-title {
+        max-width: 880px;
+        color: #fff8ec;
+        font-size: clamp(3.2rem, 6.6vw, 7.25rem);
+        font-weight: 720;
+        line-height: 0.91;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.76);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .feeling-title-gold {
+        color: #e8bd5e;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-body {
+        max-width: 620px;
+        color: rgba(255, 248, 236, 0.86);
+        font-size: clamp(1.08rem, 1.55vw, 1.42rem);
+        line-height: 1.48;
+        text-shadow: 0 3px 20px rgba(0, 0, 0, 0.68);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-visual {
+        display: none;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
         min-height: clamp(650px, 72vw, 860px);
         background: #080806;
@@ -5305,6 +5367,33 @@
           text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section {
+          min-height: 100svh;
+          padding: clamp(96px, 18vw, 132px) 0;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section::before {
+          display: block;
+          background-image:
+            linear-gradient(180deg, rgba(5, 4, 3, 0.88) 0%, rgba(5, 4, 3, 0.76) 45%, rgba(5, 4, 3, 0.42) 100%),
+            var(--story-image);
+          background-position: 58% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-title {
+          max-width: min(100%, 370px);
+          color: #fff6e8;
+          font-size: clamp(2.5rem, 10.6vw, 3.38rem);
+          line-height: 0.98;
+          text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .story-body {
+          max-width: min(100%, 340px);
+          color: rgba(255, 246, 232, 0.88);
+          font-size: 1rem;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
           padding: 76px 0;
         }
@@ -5559,6 +5648,14 @@
                 ],
                 scene: "attention",
                 className: "is-attention-section",
+              },
+              {
+                title: `<span>Human Conversation tells you</span><span class="feeling-title-gold">how someone feels.</span>`,
+                copy: [
+                  `Tone, pauses, warmth, hesitation, loneliness, trust, relief, confidence, belonging.`,
+                ],
+                scene: "feeling-signals",
+                className: "is-long is-feeling-section",
               },
               {
                 title: `<span>Human Conversation is where</span><span class="connection-flow-highlight">connection happens</span><span>and human, social, and community</span><span class="connection-flow-data">data flows.</span>`,

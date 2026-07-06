@@ -1558,6 +1558,10 @@
         color: #ffd66e;
       }
 
+      .next-interface-nowrap {
+        white-space: nowrap;
+      }
+
       .conversation-intelligence-soft {
         color: rgba(255, 248, 236, 0.78);
       }
@@ -3608,8 +3612,9 @@
       }
 
       .story-scene-next-interface {
-        --story-image: url("./assets/hc-art-next-interface-dinner-20260704.png");
-        --story-position: 58% center;
+        --story-image: url("./assets/hc-art-next-communications-fullscreen-dinner-20260705.png");
+        --story-position: 62% center;
+        --story-brightness: 1.04;
       }
 
       .story-scene-between-us {
@@ -3633,10 +3638,9 @@
       }
 
       .story-scene-real-world-os {
-        --story-image: url("./assets/hc-art-operating-system-human-value-funnel-20260705.png");
-        --story-position: 52% center;
-        --story-brightness: 1.04;
-        --story-overlay: linear-gradient(90deg, rgba(251, 247, 239, 0.94) 0%, rgba(251, 247, 239, 0.82) 40%, rgba(251, 247, 239, 0.3) 72%, rgba(251, 247, 239, 0.1) 100%);
+        --story-image: url("./assets/hc-art-real-world-os-community-hub-20260705.png");
+        --story-position: 60% center;
+        --story-brightness: 1.06;
       }
 
       .story-scene-connection-flow {
@@ -4435,8 +4439,6 @@
         background: transparent;
         color: #1a1612;
         padding: clamp(94px, 11vw, 154px) 0;
-        content-visibility: auto;
-        contain-intrinsic-size: 1000px;
         scroll-snap-align: start;
         scroll-snap-stop: always;
       }
@@ -4546,15 +4548,15 @@
         background-image: var(--story-image);
         background-position: var(--story-position, center);
         background-size: cover;
-        filter: saturate(1.02) contrast(1.01) brightness(1.02);
+        filter: saturate(1.08) contrast(1.04) brightness(1.05);
         transform: none;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section::after {
         display: block;
         background:
-          linear-gradient(90deg, rgba(251, 247, 239, 0.98) 0%, rgba(251, 247, 239, 0.9) 42%, rgba(251, 247, 239, 0.48) 70%, rgba(251, 247, 239, 0.22) 100%),
-          linear-gradient(180deg, rgba(251, 247, 239, 0.62) 0%, rgba(251, 247, 239, 0.22) 48%, rgba(251, 247, 239, 0.7) 100%);
+          linear-gradient(90deg, rgba(251, 247, 239, 0.62) 0%, rgba(251, 247, 239, 0.32) 38%, rgba(251, 247, 239, 0.04) 72%, rgba(251, 247, 239, 0) 100%),
+          linear-gradient(180deg, rgba(251, 247, 239, 0.12) 0%, rgba(251, 247, 239, 0) 54%, rgba(251, 247, 239, 0.1) 100%);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-section-inner {
@@ -4569,6 +4571,7 @@
         max-width: 780px;
         color: #1a1612;
         font-size: clamp(3.05rem, 5.55vw, 6.25rem);
+        text-shadow: 0 3px 28px rgba(255, 248, 236, 0.54);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-visual {
@@ -4630,6 +4633,50 @@
         padding-left: 1px;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: center;
+        gap: clamp(10px, 1.2vw, 16px);
+        max-width: 820px;
+        margin-top: clamp(26px, 3.6vw, 42px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain span:not(.story-chain-arrow) {
+        display: grid;
+        min-height: clamp(64px, 6.8vw, 96px);
+        place-items: center;
+        border: 1px solid rgba(184, 149, 74, 0.18);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 248, 236, 0.88), rgba(255, 248, 236, 0.52));
+        color: rgba(26, 22, 18, 0.84);
+        padding: clamp(13px, 1.5vw, 20px);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.16rem, 1.78vw, 2.05rem);
+        font-weight: 720;
+        line-height: 0.98;
+        text-align: center;
+        box-shadow:
+          0 20px 46px rgba(26, 22, 18, 0.08),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain .story-chain-first {
+        color: #5b8fd4;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain span:not(.story-chain-arrow):last-child {
+        border-color: rgba(184, 149, 74, 0.34);
+        background:
+          linear-gradient(180deg, rgba(216, 168, 75, 0.28), rgba(255, 248, 236, 0.64));
+        color: #9d762d;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain .story-chain-arrow {
+        display: none;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact.contact {
         max-width: 620px;
         margin-top: clamp(24px, 3vw, 36px);
@@ -4683,6 +4730,7 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-copy {
         max-width: 760px;
+        margin-left: clamp(18px, 3.2vw, 70px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title.story-title {
@@ -4736,6 +4784,65 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-contact .status {
         color: rgba(247, 240, 228, 0.7);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section {
+        min-height: 100svh;
+        background: #060606;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section::before,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section::before,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section::before {
+        display: block;
+        background-image: var(--story-image);
+        background-position: var(--story-position, center);
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.04) brightness(var(--story-brightness, 1.02));
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section::after,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section::after,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section::after {
+        display: block;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 4, 0.68) 0%, rgba(5, 5, 4, 0.38) 38%, rgba(5, 5, 4, 0.04) 72%, rgba(5, 5, 4, 0.08) 100%),
+          linear-gradient(180deg, rgba(5, 5, 4, 0.08) 0%, rgba(5, 5, 4, 0.02) 55%, rgba(5, 5, 4, 0.22) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-section-inner,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section .story-section-inner,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-section-inner {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-copy-block,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section .story-copy-block,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-copy-block {
+        max-width: 900px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-title,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section .story-title,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-title {
+        max-width: 900px;
+        color: #fff8ec;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.56);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-visual,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section .story-visual,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-visual {
+        display: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .next-interface-nowrap {
+        display: inline-block;
+        white-space: nowrap;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
@@ -5504,8 +5611,8 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::after {
         display: block;
         background:
-          linear-gradient(90deg, rgba(3, 5, 8, 0.9) 0%, rgba(3, 5, 8, 0.7) 34%, rgba(3, 5, 8, 0.24) 64%, rgba(3, 5, 8, 0.38) 100%),
-          linear-gradient(180deg, rgba(3, 5, 8, 0.2) 0%, rgba(3, 5, 8, 0.1) 46%, rgba(3, 5, 8, 0.72) 100%);
+          linear-gradient(90deg, rgba(3, 5, 8, 0.64) 0%, rgba(3, 5, 8, 0.42) 34%, rgba(3, 5, 8, 0.1) 64%, rgba(3, 5, 8, 0.18) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.08) 0%, rgba(3, 5, 8, 0.02) 46%, rgba(3, 5, 8, 0.34) 100%);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-inner {
@@ -5536,10 +5643,10 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .future-story-copy .story-title {
-        max-width: 700px;
+        max-width: 780px;
         color: #fff8ec;
-        font-size: clamp(3.6rem, 7.9vw, 8.5rem);
-        line-height: 0.9;
+        font-size: clamp(3.25rem, 7.1vw, 7.6rem);
+        line-height: 0.92;
         text-shadow: 0 4px 34px rgba(0, 0, 0, 0.58);
       }
 
@@ -5648,12 +5755,14 @@
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future::after {
           display: block;
           background:
-            linear-gradient(180deg, rgba(3, 5, 8, 0.9) 0%, rgba(3, 5, 8, 0.68) 44%, rgba(3, 5, 8, 0.46) 70%, rgba(3, 5, 8, 0.84) 100%),
-            linear-gradient(90deg, rgba(3, 5, 8, 0.82), rgba(3, 5, 8, 0.22));
+            linear-gradient(180deg, rgba(3, 5, 8, 0.68) 0%, rgba(3, 5, 8, 0.42) 44%, rgba(3, 5, 8, 0.24) 70%, rgba(3, 5, 8, 0.54) 100%),
+            linear-gradient(90deg, rgba(3, 5, 8, 0.58), rgba(3, 5, 8, 0.12));
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future .story-title {
           color: #fff8ec;
+          font-size: clamp(2.35rem, 9.3vw, 2.78rem);
+          line-height: 0.95;
           text-shadow: 0 4px 28px rgba(0, 0, 0, 0.62);
         }
 
@@ -5664,6 +5773,10 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
           min-height: 100svh;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-copy {
+          margin-left: 0;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section::before {
@@ -5679,6 +5792,20 @@
           background:
             radial-gradient(circle at 20% 76%, rgba(91, 143, 212, 0.2), transparent 62vw),
             linear-gradient(180deg, rgba(4, 5, 7, 0.12) 0%, rgba(3, 4, 6, 0.48) 100%);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain {
+          grid-template-columns: 1fr;
+          max-width: min(100%, 340px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain span:not(.story-chain-arrow) {
+          min-height: 52px;
+          font-size: clamp(1.08rem, 7vw, 1.52rem);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .next-interface-nowrap {
+          white-space: nowrap;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-connection-flow-section {
@@ -7470,9 +7597,9 @@
             </div>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
-          <p class="homepage-chain" aria-label="Human Conversation turns disconnection into connection, trust, data, coordination, and community">
-            <span class="homepage-chain-copy">Human Conversation turns <span class="homepage-chain-start">disconnection</span> <span class="homepage-chain-copy-tail">into</span></span>
+          <p class="homepage-chain" aria-label="disconnection to connection, trust, data, coordination, and community">
             <span class="homepage-chain-path">
+              <span class="homepage-chain-step homepage-chain-start">disconnection</span>
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">connection</span>
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">trust</span>
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">data</span>
@@ -7507,7 +7634,7 @@
         <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: a Human Conversation is worth a thousand taps"></button>
         <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: Technology became the intermediary"></button>
         <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: interface becomes human"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="16" aria-label="Option 17: connection happens and data flows"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="16" aria-label="Option 17: connection flows and data flows"></button>
         <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: technology should clear the way for Human Conversation"></button>
         <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: the new interface is Human Conversation"></button>
         <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: more face time less screen time"></button>
@@ -7539,29 +7666,28 @@
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
                 scene: "solves-disconnection",
-                chainIntro: `Human Conversation turns disconnection into`,
                 chain: ["disconnection", "connection", "trust", "data", "coordination", "community"],
-                className: "is-product",
+                className: "is-product is-chain-showcase",
               },
               {
                 kind: "tapsPremium",
                 title: `<span>A Human Conversation</span><span class="taps-premium-worth">is worth</span><span class="taps-premium-phrase">a thousand <span class="taps-cold">taps.</span></span>`,
-                copy: [
-                  `A community can run on phone taps &mdash; or on real Human Conversation. <span class="product-name">Human Conversation</span> helps community builders know who to talk to, what to ask, and what should happen next.`,
-                ],
-                cards: [
-                  ["Who", "The next person who needs a real conversation."],
-                  ["Why now", "The signal before someone drifts."],
-                  ["What to ask", "Guided questions that help people feel known."],
-                  ["Next", "The follow-up that turns care into action."],
-                ],
                 scene: "thousand-taps",
                 className: "is-taps-premium-section",
               },
               {
-                title: `<span>We&rsquo;re not building another interface between us.</span><span class="brings-together-gold">We&rsquo;re building the intelligence that brings us together.</span>`,
+                title: `<span>We&rsquo;re not building another interface between us.</span><span class="brings-together-gold">Human Conversation is the intelligence that brings us together.</span>`,
                 scene: "brings-together",
                 className: "is-long is-brings-together-section",
+              },
+              {
+                kind: "known",
+                title: `<span>Where</span><span>people feel</span><span>known.</span>`,
+                copy: [
+                  `Every real conversation helps the community understand who should talk, what matters, and what should happen next.`,
+                ],
+                scene: "known",
+                className: "is-paper is-known-section",
               },
               {
                 kind: "attention",
@@ -7573,18 +7699,9 @@
                 className: "is-attention-section",
               },
               {
-                title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next communications interface.</span>`,
+                title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next</span><span class="story-gold next-interface-nowrap">communications</span><span class="story-gold">interface.</span>`,
                 scene: "next-interface",
-                className: "is-long",
-              },
-              {
-                kind: "known",
-                title: `<span>Where</span><span>people feel</span><span>known.</span>`,
-                copy: [
-                  `Every real conversation helps the community understand who should talk, what matters, and what should happen next.`,
-                ],
-                scene: "known",
-                className: "is-paper is-known-section",
+                className: "is-long is-next-interface-section",
               },
               {
                 title: `<span>We're not lonely because</span><span>communication disappeared.</span><span class="story-gold">We're lonely because the more</span><span class="story-gold">technology got between us, the more</span><span class="story-gold">Human Conversation disappeared.</span>`,
@@ -7603,39 +7720,26 @@
               {
                 title: `<span>Human Conversation is the</span><span class="story-gold">timeless interface</span><span>of community.</span>`,
                 scene: "timeless-interface",
-                copyRight: true,
-              },
-              {
-                title: `<span>Who needs</span><span class="story-blue">a conversation?</span>`,
-                copy: [
-                  `<span class="product-name">Human Conversation</span> gives community builders the next person to talk to, the context, and the next action.`,
-                ],
-                scene: "solves-disconnection",
-                className: "is-product",
+                className: "is-long is-timeless-fullscreen-section",
               },
               {
                 title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
-                className: "is-long is-light",
+                className: "is-long is-real-world-os-section",
               },
               {
-                title: `<span>Human Conversation tells you</span><span class="feeling-title-gold">how someone feels.</span>`,
+                title: `<span>Human Conversation is the only medium that tells you</span><span class="feeling-title-gold">how someone really feels.</span>`,
                 copy: [
-                  `Tone, pauses, warmth, hesitation, loneliness, trust, relief, confidence, belonging.`,
+                  `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, safety, energy, momentum.`,
                 ],
                 scene: "feeling-signals",
                 className: "is-long is-feeling-section",
               },
               {
-                title: `<span>Technology got</span><span>between us.</span><span class="story-gold">Human</span><span class="story-gold">Conversation</span><span class="story-gold">brings us back together.</span>`,
-                scene: "between-us",
-                className: "is-long",
-              },
-              {
                 kind: "future",
-                title: `<span>Human conversation is how we get</span><span>to a connected, human future.</span>`,
+                title: `<span>Human Conversation</span><span>is the path to</span><span>a more connected,</span><span>more human future.</span>`,
                 copy: [
-                  `A future where every person has a real community to return to, and leaves more connected than when they arrived.`,
+                  `A future where everyone has a community to return to feel a connection-high, every time.`,
                 ],
                 scene: "human-future",
                 className: "is-future-section",
@@ -7646,17 +7750,12 @@
           nextInterface: {
             sections: [
               {
-                title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next communications interface.</span>`,
+                title: `<span>Human Conversation</span><span>is the</span><span class="story-gold">next</span><span class="story-gold next-interface-nowrap">communications</span><span class="story-gold">interface.</span>`,
                 copy: [
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
                 scene: "next-interface",
-                className: "is-long",
-              },
-              {
-                title: `<span>Technology got</span><span>between us.</span><span class="story-gold">Human</span><span class="story-gold">Conversation</span><span class="story-gold">brings us back together.</span>`,
-                scene: "between-us",
-                className: "is-long",
+                className: "is-long is-next-interface-section",
               },
               {
                 title: `<span>A Human Conversation is worth</span><span class="story-blue">a thousand taps.</span>`,
@@ -7670,7 +7769,7 @@
               {
                 title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
-                className: "is-long is-light",
+                className: "is-long is-real-world-os-section",
               },
               {
                 title: `<span>Human Conversation</span><span>solves</span><span class="story-blue">disconnection.</span>`,
@@ -7679,7 +7778,6 @@
                 ],
                 scene: "solves-disconnection",
                 form: true,
-                chainIntro: `Human Conversation turns disconnection into`,
                 chain: ["disconnection", "connection", "trust", "data", "coordination", "community"],
                 className: "is-product",
               },
@@ -7723,8 +7821,8 @@
         },
         {
           id: "journey",
-          headlineLabel: "Human Conversation turns disconnection into connection, trust, data, coordination, and community",
-          headline: `<span class="statement-lead" aria-hidden="true">Human Conversation turns <span class="disconnection-word">disconnection</span> into</span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>connection</span></span><span class="transformation-line transformation-trust" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>trust</span></span><span class="transformation-line transformation-data" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>data</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>community</span></span>`,
+          headlineLabel: "Disconnection to connection, trust, data, coordination, and community",
+          headline: `<span class="statement-lead" aria-hidden="true"><span class="disconnection-word">disconnection</span></span><span class="transformation-line transformation-connection" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>connection</span></span><span class="transformation-line transformation-trust" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>trust</span></span><span class="transformation-line transformation-data" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>data</span></span><span class="transformation-line transformation-coordination" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>coordination</span></span><span class="transformation-line transformation-community" aria-hidden="true"><span class="headline-arrow">&rarr;</span><span>community</span></span>`,
           lede: `Technology should not replace it, forget it, or bypass it: <span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
         },
         {
@@ -7801,8 +7899,8 @@
         },
         {
           id: "connection-data",
-          headlineLabel: "Human Conversation is where connection happens and data flows.",
-          headline: `<span>Human Conversation is where</span><span><span class="bridge-word">connection happens</span></span><span>and <span class="data-flow">data flows.</span></span>`,
+          headlineLabel: "Human Conversation is the only place where connection flows and human, social, and community data flows.",
+          headline: `<span>Human Conversation is the only place where</span><span><span class="bridge-word">connection flows</span></span><span>and <span class="data-flow">human, social, and community data flows.</span></span>`,
           lede: `A real conversation makes someone feel known and gives the community the signal it needs to know what should happen next.`,
         },
         {
@@ -7827,7 +7925,7 @@
           id: "community-os",
           headlineLabel: "Human Conversation is the operating system for real-world social communities.",
           headline: `<span>Human Conversation is</span><span>the <span class="community-os-word">operating system</span></span><span>for real-world social communities.</span>`,
-          lede: `Software can support it. The community runs on people talking, remembering, inviting, and coming back.`,
+          lede: `A community runs on conversations people remember, invitations that feel personal, and moments that make them want to come back.`,
           story: storyPages.operatingSystem,
         },
         {
@@ -7840,7 +7938,7 @@
           id: "loneliness-interface",
           headlineLabel: "We are not lonely because we stopped communicating. We are lonely because technology got between us. The snapback is Human Conversation.",
           headline: `<span class="lonely-soft">We are not lonely because we stopped communicating.</span><span>We are lonely because technology got between us.</span><span class="lonely-gold">The snapback is Human Conversation.</span>`,
-          lede: `Human Conversation is where connection happens and data flows.`,
+          lede: `Human Conversation is where connection flows and human, social, and community data flows.`,
         },
         {
           id: "loneliness-conversation",
@@ -7869,7 +7967,7 @@
         {
           id: "next-interface-atrium",
           headlineLabel: "Human Conversation is the next communications interface.",
-          headline: `<span>Human Conversation</span><span class="next-interface-soft">is the</span><span class="next-interface-gold">next communications interface.</span>`,
+          headline: `<span>Human Conversation</span><span class="next-interface-soft">is the</span><span class="next-interface-gold">next</span><span class="next-interface-gold next-interface-nowrap">communications</span><span class="next-interface-gold">interface.</span>`,
           lede: `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
           story: storyPages.nextInterface,
         },
@@ -8131,8 +8229,9 @@
         const sections = storyPage.sections
           .map((section, sectionIndex) => {
             const body = section.copy?.map((paragraph) => `<p>${paragraph}</p>`).join("") || "";
+            const chainIntro = section.chainIntro ? `<p class="story-chain-intro">${section.chainIntro}</p>` : "";
             const chain = section.chain
-              ? `<p class="story-chain-intro">${section.chainIntro || ""}</p><div class="story-chain" aria-label="${section.chain.join(" to ")}">${section.chain
+              ? `${chainIntro}<div class="story-chain" aria-label="${section.chain.join(" to ")}">${section.chain
                   .map((item, itemIndex) => `<span class="${itemIndex === 0 ? "story-chain-first" : ""}">${item}</span>${itemIndex < section.chain.length - 1 ? `<span class="story-chain-arrow" aria-hidden="true">&rarr;</span>` : ""}`)
                   .join("")}</div>`
               : "";

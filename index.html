@@ -3328,6 +3328,11 @@
         color: #b8954a;
       }
 
+      .story-title .story-gold.next-interface-nowrap,
+      .next-interface-gold.next-interface-nowrap {
+        color: #fff8ec;
+      }
+
       .story-title .story-blue {
         color: var(--hc-blue);
       }
@@ -4880,6 +4885,110 @@
         box-shadow:
           0 14px 28px rgba(26, 22, 18, 0.08),
           inset 0 0 0 1px rgba(255, 255, 255, 0.44);
+      }
+
+      @keyframes storyChainBoxIn {
+        0% {
+          opacity: 0;
+          filter: blur(5px) saturate(0.82);
+          transform: translateY(10px) scale(0.97);
+        }
+
+        58% {
+          opacity: 1;
+          filter: blur(0) saturate(1.08);
+          transform: translateY(-2px) scale(1.018);
+        }
+
+        100% {
+          opacity: 1;
+          filter: none;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes storyChainArrowIn {
+        0% {
+          opacity: 0;
+          filter: blur(3px);
+          background: rgba(255, 248, 236, 0.28);
+          box-shadow:
+            0 0 0 rgba(184, 149, 74, 0),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+        }
+
+        54% {
+          opacity: 1;
+          filter: blur(0);
+          background: rgba(255, 248, 236, 0.96);
+          box-shadow:
+            0 0 0 6px rgba(184, 149, 74, 0.16),
+            0 16px 34px rgba(184, 149, 74, 0.2),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+        }
+
+        100% {
+          opacity: 1;
+          filter: none;
+          background: rgba(255, 248, 236, 0.7);
+        }
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span {
+        --chain-delay: 0ms;
+        opacity: 0;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase.is-in-view .story-chain > span:not(.story-chain-arrow) {
+        animation: storyChainBoxIn 680ms cubic-bezier(0.19, 1, 0.22, 1) var(--chain-delay) both;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase.is-in-view .story-chain > .story-chain-arrow {
+        animation: storyChainArrowIn 520ms ease-out var(--chain-delay) both;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(1) {
+        --chain-delay: 120ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(2) {
+        --chain-delay: 240ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(3) {
+        --chain-delay: 360ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(4) {
+        --chain-delay: 480ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(5) {
+        --chain-delay: 600ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(6) {
+        --chain-delay: 720ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(7) {
+        --chain-delay: 840ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(8) {
+        --chain-delay: 960ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(9) {
+        --chain-delay: 1080ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(10) {
+        --chain-delay: 1200ms;
+      }
+
+      html.story-motion-ready .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(11) {
+        --chain-delay: 1320ms;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain > span:nth-child(1) {

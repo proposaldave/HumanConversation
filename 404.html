@@ -4435,7 +4435,8 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final {
         position: relative;
-        display: block;
+        display: flex;
+        align-items: center;
         min-height: 100svh;
         overflow: hidden;
         border-top: 1px solid rgba(26, 22, 18, 0.09);
@@ -4455,7 +4456,8 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section:first-child {
         border-top: 0;
-        padding-top: clamp(44px, 6vw, 82px);
+        padding-top: clamp(72px, 8vh, 104px);
+        padding-bottom: clamp(72px, 8vh, 104px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::before {

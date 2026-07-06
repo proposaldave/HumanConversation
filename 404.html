@@ -34,7 +34,7 @@
     <title>Human Conversation - Intelligence Around Human Conversation</title>
     <style>
       :root {
-        --hc-blue: #365f99;
+        --hc-blue: #5b8fd4;
         --hc-accent: #974f63;
         --hc-accent-button: #d68a9a;
         --hc-cream: #f3ead8;
@@ -3299,7 +3299,7 @@
       }
 
       .story-title .story-blue {
-        color: #5b8fd4;
+        color: var(--hc-blue);
       }
 
       .story-title > span {
@@ -3675,7 +3675,7 @@
       }
 
       .story-chain .story-chain-first {
-        color: #5b8fd4;
+        color: var(--hc-blue);
       }
 
       .story-chain .story-chain-arrow {
@@ -4716,7 +4716,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain .story-chain-first {
-        color: #365f99;
+        color: var(--hc-blue);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain .story-chain-arrow {
@@ -4760,7 +4760,11 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain .story-chain-first {
-        color: #5b8fd4;
+        color: var(--hc-blue);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain span.story-chain-disconnection:not(.story-chain-arrow) {
+        color: var(--hc-blue);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain span:not(.story-chain-arrow):last-child {
@@ -8770,7 +8774,15 @@
             const chainIntro = section.chainIntro ? `<p class="story-chain-intro">${section.chainIntro}</p>` : "";
             const chain = section.chain
               ? `${chainIntro}<div class="story-chain" aria-label="${section.chain.join(" to ")}">${section.chain
-                  .map((item, itemIndex) => `<span class="${itemIndex === 0 ? "story-chain-first" : ""}">${item}</span>${itemIndex < section.chain.length - 1 ? `<span class="story-chain-arrow" aria-hidden="true">&rarr;</span>` : ""}`)
+                  .map((item, itemIndex) => {
+                    const itemClasses = [
+                      itemIndex === 0 ? "story-chain-first" : "",
+                      item.toLowerCase().includes("disconnection") ? "story-chain-disconnection" : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ");
+                    return `<span class="${itemClasses}">${item}</span>${itemIndex < section.chain.length - 1 ? `<span class="story-chain-arrow" aria-hidden="true">&rarr;</span>` : ""}`;
+                  })
                   .join("")}</div>`
               : "";
             const form = section.form ? renderStorySignup(`${variantId}-${sectionIndex}`, section.formClass || "") : "";

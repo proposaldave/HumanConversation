@@ -1,0 +1,92 @@
+name: Deploy Human Conversation Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: humanconversation-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build landing page
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Pages artifact
+        run: npm run build:pages
+
+      - name: Verify Pages invariants
+        shell: bash
+        run: |
+          test "$(cat dist/CNAME)" = "humanconversation.com"
+          grep -q "hello@humanconversation.com" dist/index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy landing page
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy attempt 1
+        id: deploy1
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait before deploy retry 2
+        if: steps.deploy1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy attempt 2
+        id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait before deploy retry 3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 45
+
+      - name: Deploy attempt 3
+        id: deploy3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Wait before deploy retry 4
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure' && steps.deploy3.outcome == 'failure'
+        run: sleep 60
+
+      - name: Deploy attempt 4
+        id: deploy4
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure' && steps.deploy3.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+
+      - name: Stop after failed deploy attempts
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure' && steps.deploy3.outcome == 'failure' && steps.deploy4.outcome == 'failure'
+        run: |
+          echo "GitHub Pages deployment failed after four attempts."
+          exit 1

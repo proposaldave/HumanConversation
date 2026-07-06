@@ -24,6 +24,8 @@ const publicRepo = process.env.PUBLIC_REPO || 'proposaldave/HumanConversation'
 const backupRepo = process.env.BACKUP_REPO || 'proposaldave/HumanConversation-private-backups'
 const cname = process.env.PAGES_CNAME || 'humanconversation.com'
 const backupOnly = process.argv.includes('--backup-only')
+const workflowDeploy = process.env.PAGES_LEGACY_BRANCH_DEPLOY !== '1'
+const workflowFile = process.env.PAGES_WORKFLOW_FILE || 'deploy-human-conversation-pages.yml'
 
 function commandParts(command, args) {
   if (process.platform === 'win32' && command === 'npm') {
@@ -67,6 +69,18 @@ function tryCapture(command, args, options = {}) {
     return capture(command, args, options)
   } catch {
     return ''
+  }
+}
+
+function sleep(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms)
+}
+
+function parseJson(value, fallback) {
+  try {
+    return JSON.parse(value)
+  } catch {
+    return fallback
   }
 }
 
@@ -261,7 +275,66 @@ function copyDirectoryContents(from, to) {
   }
 }
 
-function deployPages() {
+function deployPagesWithWorkflow(localHead) {
+  const pagesSettingsUpdated = tryRun('gh', [
+    'api',
+    '--method',
+    'PUT',
+    `repos/${publicRepo}/pages`,
+    '-f',
+    'build_type=workflow',
+    '-f',
+    `cname=${cname}`,
+  ])
+
+  console.log(`pages_settings_update=${pagesSettingsUpdated ? 'workflow' : 'skipped'}`)
+
+  run('gh', ['workflow', 'run', workflowFile, '--repo', publicRepo, '--ref', 'main'])
+
+  for (let attempt = 0; attempt < 120; attempt += 1) {
+    sleep(5000)
+
+    const runs = parseJson(
+      tryCapture('gh', [
+        'run',
+        'list',
+        '--repo',
+        publicRepo,
+        '--workflow',
+        workflowFile,
+        '--branch',
+        'main',
+        '--commit',
+        localHead,
+        '--limit',
+        '1',
+        '--json',
+        'databaseId,status,conclusion,url,headSha,createdAt',
+      ]),
+      [],
+    )
+
+    const runInfo = runs[0]
+    if (!runInfo) continue
+
+    console.log(`pages_workflow_run=${runInfo.databaseId}`)
+
+    if (runInfo.status !== 'completed') continue
+
+    console.log(`pages_workflow_url=${runInfo.url}`)
+    console.log(`pages_workflow_status=${runInfo.conclusion}`)
+
+    if (runInfo.conclusion !== 'success') {
+      throw new Error(`Pages workflow failed: ${runInfo.url}`)
+    }
+
+    return `workflow:${localHead.slice(0, 7)}`
+  }
+
+  throw new Error('Timed out waiting for Pages workflow to finish.')
+}
+
+function deployPagesWithBranch() {
   const localHead = capture('git', ['rev-parse', 'HEAD'])
   const remoteMain = capture('git', ['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0]
   if (localHead !== remoteMain) {
@@ -325,6 +398,20 @@ function deployPages() {
   console.log('gh_pages_status=pushed')
   removeTree(deployClone)
   return deployedHead
+}
+
+function deployPages() {
+  const localHead = capture('git', ['rev-parse', 'HEAD'])
+  const remoteMain = capture('git', ['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0]
+  if (localHead !== remoteMain) {
+    throw new Error('Refusing to deploy: push the current main commit before running publish:pages.')
+  }
+
+  if (workflowDeploy) {
+    return deployPagesWithWorkflow(localHead)
+  }
+
+  return deployPagesWithBranch()
 }
 
 run('npm', ['run', 'lint'])

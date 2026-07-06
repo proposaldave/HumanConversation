@@ -4652,6 +4652,7 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-copy-block {
         max-width: 780px;
+        margin-left: clamp(18px, 2.3vw, 34px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-title {
@@ -6244,6 +6245,11 @@
           max-width: min(100%, 390px);
           font-size: clamp(2.38rem, 10.4vw, 3.28rem);
           line-height: 0.98;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-copy-block {
+          max-width: calc(100% - 18px);
+          margin-left: 18px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-data-section .story-title {

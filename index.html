@@ -2077,6 +2077,7 @@
       }
 
       .product-name,
+      .brand-name,
       .emphasis {
         color: var(--hc-accent);
         font-family: Fraunces, Georgia, serif;
@@ -2085,6 +2086,10 @@
 
       .product-name {
         white-space: nowrap;
+      }
+
+      .brand-name {
+        white-space: inherit;
       }
 
       .contact {
@@ -8131,7 +8136,7 @@
             <path class="mark-bubble" d="M40.5 8C51.3 8 60 14.6 60 22.8c0 4.7-2.9 9-7.4 11.7l1.7 7.5-8.3-4.2c-1.8.4-3.7.6-5.5.6-10.8 0-19.5-6.6-19.5-14.8S29.7 8 40.5 8Z" />
             <path class="mark-heart" d="M32 36.8 29.9 35C22.1 28.4 18.8 24.9 18.8 20.2c0-4.1 3.2-7.2 7.2-7.2 2.4 0 4.6 1.2 6 3.1 1.4-1.9 3.6-3.1 6-3.1 4 0 7.2 3.1 7.2 7.2 0 4.7-3.3 8.2-11.1 14.8L32 36.8Z" />
           </svg>
-          <span>Human Conversation</span>
+          <span class="brand-name">Human Conversation</span>
         </a>
         <a class="header-email" href="mailto:hello@humanconversation.com">hello@humanconversation.com</a>
       </header>
@@ -8177,7 +8182,7 @@
       </main>
 
       <footer class="site-footer">
-        <span>Human Conversation</span>
+        <span class="brand-name">Human Conversation</span>
       </footer>
 
       <button class="variant-trigger" type="button" aria-label="Show landing page options" aria-hidden="true" tabindex="-1"></button>
@@ -8286,7 +8291,7 @@
                 className: "is-paper is-graph-section",
               },
               {
-                title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
+                title: `<span class="brand-name">Human Conversation</span><span>is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
                 className: "is-long is-real-world-os-section is-copy-right",
               },
@@ -8322,7 +8327,7 @@
           operatingSystem: {
             sections: [
               {
-                title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
+                title: `<span class="brand-name">Human Conversation</span><span>is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
                 className: "is-long is-real-world-os-section is-copy-right",
               },
@@ -8510,7 +8515,7 @@
         {
           id: "snapback-minimal",
           headlineLabel: "Technology got between us. Human Conversation brings us back together.",
-          headline: `<span>Technology got between us.</span><span class="snapback-gold">Human</span><span class="snapback-gold">Conversation brings us back together.</span>`,
+          headline: `<span>Technology got between us.</span><span><span class="brand-name">Human Conversation</span> brings us back together.</span>`,
           lede: ``,
         },
         {
@@ -8566,7 +8571,7 @@
         {
           id: "human-ai-community-flywheel",
           headlineLabel: "Less screen time. More Human Conversation time.",
-          headline: `<span>Less screen time.</span><span class="human-ai-gold">More Human</span><span class="human-ai-gold">Conversation time.</span>`,
+          headline: `<span>Less screen time.</span><span>More <span class="brand-name">Human Conversation</span> time.</span>`,
           lede: `<span class="human-ai-sectionline">The screen should be a prompt, not a place to live. Human Conversation keeps the interface small and sends people back to each other.</span><span class="human-ai-time-proof" aria-label="Less screen time and more Human Conversation time"><span class="time-human"><strong>More human time</strong><small>Welcomes, check-ins, introductions, groups, and follow-through.</small></span><span><strong>Less screen work</strong><small>One brief. One note. The rest moves in the background.</small></span></span>`,
         },
         {
@@ -8585,7 +8590,7 @@
           id: "human-ai-intelligence-around",
           headlineLabel: "Human Conversation intelligence sits around the human moment.",
           headline: `<span>Human Conversation intelligence</span><span class="human-ai-gold">sits around</span><span>the human moment.</span>`,
-          lede: `<span class="human-ai-sectionline">The live conversation stays human. The intelligence handles the complexity around it so staff and community builders know what should happen next.</span><span class="human-ai-orbit-map" aria-label="Human Conversation intelligence around the human moment"><span class="human-ai-orbit-core">Human<br />Conversation</span><span class="human-ai-orbit-list"><span><strong>Member side</strong><small>Felt connection with a real person.</small></span><span><strong>Builder side</strong><small>Who to talk to, what context matters, what to ask.</small></span><span><strong>Intelligence side</strong><small>Logistics, coordination, memory, timing, and next action.</small></span></span></span>`,
+          lede: `<span class="human-ai-sectionline">The live conversation stays human. The intelligence handles the complexity around it so staff and community builders know what should happen next.</span><span class="human-ai-orbit-map" aria-label="Human Conversation intelligence around the human moment"><span class="human-ai-orbit-core"><span class="brand-name">Human<br />Conversation</span></span><span class="human-ai-orbit-list"><span><strong>Member side</strong><small>Felt connection with a real person.</small></span><span><strong>Builder side</strong><small>Who to talk to, what context matters, what to ask.</small></span><span><strong>Intelligence side</strong><small>Logistics, coordination, memory, timing, and next action.</small></span></span></span>`,
         },
         {
           id: "feeling-signals",
@@ -8611,6 +8616,37 @@
       let variantSwitchTimer;
       let variantNavHideTimer;
       let storyPanelObserver;
+
+      function applyBrandNameColor(root) {
+        if (!root) return;
+
+        const textNodes = [];
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            if (!node.nodeValue.includes("Human Conversation")) return NodeFilter.FILTER_REJECT;
+            if (node.parentElement?.closest(".brand-name")) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        });
+
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        textNodes.forEach((node) => {
+          const fragment = document.createDocumentFragment();
+          node.nodeValue.split(/(Human Conversation)/g).forEach((part) => {
+            if (!part) return;
+            if (part === "Human Conversation") {
+              const span = document.createElement("span");
+              span.className = "brand-name";
+              span.textContent = part;
+              fragment.appendChild(span);
+              return;
+            }
+            fragment.appendChild(document.createTextNode(part));
+          });
+          node.replaceWith(fragment);
+        });
+      }
 
       function renderStorySignup(idSuffix, extraClass = "") {
         const formClass = ["contact", "story-contact", extraClass].filter(Boolean).join(" ");
@@ -8946,6 +8982,7 @@
           .join("");
 
         landingStory.innerHTML = `<div class="story-shell">${sections}</div>`;
+        applyBrandNameColor(landingStory);
         landingStory.hidden = false;
         page.classList.add("has-expanded-story");
         document.documentElement.classList.toggle("snap-expanded-story", variantId === "conversation-intelligence-home");
@@ -8961,8 +8998,10 @@
           page.dataset.variant = variant.id;
           hero.className = `hero hero-${variant.id}`;
           headline.innerHTML = variant.headline;
+          applyBrandNameColor(headline);
           headline.setAttribute("aria-label", variant.headlineLabel);
           lede.innerHTML = variant.lede;
+          applyBrandNameColor(lede);
           renderStoryPage(variant.story, variant.id);
           dots.forEach((dot, dotIndex) => {
             dot.setAttribute("aria-current", String(dotIndex === safeIndex));

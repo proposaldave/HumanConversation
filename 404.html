@@ -356,7 +356,7 @@
         background-image:
           linear-gradient(90deg, rgba(12, 8, 5, 0.78) 0%, rgba(12, 8, 5, 0.56) 38%, rgba(12, 8, 5, 0.2) 70%, rgba(12, 8, 5, 0.04) 100%),
           linear-gradient(0deg, rgba(12, 8, 5, 0.42), rgba(12, 8, 5, 0.02) 58%),
-          url("./assets/hc-art-timeless-interface-20260701.png");
+          url("./assets/hc-art-timeless-interface-community-table-20260706.png");
         background-position: center;
         background-size: cover;
         filter: saturate(1.08) contrast(1.02) brightness(1.08);
@@ -442,8 +442,8 @@
         background-image:
           linear-gradient(90deg, rgba(247, 239, 224, 0.98) 0%, rgba(247, 239, 224, 0.94) 34%, rgba(247, 239, 224, 0.44) 62%, rgba(247, 239, 224, 0.08) 100%),
           linear-gradient(0deg, rgba(247, 239, 224, 0.16), rgba(247, 239, 224, 0.02) 58%),
-          url("./assets/hc-art-operating-system-community-20260703.png");
-        background-position: 60% center;
+          url("./assets/hc-art-real-world-os-living-community-20260706.png");
+        background-position: 40% center;
         background-size: cover;
         filter: saturate(1.08) contrast(1.01) brightness(1.1);
         opacity: 1;
@@ -1455,6 +1455,66 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
+      .page[data-variant="feeling-signals"] {
+        background: #080604;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="feeling-signals"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 4, 3, 0.92) 0%, rgba(5, 4, 3, 0.75) 34%, rgba(5, 4, 3, 0.28) 64%, rgba(5, 4, 3, 0.14) 100%),
+          url("./assets/hc-art-natural-conversation-signal-bg-20260705.png");
+        background-position: 58% center;
+        background-size: cover;
+        filter: saturate(1.05) contrast(1.04) brightness(0.94);
+        opacity: 1;
+      }
+
+      .page[data-variant="feeling-signals"]::after {
+        display: none;
+      }
+
+      .page[data-variant="feeling-signals"] .brand,
+      .page[data-variant="feeling-signals"] .header-email {
+        color: #fff8ec;
+      }
+
+      .page[data-variant="feeling-signals"] .header-email {
+        border-color: rgba(255, 248, 236, 0.2);
+        background: rgba(8, 8, 7, 0.64);
+      }
+
+      .page[data-variant="feeling-signals"] .mark-bubble {
+        fill: #fff8ec;
+      }
+
+      .hero-feeling-signals .hero-inner {
+        max-width: 940px;
+      }
+
+      .hero-feeling-signals h1 {
+        max-width: 880px;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.2rem, 6.6vw, 7.25rem);
+        font-weight: 720;
+        line-height: 0.91;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.76);
+      }
+
+      .hero-feeling-signals .feeling-title-gold {
+        color: #e8bd5e;
+      }
+
+      .hero-feeling-signals .lede {
+        max-width: 620px;
+        color: rgba(255, 248, 236, 0.86);
+        font-size: clamp(1.08rem, 1.55vw, 1.42rem);
+        font-weight: 850;
+        line-height: 1.48;
+        text-shadow: 0 3px 20px rgba(0, 0, 0, 0.68);
+      }
+
       .hero-new-interface .hero-inner,
       .hero-more-face-time .hero-inner,
       .hero-community-os .hero-inner,
@@ -2419,6 +2479,23 @@
           0 0 22px rgba(5, 5, 5, 0.7);
       }
 
+      .variant-dot.variant-dot-pink {
+        --dot-age: 1;
+        background: #d98aa2;
+        box-shadow:
+          inset 0 0 0 1px rgba(74, 20, 38, 0.18),
+          0 0 18px rgba(217, 138, 162, 0.62);
+      }
+
+      .variant-dot.variant-dot-pink[aria-current="true"] {
+        background: #d98aa2;
+        box-shadow:
+          inset 0 0 0 1px rgba(74, 20, 38, 0.24),
+          0 0 0 4px rgba(217, 138, 162, 0.22),
+          0 0 0 7px rgba(255, 214, 110, 0.24),
+          0 0 24px rgba(217, 138, 162, 0.72);
+      }
+
       @media (max-width: 760px) {
         header,
         main {
@@ -2639,8 +2716,8 @@
         .page[data-variant="timeless-interface"]::before {
           background-image:
             linear-gradient(180deg, rgba(12, 8, 5, 0.72) 0%, rgba(12, 8, 5, 0.62) 48%, rgba(12, 8, 5, 0.48) 100%),
-            url("./assets/hc-art-timeless-interface-20260701.png");
-          background-position: 62% center;
+            url("./assets/hc-art-timeless-interface-community-table-20260706.png");
+          background-position: 68% center;
         }
 
         .page[data-variant^="next-interface-"]::before {
@@ -2741,7 +2818,7 @@
         }
 
         .page[data-variant="community-os"] {
-          --mobile-bg-image: url("./assets/hc-art-operating-system-community-20260703.png");
+          --mobile-bg-image: url("./assets/hc-art-real-world-os-living-community-20260706.png");
         }
 
         .page[data-variant="community-os"]::before {
@@ -3306,11 +3383,11 @@
       }
 
       .story-visual-timeless {
-        --story-image: url("./assets/hc-art-timeless-conversation-network-20260705.png");
+        --story-image: url("./assets/hc-art-timeless-interface-community-table-20260706.png");
       }
 
       .story-visual-operating {
-        --story-image: url("./assets/hc-art-operating-system-community-20260703.png");
+        --story-image: url("./assets/hc-art-real-world-os-living-community-20260706.png");
       }
 
       .story-visual-taps {
@@ -3640,7 +3717,7 @@
       }
 
       .story-scene-timeless-interface {
-        --story-image: url("./assets/hc-art-timeless-conversation-network-20260705.png");
+        --story-image: url("./assets/hc-art-timeless-interface-community-table-20260706.png");
         --story-position: 48% center;
       }
 
@@ -3650,9 +3727,12 @@
       }
 
       .story-scene-real-world-os {
-        --story-image: url("./assets/hc-art-real-world-os-community-hub-20260705.png");
-        --story-position: 60% center;
+        --story-image: url("./assets/hc-art-real-world-os-living-community-20260706.png");
+        --story-position: 44% center;
         --story-brightness: 1.06;
+        --story-overlay:
+          linear-gradient(90deg, rgba(7, 6, 4, 0.08) 0%, rgba(7, 6, 4, 0.18) 42%, rgba(7, 6, 4, 0.66) 100%),
+          linear-gradient(180deg, rgba(7, 6, 4, 0.06) 0%, rgba(7, 6, 4, 0.24) 100%);
       }
 
       .story-scene-connection-flow {
@@ -4883,6 +4963,39 @@
         color: rgba(247, 240, 228, 0.7);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout {
+        position: absolute;
+        right: clamp(42px, 6vw, 104px);
+        bottom: clamp(42px, 7.6vh, 88px);
+        z-index: 2;
+        width: min(34vw, 520px);
+        color: #fff8ec;
+        text-align: left;
+        text-shadow: 0 4px 26px rgba(0, 0, 0, 0.72);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong {
+        display: block;
+        max-width: 15ch;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.45rem, 2.28vw, 2.72rem);
+        font-weight: 720;
+        line-height: 0.96;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong span {
+        color: #e8bd5e;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout p {
+        max-width: 39ch;
+        margin: 14px 0 0;
+        color: rgba(255, 248, 236, 0.88);
+        font-size: clamp(0.84rem, 1.02vw, 1.02rem);
+        font-weight: 900;
+        line-height: 1.36;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section {
@@ -5870,7 +5983,11 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
-          min-height: 100svh;
+          flex-direction: column;
+          justify-content: center;
+          min-height: max(100svh, 760px);
+          gap: 26px;
+          padding: 96px 0 72px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-copy {
@@ -6273,6 +6390,39 @@
           line-height: 1.4;
           overflow-wrap: anywhere;
           text-shadow: 0 3px 18px rgba(0, 0, 0, 0.68);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: 100%;
+          max-width: min(100%, 340px);
+          margin: 0 auto;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong {
+          max-width: 15ch;
+          font-size: clamp(1.46rem, 7.4vw, 2rem);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout p {
+          max-width: 100%;
+          font-size: 0.9rem;
+        }
+
+        .hero-feeling-signals h1 {
+          max-width: min(100%, 370px);
+          color: #fff6e8;
+          font-size: clamp(2.5rem, 10.6vw, 3.38rem);
+          line-height: 0.98;
+          text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78);
+        }
+
+        .hero-feeling-signals .lede {
+          max-width: min(100%, 340px);
+          color: rgba(255, 246, 232, 0.88);
+          font-size: 1rem;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact .contact-row {
@@ -6862,7 +7012,7 @@
         background-image:
           linear-gradient(90deg, rgba(9, 7, 5, 0.9) 0%, rgba(9, 7, 5, 0.74) 40%, rgba(9, 7, 5, 0.34) 72%, rgba(9, 7, 5, 0.08) 100%),
           linear-gradient(180deg, rgba(9, 7, 5, 0.08) 0%, rgba(9, 7, 5, 0.7) 100%),
-          url("./assets/hc-art-operating-system-community-20260703.png");
+          url("./assets/hc-art-real-world-os-living-community-20260706.png");
         filter: saturate(1.05) contrast(1.04) brightness(0.94);
       }
 
@@ -7033,7 +7183,7 @@
         border-radius: 20px;
         background:
           linear-gradient(180deg, rgba(255, 252, 246, 0.1), rgba(255, 252, 246, 0.72)),
-          url("./assets/hc-art-operating-system-community-20260703.png");
+          url("./assets/hc-art-real-world-os-living-community-20260706.png");
         background-position: center;
         background-size: cover;
         box-shadow: inset 0 0 0 1px rgba(26, 22, 18, 0.08);
@@ -8020,6 +8170,7 @@
         <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: members and builders use Human Conversation while builders use Human Conversation intelligence"></button>
         <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: members get people and builders get intelligence"></button>
         <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: Human Conversation intelligence around the human moment"></button>
+        <button class="variant-dot variant-dot-pink" type="button" data-option="38" aria-label="Option 39: Human Conversation tells you how someone really feels"></button>
       </nav>
     </div>
 
@@ -8041,6 +8192,10 @@
                 title: `<span>A Human Conversation</span><span class="taps-premium-worth">is worth</span><span class="taps-premium-phrase">a thousand <span class="taps-cold">taps.</span></span>`,
                 scene: "thousand-taps",
                 className: "is-taps-premium-section",
+                feelingCallout: {
+                  headline: `Human Conversation is the only medium that tells you <span>how someone really feels.</span>`,
+                  copy: `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, safety, energy, momentum.`,
+                },
               },
               {
                 kind: "known",
@@ -8092,15 +8247,7 @@
               {
                 title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
-                className: "is-long is-real-world-os-section",
-              },
-              {
-                title: `<span>Human Conversation is the only medium that tells you</span><span class="feeling-title-gold">how someone really feels.</span>`,
-                copy: [
-                  `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, safety, energy, momentum.`,
-                ],
-                scene: "feeling-signals",
-                className: "is-long is-feeling-section",
+                className: "is-long is-real-world-os-section is-copy-right",
               },
               {
                 kind: "future",
@@ -8136,7 +8283,7 @@
               {
                 title: `<span>Human</span><span>Conversation is the</span><span class="story-gold">operating system</span><span>for real-world</span><span>social communities.</span>`,
                 scene: "real-world-os",
-                className: "is-long is-real-world-os-section",
+                className: "is-long is-real-world-os-section is-copy-right",
               },
               {
                 title: `<span>Human Conversation</span><span>solves</span><span class="story-blue">disconnection.</span>`,
@@ -8398,6 +8545,12 @@
           headlineLabel: "Human Conversation intelligence sits around the human moment.",
           headline: `<span>Human Conversation intelligence</span><span class="human-ai-gold">sits around</span><span>the human moment.</span>`,
           lede: `<span class="human-ai-sectionline">The live conversation stays human. The intelligence handles the complexity around it so staff and community builders know what should happen next.</span><span class="human-ai-orbit-map" aria-label="Human Conversation intelligence around the human moment"><span class="human-ai-orbit-core">Human<br />Conversation</span><span class="human-ai-orbit-list"><span><strong>Member side</strong><small>Felt connection with a real person.</small></span><span><strong>Builder side</strong><small>Who to talk to, what context matters, what to ask.</small></span><span><strong>Intelligence side</strong><small>Logistics, coordination, memory, timing, and next action.</small></span></span></span>`,
+        },
+        {
+          id: "feeling-signals",
+          headlineLabel: "Human Conversation is the only medium that tells you how someone really feels.",
+          headline: `<span>Human Conversation is the only medium that tells you</span><span class="feeling-title-gold">how someone really feels.</span>`,
+          lede: `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, safety, energy, momentum.`,
         },
       ];
 
@@ -8665,6 +8818,9 @@
               const cards = section.cards
                 ?.map(([label, text]) => `<span><strong>${label}</strong><small>${text}</small></span>`)
                 .join("") || "";
+              const feelingCallout = section.feelingCallout
+                ? `<div class="taps-premium-feeling-callout"><strong>${section.feelingCallout.headline}</strong><p>${section.feelingCallout.copy}</p></div>`
+                : "";
 
               return `
                 <section class="${sectionClasses}">
@@ -8676,6 +8832,7 @@
                       ${form}
                     </div>
                   </div>
+                  ${feelingCallout}
                 </section>
               `;
             }

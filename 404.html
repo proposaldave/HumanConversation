@@ -7405,6 +7405,227 @@
         color: rgba(26, 22, 18, 0.72);
       }
 
+      .human-ai-sketch-map,
+      .human-ai-two-lane-map,
+      .human-ai-orbit-map {
+        display: grid;
+        gap: 14px;
+        max-width: 780px;
+      }
+
+      .human-ai-sketch-map {
+        border: 1px solid rgba(184, 149, 74, 0.24);
+        border-radius: 26px;
+        background:
+          linear-gradient(180deg, rgba(255, 252, 246, 0.9), rgba(255, 248, 236, 0.72));
+        box-shadow:
+          0 28px 80px rgba(69, 46, 18, 0.14),
+          inset 0 1px 0 rgba(255, 255, 255, 0.82);
+        padding: clamp(18px, 2.3vw, 28px);
+      }
+
+      .human-ai-sketch-row,
+      .human-ai-intelligence-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+      }
+
+      .human-ai-node {
+        display: grid;
+        gap: 8px;
+        min-height: 128px;
+        border: 1px solid rgba(184, 149, 74, 0.2);
+        border-radius: 18px;
+        background: rgba(255, 252, 246, 0.86);
+        box-shadow: 0 20px 58px rgba(69, 46, 18, 0.1);
+        padding: 18px;
+      }
+
+      .human-ai-node strong {
+        color: #5b3d18;
+        font-size: 0.88rem;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        line-height: 1.08;
+        text-transform: uppercase;
+      }
+
+      .human-ai-node small {
+        color: rgba(26, 22, 18, 0.68);
+        font-size: 0.94rem;
+        font-weight: 850;
+        line-height: 1.28;
+      }
+
+      .human-ai-node.is-member {
+        border-color: rgba(151, 79, 99, 0.22);
+      }
+
+      .human-ai-node.is-builder {
+        border-color: rgba(184, 149, 74, 0.28);
+        background: rgba(255, 248, 236, 0.92);
+      }
+
+      .human-ai-node.is-intelligence {
+        border-color: rgba(151, 79, 99, 0.28);
+        background:
+          linear-gradient(180deg, rgba(151, 79, 99, 0.13), rgba(255, 252, 246, 0.9));
+      }
+
+      .human-ai-relation,
+      .human-ai-downlink {
+        display: inline-grid;
+        min-width: 92px;
+        place-items: center;
+        color: #b8954a;
+        font-size: 0.78rem;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        line-height: 1.1;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .human-ai-relation::before,
+      .human-ai-relation::after,
+      .human-ai-downlink::before,
+      .human-ai-downlink::after {
+        display: block;
+        color: #b8954a;
+        font-size: 1.34rem;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+
+      .human-ai-relation::before,
+      .human-ai-relation::after {
+        content: "\2194";
+      }
+
+      .human-ai-downlink::before,
+      .human-ai-downlink::after {
+        content: "\2195";
+      }
+
+      .human-ai-two-lane-map {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .human-ai-lane {
+        display: grid;
+        gap: 12px;
+        border: 1px solid rgba(184, 149, 74, 0.2);
+        border-radius: 24px;
+        background: rgba(255, 252, 246, 0.84);
+        box-shadow: 0 24px 70px rgba(69, 46, 18, 0.12);
+        padding: 20px;
+      }
+
+      .human-ai-lane h3 {
+        margin: 0;
+        color: #5b3d18;
+        font-size: 0.78rem;
+        font-weight: 950;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .human-ai-lane p {
+        margin: 0;
+        color: rgba(26, 22, 18, 0.7);
+        font-size: 1rem;
+        font-weight: 850;
+        line-height: 1.34;
+      }
+
+      .human-ai-lane-flow {
+        display: grid;
+        gap: 8px;
+        justify-items: start;
+        color: #b8954a;
+        font-size: 1.1rem;
+        font-weight: 950;
+      }
+
+      .human-ai-lane-flow span {
+        border: 1px solid rgba(184, 149, 74, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 248, 236, 0.86);
+        color: rgba(26, 22, 18, 0.76);
+        padding: 8px 11px;
+        font-size: 0.82rem;
+        letter-spacing: 0;
+      }
+
+      .human-ai-lane-flow i {
+        margin-left: 18px;
+        color: #b8954a;
+        font-style: normal;
+        line-height: 0.8;
+      }
+
+      .human-ai-orbit-map {
+        position: relative;
+        grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+        align-items: center;
+        border: 1px solid rgba(184, 149, 74, 0.2);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 63% 48%, rgba(184, 149, 74, 0.2), transparent 42%),
+          rgba(255, 252, 246, 0.84);
+        box-shadow: 0 28px 80px rgba(69, 46, 18, 0.14);
+        padding: clamp(18px, 2.5vw, 30px);
+      }
+
+      .human-ai-orbit-core {
+        display: grid;
+        width: min(100%, 250px);
+        aspect-ratio: 1;
+        place-items: center;
+        justify-self: center;
+        border: 1px solid rgba(184, 149, 74, 0.32);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, rgba(255, 252, 246, 0.98) 0 48%, rgba(184, 149, 74, 0.18) 49% 60%, rgba(151, 79, 99, 0.12) 61% 100%);
+        color: #5b3d18;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.32rem, 2.3vw, 2.1rem);
+        font-weight: 680;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .human-ai-orbit-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .human-ai-orbit-list span {
+        display: grid;
+        gap: 5px;
+        border: 1px solid rgba(184, 149, 74, 0.18);
+        border-radius: 16px;
+        background: rgba(255, 252, 246, 0.82);
+        padding: 14px 16px;
+      }
+
+      .human-ai-orbit-list strong {
+        color: #7a5630;
+        font-size: 0.76rem;
+        font-weight: 950;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .human-ai-orbit-list small {
+        color: rgba(26, 22, 18, 0.68);
+        font-size: 0.92rem;
+        font-weight: 850;
+        line-height: 1.28;
+      }
+
       @media (max-width: 900px) {
         .page[data-variant^="human-ai-"] main {
           width: calc(100% - 32px);
@@ -7654,6 +7875,33 @@
           transform: none;
         }
 
+        .human-ai-sketch-row,
+        .human-ai-intelligence-row,
+        .human-ai-two-lane-map,
+        .human-ai-orbit-map {
+          grid-template-columns: 1fr;
+        }
+
+        .human-ai-relation,
+        .human-ai-downlink {
+          justify-self: center;
+          min-width: 48px;
+        }
+
+        .human-ai-relation::before,
+        .human-ai-relation::after {
+          content: "\2195";
+        }
+
+        .human-ai-node {
+          min-height: auto;
+          padding: 16px;
+        }
+
+        .human-ai-orbit-core {
+          width: min(100%, 220px);
+        }
+
         .human-ai-briefing {
           max-width: 390px;
         }
@@ -7755,6 +8003,9 @@
         <button class="variant-dot variant-dot-white" type="button" data-option="32" aria-label="Option 33: one brief one conversation one better next move"></button>
         <button class="variant-dot variant-dot-white" type="button" data-option="33" aria-label="Option 34: humans stay in the conversation"></button>
         <button class="variant-dot variant-dot-white" type="button" data-option="34" aria-label="Option 35: every conversation makes community smarter"></button>
+        <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: members and builders use Human Conversation while builders use Human Conversation intelligence"></button>
+        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: members get people and builders get intelligence"></button>
+        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: Human Conversation intelligence around the human moment"></button>
       </nav>
     </div>
 
@@ -8115,6 +8366,24 @@
           headlineLabel: "Less screen time. More Human Conversation time.",
           headline: `<span>Less screen time.</span><span class="human-ai-gold">More Human</span><span class="human-ai-gold">Conversation time.</span>`,
           lede: `<span class="human-ai-sectionline">The screen should be a prompt, not a place to live. Human Conversation keeps the interface small and sends people back to each other.</span><span class="human-ai-time-proof" aria-label="Less screen time and more Human Conversation time"><span class="time-human"><strong>More human time</strong><small>Welcomes, check-ins, introductions, groups, and follow-through.</small></span><span><strong>Less screen work</strong><small>One brief. One note. The rest moves in the background.</small></span></span>`,
+        },
+        {
+          id: "human-ai-member-builder-map",
+          headlineLabel: "Members and builders communicate through Human Conversation. Builders work with Human Conversation intelligence.",
+          headline: `<span>People use</span><span class="human-ai-gold">Human Conversation.</span><span>Builders use the intelligence around it.</span>`,
+          lede: `<span class="human-ai-sectionline">Members and staff communicate through Human Conversation. Staff and community builders work with Human Conversation intelligence.</span><span class="human-ai-sketch-map" aria-label="Members and staff communicate through Human Conversation while staff use Human Conversation intelligence"><span class="human-ai-sketch-row"><span class="human-ai-node is-member"><strong>Member</strong><small>Feels known, welcomed, and remembered by a real person.</small></span><span class="human-ai-relation">Human Conversation</span><span class="human-ai-node is-builder"><strong>Staff and builders</strong><small>Talk, listen, notice, invite, and follow through.</small></span></span><span class="human-ai-intelligence-row"><span aria-hidden="true"></span><span class="human-ai-downlink">works with</span><span class="human-ai-node is-intelligence"><strong>Human Conversation intelligence</strong><small>Context, timing, logistics, coordination, and next action.</small></span></span></span>`,
+        },
+        {
+          id: "human-ai-people-intelligence",
+          headlineLabel: "Members get people. Builders get intelligence.",
+          headline: `<span>Members get people.</span><span class="human-ai-gold">Builders get intelligence.</span>`,
+          lede: `<span class="human-ai-sectionline">The member should experience a person, not software. The builder should experience intelligence that makes the next human move obvious.</span><span class="human-ai-two-lane-map" aria-label="Human Conversation for members and Human Conversation intelligence for builders"><span class="human-ai-lane"><h3>What members feel</h3><p>A staff member or community builder who knows who they are, why now matters, and how to make them feel connected.</p><span class="human-ai-lane-flow"><span>member</span><i aria-hidden="true">&harr;</i><span>Human Conversation</span><i aria-hidden="true">&harr;</i><span>builder</span></span></span><span class="human-ai-lane"><h3>What builders use</h3><p>A quiet intelligence layer for context, timing, matching, logistics, coordination, and follow-through.</p><span class="human-ai-lane-flow"><span>builder</span><i aria-hidden="true">&harr;</i><span>Human Conversation intelligence</span></span></span></span>`,
+        },
+        {
+          id: "human-ai-intelligence-around",
+          headlineLabel: "Human Conversation intelligence sits around the human moment.",
+          headline: `<span>Human Conversation intelligence</span><span class="human-ai-gold">sits around</span><span>the human moment.</span>`,
+          lede: `<span class="human-ai-sectionline">The live conversation stays human. The intelligence handles the complexity around it so staff and community builders know what should happen next.</span><span class="human-ai-orbit-map" aria-label="Human Conversation intelligence around the human moment"><span class="human-ai-orbit-core">Human<br />Conversation</span><span class="human-ai-orbit-list"><span><strong>Member side</strong><small>Felt connection with a real person.</small></span><span><strong>Builder side</strong><small>Who to talk to, what context matters, what to ask.</small></span><span><strong>Intelligence side</strong><small>Logistics, coordination, memory, timing, and next action.</small></span></span></span>`,
         },
       ];
 

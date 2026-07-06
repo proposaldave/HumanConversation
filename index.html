@@ -4411,6 +4411,37 @@
         outline-offset: 4px;
       }
 
+      .section-cue {
+        position: absolute;
+        right: auto;
+        bottom: clamp(22px, 4.6vh, 48px);
+        left: 50%;
+        z-index: 8;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        margin: 0;
+        border: 1px solid rgba(255, 248, 236, 0.24);
+        border-radius: 999px;
+        background: rgba(12, 9, 6, 0.5);
+        color: rgba(255, 248, 236, 0.92);
+        cursor: pointer;
+        appearance: none;
+        font: inherit;
+        padding: 0;
+        text-decoration: none;
+        box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+        transform: translateX(-50%);
+        backdrop-filter: blur(14px) saturate(1.12);
+      }
+
+      .section-cue:focus-visible {
+        outline: 2px solid rgba(255, 248, 236, 0.88);
+        outline-offset: 4px;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-cue {
         position: fixed;
         display: inline-flex;
@@ -8668,6 +8699,16 @@
         `;
       }
 
+      function renderSectionCue(sectionIndex, sectionCount) {
+        if (sectionIndex >= sectionCount - 1) return "";
+
+        return `
+          <button class="section-cue" type="button" data-target-section="${sectionIndex + 1}" aria-label="Continue to next section">
+            <span class="story-cue-icon" aria-hidden="true"></span>
+          </button>
+        `;
+      }
+
       function renderCommunityGraph(mode = "mini") {
         const cards = mode === "wide"
           ? [
@@ -8842,6 +8883,7 @@
 
         const sections = storyPage.sections
           .map((section, sectionIndex) => {
+            const sectionCue = renderSectionCue(sectionIndex, storyPage.sections.length);
             const body = section.copy?.map((paragraph) => `<p>${paragraph}</p>`).join("") || "";
             const chainIntro = section.chainIntro ? `<p class="story-chain-intro">${section.chainIntro}</p>` : "";
             const chain = section.chain
@@ -8877,6 +8919,7 @@
                     </div>
                     ${renderCommunityGraph("mini")}
                   </div>
+                  ${sectionCue}
                 </section>
               `;
             }
@@ -8894,6 +8937,7 @@
                     </div>
                     ${renderCommunityGraph("wide")}
                   </div>
+                  ${sectionCue}
                 </section>
               `;
             }
@@ -8917,6 +8961,7 @@
                     </div>
                   </div>
                   ${feelingCallout}
+                  ${sectionCue}
                 </section>
               `;
             }
@@ -8931,6 +8976,7 @@
                     </div>
                     ${renderAttentionGraphic()}
                   </div>
+                  ${sectionCue}
                 </section>
               `;
             }
@@ -8945,6 +8991,7 @@
                     </div>
                     ${renderLiveMomentCard()}
                   </div>
+                  ${sectionCue}
                 </section>
               `;
             }
@@ -8961,6 +9008,7 @@
                       ${form}
                     </div>
                   </div>
+                  ${sectionCue}
                 </section>
               `;
             }
@@ -8976,6 +9024,7 @@
                   </div>
                   <div class="story-visual story-panel-image" aria-hidden="true"></div>
                 </div>
+                ${sectionCue}
               </section>
             `;
           })
@@ -9103,6 +9152,22 @@
           block: "start",
         });
         window.setTimeout(focusFirstStoryPanel, prefersReducedMotion.matches ? 0 : 520);
+      });
+
+      landingStory?.addEventListener("click", (event) => {
+        const cue = event.target instanceof Element ? event.target.closest(".section-cue") : null;
+        if (!(cue instanceof HTMLButtonElement)) return;
+
+        const targetIndex = Number.parseInt(cue.dataset.targetSection || "", 10);
+        const panels = Array.from(landingStory.querySelectorAll(".story-section, .story-final"));
+        const targetPanel = Number.isInteger(targetIndex) ? panels[targetIndex] : null;
+        if (!(targetPanel instanceof HTMLElement)) return;
+
+        targetPanel.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          block: "start",
+        });
+        window.setTimeout(() => targetPanel.focus({ preventScroll: true }), prefersReducedMotion.matches ? 0 : 520);
       });
 
       variantTrigger?.addEventListener("click", revealVariantDots);

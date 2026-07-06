@@ -4818,16 +4818,20 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-inner {
-        grid-template-columns: minmax(0, 760px) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 860px);
+        justify-content: center;
+        place-items: center;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-copy {
-        max-width: 760px;
-        margin-left: clamp(18px, 3.2vw, 70px);
+        max-width: 860px;
+        margin: 0 auto;
+        text-align: center;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title.story-title {
         max-width: 800px;
+        margin: 0 auto;
         color: #f7f0e4;
         font-family: Fraunces, Georgia, serif;
         font-size: clamp(3.85rem, 6.15vw, 7rem);
@@ -5870,7 +5874,9 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-copy {
-          margin-left: 0;
+          margin-right: auto;
+          margin-left: auto;
+          text-align: center;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section::before {
@@ -6021,6 +6027,8 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title.story-title {
           max-width: min(100%, 350px);
+          margin-right: auto;
+          margin-left: auto;
           color: #fff6e8;
           font-size: clamp(2.58rem, 10.7vw, 3.34rem);
           line-height: 0.98;

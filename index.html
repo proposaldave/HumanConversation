@@ -6086,6 +6086,146 @@
         box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section {
+        align-items: center;
+        padding: clamp(94px, 8vw, 142px) 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section::after {
+        background:
+          radial-gradient(circle at 23% 54%, rgba(241, 199, 96, 0.18) 0%, rgba(241, 199, 96, 0.04) 31%, rgba(8, 6, 4, 0) 57%),
+          linear-gradient(90deg, rgba(5, 4, 3, 0.78) 0%, rgba(8, 6, 4, 0.55) 36%, rgba(8, 6, 4, 0.14) 68%, rgba(8, 6, 4, 0.22) 100%),
+          linear-gradient(180deg, rgba(8, 6, 4, 0.12) 0%, rgba(8, 6, 4, 0.02) 43%, rgba(8, 6, 4, 0.38) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-inner {
+        display: block;
+        width: min(calc(100% - 64px), 720px);
+        max-width: 720px;
+        margin-right: auto;
+        margin-left: max(32px, calc((100vw - 1320px) / 2 + 32px));
+        padding: clamp(28px, 4vw, 46px);
+        border: 1px solid rgba(241, 199, 96, 0.34);
+        border-radius: 8px;
+        background:
+          linear-gradient(150deg, rgba(18, 11, 8, 0.72) 0%, rgba(10, 7, 5, 0.64) 58%, rgba(34, 15, 13, 0.58) 100%);
+        box-shadow:
+          0 38px 110px rgba(0, 0, 0, 0.42),
+          0 0 0 1px rgba(255, 248, 236, 0.05),
+          inset 0 1px 0 rgba(255, 248, 236, 0.12);
+        backdrop-filter: blur(18px) saturate(1.12);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-copy {
+        max-width: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-eyebrow {
+        display: block;
+        margin: 0 0 clamp(16px, 2vw, 22px);
+        color: #f1c760;
+        font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: clamp(0.68rem, 0.84vw, 0.78rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-copy .story-title {
+        max-width: 640px;
+        color: #fff8ec;
+        font-size: clamp(2.7rem, 4.05vw, 4.75rem);
+        font-weight: 690;
+        line-height: 0.98;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+        text-shadow: 0 4px 34px rgba(0, 0, 0, 0.62);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-copy .story-title > span {
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-belonging {
+        color: #f1c760;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side {
+        margin-top: clamp(20px, 3vw, 30px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-body {
+        max-width: 590px;
+        margin-top: 0;
+        color: rgba(255, 248, 236, 0.88);
+        font-size: clamp(1rem, 1.34vw, 1.18rem);
+        font-weight: 720;
+        line-height: 1.55;
+        text-shadow: 0 3px 22px rgba(0, 0, 0, 0.42);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-helper {
+        max-width: 540px;
+        margin: clamp(22px, 3vw, 30px) 0 0;
+        color: rgba(255, 248, 236, 0.68);
+        font-size: 0.92rem;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact.contact {
+        max-width: 620px;
+        margin-top: 14px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .story-contact .contact-row {
+        align-items: stretch;
+        gap: 10px;
+        justify-content: flex-start;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact input[type="email"] {
+        min-height: 56px;
+        border: 1px solid rgba(255, 248, 236, 0.28);
+        background: rgba(255, 248, 236, 0.94);
+        color: #1a1612;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact input[type="email"]:focus-visible {
+        outline: 2px solid rgba(241, 199, 96, 0.9);
+        outline-offset: 3px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact button {
+        min-height: 56px;
+        background: #f1c760;
+        color: #1a1612;
+        white-space: nowrap;
+        box-shadow:
+          0 18px 44px rgba(0, 0, 0, 0.28),
+          inset 0 1px 0 rgba(255, 248, 236, 0.38);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact button:focus-visible {
+        outline: 2px solid rgba(255, 248, 236, 0.9);
+        outline-offset: 3px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .story-contact .status {
+        color: rgba(255, 248, 236, 0.76);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .story-contact .status:empty {
+        min-height: 0;
+        margin-top: 0;
+      }
+
       @media (max-width: 760px) {
         .page[data-variant="conversation-intelligence-home"] .header-email {
           display: inline-flex;
@@ -6177,6 +6317,45 @@
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future .story-body {
           color: rgba(255, 248, 236, 0.92);
           text-shadow: 0 3px 22px rgba(0, 0, 0, 0.56);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section {
+          align-items: flex-end;
+          padding: 92px 0 max(34px, env(safe-area-inset-bottom));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section::after {
+          background:
+            linear-gradient(180deg, rgba(8, 6, 4, 0.28) 0%, rgba(8, 6, 4, 0.18) 34%, rgba(8, 6, 4, 0.72) 100%),
+            linear-gradient(90deg, rgba(8, 6, 4, 0.58), rgba(8, 6, 4, 0.16));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-inner {
+          width: calc(100% - 32px);
+          max-width: none;
+          margin: 0 auto;
+          padding: 24px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-copy .story-title {
+          max-width: 100%;
+          font-size: clamp(2.38rem, 11.2vw, 3.18rem);
+          line-height: 0.98;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side {
+          margin-top: 18px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-body {
+          max-width: 100%;
+          font-size: 0.98rem;
+          line-height: 1.5;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-helper {
+          margin-top: 20px;
+          font-size: 0.88rem;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
@@ -8477,12 +8656,14 @@
               },
               {
                 kind: "future",
-                title: `<span>Human Conversation</span><span>for a more connected,</span><span>more human future.</span>`,
+                eyebrow: `THE HUMAN VALUE NETWORK`,
+                title: `<span>The internet rewarded attention.</span><span>Now reward <span class="final-cta-belonging">belonging.</span></span>`,
                 copy: [
-                  `A future where everyone has a community to return to feel a connection-high, every time.`,
+                  `Human Conversation finds and equips the local community builders who make people feel known &mdash; then routes and rewards that gift so more people have a place to return.`,
                 ],
+                formHelper: `Join the early list for builders, clubs, and communities.`,
                 scene: "human-future",
-                className: "is-future-section",
+                className: "is-future-section is-final-cta-section",
                 form: true,
               },
             ],
@@ -9154,14 +9335,19 @@
             }
 
             if (section.kind === "future") {
+              const eyebrow = section.eyebrow ? `<p class="story-kicker final-cta-eyebrow">${section.eyebrow}</p>` : "";
+              const formHelper = section.formHelper ? `<p class="final-cta-helper">${section.formHelper}</p>` : "";
+
               return `
                 <section class="${sectionClasses}">
                   <div class="story-section-inner future-story-inner">
                     <div class="story-copy-block future-story-copy">
+                      ${eyebrow}
                       <h2 class="story-title">${section.title}</h2>
                     </div>
                     <div class="future-story-side">
                       ${body ? `<div class="story-body">${body}</div>` : ""}
+                      ${formHelper}
                       ${form}
                     </div>
                   </div>

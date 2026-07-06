@@ -6606,6 +6606,442 @@
         color: rgba(255, 248, 236, 0.76);
       }
 
+      .page[data-variant="human-ai-brief-talk-act"],
+      .page[data-variant="human-ai-community-flywheel"] {
+        background: #0c0906;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="human-ai-community-os"]::before {
+        background-image:
+          radial-gradient(circle at 68% 44%, rgba(255, 246, 222, 0.28), transparent 29%),
+          linear-gradient(90deg, rgba(248, 241, 228, 0.97) 0%, rgba(248, 241, 228, 0.9) 34%, rgba(248, 241, 228, 0.5) 69%, rgba(248, 241, 228, 0.18) 100%),
+          linear-gradient(180deg, rgba(248, 241, 228, 0.08) 0%, rgba(248, 241, 228, 0.72) 100%),
+          url("./assets/hc-art-brings-together-community-engine-20260705.png");
+      }
+
+      .page[data-variant="human-ai-brief-talk-act"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(7, 6, 4, 0.9) 0%, rgba(7, 6, 4, 0.72) 36%, rgba(7, 6, 4, 0.32) 72%, rgba(7, 6, 4, 0.08) 100%),
+          linear-gradient(180deg, rgba(7, 6, 4, 0.04) 0%, rgba(7, 6, 4, 0.66) 100%),
+          url("./assets/hc-art-real-world-social-system-20260704.png");
+        filter: saturate(1.05) contrast(1.04) brightness(0.93);
+      }
+
+      .page[data-variant="human-ai-human-surface"]::before {
+        background-image:
+          radial-gradient(circle at 63% 42%, rgba(255, 247, 224, 0.32), transparent 31%),
+          linear-gradient(90deg, rgba(248, 241, 228, 0.98) 0%, rgba(248, 241, 228, 0.9) 34%, rgba(248, 241, 228, 0.48) 68%, rgba(248, 241, 228, 0.14) 100%),
+          linear-gradient(180deg, rgba(248, 241, 228, 0.12) 0%, rgba(248, 241, 228, 0.82) 100%),
+          url("./assets/hc-art-operating-system-human-value-funnel-20260705.png");
+      }
+
+      .page[data-variant="human-ai-community-flywheel"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(7, 8, 7, 0.9) 0%, rgba(7, 8, 7, 0.72) 38%, rgba(7, 8, 7, 0.28) 70%, rgba(7, 8, 7, 0.08) 100%),
+          linear-gradient(180deg, rgba(7, 8, 7, 0.08) 0%, rgba(7, 8, 7, 0.64) 100%),
+          url("./assets/hc-art-human-social-community-data-v2-20260705.png");
+        filter: saturate(1.02) contrast(1.05) brightness(0.93);
+      }
+
+      .page[data-variant="human-ai-brief-talk-act"] .brand,
+      .page[data-variant="human-ai-community-flywheel"] .brand {
+        color: #fff8ec;
+      }
+
+      .page[data-variant="human-ai-brief-talk-act"] .header-email,
+      .page[data-variant="human-ai-community-flywheel"] .header-email {
+        border-color: rgba(255, 248, 236, 0.2);
+        background: rgba(8, 8, 7, 0.64);
+        color: #f1c760;
+      }
+
+      .page[data-variant="human-ai-brief-talk-act"] .mark-bubble,
+      .page[data-variant="human-ai-community-flywheel"] .mark-bubble {
+        fill: #fff8ec;
+      }
+
+      .hero-human-ai-brief-talk-act h1,
+      .hero-human-ai-community-flywheel h1 {
+        color: #fff8ec;
+        text-shadow: 0 5px 30px rgba(0, 0, 0, 0.52);
+      }
+
+      .hero-human-ai-brief-talk-act .human-ai-gold,
+      .hero-human-ai-community-flywheel .human-ai-gold {
+        color: #f1c760;
+      }
+
+      .page[data-variant="human-ai-brief-talk-act"] .lede,
+      .page[data-variant="human-ai-community-flywheel"] .lede,
+      .page[data-variant="human-ai-brief-talk-act"] .human-ai-copy,
+      .page[data-variant="human-ai-community-flywheel"] .human-ai-copy {
+        color: rgba(255, 248, 236, 0.88);
+        text-shadow: 0 3px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .human-ai-sectionline {
+        display: block;
+        max-width: 620px;
+        border-left: 4px solid var(--human-ai-gold);
+        padding-left: 18px;
+        font-size: 1.12rem;
+        font-weight: 850;
+        line-height: 1.38;
+      }
+
+      .os-stage,
+      .os-brief-flow,
+      .os-surface-stack,
+      .os-flywheel-board {
+        display: grid;
+        gap: 14px;
+      }
+
+      .os-stage {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+        align-items: stretch;
+      }
+
+      .os-stage-card,
+      .os-lane,
+      .surface-card,
+      .flywheel-card {
+        border: 1px solid rgba(184, 149, 74, 0.22);
+        border-radius: 22px;
+        background: rgba(255, 252, 246, 0.86);
+        box-shadow:
+          0 26px 70px rgba(69, 46, 18, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        padding: 24px;
+      }
+
+      .os-stage-card {
+        display: grid;
+        align-content: space-between;
+        min-height: 326px;
+        overflow: hidden;
+      }
+
+      .os-stage-card strong,
+      .surface-card strong,
+      .flywheel-card strong,
+      .os-lane strong {
+        display: block;
+        color: var(--hc-ink);
+        font-size: 1.05rem;
+        line-height: 1.08;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .os-lane strong,
+      .os-lane small,
+      .flywheel-card strong,
+      .flywheel-card small {
+        grid-column: 2;
+      }
+
+      .os-lane > span,
+      .flywheel-card > span {
+        grid-column: 2;
+        min-width: 0;
+      }
+
+      .os-lane::before,
+      .flywheel-card::before {
+        grid-column: 1;
+      }
+
+      .os-stage-card small,
+      .surface-card small,
+      .flywheel-card small,
+      .os-lane small {
+        display: block;
+        margin-top: 8px;
+        color: rgba(26, 22, 18, 0.67);
+        font-size: 0.92rem;
+        font-weight: 750;
+        line-height: 1.35;
+      }
+
+      .os-human-card {
+        position: relative;
+        background:
+          linear-gradient(180deg, rgba(252, 247, 236, 0.9), rgba(242, 250, 236, 0.8)),
+          rgba(255, 252, 246, 0.88);
+      }
+
+      .os-human-card::after {
+        content: "";
+        display: block;
+        height: 154px;
+        margin-top: 24px;
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 252, 246, 0.1), rgba(255, 252, 246, 0.72)),
+          url("./assets/hc-art-operating-system-community-20260703.png");
+        background-position: center;
+        background-size: cover;
+        box-shadow: inset 0 0 0 1px rgba(26, 22, 18, 0.08);
+      }
+
+      .os-ai-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .os-lane {
+        display: grid;
+        grid-template-columns: 74px minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+        min-height: 100px;
+        padding: 18px 20px;
+      }
+
+      .os-lane::before,
+      .surface-card::before,
+      .flywheel-card::before {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        color: #fff8ec;
+        font-size: 1.24rem;
+        font-weight: 950;
+      }
+
+      .os-lane-before::before {
+        content: "1";
+        background: #2e6ea8;
+      }
+
+      .os-lane-human::before {
+        content: "2";
+        background: #2f8b5b;
+      }
+
+      .os-lane-after::before {
+        content: "3";
+        background: #8b63b5;
+      }
+
+      .os-flywheel-note {
+        grid-column: 1 / -1;
+        border: 1px solid rgba(26, 22, 18, 0.12);
+        border-radius: 999px;
+        background: rgba(26, 22, 18, 0.86);
+        color: #fff8ec;
+        padding: 13px 18px;
+        text-align: center;
+        font-size: 0.86rem;
+        font-weight: 950;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .os-brief-flow {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .brief-step {
+        display: grid;
+        align-content: space-between;
+        min-height: 254px;
+        border: 1px solid rgba(255, 248, 236, 0.2);
+        border-radius: 22px;
+        background: rgba(8, 8, 7, 0.6);
+        box-shadow: 0 24px 68px rgba(0, 0, 0, 0.24);
+        padding: 24px;
+        backdrop-filter: blur(15px);
+      }
+
+      .brief-step b {
+        color: #f1c760;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.7rem;
+        font-weight: 650;
+        line-height: 1;
+      }
+
+      .brief-step small {
+        color: rgba(255, 248, 236, 0.76);
+        font-size: 0.9rem;
+        font-weight: 800;
+        line-height: 1.34;
+      }
+
+      .brief-payoff,
+      .surface-payoff,
+      .flywheel-payoff {
+        justify-self: stretch;
+        border: 1px solid rgba(241, 199, 96, 0.32);
+        border-radius: 999px;
+        background: rgba(255, 248, 236, 0.12);
+        color: #f1c760;
+        padding: 14px 18px;
+        text-align: center;
+        font-size: 0.92rem;
+        font-weight: 950;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .page[data-variant="human-ai-human-surface"] .surface-payoff {
+        background: rgba(47, 139, 91, 0.09);
+        color: #255d3c;
+        border-color: rgba(47, 139, 91, 0.22);
+      }
+
+      .os-surface-stack {
+        position: relative;
+        align-content: center;
+        min-height: 520px;
+      }
+
+      .surface-line {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(91, 143, 212, 0.62), transparent);
+      }
+
+      .surface-line::before {
+        content: "Human moment";
+        display: block;
+        width: max-content;
+        margin: -32px auto 0;
+        border: 1px solid rgba(184, 149, 74, 0.24);
+        border-radius: 999px;
+        background: rgba(255, 252, 246, 0.82);
+        color: #6f5023;
+        padding: 8px 14px;
+        font-size: 0.76rem;
+        font-weight: 950;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .surface-card {
+        display: grid;
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 16px;
+        align-items: center;
+      }
+
+      .surface-human {
+        justify-self: end;
+        width: min(90%, 520px);
+        background: rgba(249, 253, 244, 0.9);
+      }
+
+      .surface-human::before {
+        content: "HC";
+        background: #2f8b5b;
+      }
+
+      .surface-ai {
+        justify-self: start;
+        width: min(96%, 620px);
+        background:
+          linear-gradient(180deg, rgba(232, 244, 255, 0.9), rgba(224, 234, 250, 0.8)),
+          rgba(255, 252, 246, 0.9);
+      }
+
+      .surface-ai::before {
+        content: "AI";
+        background: #2e6ea8;
+      }
+
+      .surface-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .surface-chips span {
+        border: 1px solid rgba(46, 110, 168, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 252, 246, 0.72);
+        color: #365f99;
+        padding: 8px 10px;
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+
+      .os-flywheel-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flywheel-card {
+        display: grid;
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 16px;
+        align-items: center;
+        min-height: 132px;
+        border-color: rgba(255, 248, 236, 0.2);
+        background: rgba(8, 8, 7, 0.6);
+        backdrop-filter: blur(15px);
+      }
+
+      .flywheel-card strong {
+        color: #fff8ec;
+      }
+
+      .flywheel-card small {
+        color: rgba(255, 248, 236, 0.76);
+      }
+
+      .flywheel-card::before {
+        color: #14100b;
+        background: #f1c760;
+      }
+
+      .flywheel-card:nth-child(1)::before {
+        content: "1";
+      }
+
+      .flywheel-card:nth-child(2)::before {
+        content: "2";
+      }
+
+      .flywheel-card:nth-child(3)::before {
+        content: "3";
+      }
+
+      .flywheel-card:nth-child(4)::before {
+        content: "4";
+      }
+
+      .page[data-variant="human-ai-community-os"] .os-stage,
+      .page[data-variant="human-ai-community-flywheel"] .os-flywheel-board {
+        grid-template-columns: 1fr;
+      }
+
+      .page[data-variant="human-ai-community-os"] .os-stage-card,
+      .page[data-variant="human-ai-community-flywheel"] .flywheel-card {
+        min-height: auto;
+      }
+
+      .page[data-variant="human-ai-community-os"] .os-human-card::after {
+        display: none;
+      }
+
+      .page[data-variant="human-ai-community-flywheel"] .os-flywheel-board {
+        gap: 10px;
+      }
+
+      .page[data-variant="human-ai-community-flywheel"] .flywheel-card {
+        padding: 18px 20px;
+      }
+
+      .page[data-variant="human-ai-community-flywheel"] .flywheel-card small {
+        margin-top: 6px;
+        font-size: 0.86rem;
+        line-height: 1.28;
+      }
+
       @media (max-width: 900px) {
         .page[data-variant^="human-ai-"] main {
           width: calc(100% - 32px);
@@ -6763,6 +7199,72 @@
           padding: 22px;
         }
 
+        .os-stage,
+        .os-brief-flow,
+        .os-flywheel-board {
+          grid-template-columns: 1fr;
+        }
+
+        .human-ai-sectionline {
+          max-width: 390px;
+          padding-left: 14px;
+          font-size: 0.98rem;
+          line-height: 1.4;
+        }
+
+        .os-stage-card {
+          min-height: auto;
+        }
+
+        .os-human-card::after {
+          height: 108px;
+          margin-top: 18px;
+        }
+
+        .os-lane,
+        .surface-card,
+        .flywheel-card {
+          grid-template-columns: 48px minmax(0, 1fr);
+          gap: 14px;
+          padding: 16px;
+        }
+
+        .os-lane::before,
+        .surface-card::before,
+        .flywheel-card::before {
+          width: 48px;
+          height: 48px;
+          font-size: 0.92rem;
+        }
+
+        .brief-step {
+          min-height: 132px;
+          padding: 18px;
+        }
+
+        .brief-step b {
+          font-size: 1.34rem;
+        }
+
+        .brief-payoff,
+        .surface-payoff,
+        .flywheel-payoff,
+        .os-flywheel-note {
+          border-radius: 18px;
+          font-size: 0.74rem;
+          line-height: 1.28;
+        }
+
+        .os-surface-stack {
+          min-height: auto;
+        }
+
+        .surface-human,
+        .surface-ai {
+          justify-self: stretch;
+          width: 100%;
+        }
+
         .human-ai-briefing {
           max-width: 390px;
         }
@@ -6860,10 +7362,10 @@
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: previous timeless interface homepage"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: build intelligence around Human Conversation"></button>
         <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: know the person coordinate the moment"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="31" aria-label="Option 32: operating system flow"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="32" aria-label="Option 33: flywheel of connection"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="33" aria-label="Option 34: humans above the surface"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="34" aria-label="Option 35: less screen time more connection time"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="31" aria-label="Option 32: real-world social community operating system"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="32" aria-label="Option 33: one brief one conversation one better next move"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="33" aria-label="Option 34: humans stay in the conversation"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="34" aria-label="Option 35: every conversation makes community smarter"></button>
       </nav>
     </div>
 
@@ -6880,11 +7382,6 @@
                 chainIntro: `Human Conversation turns disconnection into`,
                 chain: ["disconnection", "connection", "trust", "data", "coordination", "community"],
                 className: "is-product",
-              },
-              {
-                title: `<span>Human Conversation is the only place where</span><span class="connection-flow-highlight">connection happens</span><span>and human, social, and community</span><span class="connection-flow-data">data flows.</span>`,
-                scene: "connection-flow",
-                className: "is-long is-connection-flow-section",
               },
               {
                 kind: "tapsPremium",
@@ -7236,28 +7733,28 @@
           story: storyPages.liveMoment,
         },
         {
-          id: "human-ai-system-map",
-          headlineLabel: "The operating system for real-world social communities. More human connection. Less screen time. AI handles the complexity.",
+          id: "human-ai-community-os",
+          headlineLabel: "The operating system for real-world social communities. Community builders stay with people. AI handles the complexity.",
           headline: `<span>The operating system</span><span>for real-world</span><span class="human-ai-gold">social communities.</span>`,
-          lede: `<span class="human-ai-copy">Staff and community builders stay with people. Human Conversation tells them who needs attention, what context matters, and what to do next. AI handles the complexity in the background.</span><span class="human-ai-system-map" aria-label="Members, community builders, and AI operating system flow"><span class="system-card system-members"><strong>Members</strong><small>People, not profiles.</small><em>Play. Connect. Come back.</em></span><span class="system-card system-builders"><strong>Staff / Community Builders</strong><small>Briefed before the conversation.</small><em>Human with the member.</em></span><span class="system-card system-ai"><strong>AI Operating System</strong><small>Captures what mattered.</small><em>Coordinates the next action.</em></span><span class="system-flywheel">Every conversation makes the community smarter.</span><span class="system-payoff">Minimize screen time. Maximize Human Conversation time.</span></span>`,
+          lede: `<span class="human-ai-sectionline">Community builders stay in the human moment. Human Conversation gives them the next person, the context, and the next action while AI handles the background work.</span><span class="os-stage" aria-label="Human Conversation operating system flow"><span class="os-stage-card os-human-card"><strong>What people experience</strong><small>Someone who knows them, welcomes them, and helps them belong.</small></span><span class="os-ai-stack"><span class="os-lane os-lane-before"><span><strong>Before</strong><small>Who needs a conversation. What context matters.</small></span></span><span class="os-lane os-lane-human"><span><strong>During</strong><small>The community builder has the real Human Conversation.</small></span></span><span class="os-lane os-lane-after"><span><strong>After</strong><small>AI turns what happened into the next helpful move.</small></span></span></span><span class="os-flywheel-note">Every conversation makes the community smarter.</span></span>`,
         },
         {
-          id: "human-ai-flywheel",
-          headlineLabel: "Human Conversation sits at the center. AI makes it possible.",
-          headline: `<span>Human Conversation sits at the center.</span><span class="human-ai-gold">AI makes it possible.</span>`,
-          lede: `<span class="human-ai-copy">The intelligence is not another interface between people. It is the loop around the conversation: know who needs attention, brief the builder, capture what happened, and make the next human move easier.</span><span class="human-ai-flywheel-visual" aria-label="A flywheel around Human Conversation"><span class="flywheel-core"><strong>Human Conversation</strong><small>connection, trust, community</small></span><span class="flywheel-step step-know">AI knows who needs attention</span><span class="flywheel-step step-brief">Community builder gets context</span><span class="flywheel-step step-talk">People have the conversation</span><span class="flywheel-step step-learn">AI learns and acts</span></span>`,
+          id: "human-ai-brief-talk-act",
+          headlineLabel: "One brief. One real conversation. One better next move.",
+          headline: `<span>One brief.</span><span>One real conversation.</span><span class="human-ai-gold">One better next move.</span>`,
+          lede: `<span class="human-ai-sectionline">The screen stays small. The human moment gets bigger. Human Conversation tells staff who to talk to, captures what mattered, then handles the follow-up.</span><span class="os-brief-flow" aria-label="Brief, talk, tell AI, next move"><span class="brief-step"><b>Brief</b><small>Who needs attention? What context should the builder know?</small></span><span class="brief-step"><b>Talk</b><small>Be fully with the person, not the dashboard.</small></span><span class="brief-step"><b>Tell AI</b><small>What happened. What mattered. What should happen next.</small></span><span class="brief-step"><b>Next</b><small>AI coordinates the invitation, reminder, group, or follow-up.</small></span></span><span class="brief-payoff">Minimize screen time. Maximize Human Conversation time.</span>`,
         },
         {
-          id: "human-ai-iceberg",
-          headlineLabel: "Humans stay above the surface. AI handles the complexity underneath.",
-          headline: `<span>Humans stay above the surface.</span><span class="human-ai-gold">AI handles the complexity underneath.</span>`,
-          lede: `<span class="human-ai-copy">The member experiences a person who knows them. The community builder experiences a simple conversation. Underneath, Human Conversation handles the memory, matching, logistics, follow-up, and coordination.</span><span class="human-ai-iceberg-visual" aria-label="Human conversation above the surface, AI complexity underneath"><span class="iceberg-water"></span><span class="iceberg-top"><strong>What people feel</strong><small>A real conversation with someone who remembers.</small></span><span class="iceberg-base"><strong>What AI handles</strong><small>signals, context, scheduling, reminders, matching, follow-up, data, coordination</small></span></span>`,
+          id: "human-ai-human-surface",
+          headlineLabel: "Humans stay in the conversation. AI moves everything else.",
+          headline: `<span>Humans stay in</span><span>the conversation.</span><span class="human-ai-gold">AI moves everything else.</span>`,
+          lede: `<span class="human-ai-sectionline">The member feels remembered. The builder gets a simple prompt. Underneath, AI handles the memory, matching, scheduling, follow-up, and logistics.</span><span class="os-surface-stack" aria-label="Human experience above AI complexity"><span class="surface-card surface-human"><span><strong>What people feel</strong><small>A real conversation with someone who remembers.</small></span></span><span class="surface-line" aria-hidden="true"></span><span class="surface-card surface-ai"><span><strong>What AI handles</strong><small>The invisible coordination that makes the next human moment easier.</small><span class="surface-chips"><span>signals</span><span>context</span><span>matching</span><span>scheduling</span><span>follow-up</span><span>logistics</span></span></span></span><span class="surface-payoff">Less computer work. More connection.</span></span>`,
         },
         {
-          id: "human-ai-connection-time",
-          headlineLabel: "Less screen time. More Human Conversation time.",
-          headline: `<span>Less screen time.</span><span class="human-ai-gold">More Human Conversation time.</span>`,
-          lede: `<span class="human-ai-copy">Community builders should not live in dashboards. Members should not live in apps. Human Conversation keeps the screen small: one brief, one real conversation, one captured signal, and AI takes care of the rest.</span><span class="human-ai-briefing" aria-label="Brief, conversation, capture, action"><span><strong>Brief</strong><small>Who needs a conversation?</small></span><span><strong>Talk</strong><small>Be fully with the person.</small></span><span><strong>Share</strong><small>Tell AI what mattered.</small></span><span><strong>Action</strong><small>AI coordinates the follow-up.</small></span></span>`,
+          id: "human-ai-community-flywheel",
+          headlineLabel: "Every conversation makes the community smarter.",
+          headline: `<span>Every conversation</span><span>makes the community</span><span class="human-ai-gold">smarter.</span>`,
+          lede: `<span class="human-ai-sectionline">Staff do not need another place to manage people. They need the next human move. Human Conversation turns each real conversation into better welcomes, better groups, and better follow-up.</span><span class="os-flywheel-board" aria-label="Community flywheel"><span class="flywheel-card"><span><strong>Notice</strong><small>New, drifting, excited, alone, ready for more.</small></span></span><span class="flywheel-card"><span><strong>Guide</strong><small>The right context before the conversation.</small></span></span><span class="flywheel-card"><span><strong>Remember</strong><small>What mattered, without another screen.</small></span></span><span class="flywheel-card"><span><strong>Coordinate</strong><small>The next invite, group, reminder, or action.</small></span></span></span><span class="flywheel-payoff">Humans build the connection. AI handles the complexity.</span>`,
         },
       ];
 

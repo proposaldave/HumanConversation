@@ -3757,8 +3757,9 @@
       }
 
       .story-scene-solves-disconnection {
-        --story-image: url("./assets/hc-art-emotional-signal-conversation-20260705.png");
-        --story-position: 50% center;
+        --story-image: url("./assets/hc-art-solves-disconnection-community-host-20260706.png");
+        --story-position: 62% center;
+        --story-brightness: 1.04;
       }
 
       .story-scene-real-world-os {
@@ -4693,6 +4694,22 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-copy-right .story-panel-image {
         grid-column: 1;
         grid-row: 1;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-section-inner {
+        grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.04fr);
+        gap: clamp(42px, 7vw, 98px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-copy-block {
+        max-width: 680px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-panel-image {
+        min-height: clamp(440px, 42vw, 620px);
+        background-image:
+          linear-gradient(180deg, rgba(8, 6, 4, 0), rgba(8, 6, 4, 0.12)),
+          var(--story-image);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section {
@@ -8988,8 +9005,7 @@
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
                 scene: "solves-disconnection",
-                chain: ["disconnection", "connection", "trust", "data", "coordination", "autonomous community"],
-                className: "is-product is-chain-showcase",
+                className: "is-product is-solves-disconnection-section",
               },
               {
                 kind: "tapsPremium",
@@ -9092,8 +9108,7 @@
                 ],
                 scene: "solves-disconnection",
                 form: true,
-                chain: ["disconnection", "connection", "trust", "data", "coordination", "autonomous community"],
-                className: "is-product",
+                className: "is-product is-solves-disconnection-section",
               },
               {
                 title: `<span>A Human Conversation is worth</span><span class="story-blue">a thousand taps.</span>`,

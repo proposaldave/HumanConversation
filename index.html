@@ -1593,11 +1593,20 @@
         line-height: 0.92;
       }
 
-      .hero-next-interface-atrium h1 {
-        max-width: 1080px;
+      .hero.hero-next-interface-atrium h1 {
+        max-width: 790px;
         font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.2rem, 4.85vw, 5.75rem);
         font-weight: 650;
-        line-height: 0.9;
+        line-height: 0.92;
+        color: #fff8ec;
+      }
+
+      .hero.hero-next-interface-atrium h1 .brand-name,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-title .brand-name {
+        color: #fff8ec;
+        font-family: inherit;
+        font-weight: inherit;
       }
 
       .next-interface-kicker {
@@ -1616,6 +1625,11 @@
 
       .next-interface-gold {
         color: #ffd66e;
+      }
+
+      .next-interface-brand-line,
+      .next-interface-line {
+        color: #fff8ec;
       }
 
       .next-interface-nowrap {
@@ -1676,21 +1690,24 @@
 
       .hero[class*="hero-next-interface-"] .lede .next-interface-quote {
         display: block;
-        max-width: 58ch;
+        max-width: 50ch;
+        padding-left: clamp(14px, 1.3vw, 20px);
+        border-left: 2px solid rgba(255, 248, 236, 0.34);
+        color: rgba(255, 248, 236, 0.84);
         font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(1rem, 1.16vw, 1.28rem);
+        font-size: clamp(1rem, 1.05vw, 1.16rem);
         font-style: italic;
         font-weight: 400;
-        line-height: 1.42;
+        line-height: 1.52;
       }
 
       .hero[class*="hero-next-interface-"] .lede .next-interface-quote-author {
         display: block;
         margin-top: 12px;
-        color: #e8bd5e;
+        color: #f0c766;
         font-family: Manrope, Inter, system-ui, sans-serif;
         font-style: normal;
-        font-weight: 900;
+        font-weight: 850;
       }
 
       .hero.hero-conversation-intelligence-home .lede {
@@ -3778,8 +3795,8 @@
 
       .story-scene-next-interface {
         --story-image: url("./assets/hc-art-next-communications-fullscreen-dinner-20260705.png");
-        --story-position: 62% center;
-        --story-brightness: 1.04;
+        --story-position: 60% center;
+        --story-brightness: 0.98;
       }
 
       .story-scene-between-us {
@@ -5282,6 +5299,12 @@
           linear-gradient(180deg, rgba(5, 5, 4, 0.08) 0%, rgba(5, 5, 4, 0.02) 55%, rgba(5, 5, 4, 0.22) 100%);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section::after {
+        background:
+          linear-gradient(90deg, rgba(5, 5, 4, 0.8) 0%, rgba(5, 5, 4, 0.6) 40%, rgba(5, 5, 4, 0.14) 74%, rgba(5, 5, 4, 0.16) 100%),
+          linear-gradient(180deg, rgba(5, 5, 4, 0.1) 0%, rgba(5, 5, 4, 0.03) 56%, rgba(5, 5, 4, 0.26) 100%);
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-section-inner,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section .story-section-inner,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-section-inner {
@@ -5298,12 +5321,27 @@
         max-width: 900px;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-copy-block {
+        max-width: 790px;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-title,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section .story-title,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-title {
         max-width: 900px;
         color: #fff8ec;
         text-shadow: 0 4px 30px rgba(0, 0, 0, 0.56);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-title {
+        max-width: 790px;
+        font-size: clamp(3.2rem, 4.85vw, 5.75rem);
+        line-height: 0.92;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-title > span {
+        overflow-wrap: normal;
+        word-break: normal;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-visual,
@@ -5318,14 +5356,16 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-quote {
-        max-width: 58ch;
-        margin: clamp(24px, 3vw, 44px) 0 0;
-        color: rgba(255, 248, 236, 0.92);
+        max-width: 50ch;
+        margin: clamp(22px, 2.5vw, 34px) 0 0;
+        padding-left: clamp(14px, 1.3vw, 20px);
+        border-left: 2px solid rgba(255, 248, 236, 0.34);
+        color: rgba(255, 248, 236, 0.84);
         font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(1rem, 1.16vw, 1.28rem);
+        font-size: clamp(1rem, 1.05vw, 1.16rem);
         font-style: italic;
         font-weight: 400;
-        line-height: 1.42;
+        line-height: 1.52;
         text-shadow: 0 3px 18px rgba(0, 0, 0, 0.5);
       }
 
@@ -5336,10 +5376,10 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-quote cite {
         display: block;
         margin-top: 12px;
-        color: #e8bd5e;
+        color: #f0c766;
         font-family: Manrope, Inter, system-ui, sans-serif;
         font-style: normal;
-        font-weight: 900;
+        font-weight: 850;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
@@ -9088,7 +9128,7 @@
                 className: "is-long is-brings-together-section",
               },
               {
-                title: `<span>Human Conversation is the</span><span class="story-gold next-interface-nowrap">next communications interface.</span>`,
+                title: `<span class="next-interface-brand-line">Human Conversation</span><span>is the next</span><span class="next-interface-line">communications</span><span class="next-interface-line">interface.</span>`,
                 scene: "next-interface",
                 className: "is-long is-next-interface-section",
                 quote: {
@@ -9127,7 +9167,7 @@
           nextInterface: {
             sections: [
               {
-                title: `<span>Human Conversation is the</span><span class="story-gold next-interface-nowrap">next communications interface.</span>`,
+                title: `<span class="next-interface-brand-line">Human Conversation</span><span>is the next</span><span class="next-interface-line">communications</span><span class="next-interface-line">interface.</span>`,
                 copy: [
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
@@ -9347,7 +9387,7 @@
         {
           id: "next-interface-atrium",
           headlineLabel: "Human Conversation is the next communications interface.",
-          headline: `<span>Human Conversation is the</span><span class="next-interface-gold next-interface-nowrap">next communications interface.</span>`,
+          headline: `<span class="next-interface-brand-line">Human Conversation</span><span>is the next</span><span class="next-interface-line">communications</span><span class="next-interface-line">interface.</span>`,
           lede: `<span class="next-interface-quote"><span>&ldquo;If we can get people back into the physical world, connecting together with one another, that&rsquo;s the ultimate promise of the internet, which was always meant to bring us together.&rdquo;</span><span class="next-interface-quote-author">&mdash; Brian Chesky</span></span>`,
           story: storyPages.nextInterface,
         },

@@ -5053,6 +5053,16 @@
           inset 0 0 0 1px rgba(255, 255, 255, 0.44);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-graph-section .section-cue {
+        bottom: clamp(72px, 6.8vh, 88px);
+      }
+
+      @media (min-width: 761px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-graph-section .community-graph-wide {
+          min-height: clamp(320px, 30vw, 420px);
+        }
+      }
+
       @keyframes storyChainBoxIn {
         0% {
           opacity: 0;

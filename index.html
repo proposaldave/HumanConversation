@@ -1687,7 +1687,7 @@
       }
 
       .conversation-intelligence-home-line {
-        max-width: 13.6em;
+        white-space: nowrap;
       }
 
       .lonely-soft {
@@ -3026,6 +3026,10 @@
           max-width: min(100%, 360px);
           font-size: clamp(2.24rem, 8.95vw, 3rem);
           line-height: 0.98;
+        }
+
+        .hero.hero-conversation-intelligence-home h1 .conversation-intelligence-home-line {
+          white-space: normal;
         }
 
         .hero-new-interface .lede,
@@ -9809,7 +9813,7 @@
             <h1 aria-label="For decades, interfaces have pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation.">
               <span>For decades,</span>
               <span>interfaces have pulled</span>
-              <span>conversation onto screens.</span>
+              <span class="conversation-intelligence-home-line">conversation onto screens.</span>
               <span class="conversation-intelligence-gold">We’re doing the opposite.</span>
             </h1>
             <p class="lede"><span class="lede-connector" aria-hidden="true"></span><span class="lede-gold">Building the intelligence <em>around</em> human conversation.</span></p>
@@ -10042,7 +10046,7 @@
         {
           id: "conversation-intelligence-home",
           headlineLabel: "For decades, interfaces have pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation.",
-          headline: `<span>For decades,</span><span>interfaces have pulled</span><span>conversation onto screens.</span><span class="conversation-intelligence-gold">We’re doing the opposite.</span>`,
+          headline: `<span>For decades,</span><span>interfaces have pulled</span><span class="conversation-intelligence-home-line">conversation onto screens.</span><span class="conversation-intelligence-gold">We’re doing the opposite.</span>`,
           lede: `<span class="lede-connector" aria-hidden="true"></span><span class="lede-gold">Building the intelligence <em>around</em> human conversation.</span>`,
           story: storyPages.main,
         },

@@ -4780,6 +4780,15 @@
         max-width: 680px;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-title .solves-brand-line,
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-title .solves-disconnection-word {
+        display: block;
+        white-space: nowrap;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-panel-image {
         min-height: clamp(440px, 42vw, 620px);
         background-image:
@@ -6731,6 +6740,10 @@
           max-width: 100%;
           font-size: clamp(2.3rem, 11.1vw, 3.5rem);
           line-height: 0.96;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-title {
+          font-size: clamp(2.18rem, 10.2vw, 3.28rem);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .known-story-copy .story-title,
@@ -9763,7 +9776,7 @@
                 className: "is-long is-lonely-return-section",
               },
               {
-                title: `<span>Human Conversation</span><span>solves</span><span class="story-blue">disconnection.</span>`,
+                title: `<span class="brand-name solves-brand-line">Human</span><span class="brand-name solves-brand-line">Conversation</span><span>solves</span><span class="story-blue solves-disconnection-word">disconnection.</span>`,
                 copy: [
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
@@ -9863,7 +9876,7 @@
                 className: "is-long is-real-world-os-section is-copy-right",
               },
               {
-                title: `<span>Human Conversation</span><span>solves</span><span class="story-blue">disconnection.</span>`,
+                title: `<span class="brand-name solves-brand-line">Human</span><span class="brand-name solves-brand-line">Conversation</span><span>solves</span><span class="story-blue solves-disconnection-word">disconnection.</span>`,
                 copy: [
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],

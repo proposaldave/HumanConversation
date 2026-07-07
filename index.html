@@ -2200,6 +2200,33 @@
         border: 0;
       }
 
+      .secret-l-landing {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: #050403;
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        transition:
+          opacity 180ms ease,
+          visibility 0s linear 180ms;
+      }
+
+      .secret-l-landing img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      body.secret-l-visible .secret-l-landing {
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+        transition: opacity 180ms ease;
+      }
+
       .variant-trigger {
         position: fixed;
         right: max(18px, calc(env(safe-area-inset-right) + 18px));
@@ -8957,6 +8984,10 @@
         <span class="brand-name">Human Conversation</span>
       </footer>
 
+      <div class="secret-l-landing" aria-hidden="true">
+        <img src="./assets/hc-art-secret-l-community-market-baked-20260707.png" alt="" />
+      </div>
+
       <button class="variant-trigger" type="button" aria-label="Show landing page options" aria-hidden="true" tabindex="-1"></button>
       <nav class="variant-dots" aria-label="Landing page options" aria-hidden="true" hidden>
         <button class="variant-dot" type="button" data-option="0" aria-label="Option 1: intelligence around Human Conversation homepage" aria-current="true"></button>
@@ -9395,6 +9426,7 @@
       const storyCue = document.querySelector(".story-cue");
       const variantNav = document.querySelector(".variant-dots");
       const variantTrigger = document.querySelector(".variant-trigger");
+      const secretLanding = document.querySelector(".secret-l-landing");
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -9876,6 +9908,15 @@
         }
       }
 
+      function setSecretLandingVisible(isVisible) {
+        document.body.classList.toggle("secret-l-visible", isVisible);
+        secretLanding?.setAttribute("aria-hidden", String(!isVisible));
+      }
+
+      function toggleSecretLanding() {
+        setSecretLandingVisible(!document.body.classList.contains("secret-l-visible"));
+      }
+
       function updateStoryCueVisibility() {
         storyCue?.classList.toggle("is-dismissed", window.scrollY > 72);
       }
@@ -9947,9 +9988,20 @@
           (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
 
         if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key.toLowerCase() === "l") {
+          event.preventDefault();
+          toggleSecretLanding();
+          return;
+        }
         if (event.key.toLowerCase() === "z") {
           event.preventDefault();
           toggleVariantDots();
+        }
+        if (event.key === "Escape" && document.body.classList.contains("secret-l-visible")) {
+          event.preventDefault();
+          setSecretLandingVisible(false);
+          page.focus({ preventScroll: true });
+          return;
         }
         if (event.key === "Escape" && variantNav?.classList.contains("is-visible")) {
           event.preventDefault();

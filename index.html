@@ -1638,6 +1638,10 @@
         color: rgba(255, 248, 236, 0.78);
       }
 
+      .lonely-blue {
+        color: var(--hc-blue);
+      }
+
       .lonely-gold {
         color: #ffd66e;
       }
@@ -9038,7 +9042,7 @@
           main: {
             sections: [
               {
-                title: `<span>We're not lonely because</span><span>communication disappeared.</span><span class="story-gold">We're lonely because</span><span class="story-gold">Human Conversation disappeared.</span>`,
+                title: `<span>We're not <span class="lonely-blue">lonely</span> because</span><span>communication disappeared.</span><span class="story-gold">We're lonely because</span><span class="story-gold">Human Conversation disappeared.</span>`,
                 scene: "lonely-return",
                 className: "is-long is-lonely-return-section",
               },
@@ -9315,7 +9319,7 @@
         {
           id: "loneliness-conversation",
           headlineLabel: "We're not lonely because communication disappeared. We're lonely because Human Conversation disappeared. The snapback is Human Conversation.",
-          headline: `<span class="lonely-soft">We're not lonely because communication disappeared.</span><span>We're lonely because Human Conversation disappeared.</span>`,
+          headline: `<span class="lonely-soft">We're not <span class="lonely-blue">lonely</span> because communication disappeared.</span><span>We're lonely because Human Conversation disappeared.</span>`,
           lede: `<span class="lonely-gold">The snapback is Human Conversation.</span>`,
         },
         {

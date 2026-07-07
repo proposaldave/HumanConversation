@@ -1513,6 +1513,34 @@
         text-shadow: 0 3px 20px rgba(0, 0, 0, 0.68);
       }
 
+      .feeling-data-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .feeling-data-chips span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border: 1px solid rgba(232, 189, 94, 0.38);
+        border-radius: 999px;
+        background: rgba(255, 248, 236, 0.14);
+        color: #fff8ec;
+        padding: 10px 18px;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(0.78rem, 0.96vw, 0.94rem);
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 1;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 248, 236, 0.18),
+          0 14px 34px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(12px);
+      }
+
       .hero-new-interface .hero-inner,
       .hero-more-face-time .hero-inner,
       .hero-community-os .hero-inner,
@@ -5315,6 +5343,16 @@
         line-height: 1.36;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout .feeling-data-chips {
+        margin-top: 16px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout .feeling-data-chips span {
+        min-height: 36px;
+        padding: 9px 14px;
+        font-size: 0.72rem;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section {
@@ -7116,6 +7154,21 @@
           max-width: min(100%, 340px);
           color: rgba(255, 246, 232, 0.88);
           font-size: 1rem;
+        }
+
+        .hero-feeling-signals .feeling-data-chips,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-feeling-section .feeling-data-chips,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout .feeling-data-chips {
+          gap: 8px;
+          margin-top: 16px;
+        }
+
+        .feeling-data-chips span,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout .feeling-data-chips span {
+          min-height: 34px;
+          padding: 8px 12px;
+          font-size: 0.68rem;
+          letter-spacing: 0;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-contact .contact-row {
@@ -9839,6 +9892,7 @@
                 feelingCallout: {
                   headline: `Human Conversation is the only medium that tells you <span>how someone really feels.</span>`,
                   copy: `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, energy.`,
+                  dataChips: ["human", "social", "community"],
                 },
               },
               {
@@ -10188,7 +10242,7 @@
           id: "feeling-signals",
           headlineLabel: "Human Conversation is the only medium that tells you how someone really feels.",
           headline: `<span>Human Conversation is the only medium that tells you</span><span class="feeling-title-gold">how someone really feels.</span>`,
-          lede: `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, energy.`,
+          lede: `Tone, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, energy.<span class="feeling-data-chips" aria-label="Human, social, and community data"><span>human</span><span>social</span><span>community</span></span>`,
         },
         {
           id: "less-screen-human-connection",
@@ -10524,8 +10578,13 @@
               const cards = section.cards
                 ?.map(([label, text]) => `<span><strong>${label}</strong><small>${text}</small></span>`)
                 .join("") || "";
+              const feelingDataChips = section.feelingCallout?.dataChips
+                ? `<div class="feeling-data-chips" aria-label="Human, social, and community data">${section.feelingCallout.dataChips
+                    .map((chip) => `<span>${chip}</span>`)
+                    .join("")}</div>`
+                : "";
               const feelingCallout = section.feelingCallout
-                ? `<div class="taps-premium-feeling-callout"><strong>${section.feelingCallout.headline}</strong><p>${section.feelingCallout.copy}</p></div>`
+                ? `<div class="taps-premium-feeling-callout"><strong>${section.feelingCallout.headline}</strong><p>${section.feelingCallout.copy}</p>${feelingDataChips}</div>`
                 : "";
 
               return `

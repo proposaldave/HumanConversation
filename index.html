@@ -4880,6 +4880,10 @@
         text-shadow: 0 3px 28px rgba(255, 248, 236, 0.54);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-title .lonely-sentence-break {
+        margin-block-start: clamp(0.26em, 1.4vw, 0.38em);
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-visual {
         display: none;
       }
@@ -9871,7 +9875,7 @@
           main: {
             sections: [
               {
-                title: `<span>We're not <span class="lonely-blue">lonely</span> because</span><span>communication disappeared.</span><span>We're lonely because</span><span>Human Conversation disappeared.</span>`,
+                title: `<span>We're not <span class="lonely-blue">lonely</span> because</span><span>communication disappeared.</span><span class="lonely-sentence-break">We're lonely because</span><span>Human Conversation disappeared.</span>`,
                 scene: "lonely-return",
                 className: "is-long is-lonely-return-section",
               },

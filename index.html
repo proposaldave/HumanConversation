@@ -6323,8 +6323,8 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
         display: flex;
         align-items: center;
-        min-height: 100vh;
-        min-height: 100dvh;
+        min-height: calc(100vh + clamp(88px, 8vh, 124px));
+        min-height: calc(100dvh + clamp(88px, 8dvh, 124px));
         padding: clamp(92px, 8vw, 136px) 0;
         background: #05070a;
         color: #fff8ec;
@@ -6636,8 +6636,8 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {
-          min-height: 100vh;
-          min-height: 100dvh;
+          min-height: calc(100vh + 72px);
+          min-height: calc(100dvh + 72px);
           padding: 96px 0 72px;
         }
 

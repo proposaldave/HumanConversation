@@ -3832,9 +3832,9 @@
       }
 
       .story-scene-solves-disconnection {
-        --story-image: url("./assets/hc-art-solves-disconnection-community-host-20260706.png");
+        --story-image: url("./assets/hc-art-solves-disconnection-right-introduction-20260707.png");
         --story-position: 62% center;
-        --story-brightness: 1.04;
+        --story-brightness: 1.06;
       }
 
       .story-scene-real-world-os {
@@ -4772,12 +4772,33 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-section-inner {
-        grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.04fr);
+        grid-template-columns: minmax(0, 0.78fr) minmax(380px, 1.14fr);
         gap: clamp(42px, 7vw, 98px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-copy-block {
         max-width: 680px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section {
+        min-height: 100svh;
+        background: #fbf7ef;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section::before {
+        display: block;
+        background-image: var(--story-image);
+        background-position: var(--story-position, 62% center);
+        background-size: cover;
+        filter: saturate(1.05) contrast(1.02) brightness(var(--story-brightness, 1.04));
+        transform: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section::after {
+        display: block;
+        background:
+          linear-gradient(90deg, rgba(251, 247, 239, 0.98) 0%, rgba(251, 247, 239, 0.94) 32%, rgba(251, 247, 239, 0.58) 50%, rgba(251, 247, 239, 0.08) 70%, rgba(251, 247, 239, 0) 100%),
+          linear-gradient(180deg, rgba(251, 247, 239, 0.16) 0%, rgba(251, 247, 239, 0.02) 54%, rgba(251, 247, 239, 0.28) 100%);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-title .solves-brand-line,
@@ -4790,10 +4811,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-panel-image {
-        min-height: clamp(440px, 42vw, 620px);
-        background-image:
-          linear-gradient(180deg, rgba(8, 6, 4, 0), rgba(8, 6, 4, 0.12)),
-          var(--story-image);
+        display: none;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section {
@@ -6525,6 +6543,28 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section::after {
           background: linear-gradient(180deg, rgba(251, 247, 239, 0.96), rgba(251, 247, 239, 0.78));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section {
+          min-height: 100svh;
+          padding-top: clamp(250px, 34vh, 310px);
+          padding-bottom: 72px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section::before {
+          display: block;
+          background-image: var(--story-image);
+          background-position: 66% center;
+          background-size: cover;
+          filter: saturate(1.04) contrast(1.02) brightness(1.06);
+          transform: none;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section::after {
+          display: block;
+          background:
+            linear-gradient(180deg, rgba(251, 247, 239, 0.08) 0%, rgba(251, 247, 239, 0.3) 28%, rgba(251, 247, 239, 0.94) 47%, rgba(251, 247, 239, 0.9) 100%),
+            linear-gradient(90deg, rgba(251, 247, 239, 0.84) 0%, rgba(251, 247, 239, 0.56) 54%, rgba(251, 247, 239, 0.16) 100%);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.story-scene-human-future {

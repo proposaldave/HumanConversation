@@ -5819,12 +5819,19 @@
         font-weight: 950;
         letter-spacing: 0.06em;
         text-transform: uppercase;
+        white-space: nowrap;
         transform: translateX(-50%);
         box-shadow: 0 12px 24px rgba(151, 79, 99, 0.12);
       }
 
       .attention-node-3.attention-node-focus {
-        transform: translate(22%, -50%);
+        transform: translate(-8%, -50%);
+      }
+
+      .attention-node-3.attention-node-focus::after {
+        right: 0;
+        left: auto;
+        transform: none;
       }
 
       .attention-node-1 {
@@ -6961,7 +6968,7 @@
         }
 
         .attention-node-3.attention-node-focus {
-          transform: translate(12%, -50%);
+          transform: translate(-18%, -50%);
         }
 
         .attention-core {

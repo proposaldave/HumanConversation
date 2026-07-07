@@ -1609,6 +1609,10 @@
         font-weight: inherit;
       }
 
+      .story-section.is-real-world-os-section .story-title .brand-name {
+        color: #fff8ec;
+      }
+
       .next-interface-kicker {
         margin-bottom: 18px;
         color: #70b8ff;
@@ -2963,7 +2967,7 @@
           color: rgba(255, 246, 232, 0.9);
           font-size: 0.92rem;
           line-height: 1.4;
-          overflow-wrap: anywhere;
+          overflow-wrap: normal;
           text-shadow: 0 3px 18px rgba(0, 0, 0, 0.68);
         }
 
@@ -3376,6 +3380,9 @@
         letter-spacing: 0;
         line-height: 0.94;
         text-wrap: balance;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
       }
 
       .story-title .story-gold {
@@ -3399,7 +3406,15 @@
         display: block;
         max-width: 100%;
         white-space: normal;
-        overflow-wrap: anywhere;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+      }
+
+      .story-title .brand-name {
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
       }
 
       .story-body {
@@ -3574,7 +3589,9 @@
           font-size: clamp(1.95rem, 9.2vw, 2.86rem);
           line-height: 0.98;
           text-wrap: wrap;
-          overflow-wrap: anywhere;
+          overflow-wrap: normal;
+          word-break: keep-all;
+          hyphens: none;
         }
 
         .story-body {
@@ -3583,7 +3600,7 @@
           margin-top: 18px;
           font-size: 1rem;
           line-height: 1.48;
-          overflow-wrap: anywhere;
+          overflow-wrap: normal;
         }
 
         .story-visual {
@@ -7004,7 +7021,7 @@
           color: rgba(255, 246, 232, 0.9);
           font-size: 0.92rem;
           line-height: 1.4;
-          overflow-wrap: anywhere;
+          overflow-wrap: normal;
           text-shadow: 0 3px 18px rgba(0, 0, 0, 0.68);
         }
 
@@ -8685,6 +8702,156 @@
         }
       }
 
+      .page[data-variant="human-value-network-card"] {
+        background: #090604;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="human-value-network-card"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(6, 5, 4, 0.78) 0%, rgba(8, 6, 4, 0.48) 35%, rgba(8, 6, 4, 0.12) 68%, rgba(8, 6, 4, 0.2) 100%),
+          linear-gradient(180deg, rgba(8, 6, 4, 0.12) 0%, rgba(8, 6, 4, 0.02) 43%, rgba(8, 6, 4, 0.38) 100%),
+          url("./assets/hc-art-human-future-value-choice-20260705.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.05) contrast(1.04) brightness(0.92);
+        opacity: 1;
+      }
+
+      .page[data-variant="human-value-network-card"]::after {
+        display: none;
+      }
+
+      .page[data-variant="human-value-network-card"] header,
+      .page[data-variant="human-value-network-card"] main {
+        width: min(100% - 64px, 1320px);
+      }
+
+      .page[data-variant="human-value-network-card"] .brand,
+      .page[data-variant="human-value-network-card"] .header-email {
+        color: #fff8ec;
+      }
+
+      .page[data-variant="human-value-network-card"] .header-email {
+        border-color: rgba(255, 248, 236, 0.2);
+        background: rgba(8, 8, 7, 0.64);
+      }
+
+      .page[data-variant="human-value-network-card"] .mark-bubble {
+        fill: #fff8ec;
+      }
+
+      .page[data-variant="human-value-network-card"] .homepage-chain,
+      .page[data-variant="human-value-network-card"] .story-cue,
+      .page[data-variant="human-value-network-card"] .interface-detail,
+      .page[data-variant="human-value-network-card"] .interface-punchline {
+        display: none;
+      }
+
+      .hero-human-value-network-card {
+        width: min(calc(100% - 64px), 720px);
+        max-width: 720px;
+        min-height: auto;
+        margin-right: auto;
+        margin-left: max(32px, calc((100vw - 1320px) / 2 + 32px));
+        padding: clamp(28px, 4vw, 46px);
+        border: 1px solid rgba(241, 199, 96, 0.34);
+        border-radius: 8px;
+        background: linear-gradient(150deg, rgba(18, 11, 8, 0.76) 0%, rgba(10, 7, 5, 0.68) 58%, rgba(34, 15, 13, 0.6) 100%);
+        box-shadow:
+          0 38px 110px rgba(0, 0, 0, 0.42),
+          0 0 0 1px rgba(255, 248, 236, 0.05),
+          inset 0 1px 0 rgba(255, 248, 236, 0.12);
+        backdrop-filter: blur(18px) saturate(1.12);
+      }
+
+      .hero-human-value-network-card .hero-inner {
+        max-width: none;
+      }
+
+      .hero-human-value-network-card h1 {
+        max-width: 640px;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.7rem, 4.05vw, 4.75rem);
+        font-weight: 690;
+        line-height: 0.98;
+        text-wrap: balance;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+        text-shadow: 0 4px 34px rgba(0, 0, 0, 0.62);
+      }
+
+      .hero-human-value-network-card h1 > span {
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+      }
+
+      .human-value-kicker {
+        margin: 0 0 clamp(16px, 2vw, 22px);
+        color: #f1c760;
+        font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: clamp(0.68rem, 0.84vw, 0.78rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .human-value-belonging {
+        color: #f1c760;
+      }
+
+      .hero-human-value-network-card .lede {
+        max-width: 590px;
+        margin-top: clamp(20px, 3vw, 30px);
+        color: rgba(255, 248, 236, 0.88);
+        font-size: clamp(1rem, 1.34vw, 1.18rem);
+        font-weight: 720;
+        line-height: 1.55;
+        text-shadow: 0 3px 22px rgba(0, 0, 0, 0.42);
+      }
+
+      .hero-human-value-network-card .lede .brand-name {
+        color: #e7a0ad;
+      }
+
+      .human-value-helper {
+        display: block;
+        max-width: 540px;
+        margin: clamp(22px, 3vw, 30px) 0 0;
+        color: rgba(255, 248, 236, 0.68);
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.92rem;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+
+      .page[data-variant="human-value-network-card"] .contact {
+        max-width: 620px;
+        margin-top: 14px;
+      }
+
+      .page[data-variant="human-value-network-card"] .contact input[type="email"] {
+        min-height: 56px;
+        border: 1px solid rgba(255, 248, 236, 0.28);
+        background: rgba(255, 248, 236, 0.94);
+        color: #1a1612;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      }
+
+      .page[data-variant="human-value-network-card"] .contact button {
+        min-height: 56px;
+        background: #f1c760;
+        color: #1a1612;
+        white-space: nowrap;
+        box-shadow:
+          0 18px 44px rgba(0, 0, 0, 0.28),
+          inset 0 1px 0 rgba(255, 248, 236, 0.38);
+      }
+
       .page[data-variant="less-screen-human-connection"] {
         background: #100b07;
         color: #fff8ec;
@@ -8972,6 +9139,510 @@
           font-size: 0.96rem;
         }
       }
+
+      .page[data-variant="less-screen-human-connection"] {
+        background: #fbfcfb;
+        color: #061126;
+      }
+
+      .page[data-variant="less-screen-human-connection"]::before {
+        background-image:
+          radial-gradient(circle at 50% 42%, rgba(28, 132, 72, 0.08), transparent 28vw),
+          linear-gradient(180deg, #ffffff 0%, #fbfcfb 58%, #f5faf6 100%);
+        background-position: center;
+        background-size: cover;
+        filter: none;
+        opacity: 1;
+      }
+
+      .page[data-variant="less-screen-human-connection"] header,
+      .page[data-variant="less-screen-human-connection"] main {
+        width: min(100% - 72px, 1440px);
+      }
+
+      .page[data-variant="less-screen-human-connection"] main {
+        justify-content: center;
+        min-height: calc(100svh - 92px);
+        padding: clamp(34px, 4.6vh, 56px) 0 clamp(26px, 4vh, 44px);
+      }
+
+      .page[data-variant="less-screen-human-connection"] .brand,
+      .page[data-variant="less-screen-human-connection"] .header-email {
+        color: #061126;
+      }
+
+      .page[data-variant="less-screen-human-connection"] .header-email {
+        border-color: rgba(6, 17, 38, 0.14);
+        background: rgba(255, 255, 255, 0.82);
+      }
+
+      .page[data-variant="less-screen-human-connection"] .mark-bubble {
+        fill: #061126;
+      }
+
+      .page[data-variant="less-screen-human-connection"] .brand .brand-name {
+        color: #061126;
+      }
+
+      .hero-less-screen-human-connection {
+        display: block;
+        width: 100%;
+        min-height: auto;
+      }
+
+      .hero-less-screen-human-connection .hero-inner {
+        display: block;
+        width: 100%;
+        max-width: none;
+      }
+
+      .hero-less-screen-human-connection h1 {
+        max-width: 1320px;
+        margin: 0 auto;
+        color: #061126;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(2.45rem, 3.45vw, 4.36rem);
+        font-weight: 950;
+        line-height: 1.02;
+        text-align: center;
+        text-shadow: none;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+      }
+
+      .hero-less-screen-human-connection h1 > span {
+        display: inline;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        hyphens: none;
+      }
+
+      .hero-less-screen-human-connection .lede {
+        display: block;
+        max-width: 1320px;
+        margin: clamp(14px, 2vh, 24px) auto 0;
+        color: #061126;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 1rem;
+        font-weight: 720;
+        line-height: 1.35;
+        text-align: center;
+        text-shadow: none;
+      }
+
+      .less-screen-subtitle {
+        display: block;
+        color: rgba(6, 17, 38, 0.72);
+        font-size: clamp(1.22rem, 1.78vw, 1.96rem);
+        font-weight: 520;
+        line-height: 1.2;
+      }
+
+      .less-screen-diagram {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.76fr 1fr 0.98fr 0.96fr;
+        grid-template-areas:
+          "guide builders talk members"
+          "report builders talk members";
+        gap: clamp(18px, 3.1vw, 42px);
+        align-items: center;
+        margin: clamp(18px, 3vh, 34px) auto 0;
+      }
+
+      .less-screen-ai-card,
+      .less-screen-builders,
+      .less-screen-conversation,
+      .less-screen-members {
+        display: grid;
+        justify-items: center;
+        min-width: 0;
+      }
+
+      .less-screen-guide {
+        grid-area: guide;
+        align-self: end;
+      }
+
+      .less-screen-report {
+        grid-area: report;
+        align-self: start;
+      }
+
+      .less-screen-builders {
+        grid-area: builders;
+      }
+
+      .less-screen-conversation {
+        grid-area: talk;
+      }
+
+      .less-screen-members {
+        grid-area: members;
+      }
+
+      .less-screen-ai-card {
+        gap: 10px;
+        text-align: left;
+      }
+
+      .less-screen-ai-orb {
+        position: relative;
+        width: 86px;
+        aspect-ratio: 1;
+        border: 4px solid #6d20a8;
+        border-radius: 50%;
+      }
+
+      .less-screen-ai-orb::before,
+      .less-screen-ai-orb::after {
+        content: "";
+        position: absolute;
+        background: #6d20a8;
+      }
+
+      .less-screen-ai-orb::before {
+        top: 28px;
+        left: 30px;
+        width: 27px;
+        height: 27px;
+        transform: rotate(45deg);
+        border-radius: 7px;
+      }
+
+      .less-screen-ai-orb::after {
+        top: 18px;
+        right: 19px;
+        width: 12px;
+        height: 12px;
+        transform: rotate(45deg);
+        border-radius: 3px;
+        box-shadow: -32px 6px 0 -3px #6d20a8;
+      }
+
+      .less-screen-bot {
+        position: relative;
+        width: 86px;
+        aspect-ratio: 1;
+        border: 4px solid #6d20a8;
+        border-radius: 50%;
+      }
+
+      .less-screen-bot::before {
+        content: "";
+        position: absolute;
+        inset: 25px 20px 18px;
+        border: 4px solid #6d20a8;
+        border-radius: 14px;
+      }
+
+      .less-screen-bot::after {
+        content: "";
+        position: absolute;
+        top: 47px;
+        left: 32px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #6d20a8;
+        box-shadow: 18px 0 0 #6d20a8;
+      }
+
+      .less-screen-ai-card strong {
+        display: block;
+        color: #6d20a8;
+        font-size: clamp(1.02rem, 1.52vw, 1.58rem);
+        font-weight: 950;
+        line-height: 1.1;
+      }
+
+      .less-screen-ai-card small {
+        display: block;
+        margin-top: 8px;
+        color: #061126;
+        font-size: clamp(0.9rem, 1.12vw, 1.18rem);
+        font-weight: 560;
+        line-height: 1.25;
+      }
+
+      .less-screen-group-icon {
+        position: relative;
+        width: min(100%, 270px);
+        height: 200px;
+      }
+
+      .less-screen-group-icon::before,
+      .less-screen-group-icon::after,
+      .less-screen-members-icon::before,
+      .less-screen-members-icon::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px 999px 16px 16px;
+      }
+
+      .less-screen-group-icon::before {
+        left: 72px;
+        top: 18px;
+        width: 126px;
+        height: 162px;
+        background: linear-gradient(180deg, #1b9a47, #35bf62);
+      }
+
+      .less-screen-group-icon::after {
+        left: 12px;
+        bottom: 20px;
+        width: 74px;
+        height: 118px;
+        background: linear-gradient(180deg, #43c965, #36af55);
+        box-shadow: 172px 0 0 #36af55;
+      }
+
+      .less-screen-group-head,
+      .less-screen-members-head {
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .less-screen-group-head {
+        left: 101px;
+        top: 0;
+        width: 68px;
+        height: 68px;
+        background: #16883d;
+        box-shadow:
+          -75px 47px 0 -10px #43c965,
+          128px 47px 0 -10px #43c965;
+      }
+
+      .less-screen-members-icon {
+        position: relative;
+        width: min(100%, 280px);
+        height: 196px;
+      }
+
+      .less-screen-members-icon::before {
+        left: 78px;
+        top: 48px;
+        width: 124px;
+        height: 128px;
+        background: linear-gradient(180deg, #195ec5, #327edf);
+      }
+
+      .less-screen-members-icon::after {
+        left: 0;
+        bottom: 24px;
+        width: 76px;
+        height: 108px;
+        background: linear-gradient(180deg, #4a93e6, #3a82da);
+        box-shadow: 204px 0 0 #3a82da;
+      }
+
+      .less-screen-members-head {
+        left: 109px;
+        top: 0;
+        width: 72px;
+        height: 72px;
+        background: #145bc2;
+        box-shadow:
+          -84px 40px 0 -11px #4a93e6,
+          132px 40px 0 -11px #4a93e6;
+      }
+
+      .less-screen-node-label {
+        display: block;
+        margin-top: 12px;
+        color: #061126;
+        font-size: clamp(1rem, 1.38vw, 1.48rem);
+        font-weight: 950;
+        line-height: 1.1;
+      }
+
+      .less-screen-bubbles {
+        position: relative;
+        width: min(100%, 300px);
+        height: 160px;
+      }
+
+      .less-screen-bubbles::before,
+      .less-screen-bubbles::after {
+        content: "";
+        position: absolute;
+        top: 22px;
+        width: 134px;
+        height: 92px;
+        border: 8px solid #08763b;
+        border-radius: 48px;
+        background: transparent;
+      }
+
+      .less-screen-bubbles::before {
+        left: 6px;
+        border-right-color: transparent;
+        transform: skewX(-7deg);
+      }
+
+      .less-screen-bubbles::after {
+        right: 6px;
+        border-left-color: transparent;
+        transform: skewX(7deg);
+      }
+
+      .less-screen-bubbles i {
+        position: absolute;
+        left: 50%;
+        top: 70px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #08763b;
+        transform: translateX(-50%);
+        box-shadow:
+          -34px 0 0 #08763b,
+          34px 0 0 #08763b;
+      }
+
+      .less-screen-conversation-title {
+        display: block;
+        color: #08763b;
+        font-size: clamp(1.15rem, 1.78vw, 1.82rem);
+        font-weight: 950;
+        line-height: 1.1;
+      }
+
+      .less-screen-conversation-copy {
+        display: block;
+        margin-top: 8px;
+        color: rgba(6, 17, 38, 0.72);
+        font-size: clamp(0.9rem, 1.18vw, 1.24rem);
+        font-weight: 540;
+        line-height: 1.25;
+      }
+
+      .less-screen-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(16px, 2.2vw, 28px);
+        width: min(100%, 1110px);
+        margin: clamp(20px, 3.1vh, 34px) auto 0;
+        border-radius: 16px;
+        background: linear-gradient(90deg, rgba(33, 137, 76, 0.1), rgba(33, 137, 76, 0.05));
+        color: #0b6236;
+        padding: clamp(14px, 1.8vw, 21px) clamp(20px, 3vw, 38px);
+        font-size: clamp(1.44rem, 2.55vw, 2.58rem);
+        font-weight: 950;
+        line-height: 1.05;
+      }
+
+      .less-screen-heart {
+        position: relative;
+        flex: 0 0 auto;
+        width: clamp(38px, 4.2vw, 64px);
+        height: clamp(38px, 4.2vw, 64px);
+        border-radius: 10px;
+        background: linear-gradient(180deg, #179e52, #0d7f3e);
+        transform: rotate(-45deg);
+      }
+
+      .less-screen-heart::before,
+      .less-screen-heart::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #179e52, #0d7f3e);
+      }
+
+      .less-screen-heart::before {
+        left: 0;
+        top: -50%;
+      }
+
+      .less-screen-heart::after {
+        left: 50%;
+        top: 0;
+      }
+
+      .less-screen-background-note {
+        display: block;
+        margin: clamp(12px, 1.9vh, 18px) auto 0;
+        color: rgba(6, 17, 38, 0.78);
+        font-size: clamp(0.9rem, 1.08vw, 1.08rem);
+        font-weight: 560;
+        line-height: 1.3;
+        text-align: center;
+      }
+
+      .page[data-variant="less-screen-human-connection"] .contact {
+        display: none;
+      }
+
+      @media (max-width: 940px) {
+        .page[data-variant="human-value-network-card"] header,
+        .page[data-variant="human-value-network-card"] main {
+          width: calc(100% - 32px);
+        }
+
+        .hero-human-value-network-card {
+          width: min(100%, 560px);
+          margin: 48px auto 0;
+        }
+
+        .hero-human-value-network-card h1 {
+          font-size: clamp(2.38rem, 9vw, 3.5rem);
+        }
+
+        .page[data-variant="less-screen-human-connection"] header,
+        .page[data-variant="less-screen-human-connection"] main {
+          width: calc(100% - 32px);
+        }
+
+        .page[data-variant="less-screen-human-connection"] main {
+          min-height: auto;
+          padding: 76px 0 60px;
+        }
+
+        .hero-less-screen-human-connection h1 {
+          font-size: clamp(2.08rem, 7.6vw, 3.2rem);
+        }
+
+        .less-screen-diagram {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "guide"
+            "builders"
+            "talk"
+            "members"
+            "report";
+          gap: 26px;
+          max-width: 420px;
+        }
+
+        .less-screen-ai-card {
+          justify-items: center;
+          text-align: center;
+        }
+
+        .less-screen-group-icon,
+        .less-screen-members-icon {
+          transform: scale(0.86);
+          transform-origin: center;
+          margin: -10px 0;
+        }
+
+        .less-screen-banner {
+          flex-direction: column;
+          max-width: 420px;
+          font-size: clamp(1.48rem, 7.2vw, 2.2rem);
+          text-align: center;
+        }
+
+        .less-screen-background-note {
+          max-width: 420px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -9077,7 +9748,8 @@
         <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: members get people and builders get intelligence"></button>
         <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: Human Conversation intelligence around the human moment"></button>
         <button class="variant-dot variant-dot-pink" type="button" data-option="38" aria-label="Option 39: Human Conversation tells you how someone really feels"></button>
-        <button class="variant-dot variant-dot-red" type="button" data-option="39" aria-label="Option 40: less screen time more human connection"></button>
+        <button class="variant-dot variant-dot-red" type="button" data-option="39" aria-label="Option 40: less screen time more human conversation"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="40" aria-label="Option 41: human value network card"></button>
       </nav>
     </div>
 
@@ -9152,14 +9824,12 @@
               },
               {
                 kind: "future",
-                eyebrow: `THE HUMAN VALUE NETWORK`,
-                title: `<span>The internet rewarded attention.</span><span>Now reward <span class="final-cta-belonging">belonging.</span></span>`,
+                title: `<span>Human Conversation</span><span>for a more connected,</span><span>more human future.</span>`,
                 copy: [
-                  `Human Conversation finds and equips the local community builders who make people feel known &mdash; then routes and rewards that gift so more people have a place to return.`,
+                  `A future where everyone has a community to return to feel a connection-high, every time.`,
                 ],
-                formHelper: `Join the early list for builders, clubs, and communities.`,
                 scene: "human-future",
-                className: "is-future-section is-final-cta-section",
+                className: "is-future-section",
                 form: true,
               },
             ],
@@ -9460,9 +10130,15 @@
         },
         {
           id: "less-screen-human-connection",
-          headlineLabel: "Less screen time. More human connection.",
-          headline: `<span>Less screen time.</span><span>More <span class="less-screen-accent">human connection.</span></span>`,
-          lede: `<span class="less-screen-copy">Human Conversation helps community builders know who needs a real conversation, what might matter, and what should happen next.</span><span class="less-screen-proof" aria-label="AI supports the human conversation before, during, and after"><span><strong>Before</strong><small>Who needs attention and what context matters.</small></span><span class="is-human"><strong>During</strong><small>People talk face to face.</small></span><span><strong>After</strong><small>The next invite, intro, or follow-up moves quietly.</small></span></span><span class="less-screen-payoff">AI stays in the background. People stay with each other.</span>`,
+          headlineLabel: "The operating system for real-world social communities. People talk. AI handles the rest. Less screen time. More human conversation.",
+          headline: `<span>The operating system for real-world social communities</span>`,
+          lede: `<span class="less-screen-subtitle">People talk. AI handles the rest.</span><span class="less-screen-diagram" aria-label="AI guides community builders and staff through human conversation with members, then staff tell AI what happened"><span class="less-screen-ai-card less-screen-guide"><span class="less-screen-ai-orb" aria-hidden="true"></span><span><strong>AI guides them</strong><small>Who to talk to.<br />What to talk about.</small></span></span><span class="less-screen-builders"><span class="less-screen-group-icon" aria-hidden="true"><span class="less-screen-group-head"></span></span><span class="less-screen-node-label">Community builders + staff</span></span><span class="less-screen-conversation"><span class="less-screen-bubbles" aria-hidden="true"><i></i></span><span class="less-screen-conversation-title">Human conversation</span><span class="less-screen-conversation-copy">Build trust. Create belonging.</span></span><span class="less-screen-members"><span class="less-screen-members-icon" aria-hidden="true"><span class="less-screen-members-head"></span></span><span class="less-screen-node-label">Members</span></span><span class="less-screen-ai-card less-screen-report"><span class="less-screen-bot" aria-hidden="true"></span><span><strong>They tell AI</strong><small>What happened.<br />What matters.<br />What to do next.</small></span></span></span><span class="less-screen-banner"><span class="less-screen-heart" aria-hidden="true"></span><span>Less screen time. More human conversation.</span></span><span class="less-screen-background-note">AI handles scheduling, groups, logistics, reminders, and insights in the background.</span>`,
+        },
+        {
+          id: "human-value-network-card",
+          headlineLabel: "The internet rewarded attention. Now reward belonging.",
+          headline: `<span class="human-value-kicker">THE HUMAN VALUE NETWORK</span><span>The internet rewarded attention.</span><span>Now reward <span class="human-value-belonging">belonging.</span></span>`,
+          lede: `<span><span class="brand-name">Human Conversation</span> finds and equips the local community builders who make people feel known &mdash; then routes and rewards that gift so more people have a place to return.</span><span class="human-value-helper">Join the early list for builders, clubs, and communities.</span>`,
         },
       ];
 

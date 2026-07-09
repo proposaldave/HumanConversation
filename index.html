@@ -9795,6 +9795,645 @@
           max-width: 420px;
         }
       }
+
+      /* Review-only option 42: human-thread-home */
+      .page[data-variant="human-thread-home"] {
+        background: var(--hc-cream);
+        color: var(--hc-ink);
+      }
+
+      .page[data-variant="human-thread-home"]::before {
+        inset: 0 0 auto;
+        height: 100svh;
+        opacity: 1;
+        background-image:
+          linear-gradient(90deg, rgba(243, 234, 216, 0.99) 0%, rgba(243, 234, 216, 0.95) 38%, rgba(243, 234, 216, 0.72) 52%, rgba(243, 234, 216, 0.12) 76%),
+          linear-gradient(180deg, rgba(243, 234, 216, 0.08), rgba(243, 234, 216, 0.22)),
+          url("./assets/hc-art-solves-disconnection-deck-style-introduction-20260707.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.04) contrast(1.01) brightness(1.02);
+      }
+
+      .page[data-variant="human-thread-home"]::after {
+        top: 14svh;
+        right: 6vw;
+        bottom: auto;
+        width: min(38vw, 640px);
+        border: 2px solid rgba(var(--hc-rose-rgb), 0.3);
+        box-shadow:
+          0 0 0 24px rgba(var(--hc-rose-rgb), 0.04),
+          0 0 90px rgba(var(--hc-rose-rgb), 0.16);
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .page[data-variant="human-thread-home"] header {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        justify-content: space-between;
+        width: min(100% - 64px, 1320px);
+        color: var(--hc-ink);
+        transform: translateX(-50%);
+      }
+
+      .page[data-variant="human-thread-home"] .mark-bubble {
+        fill: var(--hc-ink);
+      }
+
+      .page[data-variant="human-thread-home"] .mark-heart {
+        fill: var(--hc-rose);
+        stroke: #fff8ec;
+      }
+
+      .page[data-variant="human-thread-home"] .header-email {
+        right: max(32px, calc(env(safe-area-inset-right) + 32px));
+        border-color: rgba(26, 22, 18, 0.16);
+        background: rgba(255, 248, 236, 0.82);
+        box-shadow: 0 12px 30px rgba(26, 22, 18, 0.1);
+        color: var(--hc-ink);
+      }
+
+      .page[data-variant="human-thread-home"] main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: max(18px, calc((100vw - min(calc(100vw - 64px), 1320px)) / 2 - 18px));
+        z-index: 10;
+        width: 2px;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 4%,
+          rgba(91, 143, 212, 0.78) 7%,
+          rgba(91, 143, 212, 0.78) 17%,
+          rgba(var(--hc-rose-rgb), 0.9) 29%,
+          rgba(var(--hc-rose-rgb), 0.9) 78%,
+          rgba(184, 149, 74, 0.92) 100%
+        );
+        box-shadow: 0 0 18px rgba(var(--hc-rose-rgb), 0.22);
+      }
+
+      .page[data-variant="human-thread-home"].has-expanded-story .hero {
+        position: relative;
+        z-index: 2;
+        justify-content: center;
+        width: min(100% - 64px, 1320px);
+        min-height: 100svh;
+        padding: clamp(132px, 15vh, 184px) 0 clamp(112px, 13vh, 156px);
+      }
+
+      .hero-human-thread-home .hero-inner {
+        max-width: min(58vw, 760px);
+      }
+
+      .hero-human-thread-home h1 {
+        max-width: 760px;
+        color: var(--hc-ink);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4.7rem, 7.2vw, 8.2rem);
+        font-weight: 650;
+        letter-spacing: -0.035em;
+        line-height: 0.84;
+        text-wrap: balance;
+      }
+
+      .hero-human-thread-home h1 .human-thread-home-brand-line {
+        margin-bottom: 0.12em;
+        color: var(--hc-rose);
+        font-size: 0.72em;
+        letter-spacing: -0.02em;
+        line-height: 0.92;
+      }
+
+      .hero-human-thread-home h1 .human-thread-home-answer-line {
+        color: var(--hc-ink);
+      }
+
+      .hero-human-thread-home h1 .human-thread-home-disconnection {
+        color: var(--hc-blue);
+        font-style: italic;
+        font-weight: 570;
+      }
+
+      .hero-human-thread-home .lede {
+        display: grid;
+        max-width: 650px;
+        gap: 10px;
+        margin-top: 28px;
+        color: var(--hc-ink);
+        font-size: clamp(1.02rem, 1.3vw, 1.2rem);
+        line-height: 1.45;
+      }
+
+      .hero-human-thread-home .human-thread-home-lede-lead {
+        color: var(--hc-ink);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.35rem, 1.9vw, 1.78rem);
+        font-weight: 650;
+        line-height: 1.08;
+      }
+
+      .hero-human-thread-home .human-thread-home-lede-copy {
+        max-width: 57ch;
+        color: rgba(26, 22, 18, 0.74);
+        font-weight: 760;
+      }
+
+      .page[data-variant="human-thread-home"] .interface-detail,
+      .page[data-variant="human-thread-home"] .interface-punchline {
+        display: none;
+      }
+
+      .page[data-variant="human-thread-home"] .contact {
+        width: min(100%, 560px);
+        margin-top: 28px;
+      }
+
+      .page[data-variant="human-thread-home"] .contact input[type="email"] {
+        border-color: rgba(26, 22, 18, 0.18);
+        background: rgba(255, 252, 246, 0.9);
+        box-shadow: 0 10px 28px rgba(26, 22, 18, 0.08);
+      }
+
+      .page[data-variant="human-thread-home"] .contact button {
+        background: var(--hc-rose);
+        color: var(--hc-ink);
+        box-shadow: 0 10px 28px rgba(var(--hc-rose-rgb), 0.24);
+      }
+
+      .page[data-variant="human-thread-home"] .homepage-chain {
+        display: block;
+        max-width: 740px;
+        margin-top: 24px;
+        color: var(--hc-rose);
+        font-size: clamp(0.72rem, 0.86vw, 0.84rem);
+        letter-spacing: 0.01em;
+      }
+
+      .page[data-variant="human-thread-home"] .homepage-chain-path {
+        flex-wrap: wrap;
+        gap: 6px;
+        white-space: normal;
+      }
+
+      .page[data-variant="human-thread-home"] .homepage-chain-step {
+        color: rgba(26, 22, 18, 0.72);
+      }
+
+      .page[data-variant="human-thread-home"] .homepage-chain-start {
+        color: var(--hc-blue);
+      }
+
+      .page[data-variant="human-thread-home"] .homepage-chain-arrow {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="human-thread-home"] .story-cue {
+        display: inline-flex;
+        bottom: clamp(24px, 4vh, 42px);
+        border-color: rgba(26, 22, 18, 0.16);
+        background: rgba(255, 248, 236, 0.78);
+        color: var(--hc-ink);
+        box-shadow: 0 14px 34px rgba(26, 22, 18, 0.14);
+      }
+
+      .page[data-variant="human-thread-home"] .landing-story {
+        background: var(--hc-cream);
+        color: var(--hc-ink);
+      }
+
+      .page[data-variant="human-thread-home"] .story-section {
+        color: var(--hc-ink);
+      }
+
+      .page[data-variant="human-thread-home"] .story-section::before {
+        filter: saturate(var(--story-saturation, 1.02)) contrast(1.01) brightness(var(--story-brightness, 1.02));
+      }
+
+      .page[data-variant="human-thread-home"] .story-section-inner {
+        width: min(100% - 64px, 1320px);
+      }
+
+      .page[data-variant="human-thread-home"] .story-title,
+      .page[data-variant="human-thread-home"] .story-body,
+      .page[data-variant="human-thread-home"] .story-chain-intro {
+        color: var(--hc-ink);
+        text-shadow: none;
+      }
+
+      .page[data-variant="human-thread-home"] .story-title {
+        max-width: 940px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4rem, 6.6vw, 7.3rem);
+        font-weight: 650;
+        letter-spacing: -0.025em;
+        line-height: 0.9;
+      }
+
+      .page[data-variant="human-thread-home"] .story-body {
+        max-width: 64ch;
+        color: rgba(26, 22, 18, 0.78);
+        font-size: clamp(1.04rem, 1.38vw, 1.24rem);
+        font-weight: 760;
+        line-height: 1.5;
+      }
+
+      .page[data-variant="human-thread-home"] .story-title .brand-name,
+      .page[data-variant="human-thread-home"] .story-body .brand-name,
+      .page[data-variant="human-thread-home"] .future-story-side .brand-name {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="human-thread-home"] .section-cue {
+        border-color: rgba(26, 22, 18, 0.18);
+        background: rgba(255, 248, 236, 0.8);
+        color: var(--hc-ink);
+        box-shadow: 0 14px 34px rgba(26, 22, 18, 0.14);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-problem {
+        --story-image: url("./assets/hc-art-loneliness-deck-style-20260705.png");
+        --story-position: center;
+        --story-overlay: linear-gradient(180deg, rgba(243, 234, 216, 0.98) 0%, rgba(243, 234, 216, 0.9) 38%, rgba(243, 234, 216, 0.38) 72%, rgba(243, 234, 216, 0.72) 100%);
+        --story-brightness: 1.04;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-problem .story-section-inner {
+        align-items: start;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-problem .story-copy-block {
+        max-width: 1080px;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-problem .story-title {
+        max-width: 1040px;
+        font-size: clamp(3.6rem, 6vw, 6.8rem);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-interface-line {
+        color: var(--hc-blue);
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.18em;
+        font-weight: 650;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product {
+        --story-image: url("./assets/hc-art-thousand-taps-frontier-scale-pink-20260705.png");
+        --story-position: center;
+        --story-overlay: linear-gradient(180deg, rgba(243, 234, 216, 0.94) 0%, rgba(243, 234, 216, 0.58) 46%, rgba(243, 234, 216, 0.88) 100%);
+        --story-brightness: 1.04;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-section-inner {
+        display: block;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-copy-block {
+        max-width: none;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-title {
+        max-width: 980px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-body {
+        display: grid;
+        max-width: 1180px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        margin: clamp(42px, 7vh, 72px) auto 0;
+        border-top: 1px solid rgba(26, 22, 18, 0.22);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-body p {
+        margin: 0;
+        border-left: 1px solid rgba(26, 22, 18, 0.16);
+        padding: 22px clamp(16px, 2vw, 28px) 0;
+        font-size: clamp(0.9rem, 1.05vw, 1rem);
+        line-height: 1.42;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-body p:first-child {
+        grid-column: 1 / -1;
+        border-left: 0;
+        padding: 0 0 24px;
+        text-align: center;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product .story-body p:nth-child(2) {
+        border-left: 0;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product-question {
+        color: var(--hc-rose);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.7rem, 2.6vw, 2.7rem);
+        font-weight: 650;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-product-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--hc-rose);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-data {
+        --story-image: url("./assets/hc-art-human-social-community-data-v2-20260705.png");
+        --story-position: center;
+        --story-overlay: linear-gradient(90deg, rgba(243, 234, 216, 0.98) 0%, rgba(243, 234, 216, 0.93) 42%, rgba(243, 234, 216, 0.24) 72%, rgba(243, 234, 216, 0.08) 100%);
+        --story-brightness: 1.03;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-data .story-copy-block {
+        max-width: 850px;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-data .story-title {
+        max-width: 820px;
+        font-size: clamp(3.3rem, 5.25vw, 6rem);
+        line-height: 0.94;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-data-highlight {
+        color: var(--hc-rose);
+        font-style: italic;
+        font-weight: 570;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel {
+        --story-image: url("./assets/hc-art-real-world-os-living-community-balanced-20260706.png");
+        --story-position: center;
+        --story-overlay: linear-gradient(90deg, rgba(243, 234, 216, 0.99) 0%, rgba(243, 234, 216, 0.92) 43%, rgba(243, 234, 216, 0.24) 72%, rgba(243, 234, 216, 0.06) 100%);
+        --story-brightness: 1.03;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-copy-block {
+        max-width: 820px;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-title {
+        max-width: 760px;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-chain {
+        display: flex;
+        max-width: 760px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin-top: clamp(28px, 4vh, 42px);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-chain span {
+        border: 0;
+        background: transparent;
+        color: var(--hc-rose);
+        padding: 0;
+        font-size: clamp(0.78rem, 1vw, 0.94rem);
+        font-weight: 900;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-chain .story-chain-disconnection {
+        color: var(--hc-blue);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-chain .story-chain-arrow {
+        color: rgba(var(--hc-rose-rgb), 0.72);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-chain span:last-child {
+        color: #9a6f22;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close {
+        --story-image: url("./assets/hc-art-timeless-interface-community-table-20260706.png");
+        --story-position: center;
+        --story-overlay: linear-gradient(90deg, rgba(243, 234, 216, 0.99) 0%, rgba(243, 234, 216, 0.92) 42%, rgba(243, 234, 216, 0.22) 72%, rgba(243, 234, 216, 0.04) 100%);
+        --story-brightness: 1.03;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close .future-story-inner {
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: clamp(36px, 6vw, 90px);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close .story-title {
+        max-width: 820px;
+        font-size: clamp(3.8rem, 6.2vw, 7rem);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close .future-story-side {
+        max-width: 520px;
+        align-self: end;
+        padding-bottom: 2vh;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close .future-story-side .story-body {
+        color: rgba(26, 22, 18, 0.8);
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close .final-cta-helper {
+        margin-top: 18px;
+        color: rgba(26, 22, 18, 0.7);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      .page[data-variant="human-thread-home"] .human-thread-home-close .final-cta-helper a {
+        color: var(--hc-ink);
+        text-decoration-color: var(--hc-rose);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+      }
+
+      @media (max-width: 760px) {
+        .page[data-variant="human-thread-home"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(243, 234, 216, 0.98) 0%, rgba(243, 234, 216, 0.94) 52%, rgba(243, 234, 216, 0.58) 72%, rgba(243, 234, 216, 0.14) 100%),
+            url("./assets/hc-art-solves-disconnection-deck-style-introduction-20260707.png");
+          background-position: 67% center;
+        }
+
+        .page[data-variant="human-thread-home"]::after {
+          top: 52svh;
+          right: -28vw;
+          width: 82vw;
+        }
+
+        .page[data-variant="human-thread-home"] header {
+          width: calc(100% - 32px);
+          padding-top: 18px;
+        }
+
+        .page[data-variant="human-thread-home"] .header-email {
+          top: max(18px, calc(env(safe-area-inset-top) + 18px));
+          right: max(16px, calc(env(safe-area-inset-right) + 16px));
+          display: inline-flex;
+          max-width: calc(100vw - 88px);
+          padding: 7px 9px 8px;
+          font-size: 0.68rem;
+        }
+
+        .page[data-variant="human-thread-home"] main::before {
+          left: 7px;
+        }
+
+        .page[data-variant="human-thread-home"].has-expanded-story .hero {
+          width: calc(100% - 32px);
+          min-height: 100svh;
+          padding: 96px 0 74px;
+        }
+
+        .hero-human-thread-home .hero-inner {
+          max-width: 100%;
+        }
+
+        .hero-human-thread-home h1 {
+          max-width: 100%;
+          font-size: clamp(3.25rem, 14.2vw, 4.25rem);
+          line-height: 0.86;
+        }
+
+        .hero-human-thread-home h1 .human-thread-home-brand-line {
+          max-width: 9ch;
+          font-size: 0.68em;
+        }
+
+        .hero-human-thread-home .lede {
+          max-width: 100%;
+          gap: 8px;
+          margin-top: 22px;
+          font-size: 0.94rem;
+          line-height: 1.38;
+        }
+
+        .hero-human-thread-home .human-thread-home-lede-lead {
+          max-width: 18ch;
+          font-size: 1.3rem;
+        }
+
+        .hero-human-thread-home .human-thread-home-lede-copy {
+          max-width: 34ch;
+        }
+
+        .page[data-variant="human-thread-home"] .contact {
+          margin-top: 22px;
+        }
+
+        .page[data-variant="human-thread-home"] .homepage-chain {
+          margin-top: 16px;
+          font-size: 0.68rem;
+          line-height: 1.35;
+        }
+
+        .page[data-variant="human-thread-home"] .homepage-chain-path {
+          max-width: 34ch;
+          gap: 4px 5px;
+        }
+
+        .page[data-variant="human-thread-home"] .story-cue {
+          bottom: 18px;
+          width: 46px;
+          height: 46px;
+        }
+
+        .page[data-variant="human-thread-home"] .story-section {
+          min-height: max(760px, 100svh);
+          padding: 86px 0 92px;
+        }
+
+        .page[data-variant="human-thread-home"] .story-section-inner,
+        .page[data-variant="human-thread-home"] .human-thread-home-close .future-story-inner {
+          width: calc(100% - 40px);
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .page[data-variant="human-thread-home"] .story-title,
+        .page[data-variant="human-thread-home"] .human-thread-home-problem .story-title,
+        .page[data-variant="human-thread-home"] .human-thread-home-data .story-title,
+        .page[data-variant="human-thread-home"] .human-thread-home-close .story-title {
+          width: 100%;
+          max-width: 100%;
+          font-size: clamp(2.45rem, 11.2vw, 3.25rem);
+          line-height: 0.94;
+          overflow-wrap: normal;
+          word-break: keep-all;
+        }
+
+        .page[data-variant="human-thread-home"] .story-body {
+          max-width: 34ch;
+          font-size: 0.98rem;
+          line-height: 1.46;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-problem {
+          --story-position: 57% center;
+          --story-overlay: linear-gradient(180deg, rgba(243, 234, 216, 0.99) 0%, rgba(243, 234, 216, 0.93) 54%, rgba(243, 234, 216, 0.42) 78%, rgba(243, 234, 216, 0.78) 100%);
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-product {
+          min-height: auto;
+          --story-position: 60% center;
+          --story-overlay: linear-gradient(180deg, rgba(243, 234, 216, 0.98), rgba(243, 234, 216, 0.8));
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-product .story-title {
+          text-align: left;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-product .story-body {
+          max-width: none;
+          grid-template-columns: 1fr;
+          margin-top: 34px;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-product .story-body p,
+        .page[data-variant="human-thread-home"] .human-thread-home-product .story-body p:nth-child(2) {
+          border-top: 1px solid rgba(26, 22, 18, 0.14);
+          border-left: 0;
+          padding: 16px 0;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-product .story-body p:first-child {
+          border-top: 0;
+          padding: 0 0 18px;
+          text-align: left;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-data,
+        .page[data-variant="human-thread-home"] .human-thread-home-flywheel,
+        .page[data-variant="human-thread-home"] .human-thread-home-close {
+          --story-position: 68% center;
+          --story-overlay: linear-gradient(180deg, rgba(243, 234, 216, 0.99) 0%, rgba(243, 234, 216, 0.94) 56%, rgba(243, 234, 216, 0.46) 82%, rgba(243, 234, 216, 0.72) 100%);
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-flywheel .story-chain {
+          max-width: 34ch;
+          gap: 6px;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-close .future-story-side {
+          max-width: 100%;
+          align-self: auto;
+          padding-bottom: 0;
+        }
+
+        .page[data-variant="human-thread-home"] .human-thread-home-close .final-cta-helper {
+          font-size: 0.8rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -9903,6 +10542,7 @@
         <button class="variant-dot variant-dot-pink" type="button" data-option="38" aria-label="Option 39: Human Conversation tells you how someone really feels"></button>
         <button class="variant-dot variant-dot-red" type="button" data-option="39" aria-label="Option 40: less screen time more human conversation"></button>
         <button class="variant-dot variant-dot-white" type="button" data-option="40" aria-label="Option 41: human value network card"></button>
+        <button class="variant-dot variant-dot-pink" type="button" data-option="41" aria-label="Option 42: human thread home"></button>
       </nav>
     </div>
 
@@ -10041,6 +10681,58 @@
                 kind: "liveMoment",
                 scene: "live-moment",
                 className: "is-live-moment-section",
+              },
+            ],
+          },
+          "human-thread-home": {
+            sections: [
+              {
+                title: `<span>We&rsquo;re not lonely because</span><span>communication disappeared.</span><span>We&rsquo;re lonely because</span><span><span class="brand-name">Human Conversation</span> got replaced.</span>`,
+                copy: [
+                  `<span class="human-thread-home-interface-line">If it has an interface it&rsquo;s getting between us.</span>`,
+                ],
+                scene: "human-thread-home-problem",
+                className: "is-light human-thread-home-problem",
+              },
+              {
+                title: `<span>A <span class="brand-name">Human Conversation</span></span><span>is worth a thousand taps.</span>`,
+                copy: [
+                  `<span class="human-thread-home-product-question">Who needs a conversation?</span>`,
+                  `<span class="human-thread-home-product-label">Who</span>The next person who needs a real conversation.`,
+                  `<span class="human-thread-home-product-label">Why now</span>The signal before someone drifts.`,
+                  `<span class="human-thread-home-product-label">What to ask</span>Guided questions that make people feel known.`,
+                  `<span class="human-thread-home-product-label">Next</span>The follow-up that turns care into action.`,
+                ],
+                scene: "human-thread-home-product",
+                className: "is-light human-thread-home-product",
+              },
+              {
+                title: `<span><span class="brand-name">Human Conversation</span> is the only place where</span><span><em class="human-thread-home-data-highlight">connection</em>, and human, social,</span><span>and community <em class="human-thread-home-data-highlight">data</em> flows.</span>`,
+                copy: [
+                  `Every real conversation carries the signal: who feels connected, who is drifting, what matters, and what should happen next.`,
+                ],
+                scene: "human-thread-home-data",
+                className: "is-light human-thread-home-data",
+              },
+              {
+                title: `<span>Every real conversation</span><span>makes community smarter.</span>`,
+                copy: [
+                  `<span class="brand-name">Human Conversation</span> turns what people share into the next good invitation, introduction, and moment of belonging.`,
+                ],
+                chain: ["disconnection", "connection", "trust", "data", "coordination", "community flywheel"],
+                scene: "human-thread-home-flywheel",
+                className: "is-light human-thread-home-flywheel",
+              },
+              {
+                kind: "future",
+                title: `<span>We&rsquo;re not building another interface between us.</span><span class="brand-name">We&rsquo;re building the intelligence that brings us together.</span><span>Human Conversation for a more connected, human future.</span>`,
+                copy: [
+                  `The next great interface is the person in front of you.`,
+                ],
+                form: true,
+                formHelper: `<a href="mailto:hello@humanconversation.com">hello@humanconversation.com</a>`,
+                scene: "human-thread-home-close",
+                className: "is-light human-thread-home-close",
               },
             ],
           },
@@ -10296,6 +10988,13 @@
           headlineLabel: "The internet rewarded attention. Now reward belonging.",
           headline: `<span class="human-value-kicker">THE HUMAN VALUE NETWORK</span><span>The internet rewarded attention.</span><span>Now reward <span class="human-value-belonging">belonging.</span></span>`,
           lede: `<span><span class="brand-name">Human Conversation</span> finds and equips the local community builders who make people feel known &mdash; then routes and rewards that gift so more people have a place to return.</span><span class="human-value-helper">Join the early list for builders, clubs, and communities.</span>`,
+        },
+        {
+          id: "human-thread-home",
+          headlineLabel: "Human Conversation solves disconnection.",
+          headline: `<span class="human-thread-home-brand-line"><span class="brand-name">Human Conversation</span></span><span class="human-thread-home-answer-line">solves <span class="human-thread-home-disconnection">disconnection.</span></span>`,
+          lede: `<span class="human-thread-home-lede-lead">We&rsquo;re building intelligence, not interfaces.</span><span class="human-thread-home-lede-copy"><span class="brand-name">Human Conversation</span> gives community builders the next person to talk to, the context, captures the signal, then takes action.</span>`,
+          story: storyPages["human-thread-home"],
         },
       ];
 

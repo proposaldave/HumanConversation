@@ -10439,6 +10439,464 @@
           font-size: 0.8rem;
         }
       }
+
+      .page[data-variant="life-runs-on-human-conversation"] {
+        overflow-x: hidden;
+        overflow-y: visible;
+        background: #0c0907;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"]::before {
+        bottom: auto;
+        height: 100svh;
+        background-image:
+          linear-gradient(90deg, rgba(8, 6, 4, 0.94) 0%, rgba(8, 6, 4, 0.79) 34%, rgba(8, 6, 4, 0.34) 67%, rgba(8, 6, 4, 0.12) 100%),
+          linear-gradient(180deg, rgba(8, 6, 4, 0.18) 0%, rgba(8, 6, 4, 0.02) 54%, rgba(8, 6, 4, 0.58) 100%),
+          url("./assets/hc-art-next-communications-fullscreen-dinner-20260705.png");
+        background-position: 68% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.04) brightness(1.04);
+        opacity: 1;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"]::after {
+        display: none;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] header {
+        justify-content: space-between;
+        width: min(100% - 56px, 1240px);
+        color: #fff8ec;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .brand {
+        color: #fff8ec;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.44);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .mark-bubble {
+        fill: rgba(8, 7, 5, 0.7);
+        stroke: rgba(255, 248, 236, 0.9);
+        stroke-width: 2.4px;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .mark-heart {
+        fill: var(--hc-rose);
+        stroke: #fff8ec;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .header-email {
+        right: max(28px, calc(env(safe-area-inset-right) + 28px));
+        border-color: rgba(255, 248, 236, 0.3);
+        background: rgba(10, 7, 4, 0.6);
+        color: #fff8ec;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] main {
+        width: 100%;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .hero {
+        position: relative;
+        justify-content: center;
+        width: min(100% - 56px, 1240px);
+        min-height: calc(100svh - 91px);
+        padding: clamp(72px, 9vh, 112px) 0 clamp(96px, 13vh, 150px);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+
+      .hero-life-runs-on-human-conversation .hero-inner {
+        max-width: 1060px;
+      }
+
+      .hero-life-runs-on-human-conversation h1 {
+        max-width: 1000px;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4.1rem, 7.55vw, 9rem);
+        font-weight: 650;
+        letter-spacing: -0.035em;
+        line-height: 0.84;
+        text-shadow: 0 4px 38px rgba(0, 0, 0, 0.58);
+      }
+
+      .hero-life-runs-on-human-conversation .life-hero-kicker {
+        margin-bottom: 1.7em;
+        color: rgba(255, 248, 236, 0.78);
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.1em;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        line-height: 1.3;
+        text-transform: uppercase;
+      }
+
+      .hero-life-runs-on-human-conversation .life-screen-time {
+        color: rgba(255, 248, 236, 0.64);
+        font-size: 0.78em;
+      }
+
+      .hero-life-runs-on-human-conversation .life-screen-time em,
+      .hero-life-runs-on-human-conversation .life-human-time em {
+        font-style: normal;
+      }
+
+      .hero-life-runs-on-human-conversation .life-screen-time em {
+        color: #90a9ce;
+      }
+
+      .hero-life-runs-on-human-conversation .life-human-time em {
+        color: var(--hc-rose);
+      }
+
+      .hero-life-runs-on-human-conversation .lede {
+        max-width: 760px;
+        margin-top: clamp(24px, 4vh, 38px);
+        border-left: 3px solid var(--hc-rose);
+        color: rgba(255, 248, 236, 0.92);
+        padding: 4px 0 5px 20px;
+        font-size: clamp(1.08rem, 1.55vw, 1.36rem);
+        font-weight: 760;
+        line-height: 1.48;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-life-runs-on-human-conversation .life-connected {
+        color: #f2c96d;
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .hero > .contact,
+      .page[data-variant="life-runs-on-human-conversation"] .homepage-chain {
+        display: none;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-cue {
+        display: inline-flex;
+        border-color: rgba(255, 248, 236, 0.44);
+        background: rgba(10, 7, 4, 0.64);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+        color: #fff8ec;
+        backdrop-filter: blur(14px);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .landing-story {
+        background: #090806;
+        box-shadow: none;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-section-inner {
+        width: min(100% - 64px, 1320px);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-title {
+        max-width: 980px;
+        font-size: clamp(3.7rem, 7.25vw, 8.35rem);
+        line-height: 0.89;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-body {
+        max-width: 660px;
+        font-size: clamp(1.08rem, 1.45vw, 1.28rem);
+      }
+
+      html.story-motion-ready .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-section-inner {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 620ms ease,
+          transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.story-motion-ready .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-section.is-in-view .story-section-inner {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold {
+        --story-image: url("./assets/hc-art-human-future-threshold-fullscreen-20260705.png");
+        --story-position: center center;
+        --story-overlay:
+          linear-gradient(90deg, rgba(4, 7, 12, 0.9) 0%, rgba(4, 7, 12, 0.66) 35%, rgba(4, 7, 12, 0.18) 62%, rgba(8, 6, 4, 0.08) 100%),
+          linear-gradient(180deg, rgba(4, 7, 12, 0.06), rgba(4, 7, 12, 0.34));
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-threshold-section .life-more {
+        color: #f2c96d;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-trust {
+        --story-image: url("./assets/hc-art-emotional-signal-conversation-20260705.png");
+        --story-position: 72% center;
+        --story-overlay: linear-gradient(90deg, rgba(7, 5, 3, 0.94) 0%, rgba(7, 5, 3, 0.76) 37%, rgba(7, 5, 3, 0.22) 70%, rgba(7, 5, 3, 0.12) 100%);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-trust-kicker {
+        margin-bottom: 1.4em;
+        color: #f2c96d;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.1em;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+        line-height: 1.3;
+        text-transform: uppercase;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-trust-section .story-title .brand-name {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-trust-promise {
+        display: block;
+        margin-top: 0.9em;
+        color: #f2c96d;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.28em;
+        line-height: 1.1;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-community {
+        --story-image: url("./assets/hc-art-real-world-social-festival-20260704.png");
+        --story-position: 60% center;
+        --story-brightness: 1.04;
+        --story-overlay: linear-gradient(90deg, rgba(9, 7, 4, 0.92) 0%, rgba(9, 7, 4, 0.74) 36%, rgba(9, 7, 4, 0.2) 70%, rgba(9, 7, 4, 0.08) 100%);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-member-section .life-member-connection {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-builder {
+        --story-image: url("./assets/hc-art-real-world-os-living-community-balanced-20260706.png");
+        --story-position: 69% center;
+        --story-brightness: 1.05;
+        --story-overlay: linear-gradient(90deg, rgba(251, 247, 239, 0.99) 0%, rgba(251, 247, 239, 0.94) 33%, rgba(251, 247, 239, 0.52) 51%, rgba(251, 247, 239, 0.08) 74%, rgba(251, 247, 239, 0) 100%);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-builder-section .life-builder-return,
+      .page[data-variant="life-runs-on-human-conversation"] .life-builder-section .brand-name {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-builder-section .story-body {
+        max-width: 610px;
+        color: rgba(26, 22, 18, 0.82);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-builder-section .story-chain span {
+        color: #845d28;
+        text-shadow: none;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-builder-section .story-chain .story-chain-arrow {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-os {
+        --story-image: url("./assets/hc-art-human-social-community-data-v2-20260705.png");
+        --story-position: 70% center;
+        --story-brightness: 1.06;
+        --story-overlay: linear-gradient(90deg, rgba(251, 247, 239, 0.99) 0%, rgba(251, 247, 239, 0.95) 35%, rgba(251, 247, 239, 0.5) 54%, rgba(251, 247, 239, 0.08) 76%, rgba(251, 247, 239, 0) 100%);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-os-section .life-os-emphasis {
+        color: #9c6d1f;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-os-section .story-body {
+        color: rgba(26, 22, 18, 0.8);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-os-section .story-chain span {
+        color: #8a6330;
+        text-shadow: none;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-os-section .story-chain .story-chain-first {
+        color: var(--hc-blue);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-os-section .story-chain .story-chain-arrow {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-final {
+        --story-image: url("./assets/hc-art-final-join-afterglow-20260704.png");
+        --story-position: 68% center;
+        --story-overlay: linear-gradient(90deg, rgba(7, 5, 3, 0.94) 0%, rgba(7, 5, 3, 0.78) 42%, rgba(7, 5, 3, 0.3) 72%, rgba(7, 5, 3, 0.16) 100%);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-final-section .future-story-inner {
+        grid-template-columns: minmax(0, 0.98fr) minmax(340px, 0.56fr);
+        align-items: end;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-final-section .future-story-copy .story-title {
+        font-size: clamp(3.6rem, 6.8vw, 7.7rem);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-final-section .final-cta-belonging {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-final-section .final-cta-helper {
+        margin: 22px 0 0;
+        color: #f2c96d;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.1rem;
+        font-weight: 650;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-final-section .story-contact.contact {
+        max-width: 620px;
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-final-section .story-contact button {
+        background: #f2c96d;
+        color: #1a1612;
+      }
+
+      @media (max-width: 760px) {
+        .page[data-variant="life-runs-on-human-conversation"]::before {
+          height: 100svh;
+          background-image:
+            linear-gradient(180deg, rgba(8, 6, 4, 0.34) 0%, rgba(8, 6, 4, 0.46) 38%, rgba(8, 6, 4, 0.88) 82%, rgba(8, 6, 4, 0.96) 100%),
+            url("./assets/hc-art-next-communications-fullscreen-dinner-20260705.png");
+          background-position: 74% center;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] header {
+          width: calc(100% - 32px);
+          padding-top: 18px;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .header-email {
+          top: max(18px, calc(env(safe-area-inset-top) + 18px));
+          right: max(16px, calc(env(safe-area-inset-right) + 16px));
+          display: inline-flex;
+          max-width: calc(100vw - 88px);
+          padding: 7px 9px 8px;
+          font-size: 0.68rem;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .hero {
+          width: calc(100% - 32px);
+          min-height: calc(100svh - 74px);
+          padding: 82px 0 94px;
+        }
+
+        .hero-life-runs-on-human-conversation h1 {
+          font-size: clamp(3.25rem, 15.1vw, 4.6rem);
+          line-height: 0.85;
+        }
+
+        .hero-life-runs-on-human-conversation .life-hero-kicker {
+          max-width: 26ch;
+          margin-bottom: 1.9em;
+          font-size: 0.115em;
+          line-height: 1.4;
+        }
+
+        .hero-life-runs-on-human-conversation .life-screen-time {
+          margin-top: 0.08em;
+          font-size: 0.74em;
+        }
+
+        .hero-life-runs-on-human-conversation .lede {
+          max-width: 32ch;
+          margin-top: 24px;
+          padding-left: 14px;
+          font-size: 0.98rem;
+          line-height: 1.46;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-cue {
+          bottom: 18px;
+          width: 48px;
+          height: 48px;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-section {
+          min-height: max(760px, 100svh);
+          padding: 88px 0 94px;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-section-inner,
+        .page[data-variant="life-runs-on-human-conversation"] .life-final-section .future-story-inner {
+          width: calc(100% - 40px);
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-title,
+        .page[data-variant="life-runs-on-human-conversation"] .life-final-section .future-story-copy .story-title {
+          width: 100%;
+          max-width: 100%;
+          font-size: clamp(2.65rem, 12.2vw, 3.55rem);
+          line-height: 0.93;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .story-body {
+          max-width: 34ch;
+          font-size: 0.98rem;
+          line-height: 1.48;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold {
+          background: #08090b;
+          padding-top: calc(46svh + 66px);
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold::before {
+          bottom: auto;
+          height: 46svh;
+          background-position: center center;
+          background-size: cover;
+          filter: saturate(1.04) contrast(1.02) brightness(1.02);
+          transform: none;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold::after {
+          background: linear-gradient(180deg, rgba(8, 9, 11, 0.02) 0%, rgba(8, 9, 11, 0.04) 34svh, rgba(8, 9, 11, 0.88) 46svh, #08090b 62svh, #08090b 100%);
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-trust {
+          --story-position: 74% center;
+          --story-overlay: linear-gradient(180deg, rgba(7, 5, 3, 0.38) 0%, rgba(7, 5, 3, 0.48) 38%, rgba(7, 5, 3, 0.94) 82%, rgba(7, 5, 3, 0.98) 100%);
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-community {
+          --story-position: 61% center;
+          --story-overlay: linear-gradient(180deg, rgba(9, 7, 4, 0.32) 0%, rgba(9, 7, 4, 0.42) 40%, rgba(9, 7, 4, 0.94) 84%, rgba(9, 7, 4, 0.98) 100%);
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-builder,
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-os {
+          --story-position: 76% center;
+          --story-overlay: linear-gradient(180deg, rgba(251, 247, 239, 0.97) 0%, rgba(251, 247, 239, 0.93) 56%, rgba(251, 247, 239, 0.58) 78%, rgba(251, 247, 239, 0.8) 100%);
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-final {
+          --story-position: 76% center;
+          --story-overlay: linear-gradient(180deg, rgba(7, 5, 3, 0.36) 0%, rgba(7, 5, 3, 0.5) 38%, rgba(7, 5, 3, 0.94) 82%, rgba(7, 5, 3, 0.98) 100%);
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .life-final-section .future-story-side {
+          max-width: 100%;
+        }
+
+        .page[data-variant="life-runs-on-human-conversation"] .life-final-section .final-cta-helper {
+          font-size: 0.94rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -10548,6 +11006,7 @@
         <button class="variant-dot variant-dot-red" type="button" data-option="39" aria-label="Option 40: less screen time more human conversation"></button>
         <button class="variant-dot variant-dot-white" type="button" data-option="40" aria-label="Option 41: human value network card"></button>
         <button class="variant-dot variant-dot-pink" type="button" data-option="41" aria-label="Option 42: human thread home"></button>
+        <button class="variant-dot variant-dot-pink" type="button" data-option="42" aria-label="Option 43: life runs on Human Conversation"></button>
       </nav>
     </div>
 
@@ -10739,6 +11198,70 @@
                 formHelper: `<a href="mailto:hello@humanconversation.com">hello@humanconversation.com</a>`,
                 scene: "human-thread-home-close",
                 className: "is-light human-thread-home-close",
+              },
+            ],
+          },
+          "life-runs-on-human-conversation": {
+            sections: [
+              {
+                title: `<span>The screen does less.</span><span class="life-more">Life does more.</span>`,
+                copy: [
+                  `AI moves the computer work into the background so your life can move back into the world.`,
+                  `Less clicking, searching, sorting, and scheduling. More live conversation with the right people, in the right real-world communities.`,
+                ],
+                scene: "life-threshold",
+                className: "is-long life-threshold-section",
+              },
+              {
+                title: `<span class="life-trust-kicker">A community promise</span><span>Runs on</span><span class="brand-name">Human Conversation.</span>`,
+                copy: [
+                  `Three words that should tell you exactly what kind of community you are walking into.`,
+                  `People come first. Technology works in the background. Everyone is all-in on creating more human connection.<span class="life-trust-promise">A promise people can feel.</span>`,
+                ],
+                scene: "life-trust",
+                className: "is-long life-trust-section",
+              },
+              {
+                title: `<span>You leave</span><span class="life-member-connection">more connected</span><span>than you arrived.</span>`,
+                copy: [
+                  `Someone notices you are new. Someone introduces you. Someone remembers what matters. You meet people you would never have found on your own. If you start to drift, someone starts a real conversation.`,
+                  `The life you want happens between people: people who know you, places where you are expected, conversations that become plans, and experiences you carry home.`,
+                ],
+                chain: ["noticed", "introduced", "remembered", "invited", "connected"],
+                scene: "life-community",
+                className: "is-long life-member-section",
+              },
+              {
+                title: `<span>Build the community</span><span>people want to</span><span class="life-builder-return">come back to.</span>`,
+                copy: [
+                  `<span class="brand-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to and the context &mdash; then captures the signal and takes action.`,
+                  `Care becomes introductions, invitations, follow-ups, and connected experiences.`,
+                ],
+                chain: ["who", "why now", "what to ask", "what to hear", "what happens next"],
+                scene: "life-builder",
+                className: "is-light is-long life-builder-section",
+              },
+              {
+                title: `<span><span class="brand-name">Human Conversation</span> is</span><span>the <span class="life-os-emphasis">operating system</span></span><span>for real-world social communities.</span>`,
+                copy: [
+                  `Software can support it. The community runs on people talking, noticing, remembering, inviting, and coming back.`,
+                  `Every real conversation makes the community smarter: who feels connected, who is drifting, what matters, and what should happen next.`,
+                ],
+                chain: ["disconnection", "connection", "trust", "data", "coordination", "community"],
+                scene: "life-os",
+                className: "is-light is-long life-os-section",
+              },
+              {
+                kind: "future",
+                title: `<span>Want your life</span><span>to run on</span><span class="final-cta-belonging">human conversation</span><span>and <span class="final-cta-belonging">connected experiences?</span></span>`,
+                copy: [
+                  `Join a community that puts human connection first &mdash; or build one.`,
+                  `<span class="brand-name">Human Conversation</span> handles the work around those moments, so you spend less time managing connection through a screen and more time living it.`,
+                ],
+                formHelper: `For people who want this life. For builders creating it.`,
+                scene: "life-final",
+                className: "is-long life-final-section",
+                form: true,
               },
             ],
           },
@@ -11002,6 +11525,13 @@
           lede: `<span class="human-thread-home-lede-lead">We&rsquo;re building intelligence, not interfaces.</span><span class="human-thread-home-lede-copy"><span class="brand-name">Human Conversation</span> gives community builders the next person to talk to, the context, captures the signal, then takes action.</span>`,
           story: storyPages["human-thread-home"],
         },
+        {
+          id: "life-runs-on-human-conversation",
+          headlineLabel: "Imagine your life. 1% screen time. 99% human time. A life that runs on Human Conversation and connected experiences, not through the screen.",
+          headline: `<span class="life-hero-kicker">Imagine your life.</span><span class="life-screen-time"><em>1%</em> screen time.</span><span class="life-human-time"><em>99%</em> human time.</span>`,
+          lede: `A life that runs on <span class="brand-name">Human Conversation</span> and <span class="life-connected">connected experiences</span> &mdash; not through the screen.`,
+          story: storyPages["life-runs-on-human-conversation"],
+        },
       ];
 
       const page = document.querySelector(".page");
@@ -11016,6 +11546,7 @@
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const immersiveStoryVariants = new Set(["conversation-intelligence-home", "life-runs-on-human-conversation"]);
       page.setAttribute("tabindex", "-1");
       let currentVariantIndex = 0;
       let variantSwitchTimer;
@@ -11194,10 +11725,7 @@
           panel.classList.remove("is-in-view");
         });
 
-        const shouldAnimatePanels =
-          variantId === "conversation-intelligence-home" &&
-          !prefersReducedMotion.matches &&
-          "IntersectionObserver" in window;
+        const shouldAnimatePanels = immersiveStoryVariants.has(variantId) && !prefersReducedMotion.matches && "IntersectionObserver" in window;
 
         document.documentElement.classList.toggle("story-motion-ready", shouldAnimatePanels);
 
@@ -11423,7 +11951,7 @@
         applyBrandNameColor(landingStory);
         landingStory.hidden = false;
         page.classList.add("has-expanded-story");
-        document.documentElement.classList.toggle("snap-expanded-story", variantId === "conversation-intelligence-home");
+        document.documentElement.classList.toggle("snap-expanded-story", immersiveStoryVariants.has(variantId));
         setStoryPanelsReady(variantId);
       }
 

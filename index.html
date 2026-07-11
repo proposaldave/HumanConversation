@@ -12030,6 +12030,1047 @@
         transition-duration: 0.001ms !important;
         transition-delay: 0ms !important;
       }
+
+      /* Master-prompt review v2: the cursor becomes the doorway. */
+      html.hc-master-prompt-review body {
+        background: #050608;
+      }
+
+      html.hc-master-prompt-review .page {
+        background: #050608;
+      }
+
+      html.hc-master-prompt-review .page::before,
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"]::before {
+        background-image: none !important;
+        opacity: 0 !important;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] {
+        --hc-terminal: #050608;
+        --hc-terminal-raised: #0a0c0f;
+        --hc-terminal-line: rgba(224, 229, 235, 0.16);
+        --hc-terminal-text: #d8dde4;
+        --hc-terminal-dim: #7c838d;
+        background: var(--hc-terminal);
+        transition: background-color 800ms ease;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="journey"],
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="resolved"] {
+        background: #ead2a7;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] header {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 1000;
+        justify-content: space-between;
+        width: min(100% - 48px, 1320px);
+        padding: 24px 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -12px);
+        transition:
+          opacity 520ms ease,
+          transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="journey"] header,
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="resolved"] header {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, 0);
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] .brand {
+        color: #1a1612;
+        filter: drop-shadow(0 2px 10px rgba(255, 248, 234, 0.34));
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] .header-email {
+        right: max(24px, calc(env(safe-area-inset-right) + 24px));
+        border-color: rgba(26, 22, 18, 0.18);
+        background: rgba(255, 248, 234, 0.78);
+        box-shadow: 0 10px 30px rgba(37, 23, 12, 0.14);
+        color: #1a1612;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] main {
+        display: block;
+        width: 100%;
+        min-height: 100svh;
+        padding: 0;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .hero {
+        width: 100%;
+        min-height: 100svh;
+        padding: 0;
+      }
+
+      html.hc-master-prompt-review .hero-life-runs-on-human-conversation .hero-inner {
+        min-height: 100svh;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo {
+        position: relative;
+        z-index: 2;
+        display: block;
+        min-height: 100svh;
+        overflow: hidden;
+        isolation: isolate;
+        background: var(--hc-terminal);
+      }
+
+      html.hc-master-prompt-review .hc-future-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        min-height: 100svh;
+        background-image:
+          linear-gradient(0deg, rgba(12, 7, 3, 0.78) 0%, rgba(12, 7, 3, 0.3) 17%, transparent 38%),
+          linear-gradient(90deg, rgba(255, 248, 232, 0.96) 0%, rgba(255, 244, 220, 0.79) 28%, rgba(88, 52, 22, 0.13) 56%, rgba(35, 19, 7, 0.08) 100%),
+          linear-gradient(180deg, rgba(255, 207, 118, 0.02) 0%, rgba(65, 34, 10, 0.18) 100%),
+          url("./assets/hc-art-solves-disconnection-community-host-20260706.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(1.04) contrast(1.02) brightness(1.08);
+        opacity: 0;
+        transform: scale(1.025);
+        transform-origin: center;
+        transition:
+          opacity 180ms ease,
+          filter 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1600ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-future-layer,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-future-layer,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-future-layer {
+        opacity: 1;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-future-layer {
+        filter: saturate(1.12) contrast(1.01) brightness(1.22);
+        transform: scale(1.016);
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-future-layer,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-future-layer {
+        filter: saturate(1.05) contrast(1.03) brightness(1.02);
+        transform: scale(1);
+      }
+
+      html.hc-master-prompt-review .hc-demo-stage {
+        position: relative;
+        z-index: 2;
+        min-height: 100svh;
+      }
+
+      html.hc-master-prompt-review .hc-demo-panel {
+        position: absolute;
+        inset: 0;
+        min-height: 100svh;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: none;
+        transition:
+          opacity 220ms ease,
+          visibility 0s linear 220ms;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="prompt"] .hc-demo-prompt,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-demo-transition,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-demo-journey,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-demo-journey {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        transition-delay: 0ms;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-demo-journey,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-demo-resolved {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      html.hc-master-prompt-review .hc-demo-prompt {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 42%, rgba(73, 83, 96, 0.12), transparent 44%),
+          var(--hc-terminal);
+        padding: clamp(26px, 5vw, 72px);
+      }
+
+      html.hc-master-prompt-review .hc-demo-prompt::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(180deg, transparent 0 3px, rgba(255, 255, 255, 0.018) 3px 4px);
+        mix-blend-mode: screen;
+        opacity: 0.46;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-window {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 1040px);
+        overflow: hidden;
+        border: 1px solid rgba(210, 218, 226, 0.18);
+        border-radius: 4px;
+        background: #07090b;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.8),
+          0 36px 120px rgba(0, 0, 0, 0.62),
+          0 0 70px rgba(106, 126, 150, 0.07);
+      }
+
+      html.hc-master-prompt-review .hc-terminal-chrome {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        min-height: 38px;
+        border-bottom: 1px solid var(--hc-terminal-line);
+        background: #0b0d10;
+        color: #707781;
+        padding: 0 14px;
+        font: 600 0.62rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-chrome > :last-child {
+        justify-self: end;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-lights {
+        display: flex;
+        gap: 6px;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-lights i {
+        display: block;
+        width: 7px;
+        height: 7px;
+        border: 1px solid rgba(216, 221, 228, 0.22);
+        border-radius: 50%;
+        background: #13171b;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-body {
+        min-height: clamp(360px, 51vh, 500px);
+        padding: clamp(28px, 5vw, 62px);
+      }
+
+      html.hc-master-prompt-review .hc-terminal-path {
+        margin: 0 0 26px;
+        color: var(--hc-terminal-dim);
+        font: 500 clamp(0.72rem, 1vw, 0.88rem)/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.02em;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-path::first-letter {
+        color: #aab2bd;
+      }
+
+      html.hc-master-prompt-review .hc-prompt-form {
+        width: 100%;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        backdrop-filter: none;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-command-line {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-chevron {
+        color: #9ca5b0;
+        padding-top: 3px;
+        font: 500 clamp(1.15rem, 1.8vw, 1.5rem)/1.62 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      }
+
+      html.hc-master-prompt-review .hc-prompt-input {
+        display: block;
+        width: 100%;
+        min-height: 176px;
+        resize: none;
+        overflow: hidden;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        caret-color: #f0f3f7;
+        color: var(--hc-terminal-text);
+        padding: 0;
+        font: 500 clamp(1.05rem, 1.7vw, 1.5rem)/1.62 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: -0.015em;
+      }
+
+      html.hc-master-prompt-review .hc-terminal-command-line:focus-within::after {
+        content: "";
+        position: absolute;
+        right: -10px;
+        bottom: -14px;
+        left: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(216, 221, 228, 0.24), transparent 72%);
+      }
+
+      html.hc-master-prompt-review .hc-prompt-input:focus-visible {
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      html.hc-master-prompt-review .hc-prompt-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 22px;
+        border-top: 1px solid var(--hc-terminal-line);
+        padding: 18px 0 0;
+      }
+
+      html.hc-master-prompt-review .hc-typing-status {
+        margin: 0;
+        color: var(--hc-terminal-dim);
+        font: 500 0.68rem/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-typing-status[data-typing-state="typing"]::before {
+        content: "";
+        display: inline-block;
+        width: 0.52em;
+        height: 0.9em;
+        margin-right: 0.55em;
+        background: #d6dbe2;
+        vertical-align: -0.1em;
+        animation: hc-terminal-blink 760ms steps(1, end) infinite;
+      }
+
+      html.hc-master-prompt-review .hc-run-prompt {
+        display: inline-flex;
+        min-width: 112px;
+        min-height: 48px;
+        margin-left: auto;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        border: 1px solid rgba(225, 230, 237, 0.38);
+        border-radius: 2px;
+        background: #d9dde3;
+        box-shadow: none;
+        color: #08090b;
+        padding: 0 16px;
+        font: 800 0.72rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-run-prompt kbd {
+        border: 1px solid rgba(8, 9, 11, 0.28);
+        border-radius: 2px;
+        background: rgba(8, 9, 11, 0.07);
+        padding: 3px 5px;
+        font: inherit;
+      }
+
+      html.hc-master-prompt-review .hc-run-prompt:hover {
+        background: #f1f3f6;
+        transform: translateY(-1px);
+      }
+
+      html.hc-master-prompt-review .hc-terminal-caption {
+        position: absolute;
+        right: clamp(28px, 5vw, 72px);
+        bottom: clamp(18px, 3vh, 34px);
+        z-index: 1;
+        margin: 0;
+        color: #515761;
+        font: 500 0.62rem/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-demo-transition {
+        display: block;
+        overflow: hidden;
+        background: transparent;
+      }
+
+      html.hc-master-prompt-review .hc-transition-door {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        background:
+          radial-gradient(circle at 50% 42%, rgba(73, 83, 96, 0.12), transparent 44%),
+          var(--hc-terminal);
+        transform: scaleX(1);
+        transform-origin: left center;
+      }
+
+      html.hc-master-prompt-review .hc-transition-system {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        pointer-events: none;
+      }
+
+      html.hc-master-prompt-review .hc-transition-system span {
+        color: #cdd3db;
+        font: 600 clamp(0.68rem, 1vw, 0.82rem)/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-transition-system strong {
+        margin-top: 12px;
+        color: #fff8ea;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(4.8rem, 12vw, 11rem);
+        font-weight: 650;
+        letter-spacing: -0.07em;
+        line-height: 0.8;
+        opacity: 0;
+        text-shadow: 0 18px 60px rgba(80, 44, 14, 0.35);
+      }
+
+      html.hc-master-prompt-review .hc-transition-beam {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 6;
+        width: max(4px, 0.35vw);
+        background: linear-gradient(180deg, #fff6d7, #ffd062 48%, #d68a9a);
+        box-shadow:
+          0 0 20px rgba(255, 211, 108, 0.92),
+          0 0 72px rgba(255, 184, 81, 0.72);
+        opacity: 0;
+        transform: translateX(calc(100vw - max(4px, 0.35vw)));
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-door {
+        animation: hc-past-collapse 1700ms 100ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-system span {
+        animation: hc-system-accepted 720ms ease forwards;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-system strong {
+        animation: hc-go-live 1050ms 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-beam {
+        animation: hc-doorway-beam 1700ms 100ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+      }
+
+      html.hc-master-prompt-review .hc-screen-rail {
+        position: absolute;
+        top: 0;
+        right: auto;
+        bottom: 0;
+        left: 0;
+        z-index: 8;
+        display: block;
+        width: max(4px, 1vw);
+        height: 100%;
+        gap: 0;
+        border: 0;
+        border-radius: 0;
+        background: #050608;
+        box-shadow: 3px 0 18px rgba(7, 8, 10, 0.44);
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: none;
+        backdrop-filter: none;
+        transition: opacity 260ms ease;
+      }
+
+      html.hc-master-prompt-review .hc-screen-rail span {
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 7px);
+        margin: 0;
+        color: rgba(255, 248, 234, 0.82);
+        font: 800 0.52rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+      }
+
+      html.hc-master-prompt-review .hc-screen-rail::after {
+        display: none;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-screen-rail,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-screen-rail {
+        opacity: 1;
+        transform: none;
+      }
+
+      html.hc-master-prompt-review .hc-demo-journey {
+        display: block;
+        overflow: hidden;
+        color: #1a1612;
+        padding: clamp(100px, 12vh, 132px) clamp(54px, 5vw, 80px) clamp(48px, 7vh, 72px) clamp(90px, 8vw, 132px);
+      }
+
+      html.hc-master-prompt-review .hc-future-copy {
+        position: relative;
+        z-index: 3;
+        width: min(48%, 630px);
+      }
+
+      html.hc-master-prompt-review .hc-resolved-kicker {
+        margin: 0 0 14px;
+        color: #94641c;
+        font-size: 0.66rem;
+        font-weight: 950;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-future-copy h2 {
+        max-width: 620px;
+        margin: 0;
+        color: #1a1612;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.9rem, 6.2vw, 7.4rem);
+        font-weight: 650;
+        letter-spacing: -0.058em;
+        line-height: 0.88;
+        text-wrap: balance;
+      }
+
+      html.hc-master-prompt-review .hc-future-copy h2 span {
+        color: var(--hc-rose);
+      }
+
+      html.hc-master-prompt-review .hc-future-copy h2:focus {
+        outline: none;
+      }
+
+      html.hc-master-prompt-review .hc-future-copy > p:not(.hc-resolved-kicker) {
+        max-width: 520px;
+        margin: 22px 0 0;
+        color: rgba(26, 22, 18, 0.76);
+        font-size: clamp(0.96rem, 1.25vw, 1.14rem);
+        font-weight: 760;
+        line-height: 1.5;
+      }
+
+      html.hc-master-prompt-review .hc-resolved-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 11px;
+        margin-top: 26px;
+      }
+
+      html.hc-master-prompt-review .hc-resolved-join,
+      html.hc-master-prompt-review .hc-resolved-replay {
+        min-height: 48px;
+        border-radius: 999px;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+
+      html.hc-master-prompt-review .hc-resolved-join {
+        border-color: #1a1612;
+        background: #1a1612;
+        color: #fff8ea;
+        padding: 0 22px;
+      }
+
+      html.hc-master-prompt-review .hc-resolved-replay {
+        border: 1px solid rgba(26, 22, 18, 0.24);
+        background: rgba(255, 248, 234, 0.58);
+        color: #1a1612;
+        padding: 0 20px;
+        backdrop-filter: blur(10px);
+      }
+
+      html.hc-master-prompt-review .hc-human-signals {
+        position: absolute;
+        top: clamp(112px, 14vh, 150px);
+        right: clamp(34px, 4.5vw, 72px);
+        z-index: 3;
+        display: grid;
+        width: min(34%, 460px);
+        gap: 13px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      html.hc-master-prompt-review .hc-human-signal {
+        position: relative;
+        border-left: 2px solid rgba(255, 224, 155, 0.88);
+        background: linear-gradient(90deg, rgba(17, 11, 7, 0.76), rgba(17, 11, 7, 0.34) 74%, transparent);
+        color: #fff8ea;
+        padding: 13px 16px 14px;
+        opacity: 0;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.38);
+        transform: translateX(22px);
+        backdrop-filter: blur(8px);
+      }
+
+      html.hc-master-prompt-review .hc-human-signal span {
+        display: block;
+        margin-bottom: 4px;
+        color: #f5c75c;
+        font-size: 0.58rem;
+        font-weight: 950;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-human-signal q {
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.08rem, 1.5vw, 1.38rem);
+        font-weight: 650;
+        line-height: 1.15;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-human-signal,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-human-signal {
+        animation: hc-human-signal-in 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-jordan-signal,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-jordan-signal {
+        animation-delay: 170ms;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="journey"] .hc-lena-signal,
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="resolved"] .hc-lena-signal {
+        animation-delay: 340ms;
+      }
+
+      html.hc-master-prompt-review .hc-future-experiences {
+        position: absolute;
+        right: clamp(34px, 4.5vw, 72px);
+        bottom: clamp(34px, 5vh, 58px);
+        left: clamp(90px, 8vw, 132px);
+        z-index: 3;
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        border-top: 1px solid rgba(255, 248, 234, 0.44);
+        border-bottom: 1px solid rgba(255, 248, 234, 0.18);
+        background: transparent;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.34);
+      }
+
+      html.hc-master-prompt-review .hc-future-event,
+      html.hc-master-prompt-review .hc-future-next {
+        display: grid;
+        align-content: center;
+        min-height: 126px;
+        padding: 20px 24px;
+      }
+
+      html.hc-master-prompt-review .hc-future-next {
+        border-left: 1px solid rgba(255, 248, 234, 0.28);
+      }
+
+      html.hc-master-prompt-review .hc-future-experiences p {
+        margin: 0 0 6px;
+        color: #f2c662;
+        font-size: 0.58rem;
+        font-weight: 950;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-future-experiences h3 {
+        margin: 0;
+        color: #fff8ea;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.55rem, 2.35vw, 2.55rem);
+        font-weight: 650;
+        letter-spacing: -0.04em;
+        line-height: 0.96;
+      }
+
+      html.hc-master-prompt-review .hc-future-experiences span,
+      html.hc-master-prompt-review .hc-future-experiences strong {
+        margin-top: 7px;
+        color: rgba(255, 248, 234, 0.74);
+        font-size: 0.7rem;
+        font-weight: 760;
+        line-height: 1.35;
+      }
+
+      html.hc-master-prompt-review .hc-future-experiences strong {
+        color: #fff8ea;
+        font-size: 0.6rem;
+        font-weight: 950;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      @keyframes hc-terminal-blink {
+        0%, 48% { opacity: 1; }
+        49%, 100% { opacity: 0; }
+      }
+
+      @keyframes hc-past-collapse {
+        0%, 8% { transform: scaleX(1); }
+        100% { transform: scaleX(0.01); }
+      }
+
+      @keyframes hc-doorway-beam {
+        0%, 7% { opacity: 0; transform: translateX(calc(100vw - max(4px, 0.35vw))); }
+        12%, 88% { opacity: 1; }
+        100% { opacity: 0; transform: translateX(0); }
+      }
+
+      @keyframes hc-system-accepted {
+        0% { opacity: 0; transform: translateY(8px); }
+        22%, 58% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-12px); }
+      }
+
+      @keyframes hc-go-live {
+        0% { opacity: 0; transform: translateY(30px) scale(0.94); }
+        45%, 76% { opacity: 1; transform: translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateY(-12px) scale(1.015); }
+      }
+
+      @keyframes hc-human-signal-in {
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      @media (min-width: 761px) and (max-height: 760px) {
+        html.hc-master-prompt-review .hc-terminal-body {
+          min-height: 340px;
+          padding-top: 34px;
+          padding-bottom: 34px;
+        }
+
+        html.hc-master-prompt-review .hc-prompt-input {
+          min-height: 142px;
+        }
+
+        html.hc-master-prompt-review .hc-demo-journey {
+          padding-top: 84px;
+          padding-bottom: 28px;
+        }
+
+        html.hc-master-prompt-review .hc-future-copy h2 {
+          font-size: clamp(3.5rem, 5.4vw, 6rem);
+        }
+
+        html.hc-master-prompt-review .hc-human-signals {
+          top: 90px;
+          gap: 8px;
+        }
+
+        html.hc-master-prompt-review .hc-human-signal {
+          padding-top: 9px;
+          padding-bottom: 10px;
+        }
+
+        html.hc-master-prompt-review .hc-future-experiences {
+          bottom: 24px;
+        }
+
+        html.hc-master-prompt-review .hc-future-event,
+        html.hc-master-prompt-review .hc-future-next {
+          min-height: 106px;
+          padding-top: 14px;
+          padding-bottom: 14px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] header {
+          width: calc(100% - 28px);
+          padding-top: max(16px, env(safe-area-inset-top));
+        }
+
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] .header-email {
+          display: none;
+        }
+
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .hero,
+        html.hc-master-prompt-review .hero-life-runs-on-human-conversation .hero-inner,
+        html.hc-master-prompt-review .hc-master-prompt-demo,
+        html.hc-master-prompt-review .hc-demo-stage,
+        html.hc-master-prompt-review .hc-demo-panel {
+          min-height: 100svh;
+        }
+
+        html.hc-master-prompt-review .hc-demo-prompt {
+          align-content: center;
+          padding: max(18px, env(safe-area-inset-top)) 10px max(30px, env(safe-area-inset-bottom));
+        }
+
+        html.hc-master-prompt-review .hc-terminal-window {
+          width: 100%;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-chrome {
+          grid-template-columns: auto 1fr auto;
+          gap: 10px;
+          min-height: 34px;
+          padding: 0 10px;
+          font-size: 0.52rem;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-chrome > :nth-child(2) {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-body {
+          min-height: 420px;
+          padding: 24px 18px 20px;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-path {
+          margin-bottom: 19px;
+          font-size: 0.66rem;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-command-line {
+          gap: 10px;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-chevron,
+        html.hc-master-prompt-review .hc-prompt-input {
+          font-size: clamp(1rem, 4.8vw, 1.18rem);
+        }
+
+        html.hc-master-prompt-review .hc-prompt-input {
+          min-height: 244px;
+          line-height: 1.55;
+        }
+
+        html.hc-master-prompt-review .hc-prompt-actions {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 12px;
+          margin-top: 16px;
+          padding-top: 14px;
+        }
+
+        html.hc-master-prompt-review .hc-typing-status {
+          font-size: 0.54rem;
+          letter-spacing: 0.04em;
+        }
+
+        html.hc-master-prompt-review .hc-run-prompt {
+          min-width: 94px;
+          min-height: 46px;
+          padding: 0 12px;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-caption {
+          right: 16px;
+          bottom: max(10px, env(safe-area-inset-bottom));
+          left: 16px;
+          text-align: right;
+          font-size: 0.5rem;
+        }
+
+        html.hc-master-prompt-review .hc-transition-system strong {
+          font-size: clamp(4rem, 22vw, 7rem);
+        }
+
+        html.hc-master-prompt-review .hc-future-layer {
+          min-height: 100%;
+          background-image:
+            linear-gradient(180deg, rgba(255, 236, 198, 0.02) 0%, rgba(27, 15, 7, 0.12) 28%, rgba(8, 7, 5, 0.82) 52%, #080705 88%),
+            url("./assets/hc-art-solves-disconnection-community-host-20260706.png");
+          background-position: 57% top;
+          background-size: auto 58vh;
+          background-repeat: no-repeat;
+          background-color: #080705;
+        }
+
+        html.hc-master-prompt-review .hc-demo-journey {
+          display: flex;
+          min-height: max(100svh, 1080px);
+          flex-direction: column;
+          overflow: visible;
+          color: #fff8ea;
+          padding: clamp(390px, 50vh, 475px) 18px max(34px, env(safe-area-inset-bottom)) 30px;
+        }
+
+        html.hc-master-prompt-review .hc-future-copy {
+          width: 100%;
+        }
+
+        html.hc-master-prompt-review .hc-resolved-kicker {
+          color: #f3c766;
+          font-size: 0.58rem;
+        }
+
+        html.hc-master-prompt-review .hc-future-copy h2 {
+          color: #fff8ea;
+          font-size: clamp(3.15rem, 14.6vw, 4.6rem);
+          line-height: 0.9;
+        }
+
+        html.hc-master-prompt-review .hc-future-copy > p:not(.hc-resolved-kicker) {
+          margin-top: 17px;
+          color: rgba(255, 248, 234, 0.76);
+          font-size: 0.9rem;
+        }
+
+        html.hc-master-prompt-review .hc-resolved-actions {
+          margin-top: 20px;
+        }
+
+        html.hc-master-prompt-review .hc-resolved-join {
+          border-color: var(--hc-rose);
+          background: var(--hc-rose);
+          color: #1a1612;
+        }
+
+        html.hc-master-prompt-review .hc-resolved-replay {
+          border-color: rgba(255, 248, 234, 0.34);
+          background: rgba(255, 248, 234, 0.08);
+          color: #fff8ea;
+        }
+
+        html.hc-master-prompt-review .hc-human-signals {
+          position: static;
+          width: 100%;
+          gap: 8px;
+          margin-top: 28px;
+        }
+
+        html.hc-master-prompt-review .hc-human-signal {
+          background: linear-gradient(90deg, rgba(255, 248, 234, 0.1), transparent);
+          padding: 10px 12px;
+          backdrop-filter: none;
+        }
+
+        html.hc-master-prompt-review .hc-human-signal q {
+          font-size: 1.02rem;
+        }
+
+        html.hc-master-prompt-review .hc-future-experiences {
+          position: static;
+          grid-template-columns: 1fr;
+          margin-top: 24px;
+          border-color: rgba(255, 248, 234, 0.26);
+          background: transparent;
+        }
+
+        html.hc-master-prompt-review .hc-future-event,
+        html.hc-master-prompt-review .hc-future-next {
+          min-height: 0;
+          padding: 17px 18px;
+        }
+
+        html.hc-master-prompt-review .hc-future-next {
+          border-top: 1px solid rgba(255, 248, 234, 0.18);
+          border-left: 0;
+        }
+
+        html.hc-master-prompt-review .hc-future-experiences h3 {
+          font-size: 1.65rem;
+        }
+
+        html.hc-master-prompt-review .hc-screen-rail span {
+          left: calc(100% + 5px);
+          font-size: 0.44rem;
+        }
+      }
+
+      @media (max-width: 360px) {
+        html.hc-master-prompt-review .hc-terminal-body {
+          min-height: 440px;
+          padding-right: 14px;
+          padding-left: 14px;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-chrome > :last-child {
+          display: none;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-chrome {
+          grid-template-columns: auto 1fr;
+        }
+
+        html.hc-master-prompt-review .hc-prompt-input {
+          min-height: 268px;
+          font-size: 1rem;
+        }
+
+        html.hc-master-prompt-review .hc-typing-status {
+          max-width: 120px;
+        }
+
+        html.hc-master-prompt-review .hc-demo-journey {
+          min-height: 1100px;
+          padding-right: 14px;
+          padding-left: 24px;
+        }
+
+        html.hc-master-prompt-review .hc-future-copy h2 {
+          font-size: 3.05rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.hc-master-prompt-review .hc-transition-door,
+        html.hc-master-prompt-review .hc-transition-system span,
+        html.hc-master-prompt-review .hc-transition-system strong,
+        html.hc-master-prompt-review .hc-transition-beam,
+        html.hc-master-prompt-review .hc-human-signal,
+        html.hc-master-prompt-review .hc-typing-status::before {
+          animation: none !important;
+        }
+
+        html.hc-master-prompt-review .hc-human-signal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      html.hc-master-prompt-reduce-motion .hc-transition-door,
+      html.hc-master-prompt-reduce-motion .hc-transition-system span,
+      html.hc-master-prompt-reduce-motion .hc-transition-system strong,
+      html.hc-master-prompt-reduce-motion .hc-transition-beam,
+      html.hc-master-prompt-reduce-motion .hc-human-signal,
+      html.hc-master-prompt-reduce-motion .hc-typing-status::before {
+        animation: none !important;
+      }
+
+      html.hc-master-prompt-reduce-motion .hc-human-signal {
+        opacity: 1;
+        transform: none;
+      }
     </style>
   </head>
   <body>
@@ -12658,31 +13699,30 @@
           maya: {
             name: "Maya",
             role: "Community builder",
-            message:
-              "Saturday at 10 could be a good place to start. I’ll meet you at the front desk and introduce you before we play.",
+            message: "I’ll meet you at the door.",
           },
           jordan: {
             name: "Jordan",
-            message: "Maya thinks we’d enjoy playing together. Want to warm up at 9:45?",
+            message: "Warm up with me at 9:45?",
           },
           lena: {
             name: "Lena",
-            message: "A few of us are getting coffee afterward. Come with us.",
+            message: "Coffee after. Come with us.",
           },
         },
         experiences: {
           primary: {
             date: "Saturday · 10:00 AM",
-            title: "An easier place to start",
-            description: "A small, relaxed pickleball session.",
-            host: "Maya is hosting.",
-            welcome: "Jordan is meeting you first.",
-            promise: "You already know who to look for.",
+            title: "You arrive expected.",
+            description: "A small, relaxed game.",
+            host: "Maya hosts.",
+            welcome: "Jordan is already waiting.",
+            promise: "You don’t walk in alone.",
           },
           next: {
             date: "Tuesday · 6:30 PM",
-            title: "Play again",
-            description: "Jordan, you, and two people Maya is bringing together.",
+            title: "You’re already coming back.",
+            description: "The same people. One new invitation.",
             promise: "You’re not starting over.",
           },
         },
@@ -13131,78 +14171,74 @@
         heroInner.insertAdjacentHTML(
           "beforeend",
           `
-            <section class="hc-master-prompt-demo" data-hc-demo data-demo-state="prompt" aria-label="Illustrative Human Conversation product experience">
+            <section class="hc-master-prompt-demo" data-hc-demo data-demo-state="prompt" aria-label="A Human Conversation journey from screen time to human time">
               <p class="sr-only" data-hc-live-region role="status" aria-live="polite" aria-atomic="true"></p>
-              <aside class="hc-screen-rail" aria-label="One percent screen time">
-                <strong>1%</strong>
-                <span>screen</span>
-              </aside>
+              <div class="hc-future-layer" aria-hidden="true"></div>
+              <aside class="hc-screen-rail" aria-label="One percent screen time"><span>1% screen</span></aside>
 
               <div class="hc-demo-stage">
                 <section class="hc-demo-panel hc-demo-prompt" data-hc-panel="prompt" aria-labelledby="hc-master-prompt-title">
-                  <p class="hc-demo-eyebrow">A prompt for the life you actually want</p>
-                  <h2 class="hc-demo-prompt-title" id="hc-master-prompt-title">
-                    Your job is to make my life <span class="hc-prompt-human">99% human conversation</span> and shared experiences—and only <span class="hc-prompt-screen">1% screen time.</span>
-                  </h2>
-                  <form class="hc-prompt-form" data-hc-prompt-form>
-                    <label class="sr-only" for="hc-master-prompt">Master prompt</label>
-                    <textarea class="hc-prompt-input" id="hc-master-prompt" rows="3" spellcheck="true">${prompt}</textarea>
-                    <div class="hc-prompt-actions">
-                      <p class="hc-prompt-note">Illustrative product experience</p>
-                      <span class="hc-prompt-key" aria-hidden="true">Press Enter</span>
-                      <button class="hc-run-prompt" type="submit" data-hc-action="run" aria-label="Run this prompt">Run this prompt</button>
+                  <div class="hc-terminal-window">
+                    <div class="hc-terminal-chrome" aria-hidden="true">
+                      <span class="hc-terminal-lights"><i></i><i></i><i></i></span>
+                      <span>life — terminal — 80×24</span>
+                      <span>PAST</span>
                     </div>
-                  </form>
+                    <div class="hc-terminal-body">
+                      <p class="hc-terminal-path" aria-hidden="true">human@computer:~$</p>
+                      <h2 class="sr-only" id="hc-master-prompt-title">Give the computer its final job</h2>
+                      <form class="hc-prompt-form" data-hc-prompt-form>
+                        <label class="sr-only" for="hc-master-prompt">Type the job you want the computer to handle</label>
+                        <div class="hc-terminal-command-line">
+                          <span class="hc-terminal-chevron" aria-hidden="true">›</span>
+                          <textarea class="hc-prompt-input" id="hc-master-prompt" rows="4" spellcheck="true" autocomplete="off"></textarea>
+                        </div>
+                        <div class="hc-prompt-actions">
+                          <p class="hc-typing-status" data-hc-typing-status data-typing-state="idle">Typing…</p>
+                          <button class="hc-run-prompt" type="submit" data-hc-action="run" aria-label="Run this prompt"><span>Run</span><kbd aria-hidden="true">↵</kbd></button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <p class="hc-terminal-caption" aria-hidden="true">Everything important, waiting behind a screen.</p>
                 </section>
 
-                <section class="hc-demo-panel hc-demo-journey" data-hc-panel="journey" data-hc-journey aria-label="The human journey">
-                  <p class="hc-journey-label">The human journey · illustrative</p>
-
-                  <article class="hc-journey-card hc-maya-card">
-                    <p class="hc-person-label"><span class="hc-person-monogram" aria-hidden="true">M</span>${people.maya.name} · ${people.maya.role}</p>
-                    <blockquote>“${people.maya.message}”</blockquote>
-                  </article>
-
-                  <article class="hc-journey-card hc-jordan-card">
-                    <p class="hc-person-label"><span class="hc-person-monogram" aria-hidden="true">J</span>${people.jordan.name}</p>
-                    <blockquote>“${people.jordan.message}”</blockquote>
-                  </article>
-
-                  <article class="hc-journey-card hc-experience-card">
-                    <p class="hc-experience-date">${experiences.primary.date}</p>
-                    <h2>${experiences.primary.title}</h2>
-                    <div class="hc-experience-details">
-                      <p>${experiences.primary.description}</p>
-                      <p>${experiences.primary.host}</p>
-                      <p>${experiences.primary.welcome}</p>
-                    </div>
-                    <p class="hc-experience-promise">${experiences.primary.promise}</p>
-                  </article>
-
-                  <article class="hc-journey-card hc-lena-card">
-                    <p class="hc-person-label"><span class="hc-person-monogram" aria-hidden="true">L</span>${people.lena.name}</p>
-                    <blockquote>“${people.lena.message}”</blockquote>
-                  </article>
-
-                  <article class="hc-journey-card hc-next-card">
-                    <p class="hc-next-date">${experiences.next.date}</p>
-                    <h3>${experiences.next.title}</h3>
-                    <p>${experiences.next.description}</p>
-                    <p class="hc-next-promise">${experiences.next.promise}</p>
-                  </article>
-
-                  <button class="hc-journey-resolve" type="button" data-hc-action="resolve">See the result</button>
+                <section class="hc-demo-panel hc-demo-transition" data-hc-panel="transitioning" aria-label="The screen work moves into the background">
+                  <div class="hc-transition-door" aria-hidden="true"></div>
+                  <div class="hc-transition-system" aria-hidden="true"><span>prompt accepted</span><strong>GO LIVE.</strong></div>
+                  <span class="hc-transition-beam" aria-hidden="true"></span>
                 </section>
 
-                <section class="hc-demo-panel hc-demo-resolved" data-hc-panel="resolved" aria-labelledby="hc-resolved-title">
-                  <div class="hc-resolved-card">
+                <section class="hc-demo-panel hc-demo-journey" data-hc-panel="journey" data-hc-journey aria-labelledby="hc-resolved-title">
+                  <div class="hc-future-copy">
                     <p class="hc-resolved-kicker">99% human time</p>
-                    <h2 id="hc-resolved-title">${final.title}</h2>
+                    <h2 id="hc-resolved-title" tabindex="-1"><span>Human Conversation</span> makes this prompt real.</h2>
                     <p>${final.copy}</p>
                     <div class="hc-resolved-actions">
                       <button class="hc-resolved-join" type="button" data-hc-action="join">${final.cta}</button>
                       <button class="hc-resolved-replay" type="button" data-hc-action="replay">${final.replay}</button>
                     </div>
+                  </div>
+
+                  <ol class="hc-human-signals" aria-label="The human connections created">
+                    <li class="hc-human-signal hc-maya-signal"><span>${people.maya.name} · ${people.maya.role}</span><q>${people.maya.message}</q></li>
+                    <li class="hc-human-signal hc-jordan-signal"><span>${people.jordan.name}</span><q>${people.jordan.message}</q></li>
+                    <li class="hc-human-signal hc-lena-signal"><span>${people.lena.name}</span><q>${people.lena.message}</q></li>
+                  </ol>
+
+                  <div class="hc-future-experiences" aria-label="The connected experiences that follow">
+                    <article class="hc-future-event">
+                      <p>${experiences.primary.date}</p>
+                      <h3>${experiences.primary.title}</h3>
+                      <span>${experiences.primary.host} ${experiences.primary.welcome}</span>
+                      <strong>${experiences.primary.promise}</strong>
+                    </article>
+                    <article class="hc-future-next">
+                      <p>${experiences.next.date}</p>
+                      <h3>${experiences.next.title}</h3>
+                      <span>${experiences.next.description}</span>
+                      <strong>${experiences.next.promise}</strong>
+                    </article>
                   </div>
                 </section>
               </div>
@@ -13213,18 +14249,90 @@
         const demoRoot = heroInner.querySelector("[data-hc-demo]");
         const promptForm = demoRoot?.querySelector("[data-hc-prompt-form]");
         const promptInput = demoRoot?.querySelector("#hc-master-prompt");
-        const resolveButton = demoRoot?.querySelector('[data-hc-action="resolve"]');
         const joinButton = demoRoot?.querySelector('[data-hc-action="join"]');
         const replayButton = demoRoot?.querySelector('[data-hc-action="replay"]');
         const liveRegion = demoRoot?.querySelector("[data-hc-live-region]");
+        const typingStatus = demoRoot?.querySelector("[data-hc-typing-status]");
+        const futureHeading = demoRoot?.querySelector("#hc-resolved-title");
+        const transitionDoor = demoRoot?.querySelector(".hc-transition-door");
         const panels = Array.from(demoRoot?.querySelectorAll("[data-hc-panel]") || []);
 
         if (!(demoRoot instanceof HTMLElement) || !(promptInput instanceof HTMLTextAreaElement)) return;
 
         let demoState = "prompt";
         let transitionTimer;
+        let typingTimer;
+        let typingIndex = 0;
+        let isAutoTyping = false;
+        let userEditedPrompt = false;
         const reducedMotion =
           masterPromptParams.get("reduceMotion") === "1" || prefersReducedMotion.matches;
+
+        function updateTypingStatus(text, state) {
+          if (!typingStatus) return;
+          typingStatus.textContent = text;
+          typingStatus.dataset.typingState = state;
+        }
+
+        function stopPromptTyping({ complete = false } = {}) {
+          window.clearTimeout(typingTimer);
+          isAutoTyping = false;
+
+          if (complete && !userEditedPrompt) {
+            promptInput.value = prompt;
+            typingIndex = prompt.length;
+            promptInput.setSelectionRange(prompt.length, prompt.length);
+          }
+
+          if (promptInput.value.trim()) {
+            updateTypingStatus("Ready · press Enter to leave the screen", "complete");
+          }
+        }
+
+        function startPromptTyping({ focus = false, replay = false } = {}) {
+          window.clearTimeout(typingTimer);
+          userEditedPrompt = false;
+          typingIndex = 0;
+
+          if (replay || reducedMotion) {
+            promptInput.value = prompt;
+            typingIndex = prompt.length;
+            updateTypingStatus("Ready · press Enter to leave the screen", "complete");
+            if (focus) window.requestAnimationFrame(() => promptInput.focus({ preventScroll: true }));
+            return;
+          }
+
+          promptInput.value = "";
+          isAutoTyping = true;
+          updateTypingStatus("Typing…", "typing");
+
+          const typeNextCharacter = () => {
+            if (!isAutoTyping || document.hidden) {
+              if (isAutoTyping) typingTimer = window.setTimeout(typeNextCharacter, 120);
+              return;
+            }
+
+            typingIndex += 1;
+            promptInput.value = prompt.slice(0, typingIndex);
+            promptInput.setSelectionRange(typingIndex, typingIndex);
+
+            if (typingIndex >= prompt.length) {
+              isAutoTyping = false;
+              updateTypingStatus("Ready · press Enter to leave the screen", "complete");
+              if (liveRegion) liveRegion.textContent = "Prompt ready. Press Enter to make it real.";
+              return;
+            }
+
+            const character = prompt[typingIndex - 1];
+            const delay = /[.!?]/.test(character) ? 110 : /[,—]/.test(character) ? 58 : 17;
+            typingTimer = window.setTimeout(typeNextCharacter, delay);
+          };
+
+          typingTimer = window.setTimeout(typeNextCharacter, 380);
+          if (focus || window.matchMedia("(pointer: fine)").matches || window.innerWidth > 760) {
+            window.requestAnimationFrame(() => promptInput.focus({ preventScroll: true }));
+          }
+        }
 
         function setDemoState(nextState, options = {}) {
           const validStates = new Set(["prompt", "transitioning", "journey", "resolved"]);
@@ -13236,7 +14344,7 @@
 
           panels.forEach((panel) => {
             const panelState = panel.dataset.hcPanel;
-            const activePanelState = safeState === "transitioning" ? "journey" : safeState;
+            const activePanelState = safeState === "resolved" ? "journey" : safeState;
             const isActive = panelState === activePanelState;
             panel.setAttribute("aria-hidden", String(!isActive));
             panel.inert = !isActive;
@@ -13245,8 +14353,8 @@
           if (liveRegion && options.announce !== false) {
             const announcements = {
               prompt: "Master prompt ready.",
-              transitioning: "Turning screen work into a human journey.",
-              journey: "Maya has made the first connection.",
+              transitioning: "Making room for real life.",
+              journey: final.title,
               resolved: final.title,
             };
             liveRegion.textContent = announcements[safeState];
@@ -13256,14 +14364,24 @@
         function runMasterPrompt() {
           if (demoState !== "prompt") return;
 
+          stopPromptTyping({ complete: true });
+          if (!promptInput.value.trim()) promptInput.value = prompt;
           window.clearTimeout(transitionTimer);
           setDemoState("transitioning");
+          demoRoot.setAttribute("aria-busy", "true");
 
-          const finishTransition = () => setDemoState("journey");
+          const finishTransition = () => {
+            if (demoState !== "transitioning") return;
+            window.clearTimeout(transitionTimer);
+            setDemoState("journey");
+            demoRoot.removeAttribute("aria-busy");
+            window.requestAnimationFrame(() => futureHeading?.focus({ preventScroll: true }));
+          };
           if (reducedMotion) {
             window.requestAnimationFrame(finishTransition);
           } else {
-            transitionTimer = window.setTimeout(finishTransition, 920);
+            transitionDoor?.addEventListener("animationend", finishTransition, { once: true });
+            transitionTimer = window.setTimeout(finishTransition, 2200);
           }
         }
 
@@ -13273,14 +14391,32 @@
         });
 
         promptInput.addEventListener("keydown", (event) => {
-          if (event.key !== "Enter" || event.shiftKey || event.isComposing) return;
+          if (event.key !== "Enter" || event.isComposing) return;
+          if (event.shiftKey) {
+            stopPromptTyping({ complete: true });
+            return;
+          }
           event.preventDefault();
           runMasterPrompt();
         });
 
-        resolveButton?.addEventListener("click", () => {
-          if (demoState !== "journey") return;
-          setDemoState("resolved");
+        promptInput.addEventListener("pointerdown", () => {
+          if (isAutoTyping) stopPromptTyping({ complete: true });
+        });
+
+        promptInput.addEventListener("beforeinput", () => {
+          if (isAutoTyping) stopPromptTyping({ complete: true });
+        });
+
+        promptInput.addEventListener("compositionstart", () => {
+          if (isAutoTyping) stopPromptTyping({ complete: true });
+          userEditedPrompt = true;
+        });
+
+        promptInput.addEventListener("input", () => {
+          if (isAutoTyping) stopPromptTyping();
+          userEditedPrompt = true;
+          updateTypingStatus("Ready · press Enter to leave the screen", "complete");
         });
 
         joinButton?.addEventListener("click", () => {
@@ -13301,16 +14437,24 @@
 
         replayButton?.addEventListener("click", () => {
           window.clearTimeout(transitionTimer);
-          promptInput.value = prompt;
+          window.clearTimeout(typingTimer);
+          demoRoot.removeAttribute("aria-busy");
           setDemoState("prompt");
-          window.requestAnimationFrame(() => promptInput.focus({ preventScroll: true }));
+          startPromptTyping({ focus: true, replay: true });
         });
+
+        window.addEventListener("pagehide", () => {
+          window.clearTimeout(typingTimer);
+          window.clearTimeout(transitionTimer);
+        }, { once: true });
 
         const requestedDemoState = masterPromptParams.get("demoState");
         const initialState = ["prompt", "journey", "resolved"].includes(requestedDemoState)
           ? requestedDemoState
           : "prompt";
         setDemoState(initialState, { announce: false });
+        if (initialState === "prompt") startPromptTyping();
+        else promptInput.value = prompt;
       }
 
       function setVariant(index, options = {}) {

@@ -10621,16 +10621,20 @@
         transform: translateY(0);
       }
 
-      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold {
-        --story-image: url("./assets/hc-art-human-future-threshold-fullscreen-20260705.png");
-        --story-position: center center;
-        --story-overlay:
-          linear-gradient(90deg, rgba(4, 7, 12, 0.9) 0%, rgba(4, 7, 12, 0.66) 35%, rgba(4, 7, 12, 0.18) 62%, rgba(8, 6, 4, 0.08) 100%),
-          linear-gradient(180deg, rgba(4, 7, 12, 0.06), rgba(4, 7, 12, 0.34));
+      .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-between-people {
+        --story-image: url("./assets/hc-art-timeless-interface-community-table-20260706.png");
+        --story-position: 70% center;
+        --story-brightness: 1.06;
+        --story-overlay: linear-gradient(90deg, rgba(251, 247, 239, 0.99) 0%, rgba(251, 247, 239, 0.94) 34%, rgba(251, 247, 239, 0.5) 55%, rgba(251, 247, 239, 0.08) 78%, rgba(251, 247, 239, 0) 100%);
       }
 
-      .page[data-variant="life-runs-on-human-conversation"] .life-threshold-section .life-more {
-        color: #f2c96d;
+      .page[data-variant="life-runs-on-human-conversation"] .life-between-people-section .life-between-emphasis {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="life-runs-on-human-conversation"] .life-between-people-section .story-body {
+        max-width: 620px;
+        color: rgba(26, 22, 18, 0.8);
       }
 
       .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-trust {
@@ -10850,22 +10854,9 @@
           line-height: 1.48;
         }
 
-        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold {
-          background: #08090b;
-          padding-top: calc(46svh + 66px);
-        }
-
-        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold::before {
-          bottom: auto;
-          height: 46svh;
-          background-position: center center;
-          background-size: cover;
-          filter: saturate(1.04) contrast(1.02) brightness(1.02);
-          transform: none;
-        }
-
-        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-threshold::after {
-          background: linear-gradient(180deg, rgba(8, 9, 11, 0.02) 0%, rgba(8, 9, 11, 0.04) 34svh, rgba(8, 9, 11, 0.88) 46svh, #08090b 62svh, #08090b 100%);
+        .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-between-people {
+          --story-position: 76% center;
+          --story-overlay: linear-gradient(180deg, rgba(251, 247, 239, 0.97) 0%, rgba(251, 247, 239, 0.93) 54%, rgba(251, 247, 239, 0.55) 78%, rgba(251, 247, 239, 0.8) 100%);
         }
 
         .page[data-variant="life-runs-on-human-conversation"] .story-scene-life-trust {
@@ -11204,13 +11195,13 @@
           "life-runs-on-human-conversation": {
             sections: [
               {
-                title: `<span>The screen does less.</span><span class="life-more">Life does more.</span>`,
+                title: `<span>The life you want</span><span>happens <span class="life-between-emphasis">between people.</span></span>`,
                 copy: [
-                  `AI moves the computer work into the background so your life can move back into the world.`,
-                  `Less clicking, searching, sorting, and scheduling. More live conversation with the right people, in the right real-world communities.`,
+                  `People who know you. Places where you&rsquo;re expected. Conversations that become plans. Invitations that feel personal. Experiences you carry home.`,
+                  `A day remembered for who you were with &mdash; not what you watched.`,
                 ],
-                scene: "life-threshold",
-                className: "is-long life-threshold-section",
+                scene: "life-between-people",
+                className: "is-light is-long life-between-people-section",
               },
               {
                 title: `<span class="life-trust-kicker">A community promise</span><span>Runs on</span><span class="brand-name">Human Conversation.</span>`,
@@ -11225,7 +11216,7 @@
                 title: `<span>You leave</span><span class="life-member-connection">more connected</span><span>than you arrived.</span>`,
                 copy: [
                   `Someone notices you are new. Someone introduces you. Someone remembers what matters. You meet people you would never have found on your own. If you start to drift, someone starts a real conversation.`,
-                  `The life you want happens between people: people who know you, places where you are expected, conversations that become plans, and experiences you carry home.`,
+                  `Belonging is not a feed or a feature. It is the quiet certainty that someone will notice, remember, and make room for you again.`,
                 ],
                 chain: ["noticed", "introduced", "remembered", "invited", "connected"],
                 scene: "life-community",

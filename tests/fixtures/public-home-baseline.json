@@ -1,0 +1,18 @@
+{
+  "variant": "conversation-intelligence-home",
+  "heroClass": "hero hero-conversation-intelligence-home",
+  "headlineLabel": "For decades, interfaces have pulled conversation onto screens. We’re doing the opposite. Building the intelligence around human conversation.",
+  "headlineText": "For decades,interfaces have pulledconversation onto screens.We’re doing the opposite.",
+  "ledeText": "Building the intelligence around human conversation.",
+  "headerEmail": "hello@humanconversation.com",
+  "storySections": 11,
+  "heroSignupAction": "https://formsubmit.co/hello@humanconversation.com",
+  "footerText": "Human Conversation",
+  "storyMarkers": [
+    "Human Conversation got replaced.",
+    "Maya needs a conversation.",
+    "Human Conversation is the only place where connection, and human, social, and community data flows.",
+    "operating system",
+    "connected experiences?"
+  ]
+}

@@ -25,6 +25,25 @@
     <meta property="og:url" content="https://humanconversation.com/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f3ead8" />
+    <script>
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        const isMasterPromptReview =
+          params.get("review") === "1" && params.get("variant") === "life-runs-on-human-conversation";
+
+        if (!isMasterPromptReview) return;
+
+        document.documentElement.classList.add("hc-master-prompt-review");
+        if (params.get("reduceMotion") === "1") {
+          document.documentElement.classList.add("hc-master-prompt-reduce-motion");
+        }
+
+        const robots = document.createElement("meta");
+        robots.name = "robots";
+        robots.content = "noindex,nofollow";
+        document.head.append(robots);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11101,6 +11120,916 @@
           font-size: 0.94rem;
         }
       }
+
+      .hc-master-prompt-demo {
+        display: none;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] {
+        --hc-demo-paper: rgba(255, 250, 240, 0.9);
+        --hc-demo-border: rgba(62, 43, 27, 0.16);
+        --hc-demo-shadow: 0 24px 70px rgba(66, 42, 19, 0.16);
+        background: #f8f0e2;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"]::before {
+        height: 100svh;
+        background-image:
+          linear-gradient(90deg, rgba(255, 250, 240, 0.99) 0%, rgba(255, 250, 240, 0.94) 33%, rgba(255, 250, 240, 0.66) 52%, rgba(255, 250, 240, 0.1) 76%, rgba(255, 250, 240, 0) 100%),
+          linear-gradient(180deg, rgba(255, 244, 222, 0.08) 0%, rgba(255, 210, 123, 0.05) 54%, rgba(73, 41, 14, 0.18) 100%),
+          url("./assets/hc-art-solves-disconnection-host-20260704.png");
+        background-position: 60% center;
+        filter: saturate(1.03) contrast(0.99) brightness(1.08);
+        transform: scale(1.015);
+        transform-origin: 65% center;
+        transition:
+          filter 900ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="transitioning"]::before,
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="journey"]::before,
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"][data-demo-state="resolved"]::before {
+        filter: saturate(1.12) contrast(1.01) brightness(1.13);
+        transform: scale(1);
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] header {
+        width: min(100% - 48px, 1320px);
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] .header-email {
+        background: rgba(255, 250, 240, 0.84);
+        backdrop-filter: blur(12px);
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .hero {
+        width: min(100% - 48px, 1320px);
+        min-height: calc(100svh - 84px);
+        padding: 64px 0 24px;
+      }
+
+      html.hc-master-prompt-review .hero-life-runs-on-human-conversation .hero-inner {
+        position: relative;
+        max-width: none;
+      }
+
+      html.hc-master-prompt-review .hero-life-runs-on-human-conversation .hero-inner > :not(.hc-master-prompt-demo) {
+        display: none;
+      }
+
+      html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] .story-cue {
+        display: none;
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        min-height: min(720px, calc(100svh - 116px));
+        isolation: isolate;
+      }
+
+      .hc-demo-stage {
+        position: relative;
+        min-height: inherit;
+        transition: min-height 420ms ease;
+      }
+
+      .hc-demo-panel {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(16px);
+        transition:
+          opacity 420ms ease,
+          transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 700ms;
+      }
+
+      .hc-master-prompt-demo[data-demo-state="prompt"] .hc-demo-prompt,
+      .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-demo-journey,
+      .hc-master-prompt-demo[data-demo-state="journey"] .hc-demo-journey,
+      .hc-master-prompt-demo[data-demo-state="resolved"] .hc-demo-resolved {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        transition-delay: 0ms;
+      }
+
+      .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-demo-journey {
+        pointer-events: none;
+      }
+
+      .hc-demo-prompt {
+        display: grid;
+        align-content: center;
+        max-width: 980px;
+        padding: clamp(26px, 5vh, 58px) 0 clamp(34px, 6vh, 72px);
+      }
+
+      .hc-demo-eyebrow {
+        margin: 0 0 16px;
+        color: rgba(26, 22, 18, 0.62);
+        font-size: 0.7rem;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .hc-demo-prompt-title {
+        max-width: 930px;
+        margin: 0;
+        color: #1a1612;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.4rem, 5.65vw, 5.95rem);
+        font-weight: 650;
+        letter-spacing: -0.045em;
+        line-height: 0.91;
+        text-wrap: balance;
+      }
+
+      .hc-demo-prompt-title .hc-prompt-human {
+        color: var(--hc-rose);
+      }
+
+      .hc-demo-prompt-title .hc-prompt-screen {
+        color: var(--hc-blue);
+      }
+
+      .hc-prompt-form {
+        width: min(100%, 840px);
+        margin-top: clamp(24px, 4vh, 38px);
+        border: 1px solid var(--hc-demo-border);
+        border-radius: 22px;
+        background: var(--hc-demo-paper);
+        box-shadow: var(--hc-demo-shadow);
+        padding: 14px;
+        backdrop-filter: blur(18px);
+      }
+
+      .hc-prompt-input {
+        display: block;
+        width: 100%;
+        min-height: 84px;
+        resize: vertical;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: rgba(26, 22, 18, 0.82);
+        padding: 8px 10px 10px;
+        font: 750 1rem/1.45 Manrope, Inter, system-ui, sans-serif;
+      }
+
+      .hc-prompt-input:focus-visible {
+        border-radius: 12px;
+        box-shadow: 0 0 0 3px rgba(91, 143, 212, 0.35);
+      }
+
+      .hc-prompt-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-top: 1px solid rgba(62, 43, 27, 0.1);
+        padding: 12px 4px 0 10px;
+      }
+
+      .hc-prompt-note {
+        margin: 0;
+        color: rgba(26, 22, 18, 0.58);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+      }
+
+      .hc-prompt-key {
+        margin-left: auto;
+        color: rgba(26, 22, 18, 0.5);
+        font-size: 0.72rem;
+        font-weight: 800;
+      }
+
+      .hc-run-prompt,
+      .hc-journey-resolve,
+      .hc-resolved-join,
+      .hc-resolved-replay {
+        min-height: 46px;
+        border-radius: 999px;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.82rem;
+        font-weight: 900;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          box-shadow 160ms ease,
+          background-color 160ms ease;
+      }
+
+      .hc-run-prompt,
+      .hc-journey-resolve,
+      .hc-resolved-join {
+        border: 1px solid #1a1612;
+        background: #1a1612;
+        color: #fffaf0;
+        box-shadow: 0 10px 28px rgba(26, 22, 18, 0.18);
+        padding: 0 21px;
+      }
+
+      .hc-run-prompt:hover,
+      .hc-journey-resolve:hover,
+      .hc-resolved-join:hover,
+      .hc-resolved-replay:hover {
+        transform: translateY(-2px);
+      }
+
+      .hc-run-prompt:focus-visible,
+      .hc-journey-resolve:focus-visible,
+      .hc-resolved-join:focus-visible,
+      .hc-resolved-replay:focus-visible {
+        outline: 3px solid rgba(91, 143, 212, 0.62);
+        outline-offset: 3px;
+      }
+
+      .hc-screen-rail {
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+        left: 0;
+        z-index: 4;
+        display: grid;
+        width: 58px;
+        height: min(56%, 390px);
+        align-content: center;
+        justify-items: center;
+        border: 1px solid rgba(91, 143, 212, 0.28);
+        border-radius: 999px;
+        background: rgba(255, 250, 240, 0.82);
+        box-shadow: 0 18px 44px rgba(41, 53, 75, 0.12);
+        color: #4d74a8;
+        opacity: 0;
+        transform: translate(-24px, -50%) scaleY(0.78);
+        transform-origin: center;
+        transition:
+          opacity 420ms ease,
+          transform 820ms cubic-bezier(0.22, 1, 0.36, 1);
+        backdrop-filter: blur(14px);
+      }
+
+      .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-screen-rail,
+      .hc-master-prompt-demo[data-demo-state="journey"] .hc-screen-rail,
+      .hc-master-prompt-demo[data-demo-state="resolved"] .hc-screen-rail {
+        opacity: 1;
+        transform: translate(0, -50%) scaleY(1);
+      }
+
+      .hc-screen-rail strong {
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.55rem;
+        font-weight: 650;
+        letter-spacing: -0.04em;
+      }
+
+      .hc-screen-rail span {
+        margin-top: 3px;
+        font-size: 0.55rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      }
+
+      .hc-screen-rail::after {
+        content: "";
+        width: 1px;
+        height: 34%;
+        margin-top: 14px;
+        background: linear-gradient(rgba(91, 143, 212, 0.44), rgba(214, 138, 154, 0.42));
+      }
+
+      .hc-demo-journey {
+        display: grid;
+        grid-template-areas:
+          "label label label"
+          "maya experience jordan"
+          "maya experience lena"
+          "maya experience next"
+          "maya experience action";
+        grid-template-columns: minmax(250px, 0.86fr) minmax(400px, 1.22fr) minmax(250px, 0.86fr);
+        grid-template-rows: auto auto auto 1fr auto;
+        gap: 12px 14px;
+        align-content: center;
+        padding: 22px 0 22px 78px;
+      }
+
+      .hc-journey-label {
+        grid-area: label;
+        margin: 0 0 2px;
+        color: rgba(26, 22, 18, 0.62);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .hc-journey-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--hc-demo-border);
+        border-radius: 20px;
+        background: rgba(255, 250, 240, 0.84);
+        box-shadow: 0 16px 42px rgba(59, 39, 20, 0.12);
+        color: #1a1612;
+        padding: 18px;
+        backdrop-filter: blur(16px);
+      }
+
+      .hc-journey-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 3px;
+        background: var(--hc-rose);
+      }
+
+      .hc-person-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        color: rgba(26, 22, 18, 0.66);
+        font-size: 0.66rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .hc-person-monogram {
+        display: inline-grid;
+        width: 33px;
+        height: 33px;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--hc-rose);
+        color: #1a1612;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1rem;
+        letter-spacing: 0;
+      }
+
+      .hc-journey-card blockquote {
+        margin: 0;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.15rem, 1.55vw, 1.46rem);
+        font-weight: 650;
+        line-height: 1.23;
+      }
+
+      .hc-maya-card {
+        grid-area: maya;
+        display: grid;
+        align-content: center;
+        min-height: 100%;
+        border-color: rgba(var(--hc-rose-rgb), 0.5);
+        background: rgba(255, 246, 238, 0.92);
+        padding: 24px;
+      }
+
+      .hc-maya-card::after {
+        content: "MAYA MAKES THE FIRST MOVE";
+        position: absolute;
+        right: 18px;
+        bottom: 16px;
+        color: rgba(214, 138, 154, 0.5);
+        font-size: 0.52rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        writing-mode: vertical-rl;
+      }
+
+      .hc-jordan-card {
+        grid-area: jordan;
+      }
+
+      .hc-lena-card {
+        grid-area: lena;
+      }
+
+      .hc-jordan-card::before {
+        background: var(--hc-blue);
+      }
+
+      .hc-jordan-card .hc-person-monogram {
+        background: var(--hc-blue);
+        color: #fffaf0;
+      }
+
+      .hc-lena-card::before {
+        background: #d8a84b;
+      }
+
+      .hc-lena-card .hc-person-monogram {
+        background: #d8a84b;
+      }
+
+      .hc-experience-card {
+        grid-area: experience;
+        display: grid;
+        align-content: end;
+        min-height: 100%;
+        background:
+          linear-gradient(180deg, rgba(255, 250, 240, 0.28), rgba(255, 250, 240, 0.96) 52%),
+          url("./assets/hc-art-solves-disconnection-right-introduction-20260707.png") center 32% / cover;
+        padding: clamp(190px, 27vh, 270px) 24px 24px;
+      }
+
+      .hc-experience-card::before {
+        background: linear-gradient(var(--hc-rose), #d8a84b);
+      }
+
+      .hc-experience-date,
+      .hc-next-date {
+        margin: 0 0 8px;
+        color: #8f631d;
+        font-size: 0.67rem;
+        font-weight: 900;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .hc-experience-card h2,
+      .hc-next-card h3 {
+        margin: 0;
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 650;
+        letter-spacing: -0.035em;
+        line-height: 0.98;
+      }
+
+      .hc-experience-card h2 {
+        font-size: clamp(2.5rem, 3.4vw, 4rem);
+      }
+
+      .hc-experience-details {
+        display: grid;
+        gap: 2px;
+        margin: 16px 0 14px;
+        color: rgba(26, 22, 18, 0.76);
+        font-size: 0.84rem;
+        font-weight: 760;
+        line-height: 1.42;
+      }
+
+      .hc-experience-details p,
+      .hc-next-card p {
+        margin: 0;
+      }
+
+      .hc-experience-promise,
+      .hc-next-promise {
+        margin: 0;
+        color: #1a1612;
+        font-size: 0.72rem;
+        font-weight: 950;
+        letter-spacing: 0.12em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .hc-next-card {
+        grid-area: next;
+        background: rgba(255, 246, 232, 0.92);
+      }
+
+      .hc-next-card::before {
+        background: #d8a84b;
+      }
+
+      .hc-next-card h3 {
+        margin-bottom: 7px;
+        font-size: 1.5rem;
+      }
+
+      .hc-next-card > p:not(.hc-next-date, .hc-next-promise) {
+        color: rgba(26, 22, 18, 0.7);
+        font-size: 0.76rem;
+        font-weight: 760;
+        line-height: 1.4;
+      }
+
+      .hc-next-promise {
+        margin-top: 10px;
+        color: #9c6d1f;
+      }
+
+      .hc-journey-resolve {
+        grid-area: action;
+        justify-self: end;
+        align-self: end;
+        background: rgba(26, 22, 18, 0.9);
+      }
+
+      .hc-demo-resolved {
+        display: grid;
+        align-content: center;
+        padding: 40px 0 50px 78px;
+      }
+
+      .hc-resolved-card {
+        width: min(720px, 72%);
+        border: 1px solid rgba(var(--hc-rose-rgb), 0.34);
+        border-radius: 28px;
+        background: rgba(255, 250, 240, 0.91);
+        box-shadow: 0 30px 90px rgba(45, 29, 15, 0.2);
+        padding: clamp(30px, 4.5vw, 58px);
+        backdrop-filter: blur(20px);
+      }
+
+      .hc-resolved-kicker {
+        margin: 0 0 14px;
+        color: var(--hc-rose);
+        font-size: 0.68rem;
+        font-weight: 950;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .hc-resolved-card h2 {
+        margin: 0;
+        color: #1a1612;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.2rem, 5.2vw, 5.8rem);
+        font-weight: 650;
+        letter-spacing: -0.045em;
+        line-height: 0.91;
+        text-wrap: balance;
+      }
+
+      .hc-resolved-card > p:not(.hc-resolved-kicker) {
+        max-width: 560px;
+        margin: 22px 0 0;
+        color: rgba(26, 22, 18, 0.72);
+        font-size: clamp(1rem, 1.35vw, 1.2rem);
+        font-weight: 760;
+        line-height: 1.48;
+      }
+
+      .hc-resolved-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .hc-resolved-join {
+        background: var(--hc-rose);
+        color: #1a1612;
+      }
+
+      .hc-resolved-replay {
+        border: 1px solid rgba(26, 22, 18, 0.22);
+        background: rgba(255, 250, 240, 0.5);
+        color: #1a1612;
+        padding: 0 20px;
+      }
+
+      @media (max-width: 1080px) {
+        .hc-demo-journey {
+          grid-template-columns: minmax(220px, 0.82fr) minmax(340px, 1.18fr) minmax(220px, 0.82fr);
+          padding-left: 72px;
+        }
+
+        .hc-journey-card {
+          padding: 15px;
+        }
+
+        .hc-maya-card {
+          padding: 19px;
+        }
+
+        .hc-journey-card blockquote {
+          font-size: 1.06rem;
+        }
+
+        .hc-experience-card {
+          padding-top: clamp(150px, 24vh, 220px);
+        }
+      }
+
+      @media (min-width: 761px) and (max-height: 840px) {
+        .hc-demo-journey {
+          grid-template-rows: auto auto auto auto auto;
+          gap: 8px 12px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+        }
+
+        .hc-journey-card {
+          padding-top: 13px;
+          padding-bottom: 13px;
+        }
+
+        .hc-experience-card {
+          padding-top: 150px;
+          padding-bottom: 18px;
+        }
+
+        .hc-journey-resolve {
+          min-height: 40px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(255, 250, 240, 0.97) 0%, rgba(255, 250, 240, 0.9) 43%, rgba(255, 250, 240, 0.5) 68%, rgba(255, 245, 224, 0.46) 100%),
+            url("./assets/hc-art-solves-disconnection-host-20260704.png");
+          background-position: 72% center;
+          filter: saturate(1.05) contrast(0.99) brightness(1.09);
+        }
+
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] header {
+          width: calc(100% - 28px);
+        }
+
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"].has-expanded-story .hero {
+          width: calc(100% - 28px);
+          min-height: calc(100svh - 72px);
+          padding: 62px 0 12px;
+        }
+
+        html.hc-master-prompt-review .hc-master-prompt-demo {
+          min-height: calc(100svh - 86px);
+        }
+
+        .hc-demo-prompt {
+          align-content: start;
+          padding: clamp(46px, 8vh, 68px) 0 30px;
+        }
+
+        .hc-demo-eyebrow {
+          margin-bottom: 12px;
+          font-size: 0.58rem;
+        }
+
+        .hc-demo-prompt-title {
+          max-width: 100%;
+          font-size: clamp(2.55rem, 12vw, 3.55rem);
+          line-height: 0.93;
+        }
+
+        .hc-prompt-form {
+          margin-top: 22px;
+          border-radius: 18px;
+          padding: 10px;
+        }
+
+        .hc-prompt-input {
+          min-height: 110px;
+          padding: 8px;
+          font-size: 0.86rem;
+        }
+
+        .hc-prompt-actions {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 8px 10px;
+          padding: 10px 2px 0 8px;
+        }
+
+        .hc-prompt-note {
+          font-size: 0.62rem;
+        }
+
+        .hc-prompt-key {
+          display: none;
+        }
+
+        .hc-run-prompt {
+          grid-column: 2;
+          grid-row: 1;
+          min-height: 42px;
+          padding: 0 16px;
+          font-size: 0.72rem;
+        }
+
+        .hc-screen-rail {
+          top: 6px;
+          right: 0;
+          bottom: auto;
+          left: auto;
+          display: flex;
+          width: auto;
+          height: 38px;
+          gap: 5px;
+          border-radius: 999px;
+          padding: 0 12px;
+          transform: translateY(-14px) scaleX(0.8);
+        }
+
+        .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-screen-rail,
+        .hc-master-prompt-demo[data-demo-state="journey"] .hc-screen-rail,
+        .hc-master-prompt-demo[data-demo-state="resolved"] .hc-screen-rail {
+          transform: translateY(0) scaleX(1);
+        }
+
+        .hc-screen-rail strong {
+          font-size: 1rem;
+        }
+
+        .hc-screen-rail span {
+          margin: 0;
+          font-size: 0.48rem;
+          letter-spacing: 0.12em;
+          writing-mode: horizontal-tb;
+          transform: none;
+        }
+
+        .hc-screen-rail::after {
+          display: none;
+        }
+
+        .hc-master-prompt-demo[data-demo-state="journey"] .hc-demo-stage {
+          min-height: 738px;
+        }
+
+        .hc-demo-journey {
+          grid-template-areas:
+            "label"
+            "maya"
+            "jordan"
+            "experience"
+            "lena"
+            "next"
+            "action";
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          gap: 7px;
+          align-content: start;
+          padding: 46px 0 12px;
+        }
+
+        .hc-journey-label {
+          font-size: 0.56rem;
+        }
+
+        .hc-journey-card {
+          border-radius: 14px;
+          padding: 10px 12px;
+        }
+
+        .hc-person-label {
+          gap: 7px;
+          margin-bottom: 6px;
+          font-size: 0.54rem;
+        }
+
+        .hc-person-monogram {
+          width: 24px;
+          height: 24px;
+          font-size: 0.76rem;
+        }
+
+        .hc-journey-card blockquote {
+          font-size: 0.82rem;
+          line-height: 1.22;
+        }
+
+        .hc-maya-card {
+          min-height: auto;
+          padding: 12px 14px;
+        }
+
+        .hc-maya-card::after {
+          display: none;
+        }
+
+        .hc-experience-card {
+          min-height: 188px;
+          background:
+            linear-gradient(90deg, rgba(255, 250, 240, 0.97) 0%, rgba(255, 250, 240, 0.86) 62%, rgba(255, 250, 240, 0.4) 100%),
+            url("./assets/hc-art-solves-disconnection-right-introduction-20260707.png") 70% 36% / cover;
+          padding: 13px 44% 13px 14px;
+        }
+
+        .hc-experience-date,
+        .hc-next-date {
+          margin-bottom: 5px;
+          font-size: 0.54rem;
+        }
+
+        .hc-experience-card h2 {
+          font-size: 1.75rem;
+        }
+
+        .hc-experience-details {
+          gap: 0;
+          margin: 8px 0;
+          font-size: 0.64rem;
+          line-height: 1.32;
+        }
+
+        .hc-experience-promise,
+        .hc-next-promise {
+          font-size: 0.55rem;
+        }
+
+        .hc-next-card h3 {
+          margin-bottom: 3px;
+          font-size: 1.1rem;
+        }
+
+        .hc-next-card > p:not(.hc-next-date, .hc-next-promise) {
+          font-size: 0.62rem;
+        }
+
+        .hc-next-promise {
+          margin-top: 4px;
+        }
+
+        .hc-journey-resolve {
+          justify-self: stretch;
+          min-height: 40px;
+          font-size: 0.7rem;
+        }
+
+        .hc-demo-resolved {
+          align-content: start;
+          padding: clamp(54px, 9vh, 78px) 0 30px;
+        }
+
+        .hc-resolved-card {
+          width: 100%;
+          border-radius: 22px;
+          padding: 24px 20px;
+        }
+
+        .hc-resolved-card h2 {
+          font-size: clamp(2.9rem, 13.6vw, 4rem);
+          line-height: 0.92;
+        }
+
+        .hc-resolved-card > p:not(.hc-resolved-kicker) {
+          margin-top: 18px;
+          font-size: 0.92rem;
+        }
+
+        .hc-resolved-actions {
+          margin-top: 22px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        html.hc-master-prompt-review .hc-master-prompt-demo {
+          min-height: 790px;
+        }
+
+        .hc-demo-prompt {
+          padding-top: 76px;
+        }
+
+        .hc-demo-prompt-title {
+          font-size: 2.25rem;
+        }
+
+        .hc-master-prompt-demo[data-demo-state="journey"] .hc-demo-stage {
+          min-height: 790px;
+        }
+
+        .hc-demo-journey {
+          gap: 5px;
+          padding-top: 42px;
+        }
+
+        .hc-experience-card {
+          min-height: 160px;
+          padding-right: 36%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.hc-master-prompt-review .hc-master-prompt-demo *,
+        html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"]::before {
+          animation: none !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+          transition-delay: 0ms !important;
+        }
+      }
+
+      html.hc-master-prompt-reduce-motion .hc-master-prompt-demo *,
+      html.hc-master-prompt-reduce-motion .page[data-variant="life-runs-on-human-conversation"]::before {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0ms !important;
+      }
     </style>
   </head>
   <body>
@@ -11722,6 +12651,54 @@
         },
       ];
 
+      const masterPromptDemoConfig = Object.freeze({
+        variantId: "life-runs-on-human-conversation",
+        prompt: "Your job is to make my life 99% human conversation and shared experiences—and only 1% screen time.",
+        people: {
+          maya: {
+            name: "Maya",
+            role: "Community builder",
+            message:
+              "Saturday at 10 could be a good place to start. I’ll meet you at the front desk and introduce you before we play.",
+          },
+          jordan: {
+            name: "Jordan",
+            message: "Maya thinks we’d enjoy playing together. Want to warm up at 9:45?",
+          },
+          lena: {
+            name: "Lena",
+            message: "A few of us are getting coffee afterward. Come with us.",
+          },
+        },
+        experiences: {
+          primary: {
+            date: "Saturday · 10:00 AM",
+            title: "An easier place to start",
+            description: "A small, relaxed pickleball session.",
+            host: "Maya is hosting.",
+            welcome: "Jordan is meeting you first.",
+            promise: "You already know who to look for.",
+          },
+          next: {
+            date: "Tuesday · 6:30 PM",
+            title: "Play again",
+            description: "Jordan, you, and two people Maya is bringing together.",
+            promise: "You’re not starting over.",
+          },
+        },
+        final: {
+          title: "Human Conversation makes this prompt real.",
+          copy: "AI in the background. Community builders making the next right connection happen.",
+          cta: "Join the conversation",
+          replay: "Replay",
+        },
+      });
+
+      const masterPromptParams = new URLSearchParams(window.location.search);
+      const isMasterPromptReviewRoute =
+        masterPromptParams.get("review") === "1" &&
+        masterPromptParams.get("variant") === masterPromptDemoConfig.variantId;
+
       const page = document.querySelector(".page");
       const hero = document.querySelector("#landing-hero");
       const headline = hero.querySelector("h1");
@@ -12143,6 +13120,199 @@
         setStoryPanelsReady(variantId);
       }
 
+      function renderMasterPromptDemo() {
+        if (!isMasterPromptReviewRoute) return;
+
+        const heroInner = hero.querySelector(".hero-inner");
+        if (!heroInner || heroInner.querySelector("[data-hc-demo]")) return;
+
+        const { prompt, people, experiences, final } = masterPromptDemoConfig;
+
+        heroInner.insertAdjacentHTML(
+          "beforeend",
+          `
+            <section class="hc-master-prompt-demo" data-hc-demo data-demo-state="prompt" aria-label="Illustrative Human Conversation product experience">
+              <p class="sr-only" data-hc-live-region role="status" aria-live="polite" aria-atomic="true"></p>
+              <aside class="hc-screen-rail" aria-label="One percent screen time">
+                <strong>1%</strong>
+                <span>screen</span>
+              </aside>
+
+              <div class="hc-demo-stage">
+                <section class="hc-demo-panel hc-demo-prompt" data-hc-panel="prompt" aria-labelledby="hc-master-prompt-title">
+                  <p class="hc-demo-eyebrow">A prompt for the life you actually want</p>
+                  <h2 class="hc-demo-prompt-title" id="hc-master-prompt-title">
+                    Your job is to make my life <span class="hc-prompt-human">99% human conversation</span> and shared experiences—and only <span class="hc-prompt-screen">1% screen time.</span>
+                  </h2>
+                  <form class="hc-prompt-form" data-hc-prompt-form>
+                    <label class="sr-only" for="hc-master-prompt">Master prompt</label>
+                    <textarea class="hc-prompt-input" id="hc-master-prompt" rows="3" spellcheck="true">${prompt}</textarea>
+                    <div class="hc-prompt-actions">
+                      <p class="hc-prompt-note">Illustrative product experience</p>
+                      <span class="hc-prompt-key" aria-hidden="true">Press Enter</span>
+                      <button class="hc-run-prompt" type="submit" data-hc-action="run" aria-label="Run this prompt">Run this prompt</button>
+                    </div>
+                  </form>
+                </section>
+
+                <section class="hc-demo-panel hc-demo-journey" data-hc-panel="journey" data-hc-journey aria-label="The human journey">
+                  <p class="hc-journey-label">The human journey · illustrative</p>
+
+                  <article class="hc-journey-card hc-maya-card">
+                    <p class="hc-person-label"><span class="hc-person-monogram" aria-hidden="true">M</span>${people.maya.name} · ${people.maya.role}</p>
+                    <blockquote>“${people.maya.message}”</blockquote>
+                  </article>
+
+                  <article class="hc-journey-card hc-jordan-card">
+                    <p class="hc-person-label"><span class="hc-person-monogram" aria-hidden="true">J</span>${people.jordan.name}</p>
+                    <blockquote>“${people.jordan.message}”</blockquote>
+                  </article>
+
+                  <article class="hc-journey-card hc-experience-card">
+                    <p class="hc-experience-date">${experiences.primary.date}</p>
+                    <h2>${experiences.primary.title}</h2>
+                    <div class="hc-experience-details">
+                      <p>${experiences.primary.description}</p>
+                      <p>${experiences.primary.host}</p>
+                      <p>${experiences.primary.welcome}</p>
+                    </div>
+                    <p class="hc-experience-promise">${experiences.primary.promise}</p>
+                  </article>
+
+                  <article class="hc-journey-card hc-lena-card">
+                    <p class="hc-person-label"><span class="hc-person-monogram" aria-hidden="true">L</span>${people.lena.name}</p>
+                    <blockquote>“${people.lena.message}”</blockquote>
+                  </article>
+
+                  <article class="hc-journey-card hc-next-card">
+                    <p class="hc-next-date">${experiences.next.date}</p>
+                    <h3>${experiences.next.title}</h3>
+                    <p>${experiences.next.description}</p>
+                    <p class="hc-next-promise">${experiences.next.promise}</p>
+                  </article>
+
+                  <button class="hc-journey-resolve" type="button" data-hc-action="resolve">See the result</button>
+                </section>
+
+                <section class="hc-demo-panel hc-demo-resolved" data-hc-panel="resolved" aria-labelledby="hc-resolved-title">
+                  <div class="hc-resolved-card">
+                    <p class="hc-resolved-kicker">99% human time</p>
+                    <h2 id="hc-resolved-title">${final.title}</h2>
+                    <p>${final.copy}</p>
+                    <div class="hc-resolved-actions">
+                      <button class="hc-resolved-join" type="button" data-hc-action="join">${final.cta}</button>
+                      <button class="hc-resolved-replay" type="button" data-hc-action="replay">${final.replay}</button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </section>
+          `,
+        );
+
+        const demoRoot = heroInner.querySelector("[data-hc-demo]");
+        const promptForm = demoRoot?.querySelector("[data-hc-prompt-form]");
+        const promptInput = demoRoot?.querySelector("#hc-master-prompt");
+        const resolveButton = demoRoot?.querySelector('[data-hc-action="resolve"]');
+        const joinButton = demoRoot?.querySelector('[data-hc-action="join"]');
+        const replayButton = demoRoot?.querySelector('[data-hc-action="replay"]');
+        const liveRegion = demoRoot?.querySelector("[data-hc-live-region]");
+        const panels = Array.from(demoRoot?.querySelectorAll("[data-hc-panel]") || []);
+
+        if (!(demoRoot instanceof HTMLElement) || !(promptInput instanceof HTMLTextAreaElement)) return;
+
+        let demoState = "prompt";
+        let transitionTimer;
+        const reducedMotion =
+          masterPromptParams.get("reduceMotion") === "1" || prefersReducedMotion.matches;
+
+        function setDemoState(nextState, options = {}) {
+          const validStates = new Set(["prompt", "transitioning", "journey", "resolved"]);
+          const safeState = validStates.has(nextState) ? nextState : "prompt";
+
+          demoState = safeState;
+          demoRoot.dataset.demoState = safeState;
+          page.dataset.demoState = safeState;
+
+          panels.forEach((panel) => {
+            const panelState = panel.dataset.hcPanel;
+            const activePanelState = safeState === "transitioning" ? "journey" : safeState;
+            const isActive = panelState === activePanelState;
+            panel.setAttribute("aria-hidden", String(!isActive));
+            panel.inert = !isActive;
+          });
+
+          if (liveRegion && options.announce !== false) {
+            const announcements = {
+              prompt: "Master prompt ready.",
+              transitioning: "Turning screen work into a human journey.",
+              journey: "Maya has made the first connection.",
+              resolved: final.title,
+            };
+            liveRegion.textContent = announcements[safeState];
+          }
+        }
+
+        function runMasterPrompt() {
+          if (demoState !== "prompt") return;
+
+          window.clearTimeout(transitionTimer);
+          setDemoState("transitioning");
+
+          const finishTransition = () => setDemoState("journey");
+          if (reducedMotion) {
+            window.requestAnimationFrame(finishTransition);
+          } else {
+            transitionTimer = window.setTimeout(finishTransition, 920);
+          }
+        }
+
+        promptForm?.addEventListener("submit", (event) => {
+          event.preventDefault();
+          runMasterPrompt();
+        });
+
+        promptInput.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" || event.shiftKey || event.isComposing) return;
+          event.preventDefault();
+          runMasterPrompt();
+        });
+
+        resolveButton?.addEventListener("click", () => {
+          if (demoState !== "journey") return;
+          setDemoState("resolved");
+        });
+
+        joinButton?.addEventListener("click", () => {
+          const signupInput = landingStory?.querySelector('.life-final-section .story-contact input[type="email"]');
+          const signupSection = signupInput?.closest(".life-final-section");
+          const focusTarget = signupInput instanceof HTMLElement ? signupInput : signupSection;
+
+          signupSection?.scrollIntoView({
+            behavior: reducedMotion ? "auto" : "smooth",
+            block: "start",
+          });
+
+          window.setTimeout(
+            () => focusTarget?.focus({ preventScroll: true }),
+            reducedMotion ? 0 : 560,
+          );
+        });
+
+        replayButton?.addEventListener("click", () => {
+          window.clearTimeout(transitionTimer);
+          promptInput.value = prompt;
+          setDemoState("prompt");
+          window.requestAnimationFrame(() => promptInput.focus({ preventScroll: true }));
+        });
+
+        const requestedDemoState = masterPromptParams.get("demoState");
+        const initialState = ["prompt", "journey", "resolved"].includes(requestedDemoState)
+          ? requestedDemoState
+          : "prompt";
+        setDemoState(initialState, { announce: false });
+      }
+
       function setVariant(index, options = {}) {
         const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
         const variant = variants[safeIndex];
@@ -12245,6 +13415,7 @@
             : 0
         : 0;
       setVariant(requestedIndex, { immediate: true });
+      renderMasterPromptDemo();
 
       if (window.location.hash === "#landing-story") {
         window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);

@@ -28,8 +28,12 @@ function reviewUrl() {
   return `${server.baseUrl}/?review=1&variant=${VARIANT}`;
 }
 
+function publicStoryUrl() {
+  return `${server.baseUrl}/?review=1&variant=conversation-intelligence-home`;
+}
+
 try {
-  await page.setReducedMotion(true);
+  await page.setReducedMotion(false);
   for (const [name, width, height] of [
     ["desktop-1440x900", 1440, 900],
     ["mobile-390x844", 390, 844],
@@ -38,7 +42,19 @@ try {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
     await page.waitFor(`document.querySelector(".page")?.dataset.variant === "${VARIANT}"`);
-    await capture(name);
+    await capture(`${name}-digital`);
+    await page.evaluate(`window.scrollTo({ top: Math.max(document.querySelector("#landing-hero").offsetHeight - window.innerHeight, 1), behavior: "auto" })`);
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.twitterStage === "human"`);
+    await new Promise((resolve) => setTimeout(resolve, 950));
+    await capture(`${name}-human`);
+
+    await page.navigate(publicStoryUrl());
+    await page.waitFor(`document.querySelector(".page")?.dataset.variant === "conversation-intelligence-home"`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.evaluate(`document.querySelector("#landing-story .story-section")?.scrollIntoView({ block: "start", behavior: "auto" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .story-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+    await new Promise((resolve) => setTimeout(resolve, 120));
+    await capture(`${name}-section-two`);
   }
 } finally {
   await chrome.close();

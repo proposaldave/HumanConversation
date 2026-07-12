@@ -323,7 +323,7 @@ test("Enter and Run both reveal the unchanged current homepage without navigatin
       pageFocused: true,
       variant: "conversation-intelligence-home",
       robots: null,
-      themeColor: "#f3ead8",
+      themeColor: "#050608",
       path: "/",
       search: testCase.expectedSearch,
       scrollY: 0,

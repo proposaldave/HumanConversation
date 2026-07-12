@@ -30,8 +30,29 @@ function reviewUrl(query = "") {
   return `${server.baseUrl}/?review=1&variant=${VARIANT}${query}`;
 }
 
+function publicUrl(query = "") {
+  return `${server.baseUrl}/${query}`;
+}
+
 try {
   await page.setReducedMotion(false);
+  await page.setViewport(1440, 900);
+  await page.navigate(publicUrl());
+  await page.waitFor(`document.querySelector("[data-hc-typing-status]")?.dataset.typingState === "complete"`, { timeout: 4000 });
+  await capture("public-desktop-01-crt");
+  await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
+  await delay(1120);
+  await capture("public-desktop-02-doorway-to-current-home");
+  await page.waitFor(`!document.querySelector("[data-hc-public-intro]")`, { timeout: 2800 });
+  await capture("public-desktop-03-current-home");
+
+  await page.setViewport(390, 844);
+  await page.navigate(publicUrl("?reduceMotion=1"));
+  await capture("public-mobile-01-crt");
+  await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
+  await page.waitFor(`!document.querySelector("[data-hc-public-intro]")`);
+  await capture("public-mobile-02-current-home");
+
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("&demoState=prompt"));
   await delay(900);

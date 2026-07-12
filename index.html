@@ -23,6 +23,7 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://humanconversation.com/" />
+    <link rel="canonical" href="https://humanconversation.com/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f3ead8" />
     <script>
@@ -30,6 +31,19 @@
         const params = new URLSearchParams(window.location.search);
         const isMasterPromptReview =
           params.get("review") === "1" && params.get("variant") === "life-runs-on-human-conversation";
+        const isReviewSurface = ["review", "variant", "option"].some((key) => params.has(key));
+        const isPublicMasterPromptIntro =
+          ["/", "/index.html"].includes(window.location.pathname) &&
+          !isReviewSurface &&
+          window.location.hash === "";
+
+        if (isPublicMasterPromptIntro) {
+          document.documentElement.classList.add("hc-public-master-prompt-pending");
+          window.setTimeout(() => {
+            document.documentElement.classList.remove("hc-public-master-prompt-pending");
+          }, 2500);
+          return;
+        }
 
         if (!isMasterPromptReview) return;
 
@@ -12032,6 +12046,15 @@
       }
 
       /* Master-prompt review v2: the cursor becomes the doorway. */
+      html.hc-public-master-prompt-pending body {
+        overflow: hidden;
+        background: #050608;
+      }
+
+      html.hc-public-master-prompt-pending .page {
+        visibility: hidden;
+      }
+
       html.hc-master-prompt-review body {
         background: #050608;
       }
@@ -12044,6 +12067,22 @@
       html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"]::before {
         background-image: none !important;
         opacity: 0 !important;
+      }
+
+      html.hc-public-master-prompt-intro body {
+        overflow: hidden;
+      }
+
+      html.hc-public-master-prompt-intro .page[data-variant="conversation-intelligence-home"] {
+        background: #120d09;
+      }
+
+      html.hc-public-master-prompt-intro .page[data-variant="conversation-intelligence-home"]::before {
+        background-image:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.72) 0%, rgba(3, 5, 8, 0.54) 35%, rgba(3, 5, 8, 0.2) 68%, rgba(3, 5, 8, 0.05) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.12) 0%, rgba(3, 5, 8, 0.03) 44%, rgba(3, 5, 8, 0.34) 100%),
+          url("./assets/hc-art-conversation-intelligence-threshold-20260704.png") !important;
+        opacity: 1 !important;
       }
 
       html.hc-master-prompt-review .page[data-variant="life-runs-on-human-conversation"] {
@@ -12115,6 +12154,11 @@
       }
 
       html.hc-master-prompt-review .hc-master-prompt-demo {
+        --hc-terminal: #050608;
+        --hc-terminal-raised: #0a0c0f;
+        --hc-terminal-line: rgba(224, 229, 235, 0.16);
+        --hc-terminal-text: #d8dde4;
+        --hc-terminal-dim: #7c838d;
         position: relative;
         z-index: 2;
         display: block;
@@ -12122,6 +12166,25 @@
         overflow: hidden;
         isolation: isolate;
         background: var(--hc-terminal);
+      }
+
+      html.hc-public-master-prompt-intro .hc-public-master-prompt-intro-shell {
+        position: fixed;
+        inset: 0;
+        z-index: 20000;
+        width: 100%;
+        min-height: 100svh;
+        background: transparent;
+      }
+
+      html.hc-public-master-prompt-intro .hc-public-master-prompt-intro-shell .hc-demo-panel {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+
+      html.hc-public-master-prompt-intro .hc-public-master-prompt-intro-shell .hc-future-layer {
+        display: none;
       }
 
       html.hc-master-prompt-review .hc-future-layer {
@@ -13886,6 +13949,13 @@
       const isMasterPromptReviewRoute =
         masterPromptParams.get("review") === "1" &&
         masterPromptParams.get("variant") === masterPromptDemoConfig.variantId;
+      const isMasterPromptReviewSurface = ["review", "variant", "option"].some((key) =>
+        masterPromptParams.has(key),
+      );
+      const isPublicMasterPromptIntroRoute =
+        ["/", "/index.html"].includes(window.location.pathname) &&
+        !isMasterPromptReviewSurface &&
+        window.location.hash === "";
 
       const page = document.querySelector(".page");
       const hero = document.querySelector("#landing-hero");
@@ -14309,17 +14379,18 @@
       }
 
       function renderMasterPromptDemo() {
-        if (!isMasterPromptReviewRoute) return;
+        if (!isMasterPromptReviewRoute && !isPublicMasterPromptIntroRoute) return;
 
         const heroInner = hero.querySelector(".hero-inner");
-        if (!heroInner || heroInner.querySelector("[data-hc-demo]")) return;
+        const demoHost = isPublicMasterPromptIntroRoute ? document.body : heroInner;
+        if (!demoHost || demoHost.querySelector("[data-hc-demo]")) return;
 
         const { prompt, people, experiences, final } = masterPromptDemoConfig;
 
-        heroInner.insertAdjacentHTML(
+        demoHost.insertAdjacentHTML(
           "beforeend",
           `
-            <section class="hc-master-prompt-demo" data-hc-demo data-demo-state="prompt" aria-label="A Human Conversation journey from screen time to human time">
+            <section class="hc-master-prompt-demo${isPublicMasterPromptIntroRoute ? " hc-public-master-prompt-intro-shell" : ""}" data-hc-demo${isPublicMasterPromptIntroRoute ? " data-hc-public-intro" : ""} data-demo-state="prompt" aria-label="A Human Conversation journey from screen time to human time">
               <p class="sr-only" data-hc-live-region role="status" aria-live="polite" aria-atomic="true"></p>
               <div class="hc-future-layer" aria-hidden="true"></div>
               <aside class="hc-screen-rail" aria-label="One percent screen time"><span>1% screen</span></aside>
@@ -14404,7 +14475,9 @@
           `,
         );
 
-        const demoRoot = heroInner.querySelector("[data-hc-demo]");
+        const demoRoot = isPublicMasterPromptIntroRoute
+          ? demoHost.querySelector("[data-hc-public-intro]")
+          : demoHost.querySelector("[data-hc-demo]");
         const promptForm = demoRoot?.querySelector("[data-hc-prompt-form]");
         const promptInput = demoRoot?.querySelector("#hc-master-prompt");
         const joinButton = demoRoot?.querySelector('[data-hc-action="join"]');
@@ -14416,6 +14489,17 @@
         const panels = Array.from(demoRoot?.querySelectorAll("[data-hc-panel]") || []);
 
         if (!(demoRoot instanceof HTMLElement) || !(promptInput instanceof HTMLTextAreaElement)) return;
+
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        const originalThemeColor = themeColor?.getAttribute("content") || "#f3ead8";
+
+        if (isPublicMasterPromptIntroRoute) {
+          page.inert = true;
+          page.setAttribute("aria-hidden", "true");
+          document.documentElement.classList.add("hc-master-prompt-review", "hc-public-master-prompt-intro");
+          document.documentElement.classList.remove("hc-public-master-prompt-pending");
+          themeColor?.setAttribute("content", "#050608");
+        }
 
         let demoState = "prompt";
         let transitionTimer;
@@ -14531,6 +14615,24 @@
           const finishTransition = () => {
             if (demoState !== "transitioning") return;
             window.clearTimeout(transitionTimer);
+
+            if (isPublicMasterPromptIntroRoute) {
+              demoRoot.removeAttribute("aria-busy");
+              page.inert = false;
+              page.removeAttribute("aria-hidden");
+              delete page.dataset.demoState;
+              document.documentElement.classList.remove(
+                "hc-master-prompt-review",
+                "hc-public-master-prompt-intro",
+                "hc-public-master-prompt-pending",
+              );
+              themeColor?.setAttribute("content", originalThemeColor);
+              demoRoot.remove();
+              window.scrollTo({ top: 0, behavior: "auto" });
+              page.focus({ preventScroll: true });
+              return;
+            }
+
             setDemoState("journey");
             demoRoot.removeAttribute("aria-busy");
             window.requestAnimationFrame(() => futureHeading?.focus({ preventScroll: true }));
@@ -14606,7 +14708,9 @@
           window.clearTimeout(transitionTimer);
         }, { once: true });
 
-        const requestedDemoState = masterPromptParams.get("demoState");
+        const requestedDemoState = isPublicMasterPromptIntroRoute
+          ? "prompt"
+          : masterPromptParams.get("demoState");
         const initialState = ["prompt", "journey", "resolved"].includes(requestedDemoState)
           ? requestedDemoState
           : "prompt";

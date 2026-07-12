@@ -43,8 +43,8 @@ after(async () => {
   await staticServer?.close();
 });
 
-test("public homepage remains the saved default", async () => {
-  await page.navigate(`${staticServer.baseUrl}/`);
+test("saved homepage remains unchanged outside the exact public intro route", async () => {
+  await page.navigate(`${staticServer.baseUrl}/?review=0`);
 
   const projection = await page.evaluate(`(() => {
     const normalizeText = (element) => element?.textContent?.replace(/\\s+/g, " ").trim();

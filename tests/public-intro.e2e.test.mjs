@@ -204,7 +204,7 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
   assertRuntimeHealthy();
 });
 
-test("public transition isolates GO LIVE from the underlying homepage", async () => {
+test("public transition isolates prompt accepted from the underlying homepage", async () => {
   await page.navigate(publicUrl());
   await page.waitFor(promptReadyExpression(), { timeout: 4000 });
   await page.evaluate('document.querySelector(\'[data-hc-action="run"]\').click()');
@@ -232,17 +232,21 @@ test("public transition isolates GO LIVE from the underlying homepage", async ()
   assert.equal(transitionStart.transitionOwnsCenter, true);
 
   await page.waitFor(
-    'Number(getComputedStyle(document.querySelector(".hc-transition-system strong")).opacity) > 0.5',
+    'Number(getComputedStyle(document.querySelector(".hc-transition-system span")).opacity) > 0.5',
     { timeout: 2000 },
   );
-  const goLiveState = await page.evaluate(`(() => ({
+  const acceptedState = await page.evaluate(`(() => ({
     pageVisibility: getComputedStyle(document.querySelector(".page")).visibility,
     headlineVisibility: getComputedStyle(document.querySelector("#landing-hero h1")).visibility,
-    goLiveOpacity: Number(getComputedStyle(document.querySelector(".hc-transition-system strong")).opacity),
+    acceptedOpacity: Number(getComputedStyle(document.querySelector(".hc-transition-system span")).opacity),
+    acceptedText: document.querySelector(".hc-transition-system")?.textContent?.replace(/\\s+/g, " ").trim(),
+    hasGoLive: /go live/i.test(document.querySelector("[data-hc-public-intro]")?.textContent || ""),
   }))()`);
-  assert.equal(goLiveState.pageVisibility, "hidden");
-  assert.equal(goLiveState.headlineVisibility, "hidden");
-  assert.ok(goLiveState.goLiveOpacity > 0.5);
+  assert.equal(acceptedState.pageVisibility, "hidden");
+  assert.equal(acceptedState.headlineVisibility, "hidden");
+  assert.ok(acceptedState.acceptedOpacity > 0.5);
+  assert.equal(acceptedState.acceptedText, "prompt accepted");
+  assert.equal(acceptedState.hasGoLive, false);
 
   await page.waitFor('!document.querySelector("[data-hc-public-intro]")', { timeout: 3000 });
   const revealed = await page.evaluate(`({

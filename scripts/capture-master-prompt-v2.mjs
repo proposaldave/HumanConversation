@@ -45,7 +45,7 @@ try {
   await page.waitFor(`document.querySelector("[data-hc-typing-status]")?.dataset.typingState === "complete" && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`, { timeout: 4000 });
   await capture("public-desktop-01-crt");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
-  await delay(1120);
+  await delay(360);
   await capture("public-desktop-02-doorway-to-current-home");
   await page.waitFor(`!document.querySelector("[data-hc-public-intro]")`, { timeout: 2800 });
   await capture("public-desktop-03-current-home");
@@ -65,7 +65,7 @@ try {
   await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Give me my life back." && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`, { timeout: 4000 });
   await capture("desktop-02-prompt-ready");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
-  await delay(1120);
+  await delay(360);
   await capture("desktop-03-doorway");
   await page.waitFor(`document.querySelector("[data-hc-demo]")?.dataset.demoState === "journey"`, {
     timeout: 2800,

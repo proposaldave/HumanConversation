@@ -12809,18 +12809,6 @@
         text-transform: uppercase;
       }
 
-      html.hc-master-prompt-review .hc-transition-system strong {
-        margin-top: 12px;
-        color: #fff8ea;
-        font-family: Fraunces, Georgia, serif;
-        font-size: clamp(4.8rem, 12vw, 11rem);
-        font-weight: 650;
-        letter-spacing: -0.07em;
-        line-height: 0.8;
-        opacity: 0;
-        text-shadow: 0 18px 60px rgba(80, 44, 14, 0.35);
-      }
-
       html.hc-master-prompt-review .hc-transition-beam {
         position: absolute;
         top: 0;
@@ -12842,10 +12830,6 @@
 
       html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-system span {
         animation: hc-system-accepted 720ms ease forwards;
-      }
-
-      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-system strong {
-        animation: hc-go-live 1050ms 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
 
       html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="transitioning"] .hc-transition-beam {
@@ -13150,12 +13134,6 @@
         100% { opacity: 0; transform: translateY(-12px); }
       }
 
-      @keyframes hc-go-live {
-        0% { opacity: 0; transform: translateY(30px) scale(0.94); }
-        45%, 76% { opacity: 1; transform: translateY(0) scale(1); }
-        100% { opacity: 0; transform: translateY(-12px) scale(1.015); }
-      }
-
       @keyframes hc-human-signal-in {
         to { opacity: 1; transform: translateX(0); }
       }
@@ -13366,10 +13344,6 @@
           font-size: 0.5rem;
         }
 
-        html.hc-master-prompt-review .hc-transition-system strong {
-          font-size: clamp(4rem, 22vw, 7rem);
-        }
-
         html.hc-master-prompt-review .hc-future-layer {
           min-height: 100%;
           background-image:
@@ -13539,7 +13513,6 @@
       @media (prefers-reduced-motion: reduce) {
         html.hc-master-prompt-review .hc-transition-door,
         html.hc-master-prompt-review .hc-transition-system span,
-        html.hc-master-prompt-review .hc-transition-system strong,
         html.hc-master-prompt-review .hc-transition-beam,
         html.hc-master-prompt-review .hc-human-signal,
         html.hc-master-prompt-review .hc-typing-status::before {
@@ -13554,7 +13527,6 @@
 
       html.hc-master-prompt-reduce-motion .hc-transition-door,
       html.hc-master-prompt-reduce-motion .hc-transition-system span,
-      html.hc-master-prompt-reduce-motion .hc-transition-system strong,
       html.hc-master-prompt-reduce-motion .hc-transition-beam,
       html.hc-master-prompt-reduce-motion .hc-human-signal,
       html.hc-master-prompt-reduce-motion .hc-typing-status::before {
@@ -15658,7 +15630,7 @@
 
                 <section class="hc-demo-panel hc-demo-transition" data-hc-panel="transitioning" aria-label="The screen work moves into the background">
                   <div class="hc-transition-door" aria-hidden="true"></div>
-                  <div class="hc-transition-system" aria-hidden="true"><span>prompt accepted</span><strong>GO LIVE.</strong></div>
+                  <div class="hc-transition-system" aria-hidden="true"><span>prompt accepted</span></div>
                   <span class="hc-transition-beam" aria-hidden="true"></span>
                 </section>
 

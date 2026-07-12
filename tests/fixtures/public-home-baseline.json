@@ -1,9 +1,9 @@
 {
   "variant": "conversation-intelligence-home",
-  "heroClass": "hero hero-whats-happening-real-world",
-  "headlineLabel": "In 2009, Twitter made What’s happening? the pulse of digital communities. Human Conversation is the What’s happening? of real-world communities.",
-  "headlineText": "Twitter · 2009Digital communitiestwitter Nov 19 · 2009What’s happening?One question became the pulse of digital communities.One question. Two worlds.The next community revolutionReal-world communitiesHuman Conversationis the “What’s happening?” of real-world communities.",
-  "ledeText": "All the human, social, relationship, and community data moves through human conversation.",
+  "heroClass": "hero hero-community-pulse",
+  "headlineLabel": "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.",
+  "headlineText": "20092014NowtwitterDigital communitiesWhat’s happening?Twitter made one question the pulse of digital communities.twitterNov 19 · 2009What’s happening?slackThe companyWhat’s happening?Slack brought the same pulse inside the organization.slack# general# product# randomNow · Real-world social communitiesHuman Conversationis what’s happeningin real-world social communities.",
+  "ledeText": "All the human, social, relationship, and community data moves through human conversation.But with a twist.",
   "headerEmail": "hello@humanconversation.com",
   "storySections": 12,
   "heroSignupAction": "https://formsubmit.co/hello@humanconversation.com",

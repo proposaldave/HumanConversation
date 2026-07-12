@@ -42,10 +42,15 @@ try {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
     await page.waitFor(`document.querySelector(".page")?.dataset.variant === "${VARIANT}"`);
-    await capture(`${name}-digital`);
-    await page.evaluate(`window.scrollTo({ top: Math.max(document.querySelector("#landing-hero").offsetHeight - window.innerHeight, 1), behavior: "auto" })`);
-    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.twitterStage === "human"`);
-    await new Promise((resolve) => setTimeout(resolve, 950));
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
+    await capture(`${name}-twitter`);
+
+    await page.evaluate(`(() => { const hero = document.querySelector("#landing-hero"); window.scrollTo({ top: Math.max(hero.offsetHeight - window.innerHeight, 1) * 0.47, behavior: "auto" }); })()`);
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "slack" && Number(getComputedStyle(document.querySelector(".community-stage-slack")).opacity) > 0.95`);
+    await capture(`${name}-slack`);
+
+    await page.evaluate(`(() => { const hero = document.querySelector("#landing-hero"); window.scrollTo({ top: Math.max(hero.offsetHeight - window.innerHeight, 1) * 0.84, behavior: "auto" }); })()`);
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human" && Number(getComputedStyle(document.querySelector(".community-stage-human")).opacity) > 0.95 && Number(getComputedStyle(document.querySelector("#landing-hero .lede")).opacity) > 0.95`);
     await capture(`${name}-human`);
 
     await page.navigate(publicStoryUrl());

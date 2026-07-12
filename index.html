@@ -14,12 +14,12 @@
     <meta http-equiv="expires" content="0" />
     <meta
       name="description"
-      content="Human Conversation is the ‘What’s happening?’ of real-world communities. All the human, social, relationship, and community data moves through human conversation."
+      content="Twitter became what’s happening in digital communities. Slack brought the pulse inside the company. Human Conversation brings it into real-world social communities—with a twist: it’s the intelligence around human conversation."
     />
     <meta property="og:title" content="Human Conversation - Intelligence Around Human Conversation" />
     <meta
       property="og:description"
-      content="Human Conversation is the ‘What’s happening?’ of real-world communities. All the human, social, relationship, and community data moves through human conversation."
+      content="Twitter became what’s happening in digital communities. Slack brought the pulse inside the company. Human Conversation brings it into real-world social communities—with a twist: it’s the intelligence around human conversation."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://humanconversation.com/" />
@@ -11523,6 +11523,850 @@
         }
       }
 
+      /* The question leaves the screen: Twitter → Slack → Human Conversation. */
+      .page[data-hero-theme="community-pulse"] {
+        overflow-x: clip;
+        overflow-y: visible;
+        background: #05070a;
+        color: #fff8ec;
+      }
+
+      .page[data-hero-theme="community-pulse"]::before,
+      .page[data-hero-theme="community-pulse"]::after {
+        display: none;
+      }
+
+      .page[data-hero-theme="community-pulse"] header {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 30;
+        justify-content: space-between;
+        width: min(100% - 56px, 1320px);
+        margin: 0;
+        color: #fff8ec;
+        transform: translateX(-50%);
+      }
+
+      .page[data-hero-theme="community-pulse"] .brand {
+        color: var(--hc-rose);
+      }
+
+      .page[data-hero-theme="community-pulse"] .mark-bubble {
+        fill: rgba(5, 7, 10, 0.68);
+        stroke: rgba(255, 248, 236, 0.9);
+        stroke-width: 2.4px;
+      }
+
+      .page[data-hero-theme="community-pulse"] .mark-heart {
+        fill: var(--hc-rose);
+        stroke: #fff8ec;
+      }
+
+      .page[data-hero-theme="community-pulse"] .header-email {
+        border-color: rgba(255, 248, 236, 0.24);
+        background: rgba(5, 7, 10, 0.52);
+        color: #fff8ec;
+        backdrop-filter: blur(14px);
+      }
+
+      .page[data-hero-theme="community-pulse"] main {
+        display: block;
+        width: 100%;
+        max-width: none;
+        min-height: 100svh;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page[data-hero-theme="community-pulse"].has-expanded-story .hero.hero-community-pulse,
+      .page[data-hero-theme="community-pulse"] .hero.hero-community-pulse {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: none;
+        min-height: 320svh;
+        overflow: visible;
+        margin: 0;
+        padding: 0;
+        background: #05070a;
+        isolation: isolate;
+        scroll-snap-align: none;
+      }
+
+      .page[data-hero-theme="community-pulse"].has-expanded-story .hero.hero-community-pulse::after {
+        display: none;
+      }
+
+      .hero-community-pulse .hero-inner {
+        position: sticky;
+        top: 0;
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: 100svh;
+        overflow: hidden;
+        padding: 0;
+        background: #05070a;
+      }
+
+      .hero-community-pulse h1 {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        margin: 0;
+        font-family: Fraunces, Georgia, serif;
+        font-size: inherit;
+        line-height: 1;
+      }
+
+      .hero-community-pulse .community-progress {
+        position: absolute;
+        top: clamp(106px, 12vh, 132px);
+        right: max(28px, calc((100vw - 1320px) / 2));
+        left: max(28px, calc((100vw - 1320px) / 2));
+        z-index: 8;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        color: rgba(255, 248, 236, 0.38);
+        font: 850 clamp(0.6rem, 0.74vw, 0.7rem)/1 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .hero-community-pulse .community-progress::before,
+      .hero-community-pulse .community-progress::after {
+        content: "";
+        position: absolute;
+        top: 26px;
+        right: 0;
+        left: 0;
+        height: 1px;
+      }
+
+      .hero-community-pulse .community-progress::before {
+        background: rgba(255, 248, 236, 0.15);
+      }
+
+      .hero-community-pulse .community-progress::after {
+        background: linear-gradient(90deg, #5b8fd4, #b29bff 49%, #f2bd55 100%);
+        transform: scaleX(0.02);
+        transform-origin: left center;
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .hero-community-pulse[data-community-stage="slack"] .community-progress::after {
+        transform: scaleX(0.5);
+      }
+
+      .hero-community-pulse[data-community-stage="human"] .community-progress::after {
+        transform: scaleX(1);
+      }
+
+      .hero-community-pulse .community-progress > span {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 500ms ease;
+      }
+
+      .hero-community-pulse .community-progress > span:nth-child(2) {
+        justify-content: center;
+      }
+
+      .hero-community-pulse .community-progress > span:nth-child(3) {
+        justify-content: flex-end;
+      }
+
+      .hero-community-pulse .community-progress i {
+        width: 7px;
+        height: 7px;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        background: #05070a;
+        box-shadow: 0 0 0 5px rgba(5, 7, 10, 0.74);
+      }
+
+      .hero-community-pulse[data-community-stage="twitter"] .community-progress [data-era="twitter"] {
+        color: #8fc4e5;
+      }
+
+      .hero-community-pulse[data-community-stage="slack"] .community-progress [data-era="slack"] {
+        color: #c7b8ff;
+      }
+
+      .hero-community-pulse[data-community-stage="human"] .community-progress [data-era="human"] {
+        color: #f2bd55;
+      }
+
+      .hero-community-pulse .community-stage {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+        padding: clamp(142px, 17vh, 174px) max(28px, calc((100vw - 1320px) / 2)) clamp(62px, 7vh, 78px);
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(1.025);
+        transition:
+          opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 700ms;
+      }
+
+      .hero-community-pulse .community-stage::before,
+      .hero-community-pulse .community-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-community-pulse .community-stage::after {
+        opacity: 0.26;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.13) 0.55px, transparent 0.75px);
+        background-size: 5px 5px;
+        mix-blend-mode: soft-light;
+      }
+
+      .hero-community-pulse .community-stage-twitter::before {
+        background:
+          radial-gradient(circle at 77% 46%, rgba(91, 143, 212, 0.25), transparent 26vw),
+          radial-gradient(circle at 14% 82%, rgba(33, 123, 171, 0.13), transparent 29vw),
+          linear-gradient(135deg, #04070b 0%, #07121f 54%, #05070a 100%);
+      }
+
+      .hero-community-pulse .community-stage-slack::before {
+        background:
+          radial-gradient(circle at 78% 46%, rgba(105, 65, 124, 0.42), transparent 29vw),
+          radial-gradient(circle at 16% 76%, rgba(74, 21, 75, 0.25), transparent 34vw),
+          linear-gradient(135deg, #070609 0%, #1a0b20 54%, #09060b 100%);
+      }
+
+      .hero-community-pulse .community-stage-human::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 6, 8, 0.96) 0%, rgba(5, 6, 8, 0.8) 39%, rgba(5, 6, 8, 0.24) 72%, rgba(5, 6, 8, 0.12) 100%),
+          linear-gradient(180deg, rgba(5, 6, 8, 0.14) 0%, rgba(5, 6, 8, 0.02) 55%, rgba(5, 6, 8, 0.76) 100%),
+          url("./assets/hc-art-intelligence-brings-together-20260705.png");
+        background-position: 70% center;
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.04) brightness(1.02);
+      }
+
+      .hero-community-pulse[data-community-stage="twitter"] .community-stage-twitter,
+      .hero-community-pulse[data-community-stage="slack"] .community-stage-slack,
+      .hero-community-pulse[data-community-stage="human"] .community-stage-human {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition-delay: 80ms, 80ms, 0s;
+      }
+
+      .hero-community-pulse .community-stage-content {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: min(100%, 850px);
+        transform: translateY(1vh);
+      }
+
+      .hero-community-pulse .community-platform {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: clamp(24px, 3.3vh, 36px);
+      }
+
+      .hero-community-pulse .community-platform strong {
+        display: inline-flex;
+        align-items: center;
+        color: #fff8ec;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(1.15rem, 1.65vw, 1.55rem);
+        font-weight: 900;
+        letter-spacing: -0.05em;
+      }
+
+      .hero-community-pulse .community-twitter-name {
+        font-style: italic;
+      }
+
+      .hero-community-pulse .community-twitter-name::after {
+        content: "•";
+        margin-left: 4px;
+        color: #62b9e7;
+        font-style: normal;
+      }
+
+      .hero-community-pulse .community-platform small {
+        border-left: 1px solid rgba(255, 248, 236, 0.24);
+        color: rgba(255, 248, 236, 0.58);
+        padding-left: 18px;
+        font: 850 clamp(0.58rem, 0.72vw, 0.68rem)/1.2 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .hero-community-pulse .community-slack-name > i {
+        display: grid;
+        grid-template-columns: repeat(2, 6px);
+        gap: 2px;
+        width: 14px;
+        margin-right: 8px;
+      }
+
+      .hero-community-pulse .community-slack-name b {
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 2px;
+      }
+
+      .hero-community-pulse .community-slack-name b:nth-child(1) { background: #36c5f0; }
+      .hero-community-pulse .community-slack-name b:nth-child(2) { background: #2eb67d; }
+      .hero-community-pulse .community-slack-name b:nth-child(3) { background: #e01e5a; }
+      .hero-community-pulse .community-slack-name b:nth-child(4) { background: #ecb22e; }
+
+      .hero-community-pulse .community-question {
+        display: block;
+        max-width: 7.8ch;
+        color: #fff8ec;
+        font-size: clamp(5.25rem, 9.2vw, 9.1rem);
+        font-weight: 650;
+        letter-spacing: -0.068em;
+        line-height: 0.84;
+        text-wrap: balance;
+        text-shadow: 0 12px 48px rgba(0, 0, 0, 0.48);
+      }
+
+      .hero-community-pulse .community-platform-story {
+        display: block;
+        max-width: 20ch;
+        margin-top: clamp(26px, 3.8vh, 42px);
+        color: rgba(255, 248, 236, 0.86);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.55rem, 2.45vw, 2.55rem);
+        font-weight: 570;
+        letter-spacing: -0.025em;
+        line-height: 1.02;
+      }
+
+      .hero-community-pulse .community-stage-twitter .community-platform-story em {
+        color: #8fc4e5;
+        font-style: normal;
+      }
+
+      .hero-community-pulse .community-stage-slack .community-platform-story em {
+        color: #c7b8ff;
+        font-style: normal;
+      }
+
+      .hero-community-pulse .community-stage-twitter .community-stage-content::after {
+        content: "Scroll to follow the question";
+        display: block;
+        margin-top: clamp(34px, 5vh, 54px);
+        color: rgba(255, 248, 236, 0.42);
+        font: 800 0.61rem/1 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .hero-community-pulse .community-artifact {
+        position: absolute;
+        right: max(28px, calc((100vw - 1320px) / 2));
+        bottom: clamp(88px, 12vh, 132px);
+        z-index: 2;
+        display: block;
+        width: min(31vw, 450px);
+        opacity: 0.72;
+        transform: rotate(-1.4deg);
+        transition: opacity 500ms ease, transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .hero-community-pulse .community-stage-slack .community-artifact {
+        transform: rotate(1.2deg);
+      }
+
+      .hero-community-pulse .community-twitter-artifact {
+        overflow: hidden;
+        border: 1px solid rgba(143, 196, 229, 0.38);
+        border-radius: 10px;
+        background: #f2f5f7;
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42), 0 0 60px rgba(91, 143, 212, 0.09);
+        color: #4f5a60;
+      }
+
+      .hero-community-pulse .community-artifact-bar {
+        display: flex;
+        justify-content: space-between;
+        background: linear-gradient(180deg, #5fb3df, #217bab);
+        color: rgba(255, 255, 255, 0.84);
+        padding: 9px 13px;
+        font: 850 0.55rem/1 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .hero-community-pulse .community-artifact-bar b {
+        color: #fff;
+        font-size: 0.78rem;
+        font-style: italic;
+        letter-spacing: -0.05em;
+        text-transform: lowercase;
+      }
+
+      .hero-community-pulse .community-artifact-question {
+        display: block;
+        padding: 17px 18px 7px;
+        font: 850 clamp(1.05rem, 1.8vw, 1.55rem)/1 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: -0.045em;
+      }
+
+      .hero-community-pulse .community-twitter-artifact > i {
+        display: block;
+        height: 28px;
+        margin: 0 18px 16px;
+        border: 2px solid #a8c9da;
+        border-radius: 3px;
+        background: #fff;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-community-pulse .community-slack-artifact {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        min-height: 142px;
+        overflow: hidden;
+        border: 1px solid rgba(199, 184, 255, 0.23);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42), 0 0 60px rgba(74, 21, 75, 0.2);
+        color: #fff;
+        backdrop-filter: blur(12px);
+      }
+
+      .hero-community-pulse .community-slack-rail {
+        display: grid;
+        align-content: start;
+        gap: 11px;
+        background: rgba(74, 21, 75, 0.94);
+        padding: 15px 14px;
+        font: 720 0.68rem/1 Manrope, Inter, system-ui, sans-serif;
+      }
+
+      .hero-community-pulse .community-slack-rail b {
+        margin-bottom: 4px;
+        font-size: 0.9rem;
+      }
+
+      .hero-community-pulse .community-slack-rail i {
+        color: rgba(255, 255, 255, 0.62);
+        font-style: normal;
+      }
+
+      .hero-community-pulse .community-slack-messages {
+        display: grid;
+        align-content: center;
+        gap: 20px;
+        padding: 20px 22px;
+      }
+
+      .hero-community-pulse .community-slack-messages i {
+        display: block;
+        width: 82%;
+        height: 7px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.33);
+        box-shadow: 0 12px 0 rgba(255, 255, 255, 0.12);
+      }
+
+      .hero-community-pulse .community-slack-messages i:nth-child(2) {
+        width: 64%;
+      }
+
+      .hero-community-pulse .community-slack-messages i:nth-child(3) {
+        width: 74%;
+      }
+
+      .hero-community-pulse .community-human-label {
+        position: relative;
+        z-index: 2;
+        display: block;
+        margin-bottom: clamp(24px, 3.2vh, 38px);
+        color: #f2bd55;
+        font: 850 clamp(0.62rem, 0.78vw, 0.74rem)/1.2 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .hero-community-pulse .community-human-copy {
+        position: relative;
+        z-index: 2;
+        display: block;
+        width: min(100%, 1080px);
+        transform: translateY(-1vh);
+      }
+
+      .hero-community-pulse .community-human-copy > span {
+        display: block;
+      }
+
+      .hero-community-pulse .community-human-brand {
+        color: var(--hc-rose);
+        font-size: clamp(4.6rem, 8.4vw, 9.1rem);
+        font-weight: 650;
+        letter-spacing: -0.07em;
+        line-height: 0.82;
+        text-shadow: 0 10px 46px rgba(0, 0, 0, 0.56);
+      }
+
+      .hero-community-pulse .community-human-copy > span:not(.community-human-brand) {
+        max-width: 15ch;
+        margin-top: clamp(15px, 2.1vh, 24px);
+        color: #fff8ec;
+        font-size: clamp(3.2rem, 5.65vw, 6.35rem);
+        font-weight: 650;
+        letter-spacing: -0.055em;
+        line-height: 0.89;
+        text-shadow: 0 10px 42px rgba(0, 0, 0, 0.62);
+      }
+
+      .hero-community-pulse .community-human-copy > .community-human-world {
+        margin-top: 0;
+        color: #f2bd55;
+      }
+
+      .hero-community-pulse .lede {
+        position: absolute;
+        right: max(28px, calc((100vw - 1320px) / 2));
+        bottom: clamp(32px, 5.2vh, 58px);
+        left: max(28px, calc((100vw - 1320px) / 2));
+        z-index: 9;
+        display: grid;
+        grid-template-columns: minmax(0, 790px) auto;
+        justify-content: space-between;
+        align-items: end;
+        gap: 32px;
+        max-width: none;
+        margin: 0;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 620ms 240ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 720ms 240ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 860ms;
+      }
+
+      .hero-community-pulse[data-community-stage="human"] .lede {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition-delay: 260ms, 260ms, 0s;
+      }
+
+      .hero-community-pulse .community-data-line {
+        display: block;
+        border-left: 3px solid var(--hc-rose);
+        color: rgba(255, 248, 236, 0.88);
+        padding: 2px 0 3px 18px;
+        font: 760 clamp(0.96rem, 1.25vw, 1.16rem)/1.42 Manrope, Inter, system-ui, sans-serif;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.58);
+      }
+
+      .hero-community-pulse .community-twist {
+        display: block;
+        color: #f2bd55;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2rem, 3.2vw, 3.55rem);
+        font-style: italic;
+        font-weight: 620;
+        letter-spacing: -0.04em;
+        line-height: 0.94;
+        text-align: right;
+        text-shadow: 0 5px 26px rgba(0, 0, 0, 0.6);
+        white-space: nowrap;
+      }
+
+      .page[data-hero-theme="community-pulse"] .hero > .contact,
+      .page[data-hero-theme="community-pulse"] .interface-detail,
+      .page[data-hero-theme="community-pulse"] .interface-punchline,
+      .page[data-hero-theme="community-pulse"] .homepage-chain {
+        display: none;
+      }
+
+      .page[data-hero-theme="community-pulse"].has-expanded-story .landing-story {
+        margin-top: 0;
+        padding-top: 0;
+        background: #050608;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-kicker {
+        display: block;
+        margin-bottom: clamp(24px, 4vh, 42px);
+        color: #f2bd55;
+        font: 850 clamp(0.62rem, 0.78vw, 0.74rem)/1.2 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 760px) {
+        .page[data-hero-theme="community-pulse"] header {
+          width: calc(100% - 32px);
+          padding-top: 18px;
+        }
+
+        .page[data-hero-theme="community-pulse"] .header-email {
+          top: max(18px, calc(env(safe-area-inset-top) + 18px));
+          right: max(16px, calc(env(safe-area-inset-right) + 16px));
+          max-width: calc(100vw - 88px);
+          padding: 7px 9px 8px;
+          font-size: 0.68rem;
+        }
+
+        .page[data-hero-theme="community-pulse"].has-expanded-story .hero.hero-community-pulse,
+        .page[data-hero-theme="community-pulse"] .hero.hero-community-pulse {
+          min-height: 335svh;
+        }
+
+        .hero-community-pulse .community-progress {
+          top: 82px;
+          right: 18px;
+          left: 18px;
+          font-size: 0.5rem;
+          letter-spacing: 0.12em;
+        }
+
+        .hero-community-pulse .community-progress::before,
+        .hero-community-pulse .community-progress::after {
+          top: 22px;
+        }
+
+        .hero-community-pulse .community-stage {
+          align-items: start;
+          padding: 128px 18px 58px;
+        }
+
+        .hero-community-pulse .community-stage::after {
+          opacity: 0.2;
+        }
+
+        .hero-community-pulse .community-stage-human::before {
+          background-image:
+            linear-gradient(180deg, rgba(5, 6, 8, 0.9) 0%, rgba(5, 6, 8, 0.68) 48%, rgba(5, 6, 8, 0.8) 100%),
+            linear-gradient(90deg, rgba(5, 6, 8, 0.5), rgba(5, 6, 8, 0.12)),
+            url("./assets/hc-art-intelligence-brings-together-20260705.png");
+          background-position: 66% center;
+        }
+
+        .hero-community-pulse .community-stage-content {
+          width: 100%;
+          transform: none;
+        }
+
+        .hero-community-pulse .community-platform {
+          gap: 12px;
+          margin-bottom: 25px;
+        }
+
+        .hero-community-pulse .community-platform strong {
+          font-size: 1rem;
+        }
+
+        .hero-community-pulse .community-platform small {
+          padding-left: 12px;
+          font-size: 0.52rem;
+          letter-spacing: 0.13em;
+        }
+
+        .hero-community-pulse .community-question {
+          max-width: 7ch;
+          font-size: clamp(3.85rem, 17.2vw, 5.2rem);
+          line-height: 0.86;
+        }
+
+        .hero-community-pulse .community-platform-story {
+          max-width: 14ch;
+          margin-top: 24px;
+          font-size: clamp(1.55rem, 7.3vw, 2.05rem);
+          line-height: 1;
+        }
+
+        .hero-community-pulse .community-stage-twitter .community-stage-content::after {
+          margin-top: 27px;
+          font-size: 0.54rem;
+        }
+
+        .hero-community-pulse .community-artifact {
+          right: 18px;
+          bottom: 66px;
+          width: min(72vw, 290px);
+          opacity: 0.62;
+          transform: none;
+        }
+
+        .hero-community-pulse .community-stage-slack .community-artifact {
+          transform: none;
+        }
+
+        .hero-community-pulse .community-artifact-bar {
+          padding: 7px 10px;
+          font-size: 0.46rem;
+        }
+
+        .hero-community-pulse .community-artifact-question {
+          padding: 12px 13px 6px;
+          font-size: 1rem;
+        }
+
+        .hero-community-pulse .community-twitter-artifact > i {
+          height: 22px;
+          margin: 0 13px 11px;
+        }
+
+        .hero-community-pulse .community-slack-artifact {
+          grid-template-columns: 90px 1fr;
+          min-height: 112px;
+        }
+
+        .hero-community-pulse .community-slack-rail {
+          gap: 8px;
+          padding: 11px 10px;
+          font-size: 0.56rem;
+        }
+
+        .hero-community-pulse .community-slack-messages {
+          gap: 15px;
+          padding: 15px;
+        }
+
+        .hero-community-pulse .community-human-label {
+          margin-top: 7px;
+          margin-bottom: 30px;
+          font-size: 0.52rem;
+          letter-spacing: 0.14em;
+        }
+
+        .hero-community-pulse .community-human-copy {
+          transform: none;
+        }
+
+        .hero-community-pulse .community-human-brand {
+          max-width: 7ch;
+          font-size: clamp(3.5rem, 16.2vw, 4.65rem);
+          line-height: 0.84;
+        }
+
+        .hero-community-pulse .community-human-copy > span:not(.community-human-brand) {
+          max-width: 11ch;
+          margin-top: 18px;
+          font-size: clamp(2.45rem, 11.4vw, 3.25rem);
+          line-height: 0.91;
+        }
+
+        .hero-community-pulse .community-human-copy > .community-human-world {
+          margin-top: 0;
+        }
+
+        .hero-community-pulse .lede {
+          right: 18px;
+          bottom: 24px;
+          left: 18px;
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .hero-community-pulse .community-data-line {
+          max-width: 100%;
+          padding-left: 13px;
+          font-size: 0.82rem;
+          line-height: 1.34;
+        }
+
+        .hero-community-pulse .community-twist {
+          font-size: clamp(1.75rem, 8vw, 2.35rem);
+          text-align: left;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-kicker {
+          margin-bottom: 22px;
+          font-size: 0.56rem;
+        }
+      }
+
+      @media (max-width: 360px), (max-height: 720px) {
+        .hero-community-pulse .community-progress {
+          top: 72px;
+        }
+
+        .hero-community-pulse .community-stage {
+          padding-top: 112px;
+          padding-bottom: 48px;
+        }
+
+        .hero-community-pulse .community-platform {
+          margin-bottom: 18px;
+        }
+
+        .hero-community-pulse .community-question {
+          font-size: clamp(3.3rem, 15vw, 4.45rem);
+        }
+
+        .hero-community-pulse .community-platform-story {
+          margin-top: 18px;
+          font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+        }
+
+        .hero-community-pulse .community-stage-twitter .community-stage-content::after {
+          margin-top: 20px;
+        }
+
+        .hero-community-pulse .community-artifact {
+          bottom: 46px;
+          width: min(67vw, 245px);
+        }
+
+        .hero-community-pulse .community-human-label {
+          margin-bottom: 20px;
+        }
+
+        .hero-community-pulse .community-human-brand {
+          font-size: clamp(3.08rem, 14.4vw, 4rem);
+        }
+
+        .hero-community-pulse .community-human-copy > span:not(.community-human-brand) {
+          margin-top: 12px;
+          font-size: clamp(2.12rem, 9.8vw, 2.85rem);
+        }
+
+        .hero-community-pulse .lede {
+          bottom: 14px;
+          gap: 9px;
+        }
+
+        .hero-community-pulse .community-data-line {
+          font-size: 0.74rem;
+        }
+
+        .hero-community-pulse .community-twist {
+          font-size: 1.6rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-community-pulse .community-progress::after,
+        .hero-community-pulse .community-stage,
+        .hero-community-pulse .lede {
+          transition: none;
+        }
+      }
+
       .page[data-variant="life-runs-on-human-conversation"] {
         overflow-x: hidden;
         overflow-y: visible;
@@ -15401,7 +16245,7 @@
     </style>
   </head>
   <body>
-    <div class="page has-expanded-story" data-variant="conversation-intelligence-home" data-hero-theme="whats-happening-real-world">
+    <div class="page has-expanded-story" data-variant="conversation-intelligence-home" data-hero-theme="community-pulse">
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <svg class="mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false">
@@ -15415,31 +16259,32 @@
       </header>
 
       <main>
-        <section class="hero hero-whats-happening-real-world" id="landing-hero" data-twitter-stage="digital">
+        <section class="hero hero-community-pulse" id="landing-hero" data-community-stage="twitter">
           <div class="hero-inner">
-            <h1 aria-label="In 2009, Twitter made What’s happening? the pulse of digital communities. Human Conversation is the What’s happening? of real-world communities.">
-              <span class="whats-stage whats-stage-digital">
-                <span class="whats-stage-kicker"><span>Twitter · 2009</span><span>Digital communities</span></span>
-                <span class="whats-digital-grid">
-                  <span class="whats-crt-shell">
-                    <span class="whats-crt-screen">
-                      <span class="whats-crt-meta"><span class="whats-twitter-wordmark">twitter</span> <time datetime="2009-11-19">Nov 19 · 2009</time></span>
-                      <span class="whats-crt-composer"><span class="whats-crt-question">What&rsquo;s happening?</span><span class="whats-crt-input" aria-hidden="true"></span></span>
-                    </span>
-                  </span>
-                  <span class="whats-digital-proof">One question became the pulse of <em>digital communities.</em></span>
+            <h1 aria-label="In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.">
+              <span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>Now</span></span>
+              <span class="community-stage community-stage-twitter">
+                <span class="community-stage-content">
+                  <span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital communities</small></span>
+                  <span class="community-question">What&rsquo;s happening?</span>
+                  <span class="community-platform-story">Twitter made one question the pulse of <em>digital communities.</em></span>
                 </span>
-                <span class="whats-scroll-prompt" aria-hidden="true">One question. Two worlds.<i></i></span>
+                <span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 · 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span>
               </span>
-              <span class="whats-stage whats-stage-human">
-                <span class="whats-stage-kicker"><span>The next community revolution</span><span>Real-world communities</span></span>
-                <span class="whats-human-copy">
-                  <span class="whats-answer">Human Conversation</span>
-                  <span class="whats-category">is the <em>&ldquo;What&rsquo;s happening?&rdquo;</em> <br />of real-world communities.</span>
+              <span class="community-stage community-stage-slack">
+                <span class="community-stage-content">
+                  <span class="community-platform"><strong class="community-slack-name"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>slack</strong><small>The company</small></span>
+                  <span class="community-question">What&rsquo;s happening?</span>
+                  <span class="community-platform-story">Slack brought the same pulse <em>inside the organization.</em></span>
                 </span>
+                <span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span>
+              </span>
+              <span class="community-stage community-stage-human">
+                <span class="community-human-label">Now · Real-world social communities</span>
+                <span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>is what&rsquo;s happening</span><span class="community-human-world">in real-world social communities.</span></span>
               </span>
             </h1>
-            <p class="lede"><span>All the human, social, relationship, and community data moves through human conversation.</span></p>
+            <p class="lede"><span class="community-data-line">All the human, social, relationship, and community data moves through human conversation.</span><span class="community-twist">But with a twist.</span></p>
             <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, while AI quietly handles the computer work in the background.</p>
             <p class="interface-punchline">The interface becomes human.</p>
           </div>
@@ -15533,7 +16378,7 @@
           main: {
             sections: [
               {
-                title: `<span>For decades, interfaces have pulled</span><span>conversation onto screens.</span><span class="conversation-intelligence-gold">We&rsquo;re doing the opposite.</span>`,
+                title: `<span class="interface-opposite-kicker">The twist</span><span>For decades, interfaces have pulled</span><span>conversation onto screens.</span><span class="conversation-intelligence-gold">We&rsquo;re doing the opposite.</span>`,
                 copy: [
                   `<span class="interface-opposite-build">Building the intelligence <em>around</em> human conversation.</span>`,
                 ],
@@ -15777,17 +16622,17 @@
           },
         };
 
-        const whatsHappeningHero = Object.freeze({
-          heroTheme: "whats-happening-real-world",
-          headlineLabel: "In 2009, Twitter made What’s happening? the pulse of digital communities. Human Conversation is the What’s happening? of real-world communities.",
-          headline: `<span class="whats-stage whats-stage-digital"><span class="whats-stage-kicker"><span>Twitter &middot; 2009</span><span>Digital communities</span></span><span class="whats-digital-grid"><span class="whats-crt-shell"><span class="whats-crt-screen"><span class="whats-crt-meta"><span class="whats-twitter-wordmark">twitter</span> <time datetime="2009-11-19">Nov 19 &middot; 2009</time></span><span class="whats-crt-composer"><span class="whats-crt-question">What&rsquo;s happening?</span><span class="whats-crt-input" aria-hidden="true"></span></span></span></span><span class="whats-digital-proof">One question became the pulse of <em>digital communities.</em></span></span><span class="whats-scroll-prompt" aria-hidden="true">One question. Two worlds.<i></i></span></span><span class="whats-stage whats-stage-human"><span class="whats-stage-kicker"><span>The next community revolution</span><span>Real-world communities</span></span><span class="whats-human-copy"><span class="whats-answer">Human Conversation</span><span class="whats-category">is the <em>&ldquo;What&rsquo;s happening?&rdquo;</em> <br />of real-world communities.</span></span></span>`,
-          lede: `<span>All the human, social, relationship, and community data moves through human conversation.</span>`,
+        const communityPulseHero = Object.freeze({
+          heroTheme: "community-pulse",
+          headlineLabel: "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.",
+          headline: `<span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>Now</span></span><span class="community-stage community-stage-twitter"><span class="community-stage-content"><span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital communities</small></span><span class="community-question">What&rsquo;s happening?</span><span class="community-platform-story">Twitter made one question the pulse of <em>digital communities.</em></span></span><span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 &middot; 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span></span><span class="community-stage community-stage-slack"><span class="community-stage-content"><span class="community-platform"><strong class="community-slack-name"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>slack</strong><small>The company</small></span><span class="community-question">What&rsquo;s happening?</span><span class="community-platform-story">Slack brought the same pulse <em>inside the organization.</em></span></span><span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span></span><span class="community-stage community-stage-human"><span class="community-human-label">Now &middot; Real-world social communities</span><span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>is what&rsquo;s happening</span><span class="community-human-world">in real-world social communities.</span></span></span>`,
+          lede: `<span class="community-data-line">All the human, social, relationship, and community data moves through human conversation.</span><span class="community-twist">But with a twist.</span>`,
         });
 
         const variants = [
         {
           id: "conversation-intelligence-home",
-          ...whatsHappeningHero,
+          ...communityPulseHero,
           story: storyPages.main,
         },
         {
@@ -16049,7 +16894,7 @@
         },
         {
           id: "whats-happening-real-world",
-          ...whatsHappeningHero,
+          ...communityPulseHero,
         },
       ];
 
@@ -17050,14 +17895,15 @@
           page.dataset.variant = variant.id;
           page.dataset.heroTheme = heroTheme;
           hero.className = `hero hero-${heroTheme}`;
-          hero.dataset.twitterStage = heroTheme === "whats-happening-real-world" ? "digital" : "";
+          hero.dataset.communityStage = heroTheme === "community-pulse" ? "twitter" : "";
+          delete hero.dataset.twitterStage;
           headline.innerHTML = variant.headline;
           applyBrandNameColor(headline);
           headline.setAttribute("aria-label", variant.headlineLabel);
           lede.innerHTML = variant.lede;
           applyBrandNameColor(lede);
           renderStoryPage(variant.story, variant.id);
-          updateTwitterHeroStage();
+          updateCommunityHeroStage();
           dots.forEach((dot, dotIndex) => {
             dot.setAttribute("aria-current", String(dotIndex === safeIndex));
           });
@@ -17126,21 +17972,25 @@
       }
 
       function updateStoryCueVisibility() {
-        storyCue?.classList.toggle("is-dismissed", window.scrollY > 72);
+        const isCommunityPulse = hero.classList.contains("hero-community-pulse");
+        const shouldDismiss = isCommunityPulse
+          ? hero.dataset.communityStage !== "human"
+          : window.scrollY > 72;
+        storyCue?.classList.toggle("is-dismissed", shouldDismiss);
       }
 
-      function updateTwitterHeroStage() {
-        if (!hero.classList.contains("hero-whats-happening-real-world")) return;
+      function updateCommunityHeroStage() {
+        if (!hero.classList.contains("hero-community-pulse")) return;
 
         const heroRect = hero.getBoundingClientRect();
         const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
         const progress = Math.min(Math.max(-heroRect.top / travel, 0), 1);
-        hero.dataset.twitterStage = progress >= 0.42 ? "human" : "digital";
+        hero.dataset.communityStage = progress < 0.3 ? "twitter" : progress < 0.64 ? "slack" : "human";
       }
 
       function handlePageScroll() {
+        updateCommunityHeroStage();
         updateStoryCueVisibility();
-        updateTwitterHeroStage();
       }
 
       const params = new URLSearchParams(window.location.search);

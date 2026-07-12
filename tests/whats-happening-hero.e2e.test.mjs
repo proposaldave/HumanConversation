@@ -13,6 +13,12 @@ const PUBLIC_VARIANT = "conversation-intelligence-home";
 const DATA_SENTENCE =
   "All the human, social, relationship, and community data moves through human conversation.";
 
+const stageRatios = {
+  twitter: 0,
+  slack: 0.47,
+  human: 0.84,
+};
+
 let staticServer;
 let chrome;
 let page;
@@ -26,14 +32,15 @@ function assertRuntimeHealthy() {
   assert.deepEqual(page.consoleErrors, [], "no browser console errors");
 }
 
-async function revealHumanStage() {
+async function showStage(stage) {
+  const ratio = stageRatios[stage];
   await page.evaluate(`(() => {
     const hero = document.querySelector("#landing-hero");
     const travel = Math.max(hero.offsetHeight - innerHeight, 1);
-    window.scrollTo({ top: travel * 0.78, behavior: "instant" });
+    window.scrollTo({ top: travel * ${ratio}, behavior: "instant" });
   })()`);
   await page.waitFor(
-    `document.querySelector("#landing-hero")?.dataset.twitterStage === "human" && Number(getComputedStyle(document.querySelector(".whats-stage-human")).opacity) > 0.95`,
+    `document.querySelector("#landing-hero")?.dataset.communityStage === "${stage}" && Number(getComputedStyle(document.querySelector(".community-stage-${stage}")).opacity) > 0.95`,
   );
 }
 
@@ -49,107 +56,112 @@ after(async () => {
   await staticServer?.close();
 });
 
-test("the opening celebrates Twitter's digital-community breakthrough", async () => {
+test("the hidden review tells one verified Twitter, Slack, and Human Conversation story", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl());
-  await page.waitFor(`document.querySelector(".page")?.dataset.variant === "${VARIANT}"`);
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
 
   const state = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
     const pageRoot = document.querySelector(".page");
     const hero = document.querySelector("#landing-hero");
-    const screen = document.querySelector(".whats-crt-screen");
-    const email = document.querySelector(".header-email");
-    const emailRect = email?.getBoundingClientRect();
     const allText = normalize(document.body.textContent);
+    const humanLines = Array.from(document.querySelectorAll(".community-human-copy > span"))
+      .map((line) => normalize(line.textContent));
     return {
       variant: pageRoot?.dataset.variant,
       heroTheme: pageRoot?.dataset.heroTheme,
-      stage: hero?.dataset.twitterStage,
+      heroClass: hero?.className,
+      stage: hero?.dataset.communityStage,
       robots: document.querySelector('meta[name="robots"]')?.content,
-      dateText: normalize(document.querySelector(".whats-crt-meta")?.textContent),
-      dateTime: document.querySelector(".whats-crt-meta time")?.getAttribute("datetime"),
-      question: normalize(document.querySelector(".whats-crt-question")?.textContent),
-      composerFieldPresent: Boolean(document.querySelector(".whats-crt-input")),
-      proof: normalize(document.querySelector(".whats-digital-proof")?.textContent),
+      progress: Array.from(document.querySelectorAll(".community-progress > span"))
+        .map((item) => normalize(item.textContent)),
+      twitterQuestion: normalize(document.querySelector(".community-stage-twitter .community-question")?.textContent),
+      twitterStory: normalize(document.querySelector(".community-stage-twitter .community-platform-story")?.textContent),
+      twitterDate: document.querySelector(".community-twitter-artifact time")?.getAttribute("datetime"),
+      slackQuestion: normalize(document.querySelector(".community-stage-slack .community-question")?.textContent),
+      slackStory: normalize(document.querySelector(".community-stage-slack .community-platform-story")?.textContent),
+      slackLabel: normalize(document.querySelector(".community-stage-slack .community-platform small")?.textContent),
+      humanLabel: normalize(document.querySelector(".community-human-label")?.textContent),
+      humanLines,
+      dataSentence: normalize(document.querySelector(".community-data-line")?.textContent),
+      twist: normalize(document.querySelector(".community-twist")?.textContent),
       heroLabel: document.querySelector("#landing-hero h1")?.getAttribute("aria-label"),
-      lede: normalize(document.querySelector(".lede")?.textContent),
-      digitalOpacity: getComputedStyle(document.querySelector(".whats-stage-digital")).opacity,
-      humanOpacity: getComputedStyle(document.querySelector(".whats-stage-human")).opacity,
-      screenColor: getComputedStyle(screen).backgroundColor,
       contactDisplay: getComputedStyle(document.querySelector("#email-capture")).display,
       storyHidden: document.querySelector("#landing-story")?.hidden,
       storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
       demoCount: document.querySelectorAll("[data-hc-demo], [data-hc-public-intro]").length,
-      emailVisible: Boolean(emailRect?.width && emailRect?.height),
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-      removedDigitalTownSquareLine: !allText.includes("The digital town square found its question"),
-      removedWrongAnswerLine: !allText.includes("The real world already had the answer"),
+      removedRejectedCopy:
+        !allText.includes("The digital town square found its question") &&
+        !allText.includes("The real world already had the answer") &&
+        !allText.includes("One question became the pulse"),
       heroHeight: hero?.offsetHeight || 0,
     };
   })()`);
 
   assert.deepEqual(state, {
     variant: VARIANT,
-    heroTheme: VARIANT,
-    stage: "digital",
+    heroTheme: "community-pulse",
+    heroClass: "hero hero-community-pulse",
+    stage: "twitter",
     robots: "noindex,nofollow",
-    dateText: "twitter Nov 19 · 2009",
-    dateTime: "2009-11-19",
-    question: "What’s happening?",
-    composerFieldPresent: true,
-    proof: "One question became the pulse of digital communities.",
+    progress: ["2009", "2014", "Now"],
+    twitterQuestion: "What’s happening?",
+    twitterStory: "Twitter made one question the pulse of digital communities.",
+    twitterDate: "2009-11-19",
+    slackQuestion: "What’s happening?",
+    slackStory: "Slack brought the same pulse inside the organization.",
+    slackLabel: "The company",
+    humanLabel: "Now · Real-world social communities",
+    humanLines: [
+      "Human Conversation",
+      "is what’s happening",
+      "in real-world social communities.",
+    ],
+    dataSentence: DATA_SENTENCE,
+    twist: "But with a twist.",
     heroLabel:
-      "In 2009, Twitter made What’s happening? the pulse of digital communities. Human Conversation is the What’s happening? of real-world communities.",
-    lede: DATA_SENTENCE,
-    digitalOpacity: "1",
-    humanOpacity: "0",
-    screenColor: "rgb(242, 242, 242)",
+      "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,
     demoCount: 0,
-    emailVisible: true,
     horizontalOverflow: 0,
-    removedDigitalTownSquareLine: true,
-    removedWrongAnswerLine: true,
+    removedRejectedCopy: true,
     heroHeight: state.heroHeight,
   });
-  assert.ok(state.heroHeight >= 900 * 1.75, "two-stage hero has enough scroll room");
+  assert.ok(state.heroHeight >= 900 * 3.15, "three-stage hero has enough scroll room");
   assertRuntimeHealthy();
 });
 
-test("the same question transforms into Human Conversation for real-world communities", async () => {
-  await revealHumanStage();
+test("the question travels through Twitter, Slack, and the real world", async () => {
+  const opacityState = async () =>
+    page.evaluate(`(() => ({
+      twitter: Number(getComputedStyle(document.querySelector(".community-stage-twitter")).opacity),
+      slack: Number(getComputedStyle(document.querySelector(".community-stage-slack")).opacity),
+      human: Number(getComputedStyle(document.querySelector(".community-stage-human")).opacity),
+      lede: Number(getComputedStyle(document.querySelector("#landing-hero .lede")).opacity),
+      humanBackground: getComputedStyle(document.querySelector(".community-stage-human"), "::before").backgroundImage,
+    }))()`);
 
-  const state = await page.evaluate(`(() => {
-    const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
-    const hero = document.querySelector("#landing-hero");
-    const inner = hero.querySelector(".hero-inner");
-    return {
-      stage: hero.dataset.twitterStage,
-      answer: normalize(document.querySelector(".whats-answer")?.textContent),
-      category: normalize(document.querySelector(".whats-category")?.textContent),
-      lede: normalize(document.querySelector(".lede")?.textContent),
-      humanOpacity: getComputedStyle(document.querySelector(".whats-stage-human")).opacity,
-      digitalOpacity: getComputedStyle(document.querySelector(".whats-stage-digital")).opacity,
-      backgroundImage: getComputedStyle(inner, "::after").backgroundImage,
-      horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    };
-  })()`);
+  let opacity = await opacityState();
+  assert.ok(opacity.twitter > 0.95 && opacity.slack < 0.05 && opacity.human < 0.05);
 
-  assert.equal(state.stage, "human");
-  assert.equal(state.answer, "Human Conversation");
-  assert.equal(state.category, "is the “What’s happening?” of real-world communities.");
-  assert.equal(state.lede, DATA_SENTENCE);
-  assert.ok(Number(state.humanOpacity) > 0.95);
-  assert.ok(Number(state.digitalOpacity) < 0.05);
-  assert.match(state.backgroundImage, /hc-art-intelligence-brings-together-20260705\.png/);
-  assert.ok(state.horizontalOverflow <= 1);
+  await showStage("slack");
+  opacity = await opacityState();
+  assert.ok(opacity.twitter < 0.05 && opacity.slack > 0.95 && opacity.human < 0.05);
+
+  await showStage("human");
+  await page.waitFor(`Number(getComputedStyle(document.querySelector("#landing-hero .lede")).opacity) > 0.95`);
+  opacity = await opacityState();
+  assert.ok(opacity.twitter < 0.05 && opacity.slack < 0.05 && opacity.human > 0.95);
+  assert.ok(opacity.lede > 0.95);
+  assert.match(opacity.humanBackground, /hc-art-intelligence-brings-together-20260705\.png/);
   assertRuntimeHealthy();
 });
 
-test("both stages stay clean and viewport-safe from desktop to narrow phone", async () => {
+test("all three beats stay premium and viewport-safe on desktop and narrow phones", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -157,52 +169,51 @@ test("both stages stay clean and viewport-safe from desktop to narrow phone", as
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
-    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.twitterStage === "digital"`);
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
 
-    const digital = await page.evaluate(`(() => {
-      const rect = document.querySelector(".whats-digital-grid")?.getBoundingClientRect();
-      return {
-        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        top: rect?.top ?? -1,
-        right: rect?.right ?? -1,
-        bottom: rect?.bottom ?? -1,
-        left: rect?.left ?? -1,
-        heroHeight: document.querySelector("#landing-hero")?.offsetHeight || 0,
+    for (const stage of ["twitter", "slack", "human"]) {
+      await showStage(stage);
+      if (stage === "human") {
+        await page.waitFor(`Number(getComputedStyle(document.querySelector("#landing-hero .lede")).opacity) > 0.95`);
+      }
+      const layout = await page.evaluate(`(() => {
+        const stage = document.querySelector(".community-stage-${stage}");
+        const primary = stage.querySelector(".community-stage-content, .community-human-copy");
+        const artifact = stage.querySelector(".community-artifact");
+        const lede = document.querySelector("#landing-hero .lede");
+        const rect = (element) => element ? ({
+          top: element.getBoundingClientRect().top,
+          right: element.getBoundingClientRect().right,
+          bottom: element.getBoundingClientRect().bottom,
+          left: element.getBoundingClientRect().left,
+        }) : null;
+        return {
+          horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          stage: document.querySelector("#landing-hero")?.dataset.communityStage,
+          primary: rect(primary),
+          artifact: rect(artifact),
+          lede: "${stage}" === "human" ? rect(lede) : null,
+          heroHeight: document.querySelector("#landing-hero")?.offsetHeight || 0,
+        };
+      })()`);
+
+      const assertFits = (rect, label) => {
+        assert.ok(rect.top >= -1 && rect.bottom <= height + 1, `${width}x${height} ${label} does not fit vertically`);
+        assert.ok(rect.left >= -1 && rect.right <= width + 1, `${width}x${height} ${label} does not fit horizontally`);
       };
-    })()`);
 
-    assert.ok(digital.horizontalOverflow <= 1, `${width}x${height} digital stage overflows horizontally`);
-    assert.ok(digital.top >= -1 && digital.bottom <= height + 1, `${width}x${height} digital stage does not fit vertically`);
-    assert.ok(digital.left >= -1 && digital.right <= width + 1, `${width}x${height} digital stage does not fit horizontally`);
-    assert.ok(digital.heroHeight >= height * 1.75, `${width}x${height} hero is not truly two-stage`);
-
-    await revealHumanStage();
-    const human = await page.evaluate(`(() => {
-      const copy = document.querySelector(".whats-human-copy")?.getBoundingClientRect();
-      const lede = document.querySelector("#landing-hero .lede")?.getBoundingClientRect();
-      return {
-        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        copyTop: copy?.top ?? -1,
-        copyRight: copy?.right ?? -1,
-        copyBottom: copy?.bottom ?? -1,
-        copyLeft: copy?.left ?? -1,
-        ledeTop: lede?.top ?? -1,
-        ledeRight: lede?.right ?? -1,
-        ledeBottom: lede?.bottom ?? -1,
-        ledeLeft: lede?.left ?? -1,
-      };
-    })()`);
-
-    assert.ok(human.horizontalOverflow <= 1, `${width}x${height} human stage overflows horizontally`);
-    assert.ok(human.copyTop >= -1 && human.copyBottom <= height + 1, `${width}x${height} human copy does not fit vertically`);
-    assert.ok(human.copyLeft >= -1 && human.copyRight <= width + 1, `${width}x${height} human copy does not fit horizontally`);
-    assert.ok(human.ledeTop >= -1 && human.ledeBottom <= height + 1, `${width}x${height} human data sentence does not fit vertically`);
-    assert.ok(human.ledeLeft >= -1 && human.ledeRight <= width + 1, `${width}x${height} human data sentence does not fit horizontally`);
-    assertRuntimeHealthy();
+      assert.equal(layout.stage, stage);
+      assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} ${stage} overflows horizontally`);
+      assertFits(layout.primary, `${stage} copy`);
+      if (layout.artifact) assertFits(layout.artifact, `${stage} artifact`);
+      if (layout.lede) assertFits(layout.lede, `${stage} twist`);
+      assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} is not a true three-stage hero`);
+      assertRuntimeHealthy();
+    }
   }
 });
 
-test("the public sequence leads directly into the interfaces-opposite section", async () => {
+test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
   await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
@@ -216,12 +227,12 @@ test("the public sequence leads directly into the interfaces-opposite section", 
     return {
       variant: document.querySelector(".page")?.dataset.variant,
       heroClass: document.querySelector("#landing-hero")?.className,
-      heroStage: document.querySelector("#landing-hero")?.dataset.twitterStage,
+      heroStage: document.querySelector("#landing-hero")?.dataset.communityStage,
       sectionCount: sections.length,
       firstTitle: title(sections[0]),
       firstBody: normalize(sections[0]?.querySelector(".story-body")?.textContent),
       secondTitle: title(sections[1]),
-      cueDisplay: getComputedStyle(cue).display,
+      cueDismissed: cue?.classList.contains("is-dismissed"),
       cueLabel: cue?.getAttribute("aria-label"),
       bannedCopyPresent: normalize(document.body.textContent).includes("The digital town square found its question"),
     };
@@ -229,19 +240,21 @@ test("the public sequence leads directly into the interfaces-opposite section", 
 
   assert.deepEqual(sequence, {
     variant: PUBLIC_VARIANT,
-    heroClass: "hero hero-whats-happening-real-world",
-    heroStage: "digital",
+    heroClass: "hero hero-community-pulse",
+    heroStage: "twitter",
     sectionCount: 12,
     firstTitle:
-      "For decades, interfaces have pulled conversation onto screens. We’re doing the opposite.",
+      "The twist For decades, interfaces have pulled conversation onto screens. We’re doing the opposite.",
     firstBody: "Building the intelligence around human conversation.",
     secondTitle:
       "We're not lonely because communication disappeared. We're lonely because Human Conversation got replaced.",
-    cueDisplay: sequence.cueDisplay,
+    cueDismissed: true,
     cueLabel: "Continue to the Human Conversation story",
     bannedCopyPresent: false,
   });
-  assert.notEqual(sequence.cueDisplay, "none", "the opening keeps its story cue");
+
+  await showStage("human");
+  await page.waitFor(`!document.querySelector("#landing-hero .story-cue")?.classList.contains("is-dismissed")`);
 
   await page.evaluate(`document.querySelector("#landing-story .story-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
   await page.waitFor(`Math.abs(document.querySelector("#landing-story .story-section")?.getBoundingClientRect().top ?? 9999) < 3`);

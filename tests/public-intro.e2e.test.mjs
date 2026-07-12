@@ -11,7 +11,7 @@ const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const MASTER_PROMPT = "Give me my life back.";
 const TERMINAL_INSTRUCTION = "ONE LAST JOB FOR THE COMPUTER.";
-const TERMINAL_STATUS = "Ready · press Enter to execute prompt";
+const TERMINAL_STATUS = "Ready · hit Enter";
 const VARIANT = "life-runs-on-human-conversation";
 
 const baseline = JSON.parse(
@@ -137,7 +137,8 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "    humanRatioColor: getComputedStyle(document.querySelector(\".hc-life-ratio-human\")).color,",
       "    screenRatioColor: getComputedStyle(document.querySelector(\".hc-life-ratio-screen\")).color,",
       "    computerAnimation: getComputedStyle(document.querySelector(\".hc-crt-computer\")).animationName,",
-      "    screenWakeAnimation: getComputedStyle(document.querySelector(\".hc-terminal-body\")).animationName,",
+      "    bootLineAnimation: getComputedStyle(document.querySelector(\".hc-crt-boot-line\")).animationName,",
+      "    screenContentAnimation: getComputedStyle(document.querySelector(\".hc-terminal-body\")).animationName,",
       "    instructionText: normalize(instruction?.textContent),",
       "    oldTerminalPathPresent: /human@computer/i.test(promptPanel?.textContent || \"\"),",
       "    occurrences,",
@@ -184,7 +185,8 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
     humanRatioColor: "rgb(214, 138, 154)",
     screenRatioColor: "rgb(91, 143, 212)",
     computerAnimation: "hc-crt-arrive",
-    screenWakeAnimation: "hc-crt-wake",
+    bootLineAnimation: "hc-crt-boot-line",
+    screenContentAnimation: "hc-screen-content-in",
     instructionText: TERMINAL_INSTRUCTION,
     oldTerminalPathPresent: false,
     occurrences: 1,

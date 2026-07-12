@@ -116,7 +116,7 @@ test("only the exact hidden route initializes the noindex demo", async () => {
 
 test("prompt state is an image-free vintage CRT with one progressively typed prompt", async () => {
   await page.navigate(reviewUrl("&demoState=prompt"));
-  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === ${JSON.stringify(MASTER_PROMPT)}`, {
+  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === ${JSON.stringify(MASTER_PROMPT)} && document.querySelector("[data-hc-typing-status]")?.dataset.typingState === "complete"`, {
     timeout: 4000,
   });
   const promptState = await page.evaluate(`(() => {
@@ -231,7 +231,7 @@ test("the prompt visibly types before becoming ready", async () => {
   assert.ok(midTyping.length > 0 && midTyping.length < MASTER_PROMPT.length);
   assert.equal(midTyping.typingState, "typing");
 
-  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === ${JSON.stringify(MASTER_PROMPT)}`, {
+  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === ${JSON.stringify(MASTER_PROMPT)} && document.querySelector("[data-hc-typing-status]")?.dataset.typingState === "complete"`, {
     timeout: 4000,
   });
   assert.equal(

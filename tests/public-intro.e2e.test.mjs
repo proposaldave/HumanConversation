@@ -10,8 +10,9 @@ const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const MASTER_PROMPT =
-  "Computer, you get 1%. Life gets the other 99%.";
+  "Make my life 99% human conversation and shared experiences — and 1% screen time.";
 const TERMINAL_INSTRUCTION = "ONE LAST JOB FOR THE COMPUTER.";
+const TERMINAL_STATUS = "Ready · press Enter to execute prompt";
 const VARIANT = "life-runs-on-human-conversation";
 
 const baseline = JSON.parse(
@@ -94,6 +95,9 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "  const page = document.querySelector(\".page\");",
       "  const promptPanel = document.querySelector('[data-hc-panel=\"prompt\"]');",
       "  const era = document.querySelector(\".hc-terminal-era\");",
+      "  const terminalLabel = document.querySelector(\".hc-terminal-chrome > :nth-child(2)\");",
+      "  const caption = document.querySelector(\".hc-terminal-caption\");",
+      "  const typingStatus = document.querySelector(\"[data-hc-typing-status]\");",
       "  const instruction = document.querySelector(\".hc-terminal-path\");",
       "  const expected = " + JSON.stringify(MASTER_PROMPT) + ";",
       "  const normalize = (value) => String(value || \"\").replace(/\\s+/g, \" \").trim();",
@@ -111,12 +115,17 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "    pendingClass: document.documentElement.classList.contains(\"hc-public-master-prompt-pending\"),",
       "    pageAriaHidden: page?.getAttribute(\"aria-hidden\"),",
       "    pageInert: page?.inert,",
+      "    pageVisibility: getComputedStyle(page).visibility,",
+      "    pageOpacity: getComputedStyle(page).opacity,",
       "    promptValue: document.querySelector(\"#hc-master-prompt\")?.value,",
       "    promptFocused: document.activeElement?.id === \"hc-master-prompt\",",
+      "    terminalLabel: normalize(terminalLabel?.textContent),",
       "    eraText: normalize(era?.textContent),",
       "    eraVisible: Boolean(era?.getBoundingClientRect().width && era?.getBoundingClientRect().height),",
       "    eraColor: getComputedStyle(era).color,",
       "    eraBorderWidth: getComputedStyle(era).borderTopWidth,",
+      "    captionText: normalize(caption?.textContent),",
+      "    typingStatusText: normalize(typingStatus?.textContent),",
       "    instructionText: normalize(instruction?.textContent),",
       "    oldTerminalPathPresent: /human@computer/i.test(promptPanel?.textContent || \"\"),",
       "    occurrences,",
@@ -145,12 +154,17 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
     pendingClass: false,
     pageAriaHidden: "true",
     pageInert: true,
+    pageVisibility: "hidden",
+    pageOpacity: "0",
     promptValue: MASTER_PROMPT,
     promptFocused: true,
-    eraText: "THE PAST",
+    terminalLabel: "COMPUTER · 80×24",
+    eraText: "FINAL SHIFT",
     eraVisible: true,
-    eraColor: "rgb(240, 184, 197)",
-    eraBorderWidth: "1px",
+    eraColor: "rgb(214, 138, 154)",
+    eraBorderWidth: "0px",
+    captionText: "It’s been a good run.",
+    typingStatusText: TERMINAL_STATUS,
     instructionText: TERMINAL_INSTRUCTION,
     oldTerminalPathPresent: false,
     occurrences: 1,
@@ -165,6 +179,55 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
     themeColor: "#050608",
     bodyOverflow: "hidden",
   });
+  assertRuntimeHealthy();
+});
+
+test("public transition isolates GO LIVE from the underlying homepage", async () => {
+  await page.navigate(publicUrl());
+  await page.waitFor(promptReadyExpression(), { timeout: 4000 });
+  await page.evaluate('document.querySelector(\'[data-hc-action="run"]\').click()');
+  await page.waitFor('document.querySelector("[data-hc-public-intro]")?.dataset.demoState === "transitioning"');
+
+  const transitionStart = await page.evaluate(`(() => {
+    const page = document.querySelector(".page");
+    const headline = document.querySelector("#landing-hero h1");
+    const transition = document.querySelector('[data-hc-panel="transitioning"]');
+    return {
+      pageVisibility: getComputedStyle(page).visibility,
+      pageOpacity: getComputedStyle(page).opacity,
+      headlineVisibility: getComputedStyle(headline).visibility,
+      transitionVisible: getComputedStyle(transition).visibility,
+      transitionBackground: getComputedStyle(transition).backgroundImage,
+      transitionOwnsCenter: Boolean(document.elementFromPoint(innerWidth / 2, innerHeight / 2)?.closest('[data-hc-panel="transitioning"]')),
+    };
+  })()`);
+
+  assert.equal(transitionStart.pageVisibility, "hidden");
+  assert.equal(transitionStart.pageOpacity, "0");
+  assert.equal(transitionStart.headlineVisibility, "hidden");
+  assert.equal(transitionStart.transitionVisible, "visible");
+  assert.match(transitionStart.transitionBackground, /hc-art-conversation-intelligence-threshold-20260704\.png/);
+  assert.equal(transitionStart.transitionOwnsCenter, true);
+
+  await page.waitFor(
+    'Number(getComputedStyle(document.querySelector(".hc-transition-system strong")).opacity) > 0.5',
+    { timeout: 2000 },
+  );
+  const goLiveState = await page.evaluate(`(() => ({
+    pageVisibility: getComputedStyle(document.querySelector(".page")).visibility,
+    headlineVisibility: getComputedStyle(document.querySelector("#landing-hero h1")).visibility,
+    goLiveOpacity: Number(getComputedStyle(document.querySelector(".hc-transition-system strong")).opacity),
+  }))()`);
+  assert.equal(goLiveState.pageVisibility, "hidden");
+  assert.equal(goLiveState.headlineVisibility, "hidden");
+  assert.ok(goLiveState.goLiveOpacity > 0.5);
+
+  await page.waitFor('!document.querySelector("[data-hc-public-intro]")', { timeout: 3000 });
+  const revealed = await page.evaluate(`({
+    pageVisibility: getComputedStyle(document.querySelector(".page")).visibility,
+    pageOpacity: getComputedStyle(document.querySelector(".page")).opacity,
+  })`);
+  assert.deepEqual(revealed, { pageVisibility: "visible", pageOpacity: "1" });
   assertRuntimeHealthy();
 });
 
@@ -361,7 +424,7 @@ test("public prompt and revealed homepage stay horizontally safe across required
     assert.ok(promptLayout.actionWidth >= 44 && promptLayout.actionHeight >= 44, width + "x" + height + " Run is tappable");
     assert.ok(promptLayout.actionLeft >= -1 && promptLayout.actionRight <= width + 1, width + "x" + height + " Run fits horizontally");
     assert.ok(promptLayout.actionTop >= -1 && promptLayout.actionBottom <= height + 1, width + "x" + height + " Run fits vertically");
-    assert.ok(promptLayout.eraWidth > 0 && promptLayout.eraHeight > 0, width + "x" + height + " THE PAST stays visible");
+    assert.ok(promptLayout.eraWidth > 0 && promptLayout.eraHeight > 0, width + "x" + height + " FINAL SHIFT stays visible");
     assert.equal(promptLayout.bodyOverflow, "hidden");
 
     await page.evaluate('document.querySelector(\'[data-hc-action="run"]\').click()');

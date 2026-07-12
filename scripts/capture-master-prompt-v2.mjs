@@ -57,7 +57,7 @@ try {
   await page.navigate(reviewUrl("&demoState=prompt"));
   await delay(900);
   await capture("desktop-01-mid-typing");
-  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Computer, you get 1%. Life gets the other 99%."`, { timeout: 4000 });
+  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Make my life 99% human conversation and shared experiences — and 1% screen time."`, { timeout: 4000 });
   await capture("desktop-02-prompt-ready");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
   await delay(1120);

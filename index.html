@@ -12078,6 +12078,11 @@
         overflow: hidden;
       }
 
+      html.hc-public-master-prompt-intro .page {
+        visibility: hidden;
+        opacity: 0;
+      }
+
       html.hc-public-master-prompt-intro .page[data-variant="conversation-intelligence-home"] {
         background: #120d09;
       }
@@ -12190,6 +12195,19 @@
 
       html.hc-public-master-prompt-intro .hc-public-master-prompt-intro-shell .hc-future-layer {
         display: none;
+      }
+
+      html.hc-public-master-prompt-intro .hc-public-master-prompt-intro-shell .hc-screen-rail {
+        display: none;
+      }
+
+      html.hc-public-master-prompt-intro .hc-public-master-prompt-intro-shell .hc-demo-transition {
+        background-image:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.72) 0%, rgba(3, 5, 8, 0.54) 35%, rgba(3, 5, 8, 0.2) 68%, rgba(3, 5, 8, 0.05) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.12) 0%, rgba(3, 5, 8, 0.03) 44%, rgba(3, 5, 8, 0.34) 100%),
+          url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
+        background-position: center;
+        background-size: cover;
       }
 
       html.hc-master-prompt-review .hc-future-layer {
@@ -12372,23 +12390,16 @@
 
       html.hc-master-prompt-review .hc-terminal-era {
         display: inline-flex;
-        min-height: 24px;
         align-items: center;
         gap: 7px;
-        border: 1px solid rgba(214, 138, 154, 0.76);
-        border-radius: 2px;
-        background: linear-gradient(180deg, rgba(214, 138, 154, 0.18), rgba(214, 138, 154, 0.07));
-        box-shadow:
-          inset 0 0 0 1px rgba(255, 230, 236, 0.04),
-          0 0 16px rgba(214, 138, 154, 0.16);
-        color: #f0b8c5;
-        padding: 0 9px;
-        font-size: 0.66rem;
-        font-weight: 900;
+        border: 0;
+        background: none;
+        color: var(--hc-rose);
+        padding: 0;
+        font-size: 0.62rem;
+        font-weight: 800;
         letter-spacing: 0.16em;
-        text-shadow:
-          0 0 7px rgba(240, 184, 197, 0.72),
-          0 0 16px rgba(214, 138, 154, 0.34);
+        text-shadow: 0 0 10px rgba(214, 138, 154, 0.38);
       }
 
       html.hc-master-prompt-review .hc-terminal-era i {
@@ -14798,7 +14809,7 @@
 
       const masterPromptDemoConfig = Object.freeze({
         variantId: "life-runs-on-human-conversation",
-        prompt: "Computer, you get 1%. Life gets the other 99%.",
+        prompt: "Make my life 99% human conversation and shared experiences — and 1% screen time.",
         people: {
           maya: {
             name: "Maya",
@@ -15414,8 +15425,8 @@
                       <div class="hc-crt-screen">
                         <div class="hc-terminal-chrome" aria-hidden="true">
                           <span class="hc-terminal-model">HC–01</span>
-                          <span>life computer · 80×24</span>
-                          <span class="hc-terminal-era"><i></i>THE PAST</span>
+                          <span>COMPUTER · 80×24</span>
+                          <span class="hc-terminal-era"><i></i>FINAL SHIFT</span>
                         </div>
                         <div class="hc-terminal-body">
                           <p class="hc-terminal-path" aria-hidden="true">ONE LAST JOB FOR THE COMPUTER.</p>
@@ -15441,7 +15452,7 @@
                     </div>
                     <div class="hc-crt-stand" aria-hidden="true"></div>
                   </div>
-                  <p class="hc-terminal-caption" aria-hidden="true">Everything important, waiting behind a screen.</p>
+                  <p class="hc-terminal-caption" aria-hidden="true">It’s been a good run.</p>
                 </section>
 
                 <section class="hc-demo-panel hc-demo-transition" data-hc-panel="transitioning" aria-label="The screen work moves into the background">
@@ -15551,7 +15562,7 @@
           }
 
           if (promptInput.value.trim()) {
-            updateTypingStatus("Ready · press Enter to leave the screen", "complete");
+            updateTypingStatus("Ready · press Enter to execute prompt", "complete");
           }
         }
 
@@ -15563,7 +15574,7 @@
           if (replay || reducedMotion) {
             promptInput.value = prompt;
             typingIndex = prompt.length;
-            updateTypingStatus("Ready · press Enter to leave the screen", "complete");
+            updateTypingStatus("Ready · press Enter to execute prompt", "complete");
             if (focus) window.requestAnimationFrame(() => promptInput.focus({ preventScroll: true }));
             return;
           }
@@ -15584,8 +15595,8 @@
 
             if (typingIndex >= prompt.length) {
               isAutoTyping = false;
-              updateTypingStatus("Ready · press Enter to leave the screen", "complete");
-              if (liveRegion) liveRegion.textContent = "Prompt ready. Press Enter to make it real.";
+              updateTypingStatus("Ready · press Enter to execute prompt", "complete");
+              if (liveRegion) liveRegion.textContent = "Prompt ready. Press Enter to execute.";
               return;
             }
 
@@ -15702,7 +15713,7 @@
         promptInput.addEventListener("input", () => {
           if (isAutoTyping) stopPromptTyping();
           userEditedPrompt = true;
-          updateTypingStatus("Ready · press Enter to leave the screen", "complete");
+          updateTypingStatus("Ready · press Enter to execute prompt", "complete");
         });
 
         joinButton?.addEventListener("click", () => {

@@ -45,6 +45,7 @@ test("the 1% / 99% Room exists only on the strict noindex review URL", async () 
     roomCount: document.querySelectorAll("[data-hc-room]").length,
     robots: document.querySelector('meta[name="robots"]')?.content,
     state: document.querySelector("[data-hc-demo]")?.dataset.demoState,
+    pageVisibility: getComputedStyle(document.querySelector(".page")).visibility,
   })`);
 
   assert.deepEqual(exact, {
@@ -54,6 +55,7 @@ test("the 1% / 99% Room exists only on the strict noindex review URL", async () 
     roomCount: 1,
     robots: "noindex,nofollow",
     state: "prompt",
+    pageVisibility: "visible",
   });
 
   await page.navigate(`${staticServer.baseUrl}/?review=1&variant=${VARIANT}&experience=human-r00m&demoState=journey&reduceMotion=1`);

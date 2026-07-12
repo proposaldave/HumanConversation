@@ -31,6 +31,8 @@
         const params = new URLSearchParams(window.location.search);
         const isMasterPromptReview =
           params.get("review") === "1" && params.get("variant") === "life-runs-on-human-conversation";
+        const isWhatsHappeningReview =
+          params.get("review") === "1" && params.get("variant") === "whats-happening-real-world";
         const isHumanRoomPreview =
           isMasterPromptReview && params.get("experience") === "human-room";
         const isReviewSurface = ["review", "variant", "option"].some((key) => params.has(key));
@@ -47,14 +49,16 @@
           return;
         }
 
-        if (!isMasterPromptReview) return;
+        if (!isMasterPromptReview && !isWhatsHappeningReview) return;
 
-        document.documentElement.classList.add("hc-master-prompt-review");
-        if (isHumanRoomPreview) {
-          document.documentElement.classList.add("hc-human-room-preview");
-        }
-        if (params.get("reduceMotion") === "1") {
-          document.documentElement.classList.add("hc-master-prompt-reduce-motion");
+        if (isMasterPromptReview) {
+          document.documentElement.classList.add("hc-master-prompt-review");
+          if (isHumanRoomPreview) {
+            document.documentElement.classList.add("hc-human-room-preview");
+          }
+          if (params.get("reduceMotion") === "1") {
+            document.documentElement.classList.add("hc-master-prompt-reduce-motion");
+          }
         }
 
         const robots = document.createElement("meta");
@@ -10478,6 +10482,331 @@
         }
       }
 
+      .page[data-variant="whats-happening-real-world"] {
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #050608;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="whats-happening-real-world"]::before {
+        bottom: auto;
+        height: 100svh;
+        background-image:
+          linear-gradient(90deg, rgba(5, 6, 8, 0.98) 0%, rgba(5, 6, 8, 0.92) 39%, rgba(5, 6, 8, 0.58) 64%, rgba(5, 6, 8, 0.16) 100%),
+          linear-gradient(180deg, rgba(5, 6, 8, 0.12) 0%, rgba(5, 6, 8, 0.02) 56%, rgba(5, 6, 8, 0.72) 100%),
+          url("./assets/hc-art-intelligence-brings-together-20260705.png");
+        background-position: center center;
+        background-size: cover;
+        filter: saturate(1.06) contrast(1.04) brightness(0.94);
+        opacity: 1;
+      }
+
+      .page[data-variant="whats-happening-real-world"]::after {
+        display: none;
+      }
+
+      .page[data-variant="whats-happening-real-world"] header {
+        justify-content: space-between;
+        width: min(100% - 56px, 1320px);
+        color: #fff8ec;
+      }
+
+      .page[data-variant="whats-happening-real-world"] .brand {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="whats-happening-real-world"] .mark-bubble {
+        fill: rgba(5, 6, 8, 0.78);
+        stroke: rgba(255, 248, 236, 0.88);
+        stroke-width: 2.4px;
+      }
+
+      .page[data-variant="whats-happening-real-world"] .mark-heart {
+        fill: var(--hc-rose);
+        stroke: #fff8ec;
+      }
+
+      .page[data-variant="whats-happening-real-world"] .header-email {
+        right: max(28px, calc(env(safe-area-inset-right) + 28px));
+        border-color: rgba(255, 248, 236, 0.24);
+        background: rgba(5, 6, 8, 0.58);
+        color: #fff8ec;
+      }
+
+      .page[data-variant="whats-happening-real-world"] main {
+        width: 100%;
+        min-height: 100svh;
+        padding: 0;
+      }
+
+      .hero-whats-happening-real-world {
+        display: flex;
+        align-items: center;
+        min-height: 100svh;
+        padding: clamp(104px, 12vh, 136px) max(28px, calc((100vw - 1320px) / 2)) clamp(54px, 8vh, 82px);
+      }
+
+      .hero-whats-happening-real-world .hero-inner {
+        display: grid;
+        width: min(100%, 790px);
+        gap: clamp(18px, 2.5vh, 28px);
+      }
+
+      .hero-whats-happening-real-world h1 {
+        display: grid;
+        gap: clamp(16px, 2.2vh, 24px);
+        max-width: none;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: inherit;
+        line-height: 1;
+        text-wrap: balance;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-shell {
+        display: block;
+        width: min(100%, 610px);
+        border: 1px solid #d2c6aa;
+        border-radius: 24px 24px 18px 18px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.42), transparent 24%),
+          linear-gradient(180deg, #c9bea4 0%, #afa389 56%, #8f836d 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.7),
+          inset 0 -6px 12px rgba(70, 61, 45, 0.26),
+          0 0 0 2px #4d473b,
+          0 18px 54px rgba(0, 0, 0, 0.4);
+        padding: 13px;
+        animation: whats-history-in 520ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-screen {
+        display: grid;
+        gap: 13px;
+        overflow: hidden;
+        border: 7px solid #4d4a3f;
+        border-radius: 18px 18px 22px 22px;
+        background:
+          repeating-linear-gradient(180deg, rgba(91, 143, 212, 0.035) 0 1px, transparent 1px 3px),
+          radial-gradient(ellipse at center, rgba(91, 143, 212, 0.11), transparent 62%),
+          #080a0c;
+        box-shadow:
+          inset 0 0 32px rgba(0, 0, 0, 0.9),
+          inset 0 0 74px rgba(91, 143, 212, 0.1);
+        padding: 18px 22px 20px;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-meta {
+        display: flex;
+        justify-content: space-between;
+        color: rgba(255, 248, 236, 0.52);
+        font: 800 0.56rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-meta time {
+        color: #7ea8de;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-question {
+        color: #eef5ff;
+        font: 650 clamp(1.72rem, 3.25vw, 3.2rem)/1.04 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: -0.055em;
+        text-shadow:
+          0 0 7px rgba(126, 168, 222, 0.62),
+          0 0 24px rgba(91, 143, 212, 0.24);
+      }
+
+      .hero-whats-happening-real-world .whats-crt-foot {
+        color: rgba(255, 248, 236, 0.52);
+        font: 750 0.52rem/1.35 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .hero-whats-happening-real-world .whats-bridge {
+        display: block;
+        max-width: 15ch;
+        color: #fff8ec;
+        font-size: clamp(2.7rem, 5vw, 5.25rem);
+        font-weight: 650;
+        letter-spacing: -0.045em;
+        line-height: 0.92;
+        text-shadow: 0 12px 38px rgba(0, 0, 0, 0.4);
+        animation: whats-copy-in 620ms 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero-whats-happening-real-world .whats-answer {
+        display: block;
+        color: var(--hc-rose);
+        font-size: clamp(3.6rem, 7vw, 7.4rem);
+        font-weight: 650;
+        letter-spacing: -0.06em;
+        line-height: 0.82;
+        text-shadow:
+          0 8px 40px rgba(0, 0, 0, 0.34),
+          0 0 34px rgba(214, 138, 154, 0.12);
+        animation: whats-copy-in 680ms 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero-whats-happening-real-world .lede {
+        display: grid;
+        max-width: 690px;
+        gap: 7px;
+        margin: 0;
+        border-left: 3px solid var(--hc-rose);
+        color: rgba(255, 248, 236, 0.82);
+        padding: 2px 0 3px 18px;
+        font-size: clamp(0.98rem, 1.4vw, 1.18rem);
+        font-weight: 720;
+        line-height: 1.42;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.42);
+        animation: whats-copy-in 620ms 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero-whats-happening-real-world .whats-build {
+        color: #fff8ec;
+      }
+
+      .hero-whats-happening-real-world .whats-build em {
+        color: #e8bd67;
+        font-family: Fraunces, Georgia, serif;
+        font-style: italic;
+        font-weight: 650;
+      }
+
+      .page[data-variant="whats-happening-real-world"] .hero > .contact,
+      .page[data-variant="whats-happening-real-world"] .interface-detail,
+      .page[data-variant="whats-happening-real-world"] .interface-punchline,
+      .page[data-variant="whats-happening-real-world"] .homepage-chain,
+      .page[data-variant="whats-happening-real-world"] .story-cue,
+      .page[data-variant="whats-happening-real-world"] .site-footer {
+        display: none;
+      }
+
+      @keyframes whats-history-in {
+        from { opacity: 0; transform: translateY(12px) scale(0.985); }
+        to { opacity: 1; transform: none; }
+      }
+
+      @keyframes whats-copy-in {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: none; }
+      }
+
+      @media (max-width: 760px) {
+        .page[data-variant="whats-happening-real-world"]::before {
+          background-image:
+            linear-gradient(180deg, rgba(5, 6, 8, 0.94) 0%, rgba(5, 6, 8, 0.86) 58%, rgba(5, 6, 8, 0.76) 100%),
+            url("./assets/hc-art-intelligence-brings-together-20260705.png");
+          background-position: 68% center;
+        }
+
+        .page[data-variant="whats-happening-real-world"] header {
+          width: calc(100% - 32px);
+          padding-top: 18px;
+        }
+
+        .page[data-variant="whats-happening-real-world"] .header-email {
+          top: max(18px, calc(env(safe-area-inset-top) + 18px));
+          right: max(16px, calc(env(safe-area-inset-right) + 16px));
+          max-width: calc(100vw - 88px);
+          padding: 7px 9px 8px;
+          font-size: 0.68rem;
+        }
+
+        .hero-whats-happening-real-world {
+          padding: 94px 18px 42px;
+        }
+
+        .hero-whats-happening-real-world .hero-inner {
+          gap: 16px;
+        }
+
+        .hero-whats-happening-real-world h1 {
+          gap: 15px;
+        }
+
+        .hero-whats-happening-real-world .whats-crt-shell {
+          border-radius: 18px 18px 14px 14px;
+          padding: 9px;
+        }
+
+        .hero-whats-happening-real-world .whats-crt-screen {
+          gap: 10px;
+          border-width: 5px;
+          border-radius: 13px 13px 17px 17px;
+          padding: 14px 15px 15px;
+        }
+
+        .hero-whats-happening-real-world .whats-crt-meta {
+          font-size: 0.47rem;
+          letter-spacing: 0.1em;
+        }
+
+        .hero-whats-happening-real-world .whats-crt-question {
+          font-size: clamp(1.42rem, 7.3vw, 1.92rem);
+        }
+
+        .hero-whats-happening-real-world .whats-crt-foot {
+          font-size: 0.44rem;
+          letter-spacing: 0.09em;
+        }
+
+        .hero-whats-happening-real-world .whats-bridge {
+          max-width: 14ch;
+          font-size: clamp(2.35rem, 11vw, 3.15rem);
+          line-height: 0.91;
+        }
+
+        .hero-whats-happening-real-world .whats-answer {
+          font-size: clamp(3rem, 14vw, 4rem);
+          line-height: 0.85;
+        }
+
+        .hero-whats-happening-real-world .lede {
+          gap: 5px;
+          padding-left: 13px;
+          font-size: 0.88rem;
+          line-height: 1.36;
+        }
+      }
+
+      @media (max-width: 360px), (max-height: 720px) {
+        .hero-whats-happening-real-world {
+          padding-top: 82px;
+          padding-bottom: 28px;
+        }
+
+        .hero-whats-happening-real-world .hero-inner,
+        .hero-whats-happening-real-world h1 {
+          gap: 12px;
+        }
+
+        .hero-whats-happening-real-world .whats-bridge {
+          font-size: clamp(2.05rem, 9.5vw, 2.65rem);
+        }
+
+        .hero-whats-happening-real-world .whats-answer {
+          font-size: clamp(2.65rem, 12.5vw, 3.45rem);
+        }
+
+        .hero-whats-happening-real-world .lede {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-whats-happening-real-world .whats-crt-shell,
+        .hero-whats-happening-real-world .whats-bridge,
+        .hero-whats-happening-real-world .whats-answer,
+        .hero-whats-happening-real-world .lede {
+          animation: none;
+        }
+      }
+
       .page[data-variant="life-runs-on-human-conversation"] {
         overflow-x: hidden;
         overflow-y: visible;
@@ -14463,6 +14792,7 @@
         <button class="variant-dot variant-dot-white" type="button" data-option="40" aria-label="Option 41: human value network card"></button>
         <button class="variant-dot variant-dot-pink" type="button" data-option="41" aria-label="Option 42: human thread home"></button>
         <button class="variant-dot variant-dot-pink" type="button" data-option="42" aria-label="Option 43: life runs on Human Conversation"></button>
+        <button class="variant-dot variant-dot-black" type="button" data-option="43" aria-label="Option 44: What’s happening for real-world communities"></button>
       </nav>
     </div>
 
@@ -14971,6 +15301,12 @@
           headline: `<span class="life-hero-kicker">Imagine your life.</span><span class="life-screen-time"><em>1%</em> screen time.</span><span class="life-human-time"><em>99%</em> human time.</span>`,
           lede: `A life that runs on <span class="brand-name">Human Conversation</span> and <span class="life-connected">connected experiences</span>.`,
           story: storyPages["life-runs-on-human-conversation"],
+        },
+        {
+          id: "whats-happening-real-world",
+          headlineLabel: "On November 19, 2009, Twitter asked What’s happening? The digital town square found its question. The real world already had the answer: Human Conversation.",
+          headline: `<span class="whats-crt-shell"><span class="whats-crt-screen"><span class="whats-crt-meta"><span>Twitter</span> <time datetime="2009-11-19">Nov 19 · 2009</time></span><span class="whats-crt-question">What&rsquo;s happening?</span><span class="whats-crt-foot">The digital town square found its question.</span></span></span><span class="whats-bridge">The real world already had the answer.</span><span class="whats-answer">Human Conversation.</span>`,
+          lede: `<span>All the human, social, relationship, and community data moves through conversation.</span> <span class="whats-build">We build the intelligence <em>around</em> it&mdash;not between us.</span>`,
         },
       ];
 

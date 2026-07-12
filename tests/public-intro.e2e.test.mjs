@@ -92,6 +92,7 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "  const intro = document.querySelector(\"[data-hc-public-intro]\");",
       "  const page = document.querySelector(\".page\");",
       "  const promptPanel = document.querySelector('[data-hc-panel=\"prompt\"]');",
+      "  const era = document.querySelector(\".hc-terminal-era\");",
       "  const expected = " + JSON.stringify(MASTER_PROMPT) + ";",
       "  const normalize = (value) => String(value || \"\").replace(/\\s+/g, \" \").trim();",
       "  const sources = [normalize(promptPanel?.innerText), ...[...promptPanel.querySelectorAll(\"input, textarea\")].map((control) => normalize(control.value))];",
@@ -110,6 +111,10 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "    pageInert: page?.inert,",
       "    promptValue: document.querySelector(\"#hc-master-prompt\")?.value,",
       "    promptFocused: document.activeElement?.id === \"hc-master-prompt\",",
+      "    eraText: normalize(era?.textContent),",
+      "    eraVisible: Boolean(era?.getBoundingClientRect().width && era?.getBoundingClientRect().height),",
+      "    eraColor: getComputedStyle(era).color,",
+      "    eraBorderWidth: getComputedStyle(era).borderTopWidth,",
       "    occurrences,",
       "    introCoversViewport: Boolean(rect && rect.left <= 0 && rect.top <= 0 && rect.width >= innerWidth && rect.height >= innerHeight),",
       "    introOwnsCenter: Boolean(document.elementFromPoint(innerWidth / 2, innerHeight / 2)?.closest(\"[data-hc-public-intro]\")),",
@@ -138,6 +143,10 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
     pageInert: true,
     promptValue: MASTER_PROMPT,
     promptFocused: true,
+    eraText: "THE PAST",
+    eraVisible: true,
+    eraColor: "rgb(240, 184, 197)",
+    eraBorderWidth: "1px",
     occurrences: 1,
     introCoversViewport: true,
     introOwnsCenter: true,
@@ -326,6 +335,7 @@ test("public prompt and revealed homepage stay horizontally safe across required
         "(() => {",
         "  const action = document.querySelector('[data-hc-action=\"run\"]');",
         "  const rect = action?.getBoundingClientRect();",
+        "  const eraRect = document.querySelector(\".hc-terminal-era\")?.getBoundingClientRect();",
         "  return {",
         "    horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,",
         "    actionWidth: rect?.width || 0,",
@@ -334,6 +344,8 @@ test("public prompt and revealed homepage stay horizontally safe across required
         "    actionRight: rect?.right ?? -1,",
         "    actionTop: rect?.top ?? -1,",
         "    actionBottom: rect?.bottom ?? -1,",
+        "    eraWidth: eraRect?.width || 0,",
+        "    eraHeight: eraRect?.height || 0,",
         "    bodyOverflow: getComputedStyle(document.body).overflow,",
         "  };",
         "})()",
@@ -343,6 +355,7 @@ test("public prompt and revealed homepage stay horizontally safe across required
     assert.ok(promptLayout.actionWidth >= 44 && promptLayout.actionHeight >= 44, width + "x" + height + " Run is tappable");
     assert.ok(promptLayout.actionLeft >= -1 && promptLayout.actionRight <= width + 1, width + "x" + height + " Run fits horizontally");
     assert.ok(promptLayout.actionTop >= -1 && promptLayout.actionBottom <= height + 1, width + "x" + height + " Run fits vertically");
+    assert.ok(promptLayout.eraWidth > 0 && promptLayout.eraHeight > 0, width + "x" + height + " THE PAST stays visible");
     assert.equal(promptLayout.bodyOverflow, "hidden");
 
     await page.evaluate('document.querySelector(\'[data-hc-action="run"]\').click()');

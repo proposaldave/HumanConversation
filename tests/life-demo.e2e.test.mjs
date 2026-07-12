@@ -114,7 +114,7 @@ test("only the exact hidden route initializes the noindex demo", async () => {
   assertRuntimeHealthy();
 });
 
-test("prompt state is an image-free terminal with one progressively typed prompt", async () => {
+test("prompt state is an image-free vintage CRT with one progressively typed prompt", async () => {
   await page.navigate(reviewUrl("&demoState=prompt"));
   await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === ${JSON.stringify(MASTER_PROMPT)}`, {
     timeout: 4000,
@@ -125,6 +125,8 @@ test("prompt state is an image-free terminal with one progressively typed prompt
     const run = document.querySelector('[data-hc-action="run"]');
     const promptPanel = document.querySelector('[data-hc-panel="prompt"]');
     const futureLayer = document.querySelector(".hc-future-layer");
+    const crtShell = document.querySelector(".hc-terminal-window");
+    const crtScreen = document.querySelector(".hc-crt-screen");
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
     const expected = normalize(${JSON.stringify(MASTER_PROMPT)});
     const occurrenceSources = [
@@ -157,6 +159,7 @@ test("prompt state is an image-free terminal with one progressively typed prompt
       inputVisible: Boolean(input && input.getBoundingClientRect().width && input.getBoundingClientRect().height),
       inputFocused: document.activeElement === input,
       inputFont: getComputedStyle(input).fontFamily,
+      inputColor: getComputedStyle(input).color,
       rootBackground: getComputedStyle(root).backgroundColor,
       runLabel: run?.getAttribute("aria-label"),
       runText: normalize(run?.textContent),
@@ -172,6 +175,11 @@ test("prompt state is an image-free terminal with one progressively typed prompt
       visibleImageBackgrounds,
       hasCopyAction: Boolean(root?.querySelector('[data-hc-action="copy"], .copy-icon')),
       hasChatUi: Boolean(root?.querySelector('[data-hc-ai-reply], [data-hc-thinking], [data-hc-transcript], .chat-bubble')),
+      hasWarmHardware: getComputedStyle(crtShell).backgroundColor === "rgb(184, 173, 148)",
+      hasConvexGlass: parseFloat(getComputedStyle(crtScreen).borderTopLeftRadius) >= 40,
+      hasScanlines: getComputedStyle(crtScreen, "::after").backgroundImage.includes("repeating-linear-gradient"),
+      hasPowerLight: Boolean(root?.querySelector(".hc-crt-power i")),
+      hardwareCopy: normalize(root?.querySelector(".hc-crt-hardware")?.textContent),
     };
   })()`);
 
@@ -181,6 +189,7 @@ test("prompt state is an image-free terminal with one progressively typed prompt
     inputVisible: true,
     inputFocused: true,
     inputFont: promptState.inputFont,
+    inputColor: "rgb(245, 201, 121)",
     rootBackground: "rgb(5, 6, 8)",
     runLabel: "Run this prompt",
     runText: "Run↵",
@@ -194,6 +203,11 @@ test("prompt state is an image-free terminal with one progressively typed prompt
     visibleImageBackgrounds: [],
     hasCopyAction: false,
     hasChatUi: false,
+    hasWarmHardware: true,
+    hasConvexGlass: true,
+    hasScanlines: true,
+    hasPowerLight: true,
+    hardwareCopy: "Human Computer · Model 01 Power",
   });
   assert.match(promptState.inputFont, /mono|Consolas|Cascadia|Courier/i);
   assertRuntimeHealthy();

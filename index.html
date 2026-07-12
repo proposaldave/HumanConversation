@@ -12205,7 +12205,7 @@
         place-items: center;
         overflow: hidden;
         background:
-          radial-gradient(circle at 50% 42%, rgba(73, 83, 96, 0.12), transparent 44%),
+          radial-gradient(circle at 50% 42%, rgba(185, 151, 85, 0.11), transparent 45%),
           var(--hc-terminal);
         padding: clamp(26px, 5vw, 72px);
       }
@@ -12215,71 +12215,118 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background: repeating-linear-gradient(180deg, transparent 0 3px, rgba(255, 255, 255, 0.018) 3px 4px);
-        mix-blend-mode: screen;
-        opacity: 0.46;
+        background: radial-gradient(ellipse at 50% 48%, transparent 34%, rgba(0, 0, 0, 0.48) 100%);
+      }
+
+      html.hc-master-prompt-review .hc-crt-computer {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 980px);
+        filter: drop-shadow(0 38px 54px rgba(0, 0, 0, 0.58));
       }
 
       html.hc-master-prompt-review .hc-terminal-window {
         position: relative;
-        z-index: 1;
-        width: min(100%, 1040px);
-        overflow: hidden;
-        border: 1px solid rgba(210, 218, 226, 0.18);
-        border-radius: 4px;
-        background: #07090b;
+        width: 100%;
+        overflow: visible;
+        border: 1px solid #d2c6aa;
+        border-radius: 44px 44px 30px 30px / 38px 38px 27px 27px;
+        background-color: #b8ad94;
+        background-image:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.42), transparent 24%),
+          linear-gradient(180deg, #c9bea4 0%, #afa389 56%, #988c73 100%);
         box-shadow:
-          0 0 0 1px rgba(0, 0, 0, 0.8),
-          0 36px 120px rgba(0, 0, 0, 0.62),
-          0 0 70px rgba(106, 126, 150, 0.07);
+          inset 0 1px 0 rgba(255, 255, 255, 0.72),
+          inset 0 -8px 16px rgba(70, 61, 45, 0.23),
+          0 0 0 2px #4d473b,
+          0 8px 0 #554e40,
+          0 32px 90px rgba(0, 0, 0, 0.55);
+        padding: clamp(18px, 2.4vw, 30px) clamp(18px, 2.5vw, 32px) 0;
+      }
+
+      html.hc-master-prompt-review .hc-crt-screen {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        border: clamp(8px, 1.05vw, 13px) solid #4d4a3f;
+        border-radius: 54px 54px 62px 62px / 43px 43px 58px 58px;
+        background: #0d0b06;
+        box-shadow:
+          0 0 0 2px rgba(45, 41, 31, 0.86),
+          inset 0 0 0 2px rgba(238, 203, 132, 0.08),
+          inset 0 0 48px rgba(0, 0, 0, 0.94),
+          inset 0 0 110px rgba(137, 87, 25, 0.15),
+          0 2px 0 rgba(255, 255, 255, 0.28);
+      }
+
+      html.hc-master-prompt-review .hc-crt-screen::before,
+      html.hc-master-prompt-review .hc-crt-screen::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      html.hc-master-prompt-review .hc-crt-screen::before {
+        background:
+          radial-gradient(ellipse at center, transparent 53%, rgba(0, 0, 0, 0.56) 100%),
+          linear-gradient(132deg, rgba(255, 239, 195, 0.1) 0%, transparent 19% 76%, rgba(255, 219, 141, 0.035) 100%);
+        border-radius: inherit;
+      }
+
+      html.hc-master-prompt-review .hc-crt-screen::after {
+        background: repeating-linear-gradient(180deg, rgba(255, 206, 112, 0.034) 0 1px, rgba(0, 0, 0, 0.18) 1px 3px);
+        opacity: 0.72;
+        mix-blend-mode: screen;
       }
 
       html.hc-master-prompt-review .hc-terminal-chrome {
+        position: relative;
+        z-index: 1;
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
         min-height: 38px;
-        border-bottom: 1px solid var(--hc-terminal-line);
-        background: #0b0d10;
-        color: #707781;
+        border-bottom: 1px solid rgba(233, 180, 86, 0.2);
+        background: rgba(24, 17, 7, 0.86);
+        color: #997641;
         padding: 0 14px;
         font: 600 0.62rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+        text-shadow: 0 0 9px rgba(245, 184, 76, 0.26);
       }
 
       html.hc-master-prompt-review .hc-terminal-chrome > :last-child {
         justify-self: end;
       }
 
-      html.hc-master-prompt-review .hc-terminal-lights {
-        display: flex;
-        gap: 6px;
-      }
-
-      html.hc-master-prompt-review .hc-terminal-lights i {
-        display: block;
-        width: 7px;
-        height: 7px;
-        border: 1px solid rgba(216, 221, 228, 0.22);
-        border-radius: 50%;
-        background: #13171b;
+      html.hc-master-prompt-review .hc-terminal-model {
+        justify-self: start;
+        color: #c79b52;
       }
 
       html.hc-master-prompt-review .hc-terminal-body {
+        position: relative;
+        z-index: 1;
         min-height: clamp(360px, 51vh, 500px);
+        background:
+          radial-gradient(ellipse at 48% 38%, rgba(104, 65, 16, 0.18), transparent 56%),
+          #0b0a06;
         padding: clamp(28px, 5vw, 62px);
       }
 
       html.hc-master-prompt-review .hc-terminal-path {
         margin: 0 0 26px;
-        color: var(--hc-terminal-dim);
+        color: #9f7f4c;
         font: 500 clamp(0.72rem, 1vw, 0.88rem)/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.02em;
+        text-shadow: 0 0 10px rgba(241, 181, 77, 0.3);
       }
 
       html.hc-master-prompt-review .hc-terminal-path::first-letter {
-        color: #aab2bd;
+        color: #e7b75f;
       }
 
       html.hc-master-prompt-review .hc-prompt-form {
@@ -12302,9 +12349,10 @@
       }
 
       html.hc-master-prompt-review .hc-terminal-chevron {
-        color: #9ca5b0;
+        color: #e7b75f;
         padding-top: 3px;
         font: 500 clamp(1.15rem, 1.8vw, 1.5rem)/1.62 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        text-shadow: 0 0 12px rgba(245, 184, 76, 0.45);
       }
 
       html.hc-master-prompt-review .hc-prompt-input {
@@ -12316,11 +12364,14 @@
         border: 0;
         outline: 0;
         background: transparent;
-        caret-color: #f0f3f7;
-        color: var(--hc-terminal-text);
+        caret-color: #ffe0a0;
+        color: #f5c979;
         padding: 0;
         font: 500 clamp(1.05rem, 1.7vw, 1.5rem)/1.62 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: -0.015em;
+        text-shadow:
+          0 0 5px rgba(245, 184, 76, 0.44),
+          0 0 15px rgba(208, 130, 25, 0.16);
       }
 
       html.hc-master-prompt-review .hc-terminal-command-line:focus-within::after {
@@ -12330,7 +12381,7 @@
         bottom: -14px;
         left: 0;
         height: 1px;
-        background: linear-gradient(90deg, rgba(216, 221, 228, 0.24), transparent 72%);
+        background: linear-gradient(90deg, rgba(231, 183, 95, 0.38), transparent 72%);
       }
 
       html.hc-master-prompt-review .hc-prompt-input:focus-visible {
@@ -12343,13 +12394,13 @@
         align-items: center;
         gap: 18px;
         margin-top: 22px;
-        border-top: 1px solid var(--hc-terminal-line);
+        border-top: 1px solid rgba(233, 180, 86, 0.22);
         padding: 18px 0 0;
       }
 
       html.hc-master-prompt-review .hc-typing-status {
         margin: 0;
-        color: var(--hc-terminal-dim);
+        color: #9f7f4c;
         font: 500 0.68rem/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.05em;
         text-transform: uppercase;
@@ -12361,7 +12412,8 @@
         width: 0.52em;
         height: 0.9em;
         margin-right: 0.55em;
-        background: #d6dbe2;
+        background: #f0bd61;
+        box-shadow: 0 0 9px rgba(240, 189, 97, 0.72);
         vertical-align: -0.1em;
         animation: hc-terminal-blink 760ms steps(1, end) infinite;
       }
@@ -12374,11 +12426,13 @@
         align-items: center;
         justify-content: center;
         gap: 14px;
-        border: 1px solid rgba(225, 230, 237, 0.38);
-        border-radius: 2px;
-        background: #d9dde3;
-        box-shadow: none;
-        color: #08090b;
+        border: 1px solid #e3bd73;
+        border-radius: 3px;
+        background: #caa35f;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 239, 198, 0.48),
+          0 3px 0 #72592f;
+        color: #171107;
         padding: 0 16px;
         font: 800 0.72rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.06em;
@@ -12394,8 +12448,80 @@
       }
 
       html.hc-master-prompt-review .hc-run-prompt:hover {
-        background: #f1f3f6;
+        background: #e2bb72;
         transform: translateY(-1px);
+      }
+
+      html.hc-master-prompt-review .hc-crt-hardware {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: clamp(14px, 2.4vw, 28px);
+        min-height: 62px;
+        color: #494235;
+        padding: 0 clamp(4px, 1vw, 12px);
+        font: 700 0.55rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.36);
+      }
+
+      html.hc-master-prompt-review .hc-crt-badge {
+        white-space: nowrap;
+      }
+
+      html.hc-master-prompt-review .hc-crt-vents {
+        display: flex;
+        gap: 5px;
+      }
+
+      html.hc-master-prompt-review .hc-crt-vents i {
+        width: 3px;
+        height: 20px;
+        border-radius: 99px;
+        background: rgba(65, 59, 47, 0.5);
+        box-shadow: 1px 0 0 rgba(255, 255, 255, 0.22);
+      }
+
+      html.hc-master-prompt-review .hc-crt-power {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      html.hc-master-prompt-review .hc-crt-power i {
+        display: block;
+        width: 10px;
+        height: 10px;
+        border: 1px solid #55462d;
+        border-radius: 50%;
+        background: #efb95c;
+        box-shadow:
+          inset 0 1px 1px rgba(255, 255, 255, 0.6),
+          0 0 10px rgba(239, 185, 92, 0.7);
+      }
+
+      html.hc-master-prompt-review .hc-crt-stand {
+        position: relative;
+        z-index: -1;
+        width: 34%;
+        height: 35px;
+        margin: -2px auto 0;
+        background: linear-gradient(180deg, #8e826b, #5d5545);
+        clip-path: polygon(22% 0, 78% 0, 92% 100%, 8% 100%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+
+      html.hc-master-prompt-review .hc-crt-stand::after {
+        content: "";
+        position: absolute;
+        right: -18%;
+        bottom: 0;
+        left: -18%;
+        height: 8px;
+        border-radius: 8px 8px 3px 3px;
+        background: #625a49;
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.46);
       }
 
       html.hc-master-prompt-review .hc-terminal-caption {
@@ -12421,7 +12547,8 @@
         inset: 0;
         z-index: 3;
         background:
-          radial-gradient(circle at 50% 42%, rgba(73, 83, 96, 0.12), transparent 44%),
+          repeating-linear-gradient(180deg, rgba(255, 206, 112, 0.025) 0 1px, transparent 1px 3px),
+          radial-gradient(circle at 50% 42%, rgba(185, 151, 85, 0.13), transparent 44%),
           var(--hc-terminal);
         transform: scaleX(1);
         transform-origin: left center;
@@ -13008,6 +13135,27 @@
       }
 
       @media (max-width: 360px) {
+        html.hc-master-prompt-review .hc-crt-hardware {
+          gap: 8px;
+          padding-right: 1px;
+          padding-left: 1px;
+          font-size: 0.48rem;
+          letter-spacing: 0.08em;
+        }
+
+        html.hc-master-prompt-review .hc-crt-badge {
+          font-size: 0;
+        }
+
+        html.hc-master-prompt-review .hc-crt-badge::after {
+          content: "Model 01";
+          font-size: 0.48rem;
+        }
+
+        html.hc-master-prompt-review .hc-crt-vents i:nth-child(n + 5) {
+          display: none;
+        }
+
         html.hc-master-prompt-review .hc-terminal-body {
           min-height: 440px;
           padding-right: 14px;
@@ -14178,27 +14326,37 @@
 
               <div class="hc-demo-stage">
                 <section class="hc-demo-panel hc-demo-prompt" data-hc-panel="prompt" aria-labelledby="hc-master-prompt-title">
-                  <div class="hc-terminal-window">
-                    <div class="hc-terminal-chrome" aria-hidden="true">
-                      <span class="hc-terminal-lights"><i></i><i></i><i></i></span>
-                      <span>life — terminal — 80×24</span>
-                      <span>PAST</span>
-                    </div>
-                    <div class="hc-terminal-body">
-                      <p class="hc-terminal-path" aria-hidden="true">human@computer:~$</p>
-                      <h2 class="sr-only" id="hc-master-prompt-title">Give the computer its final job</h2>
-                      <form class="hc-prompt-form" data-hc-prompt-form>
-                        <label class="sr-only" for="hc-master-prompt">Type the job you want the computer to handle</label>
-                        <div class="hc-terminal-command-line">
-                          <span class="hc-terminal-chevron" aria-hidden="true">›</span>
-                          <textarea class="hc-prompt-input" id="hc-master-prompt" rows="4" spellcheck="true" autocomplete="off"></textarea>
+                  <div class="hc-crt-computer">
+                    <div class="hc-terminal-window">
+                      <div class="hc-crt-screen">
+                        <div class="hc-terminal-chrome" aria-hidden="true">
+                          <span class="hc-terminal-model">HC–01</span>
+                          <span>life computer · 80×24</span>
+                          <span>PAST</span>
                         </div>
-                        <div class="hc-prompt-actions">
-                          <p class="hc-typing-status" data-hc-typing-status data-typing-state="idle">Typing…</p>
-                          <button class="hc-run-prompt" type="submit" data-hc-action="run" aria-label="Run this prompt"><span>Run</span><kbd aria-hidden="true">↵</kbd></button>
+                        <div class="hc-terminal-body">
+                          <p class="hc-terminal-path" aria-hidden="true">human@computer:~$</p>
+                          <h2 class="sr-only" id="hc-master-prompt-title">Give the computer its final job</h2>
+                          <form class="hc-prompt-form" data-hc-prompt-form>
+                            <label class="sr-only" for="hc-master-prompt">Type the job you want the computer to handle</label>
+                            <div class="hc-terminal-command-line">
+                              <span class="hc-terminal-chevron" aria-hidden="true">›</span>
+                              <textarea class="hc-prompt-input" id="hc-master-prompt" rows="4" spellcheck="true" autocomplete="off"></textarea>
+                            </div>
+                            <div class="hc-prompt-actions">
+                              <p class="hc-typing-status" data-hc-typing-status data-typing-state="idle">Typing…</p>
+                              <button class="hc-run-prompt" type="submit" data-hc-action="run" aria-label="Run this prompt"><span>Run</span><kbd aria-hidden="true">↵</kbd></button>
+                            </div>
+                          </form>
                         </div>
-                      </form>
+                      </div>
+                      <div class="hc-crt-hardware" aria-hidden="true">
+                        <span class="hc-crt-badge">Human Computer · Model 01</span>
+                        <span class="hc-crt-vents"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                        <span class="hc-crt-power"><i></i>Power</span>
+                      </div>
                     </div>
+                    <div class="hc-crt-stand" aria-hidden="true"></div>
                   </div>
                   <p class="hc-terminal-caption" aria-hidden="true">Everything important, waiting behind a screen.</p>
                 </section>

@@ -9,8 +9,7 @@ import { launchChrome, startStaticServer } from "./helpers/chrome-cdp.mjs";
 const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
-const MASTER_PROMPT =
-  "Make my life 99% human conversation and shared experiences — and 1% screen time.";
+const MASTER_PROMPT = "Give me my life back.";
 const TERMINAL_INSTRUCTION = "ONE LAST JOB FOR THE COMPUTER.";
 const TERMINAL_STATUS = "Ready · press Enter to execute prompt";
 const VARIANT = "life-runs-on-human-conversation";
@@ -32,7 +31,11 @@ function reviewUrl(query = "") {
 }
 
 function promptReadyExpression() {
-  return "document.querySelector(\"#hc-master-prompt\")?.value === " + JSON.stringify(MASTER_PROMPT);
+  return [
+    "document.querySelector(\"#hc-master-prompt\")?.value === " + JSON.stringify(MASTER_PROMPT),
+    "document.querySelector(\"[data-hc-prompt-form]\")?.dataset.typingState === \"complete\"",
+    "Number(getComputedStyle(document.querySelector(\".hc-life-ratio\")).opacity) > 0.9",
+  ].join(" && ");
 }
 
 function currentHomeProjectionExpression() {
@@ -98,6 +101,7 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "  const terminalLabel = document.querySelector(\".hc-terminal-chrome > :nth-child(2)\");",
       "  const caption = document.querySelector(\".hc-terminal-caption\");",
       "  const typingStatus = document.querySelector(\"[data-hc-typing-status]\");",
+      "  const ratio = document.querySelector(\".hc-life-ratio\");",
       "  const instruction = document.querySelector(\".hc-terminal-path\");",
       "  const expected = " + JSON.stringify(MASTER_PROMPT) + ";",
       "  const normalize = (value) => String(value || \"\").replace(/\\s+/g, \" \").trim();",
@@ -128,6 +132,12 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "    captionText: normalize(caption?.textContent),",
       "    captionColor: getComputedStyle(caption).color,",
       "    typingStatusText: normalize(typingStatus?.textContent),",
+      "    ratioText: normalize(ratio?.textContent),",
+      "    ratioVisible: Boolean(ratio && Number(getComputedStyle(ratio).opacity) > 0.9),",
+      "    humanRatioColor: getComputedStyle(document.querySelector(\".hc-life-ratio-human\")).color,",
+      "    screenRatioColor: getComputedStyle(document.querySelector(\".hc-life-ratio-screen\")).color,",
+      "    computerAnimation: getComputedStyle(document.querySelector(\".hc-crt-computer\")).animationName,",
+      "    screenWakeAnimation: getComputedStyle(document.querySelector(\".hc-terminal-body\")).animationName,",
       "    instructionText: normalize(instruction?.textContent),",
       "    oldTerminalPathPresent: /human@computer/i.test(promptPanel?.textContent || \"\"),",
       "    occurrences,",
@@ -169,6 +179,12 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
     captionText: "It’s been a good run.",
     captionColor: "rgba(214, 138, 154, 0.64)",
     typingStatusText: TERMINAL_STATUS,
+    ratioText: "Life, rebalanced. 99% human conversation + shared experiences 1% screen time",
+    ratioVisible: true,
+    humanRatioColor: "rgb(214, 138, 154)",
+    screenRatioColor: "rgb(91, 143, 212)",
+    computerAnimation: "hc-crt-arrive",
+    screenWakeAnimation: "hc-crt-wake",
     instructionText: TERMINAL_INSTRUCTION,
     oldTerminalPathPresent: false,
     occurrences: 1,
@@ -401,7 +417,7 @@ test("public prompt and revealed homepage stay horizontally safe across required
   for (const [width, height] of sizes) {
     await page.setViewport(width, height);
     await page.navigate(publicUrl("?reduceMotion=1"));
-    await page.waitFor(promptReadyExpression(), { timeout: 1000 });
+    await page.waitFor(`window.location.search === "?reduceMotion=1" && ${promptReadyExpression()}`, { timeout: 1000 });
 
     const promptLayout = await page.evaluate(
       [
@@ -425,7 +441,10 @@ test("public prompt and revealed homepage stay horizontally safe across required
       ].join("\n"),
     );
     assert.ok(promptLayout.horizontalOverflow <= 1, width + "x" + height + " prompt has no horizontal overflow");
-    assert.ok(promptLayout.actionWidth >= 44 && promptLayout.actionHeight >= 44, width + "x" + height + " Run is tappable");
+    assert.ok(
+      promptLayout.actionWidth >= 44 && promptLayout.actionHeight >= 44,
+      width + "x" + height + " Run is tappable: " + JSON.stringify(promptLayout),
+    );
     assert.ok(promptLayout.actionLeft >= -1 && promptLayout.actionRight <= width + 1, width + "x" + height + " Run fits horizontally");
     assert.ok(promptLayout.actionTop >= -1 && promptLayout.actionBottom <= height + 1, width + "x" + height + " Run fits vertically");
     assert.ok(promptLayout.eraWidth > 0 && promptLayout.eraHeight > 0, width + "x" + height + " FINAL SHIFT stays visible");

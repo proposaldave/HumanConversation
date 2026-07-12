@@ -12311,6 +12311,10 @@
         filter: drop-shadow(0 38px 54px rgba(0, 0, 0, 0.58));
       }
 
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="prompt"] .hc-crt-computer {
+        animation: hc-crt-arrive 640ms 80ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
       html.hc-master-prompt-review .hc-terminal-window {
         position: relative;
         width: 100%;
@@ -12343,6 +12347,11 @@
           inset 0 0 48px rgba(0, 0, 0, 0.94),
           inset 0 0 110px rgba(137, 87, 25, 0.15),
           0 2px 0 rgba(255, 255, 255, 0.28);
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="prompt"] .hc-terminal-body {
+        transform-origin: center;
+        animation: hc-crt-wake 820ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       html.hc-master-prompt-review .hc-crt-screen::before,
@@ -12431,6 +12440,10 @@
         white-space: nowrap;
       }
 
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-demo-state="prompt"] .hc-terminal-path {
+        animation: hc-terminal-copy-in 360ms 760ms ease-out both;
+      }
+
       html.hc-master-prompt-review .hc-terminal-path::before {
         content: "";
         width: 18px;
@@ -12469,7 +12482,7 @@
       html.hc-master-prompt-review .hc-prompt-input {
         display: block;
         width: 100%;
-        min-height: 176px;
+        min-height: 88px;
         resize: none;
         overflow: hidden;
         border: 0;
@@ -12478,8 +12491,8 @@
         caret-color: #ffe0a0;
         color: #f5c979;
         padding: 0;
-        font: 500 clamp(1.05rem, 1.7vw, 1.5rem)/1.62 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-        letter-spacing: -0.015em;
+        font: 650 clamp(1.55rem, 2.7vw, 2.45rem)/1.2 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: -0.035em;
         text-shadow:
           0 0 5px rgba(245, 184, 76, 0.44),
           0 0 15px rgba(208, 130, 25, 0.16);
@@ -12498,6 +12511,74 @@
       html.hc-master-prompt-review .hc-prompt-input:focus-visible {
         border-radius: 0;
         box-shadow: none;
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px clamp(18px, 3vw, 34px);
+        align-items: end;
+        margin: 4px 0 0 34px;
+        border-top: 1px solid rgba(233, 180, 86, 0.18);
+        border-bottom: 1px solid rgba(233, 180, 86, 0.18);
+        padding: 14px 0 16px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition:
+          opacity 420ms ease,
+          transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-master-prompt-review .hc-prompt-form[data-typing-state="complete"] .hc-life-ratio {
+        opacity: 1;
+        transform: none;
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-kicker {
+        grid-column: 1 / -1;
+        color: #8c744c;
+        font: 700 0.56rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-human,
+      html.hc-master-prompt-review .hc-life-ratio-screen {
+        display: flex;
+        align-items: center;
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-human {
+        gap: clamp(12px, 2vw, 22px);
+        min-width: 0;
+        color: var(--hc-rose);
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-human strong {
+        flex: none;
+        font: 650 clamp(3.4rem, 5.6vw, 5.25rem)/0.78 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: -0.1em;
+        text-shadow: 0 0 24px rgba(214, 138, 154, 0.34);
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-human span,
+      html.hc-master-prompt-review .hc-life-ratio-screen span {
+        font: 800 clamp(0.56rem, 0.8vw, 0.7rem)/1.38 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-screen {
+        gap: 10px;
+        border-left: 1px solid rgba(91, 143, 212, 0.3);
+        color: var(--hc-blue);
+        padding-left: clamp(16px, 2.4vw, 28px);
+      }
+
+      html.hc-master-prompt-review .hc-life-ratio-screen strong {
+        font: 650 clamp(1.85rem, 3vw, 2.75rem)/0.9 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: -0.08em;
+        text-shadow: 0 0 18px rgba(91, 143, 212, 0.34);
       }
 
       html.hc-master-prompt-review .hc-prompt-actions {
@@ -12548,6 +12629,19 @@
         font: 800 0.72rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.06em;
         text-transform: uppercase;
+        opacity: 0.34;
+        transform: translateY(2px);
+        transition:
+          opacity 240ms ease,
+          transform 240ms ease,
+          background-color 180ms ease,
+          box-shadow 240ms ease;
+      }
+
+      html.hc-master-prompt-review .hc-prompt-form[data-typing-state="complete"] .hc-run-prompt {
+        opacity: 1;
+        transform: none;
+        animation: hc-run-ready 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       html.hc-master-prompt-review .hc-run-prompt kbd {
@@ -12645,6 +12739,16 @@
         font: 650 0.62rem/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.12em;
         text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(7px);
+        transition:
+          opacity 520ms ease,
+          transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-master-prompt-review .hc-master-prompt-demo[data-prompt-ready="true"] .hc-terminal-caption {
+        opacity: 1;
+        transform: none;
       }
 
       html.hc-master-prompt-review .hc-demo-transition {
@@ -12972,6 +13076,29 @@
         text-transform: uppercase;
       }
 
+      @keyframes hc-crt-arrive {
+        from { opacity: 0; transform: translateY(18px) scale(0.985); }
+        to { opacity: 1; transform: none; }
+      }
+
+      @keyframes hc-crt-wake {
+        0% { opacity: 0; filter: brightness(4); transform: scaleY(0.006); box-shadow: 0 0 26px rgba(245, 201, 121, 0.82); }
+        34% { opacity: 1; filter: brightness(2.4); transform: scaleY(0.018); box-shadow: 0 0 34px rgba(245, 201, 121, 0.68); }
+        76% { filter: brightness(1.25); transform: scaleY(1.025); box-shadow: 0 0 18px rgba(245, 201, 121, 0.16); }
+        100% { opacity: 1; filter: none; transform: scaleY(1); box-shadow: none; }
+      }
+
+      @keyframes hc-terminal-copy-in {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: none; }
+      }
+
+      @keyframes hc-run-ready {
+        0% { box-shadow: inset 0 1px 0 rgba(255, 239, 198, 0.48), 0 3px 0 #72592f; }
+        48% { box-shadow: inset 0 1px 0 rgba(255, 239, 198, 0.62), 0 3px 0 #72592f, 0 0 30px rgba(245, 184, 76, 0.54); }
+        100% { box-shadow: inset 0 1px 0 rgba(255, 239, 198, 0.48), 0 3px 0 #72592f, 0 0 14px rgba(245, 184, 76, 0.18); }
+      }
+
       @keyframes hc-terminal-blink {
         0%, 48% { opacity: 1; }
         49%, 100% { opacity: 0; }
@@ -13012,7 +13139,28 @@
         }
 
         html.hc-master-prompt-review .hc-prompt-input {
-          min-height: 142px;
+          min-height: 66px;
+          font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+        }
+
+        html.hc-master-prompt-review .hc-terminal-path {
+          margin-bottom: 14px;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio {
+          gap: 6px 18px;
+          margin-top: 0;
+          padding-top: 8px;
+          padding-bottom: 9px;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio-human strong {
+          font-size: 3rem;
+        }
+
+        html.hc-master-prompt-review .hc-prompt-actions {
+          margin-top: 8px;
+          padding-top: 10px;
         }
 
         html.hc-master-prompt-review .hc-demo-journey {
@@ -13116,19 +13264,53 @@
 
         html.hc-master-prompt-review .hc-terminal-chevron,
         html.hc-master-prompt-review .hc-prompt-input {
-          font-size: clamp(1rem, 4.8vw, 1.18rem);
+          font-size: clamp(1.05rem, 5vw, 1.22rem);
         }
 
         html.hc-master-prompt-review .hc-prompt-input {
-          min-height: 244px;
-          line-height: 1.55;
+          min-height: 108px;
+          font-size: clamp(1.35rem, 7vw, 1.72rem);
+          line-height: 1.22;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          margin-left: 25px;
+          padding: 12px 0 13px;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio-human {
+          gap: 12px;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio-human strong {
+          font-size: clamp(2.7rem, 14vw, 3.45rem);
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio-human span,
+        html.hc-master-prompt-review .hc-life-ratio-screen span {
+          font-size: 0.52rem;
+          letter-spacing: 0.07em;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio-screen {
+          gap: 8px;
+          border-top: 1px solid rgba(91, 143, 212, 0.24);
+          border-left: 0;
+          padding-top: 8px;
+          padding-left: 0;
+        }
+
+        html.hc-master-prompt-review .hc-life-ratio-screen strong {
+          font-size: 1.55rem;
         }
 
         html.hc-master-prompt-review .hc-prompt-actions {
           display: grid;
           grid-template-columns: minmax(0, 1fr) auto;
           gap: 12px;
-          margin-top: 16px;
+          margin-top: 10px;
           padding-top: 14px;
         }
 
@@ -13302,8 +13484,8 @@
         }
 
         html.hc-master-prompt-review .hc-prompt-input {
-          min-height: 268px;
-          font-size: 1rem;
+          min-height: 104px;
+          font-size: 1.32rem;
         }
 
         html.hc-master-prompt-review .hc-typing-status {
@@ -14789,7 +14971,7 @@
 
       const masterPromptDemoConfig = Object.freeze({
         variantId: "life-runs-on-human-conversation",
-        prompt: "Make my life 99% human conversation and shared experiences — and 1% screen time.",
+        prompt: "Give me my life back.",
         people: {
           maya: {
             name: "Maya",
@@ -15415,7 +15597,12 @@
                             <label class="sr-only" for="hc-master-prompt">Type the job you want the computer to handle</label>
                             <div class="hc-terminal-command-line">
                               <span class="hc-terminal-chevron" aria-hidden="true">›</span>
-                              <textarea class="hc-prompt-input" id="hc-master-prompt" rows="4" spellcheck="true" autocomplete="off"></textarea>
+                              <textarea class="hc-prompt-input" id="hc-master-prompt" rows="2" spellcheck="true" autocomplete="off"></textarea>
+                            </div>
+                            <div class="hc-life-ratio" aria-label="Target: 99 percent human conversation and shared experiences, 1 percent screen time">
+                              <span class="hc-life-ratio-kicker">Life, rebalanced.</span>
+                              <span class="hc-life-ratio-human"><strong>99%</strong> <span>human conversation <br />+ shared experiences</span></span>
+                              <span class="hc-life-ratio-screen"><strong>1%</strong> <span>screen time</span></span>
                             </div>
                             <div class="hc-prompt-actions">
                               <p class="hc-typing-status" data-hc-typing-status data-typing-state="idle">Typing…</p>
@@ -15486,6 +15673,7 @@
         let roomStep = 0;
         const reducedMotion =
           masterPromptParams.get("reduceMotion") === "1" || prefersReducedMotion.matches;
+        if (reducedMotion) document.documentElement.classList.add("hc-master-prompt-reduce-motion");
 
         function setRoomStep(nextStep, options = {}) {
           if (!(roomRoot instanceof HTMLElement) || roomBeats.length === 0) return;
@@ -15529,6 +15717,8 @@
           if (!typingStatus) return;
           typingStatus.textContent = text;
           typingStatus.dataset.typingState = state;
+          promptForm.dataset.typingState = state;
+          demoRoot.dataset.promptReady = String(state === "complete");
         }
 
         function stopPromptTyping({ complete = false } = {}) {
@@ -15585,7 +15775,7 @@
             typingTimer = window.setTimeout(typeNextCharacter, delay);
           };
 
-          typingTimer = window.setTimeout(typeNextCharacter, 380);
+          typingTimer = window.setTimeout(typeNextCharacter, 900);
           if (focus || window.matchMedia("(pointer: fine)").matches || window.innerWidth > 760) {
             window.requestAnimationFrame(() => promptInput.focus({ preventScroll: true }));
           }
@@ -15641,6 +15831,7 @@
                 "hc-master-prompt-review",
                 "hc-public-master-prompt-intro",
                 "hc-public-master-prompt-pending",
+                "hc-master-prompt-reduce-motion",
               );
               themeColor?.setAttribute("content", originalThemeColor);
               demoRoot.remove();

@@ -38,7 +38,11 @@ try {
   await page.setReducedMotion(false);
   await page.setViewport(1440, 900);
   await page.navigate(publicUrl());
-  await page.waitFor(`document.querySelector("[data-hc-typing-status]")?.dataset.typingState === "complete"`, { timeout: 4000 });
+  await delay(300);
+  await capture("public-desktop-00-power-on");
+  await delay(480);
+  await capture("public-desktop-00-screen-ready");
+  await page.waitFor(`document.querySelector("[data-hc-typing-status]")?.dataset.typingState === "complete" && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`, { timeout: 4000 });
   await capture("public-desktop-01-crt");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
   await delay(1120);
@@ -48,6 +52,7 @@ try {
 
   await page.setViewport(390, 844);
   await page.navigate(publicUrl("?reduceMotion=1"));
+  await page.waitFor(`window.location.search === "?reduceMotion=1" && document.querySelector("#hc-master-prompt")?.value === "Give me my life back." && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`);
   await capture("public-mobile-01-crt");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
   await page.waitFor(`!document.querySelector("[data-hc-public-intro]")`);
@@ -55,9 +60,9 @@ try {
 
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("&demoState=prompt"));
-  await delay(900);
+  await delay(1050);
   await capture("desktop-01-mid-typing");
-  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Make my life 99% human conversation and shared experiences — and 1% screen time."`, { timeout: 4000 });
+  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Give me my life back." && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`, { timeout: 4000 });
   await capture("desktop-02-prompt-ready");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
   await delay(1120);
@@ -74,6 +79,7 @@ try {
 
   await page.setViewport(390, 844);
   await page.navigate(reviewUrl("&demoState=prompt&reduceMotion=1"));
+  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Give me my life back." && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`);
   await capture("mobile-01-prompt-ready");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
   await page.waitFor(`document.querySelector("[data-hc-demo]")?.dataset.demoState === "journey"`);
@@ -81,6 +87,7 @@ try {
 
   await page.setViewport(320, 800);
   await page.navigate(reviewUrl("&demoState=prompt&reduceMotion=1"));
+  await page.waitFor(`document.querySelector("#hc-master-prompt")?.value === "Give me my life back." && Number(getComputedStyle(document.querySelector(".hc-life-ratio")).opacity) > 0.9`);
   await capture("mobile-03-narrow-prompt");
   await page.evaluate(`document.querySelector('[data-hc-action="run"]').click()`);
   await page.waitFor(`document.querySelector("[data-hc-demo]")?.dataset.demoState === "journey"`);

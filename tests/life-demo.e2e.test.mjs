@@ -9,8 +9,7 @@ import { launchChrome, startStaticServer } from "./helpers/chrome-cdp.mjs";
 const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
-const MASTER_PROMPT =
-  "Make my life 99% human conversation and shared experiences — and 1% screen time.";
+const MASTER_PROMPT = "Give me my life back.";
 const TERMINAL_INSTRUCTION = "ONE LAST JOB FOR THE COMPUTER.";
 const VARIANT = "life-runs-on-human-conversation";
 

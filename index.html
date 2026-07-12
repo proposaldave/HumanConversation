@@ -10583,46 +10583,80 @@
 
       .hero-whats-happening-real-world .whats-crt-screen {
         display: grid;
-        gap: 13px;
+        gap: 0;
         overflow: hidden;
         border: 7px solid #4d4a3f;
         border-radius: 18px 18px 22px 22px;
-        background:
-          repeating-linear-gradient(180deg, rgba(91, 143, 212, 0.035) 0 1px, transparent 1px 3px),
-          radial-gradient(ellipse at center, rgba(91, 143, 212, 0.11), transparent 62%),
-          #080a0c;
+        background: #f1f1f1;
         box-shadow:
-          inset 0 0 32px rgba(0, 0, 0, 0.9),
-          inset 0 0 74px rgba(91, 143, 212, 0.1);
-        padding: 18px 22px 20px;
+          inset 0 0 28px rgba(0, 0, 0, 0.18),
+          inset 0 0 70px rgba(91, 143, 212, 0.08);
       }
 
       .hero-whats-happening-real-world .whats-crt-meta {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        color: rgba(255, 248, 236, 0.52);
-        font: 800 0.56rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-        letter-spacing: 0.14em;
+        background: linear-gradient(180deg, #4a4a4a, #303030);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.42);
+        color: rgba(255, 255, 255, 0.62);
+        padding: 9px 17px 10px;
+        font: 800 0.56rem/1 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
+      .hero-whats-happening-real-world .whats-twitter-wordmark {
+        color: #f8f8f8;
+        font: 900 italic 1rem/1 "Trebuchet MS", Manrope, sans-serif;
+        letter-spacing: -0.06em;
+        text-transform: lowercase;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-whats-happening-real-world .whats-twitter-wordmark::after {
+        content: "•";
+        color: #48a9dc;
+        margin-left: 3px;
+        font-style: normal;
+      }
+
       .hero-whats-happening-real-world .whats-crt-meta time {
-        color: #7ea8de;
+        color: #a9d5ee;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-composer {
+        display: block;
+        background: linear-gradient(180deg, #f7f7f7, #ececec);
+        padding: 16px 20px 11px;
       }
 
       .hero-whats-happening-real-world .whats-crt-question {
-        color: #eef5ff;
-        font: 650 clamp(1.72rem, 3.25vw, 3.2rem)/1.04 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-        letter-spacing: -0.055em;
-        text-shadow:
-          0 0 7px rgba(126, 168, 222, 0.62),
-          0 0 24px rgba(91, 143, 212, 0.24);
+        display: block;
+        color: #686868;
+        font: 800 clamp(1.45rem, 2.7vw, 2.5rem)/1.08 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: -0.045em;
+        text-shadow: 0 1px 0 #fff;
+      }
+
+      .hero-whats-happening-real-world .whats-crt-input {
+        display: block;
+        height: clamp(27px, 3.2vw, 38px);
+        margin-top: 8px;
+        border: 2px solid #b8c8d0;
+        border-radius: 3px;
+        background: #fff;
+        box-shadow:
+          inset 0 1px 3px rgba(0, 0, 0, 0.12),
+          0 0 0 1px rgba(255, 255, 255, 0.74);
       }
 
       .hero-whats-happening-real-world .whats-crt-foot {
-        color: rgba(255, 248, 236, 0.52);
-        font: 750 0.52rem/1.35 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-        letter-spacing: 0.13em;
+        background: #ececec;
+        color: #6d7a81;
+        padding: 0 20px 14px;
+        font: 800 0.5rem/1.35 Manrope, Inter, system-ui, sans-serif;
+        letter-spacing: 0.11em;
         text-transform: uppercase;
       }
 
@@ -10735,22 +10769,35 @@
         }
 
         .hero-whats-happening-real-world .whats-crt-screen {
-          gap: 10px;
           border-width: 5px;
           border-radius: 13px 13px 17px 17px;
-          padding: 14px 15px 15px;
         }
 
         .hero-whats-happening-real-world .whats-crt-meta {
+          padding: 7px 12px 8px;
           font-size: 0.47rem;
           letter-spacing: 0.1em;
         }
 
+        .hero-whats-happening-real-world .whats-twitter-wordmark {
+          font-size: 0.82rem;
+        }
+
+        .hero-whats-happening-real-world .whats-crt-composer {
+          padding: 12px 13px 8px;
+        }
+
         .hero-whats-happening-real-world .whats-crt-question {
-          font-size: clamp(1.42rem, 7.3vw, 1.92rem);
+          font-size: clamp(1.16rem, 5.9vw, 1.55rem);
+        }
+
+        .hero-whats-happening-real-world .whats-crt-input {
+          height: 25px;
+          margin-top: 6px;
         }
 
         .hero-whats-happening-real-world .whats-crt-foot {
+          padding: 0 13px 10px;
           font-size: 0.44rem;
           letter-spacing: 0.09em;
         }
@@ -15305,7 +15352,7 @@
         {
           id: "whats-happening-real-world",
           headlineLabel: "On November 19, 2009, Twitter asked What’s happening? The digital town square found its question. The real world already had the answer: Human Conversation.",
-          headline: `<span class="whats-crt-shell"><span class="whats-crt-screen"><span class="whats-crt-meta"><span>Twitter</span> <time datetime="2009-11-19">Nov 19 · 2009</time></span><span class="whats-crt-question">What&rsquo;s happening?</span><span class="whats-crt-foot">The digital town square found its question.</span></span></span><span class="whats-bridge">The real world already had the answer.</span><span class="whats-answer">Human Conversation.</span>`,
+          headline: `<span class="whats-crt-shell"><span class="whats-crt-screen"><span class="whats-crt-meta"><span class="whats-twitter-wordmark">twitter</span> <time datetime="2009-11-19">Nov 19 · 2009</time></span><span class="whats-crt-composer"><span class="whats-crt-question">What&rsquo;s happening?</span><span class="whats-crt-input" aria-hidden="true"></span></span><span class="whats-crt-foot">The digital town square found its question.</span></span></span><span class="whats-bridge">The real world already had the answer.</span><span class="whats-answer">Human Conversation.</span>`,
           lede: `<span>All the human, social, relationship, and community data moves through conversation.</span> <span class="whats-build">We build the intelligence <em>around</em> it&mdash;not between us.</span>`,
         },
       ];

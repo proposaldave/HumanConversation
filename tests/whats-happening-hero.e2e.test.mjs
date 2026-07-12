@@ -53,6 +53,7 @@ test("the hidden alternative tells the verified Twitter-to-human-conversation st
       dateText: normalize(document.querySelector(".whats-crt-meta")?.textContent),
       dateTime: document.querySelector(".whats-crt-meta time")?.getAttribute("datetime"),
       question: normalize(document.querySelector(".whats-crt-question")?.textContent),
+      composerFieldPresent: Boolean(document.querySelector(".whats-crt-input")),
       history: normalize(document.querySelector(".whats-crt-foot")?.textContent),
       bridge: normalize(document.querySelector(".whats-bridge")?.textContent),
       answer: normalize(document.querySelector(".whats-answer")?.textContent),
@@ -61,6 +62,7 @@ test("the hidden alternative tells the verified Twitter-to-human-conversation st
       backgroundImage: getComputedStyle(pageRoot, "::before").backgroundImage,
       shellBackground: getComputedStyle(shell).backgroundImage,
       screenBackground: getComputedStyle(screen).backgroundImage,
+      screenColor: getComputedStyle(screen).backgroundColor,
       contactDisplay: getComputedStyle(document.querySelector("#email-capture")).display,
       storyHidden: document.querySelector("#landing-story")?.hidden,
       storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
@@ -73,9 +75,10 @@ test("the hidden alternative tells the verified Twitter-to-human-conversation st
   assert.deepEqual(state, {
     variant: VARIANT,
     robots: "noindex,nofollow",
-    dateText: "Twitter Nov 19 · 2009",
+    dateText: "twitter Nov 19 · 2009",
     dateTime: "2009-11-19",
     question: "What’s happening?",
+    composerFieldPresent: true,
     history: "The digital town square found its question.",
     bridge: "The real world already had the answer.",
     answer: "Human Conversation.",
@@ -84,6 +87,7 @@ test("the hidden alternative tells the verified Twitter-to-human-conversation st
     backgroundImage: state.backgroundImage,
     shellBackground: state.shellBackground,
     screenBackground: state.screenBackground,
+    screenColor: "rgb(241, 241, 241)",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,
@@ -93,7 +97,7 @@ test("the hidden alternative tells the verified Twitter-to-human-conversation st
   });
   assert.match(state.backgroundImage, /hc-art-intelligence-brings-together-20260705\.png/);
   assert.match(state.shellBackground, /linear-gradient/);
-  assert.match(state.screenBackground, /repeating-linear-gradient/);
+  assert.equal(state.screenBackground, "none");
   assertRuntimeHealthy();
 });
 

@@ -31,6 +31,8 @@
         const params = new URLSearchParams(window.location.search);
         const isMasterPromptReview =
           params.get("review") === "1" && params.get("variant") === "life-runs-on-human-conversation";
+        const isHumanRoomPreview =
+          isMasterPromptReview && params.get("experience") === "human-room";
         const isReviewSurface = ["review", "variant", "option"].some((key) => params.has(key));
         const isPublicMasterPromptIntro =
           ["/", "/index.html"].includes(window.location.pathname) &&
@@ -48,6 +50,9 @@
         if (!isMasterPromptReview) return;
 
         document.documentElement.classList.add("hc-master-prompt-review");
+        if (isHumanRoomPreview) {
+          document.documentElement.classList.add("hc-human-room-preview");
+        }
         if (params.get("reduceMotion") === "1") {
           document.documentElement.classList.add("hc-master-prompt-reduce-motion");
         }
@@ -13354,6 +13359,822 @@
         opacity: 1;
         transform: none;
       }
+
+      /* Private review only: the post-Run 1% / 99% Room. */
+      html.hc-human-room-preview,
+      html.hc-human-room-preview body {
+        overflow: hidden;
+        background: #0b0805;
+      }
+
+      html.hc-human-room-preview .hc-room-experience .hc-future-layer {
+        display: none;
+      }
+
+      html.hc-human-room-preview .page > header {
+        display: none !important;
+      }
+
+      html.hc-human-room-preview .hc-room-experience .hc-screen-rail {
+        z-index: 14;
+        width: 12px;
+        background:
+          linear-gradient(180deg, rgba(214, 138, 154, 0.7), transparent 18%, transparent 82%, rgba(91, 143, 212, 0.7)),
+          #070706;
+        box-shadow:
+          4px 0 24px rgba(5, 6, 8, 0.52),
+          1px 0 0 rgba(255, 248, 234, 0.14);
+      }
+
+      html.hc-human-room-preview .hc-room-experience .hc-screen-rail span {
+        left: 18px;
+        color: rgba(255, 248, 234, 0.78);
+        font-size: 0.48rem;
+        letter-spacing: 0.17em;
+        white-space: nowrap;
+      }
+
+      html.hc-human-room-preview .hc-room-journey {
+        display: block;
+        overflow: hidden;
+        background: #e9d5ae;
+        color: #17120d;
+        padding: 0;
+      }
+
+      html.hc-human-room-preview .hc-human-room {
+        position: relative;
+        width: 100%;
+        min-height: 100svh;
+        overflow: hidden;
+        isolation: isolate;
+        background: #e9d5ae;
+      }
+
+      html.hc-human-room-preview .hc-room-photo {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image:
+          linear-gradient(90deg, rgba(247, 229, 191, 0.98) 0%, rgba(247, 229, 191, 0.92) 25%, rgba(247, 229, 191, 0.48) 41%, rgba(33, 20, 10, 0.02) 63%),
+          linear-gradient(180deg, rgba(18, 10, 4, 0.12), transparent 38%, rgba(18, 10, 4, 0.24)),
+          url("./assets/hc-art-solves-disconnection-community-host-20260706.png");
+        background-position: center;
+        background-size: cover;
+        filter: saturate(0.9) contrast(0.99) brightness(1.01);
+        transform: scale(1.035);
+        transform-origin: 66% 48%;
+        transition:
+          filter 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1500ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-human-room-preview .hc-human-room[data-room-step="1"] .hc-room-photo,
+      html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-photo {
+        filter: saturate(1.02) contrast(1.01) brightness(1.03);
+        transform: scale(1.018) translateX(-0.4%);
+      }
+
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-photo,
+      html.hc-human-room-preview .hc-human-room[data-room-step="4"] .hc-room-photo {
+        filter: saturate(1.12) contrast(1.02) brightness(1.06);
+        transform: scale(1);
+      }
+
+      html.hc-human-room-preview .hc-room-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 47% 48%, rgba(214, 138, 154, 0.04), transparent 18%),
+          radial-gradient(circle at 65% 42%, rgba(255, 206, 106, 0.04), transparent 20%);
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+
+      html.hc-human-room-preview .hc-room-topbar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 12px;
+        z-index: 8;
+        display: flex;
+        min-height: 74px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        border-bottom: 1px solid rgba(26, 22, 18, 0.12);
+        padding: 0 clamp(26px, 4.4vw, 72px);
+      }
+
+      html.hc-human-room-preview .hc-room-brand {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        color: var(--hc-rose);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1rem, 1.4vw, 1.22rem);
+        font-weight: 650;
+        letter-spacing: -0.02em;
+      }
+
+      html.hc-human-room-preview .hc-room-brand small {
+        color: rgba(26, 22, 18, 0.56);
+        font: 850 0.53rem/1 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      html.hc-human-room-preview .hc-room-progress {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 1.8vw, 26px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      html.hc-human-room-preview .hc-room-progress li {
+        position: relative;
+        color: rgba(26, 22, 18, 0.38);
+        font-size: 0.56rem;
+        font-weight: 900;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        transition: color 320ms ease;
+      }
+
+      html.hc-human-room-preview .hc-room-progress li::before {
+        content: "";
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        left: 0;
+        height: 2px;
+        background: transparent;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition:
+          background 320ms ease,
+          transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-human-room-preview .hc-room-progress li[aria-current="step"] {
+        color: #17120d;
+      }
+
+      html.hc-human-room-preview .hc-room-progress li[aria-current="step"]::before {
+        background: var(--hc-rose);
+        transform: scaleX(1);
+      }
+
+      html.hc-human-room-preview .hc-room-copy-stack {
+        position: absolute;
+        top: 74px;
+        bottom: 62px;
+        left: clamp(74px, 8vw, 132px);
+        z-index: 6;
+        width: min(42vw, 610px);
+      }
+
+      html.hc-human-room-preview .hc-room-beat {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        max-width: 590px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(calc(-50% + 24px));
+        visibility: hidden;
+        transition:
+          opacity 360ms ease,
+          transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 620ms;
+      }
+
+      html.hc-human-room-preview .hc-human-room[data-room-step="0"] .hc-room-beat[data-room-beat="0"],
+      html.hc-human-room-preview .hc-human-room[data-room-step="1"] .hc-room-beat[data-room-beat="1"],
+      html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-beat[data-room-beat="2"],
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-beat[data-room-beat="3"],
+      html.hc-human-room-preview .hc-human-room[data-room-step="4"] .hc-room-beat[data-room-beat="4"] {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        visibility: visible;
+        transition-delay: 90ms, 90ms, 0s;
+      }
+
+      html.hc-human-room-preview .hc-room-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 16px;
+        color: #8d5d16;
+        font-size: 0.61rem;
+        font-weight: 950;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      html.hc-human-room-preview .hc-room-kicker::before {
+        content: "";
+        width: 26px;
+        height: 2px;
+        background: var(--hc-rose);
+      }
+
+      html.hc-human-room-preview .hc-room-beat h2 {
+        max-width: 590px;
+        margin: 0;
+        color: #17120d;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.4rem, 5.7vw, 7rem);
+        font-weight: 650;
+        letter-spacing: -0.062em;
+        line-height: 0.88;
+        text-wrap: balance;
+      }
+
+      html.hc-human-room-preview .hc-room-beat h2:focus {
+        outline: none;
+      }
+
+      html.hc-human-room-preview .hc-room-beat h2 em {
+        color: var(--hc-rose);
+        font-style: normal;
+      }
+
+      html.hc-human-room-preview .hc-room-beat > p:not(.hc-room-kicker) {
+        max-width: 500px;
+        margin: 18px 0 0;
+        color: rgba(26, 22, 18, 0.74);
+        font-size: clamp(0.92rem, 1.2vw, 1.12rem);
+        font-weight: 760;
+        line-height: 1.52;
+      }
+
+      html.hc-human-room-preview .hc-room-context {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      html.hc-human-room-preview .hc-room-context span {
+        border: 1px solid rgba(26, 22, 18, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 248, 234, 0.58);
+        color: rgba(26, 22, 18, 0.82);
+        padding: 8px 11px;
+        font-size: 0.64rem;
+        font-weight: 880;
+        line-height: 1;
+        backdrop-filter: blur(8px);
+      }
+
+      html.hc-human-room-preview .hc-room-next,
+      html.hc-human-room-preview .hc-room-mail,
+      html.hc-human-room-preview .hc-room-replay {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        margin-top: 24px;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 950;
+        letter-spacing: 0.035em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition:
+          transform 220ms ease,
+          box-shadow 220ms ease,
+          background 220ms ease;
+      }
+
+      html.hc-human-room-preview .hc-room-next,
+      html.hc-human-room-preview .hc-room-mail {
+        border: 1px solid #17120d;
+        background: #17120d;
+        color: #fff8ea;
+        box-shadow: 0 12px 26px rgba(26, 22, 18, 0.18);
+        padding: 0 22px;
+      }
+
+      html.hc-human-room-preview .hc-room-next::after,
+      html.hc-human-room-preview .hc-room-mail::after {
+        content: "→";
+        margin-left: 12px;
+        color: var(--hc-rose);
+        font-size: 1.05rem;
+      }
+
+      html.hc-human-room-preview .hc-room-next:hover,
+      html.hc-human-room-preview .hc-room-mail:hover,
+      html.hc-human-room-preview .hc-room-next:focus-visible,
+      html.hc-human-room-preview .hc-room-mail:focus-visible {
+        box-shadow: 0 16px 34px rgba(26, 22, 18, 0.25);
+        transform: translateY(-2px);
+      }
+
+      html.hc-human-room-preview .hc-room-replay {
+        min-height: 46px;
+        border: 1px solid rgba(26, 22, 18, 0.2);
+        background: rgba(255, 248, 234, 0.62);
+        color: #17120d;
+        padding: 0 18px;
+        backdrop-filter: blur(8px);
+      }
+
+      html.hc-human-room-preview .hc-room-next:focus-visible,
+      html.hc-human-room-preview .hc-room-mail:focus-visible,
+      html.hc-human-room-preview .hc-room-replay:focus-visible {
+        outline: 3px solid rgba(var(--hc-rose-rgb), 0.55);
+        outline-offset: 3px;
+      }
+
+      html.hc-human-room-preview .hc-room-final-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      html.hc-human-room-preview .hc-room-beat.is-final h2 {
+        font-size: clamp(3rem, 5.15vw, 6.2rem);
+      }
+
+      html.hc-human-room-preview .hc-room-brand-line {
+        max-width: 540px;
+        border-left: 3px solid var(--hc-rose);
+        padding-left: 15px;
+      }
+
+      html.hc-human-room-preview .hc-room-brand-line strong {
+        color: var(--hc-rose);
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.07em;
+        font-weight: 650;
+      }
+
+      html.hc-human-room-preview .hc-room-system {
+        position: absolute;
+        bottom: 18px;
+        left: clamp(74px, 8vw, 132px);
+        z-index: 9;
+        display: flex;
+        max-width: min(660px, 54vw);
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(245, 199, 92, 0.36);
+        border-radius: 3px;
+        background: rgba(8, 8, 7, 0.82);
+        box-shadow: 0 10px 28px rgba(8, 8, 7, 0.22);
+        color: rgba(255, 248, 234, 0.74);
+        padding: 9px 12px;
+        font: 750 0.55rem/1.3 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
+      html.hc-human-room-preview .hc-room-system::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        flex: none;
+        border-radius: 50%;
+        background: #f5c75c;
+        box-shadow: 0 0 10px rgba(245, 199, 92, 0.78);
+      }
+
+      html.hc-human-room-preview .hc-room-spot,
+      html.hc-human-room-preview .hc-room-thread,
+      html.hc-human-room-preview .hc-room-dialogue {
+        position: absolute;
+        z-index: 4;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 620ms ease,
+          transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html.hc-human-room-preview .hc-room-spot {
+        width: clamp(58px, 5vw, 86px);
+        aspect-ratio: 1;
+        border: 2px solid rgba(214, 138, 154, 0.88);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 10px rgba(214, 138, 154, 0.12),
+          0 0 34px rgba(214, 138, 154, 0.66);
+        transform: translate(-50%, -50%) scale(0.72);
+      }
+
+      html.hc-human-room-preview .hc-room-spot::after {
+        content: attr(data-person);
+        position: absolute;
+        top: calc(100% + 9px);
+        left: 50%;
+        border: 1px solid rgba(255, 248, 234, 0.3);
+        border-radius: 999px;
+        background: rgba(12, 8, 5, 0.76);
+        color: #fff8ea;
+        padding: 6px 9px;
+        font-size: 0.58rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        backdrop-filter: blur(7px);
+      }
+
+      html.hc-human-room-preview .hc-room-spot.is-maya {
+        top: 38%;
+        left: 41.5%;
+      }
+
+      html.hc-human-room-preview .hc-room-spot.is-jordan {
+        top: 34%;
+        left: 64%;
+        border-color: rgba(245, 199, 92, 0.9);
+        box-shadow:
+          0 0 0 10px rgba(245, 199, 92, 0.1),
+          0 0 34px rgba(245, 199, 92, 0.56);
+      }
+
+      html.hc-human-room-preview .hc-room-spot.is-lena {
+        top: 52%;
+        left: 80%;
+      }
+
+      html.hc-human-room-preview .hc-human-room[data-room-step="0"] .hc-room-spot.is-maya,
+      html.hc-human-room-preview .hc-human-room[data-room-step="1"] .hc-room-spot.is-maya,
+      html.hc-human-room-preview .hc-human-room[data-room-step="1"] .hc-room-spot.is-jordan,
+      html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-spot.is-maya,
+      html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-spot.is-jordan,
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-spot.is-maya,
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-spot.is-lena,
+      html.hc-human-room-preview .hc-human-room[data-room-step="4"] .hc-room-spot {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      html.hc-human-room-preview .hc-room-thread {
+        height: 2px;
+        overflow: visible;
+        background: linear-gradient(90deg, var(--hc-rose), #f5c75c);
+        box-shadow: 0 0 16px rgba(245, 199, 92, 0.86);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      html.hc-human-room-preview .hc-room-thread::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff1bf;
+        box-shadow: 0 0 18px rgba(245, 199, 92, 0.92);
+        transform: translateY(-50%);
+      }
+
+      html.hc-human-room-preview .hc-room-thread.is-maya-jordan {
+        top: 38%;
+        left: 43%;
+        width: 21%;
+        rotate: -10deg;
+      }
+
+      html.hc-human-room-preview .hc-room-thread.is-maya-lena {
+        top: 39%;
+        left: 43%;
+        width: 37%;
+        rotate: 20deg;
+      }
+
+      html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-thread.is-maya-jordan,
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-thread.is-maya-jordan,
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-thread.is-maya-lena,
+      html.hc-human-room-preview .hc-human-room[data-room-step="4"] .hc-room-thread {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      html.hc-human-room-preview .hc-room-dialogue {
+        top: 18%;
+        right: clamp(30px, 4vw, 68px);
+        display: grid;
+        width: min(31vw, 430px);
+        gap: 9px;
+        transform: translateY(16px);
+      }
+
+      html.hc-human-room-preview .hc-room-dialogue q {
+        justify-self: end;
+        border-left: 2px solid #f5c75c;
+        background: linear-gradient(90deg, rgba(11, 7, 4, 0.82), rgba(11, 7, 4, 0.48));
+        color: #fff8ea;
+        padding: 10px 13px;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(0.98rem, 1.25vw, 1.28rem);
+        font-weight: 650;
+        line-height: 1.15;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.36);
+        backdrop-filter: blur(8px);
+      }
+
+      html.hc-human-room-preview .hc-room-dialogue q:nth-child(2) {
+        margin-right: 10%;
+        border-color: var(--hc-rose);
+      }
+
+      html.hc-human-room-preview .hc-room-dialogue q:nth-child(3) {
+        margin-right: 2%;
+      }
+
+      html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-dialogue,
+      html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-dialogue {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      html.hc-human-room-preview .hc-room-inline-dialogue {
+        display: none;
+      }
+
+      @media (min-width: 761px) {
+        html.hc-human-room-preview .hc-human-room[data-room-step="0"] .hc-room-spot.is-maya::after,
+        html.hc-human-room-preview .hc-human-room[data-room-step="4"] .hc-room-spot::after {
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 760px) {
+        html.hc-human-room-preview .hc-room-experience .hc-screen-rail {
+          right: 0;
+          bottom: auto;
+          width: 100%;
+          height: 4px;
+        }
+
+        html.hc-human-room-preview .hc-room-experience .hc-screen-rail span {
+          display: none;
+        }
+
+        html.hc-human-room-preview .hc-room-topbar {
+          top: 4px;
+          left: 0;
+          min-height: 56px;
+          padding: 0 16px;
+        }
+
+        html.hc-human-room-preview .hc-room-brand {
+          display: grid;
+          gap: 2px;
+          font-size: 0.9rem;
+        }
+
+        html.hc-human-room-preview .hc-room-brand small {
+          font-size: 0.42rem;
+        }
+
+        html.hc-human-room-preview .hc-room-progress {
+          gap: 8px;
+        }
+
+        html.hc-human-room-preview .hc-room-progress li {
+          width: 6px;
+          height: 6px;
+          overflow: hidden;
+          border-radius: 50%;
+          background: rgba(26, 22, 18, 0.2);
+          color: transparent;
+          font-size: 0;
+        }
+
+        html.hc-human-room-preview .hc-room-progress li::before {
+          display: none;
+        }
+
+        html.hc-human-room-preview .hc-room-progress li[aria-current="step"] {
+          background: var(--hc-rose);
+          box-shadow: 0 0 0 4px rgba(var(--hc-rose-rgb), 0.16);
+        }
+
+        html.hc-human-room-preview .hc-room-photo {
+          bottom: 44%;
+          background-image:
+            linear-gradient(180deg, rgba(14, 8, 4, 0.18) 0%, transparent 42%, rgba(233, 213, 174, 0.18) 72%, #e9d5ae 100%),
+            url("./assets/hc-art-solves-disconnection-community-host-20260706.png");
+          background-position: 65% center;
+          transform-origin: 64% 48%;
+        }
+
+        html.hc-human-room-preview .hc-room-copy-stack {
+          top: 53%;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background: linear-gradient(180deg, rgba(233, 213, 174, 0), #e9d5ae 8%, #f2e3c5 100%);
+        }
+
+        html.hc-human-room-preview .hc-room-beat {
+          top: 47%;
+          left: 0;
+          max-width: none;
+          padding: 0 20px 72px;
+          transform: translateY(calc(-50% + 18px));
+        }
+
+        html.hc-human-room-preview .hc-human-room[data-room-step="0"] .hc-room-beat[data-room-beat="0"],
+        html.hc-human-room-preview .hc-human-room[data-room-step="1"] .hc-room-beat[data-room-beat="1"],
+        html.hc-human-room-preview .hc-human-room[data-room-step="2"] .hc-room-beat[data-room-beat="2"],
+        html.hc-human-room-preview .hc-human-room[data-room-step="3"] .hc-room-beat[data-room-beat="3"],
+        html.hc-human-room-preview .hc-human-room[data-room-step="4"] .hc-room-beat[data-room-beat="4"] {
+          transform: translateY(-50%);
+        }
+
+        html.hc-human-room-preview .hc-room-kicker {
+          margin-bottom: 10px;
+          font-size: 0.5rem;
+        }
+
+        html.hc-human-room-preview .hc-room-kicker::before {
+          width: 18px;
+        }
+
+        html.hc-human-room-preview .hc-room-beat h2,
+        html.hc-human-room-preview .hc-room-beat.is-final h2 {
+          max-width: 440px;
+          font-size: clamp(2.35rem, 11vw, 3.35rem);
+          letter-spacing: -0.055em;
+          line-height: 0.91;
+        }
+
+        html.hc-human-room-preview .hc-room-beat > p:not(.hc-room-kicker) {
+          margin-top: 11px;
+          font-size: 0.8rem;
+          line-height: 1.4;
+        }
+
+        html.hc-human-room-preview .hc-room-context {
+          gap: 5px;
+          margin-top: 11px;
+        }
+
+        html.hc-human-room-preview .hc-room-context span {
+          padding: 6px 8px;
+          font-size: 0.54rem;
+        }
+
+        html.hc-human-room-preview .hc-room-next,
+        html.hc-human-room-preview .hc-room-mail,
+        html.hc-human-room-preview .hc-room-replay {
+          min-height: 44px;
+          margin-top: 13px;
+          font-size: 0.61rem;
+        }
+
+        html.hc-human-room-preview .hc-room-final-actions {
+          gap: 6px;
+        }
+
+        html.hc-human-room-preview .hc-room-brand-line {
+          border-left-width: 2px;
+          padding-left: 10px;
+        }
+
+        html.hc-human-room-preview .hc-room-system {
+          right: 14px;
+          bottom: 13px;
+          left: 14px;
+          max-width: none;
+          overflow: hidden;
+          padding: 7px 9px;
+          font-size: 0.46rem;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        html.hc-human-room-preview .hc-room-spot {
+          width: 54px;
+        }
+
+        html.hc-human-room-preview .hc-room-spot.is-maya {
+          top: 25%;
+          left: 20%;
+        }
+
+        html.hc-human-room-preview .hc-room-spot.is-jordan {
+          top: 21%;
+          left: 60%;
+        }
+
+        html.hc-human-room-preview .hc-room-spot.is-lena {
+          top: 26%;
+          left: 84%;
+        }
+
+        html.hc-human-room-preview .hc-room-thread.is-maya-jordan {
+          top: 25%;
+          left: 25%;
+          width: 35%;
+          rotate: -7deg;
+        }
+
+        html.hc-human-room-preview .hc-room-thread.is-maya-lena {
+          top: 26%;
+          left: 25%;
+          width: 59%;
+          rotate: 1deg;
+        }
+
+        html.hc-human-room-preview .hc-room-dialogue {
+          display: none;
+        }
+
+        html.hc-human-room-preview .hc-room-inline-dialogue {
+          display: grid;
+          gap: 4px;
+          margin-top: 10px;
+        }
+
+        html.hc-human-room-preview .hc-room-inline-dialogue q {
+          color: rgba(26, 22, 18, 0.76);
+          font-family: Fraunces, Georgia, serif;
+          font-size: 0.8rem;
+          font-weight: 650;
+          line-height: 1.15;
+        }
+      }
+
+      @media (max-width: 360px) {
+        html.hc-human-room-preview .hc-room-photo {
+          bottom: 46%;
+        }
+
+        html.hc-human-room-preview .hc-room-copy-stack {
+          top: 51%;
+        }
+
+        html.hc-human-room-preview .hc-room-beat {
+          top: 46%;
+          padding-right: 16px;
+          padding-left: 16px;
+        }
+
+        html.hc-human-room-preview .hc-room-beat h2,
+        html.hc-human-room-preview .hc-room-beat.is-final h2 {
+          font-size: clamp(2rem, 10.5vw, 2.75rem);
+        }
+
+        html.hc-human-room-preview .hc-room-beat > p:not(.hc-room-kicker) {
+          font-size: 0.72rem;
+        }
+
+        html.hc-human-room-preview .hc-room-context span {
+          font-size: 0.49rem;
+        }
+
+        html.hc-human-room-preview .hc-room-next,
+        html.hc-human-room-preview .hc-room-mail,
+        html.hc-human-room-preview .hc-room-replay {
+          min-height: 42px;
+          padding-right: 15px;
+          padding-left: 15px;
+          font-size: 0.56rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.hc-human-room-preview .hc-room-photo,
+        html.hc-human-room-preview .hc-room-beat,
+        html.hc-human-room-preview .hc-room-spot,
+        html.hc-human-room-preview .hc-room-thread,
+        html.hc-human-room-preview .hc-room-dialogue,
+        html.hc-human-room-preview .hc-room-progress li::before {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+
+      html.hc-master-prompt-reduce-motion.hc-human-room-preview .hc-room-photo,
+      html.hc-master-prompt-reduce-motion.hc-human-room-preview .hc-room-beat,
+      html.hc-master-prompt-reduce-motion.hc-human-room-preview .hc-room-spot,
+      html.hc-master-prompt-reduce-motion.hc-human-room-preview .hc-room-thread,
+      html.hc-master-prompt-reduce-motion.hc-human-room-preview .hc-room-dialogue,
+      html.hc-master-prompt-reduce-motion.hc-human-room-preview .hc-room-progress li::before {
+        animation: none !important;
+        transition: none !important;
+      }
     </style>
   </head>
   <body>
@@ -14021,6 +14842,8 @@
       const isMasterPromptReviewRoute =
         masterPromptParams.get("review") === "1" &&
         masterPromptParams.get("variant") === masterPromptDemoConfig.variantId;
+      const isHumanRoomPreview =
+        isMasterPromptReviewRoute && masterPromptParams.get("experience") === "human-room";
       const isMasterPromptReviewSurface = ["review", "variant", "option"].some((key) =>
         masterPromptParams.has(key),
       );
@@ -14458,14 +15281,131 @@
         if (!demoHost || demoHost.querySelector("[data-hc-demo]")) return;
 
         const { prompt, people, experiences, final } = masterPromptDemoConfig;
+        const classicJourneyMarkup = `
+          <section class="hc-demo-panel hc-demo-journey" data-hc-panel="journey" data-hc-journey aria-labelledby="hc-resolved-title">
+            <div class="hc-future-copy">
+              <p class="hc-resolved-kicker">99% human time</p>
+              <h2 id="hc-resolved-title" tabindex="-1"><span>Human Conversation</span> makes this prompt real.</h2>
+              <p>${final.copy}</p>
+              <div class="hc-resolved-actions">
+                <button class="hc-resolved-join" type="button" data-hc-action="join">${final.cta}</button>
+                <button class="hc-resolved-replay" type="button" data-hc-action="replay">${final.replay}</button>
+              </div>
+            </div>
+
+            <ol class="hc-human-signals" aria-label="The human connections created">
+              <li class="hc-human-signal hc-maya-signal"><span>${people.maya.name} · ${people.maya.role}</span><q>${people.maya.message}</q></li>
+              <li class="hc-human-signal hc-jordan-signal"><span>${people.jordan.name}</span><q>${people.jordan.message}</q></li>
+              <li class="hc-human-signal hc-lena-signal"><span>${people.lena.name}</span><q>${people.lena.message}</q></li>
+            </ol>
+
+            <div class="hc-future-experiences" aria-label="The connected experiences that follow">
+              <article class="hc-future-event">
+                <p>${experiences.primary.date}</p>
+                <h3>${experiences.primary.title}</h3>
+                <span>${experiences.primary.host} ${experiences.primary.welcome}</span>
+                <strong>${experiences.primary.promise}</strong>
+              </article>
+              <article class="hc-future-next">
+                <p>${experiences.next.date}</p>
+                <h3>${experiences.next.title}</h3>
+                <span>${experiences.next.description}</span>
+                <strong>${experiences.next.promise}</strong>
+              </article>
+            </div>
+          </section>
+        `;
+        const humanRoomJourneyMarkup = `
+          <section class="hc-demo-panel hc-demo-journey hc-room-journey" data-hc-panel="journey" data-hc-journey aria-labelledby="hc-resolved-title">
+            <div class="hc-human-room" data-hc-room data-room-step="0">
+              <div class="hc-room-photo" aria-hidden="true"></div>
+              <span class="hc-room-spot is-maya" data-person="Maya" aria-hidden="true"></span>
+              <span class="hc-room-spot is-jordan" data-person="Jordan" aria-hidden="true"></span>
+              <span class="hc-room-spot is-lena" data-person="Lena" aria-hidden="true"></span>
+              <span class="hc-room-thread is-maya-jordan" aria-hidden="true"></span>
+              <span class="hc-room-thread is-maya-lena" aria-hidden="true"></span>
+              <div class="hc-room-dialogue" aria-hidden="true">
+                <q>I almost didn’t come.</q>
+                <q>Me neither.</q>
+                <q>Come sit with us.</q>
+              </div>
+
+              <div class="hc-room-topbar">
+                <div class="hc-room-brand"><span>Human Conversation</span><small>1% screen · working quietly</small></div>
+                <ol class="hc-room-progress" aria-label="Your progress through the room">
+                  <li aria-current="step">Notice</li>
+                  <li aria-current="false">Introduce</li>
+                  <li aria-current="false">Listen</li>
+                  <li aria-current="false">Compound</li>
+                  <li aria-current="false">Begin</li>
+                </ol>
+              </div>
+
+              <div class="hc-room-copy-stack">
+                <section class="hc-room-beat" data-room-beat="0" data-system-copy="signal found · first visit · came alone" aria-hidden="false">
+                  <p class="hc-room-kicker">99% human time</p>
+                  <h2 id="hc-resolved-title" tabindex="-1">This isn’t a page. <em>It’s a room.</em></h2>
+                  <p>The room is full. Maya still feels alone.</p>
+                  <button class="hc-room-next" type="button" data-hc-room-next="1">Notice Maya</button>
+                </section>
+
+                <section class="hc-room-beat" data-room-beat="1" data-system-copy="context matched · same pace · same first-day feeling" aria-hidden="true" inert>
+                  <p class="hc-room-kicker">You noticed</p>
+                  <h2 tabindex="-1">What the room missed.</h2>
+                  <p>The computer surfaces only what matters.</p>
+                  <div class="hc-room-context" aria-label="Context for the introduction">
+                    <span>Maya · first visit · came alone</span>
+                    <span>Jordan · also new · same pace</span>
+                  </div>
+                  <button class="hc-room-next" type="button" data-hc-room-next="2">Introduce Maya to Jordan</button>
+                </section>
+
+                <section class="hc-room-beat" data-room-beat="2" data-system-copy="signal captured · hesitation → relief → belonging" aria-hidden="true" inert>
+                  <p class="hc-room-kicker">Hear what taps can’t</p>
+                  <h2 tabindex="-1">Now <em>listen.</em></h2>
+                  <p>A tap says who clicked. A conversation says how someone feels.</p>
+                  <div class="hc-room-inline-dialogue" aria-label="The conversation">
+                    <q>I almost didn’t come.</q>
+                    <q>Me neither.</q>
+                    <q>Come sit with us.</q>
+                  </div>
+                  <button class="hc-room-next" type="button" data-hc-room-next="3">Remember what mattered</button>
+                </section>
+
+                <section class="hc-room-beat" data-room-beat="3" data-system-copy="follow-through ready · Maya remembers what new felt like" aria-hidden="true" inert>
+                  <p class="hc-room-kicker">One week later</p>
+                  <h2 tabindex="-1">Maya is already at the door.</h2>
+                  <p>This time, she’s here for someone else.</p>
+                  <div class="hc-room-context" aria-label="Connection compounding">
+                    <span>hesitation</span><span>→ relief</span><span>→ belonging</span>
+                  </div>
+                  <button class="hc-room-next" type="button" data-hc-room-next="4">Welcome Lena</button>
+                </section>
+
+                <section class="hc-room-beat is-final" data-room-beat="4" data-system-copy="computer work complete · connection continues without the screen" aria-hidden="true" inert>
+                  <p class="hc-room-kicker">The room changed</p>
+                  <h2 tabindex="-1">You didn’t scroll through our story. <em>You started one.</em></h2>
+                  <p class="hc-room-brand-line">One conversation changed the room. Repeated, it changes the community. <strong>Human Conversation</strong> gives connection leaders the intelligence to create connection again and again.</p>
+                  <div class="hc-room-final-actions">
+                    <a class="hc-room-mail" href="mailto:hello@humanconversation.com?subject=Make%20my%20community%20feel%20like%20this">Make my community feel like this</a>
+                    <button class="hc-room-replay" type="button" data-hc-action="replay">Play again</button>
+                  </div>
+                </section>
+              </div>
+
+              <p class="hc-room-system" data-hc-room-system>signal found · first visit · came alone</p>
+            </div>
+          </section>
+        `;
+        const journeyMarkup = isHumanRoomPreview ? humanRoomJourneyMarkup : classicJourneyMarkup;
 
         demoHost.insertAdjacentHTML(
           "beforeend",
           `
-            <section class="hc-master-prompt-demo${isPublicMasterPromptIntroRoute ? " hc-public-master-prompt-intro-shell" : ""}" data-hc-demo${isPublicMasterPromptIntroRoute ? " data-hc-public-intro" : ""} data-demo-state="prompt" aria-label="A Human Conversation journey from screen time to human time">
+            <section class="hc-master-prompt-demo${isPublicMasterPromptIntroRoute ? " hc-public-master-prompt-intro-shell" : ""}${isHumanRoomPreview ? " hc-room-experience" : ""}" data-hc-demo${isPublicMasterPromptIntroRoute ? " data-hc-public-intro" : ""} data-demo-state="prompt" aria-label="A Human Conversation journey from screen time to human time">
               <p class="sr-only" data-hc-live-region role="status" aria-live="polite" aria-atomic="true"></p>
               <div class="hc-future-layer" aria-hidden="true"></div>
-              <aside class="hc-screen-rail" aria-label="One percent screen time"><span>1% screen</span></aside>
+              <aside class="hc-screen-rail" aria-label="One percent screen time"><span>${isHumanRoomPreview ? "1% screen · working quietly" : "1% screen"}</span></aside>
 
               <div class="hc-demo-stage">
                 <section class="hc-demo-panel hc-demo-prompt" data-hc-panel="prompt" aria-labelledby="hc-master-prompt-title">
@@ -14510,38 +15450,7 @@
                   <span class="hc-transition-beam" aria-hidden="true"></span>
                 </section>
 
-                <section class="hc-demo-panel hc-demo-journey" data-hc-panel="journey" data-hc-journey aria-labelledby="hc-resolved-title">
-                  <div class="hc-future-copy">
-                    <p class="hc-resolved-kicker">99% human time</p>
-                    <h2 id="hc-resolved-title" tabindex="-1"><span>Human Conversation</span> makes this prompt real.</h2>
-                    <p>${final.copy}</p>
-                    <div class="hc-resolved-actions">
-                      <button class="hc-resolved-join" type="button" data-hc-action="join">${final.cta}</button>
-                      <button class="hc-resolved-replay" type="button" data-hc-action="replay">${final.replay}</button>
-                    </div>
-                  </div>
-
-                  <ol class="hc-human-signals" aria-label="The human connections created">
-                    <li class="hc-human-signal hc-maya-signal"><span>${people.maya.name} · ${people.maya.role}</span><q>${people.maya.message}</q></li>
-                    <li class="hc-human-signal hc-jordan-signal"><span>${people.jordan.name}</span><q>${people.jordan.message}</q></li>
-                    <li class="hc-human-signal hc-lena-signal"><span>${people.lena.name}</span><q>${people.lena.message}</q></li>
-                  </ol>
-
-                  <div class="hc-future-experiences" aria-label="The connected experiences that follow">
-                    <article class="hc-future-event">
-                      <p>${experiences.primary.date}</p>
-                      <h3>${experiences.primary.title}</h3>
-                      <span>${experiences.primary.host} ${experiences.primary.welcome}</span>
-                      <strong>${experiences.primary.promise}</strong>
-                    </article>
-                    <article class="hc-future-next">
-                      <p>${experiences.next.date}</p>
-                      <h3>${experiences.next.title}</h3>
-                      <span>${experiences.next.description}</span>
-                      <strong>${experiences.next.promise}</strong>
-                    </article>
-                  </div>
-                </section>
+                ${journeyMarkup}
               </div>
             </section>
           `,
@@ -14559,6 +15468,10 @@
         const futureHeading = demoRoot?.querySelector("#hc-resolved-title");
         const transitionDoor = demoRoot?.querySelector(".hc-transition-door");
         const panels = Array.from(demoRoot?.querySelectorAll("[data-hc-panel]") || []);
+        const roomRoot = demoRoot?.querySelector("[data-hc-room]");
+        const roomBeats = Array.from(roomRoot?.querySelectorAll("[data-room-beat]") || []);
+        const roomProgress = Array.from(roomRoot?.querySelectorAll(".hc-room-progress li") || []);
+        const roomSystem = roomRoot?.querySelector("[data-hc-room-system]");
 
         if (!(demoRoot instanceof HTMLElement) || !(promptInput instanceof HTMLTextAreaElement)) return;
 
@@ -14579,8 +15492,47 @@
         let typingIndex = 0;
         let isAutoTyping = false;
         let userEditedPrompt = false;
+        let roomStep = 0;
         const reducedMotion =
           masterPromptParams.get("reduceMotion") === "1" || prefersReducedMotion.matches;
+
+        function setRoomStep(nextStep, options = {}) {
+          if (!(roomRoot instanceof HTMLElement) || roomBeats.length === 0) return;
+
+          const numericStep = Number.parseInt(String(nextStep), 10);
+          const safeStep = Number.isInteger(numericStep)
+            ? Math.min(Math.max(numericStep, 0), roomBeats.length - 1)
+            : 0;
+          roomStep = safeStep;
+          roomRoot.dataset.roomStep = String(safeStep);
+
+          roomBeats.forEach((beat, index) => {
+            const isActive = index === safeStep;
+            beat.setAttribute("aria-hidden", String(!isActive));
+            beat.inert = !isActive;
+          });
+
+          roomProgress.forEach((item, index) => {
+            item.setAttribute("aria-current", index === safeStep ? "step" : "false");
+          });
+
+          const activeBeat = roomBeats[safeStep];
+          const systemCopy = activeBeat?.dataset.systemCopy || "computer work stays in the background";
+          if (roomSystem) roomSystem.textContent = systemCopy;
+
+          if (["journey", "resolved"].includes(demoState)) {
+            setDemoState(safeStep === roomBeats.length - 1 ? "resolved" : "journey", { announce: false });
+          }
+
+          if (liveRegion && options.announce !== false) {
+            const heading = activeBeat?.querySelector("h2")?.textContent?.replace(/\s+/g, " ").trim();
+            liveRegion.textContent = heading || `Room step ${safeStep + 1}.`;
+          }
+
+          if (options.focus !== false) {
+            window.requestAnimationFrame(() => activeBeat?.querySelector("h2")?.focus({ preventScroll: true }));
+          }
+        }
 
         function updateTypingStatus(text, state) {
           if (!typingStatus) return;
@@ -14678,6 +15630,7 @@
         function runMasterPrompt() {
           if (demoState !== "prompt") return;
 
+          setRoomStep(0, { focus: false, announce: false });
           stopPromptTyping({ complete: true });
           if (!promptInput.value.trim()) promptInput.value = prompt;
           window.clearTimeout(transitionTimer);
@@ -14706,6 +15659,7 @@
             }
 
             setDemoState("journey");
+            setRoomStep(0, { focus: false, announce: false });
             demoRoot.removeAttribute("aria-busy");
             window.requestAnimationFrame(() => futureHeading?.focus({ preventScroll: true }));
           };
@@ -14771,8 +15725,17 @@
           window.clearTimeout(transitionTimer);
           window.clearTimeout(typingTimer);
           demoRoot.removeAttribute("aria-busy");
+          setRoomStep(0, { focus: false, announce: false });
           setDemoState("prompt");
           startPromptTyping({ focus: true, replay: true });
+        });
+
+        roomRoot?.addEventListener("click", (event) => {
+          const nextButton = event.target instanceof Element
+            ? event.target.closest("[data-hc-room-next]")
+            : null;
+          if (!(nextButton instanceof HTMLButtonElement)) return;
+          setRoomStep(nextButton.dataset.hcRoomNext);
         });
 
         window.addEventListener("pagehide", () => {
@@ -14787,8 +15750,16 @@
           ? requestedDemoState
           : "prompt";
         setDemoState(initialState, { announce: false });
-        if (initialState === "prompt") startPromptTyping();
-        else promptInput.value = prompt;
+        if (initialState === "prompt") {
+          startPromptTyping();
+        } else {
+          promptInput.value = prompt;
+          const requestedRoomStep = masterPromptParams.get("roomStep");
+          setRoomStep(requestedRoomStep ?? (initialState === "resolved" ? roomBeats.length - 1 : 0), {
+            focus: false,
+            announce: false,
+          });
+        }
       }
 
       function setVariant(index, options = {}) {

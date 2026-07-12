@@ -12391,7 +12391,6 @@
       html.hc-master-prompt-review .hc-terminal-era {
         display: inline-flex;
         align-items: center;
-        gap: 7px;
         border: 0;
         background: none;
         color: var(--hc-rose);
@@ -12400,18 +12399,6 @@
         font-weight: 800;
         letter-spacing: 0.16em;
         text-shadow: 0 0 10px rgba(214, 138, 154, 0.38);
-      }
-
-      html.hc-master-prompt-review .hc-terminal-era i {
-        display: block;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: var(--hc-rose);
-        box-shadow:
-          0 0 5px rgba(214, 138, 154, 0.96),
-          0 0 12px rgba(214, 138, 154, 0.72);
-        animation: hc-era-pulse 1800ms ease-in-out infinite;
       }
 
       html.hc-master-prompt-review .hc-terminal-model {
@@ -12651,11 +12638,11 @@
       html.hc-master-prompt-review .hc-terminal-caption {
         position: absolute;
         right: clamp(28px, 5vw, 72px);
-        bottom: clamp(18px, 3vh, 34px);
+        bottom: clamp(48px, 7vh, 70px);
         z-index: 1;
         margin: 0;
-        color: #515761;
-        font: 500 0.62rem/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        color: rgba(214, 138, 154, 0.64);
+        font: 650 0.62rem/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
@@ -12988,11 +12975,6 @@
       @keyframes hc-terminal-blink {
         0%, 48% { opacity: 1; }
         49%, 100% { opacity: 0; }
-      }
-
-      @keyframes hc-era-pulse {
-        0%, 100% { opacity: 0.62; transform: scale(0.88); }
-        50% { opacity: 1; transform: scale(1.12); }
       }
 
       @keyframes hc-past-collapse {
@@ -13345,7 +13327,6 @@
         html.hc-master-prompt-review .hc-transition-system strong,
         html.hc-master-prompt-review .hc-transition-beam,
         html.hc-master-prompt-review .hc-human-signal,
-        html.hc-master-prompt-review .hc-terminal-era i,
         html.hc-master-prompt-review .hc-typing-status::before {
           animation: none !important;
         }
@@ -13361,7 +13342,6 @@
       html.hc-master-prompt-reduce-motion .hc-transition-system strong,
       html.hc-master-prompt-reduce-motion .hc-transition-beam,
       html.hc-master-prompt-reduce-motion .hc-human-signal,
-      html.hc-master-prompt-reduce-motion .hc-terminal-era i,
       html.hc-master-prompt-reduce-motion .hc-typing-status::before {
         animation: none !important;
       }
@@ -15426,7 +15406,7 @@
                         <div class="hc-terminal-chrome" aria-hidden="true">
                           <span class="hc-terminal-model">HC–01</span>
                           <span>COMPUTER · 80×24</span>
-                          <span class="hc-terminal-era"><i></i>FINAL SHIFT</span>
+                          <span class="hc-terminal-era">FINAL SHIFT</span>
                         </div>
                         <div class="hc-terminal-body">
                           <p class="hc-terminal-path" aria-hidden="true">ONE LAST JOB FOR THE COMPUTER.</p>

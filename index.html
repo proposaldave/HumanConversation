@@ -12414,15 +12414,27 @@
       }
 
       html.hc-master-prompt-review .hc-terminal-path {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        max-width: 100%;
         margin: 0 0 26px;
-        color: #9f7f4c;
-        font: 500 clamp(0.72rem, 1vw, 0.88rem)/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
-        letter-spacing: 0.02em;
+        color: #b99558;
+        font: 700 clamp(0.62rem, 0.85vw, 0.74rem)/1.4 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
         text-shadow: 0 0 10px rgba(241, 181, 77, 0.3);
+        white-space: nowrap;
       }
 
-      html.hc-master-prompt-review .hc-terminal-path::first-letter {
-        color: #e7b75f;
+      html.hc-master-prompt-review .hc-terminal-path::before {
+        content: "";
+        width: 18px;
+        height: 1px;
+        flex: none;
+        background: #c79b52;
+        box-shadow: 0 0 8px rgba(241, 181, 77, 0.5);
       }
 
       html.hc-master-prompt-review .hc-prompt-form {
@@ -13091,7 +13103,13 @@
 
         html.hc-master-prompt-review .hc-terminal-path {
           margin-bottom: 19px;
-          font-size: 0.66rem;
+          gap: 8px;
+          font-size: 0.52rem;
+          letter-spacing: 0.08em;
+        }
+
+        html.hc-master-prompt-review .hc-terminal-path::before {
+          width: 12px;
         }
 
         html.hc-master-prompt-review .hc-terminal-command-line {
@@ -13959,7 +13977,7 @@
 
       const masterPromptDemoConfig = Object.freeze({
         variantId: "life-runs-on-human-conversation",
-        prompt: "Make my life 99% human conversation and shared experiences — and only 1% screen time.",
+        prompt: "Computer, you get 1%. Life gets the other 99%.",
         people: {
           maya: {
             name: "Maya",
@@ -14460,7 +14478,7 @@
                           <span class="hc-terminal-era"><i></i>THE PAST</span>
                         </div>
                         <div class="hc-terminal-body">
-                          <p class="hc-terminal-path" aria-hidden="true">human@computer:~$</p>
+                          <p class="hc-terminal-path" aria-hidden="true">ONE LAST JOB FOR THE COMPUTER.</p>
                           <h2 class="sr-only" id="hc-master-prompt-title">Give the computer its final job</h2>
                           <form class="hc-prompt-form" data-hc-prompt-form>
                             <label class="sr-only" for="hc-master-prompt">Type the job you want the computer to handle</label>

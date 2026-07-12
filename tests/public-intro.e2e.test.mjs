@@ -10,7 +10,8 @@ const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const MASTER_PROMPT =
-  "Make my life 99% human conversation and shared experiences — and only 1% screen time.";
+  "Computer, you get 1%. Life gets the other 99%.";
+const TERMINAL_INSTRUCTION = "ONE LAST JOB FOR THE COMPUTER.";
 const VARIANT = "life-runs-on-human-conversation";
 
 const baseline = JSON.parse(
@@ -93,6 +94,7 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "  const page = document.querySelector(\".page\");",
       "  const promptPanel = document.querySelector('[data-hc-panel=\"prompt\"]');",
       "  const era = document.querySelector(\".hc-terminal-era\");",
+      "  const instruction = document.querySelector(\".hc-terminal-path\");",
       "  const expected = " + JSON.stringify(MASTER_PROMPT) + ";",
       "  const normalize = (value) => String(value || \"\").replace(/\\s+/g, \" \").trim();",
       "  const sources = [normalize(promptPanel?.innerText), ...[...promptPanel.querySelectorAll(\"input, textarea\")].map((control) => normalize(control.value))];",
@@ -115,6 +117,8 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
       "    eraVisible: Boolean(era?.getBoundingClientRect().width && era?.getBoundingClientRect().height),",
       "    eraColor: getComputedStyle(era).color,",
       "    eraBorderWidth: getComputedStyle(era).borderTopWidth,",
+      "    instructionText: normalize(instruction?.textContent),",
+      "    oldTerminalPathPresent: /human@computer/i.test(promptPanel?.textContent || \"\"),",
       "    occurrences,",
       "    introCoversViewport: Boolean(rect && rect.left <= 0 && rect.top <= 0 && rect.width >= innerWidth && rect.height >= innerHeight),",
       "    introOwnsCenter: Boolean(document.elementFromPoint(innerWidth / 2, innerHeight / 2)?.closest(\"[data-hc-public-intro]\")),",
@@ -147,6 +151,8 @@ test("exact public root first loads one accessible vintage CRT over the saved ho
     eraVisible: true,
     eraColor: "rgb(240, 184, 197)",
     eraBorderWidth: "1px",
+    instructionText: TERMINAL_INSTRUCTION,
+    oldTerminalPathPresent: false,
     occurrences: 1,
     introCoversViewport: true,
     introOwnsCenter: true,

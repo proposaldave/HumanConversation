@@ -10,7 +10,8 @@ const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const MASTER_PROMPT =
-  "Make my life 99% human conversation and shared experiences — and only 1% screen time.";
+  "Computer, you get 1%. Life gets the other 99%.";
+const TERMINAL_INSTRUCTION = "ONE LAST JOB FOR THE COMPUTER.";
 const VARIANT = "life-runs-on-human-conversation";
 
 const baseline = JSON.parse(
@@ -180,6 +181,8 @@ test("prompt state is an image-free vintage CRT with one progressively typed pro
       hasScanlines: getComputedStyle(crtScreen, "::after").backgroundImage.includes("repeating-linear-gradient"),
       hasPowerLight: Boolean(root?.querySelector(".hc-crt-power i")),
       hardwareCopy: normalize(root?.querySelector(".hc-crt-hardware")?.textContent),
+      instructionText: normalize(root?.querySelector(".hc-terminal-path")?.textContent),
+      oldTerminalPathPresent: /human@computer/i.test(root?.textContent || ""),
     };
   })()`);
 
@@ -208,6 +211,8 @@ test("prompt state is an image-free vintage CRT with one progressively typed pro
     hasScanlines: true,
     hasPowerLight: true,
     hardwareCopy: "Human Computer · Model 01 Power",
+    instructionText: TERMINAL_INSTRUCTION,
+    oldTerminalPathPresent: false,
   });
   assert.match(promptState.inputFont, /mono|Consolas|Cascadia|Courier/i);
   assertRuntimeHealthy();

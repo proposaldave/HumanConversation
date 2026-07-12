@@ -10,7 +10,7 @@ const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const MASTER_PROMPT =
-  "Your job is to make my life 99% human conversation and shared experiences—and only 1% screen time.";
+  "Make my life 99% human conversation and shared experiences — and only 1% screen time.";
 const VARIANT = "life-runs-on-human-conversation";
 
 const baseline = JSON.parse(

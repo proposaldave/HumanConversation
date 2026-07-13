@@ -105,14 +105,14 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     heroClass: "hero hero-community-pulse",
     stage: "twitter",
     robots: "noindex,nofollow",
-    progress: ["2009", "2014", "Now"],
+    progress: ["2009", "2014", "2026"],
     twitterQuestion: "What’s happening?",
     twitterStory: "Twitter made one question the pulse of digital communities.",
     twitterDate: "2009-11-19",
     slackQuestion: "What’s happening?",
     slackStory: "Slack brought the same pulse inside the organization.",
     slackLabel: "The organization",
-    humanLabel: "Now · Real-world social communities",
+    humanLabel: "2026 · Real-world social communities",
     humanLines: [
       "Human Conversation",
       "doesn’t get between us —",
@@ -123,7 +123,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     cueDismissed: false,
     cueLabel: "Show 2014",
     heroLabel:
-      "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. Now, Human Conversation doesn’t get between us—it brings us together.",
+      "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. In 2026, Human Conversation doesn’t get between us—it brings us together.",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,
@@ -162,7 +162,7 @@ test("the question travels through Twitter, Slack, and the real world", async ()
   assertRuntimeHealthy();
 });
 
-test("the hero button advances 2009 to 2014 to now", async () => {
+test("the hero button advances 2009 to 2014 to 2026", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl());
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
@@ -171,7 +171,7 @@ test("the hero button advances 2009 to 2014 to now", async () => {
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "slack"`);
   assert.equal(
     await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label")`),
-    "Show now",
+    "Show 2026",
   );
 
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);

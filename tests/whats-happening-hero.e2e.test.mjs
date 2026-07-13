@@ -69,7 +69,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       heroClass: hero?.className,
       stage: hero?.dataset.communityStage,
       robots: document.querySelector('meta[name="robots"]')?.content,
-      progress: Array.from(document.querySelectorAll(".community-progress > span"))
+      progress: Array.from(document.querySelectorAll(".community-progress > button"))
         .map((item) => normalize(item.textContent)),
       twitterQuestion: normalize(document.querySelector(".community-stage-twitter .community-question")?.textContent),
       twitterStory: normalize(document.querySelector(".community-stage-twitter .community-platform-story")?.textContent),
@@ -161,6 +161,45 @@ test("the question travels through Twitter, Slack, and the real world", async ()
   assert.ok(opacity.twitter < 0.05 && opacity.slack < 0.05 && opacity.human > 0.95);
   assert.ok(opacity.lede > 0.95);
   assert.match(opacity.humanBackground, /hc-art-intelligence-brings-together-20260705\.png/);
+  assertRuntimeHealthy();
+});
+
+test("every timeline year jumps directly to its screen", async () => {
+  await page.setViewport(1440, 900);
+  await page.navigate(reviewUrl());
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
+
+  assert.deepEqual(
+    await page.evaluate(`Array.from(document.querySelectorAll(".community-progress > button")).map((button) => ({
+      year: button.textContent.trim(),
+      label: button.getAttribute("aria-label"),
+      current: button.getAttribute("aria-current"),
+      tabIndex: button.tabIndex,
+    }))`),
+    [
+      { year: "2009", label: "Go to 2009: Twitter", current: "true", tabIndex: 0 },
+      { year: "2014", label: "Go to 2014: Slack", current: "false", tabIndex: 0 },
+      { year: "2026", label: "Go to 2026: Human Conversation", current: "false", tabIndex: 0 },
+    ],
+  );
+
+  await page.evaluate(`document.querySelector('.community-progress [data-era="human"]')?.click()`);
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human"`);
+  assert.equal(
+    await page.evaluate(`document.querySelector('.community-progress [data-era="human"]')?.getAttribute("aria-current")`),
+    "true",
+  );
+
+  await page.evaluate(`document.querySelector('.community-progress [data-era="twitter"]')?.click()`);
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
+
+  await page.evaluate(`document.querySelector('.community-progress [data-era="slack"]')?.focus()`);
+  await page.pressEnter();
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "slack"`);
+  assert.equal(
+    await page.evaluate(`document.querySelector('.community-progress [data-era="slack"]')?.getAttribute("aria-current")`),
+    "true",
+  );
   assertRuntimeHealthy();
 });
 

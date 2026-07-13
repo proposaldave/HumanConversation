@@ -335,6 +335,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       firstTitle: title(sections[0]),
       firstBody: normalize(sections[0]?.querySelector(".story-body")?.textContent),
       secondTitle: title(sections[1]),
+      thirdToLastTitle: title(sections.at(-3)),
       cueDismissed: cue?.classList.contains("is-dismissed"),
       cueLabel: cue?.getAttribute("aria-label"),
       bannedCopyPresent: normalize(document.body.textContent).includes("The digital town square found its question"),
@@ -349,7 +350,8 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstTitle:
       "For decades, interfaces have pulled conversation onto screens. We’re doing the opposite.",
     firstBody: "Building the intelligence around human conversation.",
-    secondTitle:
+    secondTitle: "Human Conversation solves disconnection.",
+    thirdToLastTitle:
       "We're not lonely because communication disappeared. We're lonely because screens replaced Human Conversation.",
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",

@@ -11878,16 +11878,6 @@
         font-style: normal;
       }
 
-      .hero-community-pulse .community-stage-twitter .community-stage-content::after {
-        content: "Scroll to follow the question";
-        display: block;
-        margin-top: clamp(34px, 5vh, 54px);
-        color: rgba(255, 248, 236, 0.42);
-        font: 800 0.61rem/1 Manrope, Inter, system-ui, sans-serif;
-        letter-spacing: 0.17em;
-        text-transform: uppercase;
-      }
-
       .hero-community-pulse .community-artifact {
         position: absolute;
         right: max(28px, calc((100vw - 1320px) / 2));
@@ -12209,11 +12199,6 @@
           line-height: 1;
         }
 
-        .hero-community-pulse .community-stage-twitter .community-stage-content::after {
-          margin-top: 27px;
-          font-size: 0.54rem;
-        }
-
         .hero-community-pulse .community-artifact {
           right: 18px;
           bottom: 66px;
@@ -12332,10 +12317,6 @@
         .hero-community-pulse .community-platform-story {
           margin-top: 18px;
           font-size: clamp(1.35rem, 6.2vw, 1.75rem);
-        }
-
-        .hero-community-pulse .community-stage-twitter .community-stage-content::after {
-          margin-top: 20px;
         }
 
         .hero-community-pulse .community-artifact {
@@ -17984,9 +17965,19 @@
 
       function updateStoryCueVisibility() {
         const isCommunityPulse = hero.classList.contains("hero-community-pulse");
-        const shouldDismiss = isCommunityPulse
-          ? hero.dataset.communityStage !== "human"
-          : window.scrollY > 72;
+        if (isCommunityPulse) {
+          const stage = hero.dataset.communityStage;
+          const label = stage === "twitter"
+            ? "Show 2014"
+            : stage === "slack"
+              ? "Show now"
+              : "Continue to the Human Conversation story";
+          storyCue?.setAttribute("aria-label", label);
+          storyCue?.classList.remove("is-dismissed");
+          return;
+        }
+
+        const shouldDismiss = window.scrollY > 72;
         storyCue?.classList.toggle("is-dismissed", shouldDismiss);
       }
 
@@ -18033,6 +18024,17 @@
       });
 
       storyCue?.addEventListener("click", () => {
+        if (hero.classList.contains("hero-community-pulse") && hero.dataset.communityStage !== "human") {
+          const targetProgress = hero.dataset.communityStage === "twitter" ? 0.47 : 0.84;
+          const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
+          const heroTop = window.scrollY + hero.getBoundingClientRect().top;
+          window.scrollTo({
+            top: heroTop + travel * targetProgress,
+            behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          });
+          return;
+        }
+
         const firstPanel = landingStory?.querySelector(".story-section, .story-final") || landingStory;
         firstPanel?.scrollIntoView({
           behavior: prefersReducedMotion.matches ? "auto" : "smooth",

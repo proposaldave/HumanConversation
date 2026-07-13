@@ -83,6 +83,8 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       humanLines,
       dataSentence: normalize(document.querySelector(".community-data-line")?.textContent),
       twist: normalize(document.querySelector(".community-twist")?.textContent),
+      cueDismissed: document.querySelector("#landing-hero .story-cue")?.classList.contains("is-dismissed"),
+      cueLabel: document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label"),
       heroLabel: document.querySelector("#landing-hero h1")?.getAttribute("aria-label"),
       contactDisplay: getComputedStyle(document.querySelector("#email-capture")).display,
       storyHidden: document.querySelector("#landing-story")?.hidden,
@@ -118,6 +120,8 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     ],
     dataSentence: "",
     twist: "But with a twist.",
+    cueDismissed: false,
+    cueLabel: "Show 2014",
     heroLabel:
       "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. Now, Human Conversation doesn’t get between us—it brings us together.",
     contactDisplay: "none",
@@ -155,6 +159,27 @@ test("the question travels through Twitter, Slack, and the real world", async ()
   assert.ok(opacity.twitter < 0.05 && opacity.slack < 0.05 && opacity.human > 0.95);
   assert.ok(opacity.lede > 0.95);
   assert.match(opacity.humanBackground, /hc-art-intelligence-brings-together-20260705\.png/);
+  assertRuntimeHealthy();
+});
+
+test("the hero button advances 2009 to 2014 to now", async () => {
+  await page.setViewport(1440, 900);
+  await page.navigate(reviewUrl());
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
+
+  await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "slack"`);
+  assert.equal(
+    await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label")`),
+    "Show now",
+  );
+
+  await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human"`);
+  assert.equal(
+    await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label")`),
+    "Continue to the Human Conversation story",
+  );
   assertRuntimeHealthy();
 });
 
@@ -245,8 +270,8 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstBody: "Building the intelligence around human conversation.",
     secondTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
-    cueDismissed: true,
-    cueLabel: "Continue to the Human Conversation story",
+    cueDismissed: false,
+    cueLabel: "Show 2014",
     bannedCopyPresent: false,
   });
 

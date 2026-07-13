@@ -35,20 +35,6 @@
           params.get("review") === "1" && params.get("variant") === "whats-happening-real-world";
         const isHumanRoomPreview =
           isMasterPromptReview && params.get("experience") === "human-room";
-        const isReviewSurface = ["review", "variant", "option"].some((key) => params.has(key));
-        const isPublicMasterPromptIntro =
-          ["/", "/index.html"].includes(window.location.pathname) &&
-          !isReviewSurface &&
-          window.location.hash === "";
-
-        if (isPublicMasterPromptIntro) {
-          document.documentElement.classList.add("hc-public-master-prompt-pending");
-          window.setTimeout(() => {
-            document.documentElement.classList.remove("hc-public-master-prompt-pending");
-          }, 2500);
-          return;
-        }
-
         if (!isMasterPromptReview && !isWhatsHappeningReview) return;
 
         if (isMasterPromptReview) {
@@ -16913,13 +16899,7 @@
         masterPromptParams.get("variant") === masterPromptDemoConfig.variantId;
       const isHumanRoomPreview =
         isMasterPromptReviewRoute && masterPromptParams.get("experience") === "human-room";
-      const isMasterPromptReviewSurface = ["review", "variant", "option"].some((key) =>
-        masterPromptParams.has(key),
-      );
-      const isPublicMasterPromptIntroRoute =
-        ["/", "/index.html"].includes(window.location.pathname) &&
-        !isMasterPromptReviewSurface &&
-        window.location.hash === "";
+      const isPublicMasterPromptIntroRoute = false;
 
       const page = document.querySelector(".page");
       const hero = document.querySelector("#landing-hero");

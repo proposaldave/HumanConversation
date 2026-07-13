@@ -5409,7 +5409,7 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong {
         display: block;
-        max-width: 15ch;
+        max-width: none;
         font-family: Fraunces, Georgia, serif;
         font-size: clamp(1.45rem, 2.28vw, 2.72rem);
         font-weight: 720;
@@ -11398,7 +11398,7 @@
         }
 
         .hero-whats-happening-real-world .whats-digital-proof {
-          max-width: 11ch;
+          max-width: 14ch;
           font-size: clamp(2.55rem, 12.5vw, 3.75rem);
           line-height: 0.92;
         }
@@ -16272,7 +16272,7 @@
       <main>
         <section class="hero hero-community-pulse" id="landing-hero" data-community-stage="twitter">
           <div class="hero-inner">
-            <h1 aria-label="In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.">
+            <h1 aria-label="In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. Now, Human Conversation doesn’t get between us—it brings us together.">
               <span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>Now</span></span>
               <span class="community-stage community-stage-twitter">
                 <span class="community-stage-content">
@@ -16292,7 +16292,7 @@
               </span>
               <span class="community-stage community-stage-human">
                 <span class="community-human-label">Now · Real-world social communities</span>
-                <span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>is what&rsquo;s happening</span><span class="community-human-world">in real-world social communities.</span></span>
+                <span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>doesn&rsquo;t get between us &mdash;</span><span class="community-human-world">it brings us together.</span></span>
               </span>
             </h1>
             <p class="lede"><span class="community-data-line">All the human, social, relationship, and community data moves through human conversation.</span><span class="community-twist">But with a twist.</span></p>
@@ -16635,8 +16635,8 @@
 
         const communityPulseHero = Object.freeze({
           heroTheme: "community-pulse",
-          headlineLabel: "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.",
-          headline: `<span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>Now</span></span><span class="community-stage community-stage-twitter"><span class="community-stage-content"><span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital communities</small></span><span class="community-question">What&rsquo;s happening?</span><span class="community-platform-story">Twitter made one question the pulse of <em>digital communities.</em></span></span><span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 &middot; 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span></span><span class="community-stage community-stage-slack"><span class="community-stage-content"><span class="community-platform"><strong class="community-slack-name"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>slack</strong><small>The organization</small></span><span class="community-question">What&rsquo;s happening?</span><span class="community-platform-story">Slack brought the same pulse <em>inside the organization.</em></span></span><span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span></span><span class="community-stage community-stage-human"><span class="community-human-label">Now &middot; Real-world social communities</span><span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>is what&rsquo;s happening</span><span class="community-human-world">in real-world social communities.</span></span></span>`,
+          headlineLabel: "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. Now, Human Conversation doesn’t get between us—it brings us together.",
+          headline: `<span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>Now</span></span><span class="community-stage community-stage-twitter"><span class="community-stage-content"><span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital communities</small></span><span class="community-question">What&rsquo;s happening?</span><span class="community-platform-story">Twitter made one question the pulse of <em>digital communities.</em></span></span><span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 &middot; 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span></span><span class="community-stage community-stage-slack"><span class="community-stage-content"><span class="community-platform"><strong class="community-slack-name"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>slack</strong><small>The organization</small></span><span class="community-question">What&rsquo;s happening?</span><span class="community-platform-story">Slack brought the same pulse <em>inside the organization.</em></span></span><span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span></span><span class="community-stage community-stage-human"><span class="community-human-label">Now &middot; Real-world social communities</span><span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>doesn&rsquo;t get between us &mdash;</span><span class="community-human-world">it brings us together.</span></span></span>`,
           lede: `<span class="community-data-line">All the human, social, relationship, and community data moves through human conversation.</span><span class="community-twist">But with a twist.</span>`,
         });
 

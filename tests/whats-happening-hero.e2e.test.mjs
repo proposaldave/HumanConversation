@@ -116,13 +116,13 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     humanLabel: "Now · Real-world social communities",
     humanLines: [
       "Human Conversation",
-      "is what’s happening",
-      "in real-world social communities.",
+      "doesn’t get between us —",
+      "it brings us together.",
     ],
     dataSentence: DATA_SENTENCE,
     twist: "But with a twist.",
     heroLabel:
-      "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the company. Now, Human Conversation is what’s happening in real-world social communities—but with a twist.",
+      "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. Now, Human Conversation doesn’t get between us—it brings us together.",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,

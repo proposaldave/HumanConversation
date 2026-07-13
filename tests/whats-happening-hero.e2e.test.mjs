@@ -115,7 +115,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     slackStory: "",
     slackLabel: "The organization",
     humanBrand: "Human Conversation",
-    humanQuestion: "What’s happening",
+    humanQuestion: "What’s happening?",
     humanMarkParts: 3,
     dataSentence: "",
     twist: "But with a twist.",
@@ -125,7 +125,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     cueYear: "2014",
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening.",
+      "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening?",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,

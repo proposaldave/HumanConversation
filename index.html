@@ -16393,12 +16393,12 @@
       <main>
         <section class="hero hero-community-pulse" id="landing-hero" data-community-stage="twitter">
           <div class="hero-inner">
-            <h1 aria-label="2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening?">
+            <h1 aria-label="2009. Twitter. What is the world talking about? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening?">
               <span class="community-progress" role="group" aria-label="Timeline"><button type="button" data-era="twitter" aria-label="Go to 2009: Twitter" aria-current="true"><i aria-hidden="true"></i>2009</button><button type="button" data-era="slack" aria-label="Go to 2014: Slack" aria-current="false"><i aria-hidden="true"></i>2014</button><button type="button" data-era="human" aria-label="Go to 2026: Human Conversation" aria-current="false"><i aria-hidden="true"></i>2026</button></span>
               <span class="community-stage community-stage-twitter">
                 <span class="community-stage-content">
                   <span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital Community</small></span>
-                  <span class="community-question">What&rsquo;s happening?</span>
+                  <span class="community-question">What is the world talking about?</span>
                 </span>
                 <span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 · 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span>
               </span>
@@ -16765,6 +16765,11 @@
         {
           id: "conversation-intelligence-home",
           ...communityPulseHero,
+          headlineLabel: "2009. Twitter. What is the world talking about? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening?",
+          headline: communityPulseHero.headline.replace(
+            `<span class="community-question">What&rsquo;s happening?</span>`,
+            `<span class="community-question">What is the world talking about?</span>`,
+          ),
           story: storyPages.main,
         },
         {

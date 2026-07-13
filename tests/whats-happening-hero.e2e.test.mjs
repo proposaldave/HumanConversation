@@ -84,6 +84,8 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       twist: normalize(document.querySelector(".community-twist")?.textContent),
       followArrow: Boolean(document.querySelector(".community-follow-arrow")),
       cueDismissed: document.querySelector("#landing-hero .story-cue")?.classList.contains("is-dismissed"),
+      cueTimelineStep: document.querySelector("#landing-hero .story-cue")?.classList.contains("is-timeline-step"),
+      cueYear: normalize(document.querySelector("#landing-hero .story-cue-year strong")?.textContent),
       cueLabel: document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label"),
       heroLabel: document.querySelector("#landing-hero h1")?.getAttribute("aria-label"),
       contactDisplay: getComputedStyle(document.querySelector("#email-capture")).display,
@@ -119,7 +121,9 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     twist: "But with a twist.",
     followArrow: true,
     cueDismissed: false,
-    cueLabel: "Show 2014",
+    cueTimelineStep: true,
+    cueYear: "2014",
+    cueLabel: "Go to 2014: Slack",
     heroLabel:
       "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening.",
     contactDisplay: "none",
@@ -165,18 +169,47 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
   await page.navigate(reviewUrl());
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
 
+  assert.deepEqual(
+    await page.evaluate(`(() => {
+      const cue = document.querySelector("#landing-hero .story-cue");
+      return {
+        year: cue?.querySelector(".story-cue-year strong")?.textContent,
+        timelineStep: cue?.classList.contains("is-timeline-step"),
+        label: cue?.getAttribute("aria-label"),
+        animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
+      };
+    })()`),
+    { year: "2014", timelineStep: true, label: "Go to 2014: Slack", animation: "story-cue-forward" },
+  );
+
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "slack"`);
-  assert.equal(
-    await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label")`),
-    "Show 2026",
+  assert.deepEqual(
+    await page.evaluate(`(() => {
+      const cue = document.querySelector("#landing-hero .story-cue");
+      return {
+        year: cue?.querySelector(".story-cue-year strong")?.textContent,
+        timelineStep: cue?.classList.contains("is-timeline-step"),
+        label: cue?.getAttribute("aria-label"),
+        animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
+      };
+    })()`),
+    { year: "2026", timelineStep: true, label: "Go to 2026: Human Conversation", animation: "story-cue-forward" },
   );
 
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human"`);
-  assert.equal(
-    await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label")`),
-    "Continue to the Human Conversation story",
+  assert.deepEqual(
+    await page.evaluate(`(() => {
+      const cue = document.querySelector("#landing-hero .story-cue");
+      return {
+        year: cue?.querySelector(".story-cue-year strong")?.textContent,
+        timelineStep: cue?.classList.contains("is-timeline-step"),
+        label: cue?.getAttribute("aria-label"),
+        animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
+      };
+    })()`),
+    { year: "", timelineStep: false, label: "Continue down to the Human Conversation story", animation: "story-cue-drop" },
   );
   assertRuntimeHealthy();
 });
@@ -202,6 +235,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
         const platform = stage.querySelector(".community-platform");
         const artifact = stage.querySelector(".community-artifact");
         const lede = document.querySelector("#landing-hero .lede");
+        const cue = document.querySelector("#landing-hero .story-cue");
         const rect = (element) => element ? ({
           top: element.getBoundingClientRect().top,
           right: element.getBoundingClientRect().right,
@@ -214,6 +248,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
           primary: rect(primary),
           platform: rect(platform),
           artifact: rect(artifact),
+          cue: rect(cue),
           lede: "${stage}" === "human" ? rect(lede) : null,
           heroHeight: document.querySelector("#landing-hero")?.offsetHeight || 0,
         };
@@ -229,6 +264,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
       assertFits(layout.primary, `${stage} copy`);
       if (layout.platform) assertFits(layout.platform, `${stage} brand`);
       if (layout.artifact) assertFits(layout.artifact, `${stage} artifact`);
+      assertFits(layout.cue, `${stage} control`);
       if (layout.lede) assertFits(layout.lede, `${stage} twist`);
       assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} is not a true three-stage hero`);
       assertRuntimeHealthy();
@@ -272,7 +308,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
     cueDismissed: false,
-    cueLabel: "Show 2014",
+    cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,
   });
 

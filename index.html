@@ -4595,6 +4595,13 @@
         text-decoration: none;
         box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
         transform: translateX(-50%);
+        transition:
+          width 420ms cubic-bezier(0.22, 1, 0.36, 1),
+          padding 420ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 220ms ease,
+          border-color 260ms ease,
+          background 260ms ease,
+          box-shadow 260ms ease;
         backdrop-filter: blur(14px) saturate(1.12);
       }
 
@@ -4651,6 +4658,7 @@
         background: #fff8ec;
         color: #1a1612;
         box-shadow: 0 0 0 1px rgba(255, 248, 236, 0.2);
+        transition: background 260ms ease, color 260ms ease, transform 260ms ease;
       }
 
       .story-cue-icon::before {
@@ -4669,6 +4677,83 @@
         pointer-events: none;
       }
 
+      .story-cue-year {
+        display: none;
+      }
+
+      .hero-community-pulse .story-cue.is-timeline-step {
+        justify-content: space-between;
+        width: 132px;
+        padding: 0 9px 0 18px;
+        border-color: rgba(255, 248, 236, 0.34);
+        background: rgba(5, 7, 10, 0.78);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 248, 236, 0.06);
+      }
+
+      .hero-community-pulse .story-cue.is-timeline-step .story-cue-year {
+        display: grid;
+        gap: 3px;
+        color: #fff8ec;
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        line-height: 1;
+        text-align: left;
+      }
+
+      .hero-community-pulse .story-cue.is-timeline-step .story-cue-year small {
+        color: rgba(255, 248, 236, 0.5);
+        font-size: 0.46rem;
+        font-weight: 850;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .hero-community-pulse .story-cue.is-timeline-step .story-cue-year strong {
+        font-size: 0.84rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+      }
+
+      .hero-community-pulse[data-community-stage="twitter"] .story-cue.is-timeline-step {
+        border-color: rgba(143, 196, 229, 0.55);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 28px rgba(91, 143, 212, 0.14);
+      }
+
+      .hero-community-pulse[data-community-stage="twitter"] .story-cue-year strong {
+        color: #8fc4e5;
+      }
+
+      .hero-community-pulse[data-community-stage="slack"] .story-cue.is-timeline-step {
+        border-color: rgba(199, 184, 255, 0.55);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 28px rgba(178, 155, 255, 0.14);
+      }
+
+      .hero-community-pulse[data-community-stage="slack"] .story-cue-year strong {
+        color: #c7b8ff;
+      }
+
+      .hero-community-pulse .story-cue.is-timeline-step .story-cue-icon {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+        background: rgba(255, 248, 236, 0.96);
+      }
+
+      .hero-community-pulse .story-cue.is-timeline-step .story-cue-icon::before {
+        transform: translateX(-2px) rotate(-45deg);
+        animation-name: story-cue-forward;
+      }
+
+      @media (hover: hover) {
+        .hero-community-pulse .story-cue.is-timeline-step:hover {
+          transform: translate(-50%, -3px);
+          background: rgba(5, 7, 10, 0.92);
+        }
+
+        .hero-community-pulse .story-cue.is-timeline-step:hover .story-cue-icon {
+          transform: translateX(2px);
+        }
+      }
+
       @keyframes story-cue-drop {
         0%,
         100% {
@@ -4679,8 +4764,19 @@
         }
       }
 
+      @keyframes story-cue-forward {
+        0%,
+        100% {
+          transform: translateX(-3px) rotate(-45deg);
+        }
+        50% {
+          transform: translateX(3px) rotate(-45deg);
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
-        .story-cue-icon::before {
+        .story-cue-icon::before,
+        .hero-community-pulse .story-cue.is-timeline-step .story-cue-icon::before {
           animation: none;
         }
       }
@@ -12243,6 +12339,23 @@
           width: 42px;
         }
 
+        .page[data-hero-theme="community-pulse"].has-expanded-story .hero-community-pulse .story-cue {
+          position: fixed;
+          top: auto;
+          right: auto;
+          bottom: max(18px, env(safe-area-inset-bottom));
+          left: 50%;
+          width: 50px;
+          height: 50px;
+          margin: 0;
+          border-radius: 999px;
+        }
+
+        .page[data-hero-theme="community-pulse"].has-expanded-story .hero-community-pulse .story-cue.is-timeline-step {
+          width: 124px;
+          padding: 0 8px 0 16px;
+        }
+
         .hero-community-pulse .lede {
           right: auto;
           bottom: 96px;
@@ -16264,7 +16377,7 @@
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">community</span>
             </span>
           </p>
-          <button class="story-cue" type="button" aria-label="Continue to the Human Conversation story"><span class="story-cue-icon" aria-hidden="true"></span></button>
+          <button class="story-cue" type="button" aria-label="Go to 2014: Slack"><span class="story-cue-year" aria-hidden="true"><small>Next</small><strong>2014</strong></span><span class="story-cue-icon" aria-hidden="true"></span></button>
         </section>
         <section class="landing-story" id="landing-story" hidden></section>
       </main>
@@ -16907,6 +17020,7 @@
       const lede = hero.querySelector(".lede");
       const landingStory = document.querySelector("#landing-story");
       const storyCue = document.querySelector(".story-cue");
+      const storyCueYear = storyCue?.querySelector(".story-cue-year strong");
       const variantNav = document.querySelector(".variant-dots");
       const variantTrigger = document.querySelector(".variant-trigger");
       const secretLanding = document.querySelector(".secret-l-landing");
@@ -17922,16 +18036,21 @@
         const isCommunityPulse = hero.classList.contains("hero-community-pulse");
         if (isCommunityPulse) {
           const stage = hero.dataset.communityStage;
+          const nextYear = stage === "twitter" ? "2014" : stage === "slack" ? "2026" : "";
           const label = stage === "twitter"
-            ? "Show 2014"
+            ? "Go to 2014: Slack"
             : stage === "slack"
-              ? "Show 2026"
-              : "Continue to the Human Conversation story";
+              ? "Go to 2026: Human Conversation"
+              : "Continue down to the Human Conversation story";
+          if (storyCueYear) storyCueYear.textContent = nextYear;
+          storyCue?.classList.toggle("is-timeline-step", Boolean(nextYear));
           storyCue?.setAttribute("aria-label", label);
           storyCue?.classList.remove("is-dismissed");
           return;
         }
 
+        if (storyCueYear) storyCueYear.textContent = "";
+        storyCue?.classList.remove("is-timeline-step");
         const shouldDismiss = window.scrollY > 72;
         storyCue?.classList.toggle("is-dismissed", shouldDismiss);
       }

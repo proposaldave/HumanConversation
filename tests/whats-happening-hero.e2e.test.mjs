@@ -110,7 +110,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     twitterStory: "",
     twitterDate: "2009-11-19",
     slackQuestion: "What’s happening?",
-    slackStory: "Slack brought the same pulse inside the organization.",
+    slackStory: "",
     slackLabel: "The organization",
     humanLabel: "2026 · Real-world social communities",
     humanLines: [
@@ -123,7 +123,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     cueDismissed: false,
     cueLabel: "Show 2014",
     heroLabel:
-      "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. In 2026, Human Conversation doesn’t get between us—it brings us together.",
+      "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation doesn’t get between us—it brings us together.",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,

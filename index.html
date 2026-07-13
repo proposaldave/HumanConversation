@@ -5617,6 +5617,34 @@
         font-weight: 850;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section.is-quote-only-section {
+        align-items: center;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section.is-quote-only-section .story-copy-block {
+        max-width: 980px;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section.is-quote-only-section .story-quote {
+        max-width: min(22ch, 100%);
+        margin: 0;
+        padding-left: clamp(20px, 2vw, 32px);
+        border-left: 3px solid var(--hc-rose);
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.1rem, 3.35vw, 4.25rem);
+        font-style: normal;
+        font-weight: 650;
+        line-height: 1.08;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section.is-quote-only-section .story-quote cite {
+        margin-top: clamp(20px, 2.4vw, 30px);
+        font-size: clamp(0.8rem, 0.9vw, 1rem);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-attention-section {
         min-height: max(100svh, clamp(720px, 78vw, 960px));
         background:
@@ -16530,9 +16558,9 @@
                 className: "is-long is-brings-together-section",
               },
               {
-                title: `<span class="next-interface-brand-line">Human Conversation</span><span>is the next</span><span class="next-interface-line">communications</span><span class="next-interface-line">interface.</span>`,
+                title: "",
                 scene: "next-interface",
-                className: "is-long is-next-interface-section",
+                className: "is-long is-next-interface-section is-quote-only-section",
                 quote: {
                   text: `If we can get people back into the physical world, connecting together with one another, that&rsquo;s the ultimate promise of the internet, which was always meant to bring us together.`,
                   author: `Brian Chesky`,
@@ -17309,6 +17337,7 @@
             const quote = section.quote
               ? `<blockquote class="story-quote"><p>&ldquo;${section.quote.text}&rdquo;</p><cite>&mdash; ${section.quote.author}</cite></blockquote>`
               : "";
+            const heading = section.title ? `<h2 class="story-title">${section.title}</h2>` : "";
             const chainIntro = section.chainIntro ? `<p class="story-chain-intro">${section.chainIntro}</p>` : "";
             const chain = section.chain
               ? `${chainIntro}<div class="story-chain" aria-label="${section.chain.join(" to ")}">${section.chain
@@ -17451,7 +17480,7 @@
               <section class="${sectionClasses}">
                 <div class="story-section-inner">
                   <div class="story-copy-block">
-                    <h2 class="story-title">${section.title}</h2>
+                    ${heading}
                     ${quote}
                     ${body ? `<div class="story-body">${body}</div>` : ""}
                     ${chain}

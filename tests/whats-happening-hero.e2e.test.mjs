@@ -327,6 +327,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       .map((line) => normalize(line.textContent)).join(" ");
     const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
     const cue = document.querySelector("#landing-hero .story-cue");
+    const cheskySection = document.querySelector("#landing-story .is-next-interface-section");
     return {
       variant: document.querySelector(".page")?.dataset.variant,
       heroClass: document.querySelector("#landing-hero")?.className,
@@ -337,6 +338,9 @@ test("the public story resolves the twist with the existing interface thesis", a
       secondTitle: title(sections[1]),
       thirdTitle: title(sections[2]),
       thirdToLastTitle: title(sections.at(-3)),
+      cheskyHeadlinePresent: Boolean(cheskySection?.querySelector(".story-title")),
+      cheskyQuote: normalize(cheskySection?.querySelector(".story-quote p")?.textContent),
+      cheskyAuthor: normalize(cheskySection?.querySelector(".story-quote cite")?.textContent),
       cueDismissed: cue?.classList.contains("is-dismissed"),
       cueLabel: cue?.getAttribute("aria-label"),
       bannedCopyPresent: normalize(document.body.textContent).includes("The digital town square found its question"),
@@ -355,6 +359,10 @@ test("the public story resolves the twist with the existing interface thesis", a
     thirdTitle: "A Human Conversation is worth a thousand taps.",
     thirdToLastTitle:
       "We're not lonely because communication disappeared. We're lonely because screens replaced Human Conversation.",
+    cheskyHeadlinePresent: false,
+    cheskyQuote:
+      "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",
+    cheskyAuthor: "— Brian Chesky",
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,

@@ -345,7 +345,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       "For decades, interfaces have pulled conversation onto screens. We’re doing the opposite.",
     firstBody: "Building the intelligence around human conversation.",
     secondTitle:
-      "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
+      "We're not lonely because communication disappeared. We're lonely because screens replaced Human Conversation.",
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,

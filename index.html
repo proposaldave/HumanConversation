@@ -11382,13 +11382,38 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
+        position: relative;
+        display: grid;
+        grid-template-columns: clamp(58px, 7vw, 96px) minmax(0, 1fr);
+        align-items: center;
+        gap: clamp(14px, 1.8vw, 22px);
         max-width: 800px;
         margin-top: clamp(26px, 4vh, 42px);
-        border-left: 3px solid var(--hc-rose);
+        border-left: 0;
         color: rgba(255, 248, 236, 0.92);
-        padding-left: 20px;
+        padding-left: 0;
         font-size: clamp(1.12rem, 1.55vw, 1.42rem);
         text-shadow: 0 4px 24px rgba(0, 0, 0, 0.58);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(var(--hc-rose-rgb), 0.34), var(--hc-rose));
+        box-shadow: 0 0 18px rgba(var(--hc-rose-rgb), 0.18);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: calc(clamp(58px, 7vw, 96px) - 9px);
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid var(--hc-rose);
+        border-right: 2px solid var(--hc-rose);
+        transform: translateY(-50%) rotate(45deg);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-build em {
@@ -11552,11 +11577,17 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
+          grid-template-columns: clamp(42px, 12vw, 62px) minmax(0, 1fr);
+          gap: 12px;
           margin-top: 24px;
           color: rgba(255, 248, 236, 0.92);
-          padding-left: 14px;
+          padding-left: 0;
           font-size: 0.98rem;
           line-height: 1.4;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::after {
+          left: calc(clamp(42px, 12vw, 62px) - 9px);
         }
       }
 

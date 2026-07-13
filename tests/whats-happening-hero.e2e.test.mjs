@@ -359,11 +359,19 @@ test("the public story resolves the twist with the existing interface thesis", a
   const firstPanel = await page.evaluate(`(() => {
     const section = document.querySelector("#landing-story .story-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
+    const body = section.querySelector(".story-body");
+    const bodyRect = body.getBoundingClientRect();
     return {
       top: section.getBoundingClientRect().top,
       height: section.getBoundingClientRect().height,
       titleTop: title.top,
       titleBottom: title.bottom,
+      bodyTop: bodyRect.top,
+      bodyBottom: bodyRect.bottom,
+      bodyDisplay: getComputedStyle(body).display,
+      bodyBorderLeft: getComputedStyle(body).borderLeftWidth,
+      arrowLength: Number.parseFloat(getComputedStyle(body, "::before").width),
+      arrowHead: getComputedStyle(body, "::after").borderTopWidth,
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     };
   })()`);
@@ -371,6 +379,11 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
   assert.ok(firstPanel.titleTop >= -1 && firstPanel.titleBottom <= 901);
+  assert.ok(firstPanel.bodyTop >= -1 && firstPanel.bodyBottom <= 901);
+  assert.equal(firstPanel.bodyDisplay, "grid");
+  assert.equal(firstPanel.bodyBorderLeft, "0px");
+  assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
+  assert.equal(firstPanel.arrowHead, "2px");
   assert.ok(firstPanel.horizontalOverflow <= 1);
   assertRuntimeHealthy();
 });

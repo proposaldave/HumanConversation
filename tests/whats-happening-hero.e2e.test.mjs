@@ -107,7 +107,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     robots: "noindex,nofollow",
     progress: ["2009", "2014", "2026"],
     twitterQuestion: "What’s happening?",
-    twitterStory: "Twitter made one question the pulse of digital communities.",
+    twitterStory: "",
     twitterDate: "2009-11-19",
     slackQuestion: "What’s happening?",
     slackStory: "Slack brought the same pulse inside the organization.",

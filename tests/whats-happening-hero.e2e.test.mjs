@@ -10,9 +10,6 @@ const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const VARIANT = "whats-happening-real-world";
 const PUBLIC_VARIANT = "conversation-intelligence-home";
-const DATA_SENTENCE =
-  "All the human, social, relationship, and community data moves through human conversation.";
-
 const stageRatios = {
   twitter: 0,
   slack: 0.47,
@@ -119,7 +116,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       "doesn’t get between us —",
       "it brings us together.",
     ],
-    dataSentence: DATA_SENTENCE,
+    dataSentence: "",
     twist: "But with a twist.",
     heroLabel:
       "In 2009, Twitter made What’s happening? the pulse of digital communities. In 2014, Slack brought the same pulse inside the organization. Now, Human Conversation doesn’t get between us—it brings us together.",

@@ -4683,16 +4683,15 @@
 
       .hero-community-pulse .story-cue.is-timeline-step {
         justify-content: space-between;
-        width: 132px;
-        padding: 0 9px 0 18px;
+        width: 102px;
+        padding: 0 8px 0 16px;
         border-color: rgba(255, 248, 236, 0.34);
         background: rgba(5, 7, 10, 0.78);
         box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 248, 236, 0.06);
       }
 
       .hero-community-pulse .story-cue.is-timeline-step .story-cue-year {
-        display: grid;
-        gap: 3px;
+        display: block;
         color: #fff8ec;
         font-family: Manrope, Inter, system-ui, sans-serif;
         line-height: 1;
@@ -4707,28 +4706,14 @@
         text-transform: uppercase;
       }
 
-      .hero-community-pulse .story-cue.is-timeline-step .story-cue-year strong {
-        font-size: 0.84rem;
-        font-weight: 900;
-        letter-spacing: 0.12em;
-      }
-
       .hero-community-pulse[data-community-stage="twitter"] .story-cue.is-timeline-step {
         border-color: rgba(143, 196, 229, 0.55);
         box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 28px rgba(91, 143, 212, 0.14);
       }
 
-      .hero-community-pulse[data-community-stage="twitter"] .story-cue-year strong {
-        color: #8fc4e5;
-      }
-
       .hero-community-pulse[data-community-stage="slack"] .story-cue.is-timeline-step {
         border-color: rgba(199, 184, 255, 0.55);
         box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 28px rgba(178, 155, 255, 0.14);
-      }
-
-      .hero-community-pulse[data-community-stage="slack"] .story-cue-year strong {
-        color: #c7b8ff;
       }
 
       .hero-community-pulse .story-cue.is-timeline-step .story-cue-icon {
@@ -12405,8 +12390,8 @@
         }
 
         .page[data-hero-theme="community-pulse"].has-expanded-story .hero-community-pulse .story-cue.is-timeline-step {
-          width: 124px;
-          padding: 0 8px 0 16px;
+          width: 96px;
+          padding: 0 8px 0 14px;
         }
 
         .hero-community-pulse .lede {
@@ -16430,7 +16415,7 @@
               <span class="homepage-chain-arrow" aria-hidden="true">&rarr;</span><span class="homepage-chain-step">community</span>
             </span>
           </p>
-          <button class="story-cue" type="button" aria-label="Go to 2014: Slack"><span class="story-cue-year" aria-hidden="true"><small>Next</small><strong>2014</strong></span><span class="story-cue-icon" aria-hidden="true"></span></button>
+          <button class="story-cue" type="button" aria-label="Go to 2014: Slack"><span class="story-cue-year" aria-hidden="true"><small>Next</small></span><span class="story-cue-icon" aria-hidden="true"></span></button>
         </section>
         <section class="landing-story" id="landing-story" hidden></section>
       </main>
@@ -17073,7 +17058,6 @@
       const lede = hero.querySelector(".lede");
       const landingStory = document.querySelector("#landing-story");
       const storyCue = document.querySelector(".story-cue");
-      const storyCueYear = storyCue?.querySelector(".story-cue-year strong");
       const variantNav = document.querySelector(".variant-dots");
       const variantTrigger = document.querySelector(".variant-trigger");
       const secretLanding = document.querySelector(".secret-l-landing");
@@ -18089,20 +18073,18 @@
         const isCommunityPulse = hero.classList.contains("hero-community-pulse");
         if (isCommunityPulse) {
           const stage = hero.dataset.communityStage;
-          const nextYear = stage === "twitter" ? "2014" : stage === "slack" ? "2026" : "";
+          const hasNextStage = stage === "twitter" || stage === "slack";
           const label = stage === "twitter"
             ? "Go to 2014: Slack"
             : stage === "slack"
               ? "Go to 2026: Human Conversation"
               : "Continue down to the Human Conversation story";
-          if (storyCueYear) storyCueYear.textContent = nextYear;
-          storyCue?.classList.toggle("is-timeline-step", Boolean(nextYear));
+          storyCue?.classList.toggle("is-timeline-step", hasNextStage);
           storyCue?.setAttribute("aria-label", label);
           storyCue?.classList.remove("is-dismissed");
           return;
         }
 
-        if (storyCueYear) storyCueYear.textContent = "";
         storyCue?.classList.remove("is-timeline-step");
         const shouldDismiss = window.scrollY > 72;
         storyCue?.classList.toggle("is-dismissed", shouldDismiss);

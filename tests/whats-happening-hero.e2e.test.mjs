@@ -85,7 +85,8 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       followArrow: Boolean(document.querySelector(".community-follow-arrow")),
       cueDismissed: document.querySelector("#landing-hero .story-cue")?.classList.contains("is-dismissed"),
       cueTimelineStep: document.querySelector("#landing-hero .story-cue")?.classList.contains("is-timeline-step"),
-      cueYear: normalize(document.querySelector("#landing-hero .story-cue-year strong")?.textContent),
+      cueText: normalize(document.querySelector("#landing-hero .story-cue-year")?.textContent),
+      cueYearPresent: Boolean(document.querySelector("#landing-hero .story-cue-year strong")),
       cueLabel: document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label"),
       heroLabel: document.querySelector("#landing-hero h1")?.getAttribute("aria-label"),
       contactDisplay: getComputedStyle(document.querySelector("#email-capture")).display,
@@ -122,7 +123,8 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     followArrow: true,
     cueDismissed: false,
     cueTimelineStep: true,
-    cueYear: "2014",
+    cueText: "Next",
+    cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
       "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening?",
@@ -212,13 +214,14 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
     await page.evaluate(`(() => {
       const cue = document.querySelector("#landing-hero .story-cue");
       return {
-        year: cue?.querySelector(".story-cue-year strong")?.textContent,
+        text: cue?.querySelector(".story-cue-year")?.textContent.trim(),
+        yearPresent: Boolean(cue?.querySelector(".story-cue-year strong")),
         timelineStep: cue?.classList.contains("is-timeline-step"),
         label: cue?.getAttribute("aria-label"),
         animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
       };
     })()`),
-    { year: "2014", timelineStep: true, label: "Go to 2014: Slack", animation: "story-cue-forward" },
+    { text: "Next", yearPresent: false, timelineStep: true, label: "Go to 2014: Slack", animation: "story-cue-forward" },
   );
 
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
@@ -227,13 +230,14 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
     await page.evaluate(`(() => {
       const cue = document.querySelector("#landing-hero .story-cue");
       return {
-        year: cue?.querySelector(".story-cue-year strong")?.textContent,
+        text: cue?.querySelector(".story-cue-year")?.textContent.trim(),
+        yearPresent: Boolean(cue?.querySelector(".story-cue-year strong")),
         timelineStep: cue?.classList.contains("is-timeline-step"),
         label: cue?.getAttribute("aria-label"),
         animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
       };
     })()`),
-    { year: "2026", timelineStep: true, label: "Go to 2026: Human Conversation", animation: "story-cue-forward" },
+    { text: "Next", yearPresent: false, timelineStep: true, label: "Go to 2026: Human Conversation", animation: "story-cue-forward" },
   );
 
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
@@ -242,13 +246,14 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
     await page.evaluate(`(() => {
       const cue = document.querySelector("#landing-hero .story-cue");
       return {
-        year: cue?.querySelector(".story-cue-year strong")?.textContent,
+        text: cue?.querySelector(".story-cue-year")?.textContent.trim(),
+        yearPresent: Boolean(cue?.querySelector(".story-cue-year strong")),
         timelineStep: cue?.classList.contains("is-timeline-step"),
         label: cue?.getAttribute("aria-label"),
         animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
       };
     })()`),
-    { year: "", timelineStep: false, label: "Continue down to the Human Conversation story", animation: "story-cue-drop" },
+    { text: "Next", yearPresent: false, timelineStep: false, label: "Continue down to the Human Conversation story", animation: "story-cue-drop" },
   );
   assertRuntimeHealthy();
 });

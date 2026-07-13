@@ -201,3 +201,48 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
   }
   assertRuntimeHealthy();
 });
+
+test("the public Human Conversation statement stays clear and separate from the twist", async () => {
+  const expectedQuestion = "Every important human system needs a way to understand its present state.";
+
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(publicUrl("?reduceMotion=1"));
+    await page.waitFor('document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"');
+    await page.evaluate('document.querySelector(".community-progress [data-era=human]")?.click()');
+    await page.waitFor(
+      'document.querySelector("#landing-hero")?.dataset.communityStage === "human" && Number(getComputedStyle(document.querySelector("#landing-hero .lede")).opacity) > 0.95',
+    );
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const question = document.querySelector(".community-stage-human .community-question");
+      const twist = document.querySelector("#landing-hero .community-twist");
+      const questionRect = question?.getBoundingClientRect();
+      const twistRect = twist?.getBoundingClientRect();
+      return {
+        question: normalize(question?.textContent),
+        historicalPrompt: normalize(document.querySelector(".community-artifact-question")?.textContent),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        questionLeft: questionRect?.left ?? -1,
+        questionRight: questionRect?.right ?? -1,
+        questionTop: questionRect?.top ?? -1,
+        questionBottom: questionRect?.bottom ?? -1,
+        twistTop: twistRect?.top ?? -1,
+      };
+    })()`);
+
+    assert.equal(layout.question, expectedQuestion);
+    assert.equal(layout.historicalPrompt, "What\u2019s happening?");
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
+    assert.ok(layout.questionLeft >= -1 && layout.questionRight <= width + 1, `${width}x${height} question fits horizontally`);
+    assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} question fits vertically`);
+    assert.ok(layout.questionBottom < layout.twistTop, `${width}x${height} question stays above the twist`);
+  }
+
+  assertRuntimeHealthy();
+});

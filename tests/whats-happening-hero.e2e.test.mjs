@@ -63,8 +63,6 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     const pageRoot = document.querySelector(".page");
     const hero = document.querySelector("#landing-hero");
     const allText = normalize(document.body.textContent);
-    const humanLines = Array.from(document.querySelectorAll(".community-human-copy > span"))
-      .map((line) => normalize(line.textContent));
     return {
       variant: pageRoot?.dataset.variant,
       heroTheme: pageRoot?.dataset.heroTheme,
@@ -79,10 +77,12 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       slackQuestion: normalize(document.querySelector(".community-stage-slack .community-question")?.textContent),
       slackStory: normalize(document.querySelector(".community-stage-slack .community-platform-story")?.textContent),
       slackLabel: normalize(document.querySelector(".community-stage-slack .community-platform small")?.textContent),
-      humanLabel: normalize(document.querySelector(".community-human-label")?.textContent),
-      humanLines,
+      humanBrand: normalize(document.querySelector(".community-human-name")?.textContent),
+      humanQuestion: normalize(document.querySelector(".community-stage-human .community-question")?.textContent),
+      humanMarkParts: document.querySelectorAll(".community-human-mark .mark-bubble, .community-human-mark .mark-heart").length,
       dataSentence: normalize(document.querySelector(".community-data-line")?.textContent),
       twist: normalize(document.querySelector(".community-twist")?.textContent),
+      followArrow: Boolean(document.querySelector(".community-follow-arrow")),
       cueDismissed: document.querySelector("#landing-hero .story-cue")?.classList.contains("is-dismissed"),
       cueLabel: document.querySelector("#landing-hero .story-cue")?.getAttribute("aria-label"),
       heroLabel: document.querySelector("#landing-hero h1")?.getAttribute("aria-label"),
@@ -112,18 +112,16 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     slackQuestion: "What’s happening?",
     slackStory: "",
     slackLabel: "The organization",
-    humanLabel: "2026 · Real-world social communities",
-    humanLines: [
-      "Human Conversation",
-      "doesn’t get between us —",
-      "it brings us together.",
-    ],
+    humanBrand: "Human Conversation",
+    humanQuestion: "What’s happening",
+    humanMarkParts: 3,
     dataSentence: "",
     twist: "But with a twist.",
+    followArrow: true,
     cueDismissed: false,
     cueLabel: "Show 2014",
     heroLabel:
-      "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation doesn’t get between us—it brings us together.",
+      "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening.",
     contactDisplay: "none",
     storyHidden: true,
     storySections: 0,
@@ -201,6 +199,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
       const layout = await page.evaluate(`(() => {
         const stage = document.querySelector(".community-stage-${stage}");
         const primary = stage.querySelector(".community-stage-content, .community-human-copy");
+        const platform = stage.querySelector(".community-platform");
         const artifact = stage.querySelector(".community-artifact");
         const lede = document.querySelector("#landing-hero .lede");
         const rect = (element) => element ? ({
@@ -213,6 +212,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
           horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           stage: document.querySelector("#landing-hero")?.dataset.communityStage,
           primary: rect(primary),
+          platform: rect(platform),
           artifact: rect(artifact),
           lede: "${stage}" === "human" ? rect(lede) : null,
           heroHeight: document.querySelector("#landing-hero")?.offsetHeight || 0,
@@ -227,6 +227,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
       assert.equal(layout.stage, stage);
       assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} ${stage} overflows horizontally`);
       assertFits(layout.primary, `${stage} copy`);
+      if (layout.platform) assertFits(layout.platform, `${stage} brand`);
       if (layout.artifact) assertFits(layout.artifact, `${stage} artifact`);
       if (layout.lede) assertFits(layout.lede, `${stage} twist`);
       assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} is not a true three-stage hero`);

@@ -11995,70 +11995,46 @@
         width: 74%;
       }
 
-      .hero-community-pulse .community-human-label {
-        position: relative;
-        z-index: 2;
-        display: block;
-        margin-bottom: clamp(24px, 3.2vh, 38px);
-        color: #f2bd55;
-        font: 850 clamp(0.62rem, 0.78vw, 0.74rem)/1.2 Manrope, Inter, system-ui, sans-serif;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
+      .hero-community-pulse .community-human-name {
+        gap: clamp(10px, 1vw, 14px);
+        color: var(--hc-rose) !important;
+        letter-spacing: -0.045em !important;
       }
 
-      .hero-community-pulse .community-human-copy {
-        position: relative;
-        z-index: 2;
-        display: block;
-        width: min(100%, 1080px);
-        transform: translateY(-1vh);
+      .hero-community-pulse .community-human-mark {
+        width: clamp(46px, 4.2vw, 60px);
+        height: auto;
+        overflow: visible;
+        filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.38));
       }
 
-      .hero-community-pulse .community-human-copy > span {
-        display: block;
+      .hero-community-pulse .community-human-mark .mark-bubble {
+        fill: rgba(5, 7, 10, 0.72);
+        stroke: rgba(255, 248, 236, 0.9);
+        stroke-width: 2.4px;
       }
 
-      .hero-community-pulse .community-human-brand {
-        color: var(--hc-rose);
-        font-size: clamp(4.6rem, 8.4vw, 9.1rem);
-        font-weight: 650;
-        letter-spacing: -0.07em;
-        line-height: 0.82;
-        text-shadow: 0 10px 46px rgba(0, 0, 0, 0.56);
-      }
-
-      .hero-community-pulse .community-human-copy > span:not(.community-human-brand) {
-        max-width: 15ch;
-        margin-top: clamp(15px, 2.1vh, 24px);
-        color: #fff8ec;
-        font-size: clamp(3.2rem, 5.65vw, 6.35rem);
-        font-weight: 650;
-        letter-spacing: -0.055em;
-        line-height: 0.89;
-        text-shadow: 0 10px 42px rgba(0, 0, 0, 0.62);
-      }
-
-      .hero-community-pulse .community-human-copy > .community-human-world {
-        margin-top: 0;
-        color: #f2bd55;
+      .hero-community-pulse .community-human-mark .mark-heart {
+        fill: var(--hc-rose);
+        stroke: #fff8ec;
+        stroke-width: 1.8px;
       }
 
       .hero-community-pulse .lede {
         position: absolute;
-        right: max(28px, calc((100vw - 1320px) / 2));
-        bottom: clamp(32px, 5.2vh, 58px);
-        left: max(28px, calc((100vw - 1320px) / 2));
+        right: auto;
+        bottom: clamp(108px, 13vh, 132px);
+        left: 50%;
         z-index: 9;
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: space-between;
-        align-items: end;
-        gap: 32px;
-        max-width: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: max-content;
+        max-width: calc(100vw - 36px);
         margin: 0;
         visibility: hidden;
         opacity: 0;
-        transform: translateY(18px);
+        transform: translate(-50%, 18px);
         transition:
           opacity 620ms 240ms cubic-bezier(0.22, 1, 0.36, 1),
           transform 720ms 240ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -12068,7 +12044,7 @@
       .hero-community-pulse[data-community-stage="human"] .lede {
         visibility: visible;
         opacity: 1;
-        transform: none;
+        transform: translateX(-50%);
         transition-delay: 260ms, 260ms, 0s;
       }
 
@@ -12090,9 +12066,33 @@
         font-weight: 620;
         letter-spacing: -0.04em;
         line-height: 0.94;
-        text-align: right;
+        text-align: center;
         text-shadow: 0 5px 26px rgba(0, 0, 0, 0.6);
         white-space: nowrap;
+      }
+
+      .hero-community-pulse .community-follow-arrow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: clamp(10px, 1.5vh, 16px);
+        color: #f2bd55;
+      }
+
+      .hero-community-pulse .community-follow-arrow::before {
+        content: "";
+        width: 1px;
+        height: clamp(18px, 2.8vh, 28px);
+        background: linear-gradient(180deg, rgba(242, 189, 85, 0.12), currentColor);
+      }
+
+      .hero-community-pulse .community-follow-arrow i {
+        width: 9px;
+        height: 9px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        animation: story-cue-drop 1.7s ease-in-out infinite;
       }
 
       .page[data-hero-theme="community-pulse"] .hero > .contact,
@@ -12186,6 +12186,17 @@
           letter-spacing: 0.13em;
         }
 
+        .hero-community-pulse .community-stage-human .community-platform {
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .hero-community-pulse .community-stage-human .community-platform small {
+          margin-left: 52px;
+          border-left: 0;
+          padding-left: 0;
+        }
+
         .hero-community-pulse .community-question {
           max-width: 7ch;
           font-size: clamp(3.85rem, 17.2vw, 5.2rem);
@@ -12242,40 +12253,14 @@
           padding: 15px;
         }
 
-        .hero-community-pulse .community-human-label {
-          margin-top: 7px;
-          margin-bottom: 30px;
-          font-size: 0.52rem;
-          letter-spacing: 0.14em;
-        }
-
-        .hero-community-pulse .community-human-copy {
-          transform: none;
-        }
-
-        .hero-community-pulse .community-human-brand {
-          max-width: 7ch;
-          font-size: clamp(3.5rem, 16.2vw, 4.65rem);
-          line-height: 0.84;
-        }
-
-        .hero-community-pulse .community-human-copy > span:not(.community-human-brand) {
-          max-width: 11ch;
-          margin-top: 18px;
-          font-size: clamp(2.45rem, 11.4vw, 3.25rem);
-          line-height: 0.91;
-        }
-
-        .hero-community-pulse .community-human-copy > .community-human-world {
-          margin-top: 0;
+        .hero-community-pulse .community-human-mark {
+          width: 42px;
         }
 
         .hero-community-pulse .lede {
-          right: 18px;
-          bottom: 24px;
-          left: 18px;
-          grid-template-columns: 1fr;
-          gap: 14px;
+          right: auto;
+          bottom: 96px;
+          left: 50%;
         }
 
         .hero-community-pulse .community-data-line {
@@ -12287,7 +12272,7 @@
 
         .hero-community-pulse .community-twist {
           font-size: clamp(1.75rem, 8vw, 2.35rem);
-          text-align: left;
+          text-align: center;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-kicker {
@@ -12324,22 +12309,8 @@
           width: min(67vw, 245px);
         }
 
-        .hero-community-pulse .community-human-label {
-          margin-bottom: 20px;
-        }
-
-        .hero-community-pulse .community-human-brand {
-          font-size: clamp(3.08rem, 14.4vw, 4rem);
-        }
-
-        .hero-community-pulse .community-human-copy > span:not(.community-human-brand) {
-          margin-top: 12px;
-          font-size: clamp(2.12rem, 9.8vw, 2.85rem);
-        }
-
         .hero-community-pulse .lede {
-          bottom: 14px;
-          gap: 9px;
+          bottom: 88px;
         }
 
         .hero-community-pulse .community-data-line {
@@ -12356,6 +12327,10 @@
         .hero-community-pulse .community-stage,
         .hero-community-pulse .lede {
           transition: none;
+        }
+
+        .hero-community-pulse .community-follow-arrow i {
+          animation: none;
         }
       }
 
@@ -16253,7 +16228,7 @@
       <main>
         <section class="hero hero-community-pulse" id="landing-hero" data-community-stage="twitter">
           <div class="hero-inner">
-            <h1 aria-label="2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation doesn’t get between us—it brings us together.">
+            <h1 aria-label="2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening.">
               <span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>2026</span></span>
               <span class="community-stage community-stage-twitter">
                 <span class="community-stage-content">
@@ -16270,11 +16245,13 @@
                 <span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span>
               </span>
               <span class="community-stage community-stage-human">
-                <span class="community-human-label">2026 · Real-world social communities</span>
-                <span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>doesn&rsquo;t get between us &mdash;</span><span class="community-human-world">it brings us together.</span></span>
+                <span class="community-stage-content">
+                  <span class="community-platform"><strong class="community-human-name"><svg class="community-human-mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false"><path class="mark-bubble" d="M23.5 8C12.7 8 4 14.6 4 22.8c0 4.7 2.9 9 7.4 11.7L9.7 42l8.3-4.2c1.8.4 3.7.6 5.5.6 10.8 0 19.5-6.6 19.5-14.8S34.3 8 23.5 8Z" /><path class="mark-bubble" d="M40.5 8C51.3 8 60 14.6 60 22.8c0 4.7-2.9 9-7.4 11.7l1.7 7.5-8.3-4.2c-1.8.4-3.7.6-5.5.6-10.8 0-19.5-6.6-19.5-14.8S29.7 8 40.5 8Z" /><path class="mark-heart" d="M32 36.8 29.9 35C22.1 28.4 18.8 24.9 18.8 20.2c0-4.1 3.2-7.2 7.2-7.2 2.4 0 4.6 1.2 6 3.1 1.4-1.9 3.6-3.1 6-3.1 4 0 7.2 3.1 7.2 7.2 0 4.7-3.3 8.2-11.1 14.8L32 36.8Z" /></svg><span class="brand-name">Human Conversation</span></strong><small>Real-world social communities</small></span>
+                  <span class="community-question">What&rsquo;s happening</span>
+                </span>
               </span>
             </h1>
-            <p class="lede"><span class="community-twist">But with a twist.</span></p>
+            <p class="lede"><span class="community-twist">But with a twist.</span><span class="community-follow-arrow" aria-hidden="true"><i></i></span></p>
             <p class="interface-detail">It is the live conversation between the right people &mdash; created by humans, rooted in real-world community, while AI quietly handles the computer work in the background.</p>
             <p class="interface-punchline">The interface becomes human.</p>
           </div>
@@ -16614,9 +16591,9 @@
 
         const communityPulseHero = Object.freeze({
           heroTheme: "community-pulse",
-          headlineLabel: "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation doesn’t get between us—it brings us together.",
-          headline: `<span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>2026</span></span><span class="community-stage community-stage-twitter"><span class="community-stage-content"><span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital communities</small></span><span class="community-question">What&rsquo;s happening?</span></span><span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 &middot; 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span></span><span class="community-stage community-stage-slack"><span class="community-stage-content"><span class="community-platform"><strong class="community-slack-name"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>slack</strong><small>The organization</small></span><span class="community-question">What&rsquo;s happening?</span></span><span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span></span><span class="community-stage community-stage-human"><span class="community-human-label">2026 &middot; Real-world social communities</span><span class="community-human-copy"><span class="community-human-brand">Human Conversation</span><span>doesn&rsquo;t get between us &mdash;</span><span class="community-human-world">it brings us together.</span></span></span>`,
-          lede: `<span class="community-twist">But with a twist.</span>`,
+          headlineLabel: "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening.",
+          headline: `<span class="community-progress" aria-hidden="true"><span data-era="twitter"><i></i>2009</span><span data-era="slack"><i></i>2014</span><span data-era="human"><i></i>2026</span></span><span class="community-stage community-stage-twitter"><span class="community-stage-content"><span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital communities</small></span><span class="community-question">What&rsquo;s happening?</span></span><span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 &middot; 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span></span><span class="community-stage community-stage-slack"><span class="community-stage-content"><span class="community-platform"><strong class="community-slack-name"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>slack</strong><small>The organization</small></span><span class="community-question">What&rsquo;s happening?</span></span><span class="community-artifact community-slack-artifact" aria-hidden="true"><span class="community-slack-rail"><b>slack</b><i># general</i><i># product</i><i># random</i></span><span class="community-slack-messages"><i></i><i></i><i></i></span></span></span><span class="community-stage community-stage-human"><span class="community-stage-content"><span class="community-platform"><strong class="community-human-name"><svg class="community-human-mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false"><path class="mark-bubble" d="M23.5 8C12.7 8 4 14.6 4 22.8c0 4.7 2.9 9 7.4 11.7L9.7 42l8.3-4.2c1.8.4 3.7.6 5.5.6 10.8 0 19.5-6.6 19.5-14.8S34.3 8 23.5 8Z" /><path class="mark-bubble" d="M40.5 8C51.3 8 60 14.6 60 22.8c0 4.7-2.9 9-7.4 11.7l1.7 7.5-8.3-4.2c-1.8.4-3.7.6-5.5.6-10.8 0-19.5-6.6-19.5-14.8S29.7 8 40.5 8Z" /><path class="mark-heart" d="M32 36.8 29.9 35C22.1 28.4 18.8 24.9 18.8 20.2c0-4.1 3.2-7.2 7.2-7.2 2.4 0 4.6 1.2 6 3.1 1.4-1.9 3.6-3.1 6-3.1 4 0 7.2 3.1 7.2 7.2 0 4.7-3.3 8.2-11.1 14.8L32 36.8Z" /></svg><span class="brand-name">Human Conversation</span></strong><small>Real-world social communities</small></span><span class="community-question">What&rsquo;s happening</span></span></span>`,
+          lede: `<span class="community-twist">But with a twist.</span><span class="community-follow-arrow" aria-hidden="true"><i></i></span>`,
         });
 
         const variants = [

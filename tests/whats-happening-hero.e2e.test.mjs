@@ -112,7 +112,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     twitterDate: "2009-11-19",
     slackQuestion: "What’s happening?",
     slackStory: "Slack brought the same pulse inside the organization.",
-    slackLabel: "The company",
+    slackLabel: "The organization",
     humanLabel: "Now · Real-world social communities",
     humanLines: [
       "Human Conversation",

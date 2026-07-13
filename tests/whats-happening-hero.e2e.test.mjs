@@ -372,6 +372,8 @@ test("the public story resolves the twist with the existing interface thesis", a
       bodyBorderLeft: getComputedStyle(body).borderLeftWidth,
       arrowLength: Number.parseFloat(getComputedStyle(body, "::before").width),
       arrowHead: getComputedStyle(body, "::after").borderTopWidth,
+      imageFilter: getComputedStyle(section, "::before").filter,
+      overlayBackground: getComputedStyle(section, "::after").backgroundImage,
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     };
   })()`);
@@ -384,6 +386,8 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.equal(firstPanel.bodyBorderLeft, "0px");
   assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
   assert.equal(firstPanel.arrowHead, "2px");
+  assert.match(firstPanel.imageFilter, /brightness\(1\.04\)/);
+  assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.89\)/);
   assert.ok(firstPanel.horizontalOverflow <= 1);
   assertRuntimeHealthy();
 });

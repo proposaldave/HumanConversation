@@ -162,6 +162,9 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     const layout = await page.evaluate(`(() => {
       const hero = document.querySelector("#landing-hero");
       const copy = document.querySelector(".community-stage-twitter .community-stage-content")?.getBoundingClientRect();
+      const connectionChain = document.querySelector("#landing-story .is-solves-disconnection-section .story-chain");
+      const chainItems = Array.from(connectionChain?.querySelectorAll("span:not(.story-chain-arrow)") || []);
+      const lastPill = chainItems.at(-1)?.getBoundingClientRect();
       return {
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         publicIntro: Boolean(document.querySelector("[data-hc-public-intro]")),
@@ -170,6 +173,10 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
         copyRight: copy?.right ?? -1,
         copyTop: copy?.top ?? -1,
         copyBottom: copy?.bottom ?? -1,
+        chainItems: chainItems.map((item) => item.textContent.trim()),
+        arrowCount: connectionChain?.querySelectorAll(".story-chain-arrow").length || 0,
+        lastPillLeft: lastPill?.left ?? -1,
+        lastPillRight: lastPill?.right ?? -1,
       };
     })()`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
@@ -177,6 +184,20 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} keeps the three-stage story`);
     assert.ok(layout.copyLeft >= -1 && layout.copyRight <= width + 1, `${width}x${height} copy fits horizontally`);
     assert.ok(layout.copyTop >= -1 && layout.copyBottom <= height + 1, `${width}x${height} copy fits vertically`);
+    assert.deepEqual(layout.chainItems, [
+      "disconnection",
+      "connection",
+      "trust",
+      "data",
+      "coordination",
+      "community",
+      "trusted connection-high.",
+    ]);
+    assert.equal(layout.arrowCount, 6, `${width}x${height} keeps every connecting arrow`);
+    assert.ok(
+      layout.lastPillLeft >= -1 && layout.lastPillRight <= width + 1,
+      `${width}x${height} final connection pill fits horizontally`,
+    );
   }
   assertRuntimeHealthy();
 });

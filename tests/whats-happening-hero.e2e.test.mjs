@@ -353,7 +353,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     heroStage: "twitter",
     sectionCount: 12,
     firstTitle:
-      "For decades, social media and work interfaces have pulled conversation onto screens. We’re doing the opposite.",
+      "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.",
     firstBody: "Building the intelligence around human conversation.",
     secondTitle: "Human Conversation solves disconnection.",
     thirdTitle: "A Human Conversation is worth a thousand taps.",

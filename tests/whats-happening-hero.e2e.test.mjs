@@ -135,7 +135,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, solved. What’s happening around the world? 2014. Slack. Organizations, solved. What’s happening inside the organization? 2026. Human Conversation. Real-world social communities, unsolved. What’s happening in our communities? Every important human system needs a way to understand its present state.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 12,
+    storySections: 13,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -327,7 +327,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
 
   const sequence = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -337,6 +337,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const cue = document.querySelector("#landing-hero .story-cue");
     const cheskySection = document.querySelector("#landing-story .is-next-interface-section");
     const lonelinessSection = document.querySelector("#landing-story .is-lonely-return-section");
+    const humanSurfaceSection = document.querySelector("#landing-story .is-human-surface-section");
     const timelessSection = document.querySelector("#landing-story .is-timeless-fullscreen-section");
     return {
       variant: document.querySelector(".page")?.dataset.variant,
@@ -359,7 +360,11 @@ test("the public story resolves the twist with the existing interface thesis", a
         sections[3]?.nextElementSibling === sections[4] &&
         sections[4]?.classList.contains("is-taps-premium-section"),
       lonelinessTitle: title(lonelinessSection),
-      lonelinessFlowsToTimeless: lonelinessSection?.nextElementSibling === timelessSection,
+      humanSurfaceTitle: title(humanSurfaceSection),
+      humanSurfaceIntro: normalize(humanSurfaceSection?.querySelector(".human-surface-sectionline")?.textContent),
+      lonelinessFlowsToHumanSurface: lonelinessSection?.nextElementSibling === humanSurfaceSection,
+      humanSurfaceIsThirdToLast: sections.at(-3) === humanSurfaceSection,
+      humanSurfaceFlowsToTimeless: humanSurfaceSection?.nextElementSibling === timelessSection,
       timelessIsSecondToLast: sections.at(-2) === timelessSection,
       timelessFlowsToFuture: timelessSection?.nextElementSibling?.classList.contains("is-final-cta-section"),
       publicCheskySectionPresent: Boolean(cheskySection),
@@ -375,7 +380,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     variant: PUBLIC_VARIANT,
     heroClass: "hero hero-community-pulse",
     heroStage: "twitter",
-    sectionCount: 12,
+    sectionCount: 13,
     firstIsCommunityTruth: true,
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
@@ -394,7 +399,12 @@ test("the public story resolves the twist with the existing interface thesis", a
     operatingSystemFlowsToTaps: true,
     lonelinessTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
-    lonelinessFlowsToTimeless: true,
+    humanSurfaceTitle: "Humans stay above the surface. AI handles underneath.",
+    humanSurfaceIntro:
+      "Members feel remembered. Builders stay present. The memory, matching, scheduling, follow-up, and logistics move underneath.",
+    lonelinessFlowsToHumanSurface: true,
+    humanSurfaceIsThirdToLast: true,
+    humanSurfaceFlowsToTimeless: true,
     timelessIsSecondToLast: true,
     timelessFlowsToFuture: true,
     publicCheskySectionPresent: false,
@@ -467,10 +477,92 @@ test("the public story resolves the twist with the existing interface thesis", a
   assertRuntimeHealthy();
 });
 
+test("the human and AI surface section stays clear on desktop and narrow phones", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await page.evaluate(`document.querySelector("#landing-story .is-human-surface-section")?.scrollIntoView({ behavior: "instant", block: "start" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-human-surface-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const rect = (element) => {
+        const box = element?.getBoundingClientRect();
+        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left, width: box.width, height: box.height } : null;
+      };
+      const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
+      const section = document.querySelector("#landing-story .is-human-surface-section");
+      const title = section?.querySelector(".human-surface-story-title");
+      const system = section?.querySelector(".human-surface-story-system");
+      const topCard = section?.querySelector(".human-surface-card-top");
+      const divider = section?.querySelector(".human-surface-divider");
+      const bottomCard = section?.querySelector(".human-surface-card-bottom");
+      const cue = section?.querySelector(".section-cue");
+      return {
+        title: normalize(title?.textContent),
+        intro: normalize(section?.querySelector(".human-surface-sectionline")?.textContent),
+        topCardText: normalize(topCard?.textContent),
+        bottomCardText: normalize(bottomCard?.textContent),
+        dividerText: normalize(divider?.textContent),
+        thirdToLast: sections.at(-3) === section,
+        section: rect(section),
+        titleRect: rect(title),
+        systemRect: rect(system),
+        topCardRect: rect(topCard),
+        dividerRect: rect(divider),
+        bottomCardRect: rect(bottomCard),
+        cueRect: rect(cue),
+        goldColor: getComputedStyle(section.querySelector(".human-surface-gold")).color,
+        backgroundImage: getComputedStyle(section, "::before").backgroundImage,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(layout.title, "Humans stay above the surface. AI handles underneath.");
+    assert.equal(
+      layout.intro,
+      "Members feel remembered. Builders stay present. The memory, matching, scheduling, follow-up, and logistics move underneath.",
+    );
+    assert.equal(layout.topCardText, "What people feel A real conversation with someone who knows why they matter.");
+    assert.equal(layout.bottomCardText, "What AI handles Signals, context, matching, scheduling, reminders, follow-up, and logistics.");
+    assert.equal(layout.dividerText, "Human moment");
+    assert.equal(layout.thirdToLast, true);
+    assert.equal(layout.goldColor, "rgb(184, 149, 74)");
+    assert.match(layout.backgroundImage, /hc-art-operating-system-human-value-funnel-20260705\.png/);
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} human/AI section has no horizontal overflow`);
+    assert.ok(layout.section.height >= height - 1, `${width}x${height} human/AI section fills the viewport`);
+    assert.ok(layout.topCardRect.bottom < layout.dividerRect.top, `${width}x${height} human moment follows the human card`);
+    assert.ok(layout.dividerRect.bottom < layout.bottomCardRect.top, `${width}x${height} AI support stays beneath the surface`);
+
+    for (const [label, box] of [
+      ["title", layout.titleRect],
+      ["system", layout.systemRect],
+      ["top card", layout.topCardRect],
+      ["bottom card", layout.bottomCardRect],
+    ]) {
+      assert.ok(box.left >= -1 && box.right <= width + 1, `${width}x${height} ${label} fits horizontally`);
+    }
+
+    if (width > 760) {
+      assert.ok(layout.titleRect.right < layout.systemRect.left, "desktop keeps the human promise beside the system proof");
+    } else {
+      assert.ok(layout.titleRect.bottom < layout.systemRect.top, `${width}x${height} stacks the proof beneath the promise`);
+      assert.ok(layout.bottomCardRect.bottom < layout.cueRect.top, `${width}x${height} keeps the next control below the proof`);
+    }
+
+    assertRuntimeHealthy();
+  }
+});
+
 test("the Brian Chesky quote lives only behind the hidden bottom-left dot", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -596,7 +688,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
     await showStage("human");
     await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);

@@ -39,6 +39,7 @@ async function publicProjection() {
     const pageRoot = document.querySelector(".page");
     const hero = document.querySelector("#landing-hero");
     const twitterSolved = hero?.querySelector(".community-twitter-status-solved");
+    const slackSolved = hero?.querySelector(".community-slack-status-solved");
     const storyText = normalize(document.querySelector("#landing-story"));
     const markers = ${JSON.stringify(baseline.storyMarkers)};
     return {
@@ -50,6 +51,8 @@ async function publicProjection() {
       headlineText: normalize(hero?.querySelector("h1")),
       twitterStatus: normalize(hero?.querySelector(".community-twitter-status")),
       twitterSolvedColor: twitterSolved ? getComputedStyle(twitterSolved).color : null,
+      slackStatus: normalize(hero?.querySelector(".community-slack-status")),
+      slackSolvedColor: slackSolved ? getComputedStyle(slackSolved).color : null,
       ledeText: normalize(hero?.querySelector(".lede")),
       headerEmail: normalize(document.querySelector(".header-email")),
       storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
@@ -95,6 +98,8 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     headlineText: baseline.headlineText,
     twitterStatus: "Digital Communities → ✓ Solved",
     twitterSolvedColor: "rgb(105, 221, 160)",
+    slackStatus: "Organizations → ✓ Solved",
+    slackSolvedColor: "rgb(105, 221, 160)",
     ledeText: baseline.ledeText,
     headerEmail: baseline.headerEmail,
     storySections: baseline.storySections,
@@ -247,6 +252,48 @@ test("the public Human Conversation statement stays clear and separate from the 
     assert.ok(layout.questionLeft >= -1 && layout.questionRight <= width + 1, `${width}x${height} question fits horizontally`);
     assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} question fits vertically`);
     assert.ok(layout.questionBottom < layout.twistTop, `${width}x${height} question stays above the twist`);
+  }
+
+  assertRuntimeHealthy();
+});
+
+test("the public Slack solved status stays within every supported viewport", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(publicUrl("?reduceMotion=1"));
+    await page.waitFor('document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"');
+    await page.evaluate('document.querySelector(".community-progress [data-era=slack]")?.click()');
+    await page.waitFor(
+      'document.querySelector("#landing-hero")?.dataset.communityStage === "slack" && Number(getComputedStyle(document.querySelector(".community-stage-slack")).opacity) > 0.95',
+    );
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const status = document.querySelector(".community-slack-status");
+      const solved = document.querySelector(".community-slack-status-solved");
+      const rect = status?.getBoundingClientRect();
+      return {
+        stage: document.querySelector("#landing-hero")?.dataset.communityStage,
+        status: normalize(status?.textContent),
+        solvedColor: solved ? getComputedStyle(solved).color : null,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        left: rect?.left ?? -1,
+        right: rect?.right ?? -1,
+        top: rect?.top ?? -1,
+        bottom: rect?.bottom ?? -1,
+      };
+    })()`);
+
+    assert.equal(layout.stage, "slack");
+    assert.equal(layout.status, "Organizations → ✓ Solved");
+    assert.equal(layout.solvedColor, "rgb(105, 221, 160)");
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
+    assert.ok(layout.left >= -1 && layout.right <= width + 1, `${width}x${height} Slack status fits horizontally`);
+    assert.ok(layout.top >= -1 && layout.bottom <= height + 1, `${width}x${height} Slack status fits vertically`);
   }
 
   assertRuntimeHealthy();

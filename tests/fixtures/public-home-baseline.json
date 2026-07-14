@@ -1,8 +1,8 @@
 {
   "variant": "conversation-intelligence-home",
   "heroClass": "hero hero-community-pulse",
-  "headlineLabel": "2009. Twitter. Digital Communities, solved. What is the world talking about? 2014. Slack. What’s happening in the organization? 2026. Human Conversation. Every important human system needs a way to understand its present state.",
-  "headlineText": "200920142026twitterDigital Communities → ✓ SolvedWhat is the world talking about?twitterNov 19 · 2009What’s happening?slackThe organizationWhat’s happening in the organization?slack# general# product# randomHuman ConversationReal-world social communitiesEvery important human system needs a way to understand its present state.",
+  "headlineLabel": "2009. Twitter. Digital Communities, solved. What is the world talking about? 2014. Slack. Organizations, solved. What’s happening in the organization? 2026. Human Conversation. Every important human system needs a way to understand its present state.",
+  "headlineText": "200920142026twitterDigital Communities → ✓ SolvedWhat is the world talking about?twitterNov 19 · 2009What’s happening?slackOrganizations → ✓ SolvedWhat’s happening in the organization?slack# general# product# randomHuman ConversationReal-world social communitiesEvery important human system needs a way to understand its present state.",
   "ledeText": "But with a twist.",
   "headerEmail": "hello@humanconversation.com",
   "storySections": 12,

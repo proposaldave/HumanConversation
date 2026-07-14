@@ -378,11 +378,11 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "To know what’s really happening in a community, you have to talk to the people in it. That’s where the real signal lives: who feels known, who is drifting, what matters now, and what should happen next.",
+      "To know what’s really happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
     firstTitle:
       "To know what’s really happening in a community, you have to talk to the people in it.",
     firstBody:
-      "That’s where the real signal lives: who feels known, who is drifting, what matters now, and what should happen next.",
+      "Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
     secondTitle:
       "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.",
     secondBody: "Building the intelligence around human conversation.",
@@ -585,7 +585,7 @@ test("the restored closing line sits beside the signup card on desktop and stack
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "To know what’s really happening in a community, you have to talk to the people in it. That’s where the real signal lives: who feels known, who is drifting, what matters now, and what should happen next.";
+    "To know what’s really happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.";
 
   for (const [width, height] of [
     [1440, 900],

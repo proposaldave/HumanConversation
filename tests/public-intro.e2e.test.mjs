@@ -175,6 +175,45 @@ test("the old computer experience remains available only in its private review r
   assertRuntimeHealthy();
 });
 
+test("the retired review screens fall back to the current public story", async () => {
+  const retiredVariants = [
+    "solves",
+    "solves-revert-20260701",
+    "thousand-taps",
+    "connection-data",
+    "community-os",
+    "communication-technology",
+    "human-ai-community-os",
+    "human-ai-brief-talk-act",
+  ];
+
+  for (const retiredVariant of retiredVariants) {
+    await page.navigate(reviewUrl(retiredVariant));
+    await page.waitFor(`document.querySelector(".page")?.dataset.variant === ${JSON.stringify(PUBLIC_VARIANT)}`);
+
+    const state = await page.evaluate(`({
+      variant: document.querySelector(".page")?.dataset.variant,
+      heroTheme: document.querySelector(".page")?.dataset.heroTheme,
+      heroClass: document.querySelector("#landing-hero")?.className,
+      headlineLabel: document.querySelector("#landing-hero h1")?.getAttribute("aria-label"),
+      storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
+      demoCount: document.querySelectorAll("[data-hc-demo]").length,
+      robots: document.querySelector('meta[name="robots"]')?.content || null,
+    })`);
+
+    assert.deepEqual(state, {
+      variant: PUBLIC_VARIANT,
+      heroTheme: "community-pulse",
+      heroClass: baseline.heroClass,
+      headlineLabel: baseline.headlineLabel,
+      storySections: baseline.storySections,
+      demoCount: 0,
+      robots: null,
+    }, retiredVariant);
+    assertRuntimeHealthy();
+  }
+});
+
 test("the promoted public root stays safe at desktop and phone sizes", async () => {
   for (const [width, height] of [
     [1440, 900],

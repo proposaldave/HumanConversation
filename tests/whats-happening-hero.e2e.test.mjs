@@ -349,6 +349,8 @@ test("the public story resolves the twist with the existing interface thesis", a
       cheskyHeadlinePresent: Boolean(cheskySection?.querySelector(".story-title")),
       cheskyQuote: normalize(cheskySection?.querySelector(".story-quote p")?.textContent),
       cheskyAuthor: normalize(cheskySection?.querySelector(".story-quote cite")?.textContent),
+      cheskyQuoteFontStyle: getComputedStyle(cheskySection?.querySelector(".story-quote")).fontStyle,
+      cheskyAuthorFontStyle: getComputedStyle(cheskySection?.querySelector(".story-quote cite")).fontStyle,
       cueDismissed: cue?.classList.contains("is-dismissed"),
       cueLabel: cue?.getAttribute("aria-label"),
       bannedCopyPresent: normalize(document.body.textContent).includes("The digital town square found its question"),
@@ -380,6 +382,8 @@ test("the public story resolves the twist with the existing interface thesis", a
     cheskyQuote:
       "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",
     cheskyAuthor: "— Brian Chesky",
+    cheskyQuoteFontStyle: "italic",
+    cheskyAuthorFontStyle: "normal",
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,

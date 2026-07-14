@@ -7,7 +7,7 @@ import { launchChrome, startStaticServer } from "../tests/helpers/chrome-cdp.mjs
 const SCRIPT_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(SCRIPT_DIRECTORY);
 const OUTPUT_DIRECTORY = join(PROJECT_DIRECTORY, "qa", "whats-happening-hero");
-const VARIANT = "whats-happening-real-world";
+const VARIANT = "conversation-intelligence-home";
 
 await mkdir(OUTPUT_DIRECTORY, { recursive: true });
 

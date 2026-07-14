@@ -31,11 +31,9 @@
         const params = new URLSearchParams(window.location.search);
         const isMasterPromptReview =
           params.get("review") === "1" && params.get("variant") === "life-runs-on-human-conversation";
-        const isWhatsHappeningReview =
-          params.get("review") === "1" && params.get("variant") === "whats-happening-real-world";
         const isHumanRoomPreview =
           isMasterPromptReview && params.get("experience") === "human-room";
-        if (!isMasterPromptReview && !isWhatsHappeningReview) return;
+        if (!isMasterPromptReview) return;
 
         if (isMasterPromptReview) {
           document.documentElement.classList.add("hc-master-prompt-review");
@@ -6632,8 +6630,10 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-inner {
         display: block;
+        position: relative;
         width: min(calc(100% - 64px), 720px);
         max-width: 720px;
+        overflow: visible;
         margin-right: auto;
         margin-left: max(32px, calc((100vw - 1320px) / 2 + 32px));
         padding: clamp(28px, 4vw, 46px);
@@ -6646,6 +6646,42 @@
           0 0 0 1px rgba(255, 248, 236, 0.05),
           inset 0 1px 0 rgba(255, 248, 236, 0.12);
         backdrop-filter: blur(18px) saturate(1.12);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-side-callout {
+        position: absolute;
+        top: 50%;
+        left: calc(100% + clamp(54px, 6vw, 96px));
+        width: min(28vw, 420px);
+        margin: 0;
+        transform: translateY(-50%);
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2rem, 3vw, 3.5rem);
+        font-weight: 650;
+        line-height: 0.98;
+        text-shadow: 0 5px 30px rgba(0, 0, 0, 0.78);
+        pointer-events: none;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-side-callout span {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-side-callout span:last-child {
+        color: #f1c760;
+      }
+
+      @media (max-width: 1120px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-side-callout {
+          position: static;
+          width: 100%;
+          margin: clamp(22px, 3vw, 30px) 0 0;
+          padding-top: clamp(20px, 3vw, 28px);
+          border-top: 1px solid rgba(241, 199, 96, 0.28);
+          transform: none;
+          font-size: clamp(1.75rem, 6vw, 2.65rem);
+        }
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-copy {
@@ -16802,7 +16838,6 @@
         <button class="variant-dot variant-dot-white" type="button" data-option="40" aria-label="Option 41: human value network card"></button>
         <button class="variant-dot variant-dot-pink" type="button" data-option="41" aria-label="Option 42: human thread home"></button>
         <button class="variant-dot variant-dot-pink" type="button" data-option="42" aria-label="Option 43: life runs on Human Conversation"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="43" aria-label="Option 44: What’s happening for real-world communities"></button>
       </nav>
       <button class="chesky-quote-dot" type="button" aria-label="Open hidden Brian Chesky quote" aria-hidden="true" tabindex="-1" hidden></button>
     </div>
@@ -16892,6 +16927,7 @@
                 copy: [
                   `Human Conversation handles the work around those human moments, so you spend less time managing connection through a screen and more time living it.`,
                 ],
+                sideCallout: `<span>The next great interface</span> <span>is the person in front of you.</span>`,
                 formHelper: `Join us.`,
                 scene: "human-future",
                 className: "is-future-section is-final-cta-section",
@@ -17352,10 +17388,6 @@
           lede: `A life that runs on <span class="brand-name">Human Conversation</span> and <span class="life-connected">connected experiences</span>.`,
           story: storyPages["life-runs-on-human-conversation"],
         },
-        {
-          id: "whats-happening-real-world",
-          ...communityPulseHero,
-        },
       ];
 
       const masterPromptDemoConfig = Object.freeze({
@@ -17786,6 +17818,9 @@
             if (section.kind === "future") {
               const eyebrow = section.eyebrow ? `<p class="story-kicker final-cta-eyebrow">${section.eyebrow}</p>` : "";
               const formHelper = section.formHelper ? `<p class="final-cta-helper">${section.formHelper}</p>` : "";
+              const sideCallout = section.sideCallout
+                ? `<p class="final-cta-side-callout">${section.sideCallout}</p>`
+                : "";
 
               return `
                 <section class="${sectionClasses}">
@@ -17799,6 +17834,7 @@
                       ${formHelper}
                       ${form}
                     </div>
+                    ${sideCallout}
                   </div>
                   ${sectionCue}
                 </section>

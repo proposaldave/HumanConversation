@@ -8,8 +8,8 @@ import { launchChrome, startStaticServer } from "./helpers/chrome-cdp.mjs";
 const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
-const VARIANT = "whats-happening-real-world";
 const PUBLIC_VARIANT = "conversation-intelligence-home";
+const VARIANT = PUBLIC_VARIANT;
 const stageRatios = {
   twitter: 0,
   slack: 0.47,
@@ -53,7 +53,7 @@ after(async () => {
   await staticServer?.close();
 });
 
-test("the hidden review tells one verified Twitter, Slack, and Human Conversation story", async () => {
+test("the public landing page tells one verified Twitter, Slack, and Human Conversation story", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl());
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
@@ -68,7 +68,6 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       heroTheme: pageRoot?.dataset.heroTheme,
       heroClass: hero?.className,
       stage: hero?.dataset.communityStage,
-      robots: document.querySelector('meta[name="robots"]')?.content,
       progress: Array.from(document.querySelectorAll(".community-progress > button"))
         .map((item) => normalize(item.textContent)),
       twitterLabel: normalize(document.querySelector(".community-stage-twitter .community-platform small")?.textContent),
@@ -99,29 +98,31 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
         !allText.includes("The digital town square found its question") &&
         !allText.includes("The real world already had the answer") &&
         !allText.includes("One question became the pulse"),
+      obsoleteBlackDotPresent: Array.from(document.querySelectorAll(".variant-dot"))
+        .some((dot) => dot.getAttribute("aria-label")?.includes("real-world communities")),
+      variantDotCount: document.querySelectorAll(".variant-dot").length,
       heroHeight: hero?.offsetHeight || 0,
     };
   })()`);
 
   assert.deepEqual(state, {
-    variant: VARIANT,
+    variant: PUBLIC_VARIANT,
     heroTheme: "community-pulse",
     heroClass: "hero hero-community-pulse",
     stage: "twitter",
-    robots: "noindex,nofollow",
     progress: ["2009", "2014", "2026"],
-    twitterLabel: "Digital Community",
-    twitterQuestion: "What’s happening?",
-    twitterStory: "",
+    twitterLabel: "Digital Communities ✓ Solved",
+    twitterQuestion: "What’s happening around the world?",
+    twitterStory: "≈ $6T Public-company value behind digital social",
     twitterDate: "2009-11-19",
-    slackQuestion: "What’s happening?",
-    slackStory: "",
-    slackLabel: "The organization",
+    slackQuestion: "What’s happening inside the organization?",
+    slackStory: "≈ $7T Public-company value behind organizational communication",
+    slackLabel: "Organizations ✓ Solved",
     humanBrand: "Human Conversation",
-    humanQuestion: "What’s happening?",
+    humanQuestion: "Every important human system needs a way to understand its present state.",
     humanMarkParts: 3,
     dataSentence: "",
-    twist: "But with a twist.",
+    twist: "",
     followArrow: true,
     cueDismissed: false,
     cueTimelineStep: true,
@@ -129,13 +130,15 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. What’s happening? 2014. Slack. What’s happening? 2026. Human Conversation. What’s happening?",
+      "2009. Twitter. Digital Communities, solved. What’s happening around the world? Approximately 6 trillion dollars of public-company value behind digital social. 2014. Slack. Organizations, solved. What’s happening inside the organization? Approximately 7 trillion dollars of public-company value behind organizational communication. 2026. Human Conversation. Real-world social communities, unsolved. Every important human system needs a way to understand its present state.",
     contactDisplay: "none",
-    storyHidden: true,
-    storySections: 0,
+    storyHidden: false,
+    storySections: 12,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
+    obsoleteBlackDotPresent: false,
+    variantDotCount: 43,
     heroHeight: state.heroHeight,
   });
   assert.ok(state.heroHeight >= 900 * 3.15, "three-stage hero has enough scroll room");
@@ -361,6 +364,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       cueDismissed: cue?.classList.contains("is-dismissed"),
       cueLabel: cue?.getAttribute("aria-label"),
       bannedCopyPresent: normalize(document.body.textContent).includes("The digital town square found its question"),
+      finalCtaSideCallout: normalize(document.querySelector("#landing-story .is-final-cta-section .final-cta-side-callout")?.textContent),
     };
   })()`);
 
@@ -395,6 +399,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,
+    finalCtaSideCallout: "The next great interface is the person in front of you.",
   });
 
   await showStage("human");
@@ -526,6 +531,49 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
     fontStyle: "italic",
   });
   assertRuntimeHealthy();
+});
+
+test("the restored closing line sits beside the signup card on desktop and stacks cleanly on phones", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl(PUBLIC_VARIANT));
+    await page.waitFor(`document.querySelector("#landing-story .is-final-cta-section .final-cta-side-callout")`);
+    await page.evaluate(`document.querySelector("#landing-story .is-final-cta-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const card = document.querySelector("#landing-story .is-final-cta-section .future-story-inner");
+      const callout = card?.querySelector(".final-cta-side-callout");
+      const cardRect = card?.getBoundingClientRect();
+      const calloutRect = callout?.getBoundingClientRect();
+      return {
+        text: normalize(callout?.textContent),
+        position: callout ? getComputedStyle(callout).position : null,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        card: cardRect ? { left: cardRect.left, right: cardRect.right } : null,
+        callout: calloutRect ? { left: calloutRect.left, right: calloutRect.right } : null,
+      };
+    })()`);
+
+    assert.equal(layout.text, "The next great interface is the person in front of you.");
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} closing section has no horizontal overflow`);
+    assert.ok(layout.card && layout.callout, `${width}x${height} closing card and restored line are present`);
+
+    if (width > 1120) {
+      assert.equal(layout.position, "absolute");
+      assert.ok(layout.callout.left > layout.card.right, "desktop line sits to the right of the signup card");
+      assert.ok(layout.callout.right <= width + 1, "desktop line stays inside the viewport");
+    } else {
+      assert.equal(layout.position, "static");
+      assert.ok(layout.callout.left >= layout.card.left - 1, "phone line starts inside the signup card");
+      assert.ok(layout.callout.right <= layout.card.right + 1, "phone line stays inside the signup card");
+    }
+
+    assertRuntimeHealthy();
+  }
 });
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {

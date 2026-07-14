@@ -12232,13 +12232,14 @@
       .page[data-hero-theme="community-pulse"] header {
         position: absolute;
         top: 0;
-        left: 50%;
+        right: 0;
+        left: 0;
         z-index: 30;
         justify-content: space-between;
         width: min(100% - 56px, 1320px);
-        margin: 0;
+        margin: 0 auto;
         color: #fff8ec;
-        transform: translateX(-50%);
+        transform: none;
       }
 
       .page[data-hero-theme="community-pulse"] .brand {
@@ -12257,10 +12258,15 @@
       }
 
       .page[data-hero-theme="community-pulse"] .header-email {
+        position: fixed;
+        top: max(12px, calc(env(safe-area-inset-top) + 12px));
+        right: max(12px, calc(env(safe-area-inset-right) + 12px));
+        z-index: 1001;
+        max-width: calc(100vw - 24px);
         border-color: rgba(255, 248, 236, 0.24);
         background: rgba(5, 7, 10, 0.52);
         color: #fff8ec;
-        backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px) saturate(1.12);
       }
 
       .page[data-hero-theme="community-pulse"] main {
@@ -12935,9 +12941,10 @@
         }
 
         .page[data-hero-theme="community-pulse"] .header-email {
-          top: max(18px, calc(env(safe-area-inset-top) + 18px));
-          right: max(16px, calc(env(safe-area-inset-right) + 16px));
-          max-width: calc(100vw - 88px);
+          display: inline-flex;
+          top: max(10px, calc(env(safe-area-inset-top) + 10px));
+          right: max(10px, calc(env(safe-area-inset-right) + 10px));
+          max-width: calc(100vw - 84px);
           padding: 7px 9px 8px;
           font-size: 0.68rem;
         }

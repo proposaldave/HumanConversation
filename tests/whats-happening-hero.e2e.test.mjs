@@ -324,6 +324,149 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
   }
 });
 
+test("the contact email stays fixed top-right from hero through the final section", async () => {
+  const checkpoints = [
+    {
+      name: "hero",
+      target: "#landing-hero",
+      protectedSelectors: [
+        "header .brand",
+        ".community-progress",
+        ".community-stage-twitter .community-stage-content",
+        "#landing-hero .story-cue",
+      ],
+    },
+    {
+      name: "middle story",
+      target: "#landing-story .is-brings-together-section",
+      protectedSelectors: [
+        "#landing-story .is-brings-together-section .story-title",
+        "#landing-story .is-brings-together-section .section-cue",
+      ],
+    },
+    {
+      name: "final section",
+      target: "#landing-story .is-final-cta-section",
+      protectedSelectors: [
+        "#landing-story .is-final-cta-section .future-story-inner",
+        "#landing-story .is-final-cta-section .final-cta-side-callout",
+      ],
+    },
+  ];
+
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+
+    let fixedAnchor = null;
+    let previousScrollY = -1;
+
+    for (const checkpoint of checkpoints) {
+      await page.evaluate(`document.querySelector(${JSON.stringify(checkpoint.target)})?.scrollIntoView({ block: "start", behavior: "instant" })`);
+      await page.waitFor(`Math.abs(document.querySelector(${JSON.stringify(checkpoint.target)})?.getBoundingClientRect().top ?? 9999) < 3`);
+
+      const layout = await page.evaluate(`(() => {
+        const targetSelector = ${JSON.stringify(checkpoint.target)};
+        const protectedSelectors = ${JSON.stringify(checkpoint.protectedSelectors)};
+        const rect = (element) => {
+          const box = element?.getBoundingClientRect();
+          return box ? {
+            top: box.top,
+            right: box.right,
+            bottom: box.bottom,
+            left: box.left,
+            width: box.width,
+            height: box.height,
+          } : null;
+        };
+        const overlapsWithGap = (first, second, gap = 6) => Boolean(
+          first && second &&
+          first.left - gap < second.right &&
+          first.right + gap > second.left &&
+          first.top - gap < second.bottom &&
+          first.bottom + gap > second.top
+        );
+        const email = document.querySelector(".header-email");
+        const emailStyle = email ? getComputedStyle(email) : null;
+        const emailRect = rect(email);
+        return {
+          text: String(email?.textContent || "").replace(/\\s+/g, " ").trim(),
+          href: email?.getAttribute("href") || null,
+          position: emailStyle?.position || null,
+          display: emailStyle?.display || null,
+          visibility: emailStyle?.visibility || null,
+          opacity: Number(emailStyle?.opacity || 0),
+          pointerEvents: emailStyle?.pointerEvents || null,
+          clientRectCount: email?.getClientRects().length || 0,
+          textClipped: email ? email.scrollWidth > email.clientWidth + 1 : true,
+          emailRect,
+          targetTop: document.querySelector(targetSelector)?.getBoundingClientRect().top ?? -9999,
+          scrollY: window.scrollY,
+          viewportWidth: window.innerWidth,
+          viewportHeight: window.innerHeight,
+          horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          protectedElements: protectedSelectors.map((selector) => {
+            const element = document.querySelector(selector);
+            const elementRect = rect(element);
+            return {
+              selector,
+              present: Boolean(element),
+              rect: elementRect,
+              overlapsEmail: overlapsWithGap(emailRect, elementRect),
+            };
+          }),
+        };
+      })()`);
+
+      assert.equal(layout.text, "hello@humanconversation.com", `${width}x${height} ${checkpoint.name} keeps the exact contact text`);
+      assert.equal(layout.href, "mailto:hello@humanconversation.com", `${width}x${height} ${checkpoint.name} keeps the email link`);
+      assert.equal(layout.position, "fixed", `${width}x${height} ${checkpoint.name} keeps the contact fixed`);
+      assert.notEqual(layout.display, "none", `${width}x${height} ${checkpoint.name} displays the contact`);
+      assert.equal(layout.visibility, "visible", `${width}x${height} ${checkpoint.name} keeps the contact visible`);
+      assert.ok(layout.opacity > 0.99, `${width}x${height} ${checkpoint.name} keeps the contact opaque`);
+      assert.notEqual(layout.pointerEvents, "none", `${width}x${height} ${checkpoint.name} keeps the contact clickable`);
+      assert.ok(layout.clientRectCount > 0 && layout.emailRect, `${width}x${height} ${checkpoint.name} renders the contact`);
+      assert.equal(layout.textClipped, false, `${width}x${height} ${checkpoint.name} shows the full contact address`);
+      assert.ok(layout.emailRect.width > 0 && layout.emailRect.height > 0, `${width}x${height} ${checkpoint.name} gives the contact a usable size`);
+      assert.ok(layout.emailRect.left >= -1 && layout.emailRect.right <= layout.viewportWidth + 1, `${width}x${height} ${checkpoint.name} keeps the contact inside the viewport horizontally`);
+      assert.ok(layout.emailRect.top >= -1 && layout.emailRect.bottom <= layout.viewportHeight + 1, `${width}x${height} ${checkpoint.name} keeps the contact inside the viewport vertically`);
+      assert.ok(layout.emailRect.top >= 8 && layout.emailRect.top <= 20, `${width}x${height} ${checkpoint.name} stays at the top edge`);
+      assert.ok(layout.viewportWidth - layout.emailRect.right >= 8 && layout.viewportWidth - layout.emailRect.right <= 20, `${width}x${height} ${checkpoint.name} stays at the right edge`);
+      assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} ${checkpoint.name} has no horizontal overflow`);
+      assert.ok(Math.abs(layout.targetTop) < 3, `${width}x${height} ${checkpoint.name} is the active scroll checkpoint`);
+
+      for (const protectedElement of layout.protectedElements) {
+        assert.ok(protectedElement.present && protectedElement.rect, `${width}x${height} ${checkpoint.name} renders ${protectedElement.selector}`);
+        assert.ok(protectedElement.rect.width > 0 && protectedElement.rect.height > 0, `${width}x${height} ${checkpoint.name} sizes ${protectedElement.selector}`);
+        assert.equal(protectedElement.overlapsEmail, false, `${width}x${height} ${checkpoint.name} contact clears ${protectedElement.selector}`);
+      }
+
+      if (checkpoint.name === "hero") {
+        const brand = layout.protectedElements.find((element) => element.selector === "header .brand");
+        assert.ok(brand.rect.right + 8 <= layout.emailRect.left, `${width}x${height} keeps the contact clear of the header logo`);
+      }
+
+      if (fixedAnchor) {
+        assert.ok(layout.scrollY > previousScrollY + height * 0.5, `${width}x${height} ${checkpoint.name} follows a real page scroll`);
+        assert.ok(Math.abs(layout.emailRect.top - fixedAnchor.top) <= 1, `${width}x${height} ${checkpoint.name} has no vertical contact drift`);
+        assert.ok(Math.abs(layout.emailRect.right - fixedAnchor.right) <= 1, `${width}x${height} ${checkpoint.name} has no horizontal contact drift`);
+        assert.ok(Math.abs(layout.emailRect.width - fixedAnchor.width) <= 1, `${width}x${height} ${checkpoint.name} keeps the contact width stable`);
+        assert.ok(Math.abs(layout.emailRect.height - fixedAnchor.height) <= 1, `${width}x${height} ${checkpoint.name} keeps the contact height stable`);
+      } else {
+        fixedAnchor = layout.emailRect;
+      }
+
+      previousScrollY = layout.scrollY;
+      assertRuntimeHealthy();
+    }
+  }
+});
+
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));

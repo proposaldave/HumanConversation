@@ -330,6 +330,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
     const cue = document.querySelector("#landing-hero .story-cue");
     const cheskySection = document.querySelector("#landing-story .is-next-interface-section");
+    const lonelinessSection = document.querySelector("#landing-story .is-lonely-return-section");
     return {
       variant: document.querySelector(".page")?.dataset.variant,
       heroClass: document.querySelector("#landing-hero")?.className,
@@ -345,7 +346,13 @@ test("the public story resolves the twist with the existing interface thesis", a
       secondBody: normalize(sections[1]?.querySelector(".story-body")?.textContent),
       thirdTitle: title(sections[2]),
       fourthTitle: title(sections[3]),
-      thirdToLastTitle: title(sections.at(-3)),
+      fifthTitle: title(sections[4]),
+      operatingSystemFlowsToTaps:
+        sections[3]?.classList.contains("is-real-world-os-section") &&
+        sections[3]?.nextElementSibling === sections[4] &&
+        sections[4]?.classList.contains("is-taps-premium-section"),
+      lonelinessTitle: title(lonelinessSection),
+      lonelinessFlowsToFuture: lonelinessSection?.nextElementSibling?.classList.contains("is-final-cta-section"),
       cheskyHeadlinePresent: Boolean(cheskySection?.querySelector(".story-title")),
       cheskyQuote: normalize(cheskySection?.querySelector(".story-quote p")?.textContent),
       cheskyAuthor: normalize(cheskySection?.querySelector(".story-quote cite")?.textContent),
@@ -375,9 +382,12 @@ test("the public story resolves the twist with the existing interface thesis", a
       "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.",
     secondBody: "Building the intelligence around human conversation.",
     thirdTitle: "Human Conversation solves disconnection.",
-    fourthTitle: "A Human Conversation is worth a thousand taps.",
-    thirdToLastTitle:
+    fourthTitle: "Human Conversation is the operating system for real-world social communities.",
+    fifthTitle: "A Human Conversation is worth a thousand taps.",
+    operatingSystemFlowsToTaps: true,
+    lonelinessTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
+    lonelinessFlowsToFuture: true,
     cheskyHeadlinePresent: false,
     cheskyQuote:
       "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",

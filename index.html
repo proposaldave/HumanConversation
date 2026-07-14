@@ -5126,6 +5126,35 @@
         text-shadow: none;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-chain .story-chain-mobile-break {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain {
+          gap: 8px 9px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-mobile-break {
+          display: block;
+          flex: 0 0 100%;
+          width: 100%;
+          height: 0;
+          margin: -4px 0;
+          border: 0;
+          background: transparent;
+          padding: 0;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-community,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-repeat-connection-high {
+          padding: 9px 10px;
+          font-size: 0.76rem;
+        }
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-chain-showcase .story-chain {
         display: grid;
         grid-template-columns: minmax(0, 1fr) clamp(28px, 2.9vw, 42px) minmax(0, 1fr) clamp(28px, 2.9vw, 42px) minmax(0, 1fr);
@@ -16793,52 +16822,6 @@
         <img src="./assets/hc-art-secret-l-community-market-baked-20260707.png" alt="" />
       </div>
 
-      <button class="variant-trigger" type="button" aria-label="Show landing page options" aria-hidden="true" tabindex="-1"></button>
-      <nav class="variant-dots" aria-label="Landing page options" aria-hidden="true" hidden>
-        <button class="variant-dot" type="button" data-option="0" aria-label="Option 1: intelligence around Human Conversation homepage" aria-current="true"></button>
-        <button class="variant-dot" type="button" data-option="1" aria-label="Option 2: interface thesis draft"></button>
-        <button class="variant-dot" type="button" data-option="2" aria-label="Option 3"></button>
-        <button class="variant-dot" type="button" data-option="3" aria-label="Option 4"></button>
-        <button class="variant-dot" type="button" data-option="4" aria-label="Option 5"></button>
-        <button class="variant-dot" type="button" data-option="5" aria-label="Option 6"></button>
-        <button class="variant-dot" type="button" data-option="6" aria-label="Option 7"></button>
-        <button class="variant-dot" type="button" data-option="7" aria-label="Option 8: protect amplify remember build around it"></button>
-        <button class="variant-dot" type="button" data-option="8" aria-label="Option 9: disconnection path back"></button>
-        <button class="variant-dot" type="button" data-option="9" aria-label="Option 10: current main landing page revert copy"></button>
-        <button class="variant-dot" type="button" data-option="10" aria-label="Option 11: thousand taps image background"></button>
-        <button class="variant-dot" type="button" data-option="11" aria-label="Option 12: missing interface between AI and real-world communication"></button>
-        <button class="variant-dot" type="button" data-option="12" aria-label="Option 13: less time communicating through computers"></button>
-        <button class="variant-dot" type="button" data-option="13" aria-label="Option 14: a Human Conversation is worth a thousand taps"></button>
-        <button class="variant-dot" type="button" data-option="14" aria-label="Option 15: Technology became the intermediary"></button>
-        <button class="variant-dot" type="button" data-option="15" aria-label="Option 16: interface becomes human"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="16" aria-label="Option 17: connection flows and data flows"></button>
-        <button class="variant-dot" type="button" data-option="17" aria-label="Option 18: technology should clear the way for Human Conversation"></button>
-        <button class="variant-dot" type="button" data-option="18" aria-label="Option 19: the new interface is Human Conversation"></button>
-        <button class="variant-dot" type="button" data-option="19" aria-label="Option 20: more face time less screen time"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="20" aria-label="Option 21: expanded operating system for real-world social communities"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="21" aria-label="Option 22: 99 percent of communication technology"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="22" aria-label="Option 23: loneliness technology got between us"></button>
-        <button class="variant-dot" type="button" data-option="23" aria-label="Option 24: loneliness technology got between us"></button>
-        <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: interface got between us"></button>
-        <button class="variant-dot variant-dot-green" type="button" data-option="25" aria-label="Option 26: minimal snapback"></button>
-        <button class="variant-dot variant-dot-black" type="button" data-option="26" aria-label="Option 27: next interface threshold"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="27" aria-label="Option 28: Brian Chesky quote" hidden></button>
-        <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: previous timeless interface homepage"></button>
-        <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: build intelligence around Human Conversation"></button>
-        <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: know the person coordinate the moment"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="31" aria-label="Option 32: real-world social community operating system"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="32" aria-label="Option 33: one brief one conversation one better next move"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="33" aria-label="Option 34: humans stay in the conversation"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="34" aria-label="Option 35: every conversation makes community smarter"></button>
-        <button class="variant-dot" type="button" data-option="35" aria-label="Option 36: members and builders use Human Conversation while builders use Human Conversation intelligence"></button>
-        <button class="variant-dot" type="button" data-option="36" aria-label="Option 37: members get people and builders get intelligence"></button>
-        <button class="variant-dot" type="button" data-option="37" aria-label="Option 38: Human Conversation intelligence around the human moment"></button>
-        <button class="variant-dot variant-dot-pink" type="button" data-option="38" aria-label="Option 39: Human Conversation tells you how someone really feels"></button>
-        <button class="variant-dot variant-dot-red" type="button" data-option="39" aria-label="Option 40: less screen time more human conversation"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="40" aria-label="Option 41: human value network card"></button>
-        <button class="variant-dot variant-dot-pink" type="button" data-option="41" aria-label="Option 42: human thread home"></button>
-        <button class="variant-dot variant-dot-pink" type="button" data-option="42" aria-label="Option 43: life runs on Human Conversation"></button>
-      </nav>
       <button class="chesky-quote-dot" type="button" aria-label="Open hidden Brian Chesky quote" aria-hidden="true" tabindex="-1" hidden></button>
     </div>
 
@@ -16847,9 +16830,9 @@
           main: {
             sections: [
               {
-                title: `<span class="community-truth-line">What&rsquo;s really happening</span> <span class="community-truth-line">in our <span class="community-truth-community">social communities</span></span> <span class="community-truth-line">will never get communicated</span> <span class="community-truth-line">through an <span class="community-truth-interface">interface.</span></span>`,
+                title: `<span class="community-truth-line">To know what&rsquo;s really happening</span> <span class="community-truth-line">in a <span class="community-truth-community">community</span>, you have to talk</span> <span class="community-truth-line">to the people in it.</span>`,
                 copy: [
-                  `Our <span class="community-truth-data">human, social, relationship, and community data</span> has always, and will always be communicated through <span class="community-truth-conversation">human conversation.</span>`,
+                  `That&rsquo;s where the real signal lives: <span class="community-truth-data">who feels known, who is drifting, what matters now, and what should happen next.</span>`,
                 ],
                 scene: "community-truth",
                 className: "is-long is-community-truth-section",
@@ -16868,6 +16851,7 @@
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
                 chain: ["disconnection", "connection", "trust", "data", "coordination", "community", "repeat connection-high"],
+                mobileChainBreakBefore: "community",
                 scene: "solves-disconnection",
                 className: "is-product is-solves-disconnection-section",
               },
@@ -17446,18 +17430,14 @@
       const lede = hero.querySelector(".lede");
       const landingStory = document.querySelector("#landing-story");
       const storyCue = document.querySelector(".story-cue");
-      const variantNav = document.querySelector(".variant-dots");
-      const variantTrigger = document.querySelector(".variant-trigger");
       const cheskyQuoteDot = document.querySelector(".chesky-quote-dot");
       const secretLanding = document.querySelector(".secret-l-landing");
-      const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const immersiveStoryVariants = new Set(["conversation-intelligence-home", "life-runs-on-human-conversation"]);
       page.setAttribute("tabindex", "-1");
-      let currentVariantIndex = 0;
       let variantSwitchTimer;
-      let variantNavHideTimer;
+      let cheskyQuoteDotHideTimer;
       let storyPanelObserver;
 
       function applyBrandNameColor(root) {
@@ -17703,13 +17683,17 @@
             const chain = section.chain
               ? `${chainIntro}<div class="story-chain" aria-label="${section.chain.join(" to ")}">${section.chain
                   .map((item, itemIndex) => {
+                    const mobileBreak = section.mobileChainBreakBefore === item
+                      ? `<i class="story-chain-mobile-break" aria-hidden="true"></i>`
+                      : "";
                     const itemClasses = [
                       itemIndex === 0 ? "story-chain-first" : "",
                       item.toLowerCase().includes("disconnection") ? "story-chain-disconnection" : "",
+                      `story-chain-${item.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
                     ]
                       .filter(Boolean)
                       .join(" ");
-                    return `<span class="${itemClasses}">${item}</span>${itemIndex < section.chain.length - 1 ? `<span class="story-chain-arrow" aria-hidden="true">&rarr;</span>` : ""}`;
+                    return `${mobileBreak}<span class="${itemClasses}">${item}</span>${itemIndex < section.chain.length - 1 ? `<span class="story-chain-arrow" aria-hidden="true">&rarr;</span>` : ""}`;
                   })
                   .join("")}</div>`
               : "";
@@ -18381,7 +18365,6 @@
         const safeIndex = Number.isInteger(index) && variants[index] ? index : 0;
         const variant = variants[safeIndex];
 
-        currentVariantIndex = safeIndex;
         const applyVariant = () => {
           const heroTheme = variant.heroTheme || variant.id;
           page.dataset.variant = variant.id;
@@ -18396,14 +18379,7 @@
           applyBrandNameColor(lede);
           renderStoryPage(variant.story, variant.id);
           updateCommunityHeroStage();
-          dots.forEach((dot, dotIndex) => {
-            dot.setAttribute("aria-current", String(dotIndex === safeIndex));
-          });
           cheskyQuoteDot?.setAttribute("aria-current", String(variant.id === "next-interface-atrium"));
-          if (options.focusDot) {
-            const focusTarget = variant.id === "next-interface-atrium" ? cheskyQuoteDot : dots[safeIndex];
-            focusTarget?.focus({ preventScroll: true });
-          }
         };
 
         if (options.immediate || prefersReducedMotion.matches) {
@@ -18419,54 +18395,35 @@
         }, 90);
       }
 
-      function stepVariant(direction) {
-        const nextIndex = (currentVariantIndex + direction + variants.length) % variants.length;
-        setVariant(nextIndex, { focusDot: true });
-      }
-
-      function revealVariantDots() {
-        if (!variantNav || variantNav.classList.contains("is-visible")) return;
-        window.clearTimeout(variantNavHideTimer);
-        variantNav.hidden = false;
-        variantNav.setAttribute("aria-hidden", "false");
-        if (cheskyQuoteDot) {
-          cheskyQuoteDot.hidden = false;
-          cheskyQuoteDot.setAttribute("aria-hidden", "false");
-          cheskyQuoteDot.setAttribute("tabindex", "0");
-        }
+      function revealCheskyQuoteDot() {
+        if (!cheskyQuoteDot || cheskyQuoteDot.classList.contains("is-visible")) return;
+        window.clearTimeout(cheskyQuoteDotHideTimer);
+        cheskyQuoteDot.hidden = false;
+        cheskyQuoteDot.setAttribute("aria-hidden", "false");
+        cheskyQuoteDot.setAttribute("tabindex", "0");
         window.requestAnimationFrame(() => {
-          variantNav.classList.add("is-visible");
-          cheskyQuoteDot?.classList.add("is-visible");
-          variantTrigger?.classList.add("is-hidden");
-          variantTrigger?.setAttribute("aria-hidden", "true");
-          variantTrigger?.setAttribute("tabindex", "-1");
+          cheskyQuoteDot.classList.add("is-visible");
         });
       }
 
-      function hideVariantDots() {
-        if (!variantNav || !variantNav.classList.contains("is-visible")) return;
-        variantNav.classList.remove("is-visible");
-        variantNav.setAttribute("aria-hidden", "true");
-        cheskyQuoteDot?.classList.remove("is-visible");
-        cheskyQuoteDot?.setAttribute("aria-hidden", "true");
-        cheskyQuoteDot?.setAttribute("tabindex", "-1");
-        variantTrigger?.classList.remove("is-hidden");
-        variantTrigger?.setAttribute("aria-hidden", "true");
-        variantTrigger?.setAttribute("tabindex", "-1");
-        window.clearTimeout(variantNavHideTimer);
-        variantNavHideTimer = window.setTimeout(() => {
-          if (!variantNav.classList.contains("is-visible")) {
-            variantNav.hidden = true;
-            if (cheskyQuoteDot) cheskyQuoteDot.hidden = true;
+      function hideCheskyQuoteDot() {
+        if (!cheskyQuoteDot || !cheskyQuoteDot.classList.contains("is-visible")) return;
+        cheskyQuoteDot.classList.remove("is-visible");
+        cheskyQuoteDot.setAttribute("aria-hidden", "true");
+        cheskyQuoteDot.setAttribute("tabindex", "-1");
+        window.clearTimeout(cheskyQuoteDotHideTimer);
+        cheskyQuoteDotHideTimer = window.setTimeout(() => {
+          if (!cheskyQuoteDot.classList.contains("is-visible")) {
+            cheskyQuoteDot.hidden = true;
           }
         }, 180);
       }
 
-      function toggleVariantDots() {
-        if (variantNav?.classList.contains("is-visible")) {
-          hideVariantDots();
+      function toggleCheskyQuoteDot() {
+        if (cheskyQuoteDot?.classList.contains("is-visible")) {
+          hideCheskyQuoteDot();
         } else {
-          revealVariantDots();
+          revealCheskyQuoteDot();
         }
       }
 
@@ -18553,12 +18510,6 @@
         });
       }
 
-      dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-          setVariant(Number.parseInt(dot.dataset.option, 10));
-        });
-      });
-
       cheskyQuoteDot?.addEventListener("click", () => {
         const quoteVariantIndex = variants.findIndex((variant) => variant.id === "next-interface-atrium");
         if (quoteVariantIndex >= 0) setVariant(quoteVariantIndex);
@@ -18602,7 +18553,6 @@
         window.setTimeout(() => targetPanel.focus({ preventScroll: true }), prefersReducedMotion.matches ? 0 : 520);
       });
 
-      variantTrigger?.addEventListener("click", revealVariantDots);
       handlePageScroll();
       window.addEventListener("scroll", handlePageScroll, { passive: true });
       window.addEventListener("resize", handlePageScroll, { passive: true });
@@ -18621,7 +18571,7 @@
         }
         if (event.key.toLowerCase() === "z") {
           event.preventDefault();
-          toggleVariantDots();
+          toggleCheskyQuoteDot();
         }
         if (event.key === "Escape" && document.body.classList.contains("secret-l-visible")) {
           event.preventDefault();
@@ -18629,22 +18579,11 @@
           page.focus({ preventScroll: true });
           return;
         }
-        if (event.key === "Escape" && variantNav?.classList.contains("is-visible")) {
+        if (event.key === "Escape" && cheskyQuoteDot?.classList.contains("is-visible")) {
           event.preventDefault();
-          hideVariantDots();
+          hideCheskyQuoteDot();
           page.focus({ preventScroll: true });
           return;
-        }
-        if (!variantNav?.classList.contains("is-visible")) return;
-
-        if (event.key === "ArrowLeft") {
-          event.preventDefault();
-          stepVariant(-1);
-        }
-
-        if (event.key === "ArrowRight") {
-          event.preventDefault();
-          stepVariant(1);
         }
       });
 
@@ -18658,7 +18597,7 @@
           const now = Date.now();
           if (now - lastTouchTap > 0 && now - lastTouchTap < 420) {
             event.preventDefault();
-            revealVariantDots();
+            revealCheskyQuoteDot();
           }
           lastTouchTap = now;
         },

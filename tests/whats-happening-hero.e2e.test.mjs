@@ -98,8 +98,8 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
         !allText.includes("The digital town square found its question") &&
         !allText.includes("The real world already had the answer") &&
         !allText.includes("One question became the pulse"),
-      obsoleteBlackDotPresent: Array.from(document.querySelectorAll(".variant-dot"))
-        .some((dot) => dot.getAttribute("aria-label")?.includes("real-world communities")),
+      variantTrayPresent: Boolean(document.querySelector(".variant-dots")),
+      variantTriggerPresent: Boolean(document.querySelector(".variant-trigger")),
       variantDotCount: document.querySelectorAll(".variant-dot").length,
       heroHeight: hero?.offsetHeight || 0,
     };
@@ -137,8 +137,9 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
-    obsoleteBlackDotPresent: false,
-    variantDotCount: 43,
+    variantTrayPresent: false,
+    variantTriggerPresent: false,
+    variantDotCount: 0,
     heroHeight: state.heroHeight,
   });
   assert.ok(state.heroHeight >= 900 * 3.15, "three-stage hero has enough scroll room");
@@ -377,11 +378,11 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "What’s really happening in our social communities will never get communicated through an interface. Our human, social, relationship, and community data has always, and will always be communicated through human conversation.",
+      "To know what’s really happening in a community, you have to talk to the people in it. That’s where the real signal lives: who feels known, who is drifting, what matters now, and what should happen next.",
     firstTitle:
-      "What’s really happening in our social communities will never get communicated through an interface.",
+      "To know what’s really happening in a community, you have to talk to the people in it.",
     firstBody:
-      "Our human, social, relationship, and community data has always, and will always be communicated through human conversation.",
+      "That’s where the real signal lives: who feels known, who is drifting, what matters now, and what should happen next.",
     secondTitle:
       "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.",
     secondBody: "Building the intelligence around human conversation.",
@@ -474,6 +475,9 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
     return {
       hidden: dot?.hidden,
       ariaHidden: dot?.getAttribute("aria-hidden"),
+      variantTrayPresent: Boolean(document.querySelector(".variant-dots")),
+      variantTriggerPresent: Boolean(document.querySelector(".variant-trigger")),
+      variantDotCount: document.querySelectorAll(".variant-dot").length,
       publicQuotePresent: Boolean(document.querySelector("#landing-story .story-quote")),
       publicQuoteSectionPresent: Boolean(document.querySelector("#landing-story .is-next-interface-section")),
     };
@@ -482,6 +486,9 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
   assert.deepEqual(hiddenState, {
     hidden: true,
     ariaHidden: "true",
+    variantTrayPresent: false,
+    variantTriggerPresent: false,
+    variantDotCount: 0,
     publicQuotePresent: false,
     publicQuoteSectionPresent: false,
   });
@@ -578,7 +585,7 @@ test("the restored closing line sits beside the signup card on desktop and stack
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "What’s really happening in our social communities will never get communicated through an interface. Our human, social, relationship, and community data has always, and will always be communicated through human conversation.";
+    "To know what’s really happening in a community, you have to talk to the people in it. That’s where the real signal lives: who feels known, who is drifting, what matters now, and what should happen next.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -633,6 +640,49 @@ test("the community-truth section fits desktop and narrow phones without overflo
     assert.equal(layout.textRects.length, 2, `${width}x${height} renders both copy blocks`);
     layout.textRects.forEach((rect, index) => assertFits(rect, `copy block ${index + 1}`));
     assertFits(layout.cueRect, "continuation cue");
+    assertRuntimeHealthy();
+  }
+});
+
+test("the mobile connection chain ends with community and repeat connection-high together", async () => {
+  for (const [width, height] of [
+    [504, 844],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl(PUBLIC_VARIANT));
+    await page.waitFor(`document.querySelector("#landing-story .is-solves-disconnection-section .story-chain-repeat-connection-high")`);
+
+    const layout = await page.evaluate(`(() => {
+      const section = document.querySelector("#landing-story .is-solves-disconnection-section");
+      const chain = section?.querySelector(".story-chain");
+      const community = chain?.querySelector(".story-chain-community");
+      const repeat = chain?.querySelector(".story-chain-repeat-connection-high");
+      const connector = community?.nextElementSibling;
+      const mobileBreak = chain?.querySelector(".story-chain-mobile-break");
+      const toRect = (element) => {
+        const rect = element?.getBoundingClientRect();
+        return rect ? { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left } : null;
+      };
+      return {
+        community: toRect(community),
+        repeat: toRect(repeat),
+        connector: toRect(connector),
+        connectorIsArrow: connector?.classList.contains("story-chain-arrow") || false,
+        mobileBreakDisplay: mobileBreak ? getComputedStyle(mobileBreak).display : null,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.ok(layout.community && layout.repeat && layout.connector, `${width} chain ending is present`);
+    assert.equal(layout.mobileBreakDisplay, "block", `${width} uses the deliberate mobile row break`);
+    assert.equal(layout.connectorIsArrow, true, `${width} keeps the connector between the final pair`);
+    assert.ok(Math.abs(layout.community.top - layout.repeat.top) <= 2, `${width} final pills share one row`);
+    assert.ok(Math.abs(layout.community.top - layout.connector.top) <= 2, `${width} final connector shares that row`);
+    assert.ok(layout.community.left < layout.connector.left && layout.connector.left < layout.repeat.left, `${width} final pair reads left to right`);
+    assert.ok(layout.repeat.right <= width + 1, `${width} final pill stays inside the viewport`);
+    assert.ok(layout.horizontalOverflow <= 1, `${width} chain has no horizontal overflow`);
     assertRuntimeHealthy();
   }
 });

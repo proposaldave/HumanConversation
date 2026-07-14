@@ -248,8 +248,9 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
   assertRuntimeHealthy();
 });
 
-test("the public Human Conversation statement stays clear above the text-free continuation cue", async () => {
-  const expectedQuestion = "Every important human system needs a way to understand its present state.";
+test("the public Human Conversation question leads into a smaller present-state line above the continuation cue", async () => {
+  const expectedQuestion = "What’s happening in our communities?";
+  const expectedSupport = "Every important human system needs a way to understand its present state.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -267,12 +268,15 @@ test("the public Human Conversation statement stays clear above the text-free co
     const layout = await page.evaluate(`(() => {
       const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
       const question = document.querySelector(".community-stage-human .community-question");
+      const support = document.querySelector("#landing-hero .community-human-support");
       const twist = document.querySelector("#landing-hero .community-twist");
       const followArrow = document.querySelector("#landing-hero .community-follow-arrow");
       const questionRect = question?.getBoundingClientRect();
+      const supportRect = support?.getBoundingClientRect();
       const arrowRect = followArrow?.getBoundingClientRect();
       return {
         question: normalize(question?.textContent),
+        support: normalize(support?.textContent),
         historicalPrompt: normalize(document.querySelector(".community-artifact-question")?.textContent),
         twistPresent: Boolean(twist),
         followArrowPresent: Boolean(followArrow),
@@ -281,18 +285,29 @@ test("the public Human Conversation statement stays clear above the text-free co
         questionRight: questionRect?.right ?? -1,
         questionTop: questionRect?.top ?? -1,
         questionBottom: questionRect?.bottom ?? -1,
+        questionFontSize: Number.parseFloat(question ? getComputedStyle(question).fontSize : "0"),
+        supportLeft: supportRect?.left ?? -1,
+        supportRight: supportRect?.right ?? -1,
+        supportTop: supportRect?.top ?? -1,
+        supportBottom: supportRect?.bottom ?? -1,
+        supportFontSize: Number.parseFloat(support ? getComputedStyle(support).fontSize : "0"),
         arrowTop: arrowRect?.top ?? -1,
       };
     })()`);
 
     assert.equal(layout.question, expectedQuestion);
+    assert.equal(layout.support, expectedSupport);
     assert.equal(layout.historicalPrompt, "What\u2019s happening?");
     assert.equal(layout.twistPresent, false);
     assert.equal(layout.followArrowPresent, true);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.questionLeft >= -1 && layout.questionRight <= width + 1, `${width}x${height} question fits horizontally`);
     assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} question fits vertically`);
-    assert.ok(layout.questionBottom < layout.arrowTop, `${width}x${height} question stays above the continuation arrow`);
+    assert.ok(layout.supportLeft >= -1 && layout.supportRight <= width + 1, `${width}x${height} supporting line fits horizontally`);
+    assert.ok(layout.supportTop >= -1 && layout.supportBottom <= height + 1, `${width}x${height} supporting line fits vertically`);
+    assert.ok(layout.supportFontSize < layout.questionFontSize, `${width}x${height} supporting line is smaller than the question`);
+    assert.ok(layout.questionBottom < layout.supportTop, `${width}x${height} question stays above the supporting line`);
+    assert.ok(layout.supportBottom < layout.arrowTop, `${width}x${height} supporting line stays above the continuation arrow`);
   }
 
   assertRuntimeHealthy();

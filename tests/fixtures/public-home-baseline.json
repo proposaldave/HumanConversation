@@ -1,9 +1,9 @@
 {
   "variant": "conversation-intelligence-home",
   "heroClass": "hero hero-community-pulse",
-  "headlineLabel": "2009. Twitter. Digital Communities, solved. What’s happening around the world? Approximately 6 trillion dollars of public-company value behind digital social. 2014. Slack. Organizations, solved. What’s happening inside the organization? Approximately 7 trillion dollars of public-company value behind organizational communication. 2026. Human Conversation. Real-world social communities, unsolved. Every important human system needs a way to understand its present state.",
-  "headlineText": "200920142026twitterDigital Communities ✓ SolvedWhat’s happening around the world? ≈ $6T Public-company value behind digital socialtwitterNov 19 · 2009What’s happening?slackOrganizations ✓ SolvedWhat’s happening inside the organization? ≈ $7T Public-company value behind organizational communicationslack# general# product# randomHuman ConversationReal-world social communities ✕ UnsolvedEvery important human system needs a way to understand its present state.",
-  "ledeText": "",
+  "headlineLabel": "2009. Twitter. Digital Communities, solved. What’s happening around the world? Approximately 6 trillion dollars of public-company value behind digital social. 2014. Slack. Organizations, solved. What’s happening inside the organization? Approximately 7 trillion dollars of public-company value behind organizational communication. 2026. Human Conversation. Real-world social communities, unsolved. What’s happening in our communities? Every important human system needs a way to understand its present state.",
+  "headlineText": "200920142026twitterDigital Communities ✓ SolvedWhat’s happening around the world? ≈ $6T Public-company value behind digital socialtwitterNov 19 · 2009What’s happening?slackOrganizations ✓ SolvedWhat’s happening inside the organization? ≈ $7T Public-company value behind organizational communicationslack# general# product# randomHuman ConversationReal-world social communities ✕ UnsolvedWhat’s happening in our communities?",
+  "ledeText": "Every important human system needs a way to understand its present state.",
   "headerEmail": "hello@humanconversation.com",
   "storySections": 12,
   "heroSignupAction": "https://formsubmit.co/hello@humanconversation.com",

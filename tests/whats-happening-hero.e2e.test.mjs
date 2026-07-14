@@ -213,6 +213,42 @@ test("every timeline year jumps directly to its screen", async () => {
   assertRuntimeHealthy();
 });
 
+test("the 2026 timeline marker stays integrated with the line instead of becoming a box", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl());
+    await page.evaluate(`document.querySelector('.community-progress [data-era="human"]')?.click()`);
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human"`);
+
+    const marker = await page.evaluate(`(() => {
+      const element = document.querySelector('.community-progress [data-era="human"]');
+      const style = getComputedStyle(element);
+      const rect = element?.getBoundingClientRect();
+      return {
+        backgroundColor: style.backgroundColor,
+        borderTopWidth: style.borderTopWidth,
+        boxShadow: style.boxShadow,
+        textShadow: style.textShadow,
+        left: rect?.left,
+        right: rect?.right,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(marker.backgroundColor, "rgba(0, 0, 0, 0)", `${width}x${height} marker has no capsule fill`);
+    assert.equal(marker.borderTopWidth, "0px", `${width}x${height} marker has no capsule border`);
+    assert.equal(marker.boxShadow, "none", `${width}x${height} marker has no capsule shadow`);
+    assert.equal(marker.textShadow, "none", `${width}x${height} marker has no capsule text shadow`);
+    assert.ok(marker.left >= 0 && marker.right <= width, `${width}x${height} marker stays in the viewport`);
+    assert.ok(marker.horizontalOverflow <= 1, `${width}x${height} marker does not create horizontal overflow`);
+    assertRuntimeHealthy();
+  }
+});
+
 test("the hero button advances 2009 to 2014 to 2026", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl());

@@ -217,7 +217,7 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
   assertRuntimeHealthy();
 });
 
-test("the public Human Conversation statement stays clear and separate from the twist", async () => {
+test("the public Human Conversation statement stays clear above the text-free continuation cue", async () => {
   const expectedQuestion = "Every important human system needs a way to understand its present state.";
 
   for (const [width, height] of [
@@ -237,26 +237,31 @@ test("the public Human Conversation statement stays clear and separate from the 
       const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
       const question = document.querySelector(".community-stage-human .community-question");
       const twist = document.querySelector("#landing-hero .community-twist");
+      const followArrow = document.querySelector("#landing-hero .community-follow-arrow");
       const questionRect = question?.getBoundingClientRect();
-      const twistRect = twist?.getBoundingClientRect();
+      const arrowRect = followArrow?.getBoundingClientRect();
       return {
         question: normalize(question?.textContent),
         historicalPrompt: normalize(document.querySelector(".community-artifact-question")?.textContent),
+        twistPresent: Boolean(twist),
+        followArrowPresent: Boolean(followArrow),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         questionLeft: questionRect?.left ?? -1,
         questionRight: questionRect?.right ?? -1,
         questionTop: questionRect?.top ?? -1,
         questionBottom: questionRect?.bottom ?? -1,
-        twistTop: twistRect?.top ?? -1,
+        arrowTop: arrowRect?.top ?? -1,
       };
     })()`);
 
     assert.equal(layout.question, expectedQuestion);
     assert.equal(layout.historicalPrompt, "What\u2019s happening?");
+    assert.equal(layout.twistPresent, false);
+    assert.equal(layout.followArrowPresent, true);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.questionLeft >= -1 && layout.questionRight <= width + 1, `${width}x${height} question fits horizontally`);
     assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} question fits vertically`);
-    assert.ok(layout.questionBottom < layout.twistTop, `${width}x${height} question stays above the twist`);
+    assert.ok(layout.questionBottom < layout.arrowTop, `${width}x${height} question stays above the continuation arrow`);
   }
 
   assertRuntimeHealthy();

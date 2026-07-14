@@ -377,7 +377,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     thirdTitle: "Human Conversation solves disconnection.",
     fourthTitle: "A Human Conversation is worth a thousand taps.",
     thirdToLastTitle:
-      "We're not lonely because communication disappeared. We're lonely because screens replaced Human Conversation.",
+      "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
     cheskyHeadlinePresent: false,
     cheskyQuote:
       "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",

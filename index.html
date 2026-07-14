@@ -3891,6 +3891,12 @@
         --story-brightness: 0.98;
       }
 
+      .story-scene-community-truth {
+        --story-image: url("./assets/hc-art-emotional-signal-conversation-20260705.png");
+        --story-position: 64% center;
+        --story-brightness: 1.02;
+      }
+
       .story-scene-interface-opposite {
         --story-image: url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
         --story-position: 68% center;
@@ -11348,6 +11354,87 @@
         background: #050608;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section {
+        min-height: 100svh;
+        background: #050608;
+        color: #fff8ec;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section::before {
+        display: block;
+        background-image: var(--story-image);
+        background-position: var(--story-position, 64% center);
+        background-size: cover;
+        filter: saturate(1.08) contrast(1.04) brightness(var(--story-brightness, 1));
+        transform: scale(1.01);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section::after {
+        display: block;
+        background:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.95) 0%, rgba(3, 5, 8, 0.82) 42%, rgba(3, 5, 8, 0.28) 74%, rgba(3, 5, 8, 0.12) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.08) 0%, rgba(3, 5, 8, 0.06) 54%, rgba(3, 5, 8, 0.56) 100%);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-section-inner {
+        display: block;
+        width: min(100% - 64px, 1320px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-copy-block {
+        width: min(100%, 1000px);
+        max-width: 1000px;
+        margin-left: clamp(12px, 2vw, 30px);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-title {
+        max-width: 1000px;
+        color: #fff8ec;
+        font-size: clamp(3rem, 4.95vw, 5.8rem);
+        font-weight: 680;
+        line-height: 0.93;
+        text-shadow: 0 6px 34px rgba(0, 0, 0, 0.68);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-line {
+        display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-community {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-interface {
+        color: #8fc4e5;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-body {
+        max-width: 760px;
+        margin-top: clamp(28px, 4vh, 42px);
+        border-left: 3px solid var(--hc-rose);
+        color: rgba(255, 248, 236, 0.92);
+        padding-left: clamp(16px, 2vw, 24px);
+        font-size: clamp(1.08rem, 1.42vw, 1.3rem);
+        font-weight: 760;
+        line-height: 1.48;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.62);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-data {
+        color: #efc66e;
+        font-weight: 880;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-conversation {
+        color: var(--hc-rose);
+        font-family: Fraunces, Georgia, serif;
+        font-weight: 760;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-visual {
+        display: none;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section {
         min-height: 100svh;
         background: #050608;
@@ -11561,6 +11648,44 @@
           padding-left: 13px;
           font-size: 0.88rem;
           line-height: 1.36;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section {
+          padding: 92px 0 72px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section::before {
+          background-position: 62% center;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section::after {
+          background:
+            linear-gradient(180deg, rgba(3, 5, 8, 0.86) 0%, rgba(3, 5, 8, 0.7) 52%, rgba(3, 5, 8, 0.82) 100%),
+            linear-gradient(90deg, rgba(3, 5, 8, 0.62), rgba(3, 5, 8, 0.2));
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-section-inner {
+          width: calc(100% - 32px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-copy-block {
+          margin-left: 8px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-title {
+          max-width: 100%;
+          color: #fff8ec;
+          font-size: clamp(2.12rem, 10vw, 3rem);
+          line-height: 0.98;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-body {
+          max-width: 100%;
+          margin-top: 26px;
+          color: rgba(255, 248, 236, 0.94);
+          padding-left: 14px;
+          font-size: 0.98rem;
+          line-height: 1.46;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section {
@@ -16588,6 +16713,14 @@
         const storyPages = {
           main: {
             sections: [
+              {
+                title: `<span class="community-truth-line">What&rsquo;s really happening</span> <span class="community-truth-line">in our <span class="community-truth-community">social communities</span></span> <span class="community-truth-line">will never get communicated</span> <span class="community-truth-line">through an <span class="community-truth-interface">interface.</span></span>`,
+                copy: [
+                  `Our <span class="community-truth-data">human, social, relationship, and community data</span> has always, and will always be communicated through <span class="community-truth-conversation">human conversation.</span>`,
+                ],
+                scene: "community-truth",
+                className: "is-long is-community-truth-section",
+              },
               {
                 title: `<span>For decades, technology has pulled</span><span>conversations onto interfaces.</span><span class="conversation-intelligence-gold">We&rsquo;re doing the opposite.</span>`,
                 copy: [

@@ -321,7 +321,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
 
   const sequence = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -335,10 +335,16 @@ test("the public story resolves the twist with the existing interface thesis", a
       heroClass: document.querySelector("#landing-hero")?.className,
       heroStage: document.querySelector("#landing-hero")?.dataset.communityStage,
       sectionCount: sections.length,
+      firstIsCommunityTruth: sections[0]?.classList.contains("is-community-truth-section"),
+      secondIsInterfaceOpposite: sections[1]?.classList.contains("is-interface-opposite-section"),
+      firstFlowsDirectlyToSecond: sections[0]?.nextElementSibling === sections[1],
+      firstCopy: normalize(sections[0]?.querySelector(".story-copy-block")?.textContent),
       firstTitle: title(sections[0]),
       firstBody: normalize(sections[0]?.querySelector(".story-body")?.textContent),
       secondTitle: title(sections[1]),
+      secondBody: normalize(sections[1]?.querySelector(".story-body")?.textContent),
       thirdTitle: title(sections[2]),
+      fourthTitle: title(sections[3]),
       thirdToLastTitle: title(sections.at(-3)),
       cheskyHeadlinePresent: Boolean(cheskySection?.querySelector(".story-title")),
       cheskyQuote: normalize(cheskySection?.querySelector(".story-quote p")?.textContent),
@@ -353,12 +359,21 @@ test("the public story resolves the twist with the existing interface thesis", a
     variant: PUBLIC_VARIANT,
     heroClass: "hero hero-community-pulse",
     heroStage: "twitter",
-    sectionCount: 12,
+    sectionCount: 13,
+    firstIsCommunityTruth: true,
+    secondIsInterfaceOpposite: true,
+    firstFlowsDirectlyToSecond: true,
+    firstCopy:
+      "What’s really happening in our social communities will never get communicated through an interface. Our human, social, relationship, and community data has always, and will always be communicated through human conversation.",
     firstTitle:
+      "What’s really happening in our social communities will never get communicated through an interface.",
+    firstBody:
+      "Our human, social, relationship, and community data has always, and will always be communicated through human conversation.",
+    secondTitle:
       "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.",
-    firstBody: "Building the intelligence around human conversation.",
-    secondTitle: "Human Conversation solves disconnection.",
-    thirdTitle: "A Human Conversation is worth a thousand taps.",
+    secondBody: "Building the intelligence around human conversation.",
+    thirdTitle: "Human Conversation solves disconnection.",
+    fourthTitle: "A Human Conversation is worth a thousand taps.",
     thirdToLastTitle:
       "We're not lonely because communication disappeared. We're lonely because screens replaced Human Conversation.",
     cheskyHeadlinePresent: false,
@@ -373,10 +388,26 @@ test("the public story resolves the twist with the existing interface thesis", a
   await showStage("human");
   await page.waitFor(`!document.querySelector("#landing-hero .story-cue")?.classList.contains("is-dismissed")`);
 
-  await page.evaluate(`document.querySelector("#landing-story .story-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
-  await page.waitFor(`Math.abs(document.querySelector("#landing-story .story-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+  await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
+  await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+  await page.waitFor(`document.activeElement === document.querySelector("#landing-story .is-community-truth-section")`);
+  assert.equal(
+    await page.evaluate(`document.activeElement === document.querySelector("#landing-story .is-community-truth-section")`),
+    true,
+    "the 2026 hero cue lands on and focuses the community-truth section",
+  );
+
+  await page.evaluate(`document.querySelector("#landing-story .is-community-truth-section .section-cue")?.click()`);
+  await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-interface-opposite-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+  await page.waitFor(`document.activeElement === document.querySelector("#landing-story .is-interface-opposite-section")`);
+  assert.equal(
+    await page.evaluate(`document.activeElement === document.querySelector("#landing-story .is-interface-opposite-section")`),
+    true,
+    "the community-truth cue lands on and focuses the interface-opposite section",
+  );
+
   const firstPanel = await page.evaluate(`(() => {
-    const section = document.querySelector("#landing-story .story-section");
+    const section = document.querySelector("#landing-story .is-interface-opposite-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
     const body = section.querySelector(".story-body");
     const around = body.querySelector(".interface-opposite-build em");
@@ -414,4 +445,65 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.89\)/);
   assert.ok(firstPanel.horizontalOverflow <= 1);
   assertRuntimeHealthy();
+});
+
+test("the community-truth section fits desktop and narrow phones without overflow", async () => {
+  const expectedCopy =
+    "What’s really happening in our social communities will never get communicated through an interface. Our human, social, relationship, and community data has always, and will always be communicated through human conversation.";
+
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl(PUBLIC_VARIANT));
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await showStage("human");
+    await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const section = document.querySelector("#landing-story .is-community-truth-section");
+      const sectionRect = section?.getBoundingClientRect();
+      const background = section ? getComputedStyle(section, "::before") : null;
+      const textRects = Array.from(section?.querySelectorAll(".story-title, .story-body p") || []).map((element) => {
+        const rect = element.getBoundingClientRect();
+        return { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left };
+      });
+      const cueRect = section?.querySelector(".section-cue")?.getBoundingClientRect();
+      return {
+        copy: normalize(section?.querySelector(".story-copy-block")?.textContent),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        sectionTop: sectionRect?.top ?? -9999,
+        sectionHeight: sectionRect?.height ?? 0,
+        backgroundDisplay: background?.display || null,
+        backgroundImage: background?.backgroundImage || null,
+        textRects,
+        cueRect: cueRect ? { top: cueRect.top, right: cueRect.right, bottom: cueRect.bottom, left: cueRect.left } : null,
+      };
+    })()`);
+
+    const assertFits = (rect, label) => {
+      assert.ok(rect, `${width}x${height} ${label} is present`);
+      assert.ok(rect.left >= -1 && rect.right <= width + 1, `${width}x${height} ${label} fits horizontally`);
+      assert.ok(rect.top >= -1 && rect.bottom <= height + 1, `${width}x${height} ${label} fits vertically`);
+    };
+
+    assert.equal(layout.copy, expectedCopy, `${width}x${height} preserves the exact community-truth copy`);
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
+    assert.ok(Math.abs(layout.sectionTop) < 3, `${width}x${height} section lands at the viewport start`);
+    assert.ok(layout.sectionHeight >= height - 1, `${width}x${height} section fills the viewport`);
+    assert.equal(layout.backgroundDisplay, "block", `${width}x${height} displays the conversation background`);
+    assert.match(
+      layout.backgroundImage,
+      /hc-art-emotional-signal-conversation-20260705\.png/,
+      `${width}x${height} uses the intimate human-conversation scene`,
+    );
+    assert.equal(layout.textRects.length, 2, `${width}x${height} renders both copy blocks`);
+    layout.textRects.forEach((rect, index) => assertFits(rect, `copy block ${index + 1}`));
+    assertFits(layout.cueRect, "continuation cue");
+    assertRuntimeHealthy();
+  }
 });

@@ -5,10 +5,11 @@
   "headlineText": "200920142026twitterDigital Communities → ✓ SolvedWhat’s happening around the world?twitterNov 19 · 2009What’s happening?slackOrganizations → ✓ SolvedWhat’s happening inside the organization?slack# general# product# randomHuman ConversationReal-world social communities → ✕ UnsolvedEvery important human system needs a way to understand its present state.",
   "ledeText": "",
   "headerEmail": "hello@humanconversation.com",
-  "storySections": 12,
+  "storySections": 13,
   "heroSignupAction": "https://formsubmit.co/hello@humanconversation.com",
   "footerText": "Human Conversation",
   "storyMarkers": [
+    "What’s really happening in our social communities will never get communicated through an interface.",
     "For decades, technology has pulled",
     "screens replaced Human Conversation.",
     "Maya needs a conversation.",

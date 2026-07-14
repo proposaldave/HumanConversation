@@ -52,10 +52,15 @@ async function publicProjection() {
       headlineText: normalize(hero?.querySelector("h1")),
       twitterStatus: normalize(hero?.querySelector(".community-twitter-status")),
       twitterSolvedColor: twitterSolved ? getComputedStyle(twitterSolved).color : null,
+      twitterMarketValue: normalize(hero?.querySelector(".community-stage-twitter .community-market-value")),
+      twitterMarketMethod: hero?.querySelector(".community-stage-twitter .community-market-value")?.getAttribute("title"),
       slackStatus: normalize(hero?.querySelector(".community-slack-status")),
       slackSolvedColor: slackSolved ? getComputedStyle(slackSolved).color : null,
+      slackMarketValue: normalize(hero?.querySelector(".community-stage-slack .community-market-value")),
+      slackMarketMethod: hero?.querySelector(".community-stage-slack .community-market-value")?.getAttribute("title"),
       humanStatus: normalize(hero?.querySelector(".community-human-status")),
       humanUnsolvedColor: humanUnsolved ? getComputedStyle(humanUnsolved).color : null,
+      humanMarketValuePresent: Boolean(hero?.querySelector(".community-stage-human .community-market-value")),
       statusArrowCount: hero?.querySelectorAll(
         ".community-twitter-status-arrow, .community-slack-status-arrow, .community-human-status-arrow",
       ).length,
@@ -104,10 +109,15 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     headlineText: baseline.headlineText,
     twitterStatus: "Digital Communities ✓ Solved",
     twitterSolvedColor: "rgb(105, 221, 160)",
+    twitterMarketValue: "≈ $6T Public-company value behind digital social",
+    twitterMarketMethod: "Approximate July 2026 values for Meta, Alphabet, Reddit, Snap, and Pinterest. Company value, not market size or TAM.",
     slackStatus: "Organizations ✓ Solved",
     slackSolvedColor: "rgb(105, 221, 160)",
+    slackMarketValue: "≈ $7T Public-company value behind organizational communication",
+    slackMarketMethod: "Approximate July 2026 values for Microsoft, Alphabet, and Salesforce. Company value, not market size or TAM; Alphabet appears in both sets.",
     humanStatus: "Real-world social communities ✕ Unsolved",
     humanUnsolvedColor: "rgb(255, 129, 122)",
+    humanMarketValuePresent: false,
     statusArrowCount: 0,
     ledeText: baseline.ledeText,
     headerEmail: baseline.headerEmail,
@@ -181,6 +191,8 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     const layout = await page.evaluate(`(() => {
       const hero = document.querySelector("#landing-hero");
       const copy = document.querySelector(".community-stage-twitter .community-stage-content")?.getBoundingClientRect();
+      const market = document.querySelector(".community-stage-twitter .community-market-value")?.getBoundingClientRect();
+      const artifact = document.querySelector(".community-stage-twitter .community-artifact")?.getBoundingClientRect();
       const connectionChain = document.querySelector("#landing-story .is-solves-disconnection-section .story-chain");
       const chainItems = Array.from(connectionChain?.querySelectorAll("span:not(.story-chain-arrow)") || []);
       const lastPill = chainItems.at(-1)?.getBoundingClientRect();
@@ -192,6 +204,17 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
         copyRight: copy?.right ?? -1,
         copyTop: copy?.top ?? -1,
         copyBottom: copy?.bottom ?? -1,
+        marketText: document.querySelector(".community-stage-twitter .community-market-value")?.textContent.replace(/\\s+/g, " ").trim(),
+        marketLeft: market?.left ?? -1,
+        marketRight: market?.right ?? -1,
+        marketTop: market?.top ?? -1,
+        marketBottom: market?.bottom ?? -1,
+        marketArtifactSeparated: Boolean(market && artifact && (
+          market.bottom <= artifact.top + 1 ||
+          market.top >= artifact.bottom - 1 ||
+          market.right <= artifact.left + 1 ||
+          market.left >= artifact.right - 1
+        )),
         chainItems: chainItems.map((item) => item.textContent.trim()),
         arrowCount: connectionChain?.querySelectorAll(".story-chain-arrow").length || 0,
         lastPillLeft: lastPill?.left ?? -1,
@@ -203,6 +226,10 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} keeps the three-stage story`);
     assert.ok(layout.copyLeft >= -1 && layout.copyRight <= width + 1, `${width}x${height} copy fits horizontally`);
     assert.ok(layout.copyTop >= -1 && layout.copyBottom <= height + 1, `${width}x${height} copy fits vertically`);
+    assert.equal(layout.marketText, "≈ $6T Public-company value behind digital social");
+    assert.ok(layout.marketLeft >= -1 && layout.marketRight <= width + 1, `${width}x${height} Twitter market proof fits horizontally`);
+    assert.ok(layout.marketTop >= -1 && layout.marketBottom <= height + 1, `${width}x${height} Twitter market proof fits vertically`);
+    assert.equal(layout.marketArtifactSeparated, true, `${width}x${height} Twitter market proof stays clear of the historical artifact`);
     assert.deepEqual(layout.chainItems, [
       "disconnection",
       "connection",
@@ -290,8 +317,12 @@ test("the public Slack solved status stays within every supported viewport", asy
       const status = document.querySelector(".community-slack-status");
       const solved = document.querySelector(".community-slack-status-solved");
       const question = document.querySelector(".community-stage-slack .community-question");
+      const market = document.querySelector(".community-stage-slack .community-market-value");
+      const artifact = document.querySelector(".community-stage-slack .community-artifact");
       const rect = status?.getBoundingClientRect();
       const questionRect = question?.getBoundingClientRect();
+      const marketRect = market?.getBoundingClientRect();
+      const artifactRect = artifact?.getBoundingClientRect();
       return {
         stage: document.querySelector("#landing-hero")?.dataset.communityStage,
         status: normalize(status?.textContent),
@@ -306,18 +337,33 @@ test("the public Slack solved status stays within every supported viewport", asy
         questionRight: questionRect?.right ?? -1,
         questionTop: questionRect?.top ?? -1,
         questionBottom: questionRect?.bottom ?? -1,
+        market: normalize(market?.textContent),
+        marketLeft: marketRect?.left ?? -1,
+        marketRight: marketRect?.right ?? -1,
+        marketTop: marketRect?.top ?? -1,
+        marketBottom: marketRect?.bottom ?? -1,
+        marketArtifactSeparated: Boolean(marketRect && artifactRect && (
+          marketRect.bottom <= artifactRect.top + 1 ||
+          marketRect.top >= artifactRect.bottom - 1 ||
+          marketRect.right <= artifactRect.left + 1 ||
+          marketRect.left >= artifactRect.right - 1
+        )),
       };
     })()`);
 
     assert.equal(layout.stage, "slack");
     assert.equal(layout.status, "Organizations ✓ Solved");
     assert.equal(layout.question, "What’s happening inside the organization?");
+    assert.equal(layout.market, "≈ $7T Public-company value behind organizational communication");
     assert.equal(layout.solvedColor, "rgb(105, 221, 160)");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.left >= -1 && layout.right <= width + 1, `${width}x${height} Slack status fits horizontally`);
     assert.ok(layout.top >= -1 && layout.bottom <= height + 1, `${width}x${height} Slack status fits vertically`);
     assert.ok(layout.questionLeft >= -1 && layout.questionRight <= width + 1, `${width}x${height} Slack question fits horizontally`);
     assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} Slack question fits vertically`);
+    assert.ok(layout.marketLeft >= -1 && layout.marketRight <= width + 1, `${width}x${height} Slack market proof fits horizontally`);
+    assert.ok(layout.marketTop >= -1 && layout.marketBottom <= height + 1, `${width}x${height} Slack market proof fits vertically`);
+    assert.equal(layout.marketArtifactSeparated, true, `${width}x${height} Slack market proof stays clear of the historical artifact`);
   }
 
   assertRuntimeHealthy();
@@ -346,6 +392,7 @@ test("the public Human Conversation unsolved status stays within every supported
         stage: document.querySelector("#landing-hero")?.dataset.communityStage,
         status: normalize(status?.textContent),
         unsolvedColor: unsolved ? getComputedStyle(unsolved).color : null,
+        marketValuePresent: Boolean(document.querySelector(".community-stage-human .community-market-value")),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         left: rect?.left ?? -1,
         right: rect?.right ?? -1,
@@ -357,6 +404,7 @@ test("the public Human Conversation unsolved status stays within every supported
     assert.equal(layout.stage, "human");
     assert.equal(layout.status, "Real-world social communities ✕ Unsolved");
     assert.equal(layout.unsolvedColor, "rgb(255, 129, 122)");
+    assert.equal(layout.marketValuePresent, false, "2026 remains the unpriced, unsolved payoff");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.left >= -1 && layout.right <= width + 1, `${width}x${height} Human Conversation status fits horizontally`);
     assert.ok(layout.top >= -1 && layout.bottom <= height + 1, `${width}x${height} Human Conversation status fits vertically`);

@@ -71,6 +71,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
       robots: document.querySelector('meta[name="robots"]')?.content,
       progress: Array.from(document.querySelectorAll(".community-progress > button"))
         .map((item) => normalize(item.textContent)),
+      twitterLabel: normalize(document.querySelector(".community-stage-twitter .community-platform small")?.textContent),
       twitterQuestion: normalize(document.querySelector(".community-stage-twitter .community-question")?.textContent),
       twitterStory: normalize(document.querySelector(".community-stage-twitter .community-platform-story")?.textContent),
       twitterDate: document.querySelector(".community-twitter-artifact time")?.getAttribute("datetime"),
@@ -109,6 +110,7 @@ test("the hidden review tells one verified Twitter, Slack, and Human Conversatio
     stage: "twitter",
     robots: "noindex,nofollow",
     progress: ["2009", "2014", "2026"],
+    twitterLabel: "Digital Community",
     twitterQuestion: "What’s happening?",
     twitterStory: "",
     twitterDate: "2009-11-19",

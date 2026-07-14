@@ -38,6 +38,7 @@ async function publicProjection() {
     const normalize = (element) => String(element?.textContent || "").replace(/\\s+/g, " ").trim();
     const pageRoot = document.querySelector(".page");
     const hero = document.querySelector("#landing-hero");
+    const twitterSolved = hero?.querySelector(".community-twitter-status-solved");
     const storyText = normalize(document.querySelector("#landing-story"));
     const markers = ${JSON.stringify(baseline.storyMarkers)};
     return {
@@ -47,6 +48,8 @@ async function publicProjection() {
       heroStage: hero?.dataset.communityStage,
       headlineLabel: hero?.querySelector("h1")?.getAttribute("aria-label"),
       headlineText: normalize(hero?.querySelector("h1")),
+      twitterStatus: normalize(hero?.querySelector(".community-twitter-status")),
+      twitterSolvedColor: twitterSolved ? getComputedStyle(twitterSolved).color : null,
       ledeText: normalize(hero?.querySelector(".lede")),
       headerEmail: normalize(document.querySelector(".header-email")),
       storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
@@ -90,6 +93,8 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     heroStage: "twitter",
     headlineLabel: baseline.headlineLabel,
     headlineText: baseline.headlineText,
+    twitterStatus: "Digital Communities → ✓ Solved",
+    twitterSolvedColor: "rgb(105, 221, 160)",
     ledeText: baseline.ledeText,
     headerEmail: baseline.headerEmail,
     storySections: baseline.storySections,

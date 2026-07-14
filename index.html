@@ -11972,6 +11972,38 @@
         text-transform: uppercase;
       }
 
+      .page[data-variant="conversation-intelligence-home"] .community-twitter-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65em;
+        white-space: nowrap;
+      }
+
+      .page[data-variant="conversation-intelligence-home"] .community-twitter-status-arrow {
+        color: rgba(255, 248, 236, 0.4);
+        font-size: 1.08em;
+        letter-spacing: 0;
+      }
+
+      .page[data-variant="conversation-intelligence-home"] .community-twitter-status-solved {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.38em;
+        border: 1px solid rgba(105, 221, 160, 0.34);
+        border-radius: 999px;
+        background: rgba(42, 145, 85, 0.15);
+        box-shadow: 0 0 18px rgba(56, 194, 112, 0.1);
+        color: #69dda0;
+        padding: 0.3em 0.58em 0.32em;
+        letter-spacing: 0.12em;
+      }
+
+      .page[data-variant="conversation-intelligence-home"] .community-twitter-status-check {
+        font-size: 0.96em;
+        font-weight: 1000;
+        line-height: 1;
+      }
+
       .hero-community-pulse .community-slack-name > i {
         display: grid;
         grid-template-columns: repeat(2, 6px);
@@ -16402,11 +16434,11 @@
       <main>
         <section class="hero hero-community-pulse" id="landing-hero" data-community-stage="twitter">
           <div class="hero-inner">
-            <h1 aria-label="2009. Twitter. What is the world talking about? 2014. Slack. What’s happening in the organization? 2026. Human Conversation. Every important human system needs a way to understand its present state.">
+            <h1 aria-label="2009. Twitter. Digital Communities, solved. What is the world talking about? 2014. Slack. What’s happening in the organization? 2026. Human Conversation. Every important human system needs a way to understand its present state.">
               <span class="community-progress" role="group" aria-label="Timeline"><button type="button" data-era="twitter" aria-label="Go to 2009: Twitter" aria-current="true"><i aria-hidden="true"></i>2009</button><button type="button" data-era="slack" aria-label="Go to 2014: Slack" aria-current="false"><i aria-hidden="true"></i>2014</button><button type="button" data-era="human" aria-label="Go to 2026: Human Conversation" aria-current="false"><i aria-hidden="true"></i>2026</button></span>
               <span class="community-stage community-stage-twitter">
                 <span class="community-stage-content">
-                  <span class="community-platform"><strong class="community-twitter-name">twitter</strong><small>Digital Community</small></span>
+                  <span class="community-platform"><strong class="community-twitter-name">twitter</strong><small class="community-twitter-status" aria-label="Digital Communities, solved"><span>Digital Communities</span> <span class="community-twitter-status-arrow" aria-hidden="true">&rarr;</span> <span class="community-twitter-status-solved" aria-hidden="true"><span class="community-twitter-status-check">&#10003;</span> Solved</span></small></span>
                   <span class="community-question">What is the world talking about?</span>
                 </span>
                 <span class="community-artifact community-twitter-artifact" aria-hidden="true"><span class="community-artifact-bar"><b>twitter</b><time datetime="2009-11-19">Nov 19 · 2009</time></span><span class="community-artifact-question">What&rsquo;s happening?</span><i></i></span>
@@ -16774,8 +16806,12 @@
         {
           id: "conversation-intelligence-home",
           ...communityPulseHero,
-          headlineLabel: "2009. Twitter. What is the world talking about? 2014. Slack. What’s happening in the organization? 2026. Human Conversation. Every important human system needs a way to understand its present state.",
+          headlineLabel: "2009. Twitter. Digital Communities, solved. What is the world talking about? 2014. Slack. What’s happening in the organization? 2026. Human Conversation. Every important human system needs a way to understand its present state.",
           headline: communityPulseHero.headline
+            .replace(
+              `<small>Digital Community</small>`,
+              `<small class="community-twitter-status" aria-label="Digital Communities, solved"><span>Digital Communities</span> <span class="community-twitter-status-arrow" aria-hidden="true">&rarr;</span> <span class="community-twitter-status-solved" aria-hidden="true"><span class="community-twitter-status-check">&#10003;</span> Solved</span></small>`,
+            )
             .replace(
               `<span class="community-question">What&rsquo;s happening?</span>`,
               `<span class="community-question">What is the world talking about?</span>`,

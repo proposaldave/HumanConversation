@@ -379,6 +379,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const section = document.querySelector("#landing-story .story-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
     const body = section.querySelector(".story-body");
+    const around = body.querySelector(".interface-opposite-build em");
     const bodyRect = body.getBoundingClientRect();
     return {
       top: section.getBoundingClientRect().top,
@@ -389,6 +390,8 @@ test("the public story resolves the twist with the existing interface thesis", a
       bodyBottom: bodyRect.bottom,
       bodyDisplay: getComputedStyle(body).display,
       bodyBorderLeft: getComputedStyle(body).borderLeftWidth,
+      aroundFontStyle: getComputedStyle(around).fontStyle,
+      aroundTransform: getComputedStyle(around).transform,
       arrowLength: Number.parseFloat(getComputedStyle(body, "::before").width),
       arrowHead: getComputedStyle(body, "::after").borderTopWidth,
       imageFilter: getComputedStyle(section, "::before").filter,
@@ -403,6 +406,8 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.ok(firstPanel.bodyTop >= -1 && firstPanel.bodyBottom <= 901);
   assert.equal(firstPanel.bodyDisplay, "grid");
   assert.equal(firstPanel.bodyBorderLeft, "0px");
+  assert.equal(firstPanel.aroundFontStyle, "italic");
+  assert.notEqual(firstPanel.aroundTransform, "none");
   assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
   assert.equal(firstPanel.arrowHead, "2px");
   assert.match(firstPanel.imageFilter, /brightness\(1\.04\)/);

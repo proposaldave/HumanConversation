@@ -2381,6 +2381,45 @@
         transform: translateY(0);
       }
 
+      .chesky-quote-dot {
+        position: fixed;
+        left: max(18px, calc(env(safe-area-inset-left) + 18px));
+        bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
+        z-index: 5;
+        width: 12px;
+        height: 12px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--hc-rose);
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.16),
+          0 0 18px rgba(var(--hc-rose-rgb), 0.54);
+        padding: 0;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition:
+          opacity 160ms ease,
+          transform 160ms ease;
+      }
+
+      .chesky-quote-dot.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .chesky-quote-dot:hover,
+      .chesky-quote-dot:focus-visible,
+      .chesky-quote-dot[aria-current="true"] {
+        box-shadow:
+          inset 0 0 0 1px rgba(var(--hc-rose-rgb), 0.28),
+          0 0 0 4px rgba(var(--hc-rose-rgb), 0.22),
+          0 0 0 7px rgba(255, 214, 110, 0.24),
+          0 0 24px rgba(var(--hc-rose-rgb), 0.72);
+      }
+
       .variant-dot {
         --dot-age: 0.28;
         width: 10px;
@@ -5621,6 +5660,14 @@
         font-family: Manrope, Inter, system-ui, sans-serif;
         font-style: normal;
         font-weight: 850;
+      }
+
+      .page[data-variant="next-interface-atrium"] .story-quote {
+        font-style: italic;
+      }
+
+      .page[data-variant="next-interface-atrium"] .story-quote cite {
+        font-style: normal;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section.is-quote-only-section {
@@ -16739,7 +16786,7 @@
         <button class="variant-dot" type="button" data-option="24" aria-label="Option 25: interface got between us"></button>
         <button class="variant-dot variant-dot-green" type="button" data-option="25" aria-label="Option 26: minimal snapback"></button>
         <button class="variant-dot variant-dot-black" type="button" data-option="26" aria-label="Option 27: next interface threshold"></button>
-        <button class="variant-dot variant-dot-white" type="button" data-option="27" aria-label="Option 28: expanded next interface atrium"></button>
+        <button class="variant-dot variant-dot-white" type="button" data-option="27" aria-label="Option 28: Brian Chesky quote" hidden></button>
         <button class="variant-dot" type="button" data-option="28" aria-label="Option 29: previous timeless interface homepage"></button>
         <button class="variant-dot" type="button" data-option="29" aria-label="Option 30: build intelligence around Human Conversation"></button>
         <button class="variant-dot" type="button" data-option="30" aria-label="Option 31: know the person coordinate the moment"></button>
@@ -16757,6 +16804,7 @@
         <button class="variant-dot variant-dot-pink" type="button" data-option="42" aria-label="Option 43: life runs on Human Conversation"></button>
         <button class="variant-dot variant-dot-black" type="button" data-option="43" aria-label="Option 44: What’s happening for real-world communities"></button>
       </nav>
+      <button class="chesky-quote-dot" type="button" aria-label="Open hidden Brian Chesky quote" aria-hidden="true" tabindex="-1" hidden></button>
     </div>
 
       <script>
@@ -16818,15 +16866,6 @@
                 title: `<span>We&rsquo;re building intelligence, not interfaces.</span><span class="brings-together-gold">Human Conversation doesn&rsquo;t get between us &mdash; it brings us together.</span>`,
                 scene: "brings-together",
                 className: "is-long is-brings-together-section",
-              },
-              {
-                title: "",
-                scene: "next-interface",
-                className: "is-long is-next-interface-section is-quote-only-section",
-                quote: {
-                  text: `If we can get people back into the physical world, connecting together with one another, that&rsquo;s the ultimate promise of the internet, which was always meant to bring us together.`,
-                  author: `Brian Chesky`,
-                },
               },
               {
                 kind: "graph",
@@ -17377,6 +17416,7 @@
       const storyCue = document.querySelector(".story-cue");
       const variantNav = document.querySelector(".variant-dots");
       const variantTrigger = document.querySelector(".variant-trigger");
+      const cheskyQuoteDot = document.querySelector(".chesky-quote-dot");
       const secretLanding = document.querySelector(".secret-l-landing");
       const dots = Array.from(document.querySelectorAll(".variant-dot"));
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
@@ -18323,7 +18363,11 @@
           dots.forEach((dot, dotIndex) => {
             dot.setAttribute("aria-current", String(dotIndex === safeIndex));
           });
-          if (options.focusDot) dots[safeIndex]?.focus({ preventScroll: true });
+          cheskyQuoteDot?.setAttribute("aria-current", String(variant.id === "next-interface-atrium"));
+          if (options.focusDot) {
+            const focusTarget = variant.id === "next-interface-atrium" ? cheskyQuoteDot : dots[safeIndex];
+            focusTarget?.focus({ preventScroll: true });
+          }
         };
 
         if (options.immediate || prefersReducedMotion.matches) {
@@ -18349,8 +18393,14 @@
         window.clearTimeout(variantNavHideTimer);
         variantNav.hidden = false;
         variantNav.setAttribute("aria-hidden", "false");
+        if (cheskyQuoteDot) {
+          cheskyQuoteDot.hidden = false;
+          cheskyQuoteDot.setAttribute("aria-hidden", "false");
+          cheskyQuoteDot.setAttribute("tabindex", "0");
+        }
         window.requestAnimationFrame(() => {
           variantNav.classList.add("is-visible");
+          cheskyQuoteDot?.classList.add("is-visible");
           variantTrigger?.classList.add("is-hidden");
           variantTrigger?.setAttribute("aria-hidden", "true");
           variantTrigger?.setAttribute("tabindex", "-1");
@@ -18361,12 +18411,18 @@
         if (!variantNav || !variantNav.classList.contains("is-visible")) return;
         variantNav.classList.remove("is-visible");
         variantNav.setAttribute("aria-hidden", "true");
+        cheskyQuoteDot?.classList.remove("is-visible");
+        cheskyQuoteDot?.setAttribute("aria-hidden", "true");
+        cheskyQuoteDot?.setAttribute("tabindex", "-1");
         variantTrigger?.classList.remove("is-hidden");
         variantTrigger?.setAttribute("aria-hidden", "true");
         variantTrigger?.setAttribute("tabindex", "-1");
         window.clearTimeout(variantNavHideTimer);
         variantNavHideTimer = window.setTimeout(() => {
-          if (!variantNav.classList.contains("is-visible")) variantNav.hidden = true;
+          if (!variantNav.classList.contains("is-visible")) {
+            variantNav.hidden = true;
+            if (cheskyQuoteDot) cheskyQuoteDot.hidden = true;
+          }
         }, 180);
       }
 
@@ -18465,6 +18521,11 @@
         dot.addEventListener("click", () => {
           setVariant(Number.parseInt(dot.dataset.option, 10));
         });
+      });
+
+      cheskyQuoteDot?.addEventListener("click", () => {
+        const quoteVariantIndex = variants.findIndex((variant) => variant.id === "next-interface-atrium");
+        if (quoteVariantIndex >= 0) setVariant(quoteVariantIndex);
       });
 
       headline.addEventListener("click", (event) => {

@@ -321,7 +321,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
   const sequence = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -356,11 +356,8 @@ test("the public story resolves the twist with the existing interface thesis", a
       lonelinessFlowsToTimeless: lonelinessSection?.nextElementSibling === timelessSection,
       timelessIsSecondToLast: sections.at(-2) === timelessSection,
       timelessFlowsToFuture: timelessSection?.nextElementSibling?.classList.contains("is-final-cta-section"),
-      cheskyHeadlinePresent: Boolean(cheskySection?.querySelector(".story-title")),
-      cheskyQuote: normalize(cheskySection?.querySelector(".story-quote p")?.textContent),
-      cheskyAuthor: normalize(cheskySection?.querySelector(".story-quote cite")?.textContent),
-      cheskyQuoteFontStyle: getComputedStyle(cheskySection?.querySelector(".story-quote")).fontStyle,
-      cheskyAuthorFontStyle: getComputedStyle(cheskySection?.querySelector(".story-quote cite")).fontStyle,
+      publicCheskySectionPresent: Boolean(cheskySection),
+      publicCheskyQuotePresent: Boolean(document.querySelector("#landing-story .story-quote")),
       cueDismissed: cue?.classList.contains("is-dismissed"),
       cueLabel: cue?.getAttribute("aria-label"),
       bannedCopyPresent: normalize(document.body.textContent).includes("The digital town square found its question"),
@@ -371,7 +368,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     variant: PUBLIC_VARIANT,
     heroClass: "hero hero-community-pulse",
     heroStage: "twitter",
-    sectionCount: 13,
+    sectionCount: 12,
     firstIsCommunityTruth: true,
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
@@ -393,12 +390,8 @@ test("the public story resolves the twist with the existing interface thesis", a
     lonelinessFlowsToTimeless: true,
     timelessIsSecondToLast: true,
     timelessFlowsToFuture: true,
-    cheskyHeadlinePresent: false,
-    cheskyQuote:
-      "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",
-    cheskyAuthor: "— Brian Chesky",
-    cheskyQuoteFontStyle: "italic",
-    cheskyAuthorFontStyle: "normal",
+    publicCheskySectionPresent: false,
+    publicCheskyQuotePresent: false,
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,
@@ -466,6 +459,75 @@ test("the public story resolves the twist with the existing interface thesis", a
   assertRuntimeHealthy();
 });
 
+test("the Brian Chesky quote lives only behind the hidden bottom-left dot", async () => {
+  await page.setViewport(1440, 900);
+  await page.navigate(reviewUrl(PUBLIC_VARIANT));
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+
+  const hiddenState = await page.evaluate(`(() => {
+    const dot = document.querySelector(".chesky-quote-dot");
+    return {
+      hidden: dot?.hidden,
+      ariaHidden: dot?.getAttribute("aria-hidden"),
+      publicQuotePresent: Boolean(document.querySelector("#landing-story .story-quote")),
+      publicQuoteSectionPresent: Boolean(document.querySelector("#landing-story .is-next-interface-section")),
+    };
+  })()`);
+
+  assert.deepEqual(hiddenState, {
+    hidden: true,
+    ariaHidden: "true",
+    publicQuotePresent: false,
+    publicQuoteSectionPresent: false,
+  });
+
+  await page.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "z", bubbles: true }))`);
+  await page.waitFor(`!document.querySelector(".chesky-quote-dot")?.hidden && document.querySelector(".chesky-quote-dot")?.classList.contains("is-visible") && Number(getComputedStyle(document.querySelector(".chesky-quote-dot")).opacity) > 0.99`);
+
+  const revealedDot = await page.evaluate(`(() => {
+    const dot = document.querySelector(".chesky-quote-dot");
+    const rect = dot?.getBoundingClientRect();
+    return {
+      ariaHidden: dot?.getAttribute("aria-hidden"),
+      tabIndex: dot?.tabIndex,
+      left: rect?.left ?? 9999,
+      bottomGap: rect ? innerHeight - rect.bottom : 9999,
+      opacity: Number(getComputedStyle(dot).opacity),
+    };
+  })()`);
+
+  assert.equal(revealedDot.ariaHidden, "false");
+  assert.equal(revealedDot.tabIndex, 0);
+  assert.ok(revealedDot.left >= 0 && revealedDot.left <= 48, "quote dot sits at the bottom-left");
+  assert.ok(revealedDot.bottomGap >= 0 && revealedDot.bottomGap <= 48, "quote dot stays near the bottom edge");
+  assert.equal(revealedDot.opacity, 1);
+
+  await page.evaluate(`document.querySelector(".chesky-quote-dot")?.click()`);
+  await page.waitFor(`document.querySelector(".page")?.dataset.variant === "next-interface-atrium"`);
+
+  const archivedQuote = await page.evaluate(`(() => {
+    const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+    const quote = document.querySelector("#landing-story .story-quote");
+    return {
+      variant: document.querySelector(".page")?.dataset.variant,
+      dotCurrent: document.querySelector(".chesky-quote-dot")?.getAttribute("aria-current"),
+      text: normalize(quote?.querySelector("p")?.textContent),
+      author: normalize(quote?.querySelector("cite")?.textContent),
+      fontStyle: quote ? getComputedStyle(quote).fontStyle : null,
+    };
+  })()`);
+
+  assert.deepEqual(archivedQuote, {
+    variant: "next-interface-atrium",
+    dotCurrent: "true",
+    text:
+      "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",
+    author: "— Brian Chesky",
+    fontStyle: "italic",
+  });
+  assertRuntimeHealthy();
+});
+
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
     "What’s really happening in our social communities will never get communicated through an interface. Our human, social, relationship, and community data has always, and will always be communicated through human conversation.";
@@ -477,7 +539,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await showStage("human");
     await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);

@@ -56,6 +56,9 @@ async function publicProjection() {
       slackSolvedColor: slackSolved ? getComputedStyle(slackSolved).color : null,
       humanStatus: normalize(hero?.querySelector(".community-human-status")),
       humanUnsolvedColor: humanUnsolved ? getComputedStyle(humanUnsolved).color : null,
+      statusArrowCount: hero?.querySelectorAll(
+        ".community-twitter-status-arrow, .community-slack-status-arrow, .community-human-status-arrow",
+      ).length,
       ledeText: normalize(hero?.querySelector(".lede")),
       headerEmail: normalize(document.querySelector(".header-email")),
       storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
@@ -99,12 +102,13 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     heroStage: "twitter",
     headlineLabel: baseline.headlineLabel,
     headlineText: baseline.headlineText,
-    twitterStatus: "Digital Communities → ✓ Solved",
+    twitterStatus: "Digital Communities ✓ Solved",
     twitterSolvedColor: "rgb(105, 221, 160)",
-    slackStatus: "Organizations → ✓ Solved",
+    slackStatus: "Organizations ✓ Solved",
     slackSolvedColor: "rgb(105, 221, 160)",
-    humanStatus: "Real-world social communities → ✕ Unsolved",
+    humanStatus: "Real-world social communities ✕ Unsolved",
     humanUnsolvedColor: "rgb(255, 129, 122)",
+    statusArrowCount: 0,
     ledeText: baseline.ledeText,
     headerEmail: baseline.headerEmail,
     storySections: baseline.storySections,
@@ -306,7 +310,7 @@ test("the public Slack solved status stays within every supported viewport", asy
     })()`);
 
     assert.equal(layout.stage, "slack");
-    assert.equal(layout.status, "Organizations → ✓ Solved");
+    assert.equal(layout.status, "Organizations ✓ Solved");
     assert.equal(layout.question, "What’s happening inside the organization?");
     assert.equal(layout.solvedColor, "rgb(105, 221, 160)");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
@@ -351,7 +355,7 @@ test("the public Human Conversation unsolved status stays within every supported
     })()`);
 
     assert.equal(layout.stage, "human");
-    assert.equal(layout.status, "Real-world social communities → ✕ Unsolved");
+    assert.equal(layout.status, "Real-world social communities ✕ Unsolved");
     assert.equal(layout.unsolvedColor, "rgb(255, 129, 122)");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.left >= -1 && layout.right <= width + 1, `${width}x${height} Human Conversation status fits horizontally`);

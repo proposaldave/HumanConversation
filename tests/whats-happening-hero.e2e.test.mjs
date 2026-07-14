@@ -568,9 +568,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "To know what’s really happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
+      "To really know what’s happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
     firstTitle:
-      "To know what’s really happening in a community, you have to talk to the people in it.",
+      "To really know what’s happening in a community, you have to talk to the people in it.",
     firstBody:
       "Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
     secondTitle:
@@ -957,7 +957,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "To know what’s really happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.";
+    "To really know what’s happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.";
 
   for (const [width, height] of [
     [1440, 900],

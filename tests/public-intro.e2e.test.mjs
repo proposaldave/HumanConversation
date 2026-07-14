@@ -285,25 +285,35 @@ test("the public Slack solved status stays within every supported viewport", asy
       const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
       const status = document.querySelector(".community-slack-status");
       const solved = document.querySelector(".community-slack-status-solved");
+      const question = document.querySelector(".community-stage-slack .community-question");
       const rect = status?.getBoundingClientRect();
+      const questionRect = question?.getBoundingClientRect();
       return {
         stage: document.querySelector("#landing-hero")?.dataset.communityStage,
         status: normalize(status?.textContent),
+        question: normalize(question?.textContent),
         solvedColor: solved ? getComputedStyle(solved).color : null,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         left: rect?.left ?? -1,
         right: rect?.right ?? -1,
         top: rect?.top ?? -1,
         bottom: rect?.bottom ?? -1,
+        questionLeft: questionRect?.left ?? -1,
+        questionRight: questionRect?.right ?? -1,
+        questionTop: questionRect?.top ?? -1,
+        questionBottom: questionRect?.bottom ?? -1,
       };
     })()`);
 
     assert.equal(layout.stage, "slack");
     assert.equal(layout.status, "Organizations → ✓ Solved");
+    assert.equal(layout.question, "What’s happening inside the organization?");
     assert.equal(layout.solvedColor, "rgb(105, 221, 160)");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.left >= -1 && layout.right <= width + 1, `${width}x${height} Slack status fits horizontally`);
     assert.ok(layout.top >= -1 && layout.bottom <= height + 1, `${width}x${height} Slack status fits vertically`);
+    assert.ok(layout.questionLeft >= -1 && layout.questionRight <= width + 1, `${width}x${height} Slack question fits horizontally`);
+    assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} Slack question fits vertically`);
   }
 
   assertRuntimeHealthy();

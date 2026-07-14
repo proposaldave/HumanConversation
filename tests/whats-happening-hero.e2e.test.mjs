@@ -336,6 +336,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
     const cue = document.querySelector("#landing-hero .story-cue");
     const cheskySection = document.querySelector("#landing-story .is-next-interface-section");
+    const bringsTogetherSection = document.querySelector("#landing-story .is-brings-together-section");
     const lonelinessSection = document.querySelector("#landing-story .is-lonely-return-section");
     const humanSurfaceSection = document.querySelector("#landing-story .is-human-surface-section");
     const timelessSection = document.querySelector("#landing-story .is-timeless-fullscreen-section");
@@ -359,6 +360,9 @@ test("the public story resolves the twist with the existing interface thesis", a
         sections[3]?.classList.contains("is-real-world-os-section") &&
         sections[3]?.nextElementSibling === sections[4] &&
         sections[4]?.classList.contains("is-taps-premium-section"),
+      bringsTogetherTitle: title(bringsTogetherSection),
+      bringsTogetherIsEighth: sections[7] === bringsTogetherSection,
+      bringsTogetherFlowsToGraph: bringsTogetherSection?.nextElementSibling?.classList.contains("is-graph-section"),
       lonelinessTitle: title(lonelinessSection),
       humanSurfaceTitle: title(humanSurfaceSection),
       humanSurfaceIntro: normalize(humanSurfaceSection?.querySelector(".human-surface-sectionline")?.textContent),
@@ -397,6 +401,10 @@ test("the public story resolves the twist with the existing interface thesis", a
     fourthTitle: "Human Conversation is the operating system for real-world social communities.",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
     operatingSystemFlowsToTaps: true,
+    bringsTogetherTitle:
+      "99% of communication technology puts an interface between us. Human Conversation brings us back.",
+    bringsTogetherIsEighth: true,
+    bringsTogetherFlowsToGraph: true,
     lonelinessTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
     humanSurfaceTitle: "Humans stay above the surface. AI handles underneath.",
@@ -475,6 +483,72 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.89\)/);
   assert.ok(firstPanel.horizontalOverflow <= 1);
   assertRuntimeHealthy();
+});
+
+test("the 99% communication-technology thesis lands mid-story and stays readable", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl(PUBLIC_VARIANT));
+    await page.waitFor(`document.querySelector("#landing-story .is-brings-together-section .brings-together-stat")`);
+    await page.evaluate(`document.querySelector("#landing-story .is-brings-together-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
+      const section = document.querySelector("#landing-story .is-brings-together-section");
+      const title = section?.querySelector(".story-title");
+      const premise = section?.querySelector(".brings-together-premise");
+      const stat = section?.querySelector(".brings-together-stat");
+      const returnLine = section?.querySelector(".brings-together-gold");
+      const cue = section?.querySelector(".section-cue");
+      const rect = (element) => {
+        const box = element?.getBoundingClientRect();
+        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left, height: box.height } : null;
+      };
+      return {
+        title: normalize(title?.textContent),
+        premise: normalize(premise?.textContent),
+        returnLine: normalize(returnLine?.textContent),
+        index: sections.indexOf(section),
+        total: sections.length,
+        previousIsAttention: section?.previousElementSibling?.classList.contains("is-attention-section"),
+        nextIsGraph: section?.nextElementSibling?.classList.contains("is-graph-section"),
+        sectionRect: rect(section),
+        titleRect: rect(title),
+        cueRect: rect(cue),
+        statColor: stat ? getComputedStyle(stat).color : null,
+        returnColor: returnLine ? getComputedStyle(returnLine).color : null,
+        backgroundImage: section ? getComputedStyle(section, "::before").backgroundImage : "",
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(
+      layout.title,
+      "99% of communication technology puts an interface between us. Human Conversation brings us back.",
+    );
+    assert.equal(layout.premise, "99% of communication technology puts an interface between us.");
+    assert.equal(layout.returnLine, "Human Conversation brings us back.");
+    assert.equal(layout.index, 7, "the thesis is the eighth section, not part of the opening sequence");
+    assert.equal(layout.total, 13);
+    assert.equal(layout.previousIsAttention, true);
+    assert.equal(layout.nextIsGraph, true);
+    assert.equal(layout.statColor, "rgb(91, 143, 212)");
+    assert.equal(layout.returnColor, "rgb(232, 189, 94)");
+    assert.match(layout.backgroundImage, /hc-art-brings-together-community-engine-20260705\.png/);
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} communication thesis has no horizontal overflow`);
+    assert.ok(layout.sectionRect.height >= height - 1, `${width}x${height} communication thesis fills the viewport`);
+    assert.ok(layout.titleRect.left >= -1 && layout.titleRect.right <= width + 1, `${width}x${height} communication thesis fits horizontally`);
+    assert.ok(layout.titleRect.top >= layout.sectionRect.top - 1, `${width}x${height} communication thesis starts inside its section`);
+    assert.ok(layout.titleRect.bottom <= layout.sectionRect.bottom + 1, `${width}x${height} communication thesis ends inside its section`);
+    assert.ok(layout.titleRect.bottom < layout.cueRect.top, `${width}x${height} continuation control clears the communication thesis`);
+
+    assertRuntimeHealthy();
+  }
 });
 
 test("the human and AI surface section stays clear on desktop and narrow phones", async () => {

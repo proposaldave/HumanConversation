@@ -634,34 +634,58 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
   assertRuntimeHealthy();
 });
 
-test("the restored closing line sits beside the signup card on desktop and stacks cleanly on phones", async () => {
+test("the closing line and 1% / 99% promise stay clear beside the signup card", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
+    [320, 800],
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelector("#landing-story .is-final-cta-section .final-cta-side-callout")`);
+    await page.waitFor(`document.querySelector("#landing-story .is-final-cta-section .final-cta-ratio")`);
     await page.evaluate(`document.querySelector("#landing-story .is-final-cta-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
 
     const layout = await page.evaluate(`(() => {
       const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
-      const card = document.querySelector("#landing-story .is-final-cta-section .future-story-inner");
+      const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
+      const section = document.querySelector("#landing-story .is-final-cta-section");
+      const card = section?.querySelector(".future-story-inner");
       const callout = card?.querySelector(".final-cta-side-callout");
+      const signup = card?.querySelector(".story-contact");
+      const ratio = card?.querySelector(".final-cta-ratio");
       const cardRect = card?.getBoundingClientRect();
       const calloutRect = callout?.getBoundingClientRect();
+      const signupRect = signup?.getBoundingClientRect();
+      const ratioRect = ratio?.getBoundingClientRect();
       return {
         text: normalize(callout?.textContent),
+        kicker: normalize(ratio?.querySelector(".final-cta-ratio-kicker")?.textContent),
+        screen: normalize(ratio?.querySelector(".final-cta-ratio-screen")?.textContent),
+        human: normalize(ratio?.querySelector(".final-cta-ratio-human")?.textContent),
+        promise: normalize(ratio?.querySelector(".final-cta-ratio-promise")?.textContent),
         position: callout ? getComputedStyle(callout).position : null,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        card: cardRect ? { left: cardRect.left, right: cardRect.right } : null,
-        callout: calloutRect ? { left: calloutRect.left, right: calloutRect.right } : null,
+        finalIsLast: sections.at(-1) === section,
+        continuationControlPresent: Boolean(section?.querySelector(".section-cue")),
+        card: cardRect ? { top: cardRect.top, right: cardRect.right, bottom: cardRect.bottom, left: cardRect.left } : null,
+        callout: calloutRect ? { top: calloutRect.top, right: calloutRect.right, bottom: calloutRect.bottom, left: calloutRect.left } : null,
+        signup: signupRect ? { top: signupRect.top, right: signupRect.right, bottom: signupRect.bottom, left: signupRect.left } : null,
+        ratio: ratioRect ? { top: ratioRect.top, right: ratioRect.right, bottom: ratioRect.bottom, left: ratioRect.left } : null,
       };
     })()`);
 
     assert.equal(layout.text, "The next great interface is the person in front of you.");
+    assert.equal(layout.kicker, "Imagine your life.");
+    assert.equal(layout.screen, "1% screen time.");
+    assert.equal(layout.human, "99% human time.");
+    assert.equal(layout.promise, "A life that runs on Human Conversation and connected experiences.");
+    assert.equal(layout.finalIsLast, true);
+    assert.equal(layout.continuationControlPresent, false);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} closing section has no horizontal overflow`);
-    assert.ok(layout.card && layout.callout, `${width}x${height} closing card and restored line are present`);
+    assert.ok(layout.card && layout.callout && layout.signup && layout.ratio, `${width}x${height} closing card, signup, line, and ratio are present`);
+    assert.ok(layout.ratio.left >= layout.card.left - 1 && layout.ratio.right <= layout.card.right + 1, `${width}x${height} ratio stays inside the closing card`);
+    assert.ok(layout.signup.bottom <= layout.ratio.top, `${width}x${height} ratio follows the signup without overlap`);
+    assert.ok(layout.ratio.bottom <= layout.card.bottom + 1, `${width}x${height} ratio stays inside the closing card vertically`);
 
     if (width > 1120) {
       assert.equal(layout.position, "absolute");
@@ -671,6 +695,7 @@ test("the restored closing line sits beside the signup card on desktop and stack
       assert.equal(layout.position, "static");
       assert.ok(layout.callout.left >= layout.card.left - 1, "phone line starts inside the signup card");
       assert.ok(layout.callout.right <= layout.card.right + 1, "phone line stays inside the signup card");
+      assert.ok(layout.callout.bottom <= layout.ratio.top, `${width}x${height} closing line clears the ratio`);
     }
 
     assertRuntimeHealthy();

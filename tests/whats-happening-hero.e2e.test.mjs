@@ -148,6 +148,37 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
   assertRuntimeHealthy();
 });
 
+test("every visible What’s happening phrase is italicized across the public page", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl());
+    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 5`);
+
+    const phrases = await page.evaluate(`(() => ({
+      items: Array.from(document.querySelectorAll(".page[data-variant='conversation-intelligence-home'] .whats-happening-phrase"))
+        .map((element) => ({
+          text: element.textContent.trim().toLowerCase(),
+          tagName: element.tagName,
+          fontStyle: getComputedStyle(element).fontStyle,
+          fontSynthesis: getComputedStyle(element).fontSynthesis,
+        })),
+      horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    }))()`);
+
+    assert.equal(phrases.items.length, 5, `${width}x${height} finds every visible phrase`);
+    assert.ok(phrases.items.every((item) => item.text === "what’s happening"));
+    assert.ok(phrases.items.every((item) => item.tagName === "EM"));
+    assert.ok(phrases.items.every((item) => item.fontStyle === "italic"));
+    assert.ok(phrases.items.every((item) => item.fontSynthesis.includes("style")));
+    assert.ok(phrases.horizontalOverflow <= 1, `${width}x${height} italic treatment does not overflow`);
+    assertRuntimeHealthy();
+  }
+});
+
 test("the question travels through Twitter, Slack, and the real world", async () => {
   const opacityState = async () =>
     page.evaluate(`(() => ({

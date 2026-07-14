@@ -331,6 +331,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const cue = document.querySelector("#landing-hero .story-cue");
     const cheskySection = document.querySelector("#landing-story .is-next-interface-section");
     const lonelinessSection = document.querySelector("#landing-story .is-lonely-return-section");
+    const timelessSection = document.querySelector("#landing-story .is-timeless-fullscreen-section");
     return {
       variant: document.querySelector(".page")?.dataset.variant,
       heroClass: document.querySelector("#landing-hero")?.className,
@@ -352,7 +353,9 @@ test("the public story resolves the twist with the existing interface thesis", a
         sections[3]?.nextElementSibling === sections[4] &&
         sections[4]?.classList.contains("is-taps-premium-section"),
       lonelinessTitle: title(lonelinessSection),
-      lonelinessFlowsToFuture: lonelinessSection?.nextElementSibling?.classList.contains("is-final-cta-section"),
+      lonelinessFlowsToTimeless: lonelinessSection?.nextElementSibling === timelessSection,
+      timelessIsSecondToLast: sections.at(-2) === timelessSection,
+      timelessFlowsToFuture: timelessSection?.nextElementSibling?.classList.contains("is-final-cta-section"),
       cheskyHeadlinePresent: Boolean(cheskySection?.querySelector(".story-title")),
       cheskyQuote: normalize(cheskySection?.querySelector(".story-quote p")?.textContent),
       cheskyAuthor: normalize(cheskySection?.querySelector(".story-quote cite")?.textContent),
@@ -387,7 +390,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     operatingSystemFlowsToTaps: true,
     lonelinessTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
-    lonelinessFlowsToFuture: true,
+    lonelinessFlowsToTimeless: true,
+    timelessIsSecondToLast: true,
+    timelessFlowsToFuture: true,
     cheskyHeadlinePresent: false,
     cheskyQuote:
       "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",

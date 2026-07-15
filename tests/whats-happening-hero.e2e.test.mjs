@@ -942,6 +942,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
       const signupRect = signup?.getBoundingClientRect();
       const ratioRect = ratio?.getBoundingClientRect();
       return {
+        copy: normalize(card?.querySelector(".future-story-side .story-body")?.textContent),
         text: normalize(callout?.textContent),
         kicker: normalize(ratio?.querySelector(".final-cta-ratio-kicker")?.textContent),
         screen: normalize(ratio?.querySelector(".final-cta-ratio-screen")?.textContent),
@@ -958,6 +959,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
       };
     })()`);
 
+    assert.equal(layout.copy, "Human Conversation handles the work around those human moments: 99% human time, 1% screen time.");
     assert.equal(layout.text, "The next great interface is the person in front of you.");
     assert.equal(layout.kicker, "Imagine your life.");
     assert.equal(layout.screen, "1% screen time.");

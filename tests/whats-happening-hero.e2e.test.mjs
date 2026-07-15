@@ -121,7 +121,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     slackLabel: "Organizations ✓ Solved",
     humanBrand: "Human Conversation",
     humanQuestion: "What’s happening within us, between us, and around us?",
-    humanSupport: "Every important human system needs a way to understand its present state.",
+    humanSupport: "Every important human system needs a way to see the truth of what’s happening within it.",
     humanMarkParts: 3,
     dataSentence: "",
     twist: "",
@@ -132,7 +132,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. Digital Communities, solved. What’s happening around the world? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social communities, unsolved. What’s happening within us, between us, and around us? Every important human system needs a way to understand its present state.",
+      "2009. Twitter. Digital Communities, solved. What’s happening around the world? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social communities, unsolved. What’s happening within us, between us, and around us? Every important human system needs a way to see the truth of what’s happening within it.",
     contactDisplay: "none",
     storyHidden: false,
     storySections: 13,
@@ -148,7 +148,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
   assertRuntimeHealthy();
 });
 
-test("every remaining visible What’s happening phrase is italicized across the public page", async () => {
+test("every visible What’s happening phrase is italicized across the public page", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -156,7 +156,7 @@ test("every remaining visible What’s happening phrase is italicized across the
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
-    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 4`);
+    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 5`);
 
     const phrases = await page.evaluate(`(() => ({
       items: Array.from(document.querySelectorAll(".page[data-variant='conversation-intelligence-home'] .whats-happening-phrase"))
@@ -169,7 +169,7 @@ test("every remaining visible What’s happening phrase is italicized across the
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     }))()`);
 
-    assert.equal(phrases.items.length, 4, `${width}x${height} finds every visible phrase`);
+    assert.equal(phrases.items.length, 5, `${width}x${height} finds every visible phrase`);
     assert.ok(phrases.items.every((item) => item.text === "what’s happening"));
     assert.ok(phrases.items.every((item) => item.tagName === "EM"));
     assert.ok(phrases.items.every((item) => item.fontStyle === "italic"));

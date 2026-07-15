@@ -416,7 +416,6 @@ test("the contact email stays fixed top-right from hero through the final sectio
       target: "#landing-story .is-final-cta-section",
       protectedSelectors: [
         "#landing-story .is-final-cta-section .future-story-inner",
-        "#landing-story .is-final-cta-section .final-cta-side-callout",
       ],
     },
   ];
@@ -670,7 +669,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     cueDismissed: false,
     cueLabel: "Go to 2014: Slack",
     bannedCopyPresent: false,
-    finalCtaSideCallout: "The next great interface is the person in front of you.",
+    finalCtaSideCallout: "",
   });
 
   await showStage("human");
@@ -1026,7 +1025,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
     })()`);
 
     assert.equal(layout.copy, "Human Conversation handles the work around those human moments: 99% human time, 1% screen time.");
-    assert.equal(layout.text, "The next great interface is the person in front of you.");
+    assert.equal(layout.text, "");
     assert.equal(layout.kicker, "Imagine your life.");
     assert.equal(layout.screen, "1% screen time.");
     assert.equal(layout.human, "99% human time.");
@@ -1034,21 +1033,13 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
     assert.equal(layout.finalIsLast, true);
     assert.equal(layout.continuationControlPresent, false);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} closing section has no horizontal overflow`);
-    assert.ok(layout.card && layout.callout && layout.signup && layout.ratio, `${width}x${height} closing card, signup, line, and ratio are present`);
+    assert.equal(layout.callout, null, `${width}x${height} removes the rejected side callout`);
+    assert.ok(layout.card && layout.signup && layout.ratio, `${width}x${height} closing card, signup, and ratio are present`);
     assert.ok(layout.ratio.left >= layout.card.left - 1 && layout.ratio.right <= layout.card.right + 1, `${width}x${height} ratio stays inside the closing card`);
     assert.ok(layout.signup.bottom <= layout.ratio.top, `${width}x${height} ratio follows the signup without overlap`);
     assert.ok(layout.ratio.bottom <= layout.card.bottom + 1, `${width}x${height} ratio stays inside the closing card vertically`);
 
-    if (width > 1120) {
-      assert.equal(layout.position, "absolute");
-      assert.ok(layout.callout.left > layout.card.right, "desktop line sits to the right of the signup card");
-      assert.ok(layout.callout.right <= width + 1, "desktop line stays inside the viewport");
-    } else {
-      assert.equal(layout.position, "static");
-      assert.ok(layout.callout.left >= layout.card.left - 1, "phone line starts inside the signup card");
-      assert.ok(layout.callout.right <= layout.card.right + 1, "phone line stays inside the signup card");
-      assert.ok(layout.callout.bottom <= layout.ratio.top, `${width}x${height} closing line clears the ratio`);
-    }
+    assert.equal(layout.position, null, `${width}x${height} has no side-callout positioning`);
 
     assertRuntimeHealthy();
   }

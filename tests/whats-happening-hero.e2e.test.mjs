@@ -179,7 +179,42 @@ test("every visible What’s happening phrase is italicized across the public pa
   }
 });
 
+test("the Human Conversation question highlights its three relational directions in the brand color", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl());
+    await showStage("human");
+
+    const relations = await page.evaluate(`(() => {
+      const question = document.querySelector(".community-stage-human .community-question");
+      return {
+        items: Array.from(question?.querySelectorAll(".community-human-relation") || []).map((element) => ({
+          text: element.textContent.trim(),
+          color: getComputedStyle(element).color,
+        })),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.deepEqual(relations.items, [
+      { text: "within us", color: "rgb(214, 138, 154)" },
+      { text: "between us", color: "rgb(214, 138, 154)" },
+      { text: "around us", color: "rgb(214, 138, 154)" },
+    ]);
+    assert.ok(relations.horizontalOverflow <= 1, `${width}x${height} relational highlight does not overflow`);
+    assertRuntimeHealthy();
+  }
+});
+
 test("the question travels through Twitter, Slack, and the real world", async () => {
+  await page.setViewport(1440, 900);
+  await page.navigate(reviewUrl());
+  await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
+
   const opacityState = async () =>
     page.evaluate(`(() => ({
       twitter: Number(getComputedStyle(document.querySelector(".community-stage-twitter")).opacity),

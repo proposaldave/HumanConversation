@@ -534,6 +534,45 @@ test("the contact email stays fixed top-right from hero through the final sectio
   }
 });
 
+test("the thousand-taps feeling panel clears the headline on short desktop screens", async () => {
+  const width = 1312;
+  const height = 690;
+  await page.setViewport(width, height);
+  await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.evaluate(`document.querySelector("#landing-story .is-taps-premium-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+  await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-taps-premium-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+  const layout = await page.evaluate(`(() => {
+    const rect = (element) => {
+      const box = element?.getBoundingClientRect();
+      return box ? {
+        top: box.top,
+        right: box.right,
+        bottom: box.bottom,
+        left: box.left,
+        width: box.width,
+        height: box.height,
+      } : null;
+    };
+    const section = document.querySelector("#landing-story .is-taps-premium-section");
+    return {
+      horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      title: rect(section?.querySelector(".taps-premium-story-title")),
+      callout: rect(section?.querySelector(".taps-premium-feeling-callout")),
+      cue: rect(section?.querySelector(".section-cue")),
+      sectionHeight: section?.offsetHeight || 0,
+    };
+  })()`);
+
+  assert.ok(layout.horizontalOverflow <= 1, "1312x690 thousand-taps section overflows horizontally");
+  assert.ok(layout.title && layout.callout && layout.cue, "1312x690 thousand-taps content renders");
+  assert.ok(layout.title.bottom + 24 <= layout.callout.top, `1312x690 feeling panel overlaps the headline: ${JSON.stringify(layout)}`);
+  assert.ok(layout.callout.bottom + 24 <= layout.cue.top, "1312x690 continuation control overlaps the feeling panel");
+  assert.ok(layout.sectionHeight >= 840, "1312x690 short-screen reflow preserves readable vertical space");
+  assertRuntimeHealthy();
+});
+
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));

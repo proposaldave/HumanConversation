@@ -5732,6 +5732,34 @@
         font-size: 0.72rem;
       }
 
+      @media (min-width: 761px) and (max-height: 760px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
+          flex-direction: column;
+          justify-content: flex-start;
+          min-height: 840px;
+          gap: 52px;
+          padding: 76px 0 88px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-inner {
+          grid-template-columns: minmax(0, 760px);
+          flex: 0 0 auto;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-story-title.story-title {
+          max-width: 720px;
+          font-size: clamp(3.4rem, 5.55vw, 5.1rem);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: min(100% - 64px, 560px);
+          margin: 0 auto;
+        }
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-timeless-fullscreen-section,
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section {

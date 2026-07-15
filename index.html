@@ -5297,10 +5297,15 @@
       }
 
       @media (max-width: 360px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain {
+          align-items: flex-start;
+          gap: 6px;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-community,
-        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-repeat-connection-high {
-          padding: 9px 10px;
-          font-size: 0.76rem;
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-reliable-connection-high {
+          padding: 8px 7px;
+          font-size: 0.68rem;
         }
       }
 
@@ -17200,7 +17205,7 @@
                 copy: [
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
-                chain: ["disconnection", "connection", "trust", "data", "coordination", "community", "repeat connection-high"],
+                chain: ["disconnection", "connection", "trust", "data", "coordination", "community", "reliable connection-high"],
                 mobileChainBreakBefore: "community",
                 scene: "solves-disconnection",
                 className: "is-product is-solves-disconnection-section",

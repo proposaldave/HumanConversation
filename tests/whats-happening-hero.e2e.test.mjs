@@ -1070,7 +1070,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   }
 });
 
-test("the mobile connection chain ends with community and repeat connection-high together", async () => {
+test("the mobile connection chain ends with community and reliable connection-high together", async () => {
   for (const [width, height] of [
     [504, 844],
     [390, 844],
@@ -1078,13 +1078,13 @@ test("the mobile connection chain ends with community and repeat connection-high
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelector("#landing-story .is-solves-disconnection-section .story-chain-repeat-connection-high")`);
+    await page.waitFor(`document.querySelector("#landing-story .is-solves-disconnection-section .story-chain-reliable-connection-high")`);
 
     const layout = await page.evaluate(`(() => {
       const section = document.querySelector("#landing-story .is-solves-disconnection-section");
       const chain = section?.querySelector(".story-chain");
       const community = chain?.querySelector(".story-chain-community");
-      const repeat = chain?.querySelector(".story-chain-repeat-connection-high");
+      const repeat = chain?.querySelector(".story-chain-reliable-connection-high");
       const connector = community?.nextElementSibling;
       const mobileBreak = chain?.querySelector(".story-chain-mobile-break");
       const toRect = (element) => {

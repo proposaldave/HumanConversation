@@ -629,7 +629,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       heroStage: document.querySelector("#landing-hero")?.dataset.communityStage,
       sectionCount: sections.length,
       firstIsCommunityTruth: sections[0]?.classList.contains("is-community-truth-section"),
-      secondIsSolvesDisconnection: sections[1]?.classList.contains("is-solves-disconnection-section"),
+      secondIsInterfaceOpposite: sections[1]?.classList.contains("is-interface-opposite-section"),
       firstFlowsDirectlyToSecond: sections[0]?.nextElementSibling === sections[1],
       firstCopy: normalize(sections[0]?.querySelector(".story-copy-block")?.textContent),
       firstTitle: title(sections[0]),
@@ -638,12 +638,12 @@ test("the public story resolves the twist with the existing interface thesis", a
       thirdTitle: title(sections[2]),
       fourthTitle: title(sections[3]),
       fifthTitle: title(sections[4]),
-      operatingSystemFlowsToInterface:
-        sections[2]?.classList.contains("is-real-world-os-section") &&
-        sections[2]?.nextElementSibling === sections[3] &&
-        sections[3]?.classList.contains("is-interface-opposite-section"),
-      interfaceFlowsToTaps:
-        sections[3]?.classList.contains("is-interface-opposite-section") &&
+      interfaceFlowsToSolves:
+        sections[1]?.classList.contains("is-interface-opposite-section") &&
+        sections[1]?.nextElementSibling === sections[2] &&
+        sections[2]?.classList.contains("is-solves-disconnection-section"),
+      operatingSystemFlowsToTaps:
+        sections[3]?.classList.contains("is-real-world-os-section") &&
         sections[3]?.nextElementSibling === sections[4] &&
         sections[4]?.classList.contains("is-taps-premium-section"),
       bringsTogetherTitle: title(bringsTogetherSection),
@@ -672,19 +672,19 @@ test("the public story resolves the twist with the existing interface thesis", a
     heroStage: "twitter",
     sectionCount: 13,
     firstIsCommunityTruth: true,
-    secondIsSolvesDisconnection: true,
+    secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
       "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation, not interfaces.",
     firstTitle:
       "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation, not interfaces.",
     firstBody: "",
-    secondTitle: "Human Conversation solves disconnection.",
-    thirdTitle: "Human Conversation is the operating system for real-world social communities.",
-    fourthTitle: "Building the intelligence around human conversation.",
+    secondTitle: "Building the intelligence around human conversation.",
+    thirdTitle: "Human Conversation solves disconnection.",
+    fourthTitle: "Human Conversation is the operating system for real-world social communities.",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
-    operatingSystemFlowsToInterface: true,
-    interfaceFlowsToTaps: true,
+    interfaceFlowsToSolves: true,
+    operatingSystemFlowsToTaps: true,
     bringsTogetherTitle:
       "99% of communication technology puts an interface between us. Human Conversation brings us back.",
     bringsTogetherIsEighth: true,
@@ -720,30 +720,12 @@ test("the public story resolves the twist with the existing interface thesis", a
   );
 
   await page.evaluate(`document.querySelector("#landing-story .is-community-truth-section .section-cue")?.click()`);
-  await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-solves-disconnection-section")?.getBoundingClientRect().top ?? 9999) < 3`);
-  await page.waitFor(`document.activeElement === document.querySelector("#landing-story .is-solves-disconnection-section")`);
-  assert.equal(
-    await page.evaluate(`document.activeElement === document.querySelector("#landing-story .is-solves-disconnection-section")`),
-    true,
-    "the community-truth cue lands on and focuses the solves-disconnection section",
-  );
-
-  await page.evaluate(`document.querySelector("#landing-story .is-solves-disconnection-section .section-cue")?.click()`);
-  await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-real-world-os-section")?.getBoundingClientRect().top ?? 9999) < 3`);
-  await page.waitFor(`document.activeElement === document.querySelector("#landing-story .is-real-world-os-section")`);
-  assert.equal(
-    await page.evaluate(`document.activeElement === document.querySelector("#landing-story .is-real-world-os-section")`),
-    true,
-    "the solves-disconnection cue lands on and focuses the real-world operating-system section",
-  );
-
-  await page.evaluate(`document.querySelector("#landing-story .is-real-world-os-section .section-cue")?.click()`);
   await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-interface-opposite-section")?.getBoundingClientRect().top ?? 9999) < 3`);
   await page.waitFor(`document.activeElement === document.querySelector("#landing-story .is-interface-opposite-section")`);
   assert.equal(
     await page.evaluate(`document.activeElement === document.querySelector("#landing-story .is-interface-opposite-section")`),
     true,
-    "the real-world operating-system cue lands on and focuses the interface-opposite section",
+    "the community-truth cue lands on and focuses the interface-opposite section",
   );
 
   const firstPanel = await page.evaluate(`(() => {

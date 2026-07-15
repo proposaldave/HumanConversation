@@ -609,8 +609,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       "Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
     secondTitle: "Human Conversation solves disconnection.",
     thirdTitle: "Human Conversation is the operating system for real-world social communities.",
-    fourthTitle:
-      "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.",
+    fourthTitle: "Building the intelligence around human conversation.",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
     operatingSystemFlowsToInterface: true,
     interfaceFlowsToTaps: true,
@@ -679,19 +678,24 @@ test("the public story resolves the twist with the existing interface thesis", a
     const section = document.querySelector("#landing-story .is-interface-opposite-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
     const body = section.querySelector(".story-body");
-    const around = body.querySelector(".interface-opposite-build em");
+    const titleText = String(section.querySelector(".story-title")?.textContent || "").trim();
+    const bodyText = String(body?.textContent || "").trim();
     const bodyRect = body.getBoundingClientRect();
     return {
       top: section.getBoundingClientRect().top,
       height: section.getBoundingClientRect().height,
+      titleText,
+      bodyText,
+      titleFontSize: Number.parseFloat(getComputedStyle(section.querySelector(".story-title")).fontSize),
+      bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
       titleTop: title.top,
       titleBottom: title.bottom,
       bodyTop: bodyRect.top,
       bodyBottom: bodyRect.bottom,
       bodyDisplay: getComputedStyle(body).display,
       bodyBorderLeft: getComputedStyle(body).borderLeftWidth,
-      aroundFontStyle: getComputedStyle(around).fontStyle,
-      aroundTransform: getComputedStyle(around).transform,
+      aroundFontStyle: getComputedStyle(section.querySelector(".interface-opposite-build em")).fontStyle,
+      aroundTransform: getComputedStyle(section.querySelector(".interface-opposite-build em")).transform,
       arrowLength: Number.parseFloat(getComputedStyle(body, "::before").width),
       arrowHead: getComputedStyle(body, "::after").borderTopWidth,
       imageFilter: getComputedStyle(section, "::before").filter,
@@ -702,6 +706,9 @@ test("the public story resolves the twist with the existing interface thesis", a
 
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
+  assert.equal(firstPanel.titleText, "Building the intelligence around human conversation.");
+  assert.equal(firstPanel.bodyText, "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.");
+  assert.ok(firstPanel.titleFontSize > firstPanel.bodyFontSize * 2, "the intelligence claim is the dominant type treatment");
   assert.ok(firstPanel.titleTop >= -1 && firstPanel.titleBottom <= 901);
   assert.ok(firstPanel.bodyTop >= -1 && firstPanel.bodyBottom <= 901);
   assert.equal(firstPanel.bodyDisplay, "grid");

@@ -12660,9 +12660,12 @@
         .community-stage-human
         .community-question {
         max-width: 14ch;
-        font-size: clamp(3.1rem, 5.4vw, 5.7rem);
-        line-height: 0.92;
-        letter-spacing: -0.052em;
+      }
+
+      .page[data-variant="conversation-intelligence-home"]
+        .hero-community-pulse[data-community-stage="human"]
+        .lede {
+        bottom: clamp(72px, 8vh, 88px);
       }
 
       .hero-community-pulse .community-platform-story {

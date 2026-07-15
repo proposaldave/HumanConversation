@@ -288,6 +288,8 @@ test("the public Human Conversation question leads into a smaller present-state 
     const layout = await page.evaluate(`(() => {
       const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
       const question = document.querySelector(".community-stage-human .community-question");
+      const twitterQuestion = document.querySelector(".community-stage-twitter .community-question");
+      const slackQuestion = document.querySelector(".community-stage-slack .community-question");
       const support = document.querySelector("#landing-hero .community-human-support");
       const twist = document.querySelector("#landing-hero .community-twist");
       const followArrow = document.querySelector("#landing-hero .community-follow-arrow");
@@ -306,6 +308,8 @@ test("the public Human Conversation question leads into a smaller present-state 
         questionTop: questionRect?.top ?? -1,
         questionBottom: questionRect?.bottom ?? -1,
         questionFontSize: Number.parseFloat(question ? getComputedStyle(question).fontSize : "0"),
+        twitterQuestionFontSize: Number.parseFloat(twitterQuestion ? getComputedStyle(twitterQuestion).fontSize : "0"),
+        slackQuestionFontSize: Number.parseFloat(slackQuestion ? getComputedStyle(slackQuestion).fontSize : "0"),
         supportLeft: supportRect?.left ?? -1,
         supportRight: supportRect?.right ?? -1,
         supportTop: supportRect?.top ?? -1,
@@ -326,7 +330,11 @@ test("the public Human Conversation question leads into a smaller present-state 
     assert.ok(layout.supportLeft >= -1 && layout.supportRight <= width + 1, `${width}x${height} supporting line fits horizontally`);
     assert.ok(layout.supportTop >= -1 && layout.supportBottom <= height + 1, `${width}x${height} supporting line fits vertically`);
     assert.ok(layout.supportFontSize < layout.questionFontSize, `${width}x${height} supporting line is smaller than the question`);
-    assert.ok(layout.questionBottom < layout.supportTop, `${width}x${height} question stays above the supporting line`);
+    if (width > 760) {
+      assert.equal(layout.questionFontSize, layout.twitterQuestionFontSize, `${width}x${height} Human Conversation question matches Twitter scale`);
+      assert.equal(layout.questionFontSize, layout.slackQuestionFontSize, `${width}x${height} Human Conversation question matches Slack scale`);
+    }
+    assert.ok(layout.questionBottom < layout.supportTop, `${width}x${height} question stays above the supporting line: ${JSON.stringify(layout)}`);
     assert.ok(layout.supportBottom < layout.arrowTop, `${width}x${height} supporting line stays above the continuation arrow`);
   }
 

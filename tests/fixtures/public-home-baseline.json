@@ -1,8 +1,8 @@
 {
   "variant": "conversation-intelligence-home",
   "heroClass": "hero hero-community-pulse",
-  "headlineLabel": "2009. Twitter. Digital Communities, solved. What’s happening around the world? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social communities, unsolved. What’s happening within us, between us, and around us? Every important human system needs a way to see the truth of what’s happening within it.",
-  "headlineText": "200920142026twitterDigital Communities ✓ SolvedWhat’s happening around the world?twitterNov 19 · 2009What’s happening?slackOrganizations ✓ SolvedWhat’s happening inside organizations?slack# general# product# randomHuman ConversationReal-world social communities ✕ UnsolvedWhat’s happening within us, between us, and around us?",
+  "headlineLabel": "2009. Twitter. Digital Communities, solved. What’s happening around the world? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening within us, between us, and around us? Every important human system needs a way to see the truth of what’s happening within it.",
+  "headlineText": "200920142026twitterDigital Communities ✓ SolvedWhat’s happening around the world?twitterNov 19 · 2009What’s happening?slackOrganizations ✓ SolvedWhat’s happening inside organizations?slack# general# product# randomHuman ConversationReal-world social networks ✕ UnsolvedWhat’s happening within us, between us, and around us?",
   "ledeText": "Every important human system needs a way to see the truth of what’s happening within it.",
   "headerEmail": "hello@humanconversation.com",
   "storySections": 13,

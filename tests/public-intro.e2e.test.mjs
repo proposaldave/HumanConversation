@@ -111,7 +111,7 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     slackStatus: "Organizations ✓ Solved",
     slackSolvedColor: "rgb(105, 221, 160)",
     slackMarketValuePresent: false,
-    humanStatus: "Real-world social communities ✕ Unsolved",
+    humanStatus: "Real-world social networks ✕ Unsolved",
     humanUnsolvedColor: "rgb(255, 129, 122)",
     humanMarketValuePresent: false,
     statusArrowCount: 0,
@@ -428,7 +428,7 @@ test("the public Human Conversation unsolved status stays within every supported
     })()`);
 
     assert.equal(layout.stage, "human");
-    assert.equal(layout.status, "Real-world social communities ✕ Unsolved");
+    assert.equal(layout.status, "Real-world social networks ✕ Unsolved");
     assert.equal(layout.unsolvedColor, "rgb(255, 129, 122)");
     assert.equal(layout.marketValuePresent, false, "2026 remains the unpriced, unsolved payoff");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);

@@ -269,7 +269,7 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
 });
 
 test("the public Human Conversation question leads into a smaller present-state line above the continuation cue", async () => {
-  const expectedQuestion = "What’s happening in our communities?";
+  const expectedQuestion = "What’s happening within us, between us, and around us?";
   const expectedSupport = "Every important human system needs a way to understand its present state.";
 
   for (const [width, height] of [

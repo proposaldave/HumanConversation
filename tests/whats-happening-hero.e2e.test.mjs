@@ -148,7 +148,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
   assertRuntimeHealthy();
 });
 
-test("every visible What’s happening phrase is italicized across the public page", async () => {
+test("every remaining visible What’s happening phrase is italicized across the public page", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -156,7 +156,7 @@ test("every visible What’s happening phrase is italicized across the public pa
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
-    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 5`);
+    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 4`);
 
     const phrases = await page.evaluate(`(() => ({
       items: Array.from(document.querySelectorAll(".page[data-variant='conversation-intelligence-home'] .whats-happening-phrase"))
@@ -169,7 +169,7 @@ test("every visible What’s happening phrase is italicized across the public pa
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     }))()`);
 
-    assert.equal(phrases.items.length, 5, `${width}x${height} finds every visible phrase`);
+    assert.equal(phrases.items.length, 4, `${width}x${height} finds every visible phrase`);
     assert.ok(phrases.items.every((item) => item.text === "what’s happening"));
     assert.ok(phrases.items.every((item) => item.tagName === "EM"));
     assert.ok(phrases.items.every((item) => item.fontStyle === "italic"));
@@ -641,11 +641,10 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsSolvesDisconnection: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "To really know what’s happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
-    firstTitle:
-      "To really know what’s happening in a community, you have to talk to the people in it.",
-    firstBody:
       "Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
+    firstTitle:
+      "Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.",
+    firstBody: "",
     secondTitle: "Human Conversation solves disconnection.",
     thirdTitle: "Human Conversation is the operating system for real-world social communities.",
     fourthTitle: "Building the intelligence around human conversation.",
@@ -1057,7 +1056,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "To really know what’s happening in a community, you have to talk to the people in it. Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.";
+    "Our human, social, relationship, and community data has always, and will always be communicated through human conversation, not interfaces.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -1109,7 +1108,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
       /hc-art-emotional-signal-conversation-20260705\.png/,
       `${width}x${height} uses the intimate human-conversation scene`,
     );
-    assert.equal(layout.textRects.length, 2, `${width}x${height} renders both copy blocks`);
+    assert.equal(layout.textRects.length, 1, `${width}x${height} renders the community-truth copy block`);
     layout.textRects.forEach((rect, index) => assertFits(rect, `copy block ${index + 1}`));
     assertFits(layout.cueRect, "continuation cue");
     assertRuntimeHealthy();

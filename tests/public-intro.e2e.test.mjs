@@ -257,7 +257,7 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
       "data",
       "coordination",
       "community",
-      "Connection-high Everytime",
+      "connection-high, every time",
     ]);
     assert.equal(layout.arrowCount, 6, `${width}x${height} keeps every connecting arrow`);
     assert.ok(

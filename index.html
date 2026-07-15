@@ -5299,13 +5299,18 @@
       @media (max-width: 360px) {
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain {
           align-items: flex-start;
-          gap: 6px;
+          gap: 4px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-community,
-        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-connection-high-everytime {
-          padding: 8px 7px;
-          font-size: 0.68rem;
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-solves-disconnection-section .story-chain .story-chain-connection-high-every-time {
+          max-width: 108px;
+          padding: 8px 5px;
+          font-size: 0.6rem;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+          text-align: center;
+          white-space: normal;
         }
       }
 
@@ -17248,7 +17253,7 @@
                 copy: [
                   `<span class="product-name">Human Conversation</span> is the sales engine that gives community builders the next person to talk to, the context, captures the signal, then takes action.`,
                 ],
-                chain: ["disconnection", "connection", "trust", "data", "coordination", "community", "Connection-high Everytime"],
+                chain: ["disconnection", "connection", "trust", "data", "coordination", "community", "connection-high, every time"],
                 mobileChainBreakBefore: "community",
                 scene: "solves-disconnection",
                 className: "is-product is-solves-disconnection-section",

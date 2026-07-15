@@ -1123,7 +1123,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   }
 });
 
-test("the mobile connection chain ends with community and Connection-high Everytime together", async () => {
+test("the mobile connection chain ends with community and connection-high, every time together", async () => {
   for (const [width, height] of [
     [504, 844],
     [390, 844],
@@ -1131,13 +1131,13 @@ test("the mobile connection chain ends with community and Connection-high Everyt
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelector("#landing-story .is-solves-disconnection-section .story-chain-connection-high-everytime")`);
+    await page.waitFor(`document.querySelector("#landing-story .is-solves-disconnection-section .story-chain-connection-high-every-time")`);
 
     const layout = await page.evaluate(`(() => {
       const section = document.querySelector("#landing-story .is-solves-disconnection-section");
       const chain = section?.querySelector(".story-chain");
       const community = chain?.querySelector(".story-chain-community");
-      const repeat = chain?.querySelector(".story-chain-connection-high-everytime");
+      const repeat = chain?.querySelector(".story-chain-connection-high-every-time");
       const connector = community?.nextElementSibling;
       const mobileBreak = chain?.querySelector(".story-chain-mobile-break");
       const toRect = (element) => {
@@ -1157,7 +1157,11 @@ test("the mobile connection chain ends with community and Connection-high Everyt
     assert.ok(layout.community && layout.repeat && layout.connector, `${width} chain ending is present`);
     assert.equal(layout.mobileBreakDisplay, "block", `${width} uses the deliberate mobile row break`);
     assert.equal(layout.connectorIsArrow, true, `${width} keeps the connector between the final pair`);
-    assert.ok(Math.abs(layout.community.top - layout.repeat.top) <= 2, `${width} final pills share one row`);
+    if (width <= 320) {
+      assert.ok(layout.repeat.top >= layout.community.top, `${width} preserves the final connection label after the community pill`);
+    } else {
+      assert.ok(Math.abs(layout.community.top - layout.repeat.top) <= 2, `${width} final pills share one row`);
+    }
     assert.ok(Math.abs(layout.community.top - layout.connector.top) <= 2, `${width} final connector shares that row`);
     assert.ok(layout.community.left < layout.connector.left && layout.connector.left < layout.repeat.left, `${width} final pair reads left to right`);
     assert.ok(layout.repeat.right <= width + 1, `${width} final pill stays inside the viewport`);

@@ -293,9 +293,11 @@ test("the public Human Conversation question leads into a smaller present-state 
       const support = document.querySelector("#landing-hero .community-human-support");
       const twist = document.querySelector("#landing-hero .community-twist");
       const followArrow = document.querySelector("#landing-hero .community-follow-arrow");
+      const storyCue = document.querySelector("#landing-hero .story-cue");
       const questionRect = question?.getBoundingClientRect();
       const supportRect = support?.getBoundingClientRect();
       const arrowRect = followArrow?.getBoundingClientRect();
+      const cueRect = storyCue?.getBoundingClientRect();
       return {
         question: normalize(question?.textContent),
         support: normalize(support?.textContent),
@@ -316,6 +318,7 @@ test("the public Human Conversation question leads into a smaller present-state 
         supportBottom: supportRect?.bottom ?? -1,
         supportFontSize: Number.parseFloat(support ? getComputedStyle(support).fontSize : "0"),
         arrowTop: arrowRect?.top ?? -1,
+        cueTop: cueRect?.top ?? -1,
       };
     })()`);
 
@@ -336,6 +339,7 @@ test("the public Human Conversation question leads into a smaller present-state 
     }
     assert.ok(layout.questionBottom < layout.supportTop, `${width}x${height} question stays above the supporting line: ${JSON.stringify(layout)}`);
     assert.ok(layout.supportBottom < layout.arrowTop, `${width}x${height} supporting line stays above the continuation arrow`);
+    assert.ok(layout.arrowTop < layout.cueTop, `${width}x${height} continuation arrow stays clear of the circular control: ${JSON.stringify(layout)}`);
   }
 
   assertRuntimeHealthy();

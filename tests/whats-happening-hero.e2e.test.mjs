@@ -675,9 +675,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation, not interfaces.",
+      "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.",
     firstTitle:
-      "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation, not interfaces.",
+      "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
     secondTitle: "Building the intelligence around human conversation.",
     thirdTitle: "Human Conversation solves disconnection.",
@@ -1064,7 +1064,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation, not interfaces.";
+    "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.";
 
   for (const [width, height] of [
     [1440, 900],

@@ -686,7 +686,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     interfaceFlowsToSolves: true,
     operatingSystemFlowsToTaps: true,
     bringsTogetherTitle:
-      "99% of communication technology puts an interface between us. Human Conversation brings us back together.",
+      "99% of communication technology puts an interface between us. Human Conversation brings us together.",
     bringsTogetherIsEighth: true,
     bringsTogetherFlowsToGraph: true,
     lonelinessTitle:
@@ -821,10 +821,10 @@ test("the 99% communication-technology thesis lands mid-story and stays readable
 
     assert.equal(
       layout.title,
-      "99% of communication technology puts an interface between us. Human Conversation brings us back together.",
+      "99% of communication technology puts an interface between us. Human Conversation brings us together.",
     );
     assert.equal(layout.premise, "99% of communication technology puts an interface between us.");
-    assert.equal(layout.returnLine, "Human Conversation brings us back together.");
+    assert.equal(layout.returnLine, "Human Conversation brings us together.");
     assert.equal(layout.index, 7, "the thesis is the eighth section, not part of the opening sequence");
     assert.equal(layout.total, 13);
     assert.equal(layout.previousIsAttention, true);

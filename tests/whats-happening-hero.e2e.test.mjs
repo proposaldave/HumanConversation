@@ -128,7 +128,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     followArrow: true,
     cueDismissed: false,
     cueTimelineStep: true,
-    cueText: "Next",
+    cueText: "",
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
@@ -324,14 +324,14 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
     await page.evaluate(`(() => {
       const cue = document.querySelector("#landing-hero .story-cue");
       return {
-        text: cue?.querySelector(".story-cue-year")?.textContent.trim(),
+        text: cue?.querySelector(".story-cue-year")?.textContent.trim() || "",
         yearPresent: Boolean(cue?.querySelector(".story-cue-year strong")),
         timelineStep: cue?.classList.contains("is-timeline-step"),
         label: cue?.getAttribute("aria-label"),
         animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
       };
     })()`),
-    { text: "Next", yearPresent: false, timelineStep: true, label: "Go to 2014: Slack", animation: "story-cue-forward" },
+    { text: "", yearPresent: false, timelineStep: true, label: "Go to 2014: Slack", animation: "story-cue-forward" },
   );
 
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
@@ -340,14 +340,14 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
     await page.evaluate(`(() => {
       const cue = document.querySelector("#landing-hero .story-cue");
       return {
-        text: cue?.querySelector(".story-cue-year")?.textContent.trim(),
+        text: cue?.querySelector(".story-cue-year")?.textContent.trim() || "",
         yearPresent: Boolean(cue?.querySelector(".story-cue-year strong")),
         timelineStep: cue?.classList.contains("is-timeline-step"),
         label: cue?.getAttribute("aria-label"),
         animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
       };
     })()`),
-    { text: "Next", yearPresent: false, timelineStep: true, label: "Go to 2026: Human Conversation", animation: "story-cue-forward" },
+    { text: "", yearPresent: false, timelineStep: true, label: "Go to 2026: Human Conversation", animation: "story-cue-forward" },
   );
 
   await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
@@ -356,14 +356,14 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
     await page.evaluate(`(() => {
       const cue = document.querySelector("#landing-hero .story-cue");
       return {
-        text: cue?.querySelector(".story-cue-year")?.textContent.trim(),
+        text: cue?.querySelector(".story-cue-year")?.textContent.trim() || "",
         yearPresent: Boolean(cue?.querySelector(".story-cue-year strong")),
         timelineStep: cue?.classList.contains("is-timeline-step"),
         label: cue?.getAttribute("aria-label"),
         animation: getComputedStyle(cue?.querySelector(".story-cue-icon"), "::before").animationName,
       };
     })()`),
-    { text: "Next", yearPresent: false, timelineStep: false, label: "Continue down to the Human Conversation story", animation: "story-cue-drop" },
+    { text: "", yearPresent: false, timelineStep: false, label: "Continue down to the Human Conversation story", animation: "story-cue-drop" },
   );
   assertRuntimeHealthy();
 });

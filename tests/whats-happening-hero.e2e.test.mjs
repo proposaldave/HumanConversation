@@ -120,7 +120,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     slackMarketValuePresent: false,
     slackLabel: "Organizations ✓ Solved",
     humanBrand: "Human Conversation",
-    humanQuestion: "What’s happening within us, between us, and around us?",
+    humanQuestion: "What’s happening between us, around us, and within us?",
     humanSupport: "Every important human system needs a way to understand the truth of what’s happening.",
     humanMarkParts: 3,
     dataSentence: "",
@@ -132,7 +132,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. Digital Communities, solved. What’s happening? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening within us, between us, and around us? Every important human system needs a way to understand the truth of what’s happening.",
+      "2009. Twitter. Digital Communities, solved. What’s happening? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Every important human system needs a way to understand the truth of what’s happening.",
     contactDisplay: "none",
     storyHidden: false,
     storySections: 13,
@@ -201,9 +201,9 @@ test("the Human Conversation question highlights its three relational directions
     })()`);
 
     assert.deepEqual(relations.items, [
-      { text: "within us", color: "rgb(214, 138, 154)" },
       { text: "between us", color: "rgb(214, 138, 154)" },
       { text: "around us", color: "rgb(214, 138, 154)" },
+      { text: "within us", color: "rgb(214, 138, 154)" },
     ]);
     assert.ok(relations.horizontalOverflow <= 1, `${width}x${height} relational highlight does not overflow`);
     assertRuntimeHealthy();

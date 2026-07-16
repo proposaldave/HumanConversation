@@ -135,7 +135,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, solved. What’s happening right now? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Every important system needs to understand what’s happening — and know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 13,
+    storySections: 12,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -462,7 +462,7 @@ test("the contact email stays fixed top-right from hero through the final sectio
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
     let fixedAnchor = null;
     let previousScrollY = -1;
@@ -573,7 +573,7 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
   const height = 690;
   await page.setViewport(width, height);
   await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
   await page.evaluate(`document.querySelector("#landing-story .is-taps-premium-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
   await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-taps-premium-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -610,7 +610,7 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
   const sequence = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -648,7 +648,8 @@ test("the public story resolves the twist with the existing interface thesis", a
         sections[3]?.nextElementSibling === sections[4] &&
         sections[4]?.classList.contains("is-taps-premium-section"),
       bringsTogetherTitle: title(bringsTogetherSection),
-      bringsTogetherIsEighth: sections[7] === bringsTogetherSection,
+      connectionFlowSectionPresent: Boolean(document.querySelector("#landing-story .is-connection-flow-section")),
+      bringsTogetherIsSeventh: sections[6] === bringsTogetherSection,
       bringsTogetherFlowsToGraph: bringsTogetherSection?.nextElementSibling?.classList.contains("is-graph-section"),
       lonelinessTitle: title(lonelinessSection),
       humanSurfaceTitle: title(humanSurfaceSection),
@@ -671,7 +672,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     variant: PUBLIC_VARIANT,
     heroClass: "hero hero-community-pulse",
     heroStage: "twitter",
-    sectionCount: 13,
+    sectionCount: 12,
     firstIsCommunityTruth: true,
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
@@ -689,7 +690,8 @@ test("the public story resolves the twist with the existing interface thesis", a
     operatingSystemFlowsToTaps: true,
     bringsTogetherTitle:
       "99% of communication technology puts an interface between us. Human Conversation brings us together.",
-    bringsTogetherIsEighth: true,
+    connectionFlowSectionPresent: false,
+    bringsTogetherIsSeventh: true,
     bringsTogetherFlowsToGraph: true,
     lonelinessTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
@@ -827,8 +829,8 @@ test("the 99% communication-technology thesis lands mid-story and stays readable
     );
     assert.equal(layout.premise, "99% of communication technology puts an interface between us.");
     assert.equal(layout.returnLine, "Human Conversation brings us together.");
-    assert.equal(layout.index, 7, "the thesis is the eighth section, not part of the opening sequence");
-    assert.equal(layout.total, 13);
+    assert.equal(layout.index, 6, "the thesis is the seventh section, not part of the opening sequence");
+    assert.equal(layout.total, 12);
     assert.equal(layout.previousIsAttention, true);
     assert.equal(layout.nextIsGraph, true);
     assert.equal(layout.statColor, "rgb(91, 143, 212)");
@@ -853,7 +855,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await page.evaluate(`document.querySelector("#landing-story .is-human-surface-section")?.scrollIntoView({ behavior: "instant", block: "start" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-human-surface-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -930,7 +932,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
 test("the Brian Chesky quote lives only behind the hidden bottom-left dot", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1075,7 +1077,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await showStage("human");
     await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);

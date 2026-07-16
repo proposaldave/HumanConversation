@@ -13041,6 +13041,13 @@
           transform: none;
         }
 
+        .page[data-variant="conversation-intelligence-home"]
+          .hero-community-pulse
+          .community-stage-human
+          .community-stage-content {
+          transform: none;
+        }
+
         .hero-community-pulse .community-platform {
           gap: 12px;
           margin-bottom: 25px;
@@ -13081,6 +13088,15 @@
           max-width: 7ch;
           font-size: clamp(3.85rem, 17.2vw, 5.2rem);
           line-height: 0.86;
+        }
+
+        .page[data-variant="conversation-intelligence-home"]
+          .hero-community-pulse
+          .community-stage-human
+          .community-question {
+          max-width: 100%;
+          font-size: clamp(2.75rem, 13.5vw, 3.5rem);
+          letter-spacing: -0.058em;
         }
 
         .hero-community-pulse .community-platform-story {
@@ -13177,6 +13193,12 @@
           left: 50%;
         }
 
+        .page[data-variant="conversation-intelligence-home"]
+          .hero-community-pulse[data-community-stage="human"]
+          .lede {
+          bottom: clamp(112px, 15vh, 124px);
+        }
+
         .hero-community-pulse .community-data-line {
           max-width: 100%;
           padding-left: 13px;
@@ -13203,6 +13225,12 @@
         .hero-community-pulse .community-stage {
           padding-top: 112px;
           padding-bottom: 48px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"]
+          .hero-community-pulse
+          .community-stage-human {
+          padding-top: 116px;
         }
 
         .hero-community-pulse .community-platform {

@@ -294,10 +294,14 @@ test("the public Human Conversation question leads into a smaller present-state 
       const twist = document.querySelector("#landing-hero .community-twist");
       const followArrow = document.querySelector("#landing-hero .community-follow-arrow");
       const storyCue = document.querySelector("#landing-hero .story-cue");
+      const progress = document.querySelector("#landing-hero .community-progress");
+      const platform = document.querySelector(".community-stage-human .community-platform");
       const questionRect = question?.getBoundingClientRect();
       const supportRect = support?.getBoundingClientRect();
       const arrowRect = followArrow?.getBoundingClientRect();
       const cueRect = storyCue?.getBoundingClientRect();
+      const progressRect = progress?.getBoundingClientRect();
+      const platformRect = platform?.getBoundingClientRect();
       return {
         question: normalize(question?.textContent),
         support: normalize(support?.textContent),
@@ -319,6 +323,8 @@ test("the public Human Conversation question leads into a smaller present-state 
         supportFontSize: Number.parseFloat(support ? getComputedStyle(support).fontSize : "0"),
         arrowTop: arrowRect?.top ?? -1,
         cueTop: cueRect?.top ?? -1,
+        progressBottom: progressRect?.bottom ?? -1,
+        platformTop: platformRect?.top ?? -1,
       };
     })()`);
 
@@ -336,6 +342,15 @@ test("the public Human Conversation question leads into a smaller present-state 
     if (width > 760) {
       assert.equal(layout.questionFontSize, layout.twitterQuestionFontSize, `${width}x${height} Human Conversation question matches Twitter scale`);
       assert.equal(layout.questionFontSize, layout.slackQuestionFontSize, `${width}x${height} Human Conversation question matches Slack scale`);
+    } else {
+      assert.ok(
+        layout.platformTop >= layout.progressBottom + 8,
+        `${width}x${height} Human Conversation identity clears the timeline: ${JSON.stringify(layout)}`,
+      );
+      assert.ok(
+        layout.questionFontSize <= 56,
+        `${width}x${height} Human Conversation question keeps a phone-safe scale: ${JSON.stringify(layout)}`,
+      );
     }
     assert.ok(layout.questionBottom < layout.supportTop, `${width}x${height} question stays above the supporting line: ${JSON.stringify(layout)}`);
     assert.ok(layout.supportBottom < layout.arrowTop, `${width}x${height} supporting line stays above the continuation arrow`);

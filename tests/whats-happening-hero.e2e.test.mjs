@@ -681,7 +681,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstBody: "",
     secondTitle: "Building the intelligence around human conversation.",
     thirdTitle: "Human Conversation solves disconnection.",
-    fourthTitle: "Human Conversation is the operating system for real-world social communities.",
+    fourthTitle: "Human Conversation is the operating system for real-world social networks.",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
     interfaceFlowsToSolves: true,
     operatingSystemFlowsToTaps: true,

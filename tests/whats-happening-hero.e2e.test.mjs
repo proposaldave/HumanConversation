@@ -637,6 +637,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       secondTitle: title(sections[1]),
       thirdTitle: title(sections[2]),
       fourthTitle: title(sections[3]),
+      operatingSystemColor: getComputedStyle(sections[3]?.querySelectorAll(".story-title > span")[3]).color,
       fifthTitle: title(sections[4]),
       interfaceFlowsToSolves:
         sections[1]?.classList.contains("is-interface-opposite-section") &&
@@ -682,6 +683,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondTitle: "The intelligence around human conversation.",
     thirdTitle: "Human Conversation solves disconnection.",
     fourthTitle: "Human Conversation is the operating system for real-world social networks.",
+    operatingSystemColor: "rgb(255, 248, 236)",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
     interfaceFlowsToSolves: true,
     operatingSystemFlowsToTaps: true,

@@ -679,7 +679,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstTitle:
       "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
-    secondTitle: "Building the intelligence around human conversation.",
+    secondTitle: "The intelligence around human conversation.",
     thirdTitle: "Human Conversation solves disconnection.",
     fourthTitle: "Human Conversation is the operating system for real-world social networks.",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
@@ -760,7 +760,7 @@ test("the public story resolves the twist with the existing interface thesis", a
 
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
-  assert.equal(firstPanel.titleText, "Building the intelligence around human conversation.");
+  assert.equal(firstPanel.titleText, "The intelligence around human conversation.");
   assert.equal(firstPanel.bodyText, "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.");
   assert.ok(firstPanel.titleFontSize > firstPanel.bodyFontSize * 2, "the intelligence claim is the dominant type treatment");
   assert.ok(firstPanel.titleTop >= -1 && firstPanel.titleBottom <= 901);

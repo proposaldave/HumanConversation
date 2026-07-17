@@ -338,6 +338,7 @@ test("the public Human Conversation question leads into a smaller present-state 
     assert.ok(layout.questionTop >= -1 && layout.questionBottom <= height + 1, `${width}x${height} question fits vertically`);
     assert.ok(layout.supportLeft >= -1 && layout.supportRight <= width + 1, `${width}x${height} supporting line fits horizontally`);
     assert.ok(layout.supportTop >= -1 && layout.supportBottom <= height + 1, `${width}x${height} supporting line fits vertically`);
+    assert.ok(layout.supportFontSize >= 16, `${width}x${height} supporting line uses the increased readable scale`);
     assert.ok(layout.supportFontSize < layout.questionFontSize, `${width}x${height} supporting line is smaller than the question`);
     if (width > 760) {
       assert.equal(layout.questionFontSize, layout.twitterQuestionFontSize, `${width}x${height} Human Conversation question matches Twitter scale`);

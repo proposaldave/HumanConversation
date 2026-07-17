@@ -428,7 +428,10 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
       if (layout.lede) {
         assertFits(layout.lede, `${stage} twist`);
         const minimumGap = width >= 1800 ? 20 : 4;
-        assert.ok(layout.question.bottom + minimumGap <= layout.lede.top, `${width}x${height} ${stage} question clears its supporting copy`);
+        assert.ok(
+          layout.question.bottom + minimumGap <= layout.lede.top,
+          `${width}x${height} ${stage} question clears its supporting copy: ${JSON.stringify(layout)}`,
+        );
       }
       assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} is not a true three-stage hero`);
       assertRuntimeHealthy();

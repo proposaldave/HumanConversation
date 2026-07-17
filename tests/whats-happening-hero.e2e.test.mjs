@@ -370,6 +370,7 @@ test("the hero button advances 2009 to 2014 to 2026", async () => {
 
 test("all three beats stay premium and viewport-safe on desktop and narrow phones", async () => {
   for (const [width, height] of [
+    [2048, 1000],
     [1440, 900],
     [390, 844],
     [320, 800],
@@ -387,6 +388,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
         const stage = document.querySelector(".community-stage-${stage}");
         const primary = stage.querySelector(".community-stage-content, .community-human-copy");
         const platform = stage.querySelector(".community-platform");
+        const question = stage.querySelector(".community-question");
         const artifact = stage.querySelector(".community-artifact");
         const lede = document.querySelector("#landing-hero .lede");
         const cue = document.querySelector("#landing-hero .story-cue");
@@ -401,6 +403,7 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
           stage: document.querySelector("#landing-hero")?.dataset.communityStage,
           primary: rect(primary),
           platform: rect(platform),
+          question: rect(question),
           artifact: rect(artifact),
           cue: rect(cue),
           lede: "${stage}" === "human" ? rect(lede) : null,
@@ -417,13 +420,69 @@ test("all three beats stay premium and viewport-safe on desktop and narrow phone
       assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} ${stage} overflows horizontally`);
       assertFits(layout.primary, `${stage} copy`);
       if (layout.platform) assertFits(layout.platform, `${stage} brand`);
+      if (layout.question) assertFits(layout.question, `${stage} question`);
       if (layout.artifact) assertFits(layout.artifact, `${stage} artifact`);
       assertFits(layout.cue, `${stage} control`);
-      if (layout.lede) assertFits(layout.lede, `${stage} twist`);
+      if (layout.lede) {
+        assertFits(layout.lede, `${stage} twist`);
+        const minimumGap = width >= 1800 ? 20 : 4;
+        assert.ok(layout.question.bottom + minimumGap <= layout.lede.top, `${width}x${height} ${stage} question clears its supporting copy`);
+      }
       assert.ok(layout.heroHeight >= height * 3.15, `${width}x${height} is not a true three-stage hero`);
       assertRuntimeHealthy();
     }
   }
+});
+
+test("the complete public story stays organized one screen at a time on a wide work monitor", async () => {
+  const width = 2048;
+  const height = 1000;
+  await page.setViewport(width, height);
+  await page.navigate(reviewUrl(PUBLIC_VARIANT));
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+
+  const sections = await page.evaluate(`(() => {
+    const visible = (element) => {
+      const style = getComputedStyle(element);
+      return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity) !== 0;
+    };
+    const selectors = ".story-title, .story-body, .community-graph-wide, .human-surface-proof, .future-story-inner, .section-cue";
+    return Array.from(document.querySelectorAll("#landing-story .story-section")).map((section, index) => {
+      section.scrollIntoView({ block: "start", behavior: "instant" });
+      const sectionRect = section.getBoundingClientRect();
+      const content = Array.from(section.querySelectorAll(selectors))
+        .filter(visible)
+        .map((element) => {
+          const rect = element.getBoundingClientRect();
+          return {
+            className: element.className,
+            top: rect.top,
+            right: rect.right,
+            bottom: rect.bottom,
+            left: rect.left,
+          };
+        });
+      return {
+        index,
+        className: section.className,
+        top: sectionRect.top,
+        height: sectionRect.height,
+        content,
+      };
+    });
+  })()`);
+
+  assert.equal(sections.length, 12);
+  sections.forEach((section) => {
+    assert.ok(Math.abs(section.top) < 3, `section ${section.index + 1} lands at the viewport start`);
+    assert.ok(section.height >= height - 1 && section.height <= height + 1, `section ${section.index + 1} uses one work-monitor viewport`);
+    assert.ok(section.content.length > 0, `section ${section.index + 1} has visible organized content`);
+    section.content.forEach((rect) => {
+      assert.ok(rect.top >= -1 && rect.bottom <= height + 1, `section ${section.index + 1} ${rect.className} fits vertically`);
+      assert.ok(rect.left >= -1 && rect.right <= width + 1, `section ${section.index + 1} ${rect.className} fits horizontally`);
+    });
+  });
+  assertRuntimeHealthy();
 });
 
 test("the contact email stays fixed top-right from hero through the final section", async () => {

@@ -12986,6 +12986,69 @@
         text-transform: uppercase;
       }
 
+      @media (min-width: 1440px) and (max-height: 1100px) and (min-aspect-ratio: 9 / 5) {
+        .hero-community-pulse .community-stage-content {
+          width: min(100%, 1080px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"]
+          .hero-community-pulse
+          .community-stage-human
+          .community-stage-content {
+          transform: translateY(-1vh);
+        }
+
+        .hero-community-pulse .community-platform {
+          margin-bottom: clamp(14px, 2vh, 22px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"]
+          .community-stage-human
+          .community-question {
+          max-width: 15ch;
+          font-size: clamp(6rem, 5.8vw, 7rem);
+          line-height: 0.86;
+        }
+
+        .page[data-variant="conversation-intelligence-home"]
+          .hero-community-pulse[data-community-stage="human"]
+          .lede {
+          bottom: clamp(58px, 7vh, 72px);
+        }
+
+        .hero-community-pulse .community-human-support {
+          font-size: clamp(0.82rem, 0.85vw, 0.98rem);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-final {
+          padding-top: clamp(66px, 7.5vh, 84px);
+          padding-bottom: clamp(66px, 7.5vh, 84px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-graph-section,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section,
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section {
+          min-height: 100svh;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-graph-section .story-title {
+          font-size: clamp(4rem, 4vw, 5rem);
+          line-height: 0.92;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-graph-section .community-graph-wide {
+          height: min(28vh, 300px);
+          min-height: 260px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-title {
+          max-width: 720px;
+          font-size: clamp(4rem, 4.1vw, 5rem);
+          line-height: 0.94;
+        }
+      }
+
       @media (max-width: 760px) {
         .page[data-hero-theme="community-pulse"] header {
           width: calc(100% - 32px);

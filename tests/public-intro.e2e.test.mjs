@@ -401,7 +401,7 @@ test("the public Slack solved status stays within every supported viewport", asy
 
     assert.equal(layout.stage, "slack");
     assert.equal(layout.status, "Organizations ✓ Solved");
-    assert.equal(layout.question, "What’s happening inside organizations?");
+    assert.equal(layout.question, "What’s happening at work?");
     assert.equal(layout.marketValuePresent, false, `${width}x${height} omits the Slack valuation callout`);
     assert.equal(layout.solvedColor, "rgb(105, 221, 160)");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);

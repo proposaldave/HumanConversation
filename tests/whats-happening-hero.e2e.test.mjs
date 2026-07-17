@@ -118,7 +118,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     twitterArtifactQuestion: "What’s happening?",
     twitterMarketValuePresent: false,
     twitterDate: "2009-11-19",
-    slackQuestion: "What’s happening inside organizations?",
+    slackQuestion: "What’s happening at work?",
     slackMarketValuePresent: false,
     slackLabel: "Organizations ✓ Solved",
     humanBrand: "Human Conversation",
@@ -134,7 +134,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. Digital Communities, solved. What’s happening right now? 2014. Slack. Organizations, solved. What’s happening inside organizations? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Every important system needs to understand what’s happening — and know what to do next.",
+      "2009. Twitter. Digital Communities, solved. What’s happening right now? 2014. Slack. Organizations, solved. What’s happening at work? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Every important system needs to understand what’s happening — and know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
     storySections: 12,

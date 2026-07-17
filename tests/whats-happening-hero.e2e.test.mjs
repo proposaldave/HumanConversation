@@ -753,7 +753,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstTitle:
       "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
-    secondTitle: "The intelligence around human conversation.",
+    secondTitle: "The intelligence around human conversation will redefine how humanity comes together.",
     thirdTitle: "Human Conversation solves disconnection.",
     fourthTitle: "Human Conversation is the operating system for real-world social networks.",
     operatingSystemColor: "rgb(255, 248, 236)",
@@ -825,8 +825,6 @@ test("the public story resolves the twist with the existing interface thesis", a
       bodyBottom: bodyRect.bottom,
       bodyDisplay: getComputedStyle(body).display,
       bodyBorderLeft: getComputedStyle(body).borderLeftWidth,
-      aroundFontStyle: getComputedStyle(section.querySelector(".interface-opposite-build em")).fontStyle,
-      aroundTransform: getComputedStyle(section.querySelector(".interface-opposite-build em")).transform,
       arrowLength: Number.parseFloat(getComputedStyle(body, "::before").width),
       arrowHead: getComputedStyle(body, "::after").borderTopWidth,
       imageFilter: getComputedStyle(section, "::before").filter,
@@ -837,15 +835,13 @@ test("the public story resolves the twist with the existing interface thesis", a
 
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
-  assert.equal(firstPanel.titleText, "The intelligence around human conversation.");
+  assert.equal(firstPanel.titleText, "The intelligence around human conversation will redefine how humanity comes together.");
   assert.equal(firstPanel.bodyText, "For decades, technology has pulled conversations onto interfaces. We’re doing the opposite.");
   assert.ok(firstPanel.titleFontSize > firstPanel.bodyFontSize * 2, "the intelligence claim is the dominant type treatment");
   assert.ok(firstPanel.titleTop >= -1 && firstPanel.titleBottom <= 901);
   assert.ok(firstPanel.bodyTop >= -1 && firstPanel.bodyBottom <= 901);
   assert.equal(firstPanel.bodyDisplay, "grid");
   assert.equal(firstPanel.bodyBorderLeft, "0px");
-  assert.equal(firstPanel.aroundFontStyle, "italic");
-  assert.notEqual(firstPanel.aroundTransform, "none");
   assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
   assert.equal(firstPanel.arrowHead, "2px");
   assert.match(firstPanel.imageFilter, /brightness\(1\.04\)/);

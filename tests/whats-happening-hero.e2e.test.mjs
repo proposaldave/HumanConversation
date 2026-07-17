@@ -1255,21 +1255,24 @@ test("the mobile connection chain ends with community and connection-high, every
       const repeat = chain?.querySelector(".story-chain-connection-high-every-time");
       const connector = community?.nextElementSibling;
       const mobileBreak = chain?.querySelector(".story-chain-mobile-break");
+      const cue = section?.querySelector(".section-cue");
       const toRect = (element) => {
         const rect = element?.getBoundingClientRect();
         return rect ? { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left } : null;
       };
       return {
+        section: toRect(section),
         community: toRect(community),
         repeat: toRect(repeat),
         connector: toRect(connector),
+        cue: toRect(cue),
         connectorIsArrow: connector?.classList.contains("story-chain-arrow") || false,
         mobileBreakDisplay: mobileBreak ? getComputedStyle(mobileBreak).display : null,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
     })()`);
 
-    assert.ok(layout.community && layout.repeat && layout.connector, `${width} chain ending is present`);
+    assert.ok(layout.section && layout.community && layout.repeat && layout.connector && layout.cue, `${width} chain ending and continuation cue are present`);
     assert.equal(layout.mobileBreakDisplay, "block", `${width} uses the deliberate mobile row break`);
     assert.equal(layout.connectorIsArrow, true, `${width} keeps the connector between the final pair`);
     if (width <= 320) {
@@ -1280,6 +1283,11 @@ test("the mobile connection chain ends with community and connection-high, every
     assert.ok(Math.abs(layout.community.top - layout.connector.top) <= 2, `${width} final connector shares that row`);
     assert.ok(layout.community.left < layout.connector.left && layout.connector.left < layout.repeat.left, `${width} final pair reads left to right`);
     assert.ok(layout.repeat.right <= width + 1, `${width} final pill stays inside the viewport`);
+    assert.ok(
+      layout.repeat.bottom <= layout.cue.top - 16,
+      `${width} continuation cue clears connection-high, every time (gap ${layout.cue.top - layout.repeat.bottom}px)`,
+    );
+    assert.ok(layout.cue.bottom <= layout.section.bottom - 16, `${width} continuation cue stays inside its reserved bottom zone`);
     assert.ok(layout.horizontalOverflow <= 1, `${width} chain has no horizontal overflow`);
     assertRuntimeHealthy();
   }

@@ -12296,7 +12296,22 @@
       }
 
       .page[data-hero-theme="community-pulse"] .brand {
+        position: fixed;
+        top: max(28px, calc(env(safe-area-inset-top) + 28px));
+        left: max(28px, calc((100vw - 1320px) / 2));
+        z-index: 1002;
         color: var(--hc-rose);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 220ms ease, visibility 0s linear 220ms;
+      }
+
+      .page[data-hero-theme="community-pulse"].is-community-hero-active .brand {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
       }
 
       .page[data-hero-theme="community-pulse"] .mark-bubble {
@@ -13068,6 +13083,18 @@
         .page[data-hero-theme="community-pulse"] header {
           width: calc(100% - 32px);
           padding-top: 18px;
+        }
+
+        .page[data-hero-theme="community-pulse"] .brand {
+          top: max(18px, calc(env(safe-area-inset-top) + 18px));
+          left: max(16px, calc(env(safe-area-inset-left) + 16px));
+          gap: 6px;
+          font-size: 0.68rem;
+        }
+
+        .page[data-hero-theme="community-pulse"] .brand .mark {
+          width: 34px;
+          height: 26px;
         }
 
         .page[data-hero-theme="community-pulse"] .header-email {
@@ -17262,7 +17289,7 @@
     </style>
   </head>
   <body>
-    <div class="page has-expanded-story" data-variant="conversation-intelligence-home" data-hero-theme="community-pulse">
+    <div class="page has-expanded-story is-community-hero-active" data-variant="conversation-intelligence-home" data-hero-theme="community-pulse">
       <header>
         <a class="brand" href="./" aria-label="Human Conversation home">
           <svg class="mark" aria-hidden="true" viewBox="0 0 64 48" focusable="false">
@@ -18975,9 +19002,16 @@
       }
 
       function updateCommunityHeroStage() {
-        if (!hero.classList.contains("hero-community-pulse")) return;
+        if (!hero.classList.contains("hero-community-pulse")) {
+          page.classList.remove("is-community-hero-active");
+          return;
+        }
 
         const heroRect = hero.getBoundingClientRect();
+        page.classList.toggle(
+          "is-community-hero-active",
+          heroRect.bottom > 0 && heroRect.top < window.innerHeight,
+        );
         const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
         const progress = Math.min(Math.max(-heroRect.top / travel, 0), 1);
         const stage = progress < 0.3 ? "twitter" : progress < 0.64 ? "slack" : "human";

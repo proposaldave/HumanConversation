@@ -288,6 +288,49 @@ test("every timeline year jumps directly to its screen", async () => {
   assertRuntimeHealthy();
 });
 
+test("the top-left Human Conversation logo remains visible through all three hero years", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+    [1312, 690],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl());
+    await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "twitter"`);
+
+    for (const stage of ["twitter", "slack", "human"]) {
+      await showStage(stage);
+      const brand = await page.evaluate(`(() => {
+        const element = document.querySelector("header .brand");
+        const email = document.querySelector("header .header-email")?.getBoundingClientRect();
+        const rect = element?.getBoundingClientRect();
+        const style = element ? getComputedStyle(element) : null;
+        return {
+          text: element?.textContent.replace(/\\s+/g, " ").trim(),
+          opacity: Number(style?.opacity || 0),
+          visibility: style?.visibility,
+          position: style?.position,
+          left: rect?.left ?? -1,
+          top: rect?.top ?? -1,
+          right: rect?.right ?? -1,
+          bottom: rect?.bottom ?? -1,
+          emailLeft: email?.left ?? window.innerWidth,
+        };
+      })()`);
+
+      assert.equal(brand.text, "Human Conversation");
+      assert.ok(brand.opacity > 0.95, `${width}x${height} ${stage} logo is visible`);
+      assert.equal(brand.visibility, "visible");
+      assert.equal(brand.position, "fixed");
+      assert.ok(brand.left >= 0 && brand.top >= 0, `${width}x${height} ${stage} logo starts within the viewport`);
+      assert.ok(brand.right <= width && brand.bottom <= height, `${width}x${height} ${stage} logo fits within the viewport`);
+      assert.ok(brand.right + 8 <= brand.emailLeft, `${width}x${height} ${stage} logo stays clear of the contact email`);
+    }
+  }
+
+  assertRuntimeHealthy();
+});
+
 test("the 2026 timeline marker stays integrated with the line instead of becoming a box", async () => {
   for (const [width, height] of [
     [1440, 900],

@@ -330,7 +330,7 @@ test("the public Human Conversation question leads into a smaller present-state 
 
     assert.equal(layout.question, expectedQuestion);
     assert.equal(layout.support, expectedSupport);
-    assert.equal(layout.historicalPrompt, "What\u2019s happening right now?");
+    assert.equal(layout.historicalPrompt, "What\u2019s happening?");
     assert.equal(layout.twistPresent, false);
     assert.equal(layout.followArrowPresent, true);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);

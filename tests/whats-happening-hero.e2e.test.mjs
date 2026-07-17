@@ -1160,8 +1160,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
       const section = document.querySelector("#landing-story .is-community-truth-section");
       const sectionRect = section?.getBoundingClientRect();
       const background = section ? getComputedStyle(section, "::before") : null;
-      const emphasizedData = section?.querySelector(".community-truth-data em");
-      const emphasizedDataStyle = emphasizedData ? getComputedStyle(emphasizedData) : null;
+      const emphasizedData = Array.from(section?.querySelectorAll(".community-truth-data em") || []);
       const textRects = Array.from(section?.querySelectorAll(".story-title, .story-body p") || []).map((element) => {
         const rect = element.getBoundingClientRect();
         return { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left };
@@ -1174,8 +1173,9 @@ test("the community-truth section fits desktop and narrow phones without overflo
         sectionHeight: sectionRect?.height ?? 0,
         backgroundDisplay: background?.display || null,
         backgroundImage: background?.backgroundImage || null,
-        emphasizedData: normalize(emphasizedData?.textContent),
-        emphasizedDataFontStyle: emphasizedDataStyle?.fontStyle || null,
+        emphasizedData: emphasizedData.map((element) => normalize(element.textContent)),
+        emphasizedDataFontStyles: emphasizedData.map((element) => getComputedStyle(element).fontStyle),
+        emphasizedDataTransforms: emphasizedData.map((element) => getComputedStyle(element).transform),
         textRects,
         cueRect: cueRect ? { top: cueRect.top, right: cueRect.right, bottom: cueRect.bottom, left: cueRect.left } : null,
       };
@@ -1188,12 +1188,19 @@ test("the community-truth section fits desktop and narrow phones without overflo
     };
 
     assert.equal(layout.copy, expectedCopy, `${width}x${height} preserves the exact community-truth copy`);
-    assert.equal(
+    assert.deepEqual(
       layout.emphasizedData,
-      "human, social, relationship, and community",
+      ["human", "social", "relationship", "community"],
       `${width}x${height} emphasizes the four requested data categories`,
     );
-    assert.equal(layout.emphasizedDataFontStyle, "italic", `${width}x${height} renders the four data categories in italics`);
+    assert.deepEqual(
+      layout.emphasizedDataFontStyles,
+      ["italic", "italic", "italic", "italic"],
+      `${width}x${height} renders only the four data categories in italics`,
+    );
+    layout.emphasizedDataTransforms.forEach((transform) => {
+      assert.notEqual(transform, "none", `${width}x${height} keeps each italic visibly distinct`);
+    });
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(Math.abs(layout.sectionTop) < 3, `${width}x${height} section lands at the viewport start`);
     assert.ok(layout.sectionHeight >= height - 1, `${width}x${height} section fills the viewport`);

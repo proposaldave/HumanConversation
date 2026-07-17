@@ -261,6 +261,13 @@ test("every timeline year jumps directly to its screen", async () => {
     ],
   );
 
+  const inactiveYearStyle = await page.evaluate(`(() => {
+    const style = getComputedStyle(document.querySelector('.community-progress [data-era="slack"]'));
+    return { color: style.color, fontSize: Number.parseFloat(style.fontSize) };
+  })()`);
+  assert.equal(inactiveYearStyle.color, "rgba(255, 248, 236, 0.56)");
+  assert.ok(inactiveYearStyle.fontSize >= 11, `timeline year remains legible: ${JSON.stringify(inactiveYearStyle)}`);
+
   await page.evaluate(`document.querySelector('.community-progress [data-era="human"]')?.click()`);
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human"`);
   assert.equal(

@@ -449,11 +449,13 @@ test("resolved CTA scrolls to and focuses the existing signup without submitting
   const focusedSignup = await page.evaluate(`({
     id: document.activeElement?.id,
     isEmail: document.activeElement?.type === "email",
+    helperCount: document.querySelectorAll(".life-final-section .final-cta-helper").length,
     status: document.activeElement?.closest("form")?.querySelector(".status")?.textContent || "",
     url: window.location.href,
   })`);
   assert.ok(focusedSignup.id.startsWith("email-life-runs-on-human-conversation-"));
   assert.equal(focusedSignup.isEmail, true);
+  assert.equal(focusedSignup.helperCount, 0);
   assert.equal(focusedSignup.status, "");
   assert.equal(focusedSignup.url, beforeUrl);
   assertRuntimeHealthy();

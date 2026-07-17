@@ -751,9 +751,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.",
+      "Our human, relationship, social, and community data has always, and will always be communicated through Human Conversation.",
     firstTitle:
-      "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.",
+      "Our human, relationship, social, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
     secondTitle: "The intelligence around human conversation will redefine how humanity comes together.",
     interfaceHumanConversationText: "human conversation",
@@ -1141,7 +1141,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "Our human, social, relationship, and community data has always, and will always be communicated through Human Conversation.";
+    "Our human, relationship, social, and community data has always, and will always be communicated through Human Conversation.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -1194,7 +1194,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
     assert.equal(layout.copy, expectedCopy, `${width}x${height} preserves the exact community-truth copy`);
     assert.deepEqual(
       layout.emphasizedData,
-      ["human", "social", "relationship", "community"],
+      ["human", "relationship", "social", "community"],
       `${width}x${height} emphasizes the four requested data categories`,
     );
     assert.deepEqual(
@@ -1207,7 +1207,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
     });
     assert.deepEqual(
       layout.groupedTerms,
-      ["human,", "social,", "relationship,"],
+      ["human,", "relationship,", "social,"],
       `${width}x${height} keeps each comma attached to its preceding word`,
     );
     assert.deepEqual(

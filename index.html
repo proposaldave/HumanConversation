@@ -11913,6 +11913,11 @@
         transform-origin: center;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-term {
+        display: inline-block;
+        white-space: nowrap;
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-conversation {
         color: var(--hc-rose);
         font-family: Fraunces, Georgia, serif;
@@ -17345,7 +17350,7 @@
           main: {
             sections: [
               {
-                title: `<span>Our <span class="community-truth-data"><em>human</em>, <em>social</em>, <em>relationship</em>, and <em>community</em> data</span> has always, and will always be communicated through <span class="community-truth-conversation">Human Conversation</span>.</span>`,
+                title: `<span>Our <span class="community-truth-data"><span class="community-truth-term"><em>human</em>,</span> <span class="community-truth-term"><em>social</em>,</span> <span class="community-truth-term"><em>relationship</em>,</span> and <em>community</em> data</span> has always, and will always be communicated through <span class="community-truth-conversation">Human Conversation</span>.</span>`,
                 scene: "community-truth",
                 className: "is-long is-community-truth-section",
               },

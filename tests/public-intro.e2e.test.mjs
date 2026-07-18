@@ -270,7 +270,7 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
 
 test("the public Human Conversation question leads into a smaller present-state line above the continuation cue", async () => {
   const expectedQuestion = "What’s happening between us, around us, and within us?";
-  const expectedSupport = "Every complex system needs to understand the truth about what’s happening — to know what to do next.";
+  const expectedSupport = "Every complex system needs the truth about what’s happening — to know what to do next.";
 
   for (const [width, height] of [
     [1440, 900],

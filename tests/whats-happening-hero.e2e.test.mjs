@@ -765,6 +765,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const cue = document.querySelector("#landing-hero .story-cue");
     const cheskySection = document.querySelector("#landing-story .is-next-interface-section");
     const bringsTogetherSection = document.querySelector("#landing-story .is-brings-together-section");
+    const attentionSection = document.querySelector("#landing-story .is-attention-section");
     const lonelinessSection = document.querySelector("#landing-story .is-lonely-return-section");
     const humanSurfaceSection = document.querySelector("#landing-story .is-human-surface-section");
     const timelessSection = document.querySelector("#landing-story .is-timeless-fullscreen-section");
@@ -788,20 +789,27 @@ test("the public story resolves the twist with the existing interface thesis", a
       interfaceHumanConversationColor: getComputedStyle(sections[1]?.querySelector(".interface-opposite-human-conversation")).color,
       thirdTitle: title(sections[2]),
       fourthTitle: title(sections[3]),
-      operatingSystemColor: getComputedStyle(sections[3]?.querySelectorAll(".story-title > span")[3]).color,
       fifthTitle: title(sections[4]),
+      operatingSystemColor: getComputedStyle(sections[4]?.querySelectorAll(".story-title > span")[3]).color,
+      sixthTitle: title(sections[5]),
       interfaceFlowsToSolves:
         sections[1]?.classList.contains("is-interface-opposite-section") &&
         sections[1]?.nextElementSibling === sections[2] &&
         sections[2]?.classList.contains("is-solves-disconnection-section"),
+      solvesFlowsToBringsTogether:
+        sections[2]?.nextElementSibling === bringsTogetherSection &&
+        sections[3] === bringsTogetherSection,
+      bringsTogetherFlowsToOperatingSystem:
+        bringsTogetherSection?.nextElementSibling === sections[4] &&
+        sections[4]?.classList.contains("is-real-world-os-section"),
       operatingSystemFlowsToTaps:
-        sections[3]?.classList.contains("is-real-world-os-section") &&
-        sections[3]?.nextElementSibling === sections[4] &&
-        sections[4]?.classList.contains("is-taps-premium-section"),
+        sections[4]?.classList.contains("is-real-world-os-section") &&
+        sections[4]?.nextElementSibling === sections[5] &&
+        sections[5]?.classList.contains("is-taps-premium-section"),
       bringsTogetherTitle: title(bringsTogetherSection),
       connectionFlowSectionPresent: Boolean(document.querySelector("#landing-story .is-connection-flow-section")),
-      bringsTogetherIsSeventh: sections[6] === bringsTogetherSection,
-      bringsTogetherFlowsToGraph: bringsTogetherSection?.nextElementSibling?.classList.contains("is-graph-section"),
+      bringsTogetherIsFourth: sections[3] === bringsTogetherSection,
+      attentionFlowsToGraph: attentionSection?.nextElementSibling?.classList.contains("is-graph-section"),
       lonelinessTitle: title(lonelinessSection),
       humanSurfaceTitle: title(humanSurfaceSection),
       humanSurfaceIntro: normalize(humanSurfaceSection?.querySelector(".human-surface-sectionline")?.textContent),
@@ -841,16 +849,20 @@ test("the public story resolves the twist with the existing interface thesis", a
     interfaceHumanConversationText: "human conversation",
     interfaceHumanConversationColor: "rgb(214, 138, 154)",
     thirdTitle: "Human Conversation is how we solve disconnection.",
-    fourthTitle: "Human Conversation is the operating system for real-world social networks.",
+    fourthTitle:
+      "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
+    fifthTitle: "Human Conversation is the operating system for real-world social networks.",
     operatingSystemColor: "rgb(255, 248, 236)",
-    fifthTitle: "A Human Conversation is worth a thousand taps.",
+    sixthTitle: "A Human Conversation is worth a thousand taps.",
     interfaceFlowsToSolves: true,
+    solvesFlowsToBringsTogether: true,
+    bringsTogetherFlowsToOperatingSystem: true,
     operatingSystemFlowsToTaps: true,
     bringsTogetherTitle:
       "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
     connectionFlowSectionPresent: false,
-    bringsTogetherIsSeventh: true,
-    bringsTogetherFlowsToGraph: true,
+    bringsTogetherIsFourth: true,
+    attentionFlowsToGraph: true,
     lonelinessTitle:
       "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
     humanSurfaceTitle: "Humans stay above the surface. AI handles underneath.",
@@ -996,9 +1008,10 @@ test("the public story resolves the twist with the existing interface thesis", a
   assertRuntimeHealthy();
 });
 
-test("the 99.9% communication-technology thesis lands mid-story and stays readable", async () => {
+test("the 99.9% communication-technology thesis lands early and stays readable", async () => {
   for (const [width, height] of [
     [1440, 900],
+    [1312, 690],
     [390, 844],
     [320, 800],
   ]) {
@@ -1027,8 +1040,8 @@ test("the 99.9% communication-technology thesis lands mid-story and stays readab
         returnLine: normalize(returnLine?.textContent),
         index: sections.indexOf(section),
         total: sections.length,
-        previousIsAttention: section?.previousElementSibling?.classList.contains("is-attention-section"),
-        nextIsGraph: section?.nextElementSibling?.classList.contains("is-graph-section"),
+        previousIsSolves: section?.previousElementSibling?.classList.contains("is-solves-disconnection-section"),
+        nextIsOperatingSystem: section?.nextElementSibling?.classList.contains("is-real-world-os-section"),
         sectionRect: rect(section),
         titleRect: rect(title),
         cueRect: rect(cue),
@@ -1047,10 +1060,10 @@ test("the 99.9% communication-technology thesis lands mid-story and stays readab
     );
     assert.equal(layout.premise, "99.9% of communication technology puts an interface between us.");
     assert.equal(layout.returnLine, "Human Conversation brings us together.");
-    assert.equal(layout.index, 6, "the thesis is the seventh section, not part of the opening sequence");
+    assert.equal(layout.index, 3, "the thesis is the fourth story section, immediately after the solution");
     assert.equal(layout.total, 12);
-    assert.equal(layout.previousIsAttention, true);
-    assert.equal(layout.nextIsGraph, true);
+    assert.equal(layout.previousIsSolves, true);
+    assert.equal(layout.nextIsOperatingSystem, true);
     assert.equal(layout.statColor, "rgb(91, 143, 212)");
     assert.equal(layout.interfaceText, "interface");
     assert.equal(layout.interfaceColor, layout.statColor);

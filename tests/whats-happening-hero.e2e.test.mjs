@@ -571,6 +571,123 @@ test("the complete public story stays organized one screen at a time on a wide w
   assertRuntimeHealthy();
 });
 
+test("the community graph continues the Maya section visual system across desktop and phone layouts", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [1312, 690],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.evaluate(`document.querySelector("#landing-story .is-graph-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-graph-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const rect = (element) => {
+        const box = element?.getBoundingClientRect();
+        return box ? {
+          top: box.top,
+          right: box.right,
+          bottom: box.bottom,
+          left: box.left,
+          width: box.width,
+          height: box.height,
+        } : null;
+      };
+      const overlaps = (first, second) => Boolean(
+        first && second &&
+        first.left < second.right &&
+        first.right > second.left &&
+        first.top < second.bottom &&
+        first.bottom > second.top
+      );
+      const style = (element) => {
+        const computed = element ? getComputedStyle(element) : null;
+        return computed ? {
+          backgroundColor: computed.backgroundColor,
+          backgroundImage: computed.backgroundImage,
+          borderColor: computed.borderColor,
+          borderRadius: computed.borderRadius,
+          boxShadow: computed.boxShadow,
+          color: computed.color,
+          fontFamily: computed.fontFamily,
+        } : null;
+      };
+      const attention = document.querySelector("#landing-story .is-attention-section");
+      const graph = document.querySelector("#landing-story .is-graph-section");
+      const attentionGraphic = attention?.querySelector(".attention-graphic");
+      const graphPanel = graph?.querySelector(".community-graph-wide");
+      const graphTitle = graph?.querySelector(".story-title");
+      const graphBody = graph?.querySelector(".story-body");
+      const cue = graph?.querySelector(".section-cue");
+      const core = graphPanel?.querySelector(".graph-core");
+      const cards = Array.from(graphPanel?.querySelectorAll(".graph-card") || []);
+      const cardRects = cards.map(rect);
+      return {
+        title: normalize(graphTitle?.textContent),
+        body: normalize(graphBody?.textContent),
+        graphSectionStyle: style(graph),
+        attentionSectionStyle: style(attention),
+        graphTitleStyle: style(graphTitle),
+        attentionTitleStyle: style(attention?.querySelector(".attention-story-title")),
+        graphRose: style(graph?.querySelector(".graph-title-rose"))?.color,
+        attentionRose: style(attention?.querySelector(".attention-title-rose"))?.color,
+        graphPanelStyle: style(graphPanel),
+        attentionPanelStyle: style(attentionGraphic),
+        graphCardStyles: cards.map(style),
+        graphLabelColors: cards.map((card) => style(card.querySelector("small"))?.color),
+        graphBlueLine: getComputedStyle(graphPanel?.querySelector(".graph-line-green")).stroke,
+        section: rect(graph),
+        header: rect(graph?.querySelector(".graph-story-header")),
+        panel: rect(graphPanel),
+        cue: rect(cue),
+        core: rect(core),
+        cards: cardRects,
+        cardOverlaps: cardRects.flatMap((first, firstIndex) =>
+          cardRects.slice(firstIndex + 1).map((second) => overlaps(first, second))
+        ),
+        coreOverlaps: cardRects.map((card) => overlaps(card, rect(core))),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(layout.title, "Real conversations create the community graph.", `${width}x${height} keeps the graph title`);
+    assert.equal(
+      layout.body,
+      "The community learns when connection happens, where it happens, who helps create it, and what should happen next.",
+      `${width}x${height} keeps the graph explanation`,
+    );
+    assert.equal(layout.graphSectionStyle.backgroundImage, layout.attentionSectionStyle.backgroundImage, `${width}x${height} reuses Maya's section background`);
+    assert.equal(layout.graphTitleStyle.fontFamily, layout.attentionTitleStyle.fontFamily, `${width}x${height} reuses Maya's title typography`);
+    assert.equal(layout.graphTitleStyle.color, layout.attentionTitleStyle.color, `${width}x${height} reuses Maya's ink title color`);
+    assert.equal(layout.graphRose, layout.attentionRose, `${width}x${height} reuses Maya's rose emphasis`);
+    assert.equal(layout.graphPanelStyle.backgroundImage, layout.attentionPanelStyle.backgroundImage, `${width}x${height} reuses Maya's panel background`);
+    assert.equal(layout.graphPanelStyle.borderColor, layout.attentionPanelStyle.borderColor, `${width}x${height} reuses Maya's panel border`);
+    assert.equal(layout.graphPanelStyle.borderRadius, layout.attentionPanelStyle.borderRadius, `${width}x${height} reuses Maya's rounded panel treatment`);
+    assert.equal(layout.graphPanelStyle.boxShadow, layout.attentionPanelStyle.boxShadow, `${width}x${height} reuses Maya's panel depth`);
+    assert.ok(layout.graphCardStyles.every((card) => card.color === "rgb(26, 22, 18)"), `${width}x${height} keeps every graph card in Maya's ink color`);
+    assert.deepEqual(
+      layout.graphLabelColors,
+      ["rgb(200, 70, 44)", "rgb(91, 143, 212)", "rgb(143, 99, 29)", "rgb(91, 143, 212)"],
+      `${width}x${height} uses the Maya rose, blue, and gold label palette`,
+    );
+    assert.equal(layout.graphBlueLine, "rgba(91, 143, 212, 0.62)", `${width}x${height} replaces the old green graph line with brand blue`);
+    assert.ok(layout.section && layout.header && layout.panel && layout.cue && layout.core, `${width}x${height} renders the complete graph section`);
+    assert.equal(layout.cards.length, 4, `${width}x${height} renders all four graph cards`);
+    assert.ok(layout.header.bottom + 20 <= layout.panel.top, `${width}x${height} keeps the graph panel clear of its heading`);
+    assert.ok(layout.cards.every((card) => card.left >= layout.panel.left && card.right <= layout.panel.right && card.top >= layout.panel.top && card.bottom <= layout.panel.bottom), `${width}x${height} keeps every graph card inside the panel`);
+    assert.ok(layout.cardOverlaps.every((value) => !value), `${width}x${height} keeps graph cards from overlapping each other`);
+    assert.ok(layout.coreOverlaps.every((value) => !value), `${width}x${height} keeps graph cards clear of felt connection`);
+    assert.ok(layout.panel.bottom + 12 <= layout.cue.top, `${width}x${height} keeps the continuation control clear of the graph panel: ${JSON.stringify(layout)}`);
+    assert.ok(layout.panel.left >= -1 && layout.panel.right <= width + 1, `${width}x${height} keeps the graph panel inside the viewport`);
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
+    assertRuntimeHealthy();
+  }
+});
+
 test("the contact email stays fixed top-right from hero through the final section", async () => {
   const checkpoints = [
     {

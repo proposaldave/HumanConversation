@@ -365,6 +365,7 @@ test("the top-left Human Conversation logo remains visible through all three her
 test("the 2026 timeline marker stays integrated with the line instead of becoming a box", async () => {
   for (const [width, height] of [
     [1440, 900],
+    [1312, 690],
     [390, 844],
     [320, 800],
   ]) {
@@ -382,6 +383,8 @@ test("the 2026 timeline marker stays integrated with the line instead of becomin
         borderTopWidth: style.borderTopWidth,
         boxShadow: style.boxShadow,
         textShadow: style.textShadow,
+        fontSize: Number.parseFloat(style.fontSize),
+        fontWeight: Number.parseInt(style.fontWeight, 10),
         left: rect?.left,
         right: rect?.right,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -391,7 +394,9 @@ test("the 2026 timeline marker stays integrated with the line instead of becomin
     assert.equal(marker.backgroundColor, "rgba(0, 0, 0, 0)", `${width}x${height} marker has no capsule fill`);
     assert.equal(marker.borderTopWidth, "0px", `${width}x${height} marker has no capsule border`);
     assert.equal(marker.boxShadow, "none", `${width}x${height} marker has no capsule shadow`);
-    assert.equal(marker.textShadow, "none", `${width}x${height} marker has no capsule text shadow`);
+    assert.match(marker.textShadow, /rgba\(5, 7, 10/, `${width}x${height} marker has dark contrast behind the rose text`);
+    assert.ok(marker.fontSize >= 11, `${width}x${height} marker text remains legible`);
+    assert.ok(marker.fontWeight >= 900, `${width}x${height} marker text remains bold`);
     assert.ok(marker.left >= 0 && marker.right <= width, `${width}x${height} marker stays in the viewport`);
     assert.ok(marker.horizontalOverflow <= 1, `${width}x${height} marker does not create horizontal overflow`);
     assertRuntimeHealthy();

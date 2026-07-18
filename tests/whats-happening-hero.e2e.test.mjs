@@ -576,6 +576,58 @@ test("the complete public story stays organized one screen at a time on a wide w
   assertRuntimeHealthy();
 });
 
+test("the operating-system claim gives the existing human system a small memory payoff", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [1312, 690],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.evaluate(`document.querySelector("#landing-story .is-real-world-os-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-real-world-os-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const rect = (element) => {
+        const box = element?.getBoundingClientRect();
+        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left } : null;
+      };
+      const section = document.querySelector("#landing-story .is-real-world-os-section");
+      const title = section?.querySelector(".story-title");
+      const body = section?.querySelector(".story-body");
+      const memory = section?.querySelector(".real-world-os-memory-word");
+      const cue = section?.querySelector(".section-cue");
+      return {
+        title: Array.from(title?.children || []).map((line) => normalize(line.textContent)).join(" "),
+        body: normalize(body?.textContent),
+        titleRect: rect(title),
+        bodyRect: rect(body),
+        cueRect: rect(cue),
+        titleFontSize: Number.parseFloat(getComputedStyle(title).fontSize),
+        bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
+        memoryColor: getComputedStyle(memory).color,
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(layout.title, "Human Conversation is already the operating system for real-world social networks.");
+    assert.equal(layout.body, "We\u2019re just giving it memory.");
+    assert.equal(layout.memoryColor, "rgb(214, 138, 154)");
+    assert.ok(layout.titleRect && layout.bodyRect && layout.cueRect, `${width}x${height} operating-system composition renders`);
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} operating-system composition overflows horizontally`);
+    assert.ok(layout.titleRect.left >= 0 && layout.titleRect.right <= width, `${width}x${height} operating-system title leaves the viewport`);
+    assert.ok(layout.bodyRect.left >= 0 && layout.bodyRect.right <= width, `${width}x${height} memory payoff leaves the viewport`);
+    assert.ok(layout.titleRect.bottom + 16 <= layout.bodyRect.top, `${width}x${height} memory payoff crowds the headline`);
+    assert.ok(layout.bodyRect.bottom + 16 <= layout.cueRect.top, `${width}x${height} memory payoff overlaps the continuation cue`);
+    assert.ok(layout.bodyFontSize < layout.titleFontSize * 0.5, `${width}x${height} memory payoff is not visibly subordinate`);
+  }
+
+  assertRuntimeHealthy();
+});
+
 test("the community graph continues the Maya section visual system across desktop and phone layouts", async () => {
   for (const [width, height] of [
     [1440, 900],
@@ -912,6 +964,8 @@ test("the public story resolves the twist with the existing interface thesis", a
       thirdTitle: title(sections[2]),
       fourthTitle: title(sections[3]),
       fifthTitle: title(sections[4]),
+      fifthBody: normalize(sections[4]?.querySelector(".story-body")?.textContent),
+      operatingSystemMemoryColor: getComputedStyle(sections[4]?.querySelector(".real-world-os-memory-word")).color,
       operatingSystemColor: getComputedStyle(sections[4]?.querySelectorAll(".story-title > span")[3]).color,
       sixthTitle: title(sections[5]),
       interfaceFlowsToSolves:
@@ -973,7 +1027,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     thirdTitle: "Human Conversation is how we solve disconnection.",
     fourthTitle:
       "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
-    fifthTitle: "Human Conversation is the operating system for real-world social networks.",
+    fifthTitle: "Human Conversation is already the operating system for real-world social networks.",
+    fifthBody: "We\u2019re just giving it memory.",
+    operatingSystemMemoryColor: "rgb(214, 138, 154)",
     operatingSystemColor: "rgb(255, 248, 236)",
     sixthTitle: "A Human Conversation is worth a thousand taps.",
     interfaceFlowsToSolves: true,

@@ -5905,6 +5905,24 @@
         line-height: 0.92;
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .story-body {
+        max-width: 31ch;
+        margin-top: clamp(24px, 3vh, 34px);
+        border-left: 2px solid rgba(var(--hc-rose-rgb), 0.82);
+        color: rgba(255, 248, 236, 0.88);
+        padding-left: clamp(13px, 1.3vw, 18px);
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(0.94rem, 1.15vw, 1.12rem);
+        font-weight: 760;
+        letter-spacing: 0.01em;
+        line-height: 1.42;
+        text-shadow: 0 3px 18px rgba(0, 0, 0, 0.62);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-real-world-os-section .real-world-os-memory-word {
+        color: var(--hc-rose);
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-next-interface-section .story-title > span {
         overflow-wrap: normal;
         word-break: normal;
@@ -17825,7 +17843,10 @@
                 className: "is-long is-brings-together-section",
               },
               {
-                title: `<span class="brand-name">Human</span><span class="brand-name">Conversation</span><span>is the</span><span>operating system</span><span>for real-world</span><span>social networks.</span>`,
+                title: `<span class="brand-name">Human</span><span class="brand-name">Conversation</span><span>is already the</span><span>operating system</span><span>for real-world</span><span>social networks.</span>`,
+                copy: [
+                  `We&rsquo;re just giving it <span class="real-world-os-memory-word">memory.</span>`,
+                ],
                 scene: "real-world-os",
                 className: "is-long is-real-world-os-section is-copy-right",
               },

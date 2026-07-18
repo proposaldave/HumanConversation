@@ -981,7 +981,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     bringsTogetherIsFourth: true,
     attentionFlowsToGraph: true,
     lonelinessTitle:
-      "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
+      "We're not lonely because communication disappeared. We're lonely because interfaces keep replacing Human Conversation.",
     humanSurfaceTitle: "Humans stay above the surface. AI handles underneath.",
     humanSurfaceIntro:
       "Members feel remembered. Builders stay present. The memory, matching, scheduling, follow-up, and logistics move underneath.",
@@ -1248,7 +1248,7 @@ test("the loneliness section grounds the story in the current WHO global scale",
 
     assert.equal(
       layout.title,
-      "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
+      "We're not lonely because communication disappeared. We're lonely because interfaces keep replacing Human Conversation.",
     );
     assert.equal(layout.stat, "1 in 6 people worldwide experience loneliness.");
     assert.equal(layout.number, "1 in 6");

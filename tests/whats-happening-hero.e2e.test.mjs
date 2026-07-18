@@ -1219,6 +1219,7 @@ test("the loneliness section grounds the story in the current WHO global scale",
       const section = document.querySelector("#landing-story .is-lonely-return-section");
       const title = section?.querySelector(".story-title");
       const stat = section?.querySelector(".loneliness-stat");
+      const blueWords = Array.from(title?.querySelectorAll(".lonely-blue") || []);
       const number = stat?.querySelector(".loneliness-stat-number");
       const copy = stat?.querySelector(".loneliness-stat-copy");
       const source = stat?.querySelector(".loneliness-stat-source");
@@ -1232,6 +1233,8 @@ test("the loneliness section grounds the story in the current WHO global scale",
         sourceHref: source?.href,
         sourceTarget: source?.target,
         sourceRel: source?.rel,
+        blueWords: blueWords.map((word) => normalize(word.textContent)),
+        blueWordColors: blueWords.map((word) => getComputedStyle(word).color),
         followsGraph: section?.previousElementSibling?.classList.contains("is-graph-section"),
         flowsToHumanSurface: section?.nextElementSibling?.classList.contains("is-human-surface-section"),
         numberColor: number ? getComputedStyle(number).color : null,
@@ -1254,6 +1257,8 @@ test("the loneliness section grounds the story in the current WHO global scale",
     assert.equal(layout.sourceHref, "https://www.who.int/groups/commission-on-social-connection");
     assert.equal(layout.sourceTarget, "_blank");
     assert.ok(layout.sourceRel.includes("noopener") && layout.sourceRel.includes("noreferrer"));
+    assert.deepEqual(layout.blueWords, ["lonely", "lonely", "interfaces"]);
+    assert.deepEqual(layout.blueWordColors, ["rgb(91, 143, 212)", "rgb(91, 143, 212)", "rgb(91, 143, 212)"]);
     assert.equal(layout.followsGraph, true);
     assert.equal(layout.flowsToHumanSurface, true);
     assert.equal(layout.numberColor, "rgb(91, 143, 212)");

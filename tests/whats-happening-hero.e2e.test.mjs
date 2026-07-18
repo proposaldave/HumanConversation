@@ -137,7 +137,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, solved. What’s happening right now? 2014. Slack. Organizations, solved. What’s happening at work? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Every complex system needs to understand the truth about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 12,
+    storySections: 11,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -530,7 +530,7 @@ test("the complete public story stays organized one screen at a time on a wide w
   const height = 1000;
   await page.setViewport(width, height);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
 
   const sections = await page.evaluate(`(() => {
     const visible = (element) => {
@@ -563,7 +563,7 @@ test("the complete public story stays organized one screen at a time on a wide w
     });
   })()`);
 
-  assert.equal(sections.length, 12);
+  assert.equal(sections.length, 11);
   sections.forEach((section) => {
     assert.ok(Math.abs(section.top) < 3, `section ${section.index + 1} lands at the viewport start`);
     assert.ok(section.height >= height - 1 && section.height <= height + 1, `section ${section.index + 1} uses one work-monitor viewport`);
@@ -585,7 +585,7 @@ test("the operating-system claim gives the existing human system a small memory 
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
     await page.evaluate(`document.querySelector("#landing-story .is-real-world-os-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-real-world-os-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -637,7 +637,7 @@ test("the community graph continues the Maya section visual system across deskto
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
     await page.evaluate(`document.querySelector("#landing-story .is-graph-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-graph-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -781,7 +781,7 @@ test("the contact email stays fixed top-right from hero through the final sectio
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
 
     let fixedAnchor = null;
     let previousScrollY = -1;
@@ -892,7 +892,7 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
   const height = 690;
   await page.setViewport(width, height);
   await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
   await page.evaluate(`document.querySelector("#landing-story .is-taps-premium-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
   await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-taps-premium-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -929,7 +929,7 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
 
   const sequence = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -942,7 +942,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const attentionSection = document.querySelector("#landing-story .is-attention-section");
     const lonelinessSection = document.querySelector("#landing-story .is-lonely-return-section");
     const humanSurfaceSection = document.querySelector("#landing-story .is-human-surface-section");
-    const timelessSection = document.querySelector("#landing-story .is-timeless-fullscreen-section");
+    const finalSection = document.querySelector("#landing-story .is-final-cta-section");
     return {
       variant: document.querySelector(".page")?.dataset.variant,
       heroClass: document.querySelector("#landing-hero")?.className,
@@ -990,11 +990,11 @@ test("the public story resolves the twist with the existing interface thesis", a
       humanSurfaceTitle: title(humanSurfaceSection),
       humanSurfaceIntro: normalize(humanSurfaceSection?.querySelector(".human-surface-sectionline")?.textContent),
       lonelinessFlowsToHumanSurface: lonelinessSection?.nextElementSibling === humanSurfaceSection,
-      humanSurfaceIsThirdToLast: sections.at(-3) === humanSurfaceSection,
-      humanSurfaceFlowsToTimeless: humanSurfaceSection?.nextElementSibling === timelessSection,
-      timelessInterfaceColor: getComputedStyle(timelessSection?.querySelector(".story-gold")).color,
-      timelessIsSecondToLast: sections.at(-2) === timelessSection,
-      timelessFlowsToFuture: timelessSection?.nextElementSibling?.classList.contains("is-final-cta-section"),
+      humanSurfaceIsSecondToLast: sections.at(-2) === humanSurfaceSection,
+      humanSurfaceFlowsToFuture: humanSurfaceSection?.nextElementSibling === finalSection,
+      standaloneTimelessSectionPresent: Boolean(document.querySelector("#landing-story .is-timeless-fullscreen-section")),
+      finalTimelessLine: normalize(finalSection?.querySelector(".final-cta-button-lead")?.textContent),
+      finalTimelessBrandColor: getComputedStyle(finalSection?.querySelector(".final-cta-button-lead .brand-name")).color,
       publicCheskySectionPresent: Boolean(cheskySection),
       publicCheskyQuotePresent: Boolean(document.querySelector("#landing-story .story-quote")),
       cueDismissed: cue?.classList.contains("is-dismissed"),
@@ -1008,7 +1008,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     variant: PUBLIC_VARIANT,
     heroClass: "hero hero-community-pulse",
     heroStage: "twitter",
-    sectionCount: 12,
+    sectionCount: 11,
     firstIsCommunityTruth: true,
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
@@ -1047,11 +1047,11 @@ test("the public story resolves the twist with the existing interface thesis", a
     humanSurfaceIntro:
       "Members feel remembered. Builders stay present. The memory, matching, scheduling, follow-up, and logistics move underneath.",
     lonelinessFlowsToHumanSurface: true,
-    humanSurfaceIsThirdToLast: true,
-    humanSurfaceFlowsToTimeless: true,
-    timelessInterfaceColor: "rgb(255, 248, 236)",
-    timelessIsSecondToLast: true,
-    timelessFlowsToFuture: true,
+    humanSurfaceIsSecondToLast: true,
+    humanSurfaceFlowsToFuture: true,
+    standaloneTimelessSectionPresent: false,
+    finalTimelessLine: "Human Conversation is the timeless interface of community.",
+    finalTimelessBrandColor: "rgb(214, 138, 154)",
     publicCheskySectionPresent: false,
     publicCheskyQuotePresent: false,
     cueDismissed: false,
@@ -1158,7 +1158,7 @@ test("the public story resolves the twist with the existing interface thesis", a
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
     await page.evaluate(`document.querySelector("#landing-story .is-interface-opposite-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-interface-opposite-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -1260,7 +1260,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
     assert.equal(layout.premise, "99.9% of communication technology puts an interface between us.");
     assert.equal(layout.returnLine, "Human Conversation brings us together.");
     assert.equal(layout.index, 3, "the thesis is the fourth story section, immediately after the solution");
-    assert.equal(layout.total, 12);
+    assert.equal(layout.total, 11);
     assert.equal(layout.previousIsSolves, true);
     assert.equal(layout.nextIsOperatingSystem, true);
     assert.equal(layout.statColor, "rgb(91, 143, 212)");
@@ -1382,7 +1382,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
     await page.evaluate(`document.querySelector("#landing-story .is-human-surface-section")?.scrollIntoView({ behavior: "instant", block: "start" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-human-surface-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -1406,7 +1406,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
         topCardText: normalize(topCard?.textContent),
         bottomCardText: normalize(bottomCard?.textContent),
         dividerText: normalize(divider?.textContent),
-        thirdToLast: sections.at(-3) === section,
+        secondToLast: sections.at(-2) === section,
         section: rect(section),
         titleRect: rect(title),
         systemRect: rect(system),
@@ -1428,7 +1428,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
     assert.equal(layout.topCardText, "What people feel A real conversation with someone who knows why they matter.");
     assert.equal(layout.bottomCardText, "What AI handles Signals, context, matching, scheduling, reminders, follow-up, and logistics.");
     assert.equal(layout.dividerText, "Human moment");
-    assert.equal(layout.thirdToLast, true);
+    assert.equal(layout.secondToLast, true);
     assert.equal(layout.goldColor, "rgb(184, 149, 74)");
     assert.match(layout.backgroundImage, /hc-art-operating-system-human-value-funnel-20260705\.png/);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} human/AI section has no horizontal overflow`);
@@ -1459,7 +1459,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
 test("the Brian Chesky quote lives only behind the hidden bottom-left dot", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1549,10 +1549,16 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
       const card = section?.querySelector(".future-story-inner");
       const callout = card?.querySelector(".final-cta-side-callout");
       const signup = card?.querySelector(".story-contact");
+      const email = signup?.querySelector('input[type="email"]');
+      const timelessLine = signup?.querySelector(".final-cta-button-lead");
+      const button = signup?.querySelector('button[type="submit"]');
       const ratio = card?.querySelector(".final-cta-ratio");
       const cardRect = card?.getBoundingClientRect();
       const calloutRect = callout?.getBoundingClientRect();
       const signupRect = signup?.getBoundingClientRect();
+      const emailRect = email?.getBoundingClientRect();
+      const timelessLineRect = timelessLine?.getBoundingClientRect();
+      const buttonRect = button?.getBoundingClientRect();
       const ratioRect = ratio?.getBoundingClientRect();
       return {
         copy: normalize(card?.querySelector(".future-story-side .story-body")?.textContent),
@@ -1561,6 +1567,8 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
         screen: normalize(ratio?.querySelector(".final-cta-ratio-screen")?.textContent),
         human: normalize(ratio?.querySelector(".final-cta-ratio-human")?.textContent),
         promise: normalize(ratio?.querySelector(".final-cta-ratio-promise")?.textContent),
+        timelessLine: normalize(timelessLine?.textContent),
+        timelessLinePrecedesButton: timelessLine?.nextElementSibling === button,
         position: callout ? getComputedStyle(callout).position : null,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         finalIsLast: sections.at(-1) === section,
@@ -1568,6 +1576,9 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
         card: cardRect ? { top: cardRect.top, right: cardRect.right, bottom: cardRect.bottom, left: cardRect.left } : null,
         callout: calloutRect ? { top: calloutRect.top, right: calloutRect.right, bottom: calloutRect.bottom, left: calloutRect.left } : null,
         signup: signupRect ? { top: signupRect.top, right: signupRect.right, bottom: signupRect.bottom, left: signupRect.left } : null,
+        email: emailRect ? { top: emailRect.top, right: emailRect.right, bottom: emailRect.bottom, left: emailRect.left } : null,
+        timelessLineRect: timelessLineRect ? { top: timelessLineRect.top, right: timelessLineRect.right, bottom: timelessLineRect.bottom, left: timelessLineRect.left } : null,
+        button: buttonRect ? { top: buttonRect.top, right: buttonRect.right, bottom: buttonRect.bottom, left: buttonRect.left } : null,
         ratio: ratioRect ? { top: ratioRect.top, right: ratioRect.right, bottom: ratioRect.bottom, left: ratioRect.left } : null,
       };
     })()`);
@@ -1578,11 +1589,15 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
     assert.equal(layout.screen, "1% screen time.");
     assert.equal(layout.human, "99% human time.");
     assert.equal(layout.promise, "Imagine a life that runs on Human Conversation and connected experiences.");
+    assert.equal(layout.timelessLine, "Human Conversation is the timeless interface of community.");
+    assert.equal(layout.timelessLinePrecedesButton, true);
     assert.equal(layout.finalIsLast, true);
     assert.equal(layout.continuationControlPresent, false);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} closing section has no horizontal overflow`);
     assert.equal(layout.callout, null, `${width}x${height} removes the rejected side callout`);
-    assert.ok(layout.card && layout.signup && layout.ratio, `${width}x${height} closing card, signup, and ratio are present`);
+    assert.ok(layout.card && layout.signup && layout.email && layout.timelessLineRect && layout.button && layout.ratio, `${width}x${height} closing card content is present`);
+    assert.ok(layout.email.bottom <= layout.timelessLineRect.top, `${width}x${height} timeless line follows the email field`);
+    assert.ok(layout.timelessLineRect.bottom <= layout.button.top, `${width}x${height} timeless line sits above the signup button`);
     assert.ok(layout.ratio.left >= layout.card.left - 1 && layout.ratio.right <= layout.card.right + 1, `${width}x${height} ratio stays inside the closing card`);
     assert.ok(layout.signup.bottom <= layout.ratio.top, `${width}x${height} ratio follows the signup without overlap`);
     assert.ok(layout.ratio.bottom <= layout.card.bottom + 1, `${width}x${height} ratio stays inside the closing card vertically`);
@@ -1604,7 +1619,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
     await showStage("human");
     await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);

@@ -7305,8 +7305,26 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .story-contact .contact-row {
         align-items: stretch;
+        flex-direction: column;
         gap: 10px;
         justify-content: flex-start;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-button-lead {
+        max-width: 17ch;
+        margin: 5px 0 2px;
+        color: #fff8ec;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.65rem, 2.4vw, 2.35rem);
+        font-weight: 650;
+        letter-spacing: -0.025em;
+        line-height: 1.02;
+        text-wrap: balance;
+        text-shadow: 0 4px 28px rgba(0, 0, 0, 0.52);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .final-cta-button-lead .brand-name {
+        color: var(--hc-rose);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact input[type="email"] {
@@ -7323,6 +7341,7 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact button {
+        width: 100%;
         min-height: 56px;
         background: #f1c760;
         color: #1a1612;
@@ -17906,11 +17925,6 @@
                 className: "is-human-surface-section",
               },
               {
-                title: `<span><span class="brand-name">Human Conversation</span> is the</span><span class="story-gold">timeless interface</span><span>of community.</span>`,
-                scene: "timeless-interface",
-                className: "is-long is-timeless-fullscreen-section",
-              },
-              {
                 kind: "future",
                 title: ``,
                 closingRatio: {
@@ -17923,6 +17937,7 @@
                 scene: "human-future",
                 className: "is-future-section is-final-cta-section",
                 form: true,
+                buttonLead: `<span class="brand-name">Human Conversation</span> is the timeless interface of community.`,
               },
             ],
           },
@@ -18428,8 +18443,11 @@
         });
       }
 
-      function renderStorySignup(idSuffix, extraClass = "") {
+      function renderStorySignup(idSuffix, extraClass = "", buttonLead = "") {
         const formClass = ["contact", "story-contact", extraClass].filter(Boolean).join(" ");
+        const buttonLeadMarkup = buttonLead
+          ? `<p class="final-cta-button-lead">${buttonLead}</p>`
+          : "";
 
         return `
           <form class="${formClass}" id="email-capture-${idSuffix}" action="https://formsubmit.co/hello@humanconversation.com" method="post">
@@ -18441,6 +18459,7 @@
             <div class="contact-row">
               <label class="sr-only" for="email-${idSuffix}">Email address</label>
               <input id="email-${idSuffix}" name="email" type="email" autocomplete="email" placeholder="Email address" required />
+              ${buttonLeadMarkup}
               <button type="submit">Join the Conversation</button>
             </div>
             <p class="status" id="form-status-${idSuffix}" role="status" aria-live="polite"></p>
@@ -18654,7 +18673,9 @@
                   })
                   .join("")}</div>`
               : "";
-            const form = section.form ? renderStorySignup(`${variantId}-${sectionIndex}`, section.formClass || "") : "";
+            const form = section.form
+              ? renderStorySignup(`${variantId}-${sectionIndex}`, section.formClass || "", section.buttonLead || "")
+              : "";
             const sectionClasses = [
               "story-section",
               `story-scene-${section.scene}`,

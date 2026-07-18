@@ -36,7 +36,7 @@ after(async () => {
   await staticServer?.close();
 });
 
-test("the 1% / 99% Room exists only on the strict noindex review URL", async () => {
+test("the 1% / 99.9% Room exists only on the strict noindex review URL", async () => {
   await page.navigate(roomUrl("&demoState=prompt&reduceMotion=1"));
   const exact = await page.evaluate(`({
     reviewClass: document.documentElement.classList.contains("hc-master-prompt-review"),

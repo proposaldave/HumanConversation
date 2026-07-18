@@ -819,7 +819,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     interfaceFlowsToSolves: true,
     operatingSystemFlowsToTaps: true,
     bringsTogetherTitle:
-      "99% of communication technology puts an interface between us. Human Conversation brings us together.",
+      "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
     connectionFlowSectionPresent: false,
     bringsTogetherIsSeventh: true,
     bringsTogetherFlowsToGraph: true,
@@ -915,7 +915,7 @@ test("the public story resolves the twist with the existing interface thesis", a
   assertRuntimeHealthy();
 });
 
-test("the 99% communication-technology thesis lands mid-story and stays readable", async () => {
+test("the 99.9% communication-technology thesis lands mid-story and stays readable", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -959,9 +959,9 @@ test("the 99% communication-technology thesis lands mid-story and stays readable
 
     assert.equal(
       layout.title,
-      "99% of communication technology puts an interface between us. Human Conversation brings us together.",
+      "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
     );
-    assert.equal(layout.premise, "99% of communication technology puts an interface between us.");
+    assert.equal(layout.premise, "99.9% of communication technology puts an interface between us.");
     assert.equal(layout.returnLine, "Human Conversation brings us together.");
     assert.equal(layout.index, 6, "the thesis is the seventh section, not part of the opening sequence");
     assert.equal(layout.total, 12);
@@ -1138,7 +1138,7 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
   assertRuntimeHealthy();
 });
 
-test("the closing line and 1% / 99% promise stay clear beside the signup card", async () => {
+test("the closing line and 1% / 99.9% promise stay clear beside the signup card", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -1183,7 +1183,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
     assert.equal(layout.text, "");
     assert.equal(layout.kicker, "Imagine your life.");
     assert.equal(layout.screen, "1% screen time.");
-    assert.equal(layout.human, "99% human time.");
+    assert.equal(layout.human, "99.9% human time.");
     assert.equal(layout.promise, "A life that runs on Human Conversation and connected experiences.");
     assert.equal(layout.finalIsLast, true);
     assert.equal(layout.continuationControlPresent, false);

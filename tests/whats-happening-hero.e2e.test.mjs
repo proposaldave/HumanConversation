@@ -934,6 +934,7 @@ test("the 99.9% communication-technology thesis lands mid-story and stays readab
       const title = section?.querySelector(".story-title");
       const premise = section?.querySelector(".brings-together-premise");
       const stat = section?.querySelector(".brings-together-stat");
+      const interfaceWord = section?.querySelector(".brings-together-interface");
       const returnLine = section?.querySelector(".brings-together-gold");
       const cue = section?.querySelector(".section-cue");
       const rect = (element) => {
@@ -952,6 +953,8 @@ test("the 99.9% communication-technology thesis lands mid-story and stays readab
         titleRect: rect(title),
         cueRect: rect(cue),
         statColor: stat ? getComputedStyle(stat).color : null,
+        interfaceText: normalize(interfaceWord?.textContent),
+        interfaceColor: interfaceWord ? getComputedStyle(interfaceWord).color : null,
         returnColor: returnLine ? getComputedStyle(returnLine).color : null,
         backgroundImage: section ? getComputedStyle(section, "::before").backgroundImage : "",
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -969,6 +972,8 @@ test("the 99.9% communication-technology thesis lands mid-story and stays readab
     assert.equal(layout.previousIsAttention, true);
     assert.equal(layout.nextIsGraph, true);
     assert.equal(layout.statColor, "rgb(91, 143, 212)");
+    assert.equal(layout.interfaceText, "interface");
+    assert.equal(layout.interfaceColor, layout.statColor);
     assert.equal(layout.returnColor, "rgb(232, 189, 94)");
     assert.match(layout.backgroundImage, /hc-art-brings-together-community-engine-20260705\.png/);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} communication thesis has no horizontal overflow`);

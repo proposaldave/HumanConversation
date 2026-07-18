@@ -840,7 +840,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     interfaceAroundColor: "rgb(255, 248, 236)",
     interfaceHumanConversationText: "human conversation",
     interfaceHumanConversationColor: "rgb(214, 138, 154)",
-    thirdTitle: "Human Conversation solves disconnection.",
+    thirdTitle: "Human Conversation is how we solve disconnection.",
     fourthTitle: "Human Conversation is the operating system for real-world social networks.",
     operatingSystemColor: "rgb(255, 248, 236)",
     fifthTitle: "A Human Conversation is worth a thousand taps.",
@@ -1430,6 +1430,48 @@ test("the mobile connection chain ends with community and connection-high, every
     );
     assert.ok(layout.cue.bottom <= layout.section.bottom - 16, `${width} continuation cue stays inside its reserved bottom zone`);
     assert.ok(layout.horizontalOverflow <= 1, `${width} chain has no horizontal overflow`);
+    assertRuntimeHealthy();
+  }
+});
+
+test("the disconnection method copy stays organized on short desktop and phones", async () => {
+  for (const [width, height] of [
+    [1312, 690],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl(PUBLIC_VARIANT));
+    await page.waitFor(`document.querySelector("#landing-story .is-solves-disconnection-section")`);
+    await page.evaluate(`document.querySelector("#landing-story .is-solves-disconnection-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-solves-disconnection-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const layout = await page.evaluate(`(() => {
+      const section = document.querySelector("#landing-story .is-solves-disconnection-section");
+      const rect = (selector) => {
+        const box = section?.querySelector(selector)?.getBoundingClientRect();
+        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left } : null;
+      };
+      const sectionBox = section?.getBoundingClientRect();
+      return {
+        section: sectionBox ? { top: sectionBox.top, right: sectionBox.right, bottom: sectionBox.bottom, left: sectionBox.left } : null,
+        title: rect(".story-title"),
+        body: rect(".story-body"),
+        chain: rect(".story-chain"),
+        cue: rect(".section-cue"),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.ok(layout.section && layout.title && layout.body && layout.chain && layout.cue, `${width} renders the complete disconnection section`);
+    for (const [name, box] of Object.entries({ title: layout.title, body: layout.body, chain: layout.chain, cue: layout.cue })) {
+      assert.ok(box.left >= -1 && box.right <= width + 1, `${width} ${name} stays inside the viewport`);
+      assert.ok(box.top >= layout.section.top - 1 && box.bottom <= layout.section.bottom + 1, `${width} ${name} stays inside the section`);
+    }
+    assert.ok(layout.title.bottom <= layout.body.top + 1, `${width} title clears the supporting copy`);
+    assert.ok(layout.body.bottom <= layout.chain.top + 1, `${width} supporting copy clears the connection chain`);
+    assert.ok(layout.chain.bottom <= layout.cue.top - 16, `${width} connection chain clears the continuation cue`);
+    assert.ok(layout.horizontalOverflow <= 1, `${width} disconnection section has no horizontal overflow`);
     assertRuntimeHealthy();
   }
 });

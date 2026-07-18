@@ -165,6 +165,9 @@ test("every visible What’s happening phrase is italicized across the public pa
         .map((element) => ({
           text: element.textContent.trim().toLowerCase(),
           tagName: element.tagName,
+          fontFamily: getComputedStyle(element).fontFamily,
+          fontSize: Number.parseFloat(getComputedStyle(element).fontSize),
+          parentFontSize: Number.parseFloat(getComputedStyle(element.parentElement).fontSize),
           fontStyle: getComputedStyle(element).fontStyle,
           fontSynthesis: getComputedStyle(element).fontSynthesis,
         })),
@@ -174,6 +177,8 @@ test("every visible What’s happening phrase is italicized across the public pa
     assert.equal(phrases.items.length, 5, `${width}x${height} finds every visible phrase`);
     assert.ok(phrases.items.every((item) => item.text === "what’s happening"));
     assert.ok(phrases.items.every((item) => item.tagName === "EM"));
+    assert.ok(phrases.items.every((item) => item.fontFamily.startsWith('"IBM Plex Sans Condensed"')));
+    assert.ok(phrases.items.every((item) => Math.abs(item.fontSize / item.parentFontSize - 0.9) < 0.01));
     assert.ok(phrases.items.every((item) => item.fontStyle === "italic"));
     assert.ok(phrases.items.every((item) => item.fontSynthesis.includes("style")));
     assert.ok(phrases.horizontalOverflow <= 1, `${width}x${height} italic treatment does not overflow`);

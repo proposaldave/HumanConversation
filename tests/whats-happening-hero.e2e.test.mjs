@@ -1248,6 +1248,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
         interfaceColor: interfaceWord ? getComputedStyle(interfaceWord).color : null,
         returnColor: returnLine ? getComputedStyle(returnLine).color : null,
         backgroundImage: section ? getComputedStyle(section, "::before").backgroundImage : "",
+        backgroundPosition: section ? getComputedStyle(section, "::before").backgroundPosition : "",
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
     })()`);
@@ -1266,7 +1267,13 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
     assert.equal(layout.interfaceText, "interface");
     assert.equal(layout.interfaceColor, layout.statColor);
     assert.equal(layout.returnColor, "rgb(232, 189, 94)");
-    assert.match(layout.backgroundImage, /hc-art-brings-together-community-engine-20260705\.png/);
+    assert.match(layout.backgroundImage, /hc-art-interface-opens-to-human-conversation-20260718\.png/);
+    assert.ok(
+      layout.backgroundPosition
+        .split(",")
+        .every((position) => position.trim() === (width <= 760 ? "86% 50%" : "50% 50%")),
+      `${width}x${height} keeps the human conversation inside the intended crop`,
+    );
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} communication thesis has no horizontal overflow`);
     assert.ok(layout.sectionRect.height >= height - 1, `${width}x${height} communication thesis fills the viewport`);
     assert.ok(layout.titleRect.left >= -1 && layout.titleRect.right <= width + 1, `${width}x${height} communication thesis fits horizontally`);

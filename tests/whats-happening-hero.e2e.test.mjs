@@ -1024,7 +1024,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     interfaceAroundColor: "rgb(255, 248, 236)",
     interfaceHumanConversationText: "human conversation",
     interfaceHumanConversationColor: "rgb(214, 138, 154)",
-    thirdTitle: "Human Conversation is how we solve disconnection.",
+    thirdTitle: "Human Conversation solves disconnection.",
     fourthTitle:
       "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
     fifthTitle: "Human Conversation is already the operating system for real-world social networks.",

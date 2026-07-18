@@ -1197,6 +1197,90 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
   }
 });
 
+test("the loneliness section grounds the story in the current WHO global scale", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [1312, 690],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
+    await page.waitFor(`document.querySelector("#landing-story .is-lonely-return-section .loneliness-stat")`);
+    await page.evaluate(`document.querySelector("#landing-story .is-lonely-return-section")?.scrollIntoView({ behavior: "instant", block: "start" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-lonely-return-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const layout = await page.evaluate(`(() => {
+      const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+      const rect = (element) => {
+        const box = element?.getBoundingClientRect();
+        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left, height: box.height } : null;
+      };
+      const section = document.querySelector("#landing-story .is-lonely-return-section");
+      const title = section?.querySelector(".story-title");
+      const stat = section?.querySelector(".loneliness-stat");
+      const number = stat?.querySelector(".loneliness-stat-number");
+      const copy = stat?.querySelector(".loneliness-stat-copy");
+      const source = stat?.querySelector(".loneliness-stat-source");
+      const cue = section?.querySelector(".section-cue");
+      return {
+        title: Array.from(title?.children || []).map((line) => normalize(line.textContent)).join(" "),
+        stat: normalize(stat?.getAttribute("aria-label")),
+        number: normalize(number?.textContent),
+        copy: normalize(copy?.textContent),
+        source: normalize(source?.textContent),
+        sourceHref: source?.href,
+        sourceTarget: source?.target,
+        sourceRel: source?.rel,
+        followsGraph: section?.previousElementSibling?.classList.contains("is-graph-section"),
+        flowsToHumanSurface: section?.nextElementSibling?.classList.contains("is-human-surface-section"),
+        numberColor: number ? getComputedStyle(number).color : null,
+        sectionRect: rect(section),
+        titleRect: rect(title),
+        statRect: rect(stat),
+        cueRect: rect(cue),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(
+      layout.title,
+      "We're not lonely because communication disappeared. We're lonely because interfaces replaced Human Conversation.",
+    );
+    assert.equal(layout.stat, "1 in 6 people worldwide experience loneliness.");
+    assert.equal(layout.number, "1 in 6");
+    assert.equal(layout.copy, "people worldwide experience loneliness.");
+    assert.equal(layout.source, "World Health Organization · 2025");
+    assert.equal(layout.sourceHref, "https://www.who.int/groups/commission-on-social-connection");
+    assert.equal(layout.sourceTarget, "_blank");
+    assert.ok(layout.sourceRel.includes("noopener") && layout.sourceRel.includes("noreferrer"));
+    assert.equal(layout.followsGraph, true);
+    assert.equal(layout.flowsToHumanSurface, true);
+    assert.equal(layout.numberColor, "rgb(91, 143, 212)");
+    assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} loneliness section has no horizontal overflow`);
+    assert.ok(layout.sectionRect.height >= height - 1, `${width}x${height} loneliness section fills the viewport`);
+
+    for (const [label, box] of [
+      ["title", layout.titleRect],
+      ["stat", layout.statRect],
+      ["continuation control", layout.cueRect],
+    ]) {
+      assert.ok(box, `${width}x${height} ${label} renders`);
+      assert.ok(box.left >= -1 && box.right <= width + 1, `${width}x${height} ${label} fits horizontally`);
+      assert.ok(box.top >= layout.sectionRect.top - 1 && box.bottom <= layout.sectionRect.bottom + 1, `${width}x${height} ${label} stays inside the section`);
+    }
+
+    if (width > 760) {
+      assert.ok(layout.titleRect.right < layout.statRect.left, `${width}x${height} keeps the global scale beside the story`);
+    } else {
+      assert.ok(layout.titleRect.bottom < layout.statRect.top, `${width}x${height} stacks the global scale beneath the story`);
+      assert.ok(layout.statRect.bottom < layout.cueRect.top, `${width}x${height} keeps the continuation control below the source`);
+    }
+
+    assertRuntimeHealthy();
+  }
+});
+
 test("the human and AI surface section stays clear on desktop and narrow phones", async () => {
   for (const [width, height] of [
     [1440, 900],

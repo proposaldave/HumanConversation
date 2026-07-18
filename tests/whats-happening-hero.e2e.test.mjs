@@ -780,6 +780,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       firstTitle: title(sections[0]),
       firstBody: normalize(sections[0]?.querySelector(".story-body")?.textContent),
       secondTitle: title(sections[1]),
+      secondBody: normalize(sections[1]?.querySelector(".story-body")?.textContent),
       interfaceAroundText: normalize(sections[1]?.querySelector(".interface-opposite-around")?.textContent),
       interfaceAroundFontStyle: getComputedStyle(sections[1]?.querySelector(".interface-opposite-around")).fontStyle,
       interfaceAroundColor: getComputedStyle(sections[1]?.querySelector(".interface-opposite-around")).color,
@@ -832,7 +833,8 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstTitle:
       "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
-    secondTitle: "The intelligence around human conversation will redefine how we come together.",
+    secondTitle: "For decades, technology pulled communication onto interfaces. We’re doing the opposite.",
+    secondBody: "The intelligence around human conversation will redefine how we come together.",
     interfaceAroundText: "around",
     interfaceAroundFontStyle: "italic",
     interfaceAroundColor: "rgb(255, 248, 236)",
@@ -907,8 +909,12 @@ test("the public story resolves the twist with the existing interface thesis", a
       aroundFontStyle: getComputedStyle(around).fontStyle,
       titleFontSize: Number.parseFloat(getComputedStyle(section.querySelector(".story-title")).fontSize),
       bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
+      titleLeft: title.left,
+      titleRight: title.right,
       titleTop: title.top,
       titleBottom: title.bottom,
+      bodyLeft: bodyRect.left,
+      bodyRight: bodyRect.right,
       bodyTop: bodyRect.top,
       bodyBottom: bodyRect.bottom,
       bodyDisplay: getComputedStyle(body).display,
@@ -923,12 +929,15 @@ test("the public story resolves the twist with the existing interface thesis", a
 
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
-  assert.equal(firstPanel.titleText, "The intelligence around human conversation will redefine how we come together.");
+  assert.equal(firstPanel.titleText, "For decades, technology pulled communication onto interfaces. We’re doing the opposite.");
   assert.equal(firstPanel.aroundText, "around");
   assert.equal(firstPanel.aroundTag, "EM");
   assert.equal(firstPanel.aroundFontStyle, "italic");
-  assert.equal(firstPanel.bodyText, "For decades, technology pulled communication onto interfaces. We’re doing the opposite.");
-  assert.ok(firstPanel.titleFontSize > firstPanel.bodyFontSize * 2, "the intelligence claim is the dominant type treatment");
+  assert.equal(firstPanel.bodyText, "The intelligence around human conversation will redefine how we come together.");
+  assert.ok(firstPanel.bodyFontSize > firstPanel.titleFontSize, "the intelligence claim resolves in the larger type treatment");
+  assert.ok(firstPanel.titleRight < 720, "the technology statement stays anchored to the dark left half");
+  assert.ok(firstPanel.bodyLeft > 650, "the Human Conversation statement stays anchored to the social right half");
+  assert.ok(firstPanel.titleTop < firstPanel.bodyTop, "the section reads from upper left to lower right");
   assert.ok(firstPanel.titleTop >= -1 && firstPanel.titleBottom <= 901);
   assert.ok(firstPanel.bodyTop >= -1 && firstPanel.bodyBottom <= 901);
   assert.equal(firstPanel.bodyDisplay, "grid");
@@ -936,8 +945,54 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
   assert.equal(firstPanel.arrowHead, "2px");
   assert.match(firstPanel.imageFilter, /brightness\(1\.04\)/);
-  assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.89\)/);
+  assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.92\)/);
   assert.ok(firstPanel.horizontalOverflow <= 1);
+
+  for (const [width, height] of [
+    [1312, 690],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl(PUBLIC_VARIANT));
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
+    await page.evaluate(`document.querySelector("#landing-story .is-interface-opposite-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
+    await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-interface-opposite-section")?.getBoundingClientRect().top ?? 9999) < 3`);
+
+    const responsivePanel = await page.evaluate(`(() => {
+      const rect = (element) => {
+        const box = element?.getBoundingClientRect();
+        return box ? { left: box.left, right: box.right, top: box.top, bottom: box.bottom } : null;
+      };
+      const section = document.querySelector("#landing-story .is-interface-opposite-section");
+      const title = section?.querySelector(".story-title");
+      const body = section?.querySelector(".story-body");
+      return {
+        title: rect(title),
+        body: rect(body),
+        cue: rect(section?.querySelector(".section-cue")),
+        titleFontSize: Number.parseFloat(getComputedStyle(title).fontSize),
+        bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.ok(responsivePanel.title && responsivePanel.body && responsivePanel.cue, `${width}x${height} interface composition renders`);
+    assert.ok(responsivePanel.horizontalOverflow <= 1, `${width}x${height} interface composition overflows horizontally`);
+    assert.ok(responsivePanel.title.left >= 0 && responsivePanel.title.right <= width, `${width}x${height} technology statement leaves the viewport`);
+    assert.ok(responsivePanel.body.left >= 0 && responsivePanel.body.right <= width, `${width}x${height} intelligence statement leaves the viewport`);
+    assert.ok(responsivePanel.title.top < responsivePanel.body.top, `${width}x${height} loses the intended reading order`);
+    assert.ok(responsivePanel.body.bottom + 16 <= responsivePanel.cue.top, `${width}x${height} intelligence statement overlaps the continuation cue`);
+    assert.ok(responsivePanel.bodyFontSize > responsivePanel.titleFontSize, `${width}x${height} loses the swapped hierarchy`);
+
+    if (width > 760) {
+      assert.ok(responsivePanel.title.right < width * 0.52, `${width}x${height} technology statement leaves the dark half`);
+      assert.ok(responsivePanel.body.left > width * 0.44, `${width}x${height} intelligence statement leaves the social half`);
+    } else {
+      assert.ok(responsivePanel.body.left > responsivePanel.title.left, `${width}x${height} intelligence statement does not resolve to the right`);
+    }
+  }
+
   assertRuntimeHealthy();
 });
 

@@ -11950,28 +11950,39 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section::after {
         display: block;
         background:
-          linear-gradient(90deg, rgba(3, 5, 8, 0.89) 0%, rgba(3, 5, 8, 0.72) 42%, rgba(3, 5, 8, 0.25) 72%, rgba(3, 5, 8, 0.12) 100%),
+          radial-gradient(ellipse at 78% 58%, rgba(3, 5, 8, 0.58) 0%, rgba(3, 5, 8, 0.32) 34%, rgba(3, 5, 8, 0) 66%),
+          linear-gradient(90deg, rgba(3, 5, 8, 0.92) 0%, rgba(3, 5, 8, 0.76) 40%, rgba(3, 5, 8, 0.29) 72%, rgba(3, 5, 8, 0.14) 100%),
           linear-gradient(180deg, rgba(3, 5, 8, 0.1) 0%, rgba(3, 5, 8, 0.06) 58%, rgba(3, 5, 8, 0.52) 100%);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-section-inner {
-        display: block;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
         width: min(100% - 64px, 1320px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-copy-block {
-        width: min(100%, 1080px);
-        max-width: 1080px;
-        margin-left: clamp(12px, 2vw, 30px);
+        display: grid;
+        grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+        align-items: center;
+        gap: clamp(52px, 7vw, 108px);
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: none;
+        margin: 0;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title {
-        max-width: 1080px;
+        grid-column: 1;
+        max-width: 14ch;
+        border-left: 2px solid rgba(255, 248, 236, 0.34);
         color: #fff8ec;
-        font-size: clamp(3.2rem, 6.15vw, 7.15rem);
+        padding-left: clamp(14px, 1.6vw, 22px);
+        font-size: clamp(2.5rem, 3.75vw, 4.65rem);
         font-weight: 680;
-        line-height: 0.91;
+        line-height: 0.96;
         text-shadow: 0 6px 34px rgba(0, 0, 0, 0.62);
+        transform: translateY(clamp(-56px, -6vh, -32px));
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title > span {
@@ -11980,17 +11991,26 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
         position: relative;
+        grid-column: 2;
         display: grid;
-        grid-template-columns: clamp(58px, 7vw, 96px) minmax(0, 1fr);
+        grid-template-columns: clamp(44px, 5vw, 72px) minmax(0, 1fr);
         align-items: center;
-        gap: clamp(14px, 1.8vw, 22px);
-        max-width: 800px;
-        margin-top: clamp(26px, 4vh, 42px);
+        gap: clamp(14px, 1.6vw, 22px);
+        max-width: 14.5ch;
+        margin: 0 0 0 auto;
         border-left: 0;
-        color: rgba(255, 248, 236, 0.92);
+        color: #fff8ec;
         padding-left: 0;
-        font-size: clamp(1.12rem, 1.55vw, 1.42rem);
-        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.58);
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(2.7rem, 4.35vw, 5.2rem);
+        font-weight: 680;
+        line-height: 0.93;
+        text-shadow: 0 6px 34px rgba(0, 0, 0, 0.68);
+        transform: translateY(clamp(32px, 6vh, 56px));
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body p {
+        grid-column: 2;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::before {
@@ -12005,7 +12025,7 @@
         content: "";
         position: absolute;
         top: 50%;
-        left: calc(clamp(58px, 7vw, 96px) - 9px);
+        left: calc(clamp(44px, 5vw, 72px) - 9px);
         width: 10px;
         height: 10px;
         border-top: 2px solid var(--hc-rose);
@@ -12023,6 +12043,26 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-visual {
         display: none;
+      }
+
+      @media (min-width: 761px) and (max-height: 760px) {
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section {
+          padding: 60px 0 66px;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-copy-block {
+          gap: clamp(42px, 5.5vw, 76px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title {
+          font-size: clamp(2.2rem, 3.45vw, 3.5rem);
+          transform: translateY(-20px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
+          font-size: clamp(2.35rem, 3.7vw, 3.7rem);
+          transform: translateY(20px);
+        }
       }
 
       @media (max-width: 760px) {
@@ -12203,28 +12243,36 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-copy-block {
-          margin-left: 8px;
+          grid-template-columns: 1fr;
+          gap: clamp(30px, 5vh, 42px);
+          margin-left: 0;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title {
-          max-width: 100%;
+          grid-column: 1;
+          max-width: 13.5ch;
           color: #fff8ec;
-          font-size: clamp(2.4rem, 11.2vw, 3.48rem);
-          line-height: 0.95;
+          padding-left: 14px;
+          font-size: clamp(1.98rem, 9vw, 2.4rem);
+          line-height: 0.97;
+          transform: none;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
-          grid-template-columns: clamp(42px, 12vw, 62px) minmax(0, 1fr);
+          grid-column: 1;
+          grid-template-columns: clamp(36px, 10vw, 48px) minmax(0, 1fr);
           gap: 12px;
-          margin-top: 24px;
-          color: rgba(255, 248, 236, 0.92);
+          max-width: calc(100% - 18px);
+          margin: 0 0 0 auto;
+          color: #fff8ec;
           padding-left: 0;
-          font-size: 0.98rem;
-          line-height: 1.4;
+          font-size: clamp(2.12rem, 9.4vw, 2.72rem);
+          line-height: 0.96;
+          transform: none;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::after {
-          left: calc(clamp(42px, 12vw, 62px) - 9px);
+          left: calc(clamp(36px, 10vw, 48px) - 9px);
         }
       }
 
@@ -17390,9 +17438,9 @@
                 className: "is-long is-community-truth-section",
               },
               {
-                title: `<span class="interface-opposite-build">The intelligence <em class="interface-opposite-around">around</em> <span class="interface-opposite-human-conversation">human conversation</span> will redefine how we come together.</span>`,
+                title: `<span class="interface-opposite-context">For decades, technology pulled communication onto interfaces. We&rsquo;re doing the opposite.</span>`,
                 copy: [
-                  `<span class="interface-opposite-context">For decades, technology pulled communication onto interfaces. We&rsquo;re doing the opposite.</span>`,
+                  `<span class="interface-opposite-build">The intelligence <em class="interface-opposite-around">around</em> <span class="interface-opposite-human-conversation">human conversation</span> will redefine how we come together.</span>`,
                 ],
                 scene: "interface-opposite",
                 className: "is-long is-interface-opposite-section",

@@ -862,6 +862,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const section = document.querySelector("#landing-story .is-interface-opposite-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
     const body = section.querySelector(".story-body");
+    const around = section.querySelector(".interface-opposite-around");
     const titleText = String(section.querySelector(".story-title")?.textContent || "").trim();
     const bodyText = String(body?.textContent || "").trim();
     const bodyRect = body.getBoundingClientRect();
@@ -870,6 +871,9 @@ test("the public story resolves the twist with the existing interface thesis", a
       height: section.getBoundingClientRect().height,
       titleText,
       bodyText,
+      aroundText: String(around?.textContent || "").trim(),
+      aroundTag: around?.tagName,
+      aroundFontStyle: getComputedStyle(around).fontStyle,
       titleFontSize: Number.parseFloat(getComputedStyle(section.querySelector(".story-title")).fontSize),
       bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
       titleTop: title.top,
@@ -889,6 +893,9 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
   assert.equal(firstPanel.titleText, "The intelligence around human conversation will redefine how humanity comes together.");
+  assert.equal(firstPanel.aroundText, "around");
+  assert.equal(firstPanel.aroundTag, "EM");
+  assert.equal(firstPanel.aroundFontStyle, "italic");
   assert.equal(firstPanel.bodyText, "For decades, technology pulled communication onto interfaces. We’re doing the opposite.");
   assert.ok(firstPanel.titleFontSize > firstPanel.bodyFontSize * 2, "the intelligence claim is the dominant type treatment");
   assert.ok(firstPanel.titleTop >= -1 && firstPanel.titleBottom <= 901);

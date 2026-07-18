@@ -1,9 +1,9 @@
 {
   "variant": "conversation-intelligence-home",
   "heroClass": "hero hero-community-pulse",
-  "headlineLabel": "2009. Twitter. Digital Communities, solved. What’s happening right now? 2014. Slack. Organizations, solved. What’s happening at work? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Complex systems need to understand what’s happening — so they know what to do next.",
+  "headlineLabel": "2009. Twitter. Digital Communities, solved. What’s happening right now? 2014. Slack. Organizations, solved. What’s happening at work? 2026. Human Conversation. Real-world social networks, unsolved. What’s happening between us, around us, and within us? Every complex system needs to understand the truth of what’s happening — so it knows what to do next.",
   "headlineText": "200920142026twitterDigital Communities ✓ SolvedWhat’s happening right now?twitterNov 19 · 2009What’s happening?slackOrganizations ✓ SolvedWhat’s happening at work?slack# general# product# randomHuman ConversationReal-world social networks ✕ UnsolvedWhat’s happening between us, around us, and within us?",
-  "ledeText": "Complex systems need to understand what’s happening — so they know what to do next.",
+  "ledeText": "Every complex system needs to understand the truth of what’s happening — so it knows what to do next.",
   "headerEmail": "hello@humanconversation.com",
   "storySections": 12,
   "heroSignupAction": "https://formsubmit.co/hello@humanconversation.com",

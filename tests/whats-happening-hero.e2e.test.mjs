@@ -1029,8 +1029,12 @@ test("the public story resolves the twist with the existing interface thesis", a
     const section = document.querySelector("#landing-story .is-interface-opposite-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
     const body = section.querySelector(".story-body");
+    const context = section.querySelector(".interface-opposite-context");
+    const turn = section.querySelector(".interface-opposite-turn");
     const around = section.querySelector(".interface-opposite-around");
-    const titleText = String(section.querySelector(".story-title")?.textContent || "").trim();
+    const titleText = Array.from(section.querySelectorAll(".story-title > span"))
+      .map((line) => String(line.textContent || "").trim())
+      .join(" ");
     const bodyText = String(body?.textContent || "").trim();
     const bodyRect = body.getBoundingClientRect();
     return {
@@ -1041,7 +1045,12 @@ test("the public story resolves the twist with the existing interface thesis", a
       aroundText: String(around?.textContent || "").trim(),
       aroundTag: around?.tagName,
       aroundFontStyle: getComputedStyle(around).fontStyle,
-      titleFontSize: Number.parseFloat(getComputedStyle(section.querySelector(".story-title")).fontSize),
+      contextText: String(context?.textContent || "").trim(),
+      turnText: String(turn?.textContent || "").trim(),
+      contextFontSize: Number.parseFloat(getComputedStyle(context).fontSize),
+      turnFontSize: Number.parseFloat(getComputedStyle(turn).fontSize),
+      contextBottom: context?.getBoundingClientRect().bottom,
+      turnTop: turn?.getBoundingClientRect().top,
       bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
       titleLeft: title.left,
       titleRight: title.right,
@@ -1067,8 +1076,12 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.equal(firstPanel.aroundText, "around");
   assert.equal(firstPanel.aroundTag, "EM");
   assert.equal(firstPanel.aroundFontStyle, "italic");
+  assert.equal(firstPanel.contextText, "For decades, technology pulled communication onto interfaces.");
+  assert.equal(firstPanel.turnText, "We\u2019re doing the opposite.");
   assert.equal(firstPanel.bodyText, "The intelligence around human conversation will redefine how we come together.");
-  assert.ok(firstPanel.bodyFontSize > firstPanel.titleFontSize, "the intelligence claim resolves in the larger type treatment");
+  assert.ok(firstPanel.turnFontSize > firstPanel.contextFontSize * 2, "the opposite turn is visibly stronger than the historical setup");
+  assert.ok(firstPanel.turnTop - firstPanel.contextBottom >= 44, "the opposite turn is not grouped with the historical setup");
+  assert.ok(firstPanel.bodyFontSize > firstPanel.contextFontSize * 2, "the intelligence claim resolves in the larger type treatment");
   assert.ok(firstPanel.titleRight < 720, "the technology statement stays anchored to the dark left half");
   assert.ok(firstPanel.bodyLeft > 650, "the Human Conversation statement stays anchored to the social right half");
   assert.ok(firstPanel.titleTop < firstPanel.bodyTop, "the section reads from upper left to lower right");
@@ -1078,8 +1091,8 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.equal(firstPanel.bodyBorderLeft, "0px");
   assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
   assert.equal(firstPanel.arrowHead, "2px");
-  assert.match(firstPanel.imageFilter, /brightness\(1\.04\)/);
-  assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.92\)/);
+  assert.match(firstPanel.imageFilter, /brightness\(1\.12\)/);
+  assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.46\)/);
   assert.ok(firstPanel.horizontalOverflow <= 1);
 
   for (const [width, height] of [
@@ -1101,11 +1114,16 @@ test("the public story resolves the twist with the existing interface thesis", a
       const section = document.querySelector("#landing-story .is-interface-opposite-section");
       const title = section?.querySelector(".story-title");
       const body = section?.querySelector(".story-body");
+      const context = section?.querySelector(".interface-opposite-context");
+      const turn = section?.querySelector(".interface-opposite-turn");
       return {
         title: rect(title),
         body: rect(body),
         cue: rect(section?.querySelector(".section-cue")),
-        titleFontSize: Number.parseFloat(getComputedStyle(title).fontSize),
+        contextFontSize: Number.parseFloat(getComputedStyle(context).fontSize),
+        turnFontSize: Number.parseFloat(getComputedStyle(turn).fontSize),
+        contextBottom: context?.getBoundingClientRect().bottom,
+        turnTop: turn?.getBoundingClientRect().top,
         bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
@@ -1117,7 +1135,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     assert.ok(responsivePanel.body.left >= 0 && responsivePanel.body.right <= width, `${width}x${height} intelligence statement leaves the viewport`);
     assert.ok(responsivePanel.title.top < responsivePanel.body.top, `${width}x${height} loses the intended reading order`);
     assert.ok(responsivePanel.body.bottom + 16 <= responsivePanel.cue.top, `${width}x${height} intelligence statement overlaps the continuation cue`);
-    assert.ok(responsivePanel.bodyFontSize > responsivePanel.titleFontSize, `${width}x${height} loses the swapped hierarchy`);
+    assert.ok(responsivePanel.turnFontSize > responsivePanel.contextFontSize * 2, `${width}x${height} loses the separated opposite hierarchy`);
+    assert.ok(responsivePanel.turnTop > responsivePanel.contextBottom, `${width}x${height} regroups the opposite turn with the historical setup`);
+    assert.ok(responsivePanel.bodyFontSize > responsivePanel.contextFontSize * 2, `${width}x${height} loses the intelligence hierarchy`);
 
     if (width > 760) {
       assert.ok(responsivePanel.title.right < width * 0.52, `${width}x${height} technology statement leaves the dark half`);

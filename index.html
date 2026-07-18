@@ -3941,7 +3941,7 @@
       .story-scene-interface-opposite {
         --story-image: url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
         --story-position: 68% center;
-        --story-brightness: 1.04;
+        --story-brightness: 1.12;
       }
 
       .story-scene-between-us {
@@ -12253,8 +12253,8 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section::after {
         display: block;
         background:
-          radial-gradient(ellipse at 78% 58%, rgba(3, 5, 8, 0.58) 0%, rgba(3, 5, 8, 0.32) 34%, rgba(3, 5, 8, 0) 66%),
-          linear-gradient(90deg, rgba(3, 5, 8, 0.92) 0%, rgba(3, 5, 8, 0.76) 40%, rgba(3, 5, 8, 0.29) 72%, rgba(3, 5, 8, 0.14) 100%),
+          radial-gradient(ellipse at 78% 58%, rgba(3, 5, 8, 0.54) 0%, rgba(3, 5, 8, 0.28) 34%, rgba(3, 5, 8, 0) 66%),
+          linear-gradient(90deg, rgba(3, 5, 8, 0.46) 0%, rgba(3, 5, 8, 0.36) 40%, rgba(3, 5, 8, 0.25) 72%, rgba(3, 5, 8, 0.12) 100%),
           linear-gradient(180deg, rgba(3, 5, 8, 0.1) 0%, rgba(3, 5, 8, 0.06) 58%, rgba(3, 5, 8, 0.52) 100%);
       }
 
@@ -12277,19 +12277,37 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title {
         grid-column: 1;
-        max-width: 14ch;
-        border-left: 2px solid rgba(255, 248, 236, 0.34);
+        display: grid;
+        gap: clamp(48px, 7vh, 78px);
+        max-width: 17ch;
         color: #fff8ec;
-        padding-left: clamp(14px, 1.6vw, 22px);
-        font-size: clamp(2.5rem, 3.75vw, 4.65rem);
+        padding-left: 0;
         font-weight: 680;
-        line-height: 0.96;
         text-shadow: 0 6px 34px rgba(0, 0, 0, 0.62);
         transform: translateY(clamp(-56px, -6vh, -32px));
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title > span {
         display: block;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-context {
+        max-width: 25ch;
+        border-left: 2px solid rgba(126, 190, 233, 0.76);
+        color: rgba(255, 248, 236, 0.88);
+        padding-left: clamp(14px, 1.6vw, 22px);
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(1rem, 1.42vw, 1.42rem);
+        font-weight: 760;
+        line-height: 1.38;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-turn {
+        max-width: 8ch;
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(3.45rem, 5vw, 6rem);
+        font-weight: 680;
+        line-height: 0.9;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
@@ -12358,8 +12376,16 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title {
-          font-size: clamp(2.2rem, 3.45vw, 3.5rem);
+          gap: 30px;
           transform: translateY(-20px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-context {
+          font-size: clamp(0.9rem, 1.25vw, 1.05rem);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-turn {
+          font-size: clamp(2.7rem, 4.2vw, 3.35rem);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
@@ -12537,8 +12563,8 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section::after {
           background:
-            linear-gradient(180deg, rgba(3, 5, 8, 0.82) 0%, rgba(3, 5, 8, 0.62) 55%, rgba(3, 5, 8, 0.72) 100%),
-            linear-gradient(90deg, rgba(3, 5, 8, 0.56), rgba(3, 5, 8, 0.18));
+            linear-gradient(180deg, rgba(3, 5, 8, 0.72) 0%, rgba(3, 5, 8, 0.5) 55%, rgba(3, 5, 8, 0.68) 100%),
+            linear-gradient(90deg, rgba(3, 5, 8, 0.4), rgba(3, 5, 8, 0.14));
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-section-inner {
@@ -12553,12 +12579,24 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-title {
           grid-column: 1;
-          max-width: 13.5ch;
+          gap: clamp(20px, 3.5vh, 30px);
+          max-width: 100%;
           color: #fff8ec;
-          padding-left: 14px;
-          font-size: clamp(1.98rem, 9vw, 2.4rem);
-          line-height: 0.97;
+          padding-left: 0;
           transform: none;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-context {
+          max-width: 24ch;
+          padding-left: 12px;
+          font-size: clamp(0.84rem, 3.8vw, 1rem);
+          line-height: 1.34;
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .interface-opposite-turn {
+          max-width: 9ch;
+          font-size: clamp(2.35rem, 10.7vw, 2.92rem);
+          line-height: 0.92;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body {
@@ -17764,7 +17802,7 @@
                 className: "is-long is-community-truth-section",
               },
               {
-                title: `<span class="interface-opposite-context">For decades, technology pulled communication onto interfaces. We&rsquo;re doing the opposite.</span>`,
+                title: `<span class="interface-opposite-context">For decades, technology pulled communication onto interfaces.</span> <span class="interface-opposite-turn">We&rsquo;re doing the opposite.</span>`,
                 copy: [
                   `<span class="interface-opposite-build">The intelligence <em class="interface-opposite-around">around</em> <span class="interface-opposite-human-conversation">human conversation</span> will redefine how we come together.</span>`,
                 ],

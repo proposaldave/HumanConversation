@@ -273,12 +273,30 @@ test("every timeline year jumps directly to its screen", async () => {
   })()`);
   assert.equal(inactiveYearStyle.color, "rgba(255, 248, 236, 0.56)");
   assert.ok(inactiveYearStyle.fontSize >= 11, `timeline year remains legible: ${JSON.stringify(inactiveYearStyle)}`);
+  assert.equal(
+    await page.evaluate(`getComputedStyle(document.querySelector('.community-progress [data-era="twitter"]')).color`),
+    "rgb(143, 196, 229)",
+  );
 
   await page.evaluate(`document.querySelector('.community-progress [data-era="human"]')?.click()`);
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "human"`);
+  await page.waitFor(
+    `getComputedStyle(document.querySelector('.community-progress [data-era="human"]')).color === "rgb(214, 138, 154)"`,
+  );
   assert.equal(
     await page.evaluate(`document.querySelector('.community-progress [data-era="human"]')?.getAttribute("aria-current")`),
     "true",
+  );
+  assert.deepEqual(
+    await page.evaluate(`(() => ({
+      yearColor: getComputedStyle(document.querySelector('.community-progress [data-era="human"]')).color,
+      lineBackground: getComputedStyle(document.querySelector('.community-progress'), '::after').backgroundImage,
+    }))()`),
+    {
+      yearColor: "rgb(214, 138, 154)",
+      lineBackground:
+        "linear-gradient(90deg, rgb(91, 143, 212), rgb(178, 155, 255) 49%, rgb(214, 138, 154) 100%)",
+    },
   );
 
   await page.evaluate(`document.querySelector('.community-progress [data-era="twitter"]')?.click()`);
@@ -287,9 +305,16 @@ test("every timeline year jumps directly to its screen", async () => {
   await page.evaluate(`document.querySelector('.community-progress [data-era="slack"]')?.focus()`);
   await page.pressEnter();
   await page.waitFor(`document.querySelector("#landing-hero")?.dataset.communityStage === "slack"`);
+  await page.waitFor(
+    `getComputedStyle(document.querySelector('.community-progress [data-era="slack"]')).color === "rgb(199, 184, 255)"`,
+  );
   assert.equal(
     await page.evaluate(`document.querySelector('.community-progress [data-era="slack"]')?.getAttribute("aria-current")`),
     "true",
+  );
+  assert.equal(
+    await page.evaluate(`getComputedStyle(document.querySelector('.community-progress [data-era="slack"]')).color`),
+    "rgb(199, 184, 255)",
   );
   assertRuntimeHealthy();
 });

@@ -1443,7 +1443,7 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
   assertRuntimeHealthy();
 });
 
-test("the closing line and 1% / 99.9% promise stay clear beside the signup card", async () => {
+test("the closing line and 1% / 99% promise stay clear beside the signup card", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -1488,7 +1488,7 @@ test("the closing line and 1% / 99.9% promise stay clear beside the signup card"
     assert.equal(layout.text, "");
     assert.equal(layout.kicker, "Imagine your life.");
     assert.equal(layout.screen, "1% screen time.");
-    assert.equal(layout.human, "99.9% human time.");
+    assert.equal(layout.human, "99% human time.");
     assert.equal(layout.promise, "A life that runs on Human Conversation and connected experiences.");
     assert.equal(layout.finalIsLast, true);
     assert.equal(layout.continuationControlPresent, false);

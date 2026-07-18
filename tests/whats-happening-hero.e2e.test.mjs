@@ -802,9 +802,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "Our human, relationship, social, and community data has always, and will always be communicated through Human Conversation.",
+      "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
     firstTitle:
-      "Our human, relationship, social, and community data has always, and will always be communicated through Human Conversation.",
+      "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
     secondTitle: "The intelligence around human conversation will redefine how humanity comes together.",
     interfaceAroundText: "around",
@@ -1202,7 +1202,7 @@ test("the closing line and 1% / 99.9% promise stay clear beside the signup card"
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "Our human, relationship, social, and community data has always, and will always be communicated through Human Conversation.";
+    "Our human, social, and community data has always, and will always be communicated through Human Conversation.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -1255,28 +1255,28 @@ test("the community-truth section fits desktop and narrow phones without overflo
     assert.equal(layout.copy, expectedCopy, `${width}x${height} preserves the exact community-truth copy`);
     assert.deepEqual(
       layout.emphasizedData,
-      ["human", "relationship", "social", "community"],
-      `${width}x${height} emphasizes the four requested data categories`,
+      ["human", "social", "community"],
+      `${width}x${height} emphasizes the three requested data categories`,
     );
     assert.deepEqual(
       layout.emphasizedDataFontStyles,
-      ["italic", "italic", "italic", "italic"],
-      `${width}x${height} renders only the four data categories in italics`,
+      ["italic", "italic", "italic"],
+      `${width}x${height} renders only the three data categories in italics`,
     );
     layout.emphasizedDataTransforms.forEach((transform) => {
       assert.notEqual(transform, "none", `${width}x${height} keeps each italic visibly distinct`);
     });
     assert.deepEqual(
       layout.groupedTerms,
-      ["human,", "relationship,", "social,"],
+      ["human,", "social,"],
       `${width}x${height} keeps each comma attached to its preceding word`,
     );
     assert.deepEqual(
       layout.groupedTermDisplays,
-      ["inline-block", "inline-block", "inline-block"],
+      ["inline-block", "inline-block"],
       `${width}x${height} prevents punctuation from wrapping independently`,
     );
-    assert.deepEqual(layout.groupedTermRectCounts, [1, 1, 1], `${width}x${height} keeps every word-comma pair on one line`);
+    assert.deepEqual(layout.groupedTermRectCounts, [1, 1], `${width}x${height} keeps every word-comma pair on one line`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(Math.abs(layout.sectionTop) < 3, `${width}x${height} section lands at the viewport start`);
     assert.ok(layout.sectionHeight >= height - 1, `${width}x${height} section fills the viewport`);

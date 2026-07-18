@@ -166,6 +166,7 @@ test("every visible What’s happening phrase is italicized across the public pa
           text: element.textContent.trim().toLowerCase(),
           tagName: element.tagName,
           fontFamily: getComputedStyle(element).fontFamily,
+          parentFontFamily: getComputedStyle(element.parentElement).fontFamily,
           fontSize: Number.parseFloat(getComputedStyle(element).fontSize),
           parentFontSize: Number.parseFloat(getComputedStyle(element.parentElement).fontSize),
           fontStyle: getComputedStyle(element).fontStyle,
@@ -177,8 +178,8 @@ test("every visible What’s happening phrase is italicized across the public pa
     assert.equal(phrases.items.length, 5, `${width}x${height} finds every visible phrase`);
     assert.ok(phrases.items.every((item) => item.text === "what’s happening"));
     assert.ok(phrases.items.every((item) => item.tagName === "EM"));
-    assert.ok(phrases.items.every((item) => item.fontFamily.startsWith('"IBM Plex Sans Condensed"')));
-    assert.ok(phrases.items.every((item) => Math.abs(item.fontSize / item.parentFontSize - 0.9) < 0.01));
+    assert.ok(phrases.items.every((item) => item.fontFamily === item.parentFontFamily));
+    assert.ok(phrases.items.every((item) => Math.abs(item.fontSize / item.parentFontSize - 1) < 0.01));
     assert.ok(phrases.items.every((item) => item.fontStyle === "italic"));
     assert.ok(phrases.items.every((item) => item.fontSynthesis.includes("style")));
     assert.ok(phrases.horizontalOverflow <= 1, `${width}x${height} italic treatment does not overflow`);
@@ -806,7 +807,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     firstTitle:
       "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
-    secondTitle: "The intelligence around human conversation will redefine how humanity comes together.",
+    secondTitle: "The intelligence around human conversation will redefine how we come together.",
     interfaceAroundText: "around",
     interfaceAroundFontStyle: "italic",
     interfaceAroundColor: "rgb(255, 248, 236)",
@@ -897,7 +898,7 @@ test("the public story resolves the twist with the existing interface thesis", a
 
   assert.ok(Math.abs(firstPanel.top) < 3);
   assert.ok(firstPanel.height >= 899);
-  assert.equal(firstPanel.titleText, "The intelligence around human conversation will redefine how humanity comes together.");
+  assert.equal(firstPanel.titleText, "The intelligence around human conversation will redefine how we come together.");
   assert.equal(firstPanel.aroundText, "around");
   assert.equal(firstPanel.aroundTag, "EM");
   assert.equal(firstPanel.aroundFontStyle, "italic");

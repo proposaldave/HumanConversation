@@ -5052,8 +5052,8 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-section-inner {
-        grid-template-columns: minmax(0, 1.14fr) minmax(300px, 0.62fr);
-        gap: clamp(48px, 7vw, 104px);
+        grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
+        gap: clamp(32px, 4vw, 64px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-lonely-return-section .story-copy-block {
@@ -5072,10 +5072,16 @@
         margin-block-start: clamp(0.26em, 1.4vw, 0.38em);
       }
 
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(12px, 1.5vw, 20px);
+      }
+
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat {
         position: relative;
-        width: min(100%, 390px);
-        padding: clamp(28px, 3vw, 42px);
+        width: 100%;
+        padding: clamp(24px, 2.2vw, 34px);
         border: 1px solid rgba(26, 22, 18, 0.14);
         border-left: 4px solid var(--hc-rose);
         border-radius: 4px;
@@ -5084,24 +5090,24 @@
         backdrop-filter: blur(8px);
       }
 
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-kicker {
-        margin: 0 0 14px;
-        color: #7d4738;
-        font: 850 0.68rem/1.25 Manrope, Inter, system-ui, sans-serif;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat:nth-child(2) {
+        border-left-color: var(--hc-gold);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-number {
         display: block;
         color: var(--hc-blue);
-        font: 700 clamp(4.7rem, 7vw, 7.1rem)/0.82 "Cormorant Garamond", Georgia, serif;
+        font: 700 clamp(4rem, 5.5vw, 6rem)/0.82 "Cormorant Garamond", Georgia, serif;
         letter-spacing: -0.055em;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat:nth-child(2) .loneliness-stat-number {
+        color: var(--hc-rose);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-copy {
         max-width: 14ch;
-        margin: 20px 0 24px;
+        margin: 18px 0 22px;
         color: #1a1612;
         font: 760 clamp(1.16rem, 1.55vw, 1.44rem)/1.24 Manrope, Inter, system-ui, sans-serif;
         letter-spacing: -0.025em;
@@ -5770,6 +5776,14 @@
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong span {
+        color: inherit;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong .feeling-title-rose {
+        color: var(--hc-rose);
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .taps-premium-feeling-callout strong .feeling-title-gold {
         color: #e8bd5e;
       }
 
@@ -7775,25 +7789,29 @@
           margin-left: 0;
         }
 
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat {
-          width: min(100%, 350px);
-          padding: 22px 24px 24px;
+          width: 100%;
+          padding: 18px 14px 20px;
           border-left-width: 3px;
         }
 
-        .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-kicker {
-          margin-bottom: 10px;
-          font-size: 0.6rem;
-        }
-
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-number {
-          font-size: clamp(4.2rem, 20vw, 5.4rem);
+          font-size: clamp(3rem, 15vw, 4.2rem);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-copy {
-          max-width: 18ch;
-          margin: 14px 0 18px;
-          font-size: clamp(1rem, 4.5vw, 1.18rem);
+          max-width: 15ch;
+          margin: 12px 0 16px;
+          font-size: clamp(0.78rem, 3.7vw, 1rem);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-source {
+          font-size: 0.56rem;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-human-surface-section {
@@ -17810,7 +17828,7 @@
             <div class="contact-row">
               <label class="sr-only" for="email">Email address</label>
               <input id="email" name="email" type="email" autocomplete="email" placeholder="Email address" required />
-              <button type="submit">Join the Conversation</button>
+              <button type="submit">Start a conversation</button>
             </div>
             <p class="status" id="form-status" role="status" aria-live="polite"></p>
           </form>
@@ -17886,7 +17904,7 @@
                 scene: "thousand-taps",
                 className: "is-taps-premium-section",
                 feelingCallout: {
-                  headline: `Human Conversation is the only medium that tells you <span>how someone really feels.</span>`,
+                  headline: `<span class="feeling-title-rose">Human Conversation</span> is the only medium that tells you <span class="feeling-title-gold">how someone really feels.</span>`,
                   copy: `Tone, connection, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, energy.`,
                 },
               },
@@ -17908,13 +17926,20 @@
               {
                 kind: "loneliness",
                 title: `<span>We're not <span class="lonely-blue">lonely</span> because</span><span>communication disappeared.</span><span class="lonely-sentence-break">We're <span class="lonely-blue">lonely</span> because</span><span><span class="lonely-blue">interfaces</span> keep replacing Human Conversation.</span>`,
-                stat: {
-                  kicker: `Global scale`,
-                  number: `1 in 6`,
-                  copy: `people worldwide experience loneliness.`,
-                  source: `World Health Organization · 2025`,
-                  sourceUrl: `https://www.who.int/groups/commission-on-social-connection`,
-                },
+                stats: [
+                  {
+                    number: `1 in 6`,
+                    copy: `people worldwide experience loneliness.`,
+                    source: `World Health Organization · 2025`,
+                    sourceUrl: `https://www.who.int/groups/commission-on-social-connection`,
+                  },
+                  {
+                    number: `1 in 2`,
+                    copy: `U.S. adults report experiencing loneliness.`,
+                    source: `U.S. Surgeon General · 2023`,
+                    sourceUrl: `https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf`,
+                  },
+                ],
                 scene: "lonely-return",
                 className: "is-long is-lonely-return-section",
               },
@@ -18467,10 +18492,10 @@
             <input type="hidden" name="_url" value="https://humanconversation.com/" />
             <input class="hp-field" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="contact-row">
+              ${buttonLeadMarkup}
               <label class="sr-only" for="email-${idSuffix}">Email address</label>
               <input id="email-${idSuffix}" name="email" type="email" autocomplete="email" placeholder="Email address" required />
-              ${buttonLeadMarkup}
-              <button type="submit">Join the Conversation</button>
+              <button type="submit">Start a conversation</button>
             </div>
             <p class="status" id="form-status-${idSuffix}" role="status" aria-live="polite"></p>
           </form>
@@ -18729,18 +18754,23 @@
             }
 
             if (section.kind === "loneliness") {
+              const stats = section.stats
+                .map(
+                  (stat) => `
+                    <aside class="loneliness-stat" aria-label="${stat.number} ${stat.copy}">
+                      <strong class="loneliness-stat-number">${stat.number}</strong>
+                      <p class="loneliness-stat-copy">${stat.copy}</p>
+                      <a class="loneliness-stat-source" href="${stat.sourceUrl}" target="_blank" rel="noopener noreferrer">${stat.source}</a>
+                    </aside>`,
+                )
+                .join("");
               return `
                 <section class="${sectionClasses}">
                   <div class="story-section-inner loneliness-story-inner">
                     <div class="story-copy-block loneliness-story-copy">
                       <h2 class="story-title">${section.title}</h2>
                     </div>
-                    <aside class="loneliness-stat" aria-label="${section.stat.number} ${section.stat.copy}">
-                      <p class="loneliness-stat-kicker">${section.stat.kicker}</p>
-                      <strong class="loneliness-stat-number">${section.stat.number}</strong>
-                      <p class="loneliness-stat-copy">${section.stat.copy}</p>
-                      <a class="loneliness-stat-source" href="${section.stat.sourceUrl}" target="_blank" rel="noopener noreferrer">${section.stat.source}</a>
-                    </aside>
+                    <div class="loneliness-stats">${stats}</div>
                   </div>
                   ${sectionCue}
                 </section>
@@ -19695,11 +19725,11 @@
 
           window.setTimeout(() => {
             button.disabled = false;
-            button.textContent = "Join the Conversation";
+            button.textContent = "Start a conversation";
           }, 2800);
         } catch (error) {
           button.disabled = false;
-          button.textContent = "Join the Conversation";
+          button.textContent = "Start a conversation";
           status.textContent = "Could not submit. Please try again later.";
         }
       });

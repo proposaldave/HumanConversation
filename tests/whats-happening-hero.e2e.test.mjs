@@ -909,12 +909,17 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
       } : null;
     };
     const section = document.querySelector("#landing-story .is-taps-premium-section");
+    const roseTitle = section?.querySelector(".feeling-title-rose");
+    const goldTitle = section?.querySelector(".feeling-title-gold");
     return {
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       title: rect(section?.querySelector(".taps-premium-story-title")),
       callout: rect(section?.querySelector(".taps-premium-feeling-callout")),
       cue: rect(section?.querySelector(".section-cue")),
       sectionHeight: section?.offsetHeight || 0,
+      roseTitleText: roseTitle?.textContent?.trim(),
+      roseTitleColor: getComputedStyle(roseTitle).color,
+      goldTitleColor: getComputedStyle(goldTitle).color,
     };
   })()`);
 
@@ -923,6 +928,9 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
   assert.ok(layout.title.bottom + 24 <= layout.callout.top, `1312x690 feeling panel overlaps the headline: ${JSON.stringify(layout)}`);
   assert.ok(layout.callout.bottom + 24 <= layout.cue.top, "1312x690 continuation control overlaps the feeling panel");
   assert.ok(layout.sectionHeight >= 840, "1312x690 short-screen reflow preserves readable vertical space");
+  assert.equal(layout.roseTitleText, "Human Conversation");
+  assert.equal(layout.roseTitleColor, "rgb(214, 138, 154)");
+  assert.equal(layout.goldTitleColor, "rgb(232, 189, 94)");
   assertRuntimeHealthy();
 });
 
@@ -1285,7 +1293,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
   }
 });
 
-test("the loneliness section grounds the story in the current WHO global scale", async () => {
+test("the loneliness section pairs the global WHO statistic with the stronger U.S. prevalence", async () => {
   for (const [width, height] of [
     [1440, 900],
     [1312, 690],
@@ -1306,29 +1314,33 @@ test("the loneliness section grounds the story in the current WHO global scale",
       };
       const section = document.querySelector("#landing-story .is-lonely-return-section");
       const title = section?.querySelector(".story-title");
-      const stat = section?.querySelector(".loneliness-stat");
+      const stats = Array.from(section?.querySelectorAll(".loneliness-stat") || []);
+      const statsGroup = section?.querySelector(".loneliness-stats");
       const blueWords = Array.from(title?.querySelectorAll(".lonely-blue") || []);
-      const number = stat?.querySelector(".loneliness-stat-number");
-      const copy = stat?.querySelector(".loneliness-stat-copy");
-      const source = stat?.querySelector(".loneliness-stat-source");
       const cue = section?.querySelector(".section-cue");
       return {
         title: Array.from(title?.children || []).map((line) => normalize(line.textContent)).join(" "),
-        stat: normalize(stat?.getAttribute("aria-label")),
-        number: normalize(number?.textContent),
-        copy: normalize(copy?.textContent),
-        source: normalize(source?.textContent),
-        sourceHref: source?.href,
-        sourceTarget: source?.target,
-        sourceRel: source?.rel,
+        stats: stats.map((stat) => {
+          const number = stat.querySelector(".loneliness-stat-number");
+          const source = stat.querySelector(".loneliness-stat-source");
+          return {
+            label: normalize(stat.getAttribute("aria-label")),
+            number: normalize(number?.textContent),
+            copy: normalize(stat.querySelector(".loneliness-stat-copy")?.textContent),
+            source: normalize(source?.textContent),
+            sourceHref: source?.href,
+            sourceTarget: source?.target,
+            sourceRel: source?.rel,
+            numberColor: number ? getComputedStyle(number).color : null,
+          };
+        }),
         blueWords: blueWords.map((word) => normalize(word.textContent)),
         blueWordColors: blueWords.map((word) => getComputedStyle(word).color),
         followsGraph: section?.previousElementSibling?.classList.contains("is-graph-section"),
         flowsToHumanSurface: section?.nextElementSibling?.classList.contains("is-human-surface-section"),
-        numberColor: number ? getComputedStyle(number).color : null,
         sectionRect: rect(section),
         titleRect: rect(title),
-        statRect: rect(stat),
+        statsRect: rect(statsGroup),
         cueRect: rect(cue),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
@@ -1338,24 +1350,38 @@ test("the loneliness section grounds the story in the current WHO global scale",
       layout.title,
       "We're not lonely because communication disappeared. We're lonely because interfaces keep replacing Human Conversation.",
     );
-    assert.equal(layout.stat, "1 in 6 people worldwide experience loneliness.");
-    assert.equal(layout.number, "1 in 6");
-    assert.equal(layout.copy, "people worldwide experience loneliness.");
-    assert.equal(layout.source, "World Health Organization · 2025");
-    assert.equal(layout.sourceHref, "https://www.who.int/groups/commission-on-social-connection");
-    assert.equal(layout.sourceTarget, "_blank");
-    assert.ok(layout.sourceRel.includes("noopener") && layout.sourceRel.includes("noreferrer"));
+    assert.deepEqual(layout.stats, [
+      {
+        label: "1 in 6 people worldwide experience loneliness.",
+        number: "1 in 6",
+        copy: "people worldwide experience loneliness.",
+        source: "World Health Organization · 2025",
+        sourceHref: "https://www.who.int/groups/commission-on-social-connection",
+        sourceTarget: "_blank",
+        sourceRel: "noopener noreferrer",
+        numberColor: "rgb(91, 143, 212)",
+      },
+      {
+        label: "1 in 2 U.S. adults report experiencing loneliness.",
+        number: "1 in 2",
+        copy: "U.S. adults report experiencing loneliness.",
+        source: "U.S. Surgeon General · 2023",
+        sourceHref: "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        sourceTarget: "_blank",
+        sourceRel: "noopener noreferrer",
+        numberColor: "rgb(214, 138, 154)",
+      },
+    ]);
     assert.deepEqual(layout.blueWords, ["lonely", "lonely", "interfaces"]);
     assert.deepEqual(layout.blueWordColors, ["rgb(91, 143, 212)", "rgb(91, 143, 212)", "rgb(91, 143, 212)"]);
     assert.equal(layout.followsGraph, true);
     assert.equal(layout.flowsToHumanSurface, true);
-    assert.equal(layout.numberColor, "rgb(91, 143, 212)");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} loneliness section has no horizontal overflow`);
     assert.ok(layout.sectionRect.height >= height - 1, `${width}x${height} loneliness section fills the viewport`);
 
     for (const [label, box] of [
       ["title", layout.titleRect],
-      ["stat", layout.statRect],
+      ["statistics", layout.statsRect],
       ["continuation control", layout.cueRect],
     ]) {
       assert.ok(box, `${width}x${height} ${label} renders`);
@@ -1364,10 +1390,10 @@ test("the loneliness section grounds the story in the current WHO global scale",
     }
 
     if (width > 760) {
-      assert.ok(layout.titleRect.right < layout.statRect.left, `${width}x${height} keeps the global scale beside the story`);
+      assert.ok(layout.titleRect.right < layout.statsRect.left, `${width}x${height} keeps both statistics beside the story`);
     } else {
-      assert.ok(layout.titleRect.bottom < layout.statRect.top, `${width}x${height} stacks the global scale beneath the story`);
-      assert.ok(layout.statRect.bottom < layout.cueRect.top, `${width}x${height} keeps the continuation control below the source`);
+      assert.ok(layout.titleRect.bottom < layout.statsRect.top, `${width}x${height} stacks both statistics beneath the story`);
+      assert.ok(layout.statsRect.bottom < layout.cueRect.top, `${width}x${height} keeps the continuation control below both sources`);
     }
 
     assertRuntimeHealthy();
@@ -1568,7 +1594,9 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
         human: normalize(ratio?.querySelector(".final-cta-ratio-human")?.textContent),
         promise: normalize(ratio?.querySelector(".final-cta-ratio-promise")?.textContent),
         timelessLine: normalize(timelessLine?.textContent),
-        timelessLinePrecedesButton: timelessLine?.nextElementSibling === button,
+        buttonText: normalize(button?.textContent),
+        timelessLinePrecedesEmail: Boolean(timelessLine && email && (timelessLine.compareDocumentPosition(email) & 4)),
+        emailPrecedesButton: email?.nextElementSibling === button,
         position: callout ? getComputedStyle(callout).position : null,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         finalIsLast: sections.at(-1) === section,
@@ -1590,14 +1618,16 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
     assert.equal(layout.human, "99% human time.");
     assert.equal(layout.promise, "Imagine a life that runs on Human Conversation and connected experiences.");
     assert.equal(layout.timelessLine, "Human Conversation is the timeless interface of community.");
-    assert.equal(layout.timelessLinePrecedesButton, true);
+    assert.equal(layout.buttonText, "Start a conversation");
+    assert.equal(layout.timelessLinePrecedesEmail, true);
+    assert.equal(layout.emailPrecedesButton, true);
     assert.equal(layout.finalIsLast, true);
     assert.equal(layout.continuationControlPresent, false);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} closing section has no horizontal overflow`);
     assert.equal(layout.callout, null, `${width}x${height} removes the rejected side callout`);
     assert.ok(layout.card && layout.signup && layout.email && layout.timelessLineRect && layout.button && layout.ratio, `${width}x${height} closing card content is present`);
-    assert.ok(layout.email.bottom <= layout.timelessLineRect.top, `${width}x${height} timeless line follows the email field`);
-    assert.ok(layout.timelessLineRect.bottom <= layout.button.top, `${width}x${height} timeless line sits above the signup button`);
+    assert.ok(layout.timelessLineRect.bottom <= layout.email.top, `${width}x${height} timeless line sits above the email field`);
+    assert.ok(layout.email.bottom <= layout.button.top, `${width}x${height} email field sits above the signup button`);
     assert.ok(layout.ratio.left >= layout.card.left - 1 && layout.ratio.right <= layout.card.right + 1, `${width}x${height} ratio stays inside the closing card`);
     assert.ok(layout.signup.bottom <= layout.ratio.top, `${width}x${height} ratio follows the signup without overlap`);
     assert.ok(layout.ratio.bottom <= layout.card.bottom + 1, `${width}x${height} ratio stays inside the closing card vertically`);

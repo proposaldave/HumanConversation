@@ -1267,7 +1267,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
     assert.equal(layout.interfaceText, "interface");
     assert.equal(layout.interfaceColor, layout.statColor);
     assert.equal(layout.returnColor, "rgb(232, 189, 94)");
-    assert.match(layout.backgroundImage, /hc-art-interface-opens-to-human-conversation-20260718\.png/);
+    assert.match(layout.backgroundImage, /hc-art-human-conversation-communal-table-20260718\.png/);
     assert.ok(
       layout.backgroundPosition
         .split(",")

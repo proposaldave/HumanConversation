@@ -5073,7 +5073,7 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stats {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         gap: clamp(12px, 1.5vw, 20px);
       }
 
@@ -5082,26 +5082,18 @@
         width: 100%;
         padding: clamp(24px, 2.2vw, 34px);
         border: 1px solid rgba(26, 22, 18, 0.14);
-        border-left: 4px solid var(--hc-rose);
+        border-left: 4px solid var(--hc-gold);
         border-radius: 4px;
         background: rgba(255, 248, 236, 0.84);
         box-shadow: 0 24px 68px rgba(73, 45, 20, 0.12);
         backdrop-filter: blur(8px);
       }
 
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat:nth-child(2) {
-        border-left-color: var(--hc-gold);
-      }
-
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-number {
         display: block;
-        color: var(--hc-blue);
+        color: var(--hc-rose);
         font: 700 clamp(4rem, 5.5vw, 6rem)/0.82 "Cormorant Garamond", Georgia, serif;
         letter-spacing: -0.055em;
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat:nth-child(2) .loneliness-stat-number {
-        color: var(--hc-rose);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-copy {
@@ -7793,7 +7785,7 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stats {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: minmax(0, 1fr);
           gap: 10px;
         }
 
@@ -17930,12 +17922,6 @@
                 kind: "loneliness",
                 title: `<span>We're not <span class="lonely-blue">lonely</span> because</span><span>communication disappeared.</span><span class="lonely-sentence-break">We're <span class="lonely-blue">lonely</span> because</span><span><span class="lonely-blue">interfaces</span> keep replacing Human Conversation.</span>`,
                 stats: [
-                  {
-                    number: `1 in 6`,
-                    copy: `people worldwide experience loneliness.`,
-                    source: `World Health Organization · 2025`,
-                    sourceUrl: `https://www.who.int/groups/commission-on-social-connection`,
-                  },
                   {
                     number: `1 in 2`,
                     copy: `U.S. adults report experiencing loneliness.`,

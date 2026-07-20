@@ -1293,7 +1293,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
   }
 });
 
-test("the loneliness section pairs the global WHO statistic with the stronger U.S. prevalence", async () => {
+test("the loneliness section leads with the stronger U.S. prevalence", async () => {
   for (const [width, height] of [
     [1440, 900],
     [1312, 690],
@@ -1353,16 +1353,6 @@ test("the loneliness section pairs the global WHO statistic with the stronger U.
     );
     assert.deepEqual(layout.stats, [
       {
-        label: "1 in 6 people worldwide experience loneliness.",
-        number: "1 in 6",
-        copy: "people worldwide experience loneliness.",
-        source: "World Health Organization · 2025",
-        sourceHref: "https://www.who.int/groups/commission-on-social-connection",
-        sourceTarget: "_blank",
-        sourceRel: "noopener noreferrer",
-        numberColor: "rgb(91, 143, 212)",
-      },
-      {
         label: "1 in 2 U.S. adults report experiencing loneliness.",
         number: "1 in 2",
         copy: "U.S. adults report experiencing loneliness.",
@@ -1395,10 +1385,10 @@ test("the loneliness section pairs the global WHO statistic with the stronger U.
     }
 
     if (width > 760) {
-      assert.ok(layout.titleRect.right < layout.statsRect.left, `${width}x${height} keeps both statistics beside the story`);
+      assert.ok(layout.titleRect.right < layout.statsRect.left, `${width}x${height} keeps the statistic beside the story`);
     } else {
-      assert.ok(layout.titleRect.bottom < layout.statsRect.top, `${width}x${height} stacks both statistics beneath the story`);
-      assert.ok(layout.statsRect.bottom < layout.cueRect.top, `${width}x${height} keeps the continuation control below both sources`);
+      assert.ok(layout.titleRect.bottom < layout.statsRect.top, `${width}x${height} stacks the statistic beneath the story`);
+      assert.ok(layout.statsRect.bottom < layout.cueRect.top, `${width}x${height} keeps the continuation control below the source`);
     }
 
     assertRuntimeHealthy();

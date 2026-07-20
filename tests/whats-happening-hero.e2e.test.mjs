@@ -1340,6 +1340,7 @@ test("the loneliness section pairs the global WHO statistic with the stronger U.
         flowsToHumanSurface: section?.nextElementSibling?.classList.contains("is-human-surface-section"),
         sectionRect: rect(section),
         titleRect: rect(title),
+        titleFontSize: Number.parseFloat(getComputedStyle(title).fontSize),
         statsRect: rect(statsGroup),
         cueRect: rect(cue),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -1378,6 +1379,10 @@ test("the loneliness section pairs the global WHO statistic with the stronger U.
     assert.equal(layout.flowsToHumanSurface, true);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} loneliness section has no horizontal overflow`);
     assert.ok(layout.sectionRect.height >= height - 1, `${width}x${height} loneliness section fills the viewport`);
+    assert.ok(
+      layout.titleFontSize <= (width > 760 ? (height <= 760 ? 61 : 67) : 36),
+      `${width}x${height} loneliness statement keeps the smaller reading size`,
+    );
 
     for (const [label, box] of [
       ["title", layout.titleRect],

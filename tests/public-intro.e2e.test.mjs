@@ -105,13 +105,13 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     heroStage: "twitter",
     headlineLabel: baseline.headlineLabel,
     headlineText: baseline.headlineText,
-    twitterStatus: "Digital Communities ✓ Solved",
+    twitterStatus: "Digital Communities ✓ Visible to technology",
     twitterSolvedColor: "rgb(105, 221, 160)",
     twitterMarketValuePresent: false,
-    slackStatus: "Organizations ✓ Solved",
+    slackStatus: "Organizations ✓ Visible to technology",
     slackSolvedColor: "rgb(105, 221, 160)",
     slackMarketValuePresent: false,
-    humanStatus: "Real-world social networks ✕ Unsolved",
+    humanStatus: "Real-world social networks ✕ Still invisible to technology",
     humanUnsolvedColor: "rgb(255, 129, 122)",
     humanMarketValuePresent: false,
     statusArrowCount: 0,
@@ -361,7 +361,7 @@ test("the public Human Conversation question leads into a smaller present-state 
   assertRuntimeHealthy();
 });
 
-test("the public Slack solved status stays within every supported viewport", async () => {
+test("the public Slack visibility status stays within every supported viewport", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -401,7 +401,7 @@ test("the public Slack solved status stays within every supported viewport", asy
     })()`);
 
     assert.equal(layout.stage, "slack");
-    assert.equal(layout.status, "Organizations ✓ Solved");
+    assert.equal(layout.status, "Organizations ✓ Visible to technology");
     assert.equal(layout.question, "What’s happening at work?");
     assert.equal(layout.marketValuePresent, false, `${width}x${height} omits the Slack valuation callout`);
     assert.equal(layout.solvedColor, "rgb(105, 221, 160)");
@@ -415,7 +415,7 @@ test("the public Slack solved status stays within every supported viewport", asy
   assertRuntimeHealthy();
 });
 
-test("the public Human Conversation unsolved status stays within every supported viewport", async () => {
+test("the public Human Conversation invisibility status stays within every supported viewport", async () => {
   for (const [width, height] of [
     [1440, 900],
     [390, 844],
@@ -448,9 +448,9 @@ test("the public Human Conversation unsolved status stays within every supported
     })()`);
 
     assert.equal(layout.stage, "human");
-    assert.equal(layout.status, "Real-world social networks ✕ Unsolved");
+    assert.equal(layout.status, "Real-world social networks ✕ Still invisible to technology");
     assert.equal(layout.unsolvedColor, "rgb(255, 129, 122)");
-    assert.equal(layout.marketValuePresent, false, "2026 remains the unpriced, unsolved payoff");
+    assert.equal(layout.marketValuePresent, false, "2026 remains the unpriced, still-invisible payoff");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(layout.left >= -1 && layout.right <= width + 1, `${width}x${height} Human Conversation status fits horizontally`);
     assert.ok(layout.top >= -1 && layout.bottom <= height + 1, `${width}x${height} Human Conversation status fits vertically`);

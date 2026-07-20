@@ -598,6 +598,7 @@ test("the operating-system claim gives the existing human system an action payof
       const section = document.querySelector("#landing-story .is-real-world-os-section");
       const title = section?.querySelector(".story-title");
       const body = section?.querySelector(".story-body");
+      const already = section?.querySelector(".real-world-os-already");
       const action = section?.querySelector(".real-world-os-action-word");
       const cue = section?.querySelector(".section-cue");
       return {
@@ -608,6 +609,7 @@ test("the operating-system claim gives the existing human system an action payof
         cueRect: rect(cue),
         titleFontSize: Number.parseFloat(getComputedStyle(title).fontSize),
         bodyFontSize: Number.parseFloat(getComputedStyle(body).fontSize),
+        alreadyFontStyle: getComputedStyle(already).fontStyle,
         actionColor: getComputedStyle(action).color,
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
@@ -615,6 +617,7 @@ test("the operating-system claim gives the existing human system an action payof
 
     assert.equal(layout.title, "Human Conversation is already the operating system for real-world social networks.");
     assert.equal(layout.body, "We help communities know who to talk to, what matters, and what should happen next.");
+    assert.equal(layout.alreadyFontStyle, "italic");
     assert.equal(layout.actionColor, "rgb(214, 138, 154)");
     assert.ok(layout.titleRect && layout.bodyRect && layout.cueRect, `${width}x${height} operating-system composition renders`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} operating-system composition overflows horizontally`);

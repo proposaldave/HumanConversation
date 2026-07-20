@@ -5078,13 +5078,25 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stats {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 400px;
+        justify-self: end;
+        align-self: center;
         gap: clamp(12px, 1.5vw, 20px);
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat {
         position: relative;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+          "number copy"
+          "source source";
+        align-items: center;
+        column-gap: clamp(18px, 2vw, 26px);
+        row-gap: 14px;
         width: 100%;
-        padding: clamp(24px, 2.2vw, 34px);
+        padding: clamp(18px, 1.8vw, 24px);
         border: 1px solid rgba(26, 22, 18, 0.14);
         border-left: 4px solid var(--hc-gold);
         border-radius: 4px;
@@ -5095,21 +5107,25 @@
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-number {
         display: block;
+        grid-area: number;
         color: var(--hc-rose);
-        font: 700 clamp(4rem, 5.5vw, 6rem)/0.82 "Cormorant Garamond", Georgia, serif;
+        font: 700 clamp(3.8rem, 5vw, 5.2rem)/0.82 "Cormorant Garamond", Georgia, serif;
         letter-spacing: -0.055em;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-copy {
+        grid-area: copy;
         max-width: 14ch;
-        margin: 18px 0 22px;
+        margin: 0;
         color: #1a1612;
-        font: 760 clamp(1.16rem, 1.55vw, 1.44rem)/1.24 Manrope, Inter, system-ui, sans-serif;
+        font: 760 clamp(1rem, 1.3vw, 1.2rem)/1.2 Manrope, Inter, system-ui, sans-serif;
         letter-spacing: -0.025em;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-source {
         display: inline-block;
+        grid-area: source;
+        justify-self: start;
         color: rgba(26, 22, 18, 0.68);
         font: 750 0.68rem/1.4 Manrope, Inter, system-ui, sans-serif;
         letter-spacing: 0.04em;
@@ -5816,11 +5832,11 @@
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat {
-          padding: 26px 30px;
+          padding: 18px 22px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-number {
-          font-size: clamp(4.6rem, 6.4vw, 5.7rem);
+          font-size: clamp(3.8rem, 5.6vw, 5rem);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
@@ -7790,22 +7806,27 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stats {
           grid-template-columns: minmax(0, 1fr);
+          width: 100%;
+          max-width: 320px;
+          justify-self: start;
           gap: 10px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat {
           width: 100%;
-          padding: 18px 14px 20px;
+          column-gap: 14px;
+          row-gap: 12px;
+          padding: 16px 14px 18px;
           border-left-width: 3px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-number {
-          font-size: clamp(3rem, 15vw, 4.2rem);
+          font-size: clamp(3rem, 14vw, 3.8rem);
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .loneliness-stat-copy {
-          max-width: 15ch;
-          margin: 12px 0 16px;
+          max-width: 14ch;
+          margin: 0;
           font-size: clamp(0.78rem, 3.7vw, 1rem);
         }
 

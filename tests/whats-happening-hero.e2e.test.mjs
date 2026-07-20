@@ -1313,7 +1313,7 @@ test("the loneliness section leads with the stronger U.S. prevalence", async () 
       const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
       const rect = (element) => {
         const box = element?.getBoundingClientRect();
-        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left, height: box.height } : null;
+        return box ? { top: box.top, right: box.right, bottom: box.bottom, left: box.left, width: box.width, height: box.height } : null;
       };
       const section = document.querySelector("#landing-story .is-lonely-return-section");
       const title = section?.querySelector(".story-title");
@@ -1375,6 +1375,14 @@ test("the loneliness section leads with the stronger U.S. prevalence", async () 
     assert.ok(
       layout.titleFontSize <= (width > 760 ? (height <= 760 ? 61 : 67) : 36),
       `${width}x${height} loneliness statement keeps the smaller reading size`,
+    );
+    assert.ok(
+      layout.statsRect.width <= (width > 760 ? 401 : 321),
+      `${width}x${height} loneliness statistic stays compact at ${layout.statsRect.width}px wide`,
+    );
+    assert.ok(
+      layout.statsRect.height <= 220,
+      `${width}x${height} loneliness statistic avoids unnecessary height at ${layout.statsRect.height}px tall`,
     );
 
     for (const [label, box] of [

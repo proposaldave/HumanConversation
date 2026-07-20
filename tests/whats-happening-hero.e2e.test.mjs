@@ -1026,7 +1026,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
     firstBody: "",
     secondTitle: "For decades, technology pulled communication onto interfaces. We’re doing the opposite.",
-    secondBody: "The intelligence around human conversation will redefine how communities come together.",
+    secondBody: "The intelligence around human conversation will redefine how real-world social networks come together.",
     interfaceAroundText: "around",
     interfaceAroundFontStyle: "italic",
     interfaceAroundColor: "rgb(255, 248, 236)",
@@ -1142,7 +1142,7 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.equal(firstPanel.aroundFontStyle, "italic");
   assert.equal(firstPanel.contextText, "For decades, technology pulled communication onto interfaces.");
   assert.equal(firstPanel.turnText, "We\u2019re doing the opposite.");
-  assert.equal(firstPanel.bodyText, "The intelligence around human conversation will redefine how communities come together.");
+  assert.equal(firstPanel.bodyText, "The intelligence around human conversation will redefine how real-world social networks come together.");
   assert.ok(firstPanel.turnFontSize > firstPanel.contextFontSize * 2, "the opposite turn is visibly stronger than the historical setup");
   assert.ok(firstPanel.turnTop - firstPanel.contextBottom >= 44, "the opposite turn is not grouped with the historical setup");
   assert.ok(firstPanel.bodyFontSize > firstPanel.contextFontSize * 2, "the intelligence claim resolves in the larger type treatment");

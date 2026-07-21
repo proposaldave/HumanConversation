@@ -134,7 +134,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
+      "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
     storySections: 11,

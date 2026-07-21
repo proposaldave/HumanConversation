@@ -111,7 +111,7 @@ test("the public root opens directly on the Twitter, Slack, and Human Conversati
     slackStatus: "Organizations ✓ Visible to technology",
     slackSolvedColor: "rgb(105, 221, 160)",
     slackMarketValuePresent: false,
-    humanStatus: "Real-world social networks ✕ Still invisible to technology",
+    humanStatus: "Real-world social networks ✕ Connection is still invisible to technology",
     humanUnsolvedColor: "rgb(255, 129, 122)",
     humanMarketValuePresent: false,
     statusArrowCount: 0,
@@ -448,7 +448,7 @@ test("the public Human Conversation invisibility status stays within every suppo
     })()`);
 
     assert.equal(layout.stage, "human");
-    assert.equal(layout.status, "Real-world social networks ✕ Still invisible to technology");
+    assert.equal(layout.status, "Real-world social networks ✕ Connection is still invisible to technology");
     assert.equal(layout.unsolvedColor, "rgb(255, 129, 122)");
     assert.equal(layout.marketValuePresent, false, "2026 remains the unpriced, still-invisible payoff");
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);

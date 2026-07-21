@@ -12429,6 +12429,8 @@
         height: 2px;
         background: linear-gradient(90deg, rgba(var(--hc-rose-rgb), 0.34), var(--hc-rose));
         box-shadow: 0 0 18px rgba(var(--hc-rose-rgb), 0.18);
+        transform: scaleX(3.5);
+        transform-origin: right center;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::after {
@@ -12703,6 +12705,11 @@
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::after {
           left: calc(clamp(36px, 10vw, 48px) - 9px);
+        }
+
+        .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-interface-opposite-section .story-body::before {
+          width: 100%;
+          transform: none;
         }
       }
 

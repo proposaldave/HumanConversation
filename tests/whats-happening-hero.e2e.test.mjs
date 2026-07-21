@@ -1096,6 +1096,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     const section = document.querySelector("#landing-story .is-interface-opposite-section");
     const title = section.querySelector(".story-title").getBoundingClientRect();
     const body = section.querySelector(".story-body");
+    const bodyCopy = body?.querySelector("p");
     const context = section.querySelector(".interface-opposite-context");
     const turn = section.querySelector(".interface-opposite-turn");
     const around = section.querySelector(".interface-opposite-around");
@@ -1125,11 +1126,13 @@ test("the public story resolves the twist with the existing interface thesis", a
       titleBottom: title.bottom,
       bodyLeft: bodyRect.left,
       bodyRight: bodyRect.right,
+      bodyCopyLeft: bodyCopy?.getBoundingClientRect().left,
       bodyTop: bodyRect.top,
       bodyBottom: bodyRect.bottom,
       bodyDisplay: getComputedStyle(body).display,
       bodyBorderLeft: getComputedStyle(body).borderLeftWidth,
       arrowLength: Number.parseFloat(getComputedStyle(body, "::before").width),
+      arrowScaleX: new DOMMatrix(getComputedStyle(body, "::before").transform).m11,
       arrowHead: getComputedStyle(body, "::after").borderTopWidth,
       imageFilter: getComputedStyle(section, "::before").filter,
       overlayBackground: getComputedStyle(section, "::after").backgroundImage,
@@ -1156,7 +1159,9 @@ test("the public story resolves the twist with the existing interface thesis", a
   assert.ok(firstPanel.bodyTop >= -1 && firstPanel.bodyBottom <= 901);
   assert.equal(firstPanel.bodyDisplay, "grid");
   assert.equal(firstPanel.bodyBorderLeft, "0px");
-  assert.ok(firstPanel.arrowLength >= 58 && firstPanel.arrowLength <= 97);
+  assert.ok(firstPanel.arrowLength * firstPanel.arrowScaleX >= 220, "the arrow spans the full desktop gap");
+  assert.ok(firstPanel.bodyLeft + firstPanel.arrowLength - firstPanel.arrowLength * firstPanel.arrowScaleX - firstPanel.titleRight <= 40, "the arrow begins alongside the left sentence");
+  assert.ok(Math.abs(firstPanel.bodyCopyLeft - (firstPanel.bodyLeft + firstPanel.arrowLength)) <= 30, "the arrow reaches the right sentence");
   assert.equal(firstPanel.arrowHead, "2px");
   assert.match(firstPanel.imageFilter, /brightness\(1\.12\)/);
   assert.match(firstPanel.overlayBackground, /rgba\(3, 5, 8, 0\.46\)/);

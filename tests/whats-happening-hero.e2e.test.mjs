@@ -1238,6 +1238,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
       const stat = section?.querySelector(".brings-together-stat");
       const interfaceWord = section?.querySelector(".brings-together-interface");
       const returnLine = section?.querySelector(".brings-together-gold");
+      const intelligenceWord = section?.querySelector(".brings-together-intelligence");
       const cue = section?.querySelector(".section-cue");
       const rect = (element) => {
         const box = element?.getBoundingClientRect();
@@ -1258,6 +1259,8 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
         interfaceText: normalize(interfaceWord?.textContent),
         interfaceColor: interfaceWord ? getComputedStyle(interfaceWord).color : null,
         returnColor: returnLine ? getComputedStyle(returnLine).color : null,
+        intelligenceFontStyle: intelligenceWord ? getComputedStyle(intelligenceWord).fontStyle : null,
+        intelligenceColor: intelligenceWord ? getComputedStyle(intelligenceWord).color : null,
         backgroundImage: section ? getComputedStyle(section, "::before").backgroundImage : "",
         backgroundPosition: section ? getComputedStyle(section, "::before").backgroundPosition : "",
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -1278,6 +1281,8 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
     assert.equal(layout.interfaceText, "interface");
     assert.equal(layout.interfaceColor, layout.statColor);
     assert.equal(layout.returnColor, "rgb(232, 189, 94)");
+    assert.equal(layout.intelligenceFontStyle, "italic");
+    assert.equal(layout.intelligenceColor, layout.returnColor);
     assert.match(layout.backgroundImage, /hc-art-human-conversation-communal-table-20260718\.png/);
     assert.ok(
       layout.backgroundPosition

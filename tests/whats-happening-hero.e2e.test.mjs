@@ -717,7 +717,7 @@ test("the community graph continues the Maya section visual system across deskto
     assert.equal(layout.title, "Real conversations create the community graph.", `${width}x${height} keeps the graph title`);
     assert.equal(
       layout.body,
-      "The community learns when connection happens, where it happens, who helps create it, and what should happen next.",
+      "With permission, Human Conversation helps communities measure connection at two levels—person to person and person to group—so they can see where it forms, who helps create it, and what should happen next.",
       `${width}x${height} keeps the graph explanation`,
     );
     assert.equal(layout.graphSectionStyle.backgroundImage, layout.attentionSectionStyle.backgroundImage, `${width}x${height} reuses Maya's section background`);

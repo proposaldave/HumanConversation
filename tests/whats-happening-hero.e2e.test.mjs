@@ -616,7 +616,7 @@ test("the operating-system claim gives the existing human system an action payof
     })()`);
 
     assert.equal(layout.title, "Human Conversation is already the operating system for real-world social networks.");
-    assert.equal(layout.body, "We help communities know who to talk to, what matters, and what should happen next.");
+    assert.equal(layout.body, "We help communities route the right conversations—who should talk to whom, what matters, and what should happen next.");
     assert.equal(layout.alreadyFontStyle, "italic");
     assert.equal(layout.actionColor, "rgb(214, 138, 154)");
     assert.ok(layout.titleRect && layout.bodyRect && layout.cueRect, `${width}x${height} operating-system composition renders`);
@@ -1039,7 +1039,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     fourthTitle:
       "99.9% of communication technology puts an interface between us. Human Conversation intelligence brings us together.",
     fifthTitle: "Human Conversation is already the operating system for real-world social networks.",
-    fifthBody: "We help communities know who to talk to, what matters, and what should happen next.",
+    fifthBody: "We help communities route the right conversations—who should talk to whom, what matters, and what should happen next.",
     operatingSystemActionColor: "rgb(214, 138, 154)",
     operatingSystemColor: "rgb(255, 248, 236)",
     sixthTitle: "A Human Conversation is worth a thousand taps.",

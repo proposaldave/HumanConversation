@@ -1037,7 +1037,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     interfaceHumanConversationColor: "rgb(214, 138, 154)",
     thirdTitle: "Human Conversation solves disconnection.",
     fourthTitle:
-      "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
+      "99.9% of communication technology puts an interface between us. Human Conversation intelligence brings us together.",
     fifthTitle: "Human Conversation is already the operating system for real-world social networks.",
     fifthBody: "We help communities know who to talk to, what matters, and what should happen next.",
     operatingSystemActionColor: "rgb(214, 138, 154)",
@@ -1048,7 +1048,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     bringsTogetherFlowsToOperatingSystem: true,
     operatingSystemFlowsToTaps: true,
     bringsTogetherTitle:
-      "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
+      "99.9% of communication technology puts an interface between us. Human Conversation intelligence brings us together.",
     connectionFlowSectionPresent: false,
     bringsTogetherIsFourth: true,
     attentionFlowsToGraph: true,
@@ -1266,10 +1266,10 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
 
     assert.equal(
       layout.title,
-      "99.9% of communication technology puts an interface between us. Human Conversation brings us together.",
+      "99.9% of communication technology puts an interface between us. Human Conversation intelligence brings us together.",
     );
     assert.equal(layout.premise, "99.9% of communication technology puts an interface between us.");
-    assert.equal(layout.returnLine, "Human Conversation brings us together.");
+    assert.equal(layout.returnLine, "Human Conversation intelligence brings us together.");
     assert.equal(layout.index, 3, "the thesis is the fourth story section, immediately after the solution");
     assert.equal(layout.total, 11);
     assert.equal(layout.previousIsSolves, true);

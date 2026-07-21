@@ -1672,6 +1672,9 @@ test("the community-truth section fits desktop and narrow phones without overflo
       const background = section ? getComputedStyle(section, "::before") : null;
       const emphasizedData = Array.from(section?.querySelectorAll(".community-truth-data em") || []);
       const groupedTerms = Array.from(section?.querySelectorAll(".community-truth-term") || []);
+      const relationships = section?.querySelector(".community-truth-relationships");
+      const dataWord = section?.querySelector(".community-truth-data-word");
+      const conversation = section?.querySelector(".community-truth-conversation");
       const textRects = Array.from(section?.querySelectorAll(".story-title, .story-body p") || []).map((element) => {
         const rect = element.getBoundingClientRect();
         return { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left };
@@ -1690,6 +1693,9 @@ test("the community-truth section fits desktop and narrow phones without overflo
         groupedTerms: groupedTerms.map((element) => normalize(element.textContent)),
         groupedTermDisplays: groupedTerms.map((element) => getComputedStyle(element).display),
         groupedTermRectCounts: groupedTerms.map((element) => element.getClientRects().length),
+        relationshipsColor: relationships ? getComputedStyle(relationships).color : null,
+        dataWordColor: dataWord ? getComputedStyle(dataWord).color : null,
+        conversationColor: conversation ? getComputedStyle(conversation).color : null,
         textRects,
         cueRect: cueRect ? { top: cueRect.top, right: cueRect.right, bottom: cueRect.bottom, left: cueRect.left } : null,
       };
@@ -1726,6 +1732,9 @@ test("the community-truth section fits desktop and narrow phones without overflo
       `${width}x${height} prevents punctuation from wrapping independently`,
     );
     assert.deepEqual(layout.groupedTermRectCounts, [1, 1], `${width}x${height} keeps every word-comma pair on one line`);
+    assert.equal(layout.relationshipsColor, layout.conversationColor, `${width}x${height} matches the relationship terms to Human Conversation rose`);
+    assert.equal(layout.relationshipsColor, "rgb(214, 138, 154)", `${width}x${height} uses the locked Human Conversation rose`);
+    assert.equal(layout.dataWordColor, "rgb(255, 248, 236)", `${width}x${height} renders data in white`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(Math.abs(layout.sectionTop) < 3, `${width}x${height} section lands at the viewport start`);
     assert.ok(layout.sectionHeight >= height - 1, `${width}x${height} section fills the viewport`);

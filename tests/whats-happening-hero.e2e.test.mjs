@@ -1024,9 +1024,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "Individual data tells us about a person. Relationship data reveals what’s happening between people. Connection intelligence tells a community what to do next.",
+      "Individual data tells us about a person. Relationship data reveals the connection people feel with one another.",
     firstTitle:
-      "Individual data tells us about a person. Relationship data reveals what’s happening between people. Connection intelligence tells a community what to do next.",
+      "Individual data tells us about a person. Relationship data reveals the connection people feel with one another.",
     firstBody: "",
     secondTitle: "For decades, technology pulled communication onto interfaces. We’re doing the opposite.",
     secondBody: "The intelligence around human conversation will redefine how real-world social networks come together.",
@@ -1656,7 +1656,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "Individual data tells us about a person. Relationship data reveals what’s happening between people. Connection intelligence tells a community what to do next.";
+    "Individual data tells us about a person. Relationship data reveals the connection people feel with one another.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -1679,8 +1679,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
       const shiftLines = Array.from(section?.querySelectorAll(".community-shift-line") || []);
       const individualData = section?.querySelector(".community-shift-individual-data");
       const relationshipData = section?.querySelector(".community-shift-relationship-data");
-      const connectionIntelligence = section?.querySelector(".community-shift-connection-intelligence");
-      const whatsHappening = section?.querySelector(".community-shift-whats-happening");
+      const feltConnection = section?.querySelector(".community-shift-felt-connection");
       const body = section?.querySelector(".story-body p");
       const textRects = Array.from(section?.querySelectorAll(".community-shift-line, .story-body p") || []).map((element) => {
         const rect = element.getBoundingClientRect();
@@ -1698,8 +1697,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
         shiftLineDisplays: shiftLines.map((element) => getComputedStyle(element).display),
         individualDataColor: individualData ? getComputedStyle(individualData).color : null,
         relationshipDataColor: relationshipData ? getComputedStyle(relationshipData).color : null,
-        connectionIntelligenceColor: connectionIntelligence ? getComputedStyle(connectionIntelligence).color : null,
-        whatsHappeningFontStyle: whatsHappening ? getComputedStyle(whatsHappening).fontStyle : null,
+        feltConnectionColor: feltConnection ? getComputedStyle(feltConnection).color : null,
         body: normalize(body?.textContent),
         textRects,
         cueRect: cueRect ? { top: cueRect.top, right: cueRect.right, bottom: cueRect.bottom, left: cueRect.left } : null,
@@ -1717,16 +1715,14 @@ test("the community-truth section fits desktop and narrow phones without overflo
       layout.shiftLines,
       [
         "Individual data tells us about a person.",
-        "Relationship data reveals what’s happening between people.",
-        "Connection intelligence tells a community what to do next.",
+        "Relationship data reveals the connection people feel with one another.",
       ],
       `${width}x${height} preserves the individual-to-connection contrast`,
     );
-    assert.deepEqual(layout.shiftLineDisplays, ["block", "block", "block"], `${width}x${height} keeps all three thesis lines distinct`);
+    assert.deepEqual(layout.shiftLineDisplays, ["block", "block"], `${width}x${height} keeps both thesis lines distinct`);
     assert.equal(layout.individualDataColor, "rgb(143, 196, 229)", `${width}x${height} uses blue for individual data`);
     assert.equal(layout.relationshipDataColor, "rgb(214, 138, 154)", `${width}x${height} uses Human Conversation rose for relationship data`);
-    assert.equal(layout.connectionIntelligenceColor, "rgb(232, 189, 94)", `${width}x${height} uses gold for connection intelligence`);
-    assert.equal(layout.whatsHappeningFontStyle, "italic", `${width}x${height} italicizes the visible what’s happening phrase`);
+    assert.equal(layout.feltConnectionColor, "rgb(232, 189, 94)", `${width}x${height} uses gold for felt connection`);
     assert.equal(layout.body, "", `${width}x${height} leaves the category shift as one focused statement`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(Math.abs(layout.sectionTop) < 3, `${width}x${height} section lands at the viewport start`);
@@ -1737,7 +1733,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
       /hc-art-emotional-signal-conversation-20260705\.png/,
       `${width}x${height} uses the intimate human-conversation scene`,
     );
-    assert.equal(layout.textRects.length, 3, `${width}x${height} renders all three thesis lines`);
+    assert.equal(layout.textRects.length, 2, `${width}x${height} renders both thesis lines`);
     layout.textRects.forEach((rect, index) => assertFits(rect, `copy block ${index + 1}`));
     assertFits(layout.cueRect, "continuation cue");
     assertRuntimeHealthy();

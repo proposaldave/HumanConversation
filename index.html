@@ -12259,22 +12259,35 @@
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-title {
         max-width: 1000px;
         color: #fff8ec;
-        font-size: clamp(3rem, 4.95vw, 5.8rem);
+        font-size: clamp(2.9rem, 4.55vw, 5.25rem);
         font-weight: 680;
-        line-height: 0.93;
+        line-height: 0.95;
         text-shadow: 0 6px 34px rgba(0, 0, 0, 0.68);
       }
 
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-line {
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-shift-line {
         display: block;
       }
 
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-community {
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-shift-individual-data {
+        color: #8fc4e5;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-shift-line + .community-shift-line {
+        margin-top: 0.28em;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-shift-relationship-data {
         color: var(--hc-rose);
       }
 
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-interface {
-        color: #8fc4e5;
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-shift-connection-intelligence {
+        color: #e8bd5e;
+      }
+
+      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-shift-whats-happening {
+        font-style: italic;
+        font-synthesis: style;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-body {
@@ -12287,37 +12300,6 @@
         font-weight: 760;
         line-height: 1.48;
         text-shadow: 0 4px 24px rgba(0, 0, 0, 0.62);
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-data {
-        color: #fff8ec;
-        font-weight: 880;
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-relationships {
-        color: var(--hc-rose);
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-data-word {
-        color: #fff8ec;
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-data em {
-        display: inline-block;
-        font-style: italic;
-        transform: skewX(-5deg);
-        transform-origin: center;
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-term {
-        display: inline-block;
-        white-space: nowrap;
-      }
-
-      .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .community-truth-conversation {
-        color: var(--hc-rose);
-        font-family: Fraunces, Georgia, serif;
-        font-weight: 760;
       }
 
       .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-visual {
@@ -12631,7 +12613,7 @@
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-community-truth-section .story-title {
           max-width: 100%;
           color: #fff8ec;
-          font-size: clamp(2.12rem, 10vw, 3rem);
+          font-size: clamp(1.98rem, 9.25vw, 2.78rem);
           line-height: 0.98;
         }
 
@@ -17917,7 +17899,7 @@
           main: {
             sections: [
               {
-                title: `<span>Our <span class="community-truth-data"><span class="community-truth-relationships"><span class="community-truth-term"><em>human</em>,</span> <span class="community-truth-term"><em>social</em>,</span> and <em>community</em></span> <span class="community-truth-data-word">data</span></span> has always, and will always be communicated through <span class="community-truth-conversation">Human Conversation</span>.</span>`,
+                title: `<span class="community-shift-line"><span class="community-shift-individual-data">Individual data</span> tells us about a person.</span><span class="community-shift-line"><span class="community-shift-relationship-data">Relationship data</span> reveals <em class="community-shift-whats-happening">what&rsquo;s happening</em> between people.</span><span class="community-shift-line"><span class="community-shift-connection-intelligence">Connection intelligence</span> tells a community what to do next.</span>`,
                 scene: "community-truth",
                 className: "is-long is-community-truth-section",
               },

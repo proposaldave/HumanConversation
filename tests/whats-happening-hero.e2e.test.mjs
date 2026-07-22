@@ -962,7 +962,7 @@ test("the public story resolves the twist with the existing interface thesis", a
       firstIsCommunityTruth: sections[0]?.classList.contains("is-community-truth-section"),
       secondIsInterfaceOpposite: sections[1]?.classList.contains("is-interface-opposite-section"),
       firstFlowsDirectlyToSecond: sections[0]?.nextElementSibling === sections[1],
-      firstCopy: normalize(sections[0]?.querySelector(".story-copy-block")?.textContent),
+      firstCopy: [title(sections[0]), normalize(sections[0]?.querySelector(".story-body")?.textContent)].filter(Boolean).join(" "),
       firstTitle: title(sections[0]),
       firstBody: normalize(sections[0]?.querySelector(".story-body")?.textContent),
       secondTitle: title(sections[1]),
@@ -1024,9 +1024,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
+      "Individual data tells us about a person. Relationship data reveals what’s happening between people. Connection intelligence tells a community what to do next.",
     firstTitle:
-      "Our human, social, and community data has always, and will always be communicated through Human Conversation.",
+      "Individual data tells us about a person. Relationship data reveals what’s happening between people. Connection intelligence tells a community what to do next.",
     firstBody: "",
     secondTitle: "For decades, technology pulled communication onto interfaces. We’re doing the opposite.",
     secondBody: "The intelligence around human conversation will redefine how real-world social networks come together.",
@@ -1656,10 +1656,11 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "Our human, social, and community data has always, and will always be communicated through Human Conversation.";
+    "Individual data tells us about a person. Relationship data reveals what’s happening between people. Connection intelligence tells a community what to do next.";
 
   for (const [width, height] of [
     [1440, 900],
+    [1440, 720],
     [390, 844],
     [320, 800],
   ]) {
@@ -1675,32 +1676,31 @@ test("the community-truth section fits desktop and narrow phones without overflo
       const section = document.querySelector("#landing-story .is-community-truth-section");
       const sectionRect = section?.getBoundingClientRect();
       const background = section ? getComputedStyle(section, "::before") : null;
-      const emphasizedData = Array.from(section?.querySelectorAll(".community-truth-data em") || []);
-      const groupedTerms = Array.from(section?.querySelectorAll(".community-truth-term") || []);
-      const relationships = section?.querySelector(".community-truth-relationships");
-      const dataWord = section?.querySelector(".community-truth-data-word");
-      const conversation = section?.querySelector(".community-truth-conversation");
-      const textRects = Array.from(section?.querySelectorAll(".story-title, .story-body p") || []).map((element) => {
+      const shiftLines = Array.from(section?.querySelectorAll(".community-shift-line") || []);
+      const individualData = section?.querySelector(".community-shift-individual-data");
+      const relationshipData = section?.querySelector(".community-shift-relationship-data");
+      const connectionIntelligence = section?.querySelector(".community-shift-connection-intelligence");
+      const whatsHappening = section?.querySelector(".community-shift-whats-happening");
+      const body = section?.querySelector(".story-body p");
+      const textRects = Array.from(section?.querySelectorAll(".community-shift-line, .story-body p") || []).map((element) => {
         const rect = element.getBoundingClientRect();
         return { top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left };
       });
       const cueRect = section?.querySelector(".section-cue")?.getBoundingClientRect();
       return {
-        copy: normalize(section?.querySelector(".story-copy-block")?.textContent),
+        copy: [...shiftLines.map((element) => normalize(element.textContent)), normalize(body?.textContent)].filter(Boolean).join(" "),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         sectionTop: sectionRect?.top ?? -9999,
         sectionHeight: sectionRect?.height ?? 0,
         backgroundDisplay: background?.display || null,
         backgroundImage: background?.backgroundImage || null,
-        emphasizedData: emphasizedData.map((element) => normalize(element.textContent)),
-        emphasizedDataFontStyles: emphasizedData.map((element) => getComputedStyle(element).fontStyle),
-        emphasizedDataTransforms: emphasizedData.map((element) => getComputedStyle(element).transform),
-        groupedTerms: groupedTerms.map((element) => normalize(element.textContent)),
-        groupedTermDisplays: groupedTerms.map((element) => getComputedStyle(element).display),
-        groupedTermRectCounts: groupedTerms.map((element) => element.getClientRects().length),
-        relationshipsColor: relationships ? getComputedStyle(relationships).color : null,
-        dataWordColor: dataWord ? getComputedStyle(dataWord).color : null,
-        conversationColor: conversation ? getComputedStyle(conversation).color : null,
+        shiftLines: shiftLines.map((element) => normalize(element.textContent)),
+        shiftLineDisplays: shiftLines.map((element) => getComputedStyle(element).display),
+        individualDataColor: individualData ? getComputedStyle(individualData).color : null,
+        relationshipDataColor: relationshipData ? getComputedStyle(relationshipData).color : null,
+        connectionIntelligenceColor: connectionIntelligence ? getComputedStyle(connectionIntelligence).color : null,
+        whatsHappeningFontStyle: whatsHappening ? getComputedStyle(whatsHappening).fontStyle : null,
+        body: normalize(body?.textContent),
         textRects,
         cueRect: cueRect ? { top: cueRect.top, right: cueRect.right, bottom: cueRect.bottom, left: cueRect.left } : null,
       };
@@ -1714,32 +1714,20 @@ test("the community-truth section fits desktop and narrow phones without overflo
 
     assert.equal(layout.copy, expectedCopy, `${width}x${height} preserves the exact community-truth copy`);
     assert.deepEqual(
-      layout.emphasizedData,
-      ["human", "social", "community"],
-      `${width}x${height} emphasizes the three requested data categories`,
+      layout.shiftLines,
+      [
+        "Individual data tells us about a person.",
+        "Relationship data reveals what’s happening between people.",
+        "Connection intelligence tells a community what to do next.",
+      ],
+      `${width}x${height} preserves the individual-to-connection contrast`,
     );
-    assert.deepEqual(
-      layout.emphasizedDataFontStyles,
-      ["italic", "italic", "italic"],
-      `${width}x${height} renders only the three data categories in italics`,
-    );
-    layout.emphasizedDataTransforms.forEach((transform) => {
-      assert.notEqual(transform, "none", `${width}x${height} keeps each italic visibly distinct`);
-    });
-    assert.deepEqual(
-      layout.groupedTerms,
-      ["human,", "social,"],
-      `${width}x${height} keeps each comma attached to its preceding word`,
-    );
-    assert.deepEqual(
-      layout.groupedTermDisplays,
-      ["inline-block", "inline-block"],
-      `${width}x${height} prevents punctuation from wrapping independently`,
-    );
-    assert.deepEqual(layout.groupedTermRectCounts, [1, 1], `${width}x${height} keeps every word-comma pair on one line`);
-    assert.equal(layout.relationshipsColor, layout.conversationColor, `${width}x${height} matches the relationship terms to Human Conversation rose`);
-    assert.equal(layout.relationshipsColor, "rgb(214, 138, 154)", `${width}x${height} uses the locked Human Conversation rose`);
-    assert.equal(layout.dataWordColor, "rgb(255, 248, 236)", `${width}x${height} renders data in white`);
+    assert.deepEqual(layout.shiftLineDisplays, ["block", "block", "block"], `${width}x${height} keeps all three thesis lines distinct`);
+    assert.equal(layout.individualDataColor, "rgb(143, 196, 229)", `${width}x${height} uses blue for individual data`);
+    assert.equal(layout.relationshipDataColor, "rgb(214, 138, 154)", `${width}x${height} uses Human Conversation rose for relationship data`);
+    assert.equal(layout.connectionIntelligenceColor, "rgb(232, 189, 94)", `${width}x${height} uses gold for connection intelligence`);
+    assert.equal(layout.whatsHappeningFontStyle, "italic", `${width}x${height} italicizes the visible what’s happening phrase`);
+    assert.equal(layout.body, "", `${width}x${height} leaves the category shift as one focused statement`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
     assert.ok(Math.abs(layout.sectionTop) < 3, `${width}x${height} section lands at the viewport start`);
     assert.ok(layout.sectionHeight >= height - 1, `${width}x${height} section fills the viewport`);
@@ -1749,7 +1737,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
       /hc-art-emotional-signal-conversation-20260705\.png/,
       `${width}x${height} uses the intimate human-conversation scene`,
     );
-    assert.equal(layout.textRects.length, 1, `${width}x${height} renders the community-truth copy block`);
+    assert.equal(layout.textRects.length, 3, `${width}x${height} renders all three thesis lines`);
     layout.textRects.forEach((rect, index) => assertFits(rect, `copy block ${index + 1}`));
     assertFits(layout.cueRect, "continuation cue");
     assertRuntimeHealthy();

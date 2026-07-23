@@ -1024,9 +1024,9 @@ test("the public story resolves the twist with the existing interface thesis", a
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
     firstCopy:
-      "Individual data tells us about a person. Relationship data reveals the connection people feel with one another.",
+      "Individual data tells us about a person. Relational data reveals the connection people feel with one another.",
     firstTitle:
-      "Individual data tells us about a person. Relationship data reveals the connection people feel with one another.",
+      "Individual data tells us about a person. Relational data reveals the connection people feel with one another.",
     firstBody: "",
     secondTitle: "For decades, technology pulled communication onto interfaces. We’re doing the opposite.",
     secondBody: "The intelligence around human conversation will redefine how real-world social networks come together.",
@@ -1656,7 +1656,7 @@ test("the closing line and 1% / 99% promise stay clear beside the signup card", 
 
 test("the community-truth section fits desktop and narrow phones without overflow", async () => {
   const expectedCopy =
-    "Individual data tells us about a person. Relationship data reveals the connection people feel with one another.";
+    "Individual data tells us about a person. Relational data reveals the connection people feel with one another.";
 
   for (const [width, height] of [
     [1440, 900],
@@ -1715,7 +1715,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
       layout.shiftLines,
       [
         "Individual data tells us about a person.",
-        "Relationship data reveals the connection people feel with one another.",
+        "Relational data reveals the connection people feel with one another.",
       ],
       `${width}x${height} preserves the individual-to-connection contrast`,
     );

@@ -1847,7 +1847,7 @@ test("the disconnection method copy stays organized on short desktop and phones"
   }
 });
 
-test("the private relational-shift review rebuilds the post-crux story around relational reality and connection leaders", async () => {
+test("the private relational-shift review rebuilds the post-crux story around visibility and connection leaders", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("relational-shift-review"));
   await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
@@ -1918,7 +1918,7 @@ test("the private relational-shift review rebuilds the post-crux story around re
     "A community can know every individual",
     "Being in the same place is not the same as feeling connected.",
     "Connection leaders turn participation into belonging.",
-    "Human conversation is where relational reality comes to the surface.",
+    "Human conversation makes what’s happening between people visible.",
     "Human Conversation gives connection leaders the intelligence to create connection again and again.",
     "The AI handles the work around the human moment.",
     "The next data layer is between us.",

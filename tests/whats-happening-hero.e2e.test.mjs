@@ -1850,7 +1850,7 @@ test("the disconnection method copy stays organized on short desktop and phones"
 test("the private relational-shift review rebuilds the post-crux story around visibility and connection leaders", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("relational-shift-review"));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 8`);
 
   const state = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -1882,7 +1882,7 @@ test("the private relational-shift review rebuilds the post-crux story around vi
 
   assert.equal(state.layoutVariant, PUBLIC_VARIANT);
   assert.equal(state.reviewVariant, "relational-shift-review");
-  assert.equal(state.sectionCount, 9);
+  assert.equal(state.sectionCount, 8);
   assert.deepEqual(state.openingStages, ["twitter", "slack", "Human Conversation"]);
   assert.equal(
     state.sections[0].title,
@@ -1904,19 +1904,17 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
-    [3, /hc-photo-belonging-gap-workshop-pexels-18999478\.jpg/],
-    [4, /hc-photo-connection-leaders-community-workshop-pexels-18999256\.jpg/],
-    [5, /hc-art-emotional-signal-conversation-20260705\.png/],
-    [6, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
-    [7, /hc-art-protect-human-moment-20260703\.png/],
-    [8, /hc-art-intelligence-brings-together-20260705\.png/],
+    [3, /hc-photo-connection-leaders-community-workshop-pexels-18999256\.jpg/],
+    [4, /hc-art-emotional-signal-conversation-20260705\.png/],
+    [5, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
+    [6, /hc-art-protect-human-moment-20260703\.png/],
+    [7, /hc-art-intelligence-brings-together-20260705\.png/],
   ]) {
     assert.match(state.sections[index].image, expectedImage);
   }
   for (const expected of [
     "Modern technology can describe the individual in extraordinary detail.",
     "A community can know every individual",
-    "Being in the same place is not the same as feeling connected.",
     "Connection leaders turn participation into belonging.",
     "Human conversation makes what’s happening between people visible.",
     "Human Conversation gives connection leaders the intelligence to create connection again and again.",
@@ -1955,7 +1953,7 @@ test("the private relational-shift story stays legible and image-backed across d
   ]) {
     await page.setViewport(viewport.width, viewport.height);
     await page.navigate(reviewUrl("relational-shift-review"));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 8`);
 
     const state = await page.evaluate(`(() => {
       const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
@@ -1983,7 +1981,7 @@ test("the private relational-shift story stays legible and image-backed across d
       };
     })()`);
 
-    assert.equal(state.sections.length, 9);
+    assert.equal(state.sections.length, 8);
     for (const [index, section] of state.sections.entries()) {
       assert.ok(section.title, `${viewport.width}x${viewport.height} section ${index + 1} renders its title`);
       assert.ok(section.image && section.image !== "none", `${viewport.width}x${viewport.height} section ${index + 1} renders a background image`);

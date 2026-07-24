@@ -2024,13 +2024,13 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     "The next data layer is between us.",
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
     "AI finds the teaching, connection, intent, and human moments worth carrying forward.",
-    "The connection leader decides what people receive or may share.",
     "One meaningful conversation can become a better follow-up, the next gathering, a referral, an introduction, or a return.",
     "Relational intelligence can help connection leaders understand what happens between people and across groups",
   ]) {
     assert.ok(state.storyText.includes(expected), `review story includes: ${expected}`);
   }
   assert.equal(state.storyText.includes("Modern technology can describe the individual in extraordinary detail."), true);
+  assert.equal(state.storyText.includes("The connection leader decides what people receive or may share."), false);
   assert.equal(state.storyText.includes("We become different versions of ourselves around different people."), false);
   assert.equal(state.storyText.includes("Pickleball makes the missing layer impossible to miss."), false);
   for (const prohibited of ["pickleball", "paddle", "court"]) {

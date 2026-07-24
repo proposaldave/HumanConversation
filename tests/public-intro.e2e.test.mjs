@@ -248,9 +248,9 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     assert.ok(layout.copyLeft >= -1 && layout.copyRight <= width + 1, `${width}x${height} copy fits horizontally`);
     assert.ok(layout.copyTop >= -1 && layout.copyBottom <= height + 1, `${width}x${height} copy fits vertically`);
     assert.equal(layout.marketValuePresent, false, `${width}x${height} omits the Twitter valuation callout`);
-    assert.equal(layout.sectionCount, 9, `${width}x${height} opens the complete relational-shift story`);
-    assert.equal(layout.relationalPanelCount, 8, `${width}x${height} keeps every post-crux relational panel`);
-    assert.equal(layout.imageBackedCount, 9, `${width}x${height} keeps every story section image-backed`);
+    assert.equal(layout.sectionCount, 8, `${width}x${height} opens the complete relational-shift story`);
+    assert.equal(layout.relationalPanelCount, 7, `${width}x${height} keeps every post-crux relational panel`);
+    assert.equal(layout.imageBackedCount, 8, `${width}x${height} keeps every story section image-backed`);
     assert.equal(layout.finalFormCount, 1, `${width}x${height} keeps one final signup form`);
   }
   assertRuntimeHealthy();

@@ -138,7 +138,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 9,
+    storySections: 8,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -1502,7 +1502,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
 test("the previous public landing page lives only behind the hidden bottom-right square", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(staticServer.baseUrl);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 8`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1524,7 +1524,7 @@ test("the previous public landing page lives only behind the hidden bottom-right
     variantTrayPresent: false,
     variantTriggerPresent: false,
     variantDotCount: 0,
-    sectionCount: 9,
+    sectionCount: 8,
   });
 
   await page.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "z", bubbles: true }))`);

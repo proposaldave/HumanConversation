@@ -1916,7 +1916,7 @@ test("the private relational-shift review rebuilds the post-crux story around re
   for (const expected of [
     "Modern technology can describe the individual in extraordinary detail.",
     "A community can know every individual",
-    "Activities create the opportunity for connection. They do not guarantee belonging.",
+    "Being in the same place is not the same as feeling connected.",
     "Connection leaders turn participation into belonging.",
     "Human conversation is where relational reality comes to the surface.",
     "Human Conversation gives connection leaders the intelligence to create connection again and again.",

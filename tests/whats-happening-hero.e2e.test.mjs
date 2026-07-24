@@ -1904,10 +1904,10 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
-    [3, /hc-art-conversation-intelligence-threshold-20260704\.png/],
+    [3, /hc-photo-belonging-gap-workshop-pexels-18999478\.jpg/],
     [4, /hc-photo-connection-leaders-community-workshop-pexels-18999256\.jpg/],
     [5, /hc-art-emotional-signal-conversation-20260705\.png/],
-    [6, /hc-art-intelligence-around-human-moment-review-20260723\.png/],
+    [6, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
     [7, /hc-art-protect-human-moment-20260703\.png/],
     [8, /hc-art-intelligence-brings-together-20260705\.png/],
   ]) {
@@ -1925,8 +1925,9 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
     "Their judgment, energy, and care turn a room of individuals into a group people want to return to.",
     "What someone needs next. Whom they trust. How the group is changing.",
-    "We’re starting with a permissioned pickleball clinic.",
-    "The pro decides what students receive or may share.",
+    "AI finds the teaching, connection, intent, and human moments worth carrying forward.",
+    "The connection leader decides what people receive or may share.",
+    "One meaningful conversation can become a better follow-up, the next gathering, a referral, an introduction, or a return.",
     "Relational intelligence can help connection leaders understand what happens between people and across groups",
   ]) {
     assert.ok(state.storyText.includes(expected), `review story includes: ${expected}`);
@@ -1934,6 +1935,9 @@ test("the private relational-shift review rebuilds the post-crux story around vi
   assert.equal(state.storyText.includes("Modern technology can describe the individual in extraordinary detail."), true);
   assert.equal(state.storyText.includes("We become different versions of ourselves around different people."), false);
   assert.equal(state.storyText.includes("Pickleball makes the missing layer impossible to miss."), false);
+  for (const prohibited of ["pickleball", "paddle", "court"]) {
+    assert.equal(state.storyText.toLowerCase().includes(prohibited), false);
+  }
   assert.equal(state.storyText.includes("For decades, technology pulled communication onto interfaces."), false);
   assert.equal(state.formCount, 1);
   assert.ok(state.whatsHappeningCount >= 4);

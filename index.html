@@ -18325,32 +18325,6 @@
                 scene: "community-blindspot",
                 className: "is-long is-relational-story-panel is-copy-dense is-community-blindspot-section",
               },
-              {
-                title: `<span class="brand-name">Human Conversation</span> gives connection leaders the <em class="relational-gold">intelligence</em> to create connection again and again.`,
-                copy: [
-                  `AI finds the teaching, connection, intent, and human moments worth carrying forward.`,
-                ],
-                scene: "connection-intelligence",
-                className: "is-long is-relational-story-panel is-copy-dense is-connection-intelligence-section",
-              },
-              {
-                title: `The AI handles the work <span class="relational-gold">around</span> the human moment. The connection leader creates the trust <span class="relational-rose">inside it.</span>`,
-                copy: [
-                  `One meaningful conversation can become a better follow-up, the next gathering, a referral, an introduction, or a return.`,
-                ],
-                scene: "human-ai-principle",
-                className: "is-long is-relational-story-panel is-copy-dense is-human-ai-principle-section",
-              },
-              {
-                title: `The next data layer is <span class="relational-rose">between us.</span>`,
-                copy: [
-                  `Individual data helped technology understand people. Relational intelligence can help connection leaders understand what happens between people and across groups&mdash;then create the next right connection.`,
-                ],
-                scene: "next-data-layer",
-                className: "is-long is-relational-story-panel is-next-data-layer-section",
-                form: true,
-                buttonLead: `<span class="brand-name">Human Conversation</span> is building that layer.`,
-              },
             ],
           },
           connectionLeaderArchive: {
@@ -18531,6 +18505,8 @@
             ],
           },
         };
+
+        storyPages.relationalShiftReview.sections.push(...storyPages.main.sections.slice(1));
 
         const communityPulseHero = Object.freeze({
           heroTheme: "community-pulse",

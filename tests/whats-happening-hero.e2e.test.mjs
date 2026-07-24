@@ -138,7 +138,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 6,
+    storySections: 13,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -1502,7 +1502,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
 test("archived landing-page content lives only behind the hidden bottom-right squares", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(staticServer.baseUrl);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 6`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1541,7 +1541,7 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
     variantTrayPresent: false,
     variantTriggerPresent: false,
     variantDotCount: 0,
-    sectionCount: 6,
+    sectionCount: 13,
     archivedSectionAbsent: true,
     relationalRealitySectionAbsent: true,
   });
@@ -1953,28 +1953,34 @@ test("the disconnection method copy stays organized on short desktop and phones"
   }
 });
 
-test("the private relational-shift review rebuilds the post-crux story around visibility and connection leaders", async () => {
+test("the relational-shift opening flows into the complete preserved previous landing-page story", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("relational-shift-review"));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 6`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
 
   const state = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
     const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
     const visibleWhatsHappening = Array.from(document.querySelectorAll(".whats-happening-phrase"));
+    const titleText = (section) => {
+      const title = section.querySelector(".story-title");
+      const lines = Array.from(title?.children || []);
+      return lines.length > 1 && lines.every((line) => line.tagName === "SPAN")
+        ? lines.map((line) => normalize(line.textContent)).join(" ")
+        : normalize(title?.textContent);
+    };
     return {
       layoutVariant: document.querySelector(".page")?.dataset.variant,
       reviewVariant: document.querySelector(".page")?.dataset.reviewVariant,
       sectionCount: sections.length,
       sections: sections.map((section) => ({
-        title: section.classList.contains("is-community-truth-section")
-          ? Array.from(section.querySelectorAll(".story-title > span")).map((line) => normalize(line.textContent)).join(" ")
-          : normalize(section.querySelector(".story-title")?.textContent),
+        className: section.className,
+        title: titleText(section),
         body: normalize(section.querySelector(".story-body")?.textContent),
         image: getComputedStyle(section, "::before").backgroundImage,
       })),
       storyText: sections.map((section) => [
-        normalize(section.querySelector(".story-title")?.textContent),
+        titleText(section),
         normalize(section.querySelector(".story-body")?.textContent),
       ].filter(Boolean).join(" ")).join(" "),
       openingStages: Array.from(document.querySelectorAll(".community-stage .community-platform strong"))
@@ -1988,7 +1994,7 @@ test("the private relational-shift review rebuilds the post-crux story around vi
 
   assert.equal(state.layoutVariant, PUBLIC_VARIANT);
   assert.equal(state.reviewVariant, "relational-shift-review");
-  assert.equal(state.sectionCount, 6);
+  assert.equal(state.sectionCount, 13);
   assert.deepEqual(state.openingStages, ["twitter", "slack", "Human Conversation"]);
   assert.equal(
     state.sections[0].title,
@@ -2010,22 +2016,52 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
-    [3, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
-    [4, /hc-art-protect-human-moment-20260703\.png/],
-    [5, /hc-art-intelligence-brings-together-20260705\.png/],
+    [3, /hc-photo-belonging-gap-workshop-pexels-18999478\.jpg/],
+    [4, /hc-art-solves-disconnection-deck-style-introduction-20260707\.png/],
+    [5, /hc-art-human-conversation-communal-table-20260718\.png/],
+    [6, /hc-art-real-world-os-living-community-balanced-20260706\.png/],
+    [7, /hc-art-thousand-taps-frontier-scale-pink-20260705\.png/],
+    [8, /^none$/],
+    [9, /linear-gradient/],
+    [10, /hc-art-loneliness-deck-style-20260705\.png/],
+    [11, /hc-art-operating-system-human-value-funnel-20260705\.png/],
+    [12, /hc-art-human-future-value-choice-20260705\.png/],
   ]) {
     assert.match(state.sections[index].image, expectedImage);
   }
+  assert.deepEqual(
+    state.sections.map((section) => section.className),
+    [
+      "story-section story-scene-community-truth is-long is-community-truth-section",
+      "story-section story-scene-individual-detail is-long is-relational-story-panel is-copy-dense is-individual-detail-section",
+      "story-section story-scene-community-blindspot is-long is-relational-story-panel is-copy-dense is-community-blindspot-section",
+      "story-section story-scene-interface-opposite is-long is-interface-opposite-section",
+      "story-section story-scene-solves-disconnection is-product is-solves-disconnection-section",
+      "story-section story-scene-brings-together is-long is-brings-together-section",
+      "story-section story-scene-real-world-os is-long is-real-world-os-section is-copy-right",
+      "story-section story-scene-thousand-taps is-taps-premium-section",
+      "story-section story-scene-attention is-attention-section",
+      "story-section story-scene-community-graph is-paper is-graph-section",
+      "story-section story-scene-lonely-return is-long is-lonely-return-section",
+      "story-section story-scene-human-surface is-human-surface-section",
+      "story-section story-scene-human-future is-future-section is-final-cta-section",
+    ],
+    "the three-section relational opening flows into the previous landing page without reordering",
+  );
   for (const expected of [
     "Modern technology can describe the individual in extraordinary detail.",
     "A community can know every individual",
-    "Human Conversation gives connection leaders the intelligence to create connection again and again.",
-    "The AI handles the work around the human moment.",
-    "The next data layer is between us.",
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
-    "AI finds the teaching, connection, intent, and human moments worth carrying forward.",
-    "One meaningful conversation can become a better follow-up, the next gathering, a referral, an introduction, or a return.",
-    "Relational intelligence can help connection leaders understand what happens between people and across groups",
+    "For decades, technology pulled communication onto interfaces.",
+    "The intelligence around human conversation will redefine how real-world social networks come together.",
+    "Human Conversation solves disconnection.",
+    "99.9% of communication technology puts an interface between us.",
+    "Human Conversation is already the operating system for real-world social networks.",
+    "A Human Conversation is worth a thousand taps.",
+    "Who needs a human conversation?",
+    "Real conversations create the community graph.",
+    "We're not lonely because communication disappeared.",
+    "Humans stay above the surface. AI handles underneath.",
   ]) {
     assert.ok(state.storyText.includes(expected), `review story includes: ${expected}`);
   }
@@ -2036,7 +2072,10 @@ test("the private relational-shift review rebuilds the post-crux story around vi
   for (const prohibited of ["pickleball", "paddle", "court"]) {
     assert.equal(state.storyText.toLowerCase().includes(prohibited), false);
   }
-  assert.equal(state.storyText.includes("For decades, technology pulled communication onto interfaces."), false);
+  assert.equal(state.storyText.includes("Human Conversation gives connection leaders the intelligence to create connection again and again."), false);
+  assert.equal(state.storyText.includes("The AI handles the work around the human moment."), false);
+  assert.equal(state.storyText.includes("The next data layer is between us."), false);
+  assert.equal(state.storyText.includes("For decades, technology pulled communication onto interfaces."), true);
   assert.equal(state.formCount, 1);
   assert.ok(state.whatsHappeningCount >= 4);
   assert.equal(state.whatsHappeningAllItalicized, true);
@@ -2053,7 +2092,7 @@ test("the private relational-shift story stays legible and image-backed across d
   ]) {
     await page.setViewport(viewport.width, viewport.height);
     await page.navigate(reviewUrl("relational-shift-review"));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 6`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
 
     const state = await page.evaluate(`(() => {
       const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
@@ -2069,23 +2108,29 @@ test("the private relational-shift story stays legible and image-backed across d
               right: box.right,
             } : null;
           };
+          const backgroundImage = getComputedStyle(section, "::before").backgroundImage;
           return {
             sectionHeight: sectionRect.height,
             title: rect(".story-title"),
             body: rect(".story-body"),
             form: rect(".story-contact"),
-            image: getComputedStyle(section, "::before").backgroundImage,
+            hasVisual: backgroundImage !== "none" || Boolean(section.querySelector(".attention-graphic")),
+            isRelationalPanel: section.classList.contains("is-relational-story-panel"),
           };
         }),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
     })()`);
 
-    assert.equal(state.sections.length, 6);
+    assert.equal(state.sections.length, 13);
     for (const [index, section] of state.sections.entries()) {
       assert.ok(section.title, `${viewport.width}x${viewport.height} section ${index + 1} renders its title`);
-      assert.ok(section.image && section.image !== "none", `${viewport.width}x${viewport.height} section ${index + 1} renders a background image`);
-      assert.ok(section.sectionHeight <= viewport.height + 6, `${viewport.width}x${viewport.height} section ${index + 1} stays viewport-sized`);
+      assert.equal(section.hasVisual, true, `${viewport.width}x${viewport.height} section ${index + 1} renders its intended visual`);
+      if (index < 3) {
+        assert.ok(section.sectionHeight <= viewport.height + 6, `${viewport.width}x${viewport.height} relational section ${index + 1} stays viewport-sized`);
+      } else {
+        assert.ok(section.sectionHeight >= viewport.height - 1, `${viewport.width}x${viewport.height} preserved section ${index + 1} keeps its original full-screen composition`);
+      }
       for (const [label, box] of Object.entries({ title: section.title, body: section.body, form: section.form })) {
         if (!box) continue;
         assert.ok(box.top >= -1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} starts inside the section`);
@@ -2093,10 +2138,10 @@ test("the private relational-shift story stays legible and image-backed across d
         assert.ok(box.left >= -1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} starts inside the viewport`);
         assert.ok(box.right <= viewport.width + 1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} ends inside the viewport`);
       }
-      if (section.body) {
+      if (section.body && section.isRelationalPanel) {
         assert.ok(section.title.bottom <= section.body.top + 1, `${viewport.width}x${viewport.height} section ${index + 1} title clears body`);
       }
-      if (section.form) {
+      if (section.form && section.isRelationalPanel) {
         assert.ok((section.body?.bottom ?? section.title.bottom) <= section.form.top + 1, `${viewport.width}x${viewport.height} section ${index + 1} copy clears form`);
       }
     }

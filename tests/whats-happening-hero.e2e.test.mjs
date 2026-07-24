@@ -1905,7 +1905,7 @@ test("the private relational-shift review rebuilds the post-crux story around re
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
     [3, /hc-art-conversation-intelligence-threshold-20260704\.png/],
-    [4, /hc-art-connection-leader-pickleball-review-20260723\.png/],
+    [4, /hc-photo-connection-leaders-community-workshop-pexels-18999256\.jpg/],
     [5, /hc-art-emotional-signal-conversation-20260705\.png/],
     [6, /hc-art-intelligence-around-human-moment-review-20260723\.png/],
     [7, /hc-art-protect-human-moment-20260703\.png/],

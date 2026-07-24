@@ -5,7 +5,7 @@
   "headlineText": "200920142026twitterDigital Communities ✓ Visible to technologyWhat’s happening right now?twitterNov 19 · 2009What’s happening?slackOrganizations ✓ Visible to technologyWhat’s happening at work?slack# general# product# teamHuman ConversationReal-world social networks ✕ Real connection is still invisible to technologyWhat’s happening between us, around us, and within us?",
   "ledeText": "Complex systems need to see the reality about what’s happening — to know what to do next.",
   "headerEmail": "hello@humanconversation.com",
-  "storySections": 8,
+  "storySections": 7,
   "heroSignupAction": "https://formsubmit.co/hello@humanconversation.com",
   "footerText": "Human Conversation",
   "storyMarkers": [
@@ -13,7 +13,6 @@
     "Modern technology can describe the individual in extraordinary detail.",
     "A community can know every individual",
     "Who connects with whom.",
-    "Connection leaders turn participation into belonging.",
     "Human conversation makes what’s happening between people visible.",
     "The AI handles the work around the human moment.",
     "The next data layer is between us."

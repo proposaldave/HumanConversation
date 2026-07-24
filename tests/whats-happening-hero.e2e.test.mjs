@@ -138,7 +138,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 8,
+    storySections: 7,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -1499,21 +1499,27 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
   }
 });
 
-test("the previous public landing page lives only behind the hidden bottom-right square", async () => {
+test("archived landing-page content lives only behind the hidden bottom-right squares", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(staticServer.baseUrl);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 8`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 7`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
+    const connectionLeaderDot = document.querySelector(".connection-leader-archive-dot");
+    const storyText = String(document.querySelector("#landing-story")?.textContent || "").replace(/\\s+/g, " ").trim();
     return {
       hidden: dot?.hidden,
       ariaHidden: dot?.getAttribute("aria-hidden"),
       ariaLabel: dot?.getAttribute("aria-label"),
+      connectionLeaderHidden: connectionLeaderDot?.hidden,
+      connectionLeaderAriaHidden: connectionLeaderDot?.getAttribute("aria-hidden"),
+      connectionLeaderAriaLabel: connectionLeaderDot?.getAttribute("aria-label"),
       variantTrayPresent: Boolean(document.querySelector(".variant-dots")),
       variantTriggerPresent: Boolean(document.querySelector(".variant-trigger")),
       variantDotCount: document.querySelectorAll(".variant-dot").length,
       sectionCount: document.querySelectorAll("#landing-story .story-section").length,
+      archivedSectionAbsent: !storyText.includes("Connection leaders turn participation into belonging."),
     };
   })()`);
 
@@ -1521,14 +1527,18 @@ test("the previous public landing page lives only behind the hidden bottom-right
     hidden: true,
     ariaHidden: "true",
     ariaLabel: "Open the previous HumanConversation.com landing page",
+    connectionLeaderHidden: true,
+    connectionLeaderAriaHidden: "true",
+    connectionLeaderAriaLabel: "Open the archived Connection leaders section",
     variantTrayPresent: false,
     variantTriggerPresent: false,
     variantDotCount: 0,
-    sectionCount: 8,
+    sectionCount: 7,
+    archivedSectionAbsent: true,
   });
 
   await page.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "z", bubbles: true }))`);
-  await page.waitFor(`!document.querySelector(".chesky-quote-dot")?.hidden && document.querySelector(".chesky-quote-dot")?.classList.contains("is-visible") && Number(getComputedStyle(document.querySelector(".chesky-quote-dot")).opacity) > 0.99`);
+  await page.waitFor(`[".chesky-quote-dot", ".connection-leader-archive-dot"].every((selector) => { const dot = document.querySelector(selector); return dot && !dot.hidden && dot.classList.contains("is-visible") && Number(getComputedStyle(dot).opacity) > 0.99; })`);
 
   const revealedDot = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1553,6 +1563,49 @@ test("the previous public landing page lives only behind the hidden bottom-right
   assert.equal(revealedDot.height, 14);
   assert.equal(revealedDot.borderRadius, "3px");
   assert.equal(revealedDot.opacity, 1);
+
+  const connectionLeaderDot = await page.evaluate(`(() => {
+    const dot = document.querySelector(".connection-leader-archive-dot");
+    const rect = dot?.getBoundingClientRect();
+    return {
+      ariaHidden: dot?.getAttribute("aria-hidden"),
+      tabIndex: dot?.tabIndex,
+      rightGap: rect ? innerWidth - rect.right : 9999,
+      bottomGap: rect ? innerHeight - rect.bottom : 9999,
+      width: rect?.width ?? 0,
+      height: rect?.height ?? 0,
+      opacity: dot ? Number(getComputedStyle(dot).opacity) : 0,
+    };
+  })()`);
+
+  assert.equal(connectionLeaderDot.ariaHidden, "false");
+  assert.equal(connectionLeaderDot.tabIndex, 0);
+  assert.ok(connectionLeaderDot.rightGap > revealedDot.rightGap, "section archive square sits beside the previous-page square");
+  assert.ok(connectionLeaderDot.rightGap <= 72, "section archive square stays at the bottom-right");
+  assert.ok(connectionLeaderDot.bottomGap >= 0 && connectionLeaderDot.bottomGap <= 48, "section archive square stays near the bottom edge");
+  assert.equal(connectionLeaderDot.width, 14);
+  assert.equal(connectionLeaderDot.height, 14);
+  assert.equal(connectionLeaderDot.opacity, 1);
+
+  await page.evaluate(`document.querySelector(".connection-leader-archive-dot")?.click()`);
+  await page.waitFor(`document.querySelector(".page")?.dataset.storyVariant === "connection-leader-archive" && document.querySelectorAll("#landing-story .story-section").length === 1`);
+
+  const archivedSection = await page.evaluate(`(() => {
+    const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+    return {
+      dotCurrent: document.querySelector(".connection-leader-archive-dot")?.getAttribute("aria-current"),
+      sectionCount: document.querySelectorAll("#landing-story .story-section").length,
+      title: normalize(document.querySelector("#landing-story .story-title")?.textContent),
+      copy: normalize(document.querySelector("#landing-story .story-body")?.textContent),
+    };
+  })()`);
+
+  assert.deepEqual(archivedSection, {
+    dotCurrent: "true",
+    sectionCount: 1,
+    title: "Connection leaders turn participation into belonging.",
+    copy: "A coach. A host. A teacher. A community builder. Their judgment, energy, and care turn a room of individuals into a group people want to return to.",
+  });
 
   await page.evaluate(`document.querySelector(".chesky-quote-dot")?.click()`);
   await page.waitFor(`document.querySelector(".page")?.dataset.reviewVariant === "" && document.querySelectorAll("#landing-story .story-section").length === 11`);
@@ -1850,7 +1903,7 @@ test("the disconnection method copy stays organized on short desktop and phones"
 test("the private relational-shift review rebuilds the post-crux story around visibility and connection leaders", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("relational-shift-review"));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 8`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 7`);
 
   const state = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -1882,7 +1935,7 @@ test("the private relational-shift review rebuilds the post-crux story around vi
 
   assert.equal(state.layoutVariant, PUBLIC_VARIANT);
   assert.equal(state.reviewVariant, "relational-shift-review");
-  assert.equal(state.sectionCount, 8);
+  assert.equal(state.sectionCount, 7);
   assert.deepEqual(state.openingStages, ["twitter", "slack", "Human Conversation"]);
   assert.equal(
     state.sections[0].title,
@@ -1904,24 +1957,21 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
-    [3, /hc-photo-connection-leaders-community-workshop-pexels-18999256\.jpg/],
-    [4, /hc-art-emotional-signal-conversation-20260705\.png/],
-    [5, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
-    [6, /hc-art-protect-human-moment-20260703\.png/],
-    [7, /hc-art-intelligence-brings-together-20260705\.png/],
+    [3, /hc-art-emotional-signal-conversation-20260705\.png/],
+    [4, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
+    [5, /hc-art-protect-human-moment-20260703\.png/],
+    [6, /hc-art-intelligence-brings-together-20260705\.png/],
   ]) {
     assert.match(state.sections[index].image, expectedImage);
   }
   for (const expected of [
     "Modern technology can describe the individual in extraordinary detail.",
     "A community can know every individual",
-    "Connection leaders turn participation into belonging.",
     "Human conversation makes what’s happening between people visible.",
     "Human Conversation gives connection leaders the intelligence to create connection again and again.",
     "The AI handles the work around the human moment.",
     "The next data layer is between us.",
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
-    "Their judgment, energy, and care turn a room of individuals into a group people want to return to.",
     "What someone needs next. Whom they trust. How the group is changing.",
     "AI finds the teaching, connection, intent, and human moments worth carrying forward.",
     "The connection leader decides what people receive or may share.",
@@ -1953,7 +2003,7 @@ test("the private relational-shift story stays legible and image-backed across d
   ]) {
     await page.setViewport(viewport.width, viewport.height);
     await page.navigate(reviewUrl("relational-shift-review"));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 8`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 7`);
 
     const state = await page.evaluate(`(() => {
       const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
@@ -1981,7 +2031,7 @@ test("the private relational-shift story stays legible and image-backed across d
       };
     })()`);
 
-    assert.equal(state.sections.length, 8);
+    assert.equal(state.sections.length, 7);
     for (const [index, section] of state.sections.entries()) {
       assert.ok(section.title, `${viewport.width}x${viewport.height} section ${index + 1} renders its title`);
       assert.ok(section.image && section.image !== "none", `${viewport.width}x${viewport.height} section ${index + 1} renders a background image`);

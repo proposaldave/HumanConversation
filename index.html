@@ -2383,7 +2383,8 @@
         transform: translateY(0);
       }
 
-      .chesky-quote-dot {
+      .chesky-quote-dot,
+      .connection-leader-archive-dot {
         position: fixed;
         right: max(18px, calc(env(safe-area-inset-right) + 18px));
         bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
@@ -2406,7 +2407,16 @@
           transform 160ms ease;
       }
 
-      .chesky-quote-dot.is-visible {
+      .connection-leader-archive-dot {
+        right: max(42px, calc(env(safe-area-inset-right) + 42px));
+        background: var(--hc-gold);
+        box-shadow:
+          inset 0 0 0 1px rgba(91, 62, 0, 0.18),
+          0 0 18px rgba(255, 214, 110, 0.46);
+      }
+
+      .chesky-quote-dot.is-visible,
+      .connection-leader-archive-dot.is-visible {
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
@@ -2414,7 +2424,10 @@
 
       .chesky-quote-dot:hover,
       .chesky-quote-dot:focus-visible,
-      .chesky-quote-dot[aria-current="true"] {
+      .chesky-quote-dot[aria-current="true"],
+      .connection-leader-archive-dot:hover,
+      .connection-leader-archive-dot:focus-visible,
+      .connection-leader-archive-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(var(--hc-rose-rgb), 0.28),
           0 0 0 4px rgba(var(--hc-rose-rgb), 0.22),
@@ -18160,6 +18173,7 @@
       </div>
 
       <button class="chesky-quote-dot" type="button" aria-label="Open the previous HumanConversation.com landing page" aria-hidden="true" tabindex="-1" hidden></button>
+      <button class="connection-leader-archive-dot" type="button" aria-label="Open the archived Connection leaders section" aria-hidden="true" tabindex="-1" hidden></button>
     </div>
 
       <script>
@@ -18298,14 +18312,6 @@
                 className: "is-long is-relational-story-panel is-copy-dense is-community-blindspot-section",
               },
               {
-                title: `<span class="relational-rose">Connection leaders</span> turn participation into belonging.`,
-                copy: [
-                  `A coach. A host. A teacher. A community builder. Their judgment, energy, and care turn a room of individuals into a group people want to return to.`,
-                ],
-                scene: "connection-leader",
-                className: "is-long is-relational-story-panel is-connection-leader-section",
-              },
-              {
                 title: `Human conversation makes <em class="relational-gold">what’s happening</em> between people visible.`,
                 copy: [
                   `What matters. What someone needs next. Whom they trust. How the group is changing. What should happen next.`,
@@ -18338,6 +18344,18 @@
                 className: "is-long is-relational-story-panel is-next-data-layer-section",
                 form: true,
                 buttonLead: `<span class="brand-name">Human Conversation</span> is building that layer.`,
+              },
+            ],
+          },
+          connectionLeaderArchive: {
+            sections: [
+              {
+                title: `<span class="relational-rose">Connection leaders</span> turn participation into belonging.`,
+                copy: [
+                  `A coach. A host. A teacher. A community builder. Their judgment, energy, and care turn a room of individuals into a group people want to return to.`,
+                ],
+                scene: "connection-leader",
+                className: "is-long is-relational-story-panel is-connection-leader-section",
               },
             ],
           },
@@ -18543,8 +18561,17 @@
           story: storyPages.relationalShiftReview,
         };
 
+        const connectionLeaderArchiveHome = {
+          ...conversationIntelligenceHome,
+          id: "connection-leader-archive",
+          layoutVariant: "conversation-intelligence-home",
+          reviewStyleVariant: "relational-shift-review",
+          story: storyPages.connectionLeaderArchive,
+        };
+
         const variants = [
         relationalShiftHome,
+        connectionLeaderArchiveHome,
         {
           id: "interface-thesis",
           headlineLabel: "Technology became the intermediary. Human Conversation removes it.",
@@ -18813,6 +18840,8 @@
       const landingStory = document.querySelector("#landing-story");
       const storyCue = document.querySelector(".story-cue");
       const cheskyQuoteDot = document.querySelector(".chesky-quote-dot");
+      const connectionLeaderArchiveDot = document.querySelector(".connection-leader-archive-dot");
+      const archiveDots = [cheskyQuoteDot, connectionLeaderArchiveDot].filter(Boolean);
       const secretLanding = document.querySelector(".secret-l-landing");
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -19819,7 +19848,8 @@
           const heroTheme = variant.heroTheme || variant.id;
           const layoutVariant = variant.layoutVariant || variant.id;
           page.dataset.variant = layoutVariant;
-          page.dataset.reviewVariant = variant.id === layoutVariant ? "" : variant.id;
+          page.dataset.reviewVariant = variant.reviewStyleVariant || (variant.id === layoutVariant ? "" : variant.id);
+          page.dataset.storyVariant = variant.id;
           page.dataset.heroTheme = heroTheme;
           hero.className = `hero hero-${heroTheme}`;
           hero.dataset.communityStage = heroTheme === "community-pulse" ? "twitter" : "";
@@ -19832,6 +19862,7 @@
           renderStoryPage(variant.story, layoutVariant);
           updateCommunityHeroStage();
           cheskyQuoteDot?.setAttribute("aria-current", String(variant.id === "conversation-intelligence-home"));
+          connectionLeaderArchiveDot?.setAttribute("aria-current", String(variant.id === "connection-leader-archive"));
         };
 
         if (options.immediate || prefersReducedMotion.matches) {
@@ -19848,26 +19879,30 @@
       }
 
       function revealCheskyQuoteDot() {
-        if (!cheskyQuoteDot || cheskyQuoteDot.classList.contains("is-visible")) return;
+        if (!archiveDots.length || archiveDots.every((dot) => dot.classList.contains("is-visible"))) return;
         window.clearTimeout(cheskyQuoteDotHideTimer);
-        cheskyQuoteDot.hidden = false;
-        cheskyQuoteDot.setAttribute("aria-hidden", "false");
-        cheskyQuoteDot.setAttribute("tabindex", "0");
+        archiveDots.forEach((dot) => {
+          dot.hidden = false;
+          dot.setAttribute("aria-hidden", "false");
+          dot.setAttribute("tabindex", "0");
+        });
         window.requestAnimationFrame(() => {
-          cheskyQuoteDot.classList.add("is-visible");
+          archiveDots.forEach((dot) => dot.classList.add("is-visible"));
         });
       }
 
       function hideCheskyQuoteDot() {
-        if (!cheskyQuoteDot || !cheskyQuoteDot.classList.contains("is-visible")) return;
-        cheskyQuoteDot.classList.remove("is-visible");
-        cheskyQuoteDot.setAttribute("aria-hidden", "true");
-        cheskyQuoteDot.setAttribute("tabindex", "-1");
+        if (!archiveDots.some((dot) => dot.classList.contains("is-visible"))) return;
+        archiveDots.forEach((dot) => {
+          dot.classList.remove("is-visible");
+          dot.setAttribute("aria-hidden", "true");
+          dot.setAttribute("tabindex", "-1");
+        });
         window.clearTimeout(cheskyQuoteDotHideTimer);
         cheskyQuoteDotHideTimer = window.setTimeout(() => {
-          if (!cheskyQuoteDot.classList.contains("is-visible")) {
-            cheskyQuoteDot.hidden = true;
-          }
+          archiveDots.forEach((dot) => {
+            if (!dot.classList.contains("is-visible")) dot.hidden = true;
+          });
         }, 180);
       }
 
@@ -19972,6 +20007,11 @@
       cheskyQuoteDot?.addEventListener("click", () => {
         const previousPublicVariantIndex = variants.findIndex((variant) => variant.id === "conversation-intelligence-home");
         if (previousPublicVariantIndex >= 0) setVariant(previousPublicVariantIndex);
+      });
+
+      connectionLeaderArchiveDot?.addEventListener("click", () => {
+        const archiveVariantIndex = variants.findIndex((variant) => variant.id === "connection-leader-archive");
+        if (archiveVariantIndex >= 0) setVariant(archiveVariantIndex);
       });
 
       headline.addEventListener("click", (event) => {

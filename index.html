@@ -2384,7 +2384,8 @@
       }
 
       .chesky-quote-dot,
-      .connection-leader-archive-dot {
+      .connection-leader-archive-dot,
+      .relational-reality-archive-dot {
         position: fixed;
         right: max(18px, calc(env(safe-area-inset-right) + 18px));
         bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
@@ -2415,8 +2416,17 @@
           0 0 18px rgba(255, 214, 110, 0.46);
       }
 
+      .relational-reality-archive-dot {
+        right: max(66px, calc(env(safe-area-inset-right) + 66px));
+        background: var(--hc-blue);
+        box-shadow:
+          inset 0 0 0 1px rgba(24, 65, 113, 0.2),
+          0 0 18px rgba(91, 143, 212, 0.5);
+      }
+
       .chesky-quote-dot.is-visible,
-      .connection-leader-archive-dot.is-visible {
+      .connection-leader-archive-dot.is-visible,
+      .relational-reality-archive-dot.is-visible {
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
@@ -2427,7 +2437,10 @@
       .chesky-quote-dot[aria-current="true"],
       .connection-leader-archive-dot:hover,
       .connection-leader-archive-dot:focus-visible,
-      .connection-leader-archive-dot[aria-current="true"] {
+      .connection-leader-archive-dot[aria-current="true"],
+      .relational-reality-archive-dot:hover,
+      .relational-reality-archive-dot:focus-visible,
+      .relational-reality-archive-dot[aria-current="true"] {
         box-shadow:
           inset 0 0 0 1px rgba(var(--hc-rose-rgb), 0.28),
           0 0 0 4px rgba(var(--hc-rose-rgb), 0.22),
@@ -18174,6 +18187,7 @@
 
       <button class="chesky-quote-dot" type="button" aria-label="Open the previous HumanConversation.com landing page" aria-hidden="true" tabindex="-1" hidden></button>
       <button class="connection-leader-archive-dot" type="button" aria-label="Open the archived Connection leaders section" aria-hidden="true" tabindex="-1" hidden></button>
+      <button class="relational-reality-archive-dot" type="button" aria-label="Open the archived Human conversation visibility section" aria-hidden="true" tabindex="-1" hidden></button>
     </div>
 
       <script>
@@ -18312,14 +18326,6 @@
                 className: "is-long is-relational-story-panel is-copy-dense is-community-blindspot-section",
               },
               {
-                title: `Human conversation makes <em class="relational-gold">what’s happening</em> between people visible.`,
-                copy: [
-                  `What matters. What someone needs next. Whom they trust. How the group is changing. What should happen next.`,
-                ],
-                scene: "relational-reality",
-                className: "is-long is-relational-story-panel is-copy-dense is-relational-reality-section",
-              },
-              {
                 title: `<span class="brand-name">Human Conversation</span> gives connection leaders the <em class="relational-gold">intelligence</em> to create connection again and again.`,
                 copy: [
                   `AI finds the teaching, connection, intent, and human moments worth carrying forward. The connection leader decides what people receive or may share.`,
@@ -18356,6 +18362,18 @@
                 ],
                 scene: "connection-leader",
                 className: "is-long is-relational-story-panel is-connection-leader-section",
+              },
+            ],
+          },
+          relationalRealityArchive: {
+            sections: [
+              {
+                title: `Human conversation makes <em class="relational-gold">what’s happening</em> between people visible.`,
+                copy: [
+                  `What matters. What someone needs next. Whom they trust. How the group is changing. What should happen next.`,
+                ],
+                scene: "relational-reality",
+                className: "is-long is-relational-story-panel is-copy-dense is-relational-reality-section",
               },
             ],
           },
@@ -18569,9 +18587,18 @@
           story: storyPages.connectionLeaderArchive,
         };
 
+        const relationalRealityArchiveHome = {
+          ...conversationIntelligenceHome,
+          id: "relational-reality-archive",
+          layoutVariant: "conversation-intelligence-home",
+          reviewStyleVariant: "relational-shift-review",
+          story: storyPages.relationalRealityArchive,
+        };
+
         const variants = [
         relationalShiftHome,
         connectionLeaderArchiveHome,
+        relationalRealityArchiveHome,
         {
           id: "interface-thesis",
           headlineLabel: "Technology became the intermediary. Human Conversation removes it.",
@@ -18841,7 +18868,8 @@
       const storyCue = document.querySelector(".story-cue");
       const cheskyQuoteDot = document.querySelector(".chesky-quote-dot");
       const connectionLeaderArchiveDot = document.querySelector(".connection-leader-archive-dot");
-      const archiveDots = [cheskyQuoteDot, connectionLeaderArchiveDot].filter(Boolean);
+      const relationalRealityArchiveDot = document.querySelector(".relational-reality-archive-dot");
+      const archiveDots = [cheskyQuoteDot, connectionLeaderArchiveDot, relationalRealityArchiveDot].filter(Boolean);
       const secretLanding = document.querySelector(".secret-l-landing");
       const submitEndpoint = "https://formsubmit.co/ajax/hello@humanconversation.com";
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -19863,6 +19891,7 @@
           updateCommunityHeroStage();
           cheskyQuoteDot?.setAttribute("aria-current", String(variant.id === "conversation-intelligence-home"));
           connectionLeaderArchiveDot?.setAttribute("aria-current", String(variant.id === "connection-leader-archive"));
+          relationalRealityArchiveDot?.setAttribute("aria-current", String(variant.id === "relational-reality-archive"));
         };
 
         if (options.immediate || prefersReducedMotion.matches) {
@@ -20011,6 +20040,11 @@
 
       connectionLeaderArchiveDot?.addEventListener("click", () => {
         const archiveVariantIndex = variants.findIndex((variant) => variant.id === "connection-leader-archive");
+        if (archiveVariantIndex >= 0) setVariant(archiveVariantIndex);
+      });
+
+      relationalRealityArchiveDot?.addEventListener("click", () => {
+        const archiveVariantIndex = variants.findIndex((variant) => variant.id === "relational-reality-archive");
         if (archiveVariantIndex >= 0) setVariant(archiveVariantIndex);
       });
 

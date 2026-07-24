@@ -138,7 +138,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 7,
+    storySections: 6,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -1502,11 +1502,12 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
 test("archived landing-page content lives only behind the hidden bottom-right squares", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(staticServer.baseUrl);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 7`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 6`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
     const connectionLeaderDot = document.querySelector(".connection-leader-archive-dot");
+    const relationalRealityDot = document.querySelector(".relational-reality-archive-dot");
     const storyText = String(document.querySelector("#landing-story")?.textContent || "").replace(/\\s+/g, " ").trim();
     return {
       hidden: dot?.hidden,
@@ -1515,11 +1516,15 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
       connectionLeaderHidden: connectionLeaderDot?.hidden,
       connectionLeaderAriaHidden: connectionLeaderDot?.getAttribute("aria-hidden"),
       connectionLeaderAriaLabel: connectionLeaderDot?.getAttribute("aria-label"),
+      relationalRealityHidden: relationalRealityDot?.hidden,
+      relationalRealityAriaHidden: relationalRealityDot?.getAttribute("aria-hidden"),
+      relationalRealityAriaLabel: relationalRealityDot?.getAttribute("aria-label"),
       variantTrayPresent: Boolean(document.querySelector(".variant-dots")),
       variantTriggerPresent: Boolean(document.querySelector(".variant-trigger")),
       variantDotCount: document.querySelectorAll(".variant-dot").length,
       sectionCount: document.querySelectorAll("#landing-story .story-section").length,
       archivedSectionAbsent: !storyText.includes("Connection leaders turn participation into belonging."),
+      relationalRealitySectionAbsent: !storyText.includes("Human conversation makes what’s happening between people visible."),
     };
   })()`);
 
@@ -1530,15 +1535,19 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
     connectionLeaderHidden: true,
     connectionLeaderAriaHidden: "true",
     connectionLeaderAriaLabel: "Open the archived Connection leaders section",
+    relationalRealityHidden: true,
+    relationalRealityAriaHidden: "true",
+    relationalRealityAriaLabel: "Open the archived Human conversation visibility section",
     variantTrayPresent: false,
     variantTriggerPresent: false,
     variantDotCount: 0,
-    sectionCount: 7,
+    sectionCount: 6,
     archivedSectionAbsent: true,
+    relationalRealitySectionAbsent: true,
   });
 
   await page.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "z", bubbles: true }))`);
-  await page.waitFor(`[".chesky-quote-dot", ".connection-leader-archive-dot"].every((selector) => { const dot = document.querySelector(selector); return dot && !dot.hidden && dot.classList.contains("is-visible") && Number(getComputedStyle(dot).opacity) > 0.99; })`);
+  await page.waitFor(`[".chesky-quote-dot", ".connection-leader-archive-dot", ".relational-reality-archive-dot"].every((selector) => { const dot = document.querySelector(selector); return dot && !dot.hidden && dot.classList.contains("is-visible") && Number(getComputedStyle(dot).opacity) > 0.99; })`);
 
   const revealedDot = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1586,6 +1595,50 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
   assert.equal(connectionLeaderDot.width, 14);
   assert.equal(connectionLeaderDot.height, 14);
   assert.equal(connectionLeaderDot.opacity, 1);
+
+  const relationalRealityDot = await page.evaluate(`(() => {
+    const dot = document.querySelector(".relational-reality-archive-dot");
+    const rect = dot?.getBoundingClientRect();
+    return {
+      ariaHidden: dot?.getAttribute("aria-hidden"),
+      tabIndex: dot?.tabIndex,
+      rightGap: rect ? innerWidth - rect.right : 9999,
+      bottomGap: rect ? innerHeight - rect.bottom : 9999,
+      width: rect?.width ?? 0,
+      height: rect?.height ?? 0,
+      opacity: dot ? Number(getComputedStyle(dot).opacity) : 0,
+    };
+  })()`);
+
+  assert.equal(relationalRealityDot.ariaHidden, "false");
+  assert.equal(relationalRealityDot.tabIndex, 0);
+  assert.ok(relationalRealityDot.rightGap > connectionLeaderDot.rightGap, "conversation visibility archive square sits beside the other archive squares");
+  assert.ok(relationalRealityDot.rightGap <= 96, "conversation visibility archive square stays at the bottom-right");
+  assert.ok(relationalRealityDot.bottomGap >= 0 && relationalRealityDot.bottomGap <= 48, "conversation visibility archive square stays near the bottom edge");
+  assert.equal(relationalRealityDot.width, 14);
+  assert.equal(relationalRealityDot.height, 14);
+  assert.equal(relationalRealityDot.opacity, 1);
+
+  await page.evaluate(`document.querySelector(".relational-reality-archive-dot")?.click()`);
+  await page.waitFor(`document.querySelector(".page")?.dataset.storyVariant === "relational-reality-archive" && document.querySelectorAll("#landing-story .story-section").length === 1`);
+
+  const relationalRealityArchive = await page.evaluate(`(() => {
+    const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+    const section = document.querySelector("#landing-story .story-section");
+    return {
+      dotCurrent: document.querySelector(".relational-reality-archive-dot")?.getAttribute("aria-current"),
+      sectionCount: document.querySelectorAll("#landing-story .story-section").length,
+      title: normalize(section?.querySelector(".story-title")?.textContent),
+      copy: normalize(section?.querySelector(".story-body")?.textContent),
+      image: getComputedStyle(section, "::before").backgroundImage,
+    };
+  })()`);
+
+  assert.equal(relationalRealityArchive.dotCurrent, "true");
+  assert.equal(relationalRealityArchive.sectionCount, 1);
+  assert.equal(relationalRealityArchive.title, "Human conversation makes what’s happening between people visible.");
+  assert.equal(relationalRealityArchive.copy, "What matters. What someone needs next. Whom they trust. How the group is changing. What should happen next.");
+  assert.match(relationalRealityArchive.image, /hc-art-emotional-signal-conversation-20260705\.png/);
 
   await page.evaluate(`document.querySelector(".connection-leader-archive-dot")?.click()`);
   await page.waitFor(`document.querySelector(".page")?.dataset.storyVariant === "connection-leader-archive" && document.querySelectorAll("#landing-story .story-section").length === 1`);
@@ -1903,7 +1956,7 @@ test("the disconnection method copy stays organized on short desktop and phones"
 test("the private relational-shift review rebuilds the post-crux story around visibility and connection leaders", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("relational-shift-review"));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 7`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 6`);
 
   const state = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -1935,7 +1988,7 @@ test("the private relational-shift review rebuilds the post-crux story around vi
 
   assert.equal(state.layoutVariant, PUBLIC_VARIANT);
   assert.equal(state.reviewVariant, "relational-shift-review");
-  assert.equal(state.sectionCount, 7);
+  assert.equal(state.sectionCount, 6);
   assert.deepEqual(state.openingStages, ["twitter", "slack", "Human Conversation"]);
   assert.equal(
     state.sections[0].title,
@@ -1957,22 +2010,19 @@ test("the private relational-shift review rebuilds the post-crux story around vi
     [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
-    [3, /hc-art-emotional-signal-conversation-20260705\.png/],
-    [4, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
-    [5, /hc-art-protect-human-moment-20260703\.png/],
-    [6, /hc-art-intelligence-brings-together-20260705\.png/],
+    [3, /hc-photo-connection-intelligence-discussion-pexels-3931505\.jpg/],
+    [4, /hc-art-protect-human-moment-20260703\.png/],
+    [5, /hc-art-intelligence-brings-together-20260705\.png/],
   ]) {
     assert.match(state.sections[index].image, expectedImage);
   }
   for (const expected of [
     "Modern technology can describe the individual in extraordinary detail.",
     "A community can know every individual",
-    "Human conversation makes what’s happening between people visible.",
     "Human Conversation gives connection leaders the intelligence to create connection again and again.",
     "The AI handles the work around the human moment.",
     "The next data layer is between us.",
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
-    "What someone needs next. Whom they trust. How the group is changing.",
     "AI finds the teaching, connection, intent, and human moments worth carrying forward.",
     "The connection leader decides what people receive or may share.",
     "One meaningful conversation can become a better follow-up, the next gathering, a referral, an introduction, or a return.",
@@ -2003,7 +2053,7 @@ test("the private relational-shift story stays legible and image-backed across d
   ]) {
     await page.setViewport(viewport.width, viewport.height);
     await page.navigate(reviewUrl("relational-shift-review"));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 7`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 6`);
 
     const state = await page.evaluate(`(() => {
       const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
@@ -2031,7 +2081,7 @@ test("the private relational-shift story stays legible and image-backed across d
       };
     })()`);
 
-    assert.equal(state.sections.length, 7);
+    assert.equal(state.sections.length, 6);
     for (const [index, section] of state.sections.entries()) {
       assert.ok(section.title, `${viewport.width}x${viewport.height} section ${index + 1} renders its title`);
       assert.ok(section.image && section.image !== "none", `${viewport.width}x${viewport.height} section ${index + 1} renders a background image`);

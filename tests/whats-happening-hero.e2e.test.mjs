@@ -9,7 +9,8 @@ const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIRECTORY = dirname(TEST_DIRECTORY);
 const DIST_DIRECTORY = join(PROJECT_DIRECTORY, "dist");
 const PUBLIC_VARIANT = "conversation-intelligence-home";
-const VARIANT = PUBLIC_VARIANT;
+const DEFAULT_VARIANT = "relational-shift-review";
+const VARIANT = DEFAULT_VARIANT;
 const stageRatios = {
   twitter: 0,
   slack: 0.47,
@@ -137,7 +138,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 11,
+    storySections: 9,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -158,7 +159,7 @@ test("every visible What’s happening phrase is italicized across the public pa
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
-    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 5`);
+    await page.waitFor(`document.querySelectorAll(".whats-happening-phrase").length === 6`);
 
     const phrases = await page.evaluate(`(() => ({
       items: Array.from(document.querySelectorAll(".page[data-variant='conversation-intelligence-home'] .whats-happening-phrase"))
@@ -175,7 +176,7 @@ test("every visible What’s happening phrase is italicized across the public pa
       horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     }))()`);
 
-    assert.equal(phrases.items.length, 5, `${width}x${height} finds every visible phrase`);
+    assert.equal(phrases.items.length, 6, `${width}x${height} finds every visible phrase`);
     assert.ok(phrases.items.every((item) => item.text === "what’s happening"));
     assert.ok(phrases.items.every((item) => item.tagName === "EM"));
     assert.ok(phrases.items.every((item) => item.fontFamily === item.parentFontFamily));
@@ -1498,32 +1499,32 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
   }
 });
 
-test("the Brian Chesky quote lives only behind the hidden bottom-left dot", async () => {
+test("the previous public landing page lives only behind the hidden bottom-right square", async () => {
   await page.setViewport(1440, 900);
-  await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+  await page.navigate(staticServer.baseUrl);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
     return {
       hidden: dot?.hidden,
       ariaHidden: dot?.getAttribute("aria-hidden"),
+      ariaLabel: dot?.getAttribute("aria-label"),
       variantTrayPresent: Boolean(document.querySelector(".variant-dots")),
       variantTriggerPresent: Boolean(document.querySelector(".variant-trigger")),
       variantDotCount: document.querySelectorAll(".variant-dot").length,
-      publicQuotePresent: Boolean(document.querySelector("#landing-story .story-quote")),
-      publicQuoteSectionPresent: Boolean(document.querySelector("#landing-story .is-next-interface-section")),
+      sectionCount: document.querySelectorAll("#landing-story .story-section").length,
     };
   })()`);
 
   assert.deepEqual(hiddenState, {
     hidden: true,
     ariaHidden: "true",
+    ariaLabel: "Open the previous HumanConversation.com landing page",
     variantTrayPresent: false,
     variantTriggerPresent: false,
     variantDotCount: 0,
-    publicQuotePresent: false,
-    publicQuoteSectionPresent: false,
+    sectionCount: 9,
   });
 
   await page.evaluate(`window.dispatchEvent(new KeyboardEvent("keydown", { key: "z", bubbles: true }))`);
@@ -1535,40 +1536,49 @@ test("the Brian Chesky quote lives only behind the hidden bottom-left dot", asyn
     return {
       ariaHidden: dot?.getAttribute("aria-hidden"),
       tabIndex: dot?.tabIndex,
-      left: rect?.left ?? 9999,
+      rightGap: rect ? innerWidth - rect.right : 9999,
       bottomGap: rect ? innerHeight - rect.bottom : 9999,
+      width: rect?.width ?? 0,
+      height: rect?.height ?? 0,
+      borderRadius: getComputedStyle(dot).borderRadius,
       opacity: Number(getComputedStyle(dot).opacity),
     };
   })()`);
 
   assert.equal(revealedDot.ariaHidden, "false");
   assert.equal(revealedDot.tabIndex, 0);
-  assert.ok(revealedDot.left >= 0 && revealedDot.left <= 48, "quote dot sits at the bottom-left");
-  assert.ok(revealedDot.bottomGap >= 0 && revealedDot.bottomGap <= 48, "quote dot stays near the bottom edge");
+  assert.ok(revealedDot.rightGap >= 0 && revealedDot.rightGap <= 48, "archive square sits at the bottom-right");
+  assert.ok(revealedDot.bottomGap >= 0 && revealedDot.bottomGap <= 48, "archive square stays near the bottom edge");
+  assert.equal(revealedDot.width, 14);
+  assert.equal(revealedDot.height, 14);
+  assert.equal(revealedDot.borderRadius, "3px");
   assert.equal(revealedDot.opacity, 1);
 
   await page.evaluate(`document.querySelector(".chesky-quote-dot")?.click()`);
-  await page.waitFor(`document.querySelector(".page")?.dataset.variant === "next-interface-atrium"`);
+  await page.waitFor(`document.querySelector(".page")?.dataset.reviewVariant === "" && document.querySelectorAll("#landing-story .story-section").length === 11`);
 
-  const archivedQuote = await page.evaluate(`(() => {
+  const archivedPage = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
-    const quote = document.querySelector("#landing-story .story-quote");
+    const storyText = normalize(document.querySelector("#landing-story")?.textContent);
     return {
       variant: document.querySelector(".page")?.dataset.variant,
+      reviewVariant: document.querySelector(".page")?.dataset.reviewVariant,
       dotCurrent: document.querySelector(".chesky-quote-dot")?.getAttribute("aria-current"),
-      text: normalize(quote?.querySelector("p")?.textContent),
-      author: normalize(quote?.querySelector("cite")?.textContent),
-      fontStyle: quote ? getComputedStyle(quote).fontStyle : null,
+      sectionCount: document.querySelectorAll("#landing-story .story-section").length,
+      preservesInterfaceTurn: storyText.includes("For decades, technology pulled communication onto interfaces."),
+      preservesFeelingSignal: storyText.includes("Human Conversation is the only medium that tells you how someone really feels."),
+      preservesFinalPromise: storyText.includes("Imagine a life that runs on Human Conversation and connected experiences."),
     };
   })()`);
 
-  assert.deepEqual(archivedQuote, {
-    variant: "next-interface-atrium",
+  assert.deepEqual(archivedPage, {
+    variant: PUBLIC_VARIANT,
+    reviewVariant: "",
     dotCurrent: "true",
-    text:
-      "“If we can get people back into the physical world, connecting together with one another, that’s the ultimate promise of the internet, which was always meant to bring us together.”",
-    author: "— Brian Chesky",
-    fontStyle: "italic",
+    sectionCount: 11,
+    preservesInterfaceTurn: true,
+    preservesFeelingSignal: true,
+    preservesFinalPromise: true,
   });
   assertRuntimeHealthy();
 });
@@ -1835,4 +1845,161 @@ test("the disconnection method copy stays organized on short desktop and phones"
     assert.ok(layout.horizontalOverflow <= 1, `${width} disconnection section has no horizontal overflow`);
     assertRuntimeHealthy();
   }
+});
+
+test("the private relational-shift review rebuilds the post-crux story around relational reality and connection leaders", async () => {
+  await page.setViewport(1440, 900);
+  await page.navigate(reviewUrl("relational-shift-review"));
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
+
+  const state = await page.evaluate(`(() => {
+    const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
+    const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
+    const visibleWhatsHappening = Array.from(document.querySelectorAll(".whats-happening-phrase"));
+    return {
+      layoutVariant: document.querySelector(".page")?.dataset.variant,
+      reviewVariant: document.querySelector(".page")?.dataset.reviewVariant,
+      sectionCount: sections.length,
+      sections: sections.map((section) => ({
+        title: section.classList.contains("is-community-truth-section")
+          ? Array.from(section.querySelectorAll(".story-title > span")).map((line) => normalize(line.textContent)).join(" ")
+          : normalize(section.querySelector(".story-title")?.textContent),
+        body: normalize(section.querySelector(".story-body")?.textContent),
+        image: getComputedStyle(section, "::before").backgroundImage,
+      })),
+      storyText: sections.map((section) => [
+        normalize(section.querySelector(".story-title")?.textContent),
+        normalize(section.querySelector(".story-body")?.textContent),
+      ].filter(Boolean).join(" ")).join(" "),
+      openingStages: Array.from(document.querySelectorAll(".community-stage .community-platform strong"))
+        .map((element) => normalize(element.textContent)),
+      formCount: document.querySelectorAll("#landing-story .story-contact").length,
+      whatsHappeningCount: visibleWhatsHappening.length,
+      whatsHappeningAllItalicized: visibleWhatsHappening.every((element) => element.tagName === "EM"),
+      horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    };
+  })()`);
+
+  assert.equal(state.layoutVariant, PUBLIC_VARIANT);
+  assert.equal(state.reviewVariant, "relational-shift-review");
+  assert.equal(state.sectionCount, 9);
+  assert.deepEqual(state.openingStages, ["twitter", "slack", "Human Conversation"]);
+  assert.equal(
+    state.sections[0].title,
+    "Individual data tells us about a person. Relational data reveals the connection people feel with one another.",
+  );
+  assert.match(
+    state.sections[0].image,
+    /hc-art-individual-vs-relational-field-review-20260723\.png/,
+  );
+  assert.equal(
+    state.sections[1].title,
+    "Modern technology can describe the individual in extraordinary detail.",
+  );
+  assert.match(
+    state.sections[1].image,
+    /hc-art-modern-technology-digital-individual-review-20260723\.png/,
+  );
+  for (const [index, expectedImage] of [
+    [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
+    [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
+    [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
+    [3, /hc-art-conversation-intelligence-threshold-20260704\.png/],
+    [4, /hc-art-connection-leader-pickleball-review-20260723\.png/],
+    [5, /hc-art-emotional-signal-conversation-20260705\.png/],
+    [6, /hc-art-intelligence-around-human-moment-review-20260723\.png/],
+    [7, /hc-art-protect-human-moment-20260703\.png/],
+    [8, /hc-art-intelligence-brings-together-20260705\.png/],
+  ]) {
+    assert.match(state.sections[index].image, expectedImage);
+  }
+  for (const expected of [
+    "Modern technology can describe the individual in extraordinary detail.",
+    "A community can know every individual",
+    "Activities create the opportunity for connection. They do not guarantee belonging.",
+    "Connection leaders turn participation into belonging.",
+    "Human conversation is where relational reality comes to the surface.",
+    "Human Conversation gives connection leaders the intelligence to create connection again and again.",
+    "The AI handles the work around the human moment.",
+    "The next data layer is between us.",
+    "Who feels known. Who connects with whom. Who brings out the best in the group.",
+    "Their judgment, energy, and care turn a room of individuals into a group people want to return to.",
+    "What someone needs next. Whom they trust. How the group is changing.",
+    "We’re starting with a permissioned pickleball clinic.",
+    "The pro decides what students receive or may share.",
+    "Relational intelligence can help connection leaders understand what happens between people and across groups",
+  ]) {
+    assert.ok(state.storyText.includes(expected), `review story includes: ${expected}`);
+  }
+  assert.equal(state.storyText.includes("Modern technology can describe the individual in extraordinary detail."), true);
+  assert.equal(state.storyText.includes("We become different versions of ourselves around different people."), false);
+  assert.equal(state.storyText.includes("Pickleball makes the missing layer impossible to miss."), false);
+  assert.equal(state.storyText.includes("For decades, technology pulled communication onto interfaces."), false);
+  assert.equal(state.formCount, 1);
+  assert.ok(state.whatsHappeningCount >= 4);
+  assert.equal(state.whatsHappeningAllItalicized, true);
+  assert.ok(state.horizontalOverflow <= 1);
+  assertRuntimeHealthy();
+});
+
+test("the private relational-shift story stays legible and image-backed across desktop and phone viewports", async () => {
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 1440, height: 720 },
+    { width: 390, height: 844 },
+    { width: 320, height: 800 },
+  ]) {
+    await page.setViewport(viewport.width, viewport.height);
+    await page.navigate(reviewUrl("relational-shift-review"));
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 9`);
+
+    const state = await page.evaluate(`(() => {
+      const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
+      return {
+        sections: sections.map((section) => {
+          const sectionRect = section.getBoundingClientRect();
+          const rect = (selector) => {
+            const box = section.querySelector(selector)?.getBoundingClientRect();
+            return box ? {
+              top: box.top - sectionRect.top,
+              bottom: box.bottom - sectionRect.top,
+              left: box.left,
+              right: box.right,
+            } : null;
+          };
+          return {
+            sectionHeight: sectionRect.height,
+            title: rect(".story-title"),
+            body: rect(".story-body"),
+            form: rect(".story-contact"),
+            image: getComputedStyle(section, "::before").backgroundImage,
+          };
+        }),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(state.sections.length, 9);
+    for (const [index, section] of state.sections.entries()) {
+      assert.ok(section.title, `${viewport.width}x${viewport.height} section ${index + 1} renders its title`);
+      assert.ok(section.image && section.image !== "none", `${viewport.width}x${viewport.height} section ${index + 1} renders a background image`);
+      assert.ok(section.sectionHeight <= viewport.height + 6, `${viewport.width}x${viewport.height} section ${index + 1} stays viewport-sized`);
+      for (const [label, box] of Object.entries({ title: section.title, body: section.body, form: section.form })) {
+        if (!box) continue;
+        assert.ok(box.top >= -1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} starts inside the section`);
+        assert.ok(box.bottom <= section.sectionHeight + 1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} ends inside the section`);
+        assert.ok(box.left >= -1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} starts inside the viewport`);
+        assert.ok(box.right <= viewport.width + 1, `${viewport.width}x${viewport.height} section ${index + 1} ${label} ends inside the viewport`);
+      }
+      if (section.body) {
+        assert.ok(section.title.bottom <= section.body.top + 1, `${viewport.width}x${viewport.height} section ${index + 1} title clears body`);
+      }
+      if (section.form) {
+        assert.ok((section.body?.bottom ?? section.title.bottom) <= section.form.top + 1, `${viewport.width}x${viewport.height} section ${index + 1} copy clears form`);
+      }
+    }
+    assert.ok(state.horizontalOverflow <= 1);
+  }
+
+  assertRuntimeHealthy();
 });

@@ -2385,13 +2385,13 @@
 
       .chesky-quote-dot {
         position: fixed;
-        left: max(18px, calc(env(safe-area-inset-left) + 18px));
+        right: max(18px, calc(env(safe-area-inset-right) + 18px));
         bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
         z-index: 5;
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
         border: 0;
-        border-radius: 999px;
+        border-radius: 3px;
         background: var(--hc-rose);
         box-shadow:
           inset 0 0 0 1px rgba(91, 62, 0, 0.16),
@@ -7399,6 +7399,46 @@
         margin-top: 0;
       }
 
+      @media (min-width: 761px) and (max-height: 760px) {
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section {
+          min-height: 100svh;
+          padding: 18px 0;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-inner {
+          padding: 22px 28px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .final-cta-eyebrow {
+          margin-bottom: 10px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-copy .story-title {
+          font-size: clamp(2.65rem, 3.45vw, 3.1rem);
+          line-height: 0.94;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side {
+          margin-top: 12px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-body {
+          font-size: 0.95rem;
+          line-height: 1.36;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .final-cta-button-lead {
+          max-width: 20ch;
+          font-size: 1.4rem;
+          line-height: 0.98;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact input[type="email"],
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact button {
+          min-height: 46px;
+        }
+      }
+
       @media (max-width: 760px) {
         .page[data-variant="conversation-intelligence-home"] .header-email {
           display: inline-flex;
@@ -7573,6 +7613,42 @@
           font-size: 0.88rem;
           line-height: 1.38;
           text-wrap: pretty;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section {
+          min-height: 100svh;
+          padding: 70px 0 24px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-inner {
+          padding: 18px 20px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .final-cta-eyebrow {
+          margin-bottom: 8px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-copy .story-title {
+          font-size: clamp(2.15rem, 9vw, 2.4rem);
+          line-height: 0.94;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side {
+          margin-top: 12px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-body {
+          font-size: 0.9rem;
+          line-height: 1.36;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .final-cta-button-lead {
+          font-size: 1.4rem;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact input[type="email"],
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-final-cta-section .future-story-side .story-contact button {
+          min-height: 48px;
         }
 
         .page[data-variant="conversation-intelligence-home"].has-expanded-story .story-section.is-taps-premium-section {
@@ -17804,6 +17880,197 @@
         animation: none !important;
         transition: none !important;
       }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-truth-section {
+        --story-image: url("./assets/hc-art-individual-vs-relational-field-review-20260723.png");
+        --story-position: 58% center;
+        --story-brightness: 0.98;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-truth-section::after {
+        background:
+          radial-gradient(circle at 76% 48%, rgba(232, 189, 94, 0.12), transparent 24vw),
+          linear-gradient(90deg, rgba(3, 5, 8, 0.96) 0%, rgba(3, 5, 8, 0.86) 38%, rgba(3, 5, 8, 0.34) 65%, rgba(3, 5, 8, 0.08) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.08) 0%, rgba(3, 5, 8, 0.04) 54%, rgba(3, 5, 8, 0.52) 100%);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel {
+        min-height: 100svh;
+        background: #050608;
+        color: #fff8ec;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel::before {
+        display: block;
+        background-image: var(--story-image);
+        background-position: var(--story-position, center);
+        background-size: cover;
+        filter: saturate(1.04) contrast(1.04) brightness(var(--story-brightness, 0.96));
+        transform: scale(1.01);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel::after {
+        display: block;
+        background:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.96) 0%, rgba(3, 5, 8, 0.88) 34%, rgba(3, 5, 8, 0.42) 58%, rgba(3, 5, 8, 0.08) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.08) 0%, rgba(3, 5, 8, 0.02) 56%, rgba(3, 5, 8, 0.58) 100%);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-section-inner {
+        display: block;
+        width: min(100% - 64px, 1320px);
+        min-height: 0;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-copy-block {
+        width: min(100%, 760px);
+        max-width: 760px;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-visual {
+        display: none;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-title {
+        max-width: 760px;
+        color: #fff8ec;
+        font-size: clamp(3rem, 5.15vw, 5.9rem);
+        font-weight: 680;
+        line-height: 0.93;
+        text-shadow: 0 6px 34px rgba(0, 0, 0, 0.74);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel.is-copy-dense .story-title {
+        font-size: clamp(2.65rem, 4.55vw, 5.1rem);
+        line-height: 0.96;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-body {
+        max-width: 41ch;
+        margin-top: clamp(24px, 3.4vh, 36px);
+        border-left: 2px solid var(--hc-rose);
+        color: rgba(255, 248, 236, 0.94);
+        padding-left: clamp(16px, 2vw, 24px);
+        font-family: Manrope, Inter, system-ui, sans-serif;
+        font-size: clamp(1.02rem, 1.32vw, 1.24rem);
+        font-weight: 740;
+        line-height: 1.48;
+        text-shadow: 0 4px 22px rgba(0, 0, 0, 0.72);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .relational-blue {
+        color: #75afe8;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .relational-rose {
+        color: var(--hc-rose);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .relational-gold {
+        color: #edbd58;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-individual-detail-section {
+        --story-image: url("./assets/hc-art-modern-technology-digital-individual-review-20260723.png");
+        --story-position: 61% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-blindspot-section {
+        --story-image: url("./assets/hc-art-modern-life-individual-data-human-connection-review-20260723.png");
+        --story-position: 53% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-belonging-gap-section {
+        --story-image: url("./assets/hc-art-conversation-intelligence-threshold-20260704.png");
+        --story-position: 52% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-connection-leader-section {
+        --story-image: url("./assets/hc-art-connection-leader-pickleball-review-20260723.png");
+        --story-position: 58% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-reality-section {
+        --story-image: url("./assets/hc-art-emotional-signal-conversation-20260705.png");
+        --story-position: 59% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-connection-intelligence-section {
+        --story-image: url("./assets/hc-art-intelligence-around-human-moment-review-20260723.png");
+        --story-position: 59% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-human-ai-principle-section {
+        --story-image: url("./assets/hc-art-protect-human-moment-20260703.png");
+        --story-position: 56% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-next-data-layer-section {
+        --story-image: url("./assets/hc-art-intelligence-brings-together-20260705.png");
+        --story-position: 56% center;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-next-data-layer-section .story-contact {
+        max-width: 640px;
+        margin-top: clamp(24px, 3.8vh, 38px);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-next-data-layer-section .final-cta-button-lead {
+        color: rgba(255, 248, 236, 0.96);
+        text-shadow: 0 4px 22px rgba(0, 0, 0, 0.72);
+      }
+
+      @media (max-width: 760px) {
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-truth-section {
+          --story-position: 72% center;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-truth-section::after {
+          background:
+            linear-gradient(180deg, rgba(3, 5, 8, 0.84) 0%, rgba(3, 5, 8, 0.58) 48%, rgba(3, 5, 8, 0.8) 100%),
+            linear-gradient(90deg, rgba(3, 5, 8, 0.8), rgba(3, 5, 8, 0.18));
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel {
+          min-height: 100svh;
+          padding: 94px 0 72px;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel::after {
+          background:
+            linear-gradient(180deg, rgba(3, 5, 8, 0.9) 0%, rgba(3, 5, 8, 0.66) 48%, rgba(3, 5, 8, 0.84) 100%),
+            linear-gradient(90deg, rgba(3, 5, 8, 0.82), rgba(3, 5, 8, 0.16));
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-section-inner {
+          width: calc(100% - 32px);
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-title,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel.is-copy-dense .story-title {
+          max-width: 100%;
+          font-size: clamp(2.1rem, 9.75vw, 3rem);
+          line-height: 0.97;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-story-panel .story-body {
+          max-width: 30ch;
+          margin-top: 24px;
+          font-size: 0.98rem;
+          line-height: 1.46;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-individual-detail-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-blindspot-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-belonging-gap-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-connection-leader-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-relational-reality-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-connection-intelligence-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-human-ai-principle-section,
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-next-data-layer-section {
+          --story-position: 64% center;
+        }
+      }
     </style>
   </head>
   <body>
@@ -17886,7 +18153,7 @@
         <img src="./assets/hc-art-secret-l-community-market-baked-20260707.png" alt="" />
       </div>
 
-      <button class="chesky-quote-dot" type="button" aria-label="Open hidden Brian Chesky quote" aria-hidden="true" tabindex="-1" hidden></button>
+      <button class="chesky-quote-dot" type="button" aria-label="Open the previous HumanConversation.com landing page" aria-hidden="true" tabindex="-1" hidden></button>
     </div>
 
       <script>
@@ -17998,6 +18265,81 @@
                 className: "is-future-section is-final-cta-section",
                 form: true,
                 buttonLead: `<span class="brand-name">Human Conversation</span> is the timeless interface of community.`,
+              },
+            ],
+          },
+          relationalShiftReview: {
+            sections: [
+              {
+                title: `<span class="community-shift-line"><span class="community-shift-individual-data">Individual data</span> tells us about a person.</span><span class="community-shift-line"><span class="community-shift-relationship-data">Relational data</span> reveals the <span class="community-shift-felt-connection">connection</span> people feel with one another.</span>`,
+                scene: "community-truth",
+                className: "is-long is-community-truth-section",
+              },
+              {
+                title: `Modern technology can describe the <span class="relational-blue">individual</span> in extraordinary detail.`,
+                copy: [
+                  `What we buy. What we watch. What we search. What we earn. What we post. How we perform.`,
+                ],
+                scene: "individual-detail",
+                className: "is-long is-relational-story-panel is-copy-dense is-individual-detail-section",
+              },
+              {
+                title: `A community can know every individual&mdash;and still not understand <em class="whats-happening-phrase">what&rsquo;s happening</em> <span class="relational-rose">between them.</span>`,
+                copy: [
+                  `Who feels known. Who connects with whom. Who brings out the best in the group. Which conversations and experiences make people want to return.`,
+                ],
+                scene: "community-blindspot",
+                className: "is-long is-relational-story-panel is-copy-dense is-community-blindspot-section",
+              },
+              {
+                title: `Activities create the opportunity for <span class="relational-gold">connection.</span> They do not guarantee <span class="relational-rose">belonging.</span>`,
+                copy: [
+                  `Belonging happens when someone notices, welcomes, introduces, listens, and follows through.`,
+                ],
+                scene: "belonging-gap",
+                className: "is-long is-relational-story-panel is-copy-dense is-belonging-gap-section",
+              },
+              {
+                title: `<span class="relational-rose">Connection leaders</span> turn participation into belonging.`,
+                copy: [
+                  `A coach. A host. A teacher. A community builder. Their judgment, energy, and care turn a room of individuals into a group people want to return to.`,
+                ],
+                scene: "connection-leader",
+                className: "is-long is-relational-story-panel is-connection-leader-section",
+              },
+              {
+                title: `Human conversation is where <span class="relational-gold">relational reality</span> comes to the surface.`,
+                copy: [
+                  `What matters. What someone needs next. Whom they trust. How the group is changing. What should happen next.`,
+                ],
+                scene: "relational-reality",
+                className: "is-long is-relational-story-panel is-copy-dense is-relational-reality-section",
+              },
+              {
+                title: `<span class="brand-name">Human Conversation</span> gives connection leaders the <em class="relational-gold">intelligence</em> to create connection again and again.`,
+                copy: [
+                  `We&rsquo;re starting with a permissioned pickleball clinic. AI finds the teaching, connection, intent, and human moments worth carrying forward. The pro decides what students receive or may share.`,
+                ],
+                scene: "connection-intelligence",
+                className: "is-long is-relational-story-panel is-copy-dense is-connection-intelligence-section",
+              },
+              {
+                title: `The AI handles the work <span class="relational-gold">around</span> the human moment. The connection leader creates the trust <span class="relational-rose">inside it.</span>`,
+                copy: [
+                  `One great clinic can become a better follow-up, the next class, a referral, a follower, or a return.`,
+                ],
+                scene: "human-ai-principle",
+                className: "is-long is-relational-story-panel is-copy-dense is-human-ai-principle-section",
+              },
+              {
+                title: `The next data layer is <span class="relational-rose">between us.</span>`,
+                copy: [
+                  `Individual data helped technology understand people. Relational intelligence can help connection leaders understand what happens between people and across groups&mdash;then create the next right connection.`,
+                ],
+                scene: "next-data-layer",
+                className: "is-long is-relational-story-panel is-next-data-layer-section",
+                form: true,
+                buttonLead: `<span class="brand-name">Human Conversation</span> is building that layer.`,
               },
             ],
           },
@@ -18163,8 +18505,7 @@
           lede: `<span class="community-twist">But with a twist.</span><span class="community-follow-arrow" aria-hidden="true"><i></i></span>`,
         });
 
-        const variants = [
-        {
+        const conversationIntelligenceHome = {
           id: "conversation-intelligence-home",
           ...communityPulseHero,
           headlineLabel: "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
@@ -18195,7 +18536,17 @@
             ),
           lede: `<span class="community-human-support">Complex systems need to see the reality about <em class="whats-happening-phrase">what&rsquo;s happening</em> &mdash; to know what to do next.</span><span class="community-follow-arrow" aria-hidden="true"><i></i></span>`,
           story: storyPages.main,
-        },
+        };
+
+        const relationalShiftHome = {
+          ...conversationIntelligenceHome,
+          id: "relational-shift-review",
+          layoutVariant: "conversation-intelligence-home",
+          story: storyPages.relationalShiftReview,
+        };
+
+        const variants = [
+        relationalShiftHome,
         {
           id: "interface-thesis",
           headlineLabel: "Technology became the intermediary. Human Conversation removes it.",
@@ -18404,6 +18755,7 @@
           lede: `A life that runs on <span class="brand-name">Human Conversation</span> and <span class="life-connected">connected experiences</span>.`,
           story: storyPages["life-runs-on-human-conversation"],
         },
+        conversationIntelligenceHome,
       ];
 
       const masterPromptDemoConfig = Object.freeze({
@@ -19467,7 +19819,9 @@
 
         const applyVariant = () => {
           const heroTheme = variant.heroTheme || variant.id;
-          page.dataset.variant = variant.id;
+          const layoutVariant = variant.layoutVariant || variant.id;
+          page.dataset.variant = layoutVariant;
+          page.dataset.reviewVariant = variant.id === layoutVariant ? "" : variant.id;
           page.dataset.heroTheme = heroTheme;
           hero.className = `hero hero-${heroTheme}`;
           hero.dataset.communityStage = heroTheme === "community-pulse" ? "twitter" : "";
@@ -19477,9 +19831,9 @@
           headline.setAttribute("aria-label", variant.headlineLabel);
           lede.innerHTML = variant.lede;
           applyBrandNameColor(lede);
-          renderStoryPage(variant.story, variant.id);
+          renderStoryPage(variant.story, layoutVariant);
           updateCommunityHeroStage();
-          cheskyQuoteDot?.setAttribute("aria-current", String(variant.id === "next-interface-atrium"));
+          cheskyQuoteDot?.setAttribute("aria-current", String(variant.id === "conversation-intelligence-home"));
         };
 
         if (options.immediate || prefersReducedMotion.matches) {
@@ -19618,8 +19972,8 @@
       }
 
       cheskyQuoteDot?.addEventListener("click", () => {
-        const quoteVariantIndex = variants.findIndex((variant) => variant.id === "next-interface-atrium");
-        if (quoteVariantIndex >= 0) setVariant(quoteVariantIndex);
+        const previousPublicVariantIndex = variants.findIndex((variant) => variant.id === "conversation-intelligence-home");
+        if (previousPublicVariantIndex >= 0) setVariant(previousPublicVariantIndex);
       });
 
       headline.addEventListener("click", (event) => {

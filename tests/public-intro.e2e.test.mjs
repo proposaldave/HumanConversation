@@ -226,9 +226,7 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     const layout = await page.evaluate(`(() => {
       const hero = document.querySelector("#landing-hero");
       const copy = document.querySelector(".community-stage-twitter .community-stage-content")?.getBoundingClientRect();
-      const connectionChain = document.querySelector("#landing-story .is-solves-disconnection-section .story-chain");
-      const chainItems = Array.from(connectionChain?.querySelectorAll("span:not(.story-chain-arrow)") || []);
-      const lastPill = chainItems.at(-1)?.getBoundingClientRect();
+      const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
       return {
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         publicIntro: Boolean(document.querySelector("[data-hc-public-intro]")),
@@ -238,10 +236,10 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
         copyTop: copy?.top ?? -1,
         copyBottom: copy?.bottom ?? -1,
         marketValuePresent: Boolean(document.querySelector(".community-stage-twitter .community-market-value")),
-        chainItems: chainItems.map((item) => item.textContent.trim()),
-        arrowCount: connectionChain?.querySelectorAll(".story-chain-arrow").length || 0,
-        lastPillLeft: lastPill?.left ?? -1,
-        lastPillRight: lastPill?.right ?? -1,
+        sectionCount: sections.length,
+        relationalPanelCount: sections.filter((section) => section.classList.contains("is-relational-story-panel")).length,
+        imageBackedCount: sections.filter((section) => getComputedStyle(section, "::before").backgroundImage !== "none").length,
+        finalFormCount: document.querySelectorAll("#landing-story .story-contact").length,
       };
     })()`);
     assert.ok(layout.horizontalOverflow <= 1, `${width}x${height} has no horizontal overflow`);
@@ -250,20 +248,10 @@ test("the promoted public root stays safe at desktop and phone sizes", async () 
     assert.ok(layout.copyLeft >= -1 && layout.copyRight <= width + 1, `${width}x${height} copy fits horizontally`);
     assert.ok(layout.copyTop >= -1 && layout.copyBottom <= height + 1, `${width}x${height} copy fits vertically`);
     assert.equal(layout.marketValuePresent, false, `${width}x${height} omits the Twitter valuation callout`);
-    assert.deepEqual(layout.chainItems, [
-      "disconnection",
-      "connection",
-      "trust",
-      "data",
-      "coordination",
-      "community",
-      "connection-high, every time",
-    ]);
-    assert.equal(layout.arrowCount, 6, `${width}x${height} keeps every connecting arrow`);
-    assert.ok(
-      layout.lastPillLeft >= -1 && layout.lastPillRight <= width + 1,
-      `${width}x${height} final connection pill fits horizontally`,
-    );
+    assert.equal(layout.sectionCount, 9, `${width}x${height} opens the complete relational-shift story`);
+    assert.equal(layout.relationalPanelCount, 8, `${width}x${height} keeps every post-crux relational panel`);
+    assert.equal(layout.imageBackedCount, 9, `${width}x${height} keeps every story section image-backed`);
+    assert.equal(layout.finalFormCount, 1, `${width}x${height} keeps one final signup form`);
   }
   assertRuntimeHealthy();
 });

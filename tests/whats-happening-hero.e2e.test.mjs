@@ -2016,7 +2016,7 @@ test("the relational-shift opening flows into the complete preserved previous la
     [0, /hc-art-individual-vs-relational-field-review-20260723\.png/],
     [1, /hc-art-modern-technology-digital-individual-review-20260723\.png/],
     [2, /hc-art-modern-life-individual-data-human-connection-review-20260723\.png/],
-    [3, /hc-photo-belonging-gap-workshop-pexels-18999478\.jpg/],
+    [3, /hc-art-conversation-intelligence-threshold-20260704\.png/],
     [4, /hc-art-solves-disconnection-deck-style-introduction-20260707\.png/],
     [5, /hc-art-human-conversation-communal-table-20260718\.png/],
     [6, /hc-art-real-world-os-living-community-balanced-20260706\.png/],

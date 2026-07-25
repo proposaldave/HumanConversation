@@ -18001,6 +18001,10 @@
         --story-position: 61% center;
       }
 
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-individual-detail-section .individual-detail-line {
+        display: block;
+      }
+
       .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-community-blindspot-section {
         --story-image: url("./assets/hc-art-modern-life-individual-data-human-connection-review-20260723.png");
         --story-position: 53% center;
@@ -18310,7 +18314,7 @@
                 className: "is-long is-community-truth-section",
               },
               {
-                title: `Modern technology can describe the <span class="relational-blue">individual</span> in extraordinary detail.`,
+                title: `<span class="individual-detail-line">Modern life is organized around the</span> <span class="individual-detail-line relational-blue">individual.</span> <span class="individual-detail-line">Modern technology measures each of us</span> <span class="individual-detail-line">in extraordinary detail.</span>`,
                 copy: [
                   `What we buy. What we watch. What we search. What we earn. What we post. How we perform.`,
                 ],

@@ -2006,7 +2006,7 @@ test("the relational-shift opening flows into the complete preserved previous la
   );
   assert.equal(
     state.sections[1].title,
-    "Modern technology can describe the individual in extraordinary detail.",
+    "Modern life is organized around the individual. Modern technology measures each of us in extraordinary detail.",
   );
   assert.match(
     state.sections[1].image,
@@ -2049,7 +2049,7 @@ test("the relational-shift opening flows into the complete preserved previous la
     "the three-section relational opening flows into the previous landing page without reordering",
   );
   for (const expected of [
-    "Modern technology can describe the individual in extraordinary detail.",
+    "Modern life is organized around the individual. Modern technology measures each of us in extraordinary detail.",
     "A community can know every individual",
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
     "For decades, technology pulled communication onto interfaces.",
@@ -2065,7 +2065,7 @@ test("the relational-shift opening flows into the complete preserved previous la
   ]) {
     assert.ok(state.storyText.includes(expected), `review story includes: ${expected}`);
   }
-  assert.equal(state.storyText.includes("Modern technology can describe the individual in extraordinary detail."), true);
+  assert.equal(state.storyText.includes("Modern technology can describe the individual in extraordinary detail."), false);
   assert.equal(state.storyText.includes("The connection leader decides what people receive or may share."), false);
   assert.equal(state.storyText.includes("We become different versions of ourselves around different people."), false);
   assert.equal(state.storyText.includes("Pickleball makes the missing layer impossible to miss."), false);

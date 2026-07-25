@@ -1976,6 +1976,8 @@ test("the relational-shift opening flows into the complete preserved previous la
       sections: sections.map((section) => ({
         className: section.className,
         title: titleText(section),
+        blueTerms: Array.from(section.querySelectorAll(".story-title .relational-blue"))
+          .map((element) => normalize(element.textContent)),
         body: normalize(section.querySelector(".story-body")?.textContent),
         image: getComputedStyle(section, "::before").backgroundImage,
       })),
@@ -2008,6 +2010,7 @@ test("the relational-shift opening flows into the complete preserved previous la
     state.sections[1].title,
     "Modern life is organized around the individual. Modern technology understands the individual in extraordinary detail.",
   );
+  assert.deepEqual(state.sections[1].blueTerms, ["individual.", "individual"]);
   assert.match(
     state.sections[1].image,
     /hc-art-modern-technology-digital-individual-review-20260723\.png/,

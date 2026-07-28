@@ -138,7 +138,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
-    storySections: 13,
+    storySections: 14,
     demoCount: 0,
     horizontalOverflow: 0,
     removedRejectedCopy: true,
@@ -531,7 +531,7 @@ test("the complete public story stays organized one screen at a time on a wide w
   const height = 1000;
   await page.setViewport(width, height);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
   const sections = await page.evaluate(`(() => {
     const visible = (element) => {
@@ -564,7 +564,7 @@ test("the complete public story stays organized one screen at a time on a wide w
     });
   })()`);
 
-  assert.equal(sections.length, 11);
+  assert.equal(sections.length, 12);
   sections.forEach((section) => {
     assert.ok(Math.abs(section.top) < 3, `section ${section.index + 1} lands at the viewport start`);
     assert.ok(section.height >= height - 1 && section.height <= height + 1, `section ${section.index + 1} uses one work-monitor viewport`);
@@ -586,7 +586,7 @@ test("the operating-system claim gives the existing human system an action payof
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await page.evaluate(`document.querySelector("#landing-story .is-real-world-os-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-real-world-os-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -641,7 +641,7 @@ test("the community graph continues the Maya section visual system across deskto
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await page.evaluate(`document.querySelector("#landing-story .is-graph-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-graph-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -785,7 +785,7 @@ test("the contact email stays fixed top-right from hero through the final sectio
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
     let fixedAnchor = null;
     let previousScrollY = -1;
@@ -896,7 +896,7 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
   const height = 690;
   await page.setViewport(width, height);
   await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
   await page.evaluate(`document.querySelector("#landing-story .is-taps-premium-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
   await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-taps-premium-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -941,7 +941,7 @@ test("the thousand-taps feeling panel clears the headline on short desktop scree
 test("the public story resolves the twist with the existing interface thesis", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl(PUBLIC_VARIANT));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
 
   const sequence = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -1020,7 +1020,7 @@ test("the public story resolves the twist with the existing interface thesis", a
     variant: PUBLIC_VARIANT,
     heroClass: "hero hero-community-pulse",
     heroStage: "twitter",
-    sectionCount: 11,
+    sectionCount: 12,
     firstIsCommunityTruth: true,
     secondIsInterfaceOpposite: true,
     firstFlowsDirectlyToSecond: true,
@@ -1175,7 +1175,7 @@ test("the public story resolves the twist with the existing interface thesis", a
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await page.evaluate(`document.querySelector("#landing-story .is-interface-opposite-section")?.scrollIntoView({ block: "start", behavior: "instant" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-interface-opposite-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -1280,7 +1280,7 @@ test("the 99.9% communication-technology thesis lands early and stays readable",
     assert.equal(layout.premise, "99.9% of communication technology puts an interface between us.");
     assert.equal(layout.returnLine, "Human Conversation intelligence brings us together.");
     assert.equal(layout.index, 3, "the thesis is the fourth story section, immediately after the solution");
-    assert.equal(layout.total, 11);
+    assert.equal(layout.total, 12);
     assert.equal(layout.previousIsSolves, true);
     assert.equal(layout.nextIsOperatingSystem, true);
     assert.equal(layout.statColor, "rgb(91, 143, 212)");
@@ -1425,7 +1425,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
   ]) {
     await page.setViewport(width, height);
     await page.navigate(`${reviewUrl(PUBLIC_VARIANT)}&reduceMotion=1`);
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await page.evaluate(`document.querySelector("#landing-story .is-human-surface-section")?.scrollIntoView({ behavior: "instant", block: "start" })`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-human-surface-section")?.getBoundingClientRect().top ?? 9999) < 3`);
 
@@ -1502,7 +1502,7 @@ test("the human and AI surface section stays clear on desktop and narrow phones"
 test("archived landing-page content lives only behind the hidden bottom-right squares", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(staticServer.baseUrl);
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 14`);
 
   const hiddenState = await page.evaluate(`(() => {
     const dot = document.querySelector(".chesky-quote-dot");
@@ -1541,7 +1541,7 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
     variantTrayPresent: false,
     variantTriggerPresent: false,
     variantDotCount: 0,
-    sectionCount: 13,
+    sectionCount: 14,
     archivedSectionAbsent: true,
     relationalRealitySectionAbsent: true,
   });
@@ -1661,7 +1661,7 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
   });
 
   await page.evaluate(`document.querySelector(".chesky-quote-dot")?.click()`);
-  await page.waitFor(`document.querySelector(".page")?.dataset.reviewVariant === "" && document.querySelectorAll("#landing-story .story-section").length === 11`);
+  await page.waitFor(`document.querySelector(".page")?.dataset.reviewVariant === "" && document.querySelectorAll("#landing-story .story-section").length === 12`);
 
   const archivedPage = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -1681,7 +1681,7 @@ test("archived landing-page content lives only behind the hidden bottom-right sq
     variant: PUBLIC_VARIANT,
     reviewVariant: "",
     dotCurrent: "true",
-    sectionCount: 11,
+    sectionCount: 12,
     preservesInterfaceTurn: true,
     preservesFeelingSignal: true,
     preservesFinalPromise: true,
@@ -1782,7 +1782,7 @@ test("the community-truth section fits desktop and narrow phones without overflo
   ]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl(PUBLIC_VARIANT));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 11`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 12`);
     await showStage("human");
     await page.evaluate(`document.querySelector("#landing-hero .story-cue")?.click()`);
     await page.waitFor(`Math.abs(document.querySelector("#landing-story .is-community-truth-section")?.getBoundingClientRect().top ?? 9999) < 3`);
@@ -1956,7 +1956,7 @@ test("the disconnection method copy stays organized on short desktop and phones"
 test("the relational-shift opening flows into the complete preserved previous landing-page story", async () => {
   await page.setViewport(1440, 900);
   await page.navigate(reviewUrl("relational-shift-review"));
-  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+  await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 14`);
 
   const state = await page.evaluate(`(() => {
     const normalize = (value) => String(value || "").replace(/\\s+/g, " ").trim();
@@ -1996,7 +1996,7 @@ test("the relational-shift opening flows into the complete preserved previous la
 
   assert.equal(state.layoutVariant, PUBLIC_VARIANT);
   assert.equal(state.reviewVariant, "relational-shift-review");
-  assert.equal(state.sectionCount, 13);
+  assert.equal(state.sectionCount, 14);
   assert.deepEqual(state.openingStages, ["twitter", "slack", "Human Conversation"]);
   assert.equal(
     state.sections[0].title,
@@ -2024,11 +2024,12 @@ test("the relational-shift opening flows into the complete preserved previous la
     [5, /hc-art-human-conversation-communal-table-20260718\.png/],
     [6, /hc-art-real-world-os-living-community-balanced-20260706\.png/],
     [7, /hc-art-thousand-taps-frontier-scale-pink-20260705\.png/],
-    [8, /^none$/],
-    [9, /linear-gradient/],
-    [10, /hc-art-loneliness-deck-style-20260705\.png/],
-    [11, /hc-art-operating-system-human-value-funnel-20260705\.png/],
-    [12, /hc-art-human-future-value-choice-20260705\.png/],
+    [8, /hc-art-word-of-mouth-sales-engine-20260728\.png/],
+    [9, /^none$/],
+    [10, /linear-gradient/],
+    [11, /hc-art-loneliness-deck-style-20260705\.png/],
+    [12, /hc-art-operating-system-human-value-funnel-20260705\.png/],
+    [13, /hc-art-human-future-value-choice-20260705\.png/],
   ]) {
     assert.match(state.sections[index].image, expectedImage);
   }
@@ -2043,6 +2044,7 @@ test("the relational-shift opening flows into the complete preserved previous la
       "story-section story-scene-brings-together is-long is-brings-together-section",
       "story-section story-scene-real-world-os is-long is-real-world-os-section is-copy-right",
       "story-section story-scene-thousand-taps is-taps-premium-section",
+      "story-section story-scene-word-of-mouth-sales-engine is-relational-story-panel is-word-of-mouth-engine-section",
       "story-section story-scene-attention is-attention-section",
       "story-section story-scene-community-graph is-paper is-graph-section",
       "story-section story-scene-lonely-return is-long is-lonely-return-section",
@@ -2054,6 +2056,7 @@ test("the relational-shift opening flows into the complete preserved previous la
   for (const expected of [
     "Modern life is organized around the individual. Modern technology understands the individual in extraordinary detail.",
     "A community can know every individual",
+    "Human Conversation is the word-of-mouth sales engine for real-world communities.",
     "Who feels known. Who connects with whom. Who brings out the best in the group.",
     "For decades, technology pulled communication onto interfaces.",
     "The intelligence around human conversation will redefine how real-world social networks come together.",
@@ -2096,7 +2099,7 @@ test("the private relational-shift story stays legible and image-backed across d
   ]) {
     await page.setViewport(viewport.width, viewport.height);
     await page.navigate(reviewUrl("relational-shift-review"));
-    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 13`);
+    await page.waitFor(`document.querySelectorAll("#landing-story .story-section").length === 14`);
 
     const state = await page.evaluate(`(() => {
       const sections = Array.from(document.querySelectorAll("#landing-story .story-section"));
@@ -2126,11 +2129,11 @@ test("the private relational-shift story stays legible and image-backed across d
       };
     })()`);
 
-    assert.equal(state.sections.length, 13);
+    assert.equal(state.sections.length, 14);
     for (const [index, section] of state.sections.entries()) {
       assert.ok(section.title, `${viewport.width}x${viewport.height} section ${index + 1} renders its title`);
       assert.equal(section.hasVisual, true, `${viewport.width}x${viewport.height} section ${index + 1} renders its intended visual`);
-      if (index < 3) {
+      if (index < 3 || section.isRelationalPanel) {
         assert.ok(section.sectionHeight <= viewport.height + 6, `${viewport.width}x${viewport.height} relational section ${index + 1} stays viewport-sized`);
       } else {
         assert.ok(section.sectionHeight >= viewport.height - 1, `${viewport.width}x${viewport.height} preserved section ${index + 1} keeps its original full-screen composition`);

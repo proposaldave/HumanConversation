@@ -4020,6 +4020,15 @@
         --story-position: 50% center;
       }
 
+      .story-scene-word-of-mouth-sales-engine {
+        --story-image: url("./assets/hc-art-word-of-mouth-sales-engine-20260728.png");
+        --story-position: center;
+        --story-brightness: 1.02;
+        --story-overlay:
+          linear-gradient(90deg, rgba(5, 4, 3, 0.44) 0%, rgba(5, 4, 3, 0.2) 42%, rgba(5, 4, 3, 0.02) 72%, rgba(5, 4, 3, 0.08) 100%),
+          linear-gradient(180deg, rgba(5, 4, 3, 0.18) 0%, rgba(5, 4, 3, 0.02) 58%, rgba(5, 4, 3, 0.28) 100%);
+      }
+
       .story-scene-human-data {
         --story-image: url("./assets/hc-art-human-social-community-data-v2-20260705.png");
         --story-position: 50% center;
@@ -18031,6 +18040,61 @@
         --story-position: 59% center;
       }
 
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section {
+        box-sizing: border-box;
+        height: 100svh;
+        min-height: 100svh;
+        align-items: flex-start;
+        background: #090604;
+        padding: clamp(86px, 10vh, 116px) 0 0;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section::after {
+        background:
+          linear-gradient(90deg, rgba(3, 5, 8, 0.46) 0%, rgba(3, 5, 8, 0.24) 38%, rgba(3, 5, 8, 0.05) 66%, rgba(3, 5, 8, 0.02) 100%),
+          linear-gradient(180deg, rgba(3, 5, 8, 0.08) 0%, rgba(3, 5, 8, 0.02) 62%, rgba(3, 5, 8, 0.34) 100%);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-section-inner {
+        display: block;
+        height: auto;
+        width: min(100% - 64px, 1440px);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-visual {
+        display: none;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-copy-block {
+        width: min(58vw, 880px);
+        max-width: 880px;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-title {
+        max-width: 880px;
+        color: #fff8ec;
+        font-size: clamp(3rem, 4.5vw, 5rem);
+        font-weight: 700;
+        line-height: 0.93;
+        text-shadow: 0 5px 34px rgba(0, 0, 0, 0.82);
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .word-of-mouth-line {
+        display: block;
+      }
+
+      .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .word-of-mouth-gold {
+        color: #edbd58;
+        font-style: italic;
+      }
+
+      @media (min-width: 801px) and (max-height: 760px) {
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-title {
+          font-size: clamp(2.9rem, 4.6vw, 4.45rem);
+          line-height: 0.95;
+        }
+      }
+
       .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-connection-intelligence-section {
         --story-image: url("./assets/hc-photo-connection-intelligence-discussion-pexels-3931505.jpg");
         --story-position: 57% center;
@@ -18094,6 +18158,38 @@
           margin-top: 24px;
           font-size: 0.98rem;
           line-height: 1.46;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section {
+          height: 100svh;
+          min-height: 100svh;
+          align-items: center;
+          padding: 0;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section::before {
+          background-position: 24% center;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section::after {
+          background:
+            linear-gradient(180deg, rgba(5, 4, 3, 0.84) 0%, rgba(5, 4, 3, 0.48) 46%, rgba(5, 4, 3, 0.18) 72%, rgba(5, 4, 3, 0.62) 100%),
+            linear-gradient(90deg, rgba(5, 4, 3, 0.64), rgba(5, 4, 3, 0.06));
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-section-inner {
+          width: calc(100% - 32px);
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-copy-block {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-word-of-mouth-engine-section .story-title {
+          max-width: 100%;
+          font-size: clamp(2.35rem, 10.7vw, 3.35rem);
+          line-height: 0.96;
         }
 
         .page[data-review-variant="relational-shift-review"].has-expanded-story .story-section.is-individual-detail-section,
@@ -18243,6 +18339,11 @@
                   headline: `<span class="feeling-title-rose">Human Conversation</span> is the only medium that tells you <span class="feeling-title-gold">how someone really feels.</span>`,
                   copy: `Tone, connection, pauses, warmth, hesitation, eye contact, timing, silence, loneliness, trust, relief, confidence, belonging, energy.`,
                 },
+              },
+              {
+                title: `<span class="word-of-mouth-line"><span class="brand-name">Human Conversation</span> is the </span><span class="word-of-mouth-line"><em class="word-of-mouth-gold">word-of-mouth</em> sales engine for </span><span class="word-of-mouth-line">real-world communities.</span>`,
+                scene: "word-of-mouth-sales-engine",
+                className: "is-relational-story-panel is-word-of-mouth-engine-section",
               },
               {
                 kind: "attention",

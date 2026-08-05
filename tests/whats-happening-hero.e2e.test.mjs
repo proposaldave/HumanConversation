@@ -135,7 +135,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. The intelligence that brings us together. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
+      "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
     storySections: 14,
@@ -334,11 +334,12 @@ test("the top-left Human Conversation logo remains visible through all three her
       await showStage(stage);
       const brand = await page.evaluate(`(() => {
         const element = document.querySelector("header .brand");
+        const name = element?.querySelector(".brand-name");
         const email = document.querySelector("header .header-email")?.getBoundingClientRect();
         const rect = element?.getBoundingClientRect();
         const style = element ? getComputedStyle(element) : null;
         return {
-          text: element?.textContent.replace(/\\s+/g, " ").trim(),
+          text: name?.textContent.replace(/\\s+/g, " ").trim(),
           opacity: Number(style?.opacity || 0),
           visibility: style?.visibility,
           position: style?.position,
@@ -363,29 +364,29 @@ test("the top-left Human Conversation logo remains visible through all three her
   assertRuntimeHealthy();
 });
 
-test("the company tagline sits beneath Human Conversation in the 2026 story beat", async () => {
-  for (const [width, height] of [
-    [1440, 900],
-    [1440, 720],
-    [390, 844],
-    [320, 800],
-  ]) {
+test("the company tagline sits beneath the permanent header brand on desktop", async () => {
+  for (const [width, height] of [[1440, 900], [1440, 720]]) {
     await page.setViewport(width, height);
     await page.navigate(reviewUrl());
-    await showStage("human");
 
     const tagline = await page.evaluate(`(() => {
-      const name = document.querySelector(".community-human-name-copy .brand-name");
-      const tagline = document.querySelector(".community-human-tagline");
+      const brand = document.querySelector("header .brand");
+      const name = brand?.querySelector(".brand-name");
+      const tagline = brand?.querySelector(".brand-tagline");
+      const email = document.querySelector("header .header-email");
+      const brandRect = brand?.getBoundingClientRect();
       const nameRect = name?.getBoundingClientRect();
       const taglineRect = tagline?.getBoundingClientRect();
+      const emailRect = email?.getBoundingClientRect();
       const style = tagline ? getComputedStyle(tagline) : null;
       return {
         text: tagline?.textContent.replace(/\\s+/g, " ").trim(),
         visibility: style?.visibility,
+        color: style?.color,
         opacity: Number(style?.opacity || 0),
         belowName: Boolean(nameRect && taglineRect && taglineRect.top >= nameRect.bottom - 1),
         fitsViewport: Boolean(taglineRect && taglineRect.left >= 0 && taglineRect.right <= innerWidth && taglineRect.top >= 0 && taglineRect.bottom <= innerHeight),
+        clearOfEmail: Boolean(brandRect && emailRect && brandRect.right + 8 <= emailRect.left),
         horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
     })()`);
@@ -393,9 +394,41 @@ test("the company tagline sits beneath Human Conversation in the 2026 story beat
     assert.equal(tagline.text, "The intelligence that brings us together.");
     assert.equal(tagline.visibility, "visible");
     assert.ok(tagline.opacity > 0.8, `${width}x${height} tagline is visible`);
+    assert.equal(tagline.color, "rgb(255, 248, 236)", `${width}x${height} tagline uses the warm white header color`);
     assert.equal(tagline.belowName, true, `${width}x${height} tagline sits beneath the company name`);
     assert.equal(tagline.fitsViewport, true, `${width}x${height} tagline fits inside the viewport`);
+    assert.equal(tagline.clearOfEmail, true, `${width}x${height} tagline stays clear of the contact email`);
     assert.ok(tagline.horizontalOverflow <= 1, `${width}x${height} tagline does not cause horizontal overflow`);
+  }
+
+  assertRuntimeHealthy();
+});
+
+test("the narrow-phone header stays compact and collision-free", async () => {
+  for (const [width, height] of [[390, 844], [320, 800]]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl());
+
+    const header = await page.evaluate(`(() => {
+      const brand = document.querySelector("header .brand");
+      const lockup = brand?.querySelector(".brand-lockup");
+      const mark = brand?.querySelector(".mark");
+      const email = document.querySelector("header .header-email");
+      const brandRect = brand?.getBoundingClientRect();
+      const markRect = mark?.getBoundingClientRect();
+      const emailRect = email?.getBoundingClientRect();
+      return {
+        lockupDisplay: lockup ? getComputedStyle(lockup).display : null,
+        markVisible: Boolean(markRect && markRect.width > 0 && markRect.height > 0),
+        clearOfEmail: Boolean(brandRect && emailRect && brandRect.right + 8 <= emailRect.left),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(header.lockupDisplay, "none", `${width}x${height} uses the compact logo`);
+    assert.equal(header.markVisible, true, `${width}x${height} keeps the logo mark visible`);
+    assert.equal(header.clearOfEmail, true, `${width}x${height} logo stays clear of the contact email`);
+    assert.ok(header.horizontalOverflow <= 1, `${width}x${height} header does not cause horizontal overflow`);
   }
 
   assertRuntimeHealthy();

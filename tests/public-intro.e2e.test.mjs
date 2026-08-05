@@ -63,7 +63,7 @@ async function publicProjection() {
         ".community-twitter-status-arrow, .community-slack-status-arrow, .community-human-status-arrow",
       ).length,
       ledeText: normalize(hero?.querySelector(".lede")),
-      brandTagline: normalize(document.querySelector(".community-human-tagline")),
+      brandTagline: normalize(document.querySelector("header .brand-tagline")),
       headerEmail: normalize(document.querySelector(".header-email")),
       storySections: document.querySelectorAll("#landing-story .story-section, #landing-story .story-final").length,
       heroSignupAction: document.querySelector("#email-capture")?.getAttribute("action"),

@@ -79,7 +79,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
       slackQuestion: normalize(document.querySelector(".community-stage-slack .community-question")?.textContent),
       slackMarketValuePresent: Boolean(document.querySelector(".community-stage-slack .community-market-value")),
       slackLabel: normalize(document.querySelector(".community-stage-slack .community-platform small")?.textContent),
-      humanBrand: normalize(document.querySelector(".community-human-name")?.textContent),
+      humanBrand: normalize(document.querySelector(".community-human-name .brand-name")?.textContent),
       humanQuestion: normalize(document.querySelector(".community-stage-human .community-question")?.textContent),
       humanSupport: normalize(document.querySelector(".community-human-support")?.textContent),
       humanMarkParts: document.querySelectorAll(".community-human-mark .mark-bubble, .community-human-mark .mark-heart").length,
@@ -135,7 +135,7 @@ test("the public landing page tells one verified Twitter, Slack, and Human Conve
     cueYearPresent: false,
     cueLabel: "Go to 2014: Slack",
     heroLabel:
-      "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
+      "2009. Twitter. Digital Communities, visible to technology. What’s happening right now? 2014. Slack. Organizations, visible to technology. What’s happening at work? 2026. Human Conversation. The intelligence that brings us together. Real-world social networks, Real connection is still invisible to technology. What’s happening between us, around us, and within us? Complex systems need to see the reality about what’s happening — to know what to do next.",
     contactDisplay: "none",
     storyHidden: false,
     storySections: 14,
@@ -358,6 +358,44 @@ test("the top-left Human Conversation logo remains visible through all three her
       assert.ok(brand.right <= width && brand.bottom <= height, `${width}x${height} ${stage} logo fits within the viewport`);
       assert.ok(brand.right + 8 <= brand.emailLeft, `${width}x${height} ${stage} logo stays clear of the contact email`);
     }
+  }
+
+  assertRuntimeHealthy();
+});
+
+test("the company tagline sits beneath Human Conversation in the 2026 story beat", async () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [1440, 720],
+    [390, 844],
+    [320, 800],
+  ]) {
+    await page.setViewport(width, height);
+    await page.navigate(reviewUrl());
+    await showStage("human");
+
+    const tagline = await page.evaluate(`(() => {
+      const name = document.querySelector(".community-human-name-copy .brand-name");
+      const tagline = document.querySelector(".community-human-tagline");
+      const nameRect = name?.getBoundingClientRect();
+      const taglineRect = tagline?.getBoundingClientRect();
+      const style = tagline ? getComputedStyle(tagline) : null;
+      return {
+        text: tagline?.textContent.replace(/\\s+/g, " ").trim(),
+        visibility: style?.visibility,
+        opacity: Number(style?.opacity || 0),
+        belowName: Boolean(nameRect && taglineRect && taglineRect.top >= nameRect.bottom - 1),
+        fitsViewport: Boolean(taglineRect && taglineRect.left >= 0 && taglineRect.right <= innerWidth && taglineRect.top >= 0 && taglineRect.bottom <= innerHeight),
+        horizontalOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    })()`);
+
+    assert.equal(tagline.text, "The intelligence that brings us together.");
+    assert.equal(tagline.visibility, "visible");
+    assert.ok(tagline.opacity > 0.8, `${width}x${height} tagline is visible`);
+    assert.equal(tagline.belowName, true, `${width}x${height} tagline sits beneath the company name`);
+    assert.equal(tagline.fitsViewport, true, `${width}x${height} tagline fits inside the viewport`);
+    assert.ok(tagline.horizontalOverflow <= 1, `${width}x${height} tagline does not cause horizontal overflow`);
   }
 
   assertRuntimeHealthy();
@@ -1986,6 +2024,7 @@ test("the relational-shift opening flows into the complete preserved previous la
         normalize(section.querySelector(".story-body")?.textContent),
       ].filter(Boolean).join(" ")).join(" "),
       openingStages: Array.from(document.querySelectorAll(".community-stage .community-platform strong"))
+        .map((element) => element.querySelector(".brand-name") || element)
         .map((element) => normalize(element.textContent)),
       formCount: document.querySelectorAll("#landing-story .story-contact").length,
       whatsHappeningCount: visibleWhatsHappening.length,

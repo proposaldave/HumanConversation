@@ -383,6 +383,7 @@ test("the company tagline sits beneath the permanent header brand on desktop", a
         text: tagline?.textContent.replace(/\\s+/g, " ").trim(),
         visibility: style?.visibility,
         color: style?.color,
+        fontSize: Number.parseFloat(style?.fontSize || "0"),
         opacity: Number(style?.opacity || 0),
         belowName: Boolean(nameRect && taglineRect && taglineRect.top >= nameRect.bottom - 1),
         fitsViewport: Boolean(taglineRect && taglineRect.left >= 0 && taglineRect.right <= innerWidth && taglineRect.top >= 0 && taglineRect.bottom <= innerHeight),
@@ -395,6 +396,7 @@ test("the company tagline sits beneath the permanent header brand on desktop", a
     assert.equal(tagline.visibility, "visible");
     assert.ok(tagline.opacity > 0.8, `${width}x${height} tagline is visible`);
     assert.equal(tagline.color, "rgb(255, 248, 236)", `${width}x${height} tagline uses the warm white header color`);
+    assert.ok(tagline.fontSize >= 10.8, `${width}x${height} tagline remains easy to read`);
     assert.equal(tagline.belowName, true, `${width}x${height} tagline sits beneath the company name`);
     assert.equal(tagline.fitsViewport, true, `${width}x${height} tagline fits inside the viewport`);
     assert.equal(tagline.clearOfEmail, true, `${width}x${height} tagline stays clear of the contact email`);
